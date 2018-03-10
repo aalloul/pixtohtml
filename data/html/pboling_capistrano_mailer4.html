@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pboling_capistrano_mailer4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  end
+
+  ...
+end</code></pre>
+<ol start="5" type="1">
+<li><p>Make <em>sure</em> you’ve defined <code>rails_env</code>, <code>repository</code>, <code>deploy_to</code>, <code>host</code>, and <code>application</code>. <code>task_name</code> is defined by the show:me task above, and the others are defined behind the scenes by Capistrano!</p></li>
+<li><p>The only parameter to mailer.send_notification_email that is <em>required</em> is the first. <em>Minimally</em> you need to define the capistrano variables:</p>
+<p>:rails_env :repository :task_name (provided by the show:me task included in this readme) :deploy_to :host :application</p></li>
+</ol>
+<p>But there are tons of others - just take a look at lib/mailer/cap_mailer.rb.</p>
+<p>If anyone has a cool way of recording the <em>output</em> into a capistrano accessible variable, so that it can be shoved into the release email that would be an excellent contribution!</p>
+<ol start="7" type="1">
+<li><p>Then add the hook somewhere in your deploy.rb:</p>
+<p>after “deploy”, “deploy:notify”</p></li>
+<li><p>Enjoy and Happy Capping!</p></li>
+</ol>
+<h2 id="customization">Customization</h2>
+<p>If you want to use your own views you’ll need to recreate the notification_email view: First you need to define where your templates are:</p>
+<pre><code>CapMailer.configure_capistrano_mailer do |config|
+  config[:template_root]      = &quot;app/views/capistrano_mailer/&quot;
+end</code></pre>
+<p>Then you’ll need to create templates there called:</p>
+<p><code>notification_email.text.html.erb</code></p>
+<p>and / or</p>
+<p><code>notification_email.text.plain.erb</code></p>
+<p>Take a look at the templates that comes with the plugin to see how it is done (views/cap_mailer/…)</p>
+<h2 id="credit-where-credit-is-due">Credit where Credit is Due</h2>
+<ul>
+<li>Wrote original &amp; maintainer</li>
+<li>lots of refactoring for 3.2 release</li>
+</ul>
+</body>
+</html>

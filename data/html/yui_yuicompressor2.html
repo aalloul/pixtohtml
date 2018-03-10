@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yui_yuicompressor2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><code>charset</code> // defaults to ‘utf8’</li>
+<li><code>type</code> // defaults to ‘js’</li>
+<li><code>line-break</code></li>
+<li><code>nomunge</code></li>
+<li><code>preserve-semi</code></li>
+<li><code>disable-optimizations</code></li>
+</ul>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>Better Docs</li>
+<li>Help Pages</li>
+</ul>
+<h2 id="build-status">Build Status</h2>
+<h2 id="global-options">Global Options</h2>
+<pre><code>-h, --help
+    Prints help on how to use the YUI Compressor
+
+--line-break
+    Some source control tools don&#39;t like files containing lines longer than,
+    say 8000 characters. The linebreak option is used in that case to split
+    long lines after a specific column. It can also be used to make the code
+    more readable, easier to debug (especially with the MS Script Debugger)
+    Specify 0 to get a line break after each semi-colon in JavaScript, and
+    after each rule in CSS.
+
+--type js|css
+    The type of compressor (JavaScript or CSS) is chosen based on the
+    extension of the input file name (.js or .css) This option is required
+    if no input file has been specified. Otherwise, this option is only
+    required if the input file extension is neither &#39;js&#39; nor &#39;css&#39;.
+
+--charset character-set
+    If a supported character set is specified, the YUI Compressor will use it
+    to read the input file. Otherwise, it will assume that the platform&#39;s
+    default character set is being used. The output file is encoded using
+    the same character set.
+
+-o outfile
+
+    Place output in file outfile. If not specified, the YUI Compressor will
+    default to the standard output, which you can redirect to a file.</code></pre>
+</body>
+</html>

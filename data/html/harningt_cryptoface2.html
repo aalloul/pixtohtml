@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>harningt_cryptoface2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Currently exposes basic digest functionality. Some hashing capabilities not implemented due to interface difference. Digest cloning not available.</p>
+<h3 id="cf_cryptopp">cf_cryptopp</h3>
+<p>Cryptoface provider using [Crypto++] as the underlying implementation. Currently exposes basic digest functionality. Some hashing capabilities not implemented due to interface difference. Digest cloning not available.</p>
+<h3 id="cf_openssl">cf_openssl</h3>
+<p>Cryptoface provider using [OpenSSL] as the underlying implementation. Currently exposes basic digest functionality.</p>
+<h3 id="cf_mhash">cf_mhash</h3>
+<p>Cryptoface provider using [Mhash] as the underlying implementation. Currently exposes basic digest functionality.</p>
+<h3 id="cf_nettle">cf_nettle</h3>
+<p>Cryptoface provider using [Nettle] as the underlying implementation. Currently exposes basic digest functionality.</p>
+<h3 id="cf_gcrypt">cf_gcrypt</h3>
+<p>Cryptoface provider using [libgcrypt] (see [gnupg]) as the underlying implementation. Currently exposes basic digest functionality.</p>
+<h3 id="cf_tomcrypt">cf_tomcrypt</h3>
+<p>Cryptoface provider using [LibTomCrypt][LibTomCrypt] as the underlying implementation. Currently exposes basic digest functionality.</p>
+<h2 id="requirements">Requirements</h2>
+<p>The project is built using CMake and links in 3rd party cryptographic libraries for support.</p>
+<p>It has been tested to build using [CMake 2.6] on Windows and Linux.</p>
+<p>Compiler versions tested:</p>
+<ul>
+<li>gcc 4.5.0 - MinGW - 32-bit Windows</li>
+<li>gcc 4.5.1 - Gentoo Linux - 32-bit and 64-bit</li>
+<li>gcc 4.5.2 - Ubuntu Linux 11.04 - 32-bit and 64-bit</li>
+</ul>
+<p>Subproject dependencies:</p>
+<ul>
+<li>cf_beecrypt: BeeCrypt - tested against 4.2.1 (Linux)</li>
+<li>cf_botan: Botan - tested against 1.8 and 1.10 (Linux)</li>
+<li>cf_cryptopp: Crypto++ - tested against 5.6.0 (Linux)</li>
+<li>cf_openssl: OpenSSL - tested against 1.0.0a (Linux)</li>
+<li>cf_mhash: MHash - tested against 0.9.9 (Linux and Windows)</li>
+</ul>
+</body>
+</html>

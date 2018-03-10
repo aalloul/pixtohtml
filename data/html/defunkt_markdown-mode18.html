@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode18</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>labels, when non-nil this setting supersedes `markdown-hide-urls`.
+Markup hiding can be toggled using &lt;kbd&gt;C-c C-x C-m&lt;/kbd&gt;
+(`markdown-toggle-markup-hiding`) or from the Markdown | Show &amp;
+Hide menu.
+
+Unicode bullets are used to replace ASCII list item markers.
+The list of characters used, in order of list level, can be
+specified by setting the variable `markdown-list-item-bullets`.
+The placeholder characters used to replace other markup can
+be changed by customizing the corresponding variables:
+`markdown-blockquote-display-char`,
+`markdown-hr-display-char`, and
+`markdown-definition-display-char`.</code></pre>
+<ul>
+<li><p><code>markdown-fontify-code-blocks-natively</code> - Whether to fontify code in code blocks using the native major mode. This only works for fenced code blocks where the language is specified where we can automatically determine the appropriate mode to use. The language to mode mapping may be customized by setting the variable <code>markdown-code-lang-modes</code>. This can be toggled interactively by pressing <kbd>C-c C-x C-f</kbd> (<code>markdown-toggle-fontify-code-blocks-natively</code>).</p></li>
+<li><p><code>markdown-gfm-uppercase-checkbox</code> - When non-nil, complete GFM task list items with <code>[X]</code> instead of <code>[x]</code> (default: <code>nil</code>). This is useful for compatibility with <code>org-mode</code>, which doesn’t recognize the lowercase variant.</p></li>
+<li><p><code>markdown-translate-filename-function</code> - A function to be used to translate filenames in links.</p></li>
+</ul>
+<p>Additionally, the faces used for syntax highlighting can be modified to your liking by issuing <kbd>M-x customize-group RET markdown-faces</kbd> or by using the “Markdown Faces” link at the bottom of the mode customization screen.</p>
+<h2 id="extensions">Extensions</h2>
+<p>Besides supporting the basic Markdown syntax, Markdown Mode also includes syntax highlighting for <code>[[Wiki Links]]</code>. This can be enabled by setting <code>markdown-enable-wiki-links</code> to a non-nil value. Wiki links may be followed by pressing <kbd>C-c C-o</kbd> when the point is at a wiki link. Use <kbd>M-p</kbd> and <kbd>M-n</kbd> to quickly jump to the previous and next links (including links of other types). Aliased or piped wiki links of the form <code>[[link text|PageName]]</code> are also supported. Since some wikis reverse these components, set <code>markdown-wiki-link-alias-first</code> to nil to treat them as <code>[[PageName|link text]]</code>. If <code>markdown-wiki-link-fontify-missing</code></p>
+</body>
+</html>

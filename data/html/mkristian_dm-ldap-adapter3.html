@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mkristian_dm-ldap-adapter3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>this uses the underlying bind of a ldap connection. so on any model where you have the <code>dn_prefix</code> and the <code>treebase</code> configured, you can call the method <code>authenticate(password)</code>. this will forward the request to the ldap server.</p>
+<h3 id="queries">queries</h3>
+<p>conditions in ldap depend on the attributes definition in the ldap schema. here is the list of what is working with that ldap adapter side and the usual AND between the conditions:</p>
+<ul>
+<li>:eql</li>
+<li>:not</li>
+<li>:like</li>
+<li>:in</li>
+<li>Range</li>
+</ul>
+<p>not working are <code>:lt, :lte, :gt, :gte</code></p>
+<p><em>note</em>: sql handles <code>NULL</code> different from values, i.e.</p>
+<pre><code> select * from users where name = &#39;sd&#39;;</code></pre>
+<p>and</p>
+<pre><code> select * from users where name != &#39;sd&#39;;</code></pre>
+<p>gives the same result when <em>all</em> names are <code>NULL</code> !!!</p>
+<h3 id="or-conditions">OR conditions</h3>
+<p>or-conditions can be done with :conditions option but only of the form “<property_name> <comparator> <value> [or <property_name> <comparator> <value>]*&quot; where the comparator is one of “=”, “like”. it can be also combined with extra ANDs like this example</p>
+<pre><code>Contact.all(:name.like =&gt; &quot;A%&quot;, :conditions =&gt; [&quot;phone like &#39;+49%&#39; or mobile like &#39;+49%&#39;&quot;])</code></pre>
+<h3 id="multiple-repositories">multiple repositories</h3>
+<p>most probably you have to work with ldap as one repository and a database as a second repository. for me it worked best to define the <code>default_repository</code> for each model in the model itself:</p>
+<pre><code>class User
+  . . .
+  def self.default_repository_name
+    :ldap
+  end
+end
+
+class Config
+  . . .
+  def self.default_repository_name
+    :db
+  end
+end</code></pre>
+<p>if you want to benefit from the advantages of the identidy maps you need to wrap your actions for <em>merb</em> see http://www.datamapper.org/doku.php?id=docs:identity_map or for <em>rails</em> put an <code>around_filter</code> inside application.rb</p>
+</body>
+</html>

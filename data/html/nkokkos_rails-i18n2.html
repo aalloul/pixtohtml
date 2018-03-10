@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nkokkos_rails-i18n2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<blockquote>
+<p>af, ar, az, bg, bn, bs, ca, cs, cy, da, de, de-AT, de-CH, el, en, en-AU, en-CA, en-GB, en-IN, en-NZ, en-IE, eo, es, es-419, es-AR, es-CL, es-CO, es-MX, es-PE, es-VE, et, eu, fa, fi, fr, fr-CA, fr-CH, gl, he, hi, hi-IN, hr, hu, id, is, it, it-CH, ja, kn, ko, lo, lt, lv, mk, mn, nb, ne, nl, nn, or, pl, pt, pt-BR, rm, ro, ru, sk, sl, sr, sv, sw, th, tl, tr, uk, uz, vi, wo, zh-CN, zh-HK, zh-TW</p>
+</blockquote>
+<p>Following locales are complete:</p>
+<blockquote>
+<p>bs, da, en, hr, is, ja, sr</p>
+</blockquote>
+<p>Following locales have some missing translations or pluralizations:</p>
+<blockquote>
+<p>af, ar, az, bg, bn, ca, cs, cy, da, de, de-AT, de-CH, el, en-AU, en-CA, en-GB, en-IN, en-NZ, en-IE, eo, es, es-419, es-AR, es-CL, es-CO, es-MX, es-PE, es-VE, et, eu, fa, fi, fr, fr-CA, fr-CH, gl, he, hi, hi-IN, hu, id, is, it, it-CH, kn, ko, lo, lt, lv, mk, mn, nb, ne, nl, nn, or, pl, pt, pt-BR, rm, ro, ru, sk, sl, sv, sw, th, tl, tr, uk, uz, vi, wo, zh-CN, zh-HK, zh-TW</p>
+</blockquote>
+<p>We always welcome your contributions!</p>
+<h2 id="how-to-contribute">How to contribute</h2>
+<h3 id="quick-contribution">Quick contribution</h3>
+<p>If you are familiar with GitHub operations, follow the procedures described in the subsequent sections.</p>
+<p>If you are not,</p>
+<ul>
+<li>Save your locale data on the .</li>
+<li>Open an issue with reference to the Gist you created.</li>
+</ul>
+<h3 id="fetch-the-rails-i18n-repository">Fetch the <code>rails-i18n</code> repository</h3>
+<ul>
+<li>Get a github account and Git program if you haven’t. See for instructions.</li>
+<li>Fork <code>svenfuchs/rails-i18n</code> repository and clone it into your PC.</li>
+</ul>
+<h3 id="create-or-edit-your-locale-file">Create or edit your locale file</h3>
+<ul>
+<li>Have a look in <code>rails/locale/en-US.yml</code>, which can be used as the base of your translation. Note that we use <code>&amp;errors_messages</code> and <code>&lt;&lt;: *errors_messages</code> to anchor and merge a part of translation data.</li>
+<li>Create or edit your locale file. Please pay attention to save your files as UTF-8.</li>
+</ul>
+<h3 id="test-your-locale-file">Test your locale file</h3>
+<p>Before committing and pushing your changes, test the integrity of your locale file.</p>
+<pre><code>rake spec</code></pre>
+<p>Make sure you have included all translations with:</p>
+</body>
+</html>

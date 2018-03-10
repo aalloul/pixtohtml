@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pero-ict-solutions_spree-static-content1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="spree-static-content">Spree Static Content</h1>
+<p>Good, clean content management of pages for Spree. You can use this to:</p>
+<ul>
+<li>Add and manage static pages such as an ‘About’ page.</li>
+<li>Show a static page instead of existing dynamic pages such as the home page, products pages, and taxon pages.</li>
+</ul>
+<hr />
+<h2 id="howto">HowTo</h2>
+<p>Using the ‘Pages’ option in the admin tab, you can add static pages to your Spree install. The page content can be pulled directly from the database, be a separate layout file or rendered as a partial.</p>
+<p>In the admin tab, use the ‘New page’ option to create a new static page.</p>
+<p>The title, slug, body, and meta fields will replace their respective page elements on load. The title, slug and body element are all required fields.</p>
+<p>Body text provided without a layout / partial being specified will be loaded in the spree_application layout after it is pulled from the database.</p>
+<p><strong>Layout and Partial Rendering</strong></p>
+<p>To render an entire page without the spree_application layout, specify a relative path to the layout file (eg. <code>spree/layouts/layout_file_name</code>). This file will not be prefixed with an underscore as it is a layout, not a partial.</p>
+<p>To render a partial, specify the path in the layout file name and check the ‘Render layout as partial’ option. The path specified in the layout area will not have an underscore, but it will be required in the filename.</p>
+<p>Also note the availability of the render_snippet helper which finds a page by its slug and renders the raw page body anywhere in your view.</p>
+<p><strong>Options</strong></p>
+<p>Use the ‘Show in’ checkboxes to specify whether to display the page links in the header, footer or sidebar. The position setting alters the order in which they appear.</p>
+<p>Finally, toggle the visibility using the ‘Visible’ checkbox. If it is unchecked, the page will not be available.</p>
+<hr />
+<h2 id="basic-installation">Basic Installation</h2>
+<p>Add to your <code>Gemfile</code>:</p>
+</body>
+</html>

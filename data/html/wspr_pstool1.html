@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>wspr_pstool1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-pstool-package">The pstool package</h1>
+<p>A package like <code>pst-pdf</code> for processing PostScript graphics with psfrag labels within pdfLaTeX documents. The difference with this package is that every graphic is compiled individually in a separate process, drastically speeding up compilation time when only a single figure needs re-processing.</p>
+<p>Please see the PDF documentation for further information.</p>
+<p>An example and a testsuite is available in the source repository for the package: <a href="https://github.com/wspr/pstool" class="uri">https://github.com/wspr/pstool</a></p>
+<ul>
+<li>Copyright 2008–2014 Zebb Prime</li>
+<li>Copyright 2008–2018 Will Robertson</li>
+</ul>
+<h2 id="license">License</h2>
+<p>This work may be distributed and/or modified under the conditions of the LaTeX Project Public License, either version 1.3c or (at your option) any later version. The latest version of this license is in: <a href="http://www.latex-project.org/lppl.txt" class="uri">http://www.latex-project.org/lppl.txt</a></p>
+<p>This work has the LPPL maintenance status `maintained’.</p>
+<p>The Current Maintainer of this work is Will Robertson.</p>
+<h2 id="change-history">Change history</h2>
+<ul>
+<li>v1.5e, Jan 2018:
+<ul>
+<li>New package option <code>crossref=false</code> to disable cross-referencing support.</li>
+</ul></li>
+<li>v1.5d, Oct 2017:
+<ul>
+<li>Use <code>shellesc</code> package for write18 in LuaTeX.</li>
+</ul></li>
+<li>v1.5c:
+<ul>
+<li>Documentation update; some minor cosmetic code changes.</li>
+</ul></li>
+<li>v1.5b:
+<ul>
+<li>Fix conflict with beamer, which resets the catcode of @ with \begin{document}.</li>
+</ul></li>
+<li>v1.5a, March 2013:
+<ul>
+<li>Fix bug introduced in last version in which plain LaTeX compilation (producing DVI) produced erroneous output above each figure.</li>
+</ul></li>
+</ul>
+</body>
+</html>

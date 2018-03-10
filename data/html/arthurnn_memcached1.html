@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>arthurnn_memcached1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="memcached">memcached</h1>
+<p>An interface to the libmemcached C client.</p>
+<h2 id="license">License</h2>
+<p>Copyright 2009-2013 Cloudburst, LLC. Licensed under the AFL 3. See the included LICENSE file. Portions copyright 2007-2009 TangentOrg, Brian Aker, licensed under the BSD license, and used with permission.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>clean API</li>
+<li>robust access to all memcached features</li>
+<li>SASL support for the binary protocol</li>
+<li>multiple hashing modes, including consistent hashing</li>
+<li>ludicrous speed, including optional pipelined IO with no_reply</li>
+</ul>
+<p>The <strong>memcached</strong> library wraps the pure-C libmemcached client via SWIG.</p>
+<h2 id="installation">Installation</h2>
+<p>You need Ruby 1.8.7 or Ruby 1.9.2. Other versions may work, but are not guaranteed. You also need the <code>libsasl2-dev</code> and <code>gettext</code> libraries, which should be provided through your system’s package manager.</p>
+<p>Install the gem: sudo gem install memcached –no-rdoc –no-ri</p>
+<h2 id="usage">Usage</h2>
+<p>Start a local networked memcached server: $ memcached -p 11211 &amp;</p>
+<p>Now, in Ruby, require the library and instantiate a Memcached object at a global level:</p>
+<pre><code>require &#39;memcached&#39;
+$cache = Memcached.new(&quot;localhost:11211&quot;)</code></pre>
+<p>Now you can set things and get things:</p>
+<pre><code>value = &#39;hello&#39;
+$cache.set &#39;test&#39;, value
+$cache.get &#39;test&#39; #=&gt; &quot;hello&quot;</code></pre>
+<p>You can set with an expiration timeout:</p>
+</body>
+</html>

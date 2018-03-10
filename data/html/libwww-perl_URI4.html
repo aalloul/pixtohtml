@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_URI4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>returned by $uri-&gt;scheme is always lowercase.  If you want the scheme
+just as it was written in the URI in its original case,
+you can use the $uri-&gt;\_scheme method instead.</code></pre>
+<ul>
+<li><p>$uri-&gt;has_recognized_scheme</p>
+<p>Returns TRUE if the URI scheme is one that URI recognizes.</p>
+<p>It will also be TRUE for relative URLs where a recognized scheme was provided to the constructor, even if <code>$uri-&gt;scheme</code> returns <code>undef</code> for these.</p></li>
+<li>$uri-&gt;opaque</li>
+<li><p>$uri-&gt;opaque( $new_opaque )</p>
+<p>Sets and returns the scheme-specific part of the $uri (everything between the scheme and the fragment) as an escaped string.</p></li>
+<li>$uri-&gt;path</li>
+<li><p>$uri-&gt;path( $new_path )</p>
+<p>Sets and returns the same value as $uri-&gt;opaque unless the URI supports the generic syntax for hierarchical namespaces. In that case the generic method is overridden to set and return the part of the URI between the <em>host name</em> and the <em>fragment</em>.</p></li>
+<li>$uri-&gt;fragment</li>
+<li><p>$uri-&gt;fragment( $new_frag )</p>
+<p>Returns the fragment identifier of a URI reference as an escaped string.</p></li>
+<li><p>$uri-&gt;as_string</p>
+<p>Returns a URI object to a plain ASCII string. URI objects are also converted to plain strings automatically by overloading. This means that $uri objects can be used as plain strings in most Perl constructs.</p></li>
+<li><p>$uri-&gt;as_iri</p>
+<p>Returns a Unicode string representing the URI. Escaped UTF-8 sequences representing non-ASCII characters are turned into their corresponding Unicode code point.</p></li>
+<li><p>$uri-&gt;canonical</p>
+<p>Returns a normalized version of the URI. The rules for normalization are scheme-dependent. They usually involve</p></li>
+</ul>
+</body>
+</html>

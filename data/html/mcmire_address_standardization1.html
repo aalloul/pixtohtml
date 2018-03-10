@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mcmire_address_standardization1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="address_standardization">address_standardization</h1>
+<h2 id="what-is-it">What is it?</h2>
+<p>Despite the long name, this is a tiny Ruby library to quickly standardize a postal address, either via the Google Geocoding API or MelissaData. So if you have an online store and you need to verify a shipping address, then you might consider using this library.</p>
+<h2 id="what-is-it-not">What is it <em>not</em>?</h2>
+<p>This is not a library to <em>geocode</em> addresses or locations. In other words, you won’t get world coordinates back for a location. If you need this information, then there are other libraries that will do this for you, such as or .</p>
+<h2 id="how-do-i-install-it">How do I install it?</h2>
+<pre><code>gem install address_standardization</code></pre>
+<h2 id="how-do-i-use-it">How do I use it?</h2>
+<p>Right now this library supports two services: the Google Geocoding API and MelissaData. All services work the same way: you call a <code>standardize_address</code> method with a hash of address data. If the address exists (according to the service), you’ll get back a full hash of address data. Otherwise, you’ll get back <code>nil</code>.</p>
+<p>Both Google and MelissaData have benefits and drawbacks. First, in terms of postal addresses there are three kinds of addresses you are probably concerned with: US addresses, Canadian addresses, and then international addresses.</p>
+<h3 id="google">Google</h3>
+<p>Google is pretty great in that in knows about all sorts of addresses. So if you’re trying to verify an address in France, then Google probably knows about it. However, it is not very useful in terms of standardizing US addresses, because it doesn’t know what to do with P.O. boxes.</p>
+<p>That said, here is how you’d standardize a US address:</p>
+<pre><code>addr = AddressStandardization::GoogleMaps.standardize_address(
+  :street =&gt; &quot;1600 Amphitheatre Parkway&quot;,
+  :city =&gt; &quot;Mountain View&quot;,
+  :state =&gt; &quot;CA&quot;
+)
+addr.street      #=&gt; &quot;1600 AMPHITHEATRE PKWY&quot;
+addr.city        #=&gt; &quot;MOUNTAIN VIEW&quot;
+addr.county      #=&gt; &quot;SANTA CLARA&quot;</code></pre>
+</body>
+</html>

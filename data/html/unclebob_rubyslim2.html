@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>unclebob_rubyslim2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>written in the Ruby code, not the filename where the module is defined.</p>
+<p>Ruby slim works a lot like Java slim. We tried to use ruby method naming conventions. So if you put this in a table:</p>
+<pre><code>|SomeDecisionTable|
+|input|get output?|
+|1    |2          |</code></pre>
+<p>Then it will call the <code>set_input</code> and <code>get_output</code> functions of the <code>SomeDecisionTable</code> class.</p>
+<p>The <code>SomeDecisionTable</code> class would be written in a file called <code>some_decision_table.rb</code>, like this (the file name must correspond to the class name defined within, and the module name must match the one you are importing):</p>
+<pre><code>module MyModule
+  class SomeDecisionTable
+    def set_input(input)
+      @x = input
+    end
+
+    def get_output
+      @x
+    end
+  end
+end</code></pre>
+<p>Note that there is no type information for the arguments of these functions, so they will all be treated as strings. This is important to remember! All arguments are strings. If you are expecting integers, you will have to convert the strings to integers within your fixtures.</p>
+<h2 id="hashes">Hashes</h2>
+<p>There is one exception to the above rule. If you pass a HashWidget in a table, then the argument will be converted to a Hash.</p>
+<p>Consider, for example, this fixtures class:</p>
+<pre><code>module TestModule
+  class TestSlimWithArguments
+    def initialize(arg)
+      @arg = arg
+    end
+
+    def arg
+      @arg</code></pre>
+</body>
+</html>

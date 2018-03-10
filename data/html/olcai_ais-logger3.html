@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>olcai_ais-logger3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Find the site-packages directory under your python installation directory (typically /usr/lib/pythonX.X/site-packages/ on *nix). Delete the aislogger directory and the file aislogger-XXXX-pyX.X.egg-info. You also have to delete the script aislogger (typically in /usr/bin under *nix). Done.</p>
+<h2 id="configuring">Configuring</h2>
+<p>When running on Windows and saving the configuration file, you can safely save the configuration file to the program directory.</p>
+<p>Under *nix, you cannot save the configuration file directly to the suggested directory because you don’t have permission to write to the AIS Logger directory. Please save the configuration file in your home directory and start the program with the -c switch and the config file:</p>
+<pre><code>    $ aislogger -c myconfigfile.ini</code></pre>
+<h2 id="building-on-windows">Building on Windows</h2>
+<p>To build AIS Logger on Windows, first install all dependencies given above. You will also need to install [py2exe][py2exe] to build the distribution (any modern version should do).</p>
+<p>Extract the source archive to a directory. Then run the following command:</p>
+<pre><code>    &gt; python setup.py py2exe</code></pre>
+<p>You may need to use the full path to your python installation if it’s not in your $PATH. The result of the build is now in the directory “dist” and is ready to run and distribute.</p>
+<h2 id="known-issues">Known issues</h2>
+<ul>
+<li>Color depth needs to be 24 bits.</li>
+<li>The GUI looks bad (wrong positioning of widgets) on *nix systems.</li>
+</ul>
+<h2 id="questions-comments-or-code">Questions, comments or code</h2>
+</body>
+</html>

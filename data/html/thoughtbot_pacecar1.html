@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_pacecar1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="pacecar">Pacecar</h1>
+<p>Pacecar adds scope methods and other common functionality to ActiveRecord classes via database column introspection.</p>
+<p>Pacecar automatically includes the Pacecar::Helpers module into all ActiveRecord::Base classes.</p>
+<p>To get all Pacecar functionality, you need to “include Pacecar” in your class.</p>
+<pre><code>class User &lt; ActiveRecord::Base
+  include Pacecar
+end</code></pre>
+<p>To get some subset (for example, only the state functionality), you can do something like “include Pacecar::State” to get only the module(s) you want.</p>
+<pre><code>class Post &lt; ActiveRecord::Base
+  include Pacecar::State
+end</code></pre>
+<p>Pacecar supports mysql, postgres and sqlite database drivers, and is compatible with Rails 4.x versions.</p>
+<h2 id="installation">Installation</h2>
+<p>Just include in your Gemfile:</p>
+<pre><code>gem &#39;pacecar&#39;</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Assuming a database schema:</p>
+<pre><code>class CreateSchema &lt; ActiveRecord::Migration
+  def self.up
+    create_table :users, force: true do |t|
+      t.boolean :admin, default: false, null: false
+      t.datetime :approved_at
+      t.datetime :rejected_at
+      t.string :first_name
+      t.string :last_name
+      t.text :description
+      t.timestamps
+    end
+    create_table :posts, force: true do |t|
+      t.string :owner_type
+      t.integer :owner_id
+      t.string :publication_state</code></pre>
+</body>
+</html>

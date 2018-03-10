@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>taweili_renren1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="renren">renren</h1>
+<p>This is the client library for renren.com API. Renren is the leading social network in China.</p>
+<h2 id="features">Features:</h2>
+<p>Making writing Renren application as easy as writting web app</p>
+<h2 id="synopsis">Synopsis:</h2>
+<pre><code>
+class HomeController < ApplicationController
+  before_filter :set_renren_session
+  
+  def index
+    @user = renren_session.invoke_method("renren.users.getInfo", :uids => "229615263", :fields => Renren::User.attr_names.join(","))
+    @user = @user.first
+    @friends = renren_session.invoke_method("renren.friends.getFriends")
+  end
+end
+</code></pre>
+<h2 id="install">Install:</h2>
+install as a plugin
+<pre><code>script/plugin install git://github.com/taweili/renren.git</code></pre>
+<h2 id="usage">Usage:</h2>
+<p>see</p>
+<h2 id="license">LICENSE:</h2>
+<p>(The MIT License)</p>
+<p>Copyright (c) 2008 David Li</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND,</p>
+</body>
+</html>

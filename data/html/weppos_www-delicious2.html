@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>weppos_www-delicious2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code># 1. get all posts
+posts = d.posts_all
+
+# 2. get recent posts
+posts = d.posts_recent
+
+# 3. get a single post (the latest one if no criteria is given)
+posts = d.posts_get(:tag =&gt; &#39;ruby&#39;)</code></pre>
+<p>Each post call accepts some options to refine your search. For example, you can always search for posts matching a specific tag.</p>
+<pre><code>posts = d.posts_all(:tag =&gt; &#39;ruby&#39;)
+posts = d.posts_recent(:tag =&gt; &#39;ruby&#39;)
+posts = d.posts_get(:tag =&gt; &#39;ruby&#39;)</code></pre>
+<h3 id="creating-a-new-post">Creating a new Post</h3>
+<pre><code># add a post from options
+d.posts_add(:url =&gt; &#39;http://www.simonecarletti.com/&#39;, :title =&gt; &#39;Cool site!&#39;)
+
+# add a post from WWW::Delicious::Post
+d.posts_add(WWW::Delicious::Post.new(:url =&gt; &#39;http://www.simonecarletti.com/&#39;, :title =&gt; &#39;Cool site!&#39;))</code></pre>
+<h3 id="deleting-a-posts">Deleting a Posts</h3>
+<pre><code># delete given post (the URL can be either a string or an URI)
+d.posts_delete(&#39;http://www.foobar.com/&#39;)</code></pre>
+<p>Note. Actually you cannot delete a post from a <code>WWW::Delicious::Post</code> instance. It means, the following example doesn’t work as some ActiveRecord user might expect.</p>
+<pre><code>post = WWW::Delicious::Post.new(:url =&gt; &#39;http://www.foobar.com/&#39;)
+post.delete</code></pre>
+<p>This feature is already in the TODO list. For now, use the following workaround to delete a given Post.</p>
+<pre><code># delete a post from an existing post = WWW::Delicious::Post
+d.posts_delete(post.url)</code></pre>
+<h3 id="tags">Tags</h3>
+<p>Working with tags it’s really easy. You can get all your tags or rename an existing tag.</p>
+<pre><code># get all tags
+tags = d.tags_get
+
+# print all tag names
+tags.each { |t| puts t.name }</code></pre>
+</body>
+</html>

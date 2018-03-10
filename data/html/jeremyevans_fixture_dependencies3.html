@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jeremyevans_fixture_dependencies3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>fixture_dependencies is designed to require the least possible changes to the default YAML fixtures used by Rails (well, at least Rails 1.2 and earlier). For example, see the following changes:</p>
+<pre><code>  OLD                       NEW
+  asset1:                   asset1:
+  id: 1                     id: 1
+  employee_id: 2            employee: jeremy
+  product_id: 3             product: nx7010
+  vendor_id: 2              vendor: lxg_computers
+  note: in working order    note: in working order</code></pre>
+<p>As you can see, you just replace the foreign key attribute and value with the name of the association and the associations name. This assumes you have an employee fixture with a name of jeremy, and products fixture with the name of nx7010, and a vendors fixture with the name lxg_computers.</p>
+<p>Fixture files still use the table_name of the model. Note that you make sure to hard code primary key values for each fixture, as shown in the example above.</p>
+<h2 id="erb-fixtures">ERB Fixtures</h2>
+<p>Fixtures can also use ERB to preprocess the fixture file, useful if you need to do any programming inside the fixture file, such as looping to create multiple records. For the ERB support to be invoked, your fixture file should be named #{table_name}.yml.erb instead of #{table_name}.yml. You can mix ERB fixture files and regular fixture files, but you can not have an ERB fixture file and a regular fixture file for the same table (the regular fixture file will be used in that case).</p>
+<h2 id="changes-to-the-fixtures-class-method">Changes to the fixtures Class Method:</h2>
+<p>fixture_dependencies can still use the fixtures class method in your test:</p>
+<pre><code>  class EmployeeTest &lt; Test::Unit::TestCase
+    fixtures :assets
+  end</code></pre>
+<p>In Rails default testing practices, the arguments to fixtures are table names. fixture_dependencies changes this to underscored model names. If you are using Rails’ recommended table practices, this shouldn’t make a difference.</p>
+<p>It is recommended that you do not use the fixtures method, and instead load individual fixtures as needed (see below). This makes your tests much more robust, in case you want to add or remove individual fixtures at a later date.</p>
+</body>
+</html>

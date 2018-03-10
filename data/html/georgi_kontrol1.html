@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>georgi_kontrol1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="kontrol---a-micro-framework">Kontrol - a micro framework</h1>
+<p>Kontrol is a small web framework written in Ruby, which runs directly on [Rack][1]. Basically you can mount a class as rack handler and attach a set of named routes, which will be used for route recognition and generation.</p>
+<p>All examples can be found in the examples folder of the kontrol project, which is hosted on [github][2].</p>
+<h2 id="quick-start">Quick Start</h2>
+<p>We will create a simple Kontrol application with exactly one route named ‘root’. Routes are defined within a block insider your application class. Each route has a name, a pattern and a block. The name must be defined to generate paths pointing to this route.</p>
+<p><code>hello_world.ru</code>:</p>
+<pre><code>class HelloWorld &lt; Kontrol::Application
+  
+  def time
+    Time.now.strftime &quot;%H:%M:%S&quot;
+  end
+ 
+  map do
+    root &#39;/&#39; do
+      text &quot;&lt;h1&gt;Hello World at #{time}&lt;/h1&gt;&quot;
+    end
+  end
+end
+    
+run HelloWorld.new</code></pre>
+<p>Now run:</p>
+<pre><code>rackup hello_world.ru</code></pre>
+<p>Browse to <code>http://localhost:9292</code> and you will see “Hello World”.</p>
+<h2 id="basics">Basics</h2>
+<p>A Kontrol application is a class, which provides some context to the defined actions. You will probably use these methods:</p>
+<ul>
+<li><strong>request</strong>: the Rack request object</li>
+<li><strong>response</strong>: the Rack response object</li>
+<li><strong>params</strong>: union of GET and POST parameters</li>
+</ul>
+</body>
+</html>

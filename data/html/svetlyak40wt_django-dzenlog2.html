@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>svetlyak40wt_django-dzenlog2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>If you use some commenting system, than you can define your comment’s feeds too:</p>
+<pre><code>DZENLOG_GENERALPOST_ALL_COMMENTS_FEED = \
+    &#39;http://feeds.feedburner.com/LazyCrazyCoder/comments&#39;
+DZENLOG_TEXTPOST_ALL_COMMENTS_FEED = \
+    &#39;http://feeds.feedburner.com/LazyCrazyCoder/comments/text&#39;</code></pre>
+<p>But that does not changes URLs of real feeds, and they will be able at /blog/rss/ and /text/rss/. These settings are affect on HTML generation only.</p>
+<h1 id="templates">Templates</h1>
+<p>In your models you can override these class variables, to set templates for entry rendering in different sutuations.</p>
+<p>Here all templates with their’s default values:</p>
+<pre><code># Render post list
+list_template             = &#39;django_dzenlog/list.html&#39;
+# Render post with it&#39;s details (tags, comments, etc.)
+detail_template           = &#39;django_dzenlog/detail.html&#39;
+# Render tag cloud (if you has &#39;tagging&#39; app enabled.)
+tagcloud_template         = &#39;django_dzenlog/tagcloud.html&#39;
+# Post&#39;s body for detailed view.
+body_detail_template      = &#39;django_dzenlog/body_detail.html&#39;
+# Post&#39;s body for list view (for example it can omit full article&#39;s text)
+body_list_template        = &#39;django_dzenlog/body_list.html&#39;
+# Post&#39;s title for RSS feed
+feed_title_template       = &#39;django_dzenlog/feed_title.html&#39;
+# Post&#39;s body for RSS feed
+feed_description_template = &#39;django_dzenlog/feed_description.html&#39;</code></pre>
+<p>Also, you can override <code>django_dzenlog/base.html</code> to define you own look and feel. But don’t forget to include <code>django_dzenlog/feeds.html</code> to activate automagical feed link generation.</p>
+<pre><code>{% include &#39;django_dzenlog/feeds.html&#39; %}</code></pre>
+<h1 id="comments-handling">Comments handling</h1>
+<p>TODO: write decription.</p>
+<h1 id="examples">Examples</h1>
+<p>To learn, how to use Dzenlog, see example projects in the ‘example’</p>
+</body>
+</html>

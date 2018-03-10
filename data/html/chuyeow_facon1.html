@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chuyeow_facon1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="facon">Facon</h1>
+<p>Facon is a mocking library in the spirit of the .</p>
+<h2 id="synopsis">Synopsis</h2>
+<p>To use Facon with , simply <code>require 'facon'</code> and you’re done.</p>
+<p>You can now write :</p>
+<p>```ruby require ‘bacon’ require ‘facon’</p>
+<p>describe ‘PersonController’ do before do <span class="citation" data-cites="konata">@konata</span> = mock(‘konata’, :id =&gt; 1, :name =&gt; ‘Konata Izumi’) <span class="citation" data-cites="kagami">@kagami</span> = mock(‘kagami’, :id =&gt; 2, :name =&gt; ‘Kagami Hiiragi’) end</p>
+<pre><code>it &quot;should find all people on GET to &#39;index&#39;&quot; do
+  Person.should.receive(:find).with(:all).and_return([@konata, @kagami])
+
+  get(&#39;/people/index&#39;)
+end
+
+it &quot;should find the person with id of 1 on Get to &#39;show/1&#39;&quot; do
+  Person.should.receive(:find).with(1).and_return(@konata)
+
+  get(&#39;/people/show/1&#39;)
+end
+
+it &quot;knows how many times we call a method&quot; do
+  Person.should.receive(:find).at_least(3)
+
+  Person.list
+end
+
+it &quot;can use at_most&quot; do
+  Person.should.receive(:find).at_most(3)
+
+  Person.list
+end</code></pre>
+<p>end</p>
+</body>
+</html>

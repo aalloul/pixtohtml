@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>duritong_puppet-munin1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="puppet-munin">Puppet-Munin</h1>
+<p>Munin is a performance monitoring system which creates nice RRD graphs and has a very easy plugin interface. The munin homepage is http://munin.projects.linpro.no/</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>puppet 2.7 or newer</li>
+<li>install the <code>concat</code> and <code>stdlib</code> modules - the munin module depends on functions that are defined and installed via these modules</li>
+<li><p>you will need storedconfigs enabled in your puppet setup, to do that you need to add a line to your <code>puppet.conf</code> in your <code>[puppetmasterd]</code> section which says:</p>
+<pre><code>   storeconfigs=true</code></pre></li>
+<li><p>You may wish to immediately setup a <code>mysql</code>/ <code>pgsql</code> database for your storedconfigs, as the default method uses sqlite, and is not very efficient, to do that you need lines such as the following below the <code>storeconfigs=true</code> line (adjust as needed):</p>
+<pre><code>  dbadapter=mysql
+  dbserver=localhost
+  dbuser=puppet
+  dbpassword=puppetspasswd</code></pre></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>Your modules directory will need all the files included in this repository placed under a directory called <code>munin</code>.</p>
+<h3 id="master-configuration">Master configuration</h3>
+<p>In the node definition in your site.pp for your main munin host, add the following:</p>
+<pre><code>  class { &#39;munin::host&#39;: }</code></pre>
+<p>If you want cgi graphing you can pass <code>cgi_graphing =&gt; true</code>. (For CentOS this is enabled in the default header config) for more information, see: http://munin.projects.linpro.no/wiki/CgiHowto</p>
+<h3 id="client-configuration">Client configuration</h3>
+<p>For every host you wish to gather munin statistics, add the class <code>munin::client</code> to that node. You will want to set the class parameter <code>allow</code> to be the IP(s) of the munin collector, this defines what IP is permitted to connect to the node, for example:</p>
+<pre><code>  node foo {
+    class { &#39;munin::client&#39;: allow =&gt; &#39;192.168.0.1&#39;}
+  }</code></pre>
+<p>for multiple munin nodes, you can pass an array:</p>
+<pre><code>  class { &#39;munin::client&#39;: allow =&gt; [ &#39;192.168.0.1&#39;, &#39;10.0.0.1&#39; ] }
+  </code></pre>
+</body>
+</html>

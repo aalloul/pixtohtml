@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>finance-quote_finance-quote3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p>RT, CPAN’s request tracker</p>
+<p>http://rt.cpan.org/NoAuth/Bugs.html?Dist=Finance-Quote</p></li>
+<li><p>AnnoCPAN, Annotated CPAN documentation</p>
+<p>http://annocpan.org/dist/Finance-Quote</p></li>
+<li><p>CPAN Ratings</p>
+<p>http://cpanratings.perl.org/d/Finance-Quote</p></li>
+<li><p>Search CPAN</p>
+<p>http://search.cpan.org/dist/Finance-Quote</p></li>
+<li><p>The Finance::Quote home page</p>
+<p>http://finance-quote.sourceforge.net/</p></li>
+<li><p>The Finance::YahooQuote home page</p>
+<p>http://www.padz.net/~djpadz/YahooQuote/</p></li>
+<li><p>The GnuCash home page</p>
+<p>http://www.gnucash.org/</p></li>
+</ul>
+<h1 id="available-methods">AVAILABLE METHODS</h1>
+<h2 id="new">NEW</h2>
+<pre><code>my $q = Finance::Quote-&gt;new;
+my $q = Finance::Quote-&gt;new(&quot;ASX&quot;);
+my $q = Finance::Quote-&gt;new(&quot;-defaults&quot;, &quot;CustomModule&quot;);</code></pre>
+<p>With no arguents, this creates a new Finance::Quote object with the default methods. If the environment variable FQ_LOAD_QUOTELET is set, then the contents of FQ_LOAD_QUOTELET (split on whitespace) will be used as the argument list. This allows users to load their own custom modules without having to change existing code. If you do not want users to be able to load their own modules at run-time, pass an explicit argumetn to -&gt;new() (usually “-defaults”).</p>
+<p>When new() is passed one or more arguments, an object is created with only the specified modules loaded. If the first argument is “-defaults”, then the default modules will be loaded first, followed by any other specified modules.</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>quakehead_pygame-testing1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="pygame">Pygame:</h1>
+<p>Moving a square:</p>
+<p>For starters, create a program in which we can move a box around the screen with the arrow keys.</p>
+<ul>
+<li>Two ways to get events:
+<ul>
+<li>polling the device</li>
+<li>using sdl events</li>
+</ul></li>
+</ul>
+<p>Functions:</p>
+<ul>
+<li><p>init: pygame.init() or pygame.*.init()</p></li>
+<li><p>screen = pygame.display.set_mode(size)</p></li>
+<li>screen functions:
+<ul>
+<li>blit(screen, rect)</li>
+<li>fill(color)</li>
+</ul></li>
+<li><p>loading &amp; converting images: (surfaces) image = pygame.image.load(‘player.bmp’).convert()</p></li>
+<li><p>Keyboard input:</p></li>
+</ul>
+<p>event.KEYDOWN and KEYUP when key pressed. event.key indicates which key http://www.pygame.org/docs/ref/key.html</p>
+<p>for event in pygame.event.get(): if event.type == pygame.QUIT: sys.exit() if event.type == pygame.KEYDOWN: print event.key</p>
+<p>Template for a working pygame program:</p>
+<h2 id="pygame-on-gp2x">Pygame on gp2x:</h2>
+<ul>
+<li>Get it from the gp2x wiki.</li>
+<li>extract.</li>
+<li>use the example to set up the environment before launching python programs.</li>
+</ul>
+<h1 id="special-to-gp2x">special to gp2x:</h1>
+<p>pygame.display.set_mode((320, 240), 0, 16)</p>
+</body>
+</html>

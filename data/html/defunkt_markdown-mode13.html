@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode13</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>As noted, many of the commands above behave differently depending on whether Transient Mark mode is enabled or not. When it makes sense, if Transient Mark mode is on and the region is active, the command applies to the text in the region (e.g., <kbd>C-c C-s b</kbd> makes the region bold). For users who prefer to work outside of Transient Mark mode, since Emacs 22 it can be enabled temporarily by pressing <kbd>C-SPC C-SPC</kbd>. When this is not the case, many commands then proceed to look work with the word or line at the point.</p>
+<p>When applicable, commands that specifically act on the region even outside of Transient Mark mode have the same keybinding as their standard counterpart, but the letter is uppercase. For example, <code>markdown-insert-blockquote</code> is bound to <kbd>C-c C-s q</kbd> and only acts on the region in Transient Mark mode while <code>markdown-blockquote-region</code> is bound to <kbd>C-c C-s Q</kbd> and always applies to the region (when nonempty).</p>
+<p>Note that these region-specific functions are useful in many cases where it may not be obvious. For example, yanking text from the kill ring sets the mark at the beginning of the yanked text and moves the point to the end. Therefore, the (inactive) region contains the yanked text. So, <kbd>C-y</kbd> followed by <kbd>C-c C-s Q</kbd> will yank text and turn it into a blockquote.</p>
+<p>markdown-mode attempts to be flexible in how it handles indentation. When you press <kbd>TAB</kbd> repeatedly, the point will cycle through several possible indentation levels corresponding to things you might have in mind when you press <kbd>RET</kbd> at the end of a line or <kbd>TAB</kbd>. For example, you may want to start a new list item, continue a list item with hanging indentation, indent for a nested pre block, and so on. Outdenting is handled similarly when backspace is pressed at the beginning of the non-whitespace portion of a line.</p>
+<p>markdown-mode supports outline-minor-mode as well as org-mode-style visibility cycling for atx- or hash-style headings. There are two types of visibility cycling: Pressing <kbd>S-TAB</kbd> cycles globally between the table of contents view (headings only), outline view (top-level headings only), and the full document view. Pressing <kbd>TAB</kbd> while the point is at a heading will cycle through levels of visibility for the subtree: completely folded, visible children, and fully visible. Note that mixing hash and underline style headings will give undesired results.</p>
+<h2 id="customization">Customization</h2>
+<p>Although no configuration is <em>necessary</em> there are a few things that can be customized. The <kbd>M-x customize-mode</kbd> command provides an interface to all of the possible customizations:</p>
+<ul>
+<li><code>markdown-command</code> - the command used to run Markdown (default: <code>markdown</code>). This variable may be customized to pass</li>
+</ul>
+</body>
+</html>

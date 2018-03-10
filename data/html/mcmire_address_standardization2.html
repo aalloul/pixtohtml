@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mcmire_address_standardization2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>addr.state       #=&gt; &quot;CA&quot;
+addr.zip         #=&gt; &quot;94043&quot;
+addr.country     #=&gt; &quot;UNITED STATES&quot;</code></pre>
+<p>By default, the <code>standardize_address</code> method will leave it up to the service to decide which country to scope the address query to. Google may be able to figure it out based on the address you provide, but you can always narrow it down by providing a <code>:country</code> key. So for instance, to standardize a Canadian address:</p>
+<pre><code>addr = AddressStandardization::GoogleMaps.standardize_address(
+  :street =&gt; &quot;55 East Cordova St. Apt 415&quot;,
+  :city =&gt; &quot;Vancouver&quot;,
+  :province =&gt; &quot;BC&quot;,
+  :country =&gt; &quot;Canada&quot;
+)
+addr.street       #=&gt; &quot;55 E CORDOVA ST&quot;
+addr.city         #=&gt; &quot;VANCOUVER&quot;
+addr.district     #=&gt; &quot;GREATER VANCOUVER REGIONAL DISTRICT&quot;
+addr.province     #=&gt; &quot;ON&quot;
+addr.postal_code  #=&gt; &quot;V6A 1K3&quot;
+addr.country      #=&gt; &quot;CANADA&quot;</code></pre>
+<p>Note that <code>province</code> is an alias for <code>state</code>, <code>district</code> is an alias for <code>county</code> and <code>postal_code</code> is an alias for <code>zip</code>.</p>
+<p>And to standardize a French address:</p>
+<pre><code>addr = AddressStandardization::GoogleMaps.standardize_address(
+  :street =&gt; &quot;Parvis de Notre Dame&quot;,
+  :city =&gt; &quot;Paris&quot;,
+  :country =&gt; &quot;France&quot;
+)
+addr.street       #=&gt; &quot;PLACE DU PARVIS NOTRE-DAME&quot;
+addr.city         #=&gt; &quot;PARIS&quot;
+addr.region       #=&gt; &quot;ÎLE-DE-FRANCE&quot;
+addr.postal_code  #=&gt; &quot;75004&quot;
+addr.country      #=&gt; &quot;FRANCE&quot;</code></pre>
+<p>Finally, note what happens if we attempt to standardize a bogus address:</p>
+<pre><code>addr = AddressStandardization::GoogleMaps.standardize_address(
+  :street =&gt; &quot;abcdef&quot;
+)
+addr  #=&gt; nil</code></pre>
+<h3 id="melissadata">MelissaData</h3>
+<p>If you want to simply verify US addresses, then MelissaData is a better bet, as it not only understands P.O. boxes, but it is also able to tell whether a unit or apartment number is left out of the address (although currently this</p>
+</body>
+</html>

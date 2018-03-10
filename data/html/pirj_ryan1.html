@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pirj_ryan1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="web-applications-with-ryan-and-reia">Web applications with Ryan and Reia</h1>
+<p>Ryan is a Reia/Erlang BEAM based web framework. It allows you to create web applications with clean and short code.</p>
+<p>Ryan consists of: - Session module - Routing module - Behave (RSpec-like testing tool) - Template engine adapter (Retem) - HTTP server adapters (YAWS, Mochiweb) - Database adapters (CouchDB)</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>, ,</p>
+<p><a href="bundled">Leex</a> <a href="bundled">Mochiweb</a> <a href="bundled">erlang_couchdb CouchDB adapter</a></p>
+<h2 id="building">Building</h2>
+<p>Run the following from Ryan source folder to build it: sudo make install</p>
+<p>That will install ryan libraries into Erlang lib folder and ryan executable file into /usr/local/bin</p>
+<h2 id="running-an-example-application">Running an example application</h2>
+<p>Run: cd application_example ryan</p>
+<p>Surf to: http://localhost:8001/app</p>
+<p>You can specify a port number to run on in command line: ryan -p 8080</p>
+<p>Modify Todo controller, implement or change actions Create your own controllers and see the results without the need to even reload web page. Enjoy!</p>
+<h2 id="routing">Routing</h2>
+<p>Following REST idiom, Ryan provides the ability to parse any url and run the corresponding controller.</p>
+</body>
+</html>

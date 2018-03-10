@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>paytonrules_selenium-on-rails4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="store-results">Store results</h2>
+<p>If you want to store the results from a test:acceptance you just need to set in which directory they should be stored:</p>
+<pre><code>#config.yml
+result_dir: &#39;c:\result&#39;</code></pre>
+<p>So when you run rake test:acceptance the tables with the results will be stored as .html files in that directory.</p>
+<h2 id="user_extension.js">user_extension.js</h2>
+<p>Selenium has support for user_extension.js which is a way to extend the functionality of Selenium Core. Selenium on Rails now provides the means for you to extend it’s functionality to match.</p>
+<p>To get you started, we’ve included the example files lib/test_builder_user_accessors.rb.example and lib/test_builder_user_actions.rb.example that replicate the sample extensions in Selenium Core’s user-extensions.js.sample.</p>
+<p>To get these examples running, simply remove the .example and .sample extensions from the files and restart your server.</p>
+<h2 id="todo">Todo</h2>
+<ul>
+<li><p>Standalone mode More work is needed on test:acceptance&lt; on Windows to be able to start the server when needed.</p></li>
+<li><p>Documentation update</p></li>
+</ul>
+<h2 id="not-todo">Not todo</h2>
+<ul>
+<li>Editor Creating an editor for the test cases is currently considered out of scope for this plugin. SeleniumIDE[http://www.openqa.org/selenium-ide/] does such a good job and has support[http://wiki.openqa.org/display/SIDE/SeleniumOnRails] for both the Selenese and RSelenese formats.</li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<p>Contributing is simple. Fork this repo, make your changes, then issue a pull request. <em>IMPORTANT</em> I will not take forks that do not have associated unit tests. There must be tests, and they must pass, so I can bring the changes in.</p>
+<h2 id="credits">Credits</h2>
+<ul>
+<li>Jonas Bengston – original creator</li>
+<li>Eric Smith, http://blog.8thlight.com/eric – Current Maintainer</li>
+<li>Jon Tirsen, http://jutopia.tirsen.com – initial inspiration[http://wiki.rubyonrails.com/rails/pages/SeleniumIntegration]</li>
+<li>Eric Kidd, http://www.randomhacks.net – contribution of RSelenese</li>
+<li>Marcos Tapajós http://www.improveit.com.br/en/company/tapajos – Several useful features, current committer</li>
+<li>Ryan Bates, http://railscasts.com – Fixes for Rails 2.1</li>
+<li>Nando Vieira, http://simplesideias.com.br</li>
+<li>Gordon McCreight, a neat script that lists any unsupported methods</li>
+</ul>
+<h2 id="information">Information</h2>
+</body>
+</html>

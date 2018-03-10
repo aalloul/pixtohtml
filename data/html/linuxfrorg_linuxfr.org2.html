@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>linuxfrorg_linuxfr.org2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    $ git clone git://github.com/linuxfrorg/linuxfr.org.git
+    $ cd linuxfr.org
+    $ cp config/database.yml{.sample,}
+    $ cp config/secrets.yml{.sample,}
+    $ gem install bundler
+    $ bundle install</code></pre>
+<ol start="5" type="1">
+<li>Finish to configure:</li>
+</ol>
+<pre><code>    $ bin/rake db:setup
+    (if you&#39;re updating, you&#39;ll need an other step: redis-cli flushdb)</code></pre>
+<ol start="6" type="1">
+<li>Let’s run it:</li>
+</ol>
+<pre><code>    $ bin/rails server
+    $ x-www-browser http://127.0.0.1:3000/</code></pre>
+<ol start="7" type="1">
+<li>Create an admin account:</li>
+</ol>
+<ul>
+<li>Create an account</li>
+<li>Get confirmation link in the console and confirm the account</li>
+<li>Get password in the console</li>
+<li>Give admin role to this account with <code>mysql -u linuxfr_rails linuxfr_rails</code> <code>mysql&gt; UPDATE accounts SET role='admin' WHERE login='xxxxxx';</code></li>
+<li>Reload the page on the site, you should be admin.</li>
+</ul>
+<h2 id="alternative-install-docker">Alternative install (docker)</h2>
+<p>The whole install process may seem a bit tedious especially if your environment is not already set for ruby development, and it may discourage contributions for small things like css or quick bugfix.</p>
+<p>In such case and if you have a recent kernel (3.8+) you can give docker a try. The big plus is that you don’t have to install ruby, mysql, or whatever, it all will be ‘contained’ in the docker image. The image is built upon a debian image but can be launched from any distro.</p>
+<p>Step by step:</p>
+<ul>
+<li>install docker (see http://docs.docker.io/installation)</li>
+</ul>
+</body>
+</html>

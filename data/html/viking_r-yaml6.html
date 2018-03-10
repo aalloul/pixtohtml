@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>viking_r-yaml6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>cat(as.yaml(list(foo = 1:10), indent.mapping.sequence=TRUE))</code></pre>
+<p>Outputs:</p>
+<pre><code>foo:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10</code></pre>
+<h5 id="column.major">column.major</h5>
+<p>The <code>column.major</code> option determines how a data frame is converted into YAML. By default, <code>column.major</code> is TRUE.</p>
+<p>Example of <code>as.yaml</code> when <code>column.major</code> is TRUE:</p>
+<pre><code>x &lt;- data.frame(a=1:5, b=6:10)
+y &lt;- as.yaml(x, column.major = TRUE)
+cat(y, &quot;\n&quot;)</code></pre>
+<p>Outputs:</p>
+<pre><code>a:
+- 1
+- 2
+- 3
+- 4
+- 5
+b:
+- 6
+- 7
+- 8
+- 9
+- 10</code></pre>
+<p>Whereas:</p>
+<pre><code>x &lt;- data.frame(a=1:5, b=6:10)
+y &lt;- as.yaml(x, column.major = FALSE)
+cat(y, &quot;\n&quot;)</code></pre>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine19</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>end</p>
+<p># Replace this with an external source (like a db) def transitions [ {:parked =&gt; :idling, :on =&gt; :ignite}, {:idling =&gt; :first_gear, :first_gear =&gt; :second_gear, :on =&gt; :shift_up} # … ] end</p>
+<p># Create a state machine for this vehicle instance dynamically based on the # transitions defined from the source above def machine vehicle = self <span class="citation" data-cites="machine">@machine</span> ||= Machine.new(vehicle, :initial =&gt; :parked, :action =&gt; :save) do vehicle.transitions.each {|attrs| transition(attrs)} end end</p>
+<p>def save # Save the state change… true end end</p>
+<h1 id="generic-class-for-building-machines">Generic class for building machines</h1>
+<p>class Machine def self.new(object, <em>args, &amp;block) machine_class = Class.new machine = machine_class.state_machine(</em>args, &amp;block) attribute = machine.attribute action = machine.action</p>
+<pre><code># Delegate attributes
+machine_class.class_eval do
+  define_method(:definition) { machine }
+  define_method(attribute) { object.send(attribute) }
+  define_method(&quot;#{attribute}=&quot;) {|value| object.send(&quot;#{attribute}=&quot;, value) }
+  define_method(action) { object.send(action) } if action
+end
+
+machine_class.new</code></pre>
+<p>end end</p>
+<p>vehicle = Vehicle.new # =&gt; #&lt;Vehicle:0xb708412c <span class="citation" data-cites="state">@state</span>=“parked” …&gt; vehicle.state # =&gt; “parked” vehicle.machine.ignite # =&gt; true vehicle.machine.state # =&gt; “idling</p>
+</body>
+</html>

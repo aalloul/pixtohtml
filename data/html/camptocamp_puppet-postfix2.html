@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>camptocamp_puppet-postfix2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Default: ‘all’.<br />
+Example: ‘127.0.0.1, [::1]’.</p>
+<h5 id="ldap"><code>ldap</code></h5>
+<p>A Boolean defining whether to configure Postfix for LDAP use.<br />
+Default: false.</p>
+<h5 id="ldap_base"><code>ldap_base</code></h5>
+<p>A string defining the LDAP search base to use. This parameter maps to the search_base parameter (ldap_table(5)).<br />
+Default: Undefined.<br />
+Example ‘cn=Users,dc=example,dc=com’.</p>
+<h5 id="ldap_host"><code>ldap_host</code></h5>
+<p>A string defining the LDAP host. This parameter maps to the server_host parameter (ldap_table(5)).<br />
+Default: Undefined.<br />
+Example: ‘ldaps://ldap.example.com:636 ldap://ldap2.example.com’.</p>
+<h5 id="ldap_options"><code>ldap_options</code></h5>
+<p>A free form string that can define any ldap options to be passed through (ldap_table(5)).<br />
+Default: Undefined.<br />
+Example: ‘start_tls = yes’.</p>
+<h5 id="mail_user"><code>mail_user</code></h5>
+<p>A string defining the mail user, and optionally group, to execute external commands as. This parameter maps to the user parameter (pipe(8)).<br />
+Default: ‘vmail’.<br />
+Example: ‘vmail:vmail’.</p>
+<h5 id="mailman"><code>mailman</code></h5>
+<p>A Boolean defining whether to configure a basic smtp server that is able to work for the mailman mailing list manager.<br />
+Default: false.</p>
+<h5 id="maincf_source"><code>maincf_source</code></h5>
+<p>A string defining the location of a skeleton main.cf file to be used. The default file supplied is blank. However, if the main.cf file already exists on the system the contents will <strong>NOT</strong> be replaced by the contents from maincf_source.<br />
+Default: “puppet:///modules/${module_name}/main.cf”.<br />
+Example: ‘puppet:///modules/some/other/location/main.cf’.</p>
+<h5 id="manage_conffiles"><code>manage_conffiles</code></h5>
+<p>A Boolean defining whether the puppet module should replace the configuration files for postfix.<br />
+<strong>This setting currently effects only the following files:</strong> * /etc/mailname * /etc/postfix/master.cf</p>
+</body>
+</html>

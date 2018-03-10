@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>anutron_mootools-more2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>New YAML package and dependency declarations</li>
+<li>Depender.js is no more; .</li>
+<li>Drag
+<ul>
+<li>Drag now supports non-pixel values for position</li>
+</ul></li>
+<li>Element.position
+<ul>
+<li>Element.position now checks for maximum option, before it only checked for minimum.</li>
+</ul></li>
+<li>Class.Refactor
+<ul>
+<li>Class.Refactor now allows calls to <code>this.previous</code> for methods that may not exist in the previous state.</li>
+</ul></li>
+<li>Sortables
+<ul>
+<li>Sortables now deal with draggables that contain radio inputs to prevent them from being unchecked when you drag one that is.</li>
+</ul></li>
+<li>Date
+<ul>
+<li>Dashes in <code>Date.parse</code> weren’t always parsed right</li>
+<li>added millisecond support to UTC parsing and to formatting as <code>%s</code></li>
+<li>added <code>%e</code> option to Date.format. Prints non padded day number.</li>
+</ul></li>
+<li>HtmlTable
+<ul>
+<li>HtmlTable is now less likely to fail in tables w/ rowspan/colspan going on</li>
+<li>HtmlTable.push now accepts an actual TR element.</li>
+</ul></li>
+<li>HtmlTable.Select:
+<ul>
+<li>now supports shift+click for multi-select</li>
+<li>now supports shift+up/down for multi-select</li>
+<li>now supports holding down the up/down keys</li>
+<li>right click now selects rows of HtmlTable</li>
+</ul></li>
+<li>HtmlTable.Sort
+<ul>
+<li>added static method to allow users to add custom parsers <em>at the top</em> of the parser list (so their custom ones occur first)</li>
+<li>now allows contents of table cells that are more than just text nodes.</li>
+</ul></li>
+<li>Document
+<ul>
+<li>Added method to clear document selection</li>
+</ul></li>
+<li>Form.Request
+<ul>
+<li>now passes along the request arguments to <code>Form.Request</code>’s events.</li>
+<li>now sends along which button was clicked (as regular forms do).</li>
+</ul></li>
+<li>Fx.Reveal
+<ul>
+<li>Added an ‘opacity’ option to set the target opacity for <code>reveal()</code> or starting opacity for <code>dissolve()</code>.</li>
+</ul></li>
+<li>OverText
+<ul>
+<li>added <code>enable</code>, <code>disable</code>, and <code>destroy</code> methods.</li>
+</ul></li>
+<li>Fx.Accordion
+<ul>
+<li>added <code>removeSection</code> method</li>
+</ul></li>
+<li>Tips
+<ul>
+<li>fixed a bug where tips was not passing along the proper arguments to the <code>onShow</code> event</li>
+</ul></li>
+<li>Slider
+<ul>
+<li>added <code>setRange</code> to dynamically set the range</li>
+</ul></li>
+<li>Keyboard / Keyboard.Extras
+<ul>
+<li>no longer calls <code>disable</code> when keyboard instances are managed.</li>
+<li>reenabled the previous keyboard when the current one is dropped.</li>
+<li>added an <code>isActive</code> method.</li>
+<li>added <code>removeShortcut</code> method.</li>
+</ul></li>
+<li>Spinner
+<ul>
+<li>(integration into Request) - make it so that spinner picks up details only no send, not on init.</li>
+</ul></li>
+<li>Assets
+<ul>
+<li>added onload support for <code>Assets.css</code></li>
+</ul></li>
+</ul>
+</body>
+</html>

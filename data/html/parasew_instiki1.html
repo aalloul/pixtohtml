@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>parasew_instiki1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="instiki">Instiki</h1>
+<p>Instiki is a wiki clone so pretty and easy to set up, you’ll wonder if it’s really a wiki. Runs on Rails and focuses on portability and stability. Supports file uploads, PDF export, RSS, multiple users and password protection. Some use Instiki as a CMS (Content Management System) because of its ability to export static pages.</p>
+<p>Instiki lowers the barriers of interest for when you might consider using a wiki. It’s so simple to get running that you’ll find yourself using it for anything – taking notes, brainstorming, organizing a gathering.</p>
+<h2 id="supported-platforms">Supported Platforms</h2>
+<p>Instiki only requires a working Ruby installation (it includes all other dependencies). Any OS that can run Ruby can run Instiki - that includes Windows, Linux, Mac OS X and most known Unix flavors.</p>
+<h3 id="easy-steps-to-get-the-instiki-experience">3 easy Steps to get the Instiki experience</h3>
+<p>Step 1. Get Instiki and run “ruby bundle install –path vendor/bundle” Step 2. Run “instiki” Step 3. Chuckle… “There’s no step three!” (TM)</p>
+<h2 id="details">Details</h2>
+<p>You need at least Ruby Version 1.9.3, and Rubygems 1.3.6, installed on your System. Instiki is known to work well with Ruby 2.0-2.3 (the current development version works with Ruby 2.4). The second dependency is a Database System, but don’t worry, the default sqlite3 will be installed for you, if it’s not already installed. You can also use any other database system (MySQL, PostgreSQL, …) supported by Rails.</p>
+<h3 id="deploy-to-heroku">Deploy to Heroku</h3>
+<ul>
+<li>git clone https://github.com/parasew/instiki.git</li>
+<li>cd instiki</li>
+<li>heroku create [APPNAME]</li>
+<li>mv Gemfile Gemfile.orig</li>
+<li>git mv Gemfile.heroku Gemfile</li>
+<li>git mv Gemfile.lock.heroku Gemfile.lock</li>
+<li>git commit -m “Setup for heroku”</li>
+<li>git push heroku master</li>
+<li>heroku config:set RAILS_ENV=production</li>
+<li>heroku run rake db:migrate</li>
+</ul>
+<h3 id="if-you-are-on-windows">If you are on Windows</h3>
+<ul>
+<li>Get the <em>Ruby One-Click Installer - Windows</em> http://rubyforge.org/projects/rubyinstaller</li>
+<li>Get Development Kit http://github.com/oneclick/rubyinstaller/wiki/development-kit</li>
+<li>In the Instiki directory, execute “ruby bundle”</li>
+<li>double-click instiki.bat or instiki.cmd and there you go!</li>
+</ul>
+<h3 id="if-you-are-on-mac-osx">If you are on Mac OSX</h3>
+<p>On Snow Leopard (10.6) or later, you are all set. - run “sudo gem update –system” via the command-line. - run “ruby bundle install –path vendor/bundle” in the instiki directory. - run “ruby instiki” and there you go!</p>
+<h3 id="if-you-are-on-linux">If you are on Linux</h3>
+</body>
+</html>

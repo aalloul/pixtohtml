@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kbingman_paperclipped1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="paperclipped">Paperclipped</h2>
+<h2 id="important">IMPORTANT!</h2>
+<p>This version of Paperclipped now requires Radiant 0.9.0 or higher. Just in case, the previous version is still around, on a branch marked Radiant-0.8</p>
+<p>Let me know if this works and if you run into any issues.</p>
+<p>###Installation</p>
+<p>To install paperclipped, just run</p>
+<pre><code>rake production db:migrate:extensions
+rake production radiant:extensions:paperclipped:update</code></pre>
+<p>This runs the database migrations and installs the javascripts, images and css.</p>
+<p>###Configuration</p>
+<p>If you install the Settings Extension (highly recommended), you can also easily adjust both the sizes of any additional thumbnails and which thumbnails are displayed in the image edit view. The default is the original file, but any image size can be used by giving in the name of that size.</p>
+<p>If you do install the Settings Extension you should be sure to add a config.extensions line to your environment.rb file:</p>
+<pre><code>config.extensions = [ :settings, :all ]</code></pre>
+<p>Also the Settings Extension migration should be run before Paperclipped’s migration.</p>
+<p>The configuration settings also enable a list of the allowed file types, maximum file size and should you need it, the path to your installation of Image Magick (this should not be needed, but I sometimes had a problem when using mod_rails).</p>
+<p>Paperclipped will integrate with the Styles’n’Scripts extension. For that to work, you’ll need to load that extension before paperclipped:</p>
+<pre><code>config.extensions = [ :sns, :all ]</code></pre>
+<p>###Using Paperclipped</p>
+<p>Once installed, you get a new Tab with the entire assets library, a Bucket à la Mephisto (though only the concept is stolen) and a search. You can also easily attach assets to any page and directly upload them to a page.</p>
+<p>###Asset Tags</p>
+<p>There are a veriety of new tags. The basic tag is the <code><r:assets /></code> tag, which can be used either alone or as a double tag. This tag requires the “title” attribute, which references the asset. If you use the drag and drop from the asset bucket, this title will be added for you.</p>
+<p>The <code><r:assets /></code> tag can be combined with other tags for a variety of uses:</p>
+<pre><code>&lt;r:assets:image title=&quot;foo&quot; /&gt; will return &lt;img src=&quot;/path/to/foo&quot; alt=&quot;foo&quot; /&gt;
+
+&lt;r:assets:link title=&quot;foo&quot; /&gt; will return &lt;a href=&quot;/path/to/foo&quot;&gt;foo&lt;/a&gt;</code></pre>
+<p>You could also use:</p>
+</body>
+</html>

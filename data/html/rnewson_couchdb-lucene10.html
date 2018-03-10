@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rnewson_couchdb-lucene10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>An entity responsible for making the resource available.</p>
+<p>***_dc.relation*** A reference to a related resource.</p>
+<p>***_dc.rights*** Information about rights held in and over the resource.</p>
+<p>***_dc.source*** A reference to a resource from which the present resource is derived.</p>
+<p>***_dc.subject*** The topic of the content of the resource.</p>
+<p>***_dc.title*** A name given to the resource.</p>
+<p>***_dc.type*** The nature or genre of the content of the resource.</p>
+<h3 id="examples">Examples</h3>
+<h3 id="using-the-python-hook-script">Using the Python hook script</h3>
+<pre><code>http://localhost:5984/dbname/_fti/_design/foo/view_name?q=field_name:value
+http://localhost:5984/dbname/_fti/_design/foo/view_name?q=field_name:value&amp;sort=other_field
+http://localhost:5984/dbname/_fti/_design/foo/view_name?debug=true&amp;sort=billing_size&lt;long&gt;&amp;q=body:document AND customer:[A TO C]</code></pre>
+<h3 id="using-the-proxy-handler">Using the proxy handler</h3>
+<pre><code>http://localhost:5984/_fti/local/dbname/_design/foo/view_name?q=field_name:value
+http://localhost:5984/_fti/local/dbname/_design/foo/view_name?q=field_name:value&amp;sort=other_field
+http://localhost:5984/_fti/local/dbname/_design/foo/view_name?debug=true&amp;sort=billing_size&lt;long&gt;&amp;q=body:document AND customer:[A TO C]</code></pre>
+<h3 id="search-results-format">Search Results Format</h3>
+<p>The search result contains a number of fields at the top level, in addition to your search results.</p>
+<p><strong><em>etag</em></strong> An opaque token that reflects the current version of the index. This value is also returned in an ETag header to facilitate HTTP caching.</p>
+<p><strong><em>fetch_duration</em></strong> The number of milliseconds spent retrieving the documents.</p>
+<p><strong><em>limit</em></strong> The maximum number of results that can appear.</p>
+<p><strong><em>q</em></strong> The query that was executed.</p>
+</body>
+</html>

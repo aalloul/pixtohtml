@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  block.call
+  vehicle.time_used += Time.now - start
+end
+
+event :park do
+  transition [:idling, :first_gear] =&gt; :parked
+end
+
+event :ignite do
+  transition :stalled =&gt; same, :parked =&gt; :idling
+end
+
+event :idle do
+  transition :first_gear =&gt; :idling
+end
+
+event :shift_up do
+  transition :idling =&gt; :first_gear, :first_gear =&gt; :second_gear, :second_gear =&gt; :third_gear
+end
+
+event :shift_down do
+  transition :third_gear =&gt; :second_gear, :second_gear =&gt; :first_gear
+end
+
+event :crash do
+  transition all - [:parked, :stalled] =&gt; :stalled, :if =&gt; lambda {|vehicle| !vehicle.passed_inspection?}
+end
+
+event :repair do
+  # The first transition that matches the state and passes its conditions
+  # will be used
+  transition :stalled =&gt; :parked, :unless =&gt; :auto_shop_busy
+  transition :stalled =&gt; same
+end
+
+state :parked do
+  def speed
+    0
+  end
+end
+
+state :idling, :first_gear do
+  def speed
+    10
+  end
+end
+
+state all - [:parked, :stalled, :idling] do
+  def moving?
+    true</code></pre>
+</body>
+</html>

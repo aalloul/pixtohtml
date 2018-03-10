@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ochko_safeexec2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>--mem     &lt;kbytes&gt;            Default: 32768 kbyte(s)
+--space   &lt;kbytes&gt;            Default: 0 kbyte(s)
+--uids    &lt;minuid&gt; &lt;maxuid&gt;   Default: 5000-65535
+--minuid  &lt;uid&gt;               Default: 5000
+--maxuid  &lt;uid&gt;               Default: 65535
+--core    &lt;kbytes&gt;            Default: 0 kbyte(s)
+--nproc   &lt;number&gt;            Default: 0 proccess(es)
+--fsize   &lt;kbytes&gt;            Default: 8192 kbyte(s)
+--stack   &lt;kbytes&gt;            Default: 8192 kbyte(s)
+--clock   &lt;seconds&gt;           Wall clock timeout (default: 10)
+--usage   &lt;filename&gt;          Report statistics to ... (default: stderr)
+--chroot  &lt;path&gt;              Directory to chrooted (default: /tmp)
+--error   &lt;path&gt;              Print stderr to file (default: /dev/null)</code></pre>
+<p>```</p>
+<p>Keep in mind that <code>--exec</code> must be last option.</p>
+<h3 id="memory-limits">Memory limits</h3>
+<p>For compiled languages like C or C++ you can set strict memory limitation. But for interpreted languages(python, ruby, java etc..) you can’t set strict memory limits. Instead you have to give big enough memory that your language can load.</p>
+<h3 id="unpriviliged-uid-range">Unpriviliged uid range</h3>
+<p>Safeexec runs users program as a random uid. Default gid/uid range is: 5000-65535. So please check if any uid in this range is in use. If then you can chage the range with arguments. <code>--minuid</code> and <code>--maxuid</code>. Whole user range is treated as “unpriviliged” (“other” for all files).</p>
+<h3 id="network-access">Network access</h3>
+<p>On Freebsd network access blocked by setting limit on socket buffer size. But on Linux it doesn’t block network access. Use other tools(iptables,..) for network access blockage.</p>
+<h3 id="number-of-open-files">Number of open files</h3>
+<p>Maximum number of open files is not limited because vm(java) or interpreted(ruby, python) languages open a lots of files.</p>
+<h3 id="chroot">Chroot</h3>
+<p>From ubuntu’s page:</p>
+<blockquote>
+<p>A chroot is basically a special directory on your computer which prevents applications, if run from inside that directory, from accessing files outside the directory. In many ways, a chroot is like installing another operating system inside your existing operating system. Technically-speaking, chroot temporarily changes the root directory (which is normally /) to the chroot directory (for example, /var/chroot). As the root directory is the top of the filesystem hierarchy, applications are unable to access directories higher up than the root directory, and so are isolated from the rest of the system. This prevents applications inside the chroot from interfering with files elsewhere on your computer.</p>
+</blockquote>
+<p>You can use safeexec without chroot if your OS doesn’t allow arbitrary users to write filesystems.</p>
+<h2 id="build">Build</h2>
+<p>Clone this repository and run:</p>
+</body>
+</html>

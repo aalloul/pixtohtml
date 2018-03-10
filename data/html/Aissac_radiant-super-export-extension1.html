@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aissac_radiant-super-export-extension1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="radiant-super-export-extension">Radiant Super Export Extension</h1>
+<h2 id="about">About</h2>
+<p>An extension by [Aissac][ai] that provides portability to your [Radiant CMS][rd] project by allowing you to export and import the records in the database and making it easy to manage them with a source control tool like Git or Subversion.</p>
+<p>Tested on Radiant 0.7.1, 0.8 and 0.9 RC1.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>All records are exported to individual YAML files;</li>
+<li>A directory is created for each model in the default import/export path which is db/export;</li>
+<li>The individual YAML files are saved with the record ID as their filename.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>The [Super Export Extension][rse] has no dependencies, so all you have to do is install it:</p>
+<pre><code>git clone git://github.com/Aissac/radiant-super-export-extension.git vendor/extensions/super_export</code></pre>
+<h2 id="usage">Usage</h2>
+<p>To export, use:</p>
+<pre><code>rake db:super_export</code></pre>
+<p>To import, use:</p>
+<pre><code>rake db:super_import</code></pre>
+<h3 id="working-example">Working example</h3>
+<p>Exporting the Page model looks like this:</p>
+<pre><code>db/
+  export/
+    pages/
+      1.yml
+      2.yml
+      3.yml
+      ...</code></pre>
+<h2 id="contributors">Contributors</h2>
+<ul>
+<li>Istvan Hoka (<span class="citation" data-cites="ihoka">[@ihoka]</span>[ih])</li>
+</ul>
+</body>
+</html>

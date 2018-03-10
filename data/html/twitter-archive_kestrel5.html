@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>twitter-archive_kestrel5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="packing">Packing</h2>
+<p>This test starts up one producer and one consumer, seeds the queue with a bunch of items to cause it to fall behind, then does cycles of flooding items through the queue, separated by pauses. It’s meant to test kestrel’s behavior with a queue that’s fallen behind and <em>stays</em> behind indefinitely, to make sure the journal files are packed periodically without affecting performance too badly.</p>
+<p>A sample run on a 2010 MacBook Pro:</p>
+<pre><code>$ ./dist/kestrel/scripts/load/packing -c 10 -q small
+packing: 25000 items of 1kB with 1 second pauses
+Wrote 25000 items starting at 0.
+cycle: 1
+Wrote 25000 items starting at 25000.
+Read 25000 items in 5279 msec. Consumer spun 0 times in misses.
+cycle: 2
+Wrote 25000 items starting at 50000.
+Read 25000 items in 4931 msec. Consumer spun 0 times in misses.
+...
+cycle: 10
+Wrote 25000 items starting at 250000.
+Read 25000 items in 5304 msec. Consumer spun 0 times in misses.
+Read 25000 items in 3370 msec. Consumer spun 0 times in misses.</code></pre>
+<p>You can see the journals being packed in the kestrel log. Like “many-clients”, this test is a load test instead of a speed test.</p>
+<h2 id="leaky-reader">Leaky-reader</h2>
+<p>This test starts a producer and several consumers, with the consumers occasionally “forgetting” to acknowledge an item that they’ve read. It verifies that the un-acknowledged items are eventually handed off to another consmer.</p>
+<p>A sample run:</p>
+<pre><code>$ ./dist/kestrel/scripts/load/leaky-reader -n 100000 -t 10
+leaky-reader: 10 threads each sending 100000 items through spam
+Flushing queues first.
+1000
+2000
+100000
+Finished in 40220 msec (40.2 usec/put throughput).
+Completed all reads</code></pre>
+<p>Like “many-clients”, it’s just a load test.</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tlrobinson_jack1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jsgi-jack">JSGI &amp; Jack</h1>
+<p>JSGI is a web server interface specification for JavaScript, inspired by Ruby’s Rack (. It provides a common API for connecting JavaScript frameworks and applications to webservers.</p>
+<p>Jack is a collection of JSGI compatible handlers (connect web servers to JavaScript web application/frameworks), middleware (intercept and manipulate requests to add functionality), and other utilities (to help build middleware, frameworks, and applications).</p>
+<h3 id="homepage">Homepage:</h3>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<h3 id="source-download">Source &amp; Download:</h3>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<h3 id="mailing-list">Mailing list:</h3>
+<ul>
+<li></li>
+</ul>
+<h3 id="irc">IRC:</h3>
+<ul>
+<li></li>
+</ul>
+<h2 id="jsgi-specification">JSGI Specification</h2>
+<p>View the .</p>
+<h2 id="example-jsgi-application">Example JSGI Application</h2>
+<pre><code>function(env) {
+    return {
+        status : 200,
+        headers : {&quot;Content-Type&quot;:&quot;text/plain&quot;},
+        body : [&quot;Hello world!&quot;]
+    };
+}</code></pre>
+<h2 id="jsgi-vs.rack">JSGI vs. Rack</h2>
+<p>JSGI applications are simply functions, rather than objects that respond to the “call” method. The body must have a <code>forEach</code> method which yields objects which have a <code>toByteString</code> method, as opposed to Strings.</p>
+</body>
+</html>

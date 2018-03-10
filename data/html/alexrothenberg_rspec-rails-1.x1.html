@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>alexrothenberg_rspec-rails-1.x1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rspec-rails-2">rspec-rails-2</h1>
+<p>rspec-2 for rails-3 with lightweight extensions to each</p>
+<p>NOTE: rspec-2 does <em>not</em> support rails-2. Use rspec-rails-1.3.x for rails-2.</p>
+<h2 id="documentation">Documentation</h2>
+<p>The are the most comprehensive and up-to-date docs for end-users.</p>
+<p>The provides additional information for contributors and/or extenders.</p>
+<p>All of the documentation is open source and a work in progress. If you find it lacking or confusing, you can help improve it by submitting requests and patches to the <a href="https://github.com/rspec/rspec-rails/issues">rspec-rails issue tracker</a>.</p>
+<h2 id="install">Install</h2>
+<pre><code>gem install rspec-rails</code></pre>
+<p>This installs the following gems:</p>
+<pre><code>rspec
+rspec-core
+rspec-expectations
+rspec-mocks
+rspec-rails</code></pre>
+<h2 id="configure">Configure:</h2>
+<p>Add <code>rspec-rails</code> to the <code>:test</code> and <code>:development</code> groups in the Gemfile:</p>
+<pre><code>group :test, :development do
+  gem &quot;rspec-rails&quot;, &quot;~&gt; 2.0.1&quot;
+end</code></pre>
+<p>It needs to be in the <code>:development</code> group to expose generators and rake tasks without having to type <code>RAILS_ENV=test</code>.</p>
+<p>Now you can run:</p>
+<pre><code>script/rails generate rspec:install</code></pre>
+<p>This adds the spec directory and some skeleton files, including the “rake spec” task.</p>
+<h3 id="generators">Generators</h3>
+</body>
+</html>

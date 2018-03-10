@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>michaelklishin_cucumber.el2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>```</p>
+<p>The <code>feature-step-search-gems-path</code> variable points to where you have extra gems installed that have extra step definitions. For example, if you use to install gems for your project and put them in a <code>gems/</code> directory via:</p>
+<pre class="shell"><code>bundle install --path ./gems</code></pre>
+<h2 id="key-bindings">Key Bindings</h2>
+<p>In order to get goto-step-definition to work, you must install the ruby_parser gem (version 2.0.x) and gherkin (version 2.11.8). For example:</p>
+<pre><code>gem install ruby_parser --version &quot;~&gt; 2.0.5&quot;
+gem install gherkin --version 2.11.8</code></pre>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Keybinding</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><kbd>C-c ,v</kbd></td>
+<td>Verify all scenarios in the current buffer file.</td>
+</tr>
+<tr class="even">
+<td><kbd>C-c ,s</kbd></td>
+<td>Verify the scenario under the point in the current buffer.</td>
+</tr>
+<tr class="odd">
+<td><kbd>C-c ,f</kbd></td>
+<td>Verify all features in project. (Available in feature and ruby files)</td>
+</tr>
+<tr class="even">
+<td><kbd>C-c ,r</kbd></td>
+<td>Repeat the last verification process.</td>
+</tr>
+<tr class="odd">
+<td><kbd>C-c ,g</kbd></td>
+<td>Go to step-definition under point (requires ruby_parser gem &gt;= 2.0.5)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="supported-languages">Supported languages</h2>
+<p>At the moment, Cucumber.el supports whatever your Cucumber supports. Just configure it to load i18n.yml from your Gherkin gem sources.</p>
+<h2 id="support-for-docker-compose">Support for docker-compose</h2>
+<p>If the project path contains a docker-compose.yml file, Cucumber is executed through docker-compose.</p>
+<p>The following variables can be set to change the behavior related too this:</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+<col style="width: 49%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>feature-use-docker-compose</code></td>
+<td>boolean</td>
+<td>Use docker-compose when available</td>
+</tr>
+<tr class="even">
+<td><code>feature-docker-compose-command</code></td>
+<td>string</td>
+<td>The docker-compose command to execute</td>
+</tr>
+<tr class="odd">
+<td><code>feature-docker-compose-container</code></td>
+<td>string</td>
+<td>Name of the container to start Cucumber in</td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-development-maintenance">Project Development / Maintenance</h2>
+<p>To run the tests in the source project, do the following:</p>
+<pre><code>gem install bundler
+bundle</code></pre>
+</body>
+</html>

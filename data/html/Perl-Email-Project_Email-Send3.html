@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Perl-Email-Project_Email-Send3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p>all_mailers</p>
+<pre><code>  my @available = $sender-&gt;all_mailers;</code></pre>
+<p>Returns a list of available mailers. These are mailers that are installed on your computer and register themselves as available.</p></li>
+<li><p>mailer_available</p>
+<pre><code>  # is SMTP over SSL avaialble?
+  $sender-&gt;mailer(&#39;SMTP&#39;)
+    if $sender-&gt;mailer_available(&#39;SMTP&#39;, ssl =&gt; 1);</code></pre>
+<p>Given the name of a mailer, such as <code>SMTP</code>, determine if it is available. Any additional arguments passed to this method are passed directly to the <code>is_available</code> method of the mailer being queried.</p></li>
+</ul>
+<h2 id="writing-mailers">Writing Mailers</h2>
+<pre><code>package Email::Send::Example;
+
+sub is_available {
+    eval { use Net::Example }
+}
+
+sub send {
+    my ($class, $message, @args) = @_;
+    use Net::Example;
+    Net::Example-&gt;do_it($message) or return;
+}
+
+1;</code></pre>
+<p>Writing new mailers is very simple. If you want to use a short name when calling <code>send</code>, name your mailer under the <code>Email::Send</code> namespace. If you don’t, the full name will have to be used. A mailer only needs to implement a single function, <code>send</code>. It will be called from <code>Email::Send</code> exactly like this.</p>
+<pre><code>Your::Sending::Package-&gt;send($message, @args);</code></pre>
+<p><code>$message</code> is an Email::Simple object, <code>@args</code> are the extra arguments passed into <code>Email::Send::send</code>.</p>
+<p>Here’s an example of a mailer that sends email to a URL.</p>
+<pre><code>package Email::Send::HTTP::Post;
+use strict;</code></pre>
+</body>
+</html>

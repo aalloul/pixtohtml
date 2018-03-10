@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmibanez_jmeter-rmi-plugin4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>add a <em>RMI Remote Object Config</em> element to your test plan before any RMI Sampler can be used. The RMI Remote Object Config has one property, the <code>Target RMI name</code>, which is the URL to the root remote object that the methods specified by the RMI Samplers will be invoked against.</p>
+<p>Note that for non-root remote objects (i.e. those returned by methods on remote objects), the RMI Remote Object Config is also used to maintain references to them. See below for more info.</p>
+<h3 id="the-arguments-script">The Arguments Script</h3>
+<p>To construct the arguments for a the method invoked by the RMI Sampler, a BeanShell script must be provided that defines a single method named <code>methodArgs</code>, which returns an <code>Object[]</code> array containing the arguments to the method. This script is initially evaluated at test start. Whenever the sampler is actually run to take the RMI sample, the defined <code>methodArgs()</code> method is invoked and its return value is passed to the configured method as its arguments.</p>
+<p>The following variables are available within the context of the argument script:</p>
+<ul>
+<li><code>ctx</code>: The <code>JMeterContext</code> of the currently executing Thread;</li>
+<li><code>vars</code>: JMeter user-defined variables;</li>
+<li><code>sampler</code>: The RMI sampler itself.</li>
+</ul>
+<h3 id="non-root-remotes">Non-Root Remotes</h3>
+<p>It is possible for a method on a remote object to itself return another remote object, either directly as the return value itself, or indirectly as part of the object graph of the return value.</p>
+<p>The RMI Sampler does not automatically persist these remote objects. It is your responsibility to save the remote object, and in turn register them with the RMI Remote Object Config. You can do this through a BeanShell Post Processor element attached to the relevant RMI Sampler. Do note that if you are recording RMI method calls through the RMI Proxy, this will be done for you automatically.</p>
+<p>To register the remote object, add a BeanShell Post Processor with a script like so:</p>
+<p>``` Object ret = prev.getReturnValue(); com.jmibanez.tools.jmeter.InstanceRegistry reg = vars.getObject(“RMIRemoteObject.instances”); // REPLACE_ME: name of remote in registry // ret: actual object path to Remote</p>
+</body>
+</html>

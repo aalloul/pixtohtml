@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jkrall_selenium-on-rails1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Welcome to the Selenium on Rails README. Exciting isn’t it?</p>
+<h1 id="selenium-on-rails">Selenium on Rails</h1>
+<h2 id="overview">Overview</h2>
+<p>Selenium on Rails provides an easy way to test Rails application with SeleniumCore[http://www.openqa.org/selenium-core/].</p>
+<p>This plugin does four things:</p>
+<ol type="1">
+<li>The Selenium Core files don’t have to pollute <tt>/public</tt>.</li>
+<li>No need to create suite files, they are generated on the fly – one suite per directory in <tt>/test/selenium</tt> (suites can be nested).</li>
+<li>Instead of writing the test cases in HTML you can use a number of better formats (see <tt>Formats</tt>).</li>
+<li>Loading of fixtures and wiping of session (<tt>/selenium/setup</tt>).</li>
+</ol>
+<h2 id="installation">Installation</h2>
+<p>Rails periodically changes the way that it renders pages, which unfortunately breaks backwards versions of Selenium on Rails. Therefore there are different installation locations depending on your version of Rails:</p>
+<p><em>Rails 2.2 and up:</em></p>
+<pre><code>http://svn.openqa.org/svn/selenium-on-rails/tags/stable/selenium-on-rails</code></pre>
+<p><em>Rails 2.1:</em></p>
+<pre><code>http://svn.openqa.org/svn/selenium-on-rails/tags/rails_2_1/selenium-on-rails</code></pre>
+<p><em>Before Rails 2.1:</em></p>
+<pre><code>http://svn.openqa.org/svn/selenium-on-rails/tags/pre-rails-2-1/selenium-on-rails</code></pre>
+<p>The latest release is always kept on GitHub at</p>
+<pre><code>git clone git://github.com/paytonrules/selenium-on-rails.git</code></pre>
+<p>To install:</p>
+<ol type="1">
+<li>Install Selenium on Rails: script/plugin install <URL></li>
+<li>If you‘re on Windows, gem install win32-open3</li>
+<li>If the RedCloth gem is available the Selenese test cases can use it for better markup.</li>
+<li>Run the Rakefile in the plugin‘s directory to run the tests in order to see that everything works. (If RedCloth isn‘t installed a few tests will fail since they assume RedCloth is installed.)</li>
+<li>Create a test case: script/generate selenium <TestName></li>
+<li>Start the server: script/server -e test</li>
+<li>Point your browser to localhost:3000/selenium</li>
+</ol>
+</body>
+</html>

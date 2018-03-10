@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jnicklas_eb_nested_set1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="evenbetternestedset">EvenBetterNestedSet</h1>
+<p>A nested set is a datastruture in a database, sort of like a tree, but unlike a tree it allows you to find all descendants of a node with a single query. Loading a deeply nested structure with nested sets is therefore a lot more efficient than using a tree. So what’s the disadvantage? Nested sets are a lot harder to maintain, since inserting and moving records requires management and it is easy to corrupt the dataset. Enter: EvenBetterNestedSet. Amount of micromanaging you need to do: 0. EvenBetterNestedSet does it all for you.</p>
+<h2 id="installation">Installation</h2>
+<p>Stable:</p>
+<pre><code>[sudo] gem install eb_nested_set</code></pre>
+<p>Edge:</p>
+<pre><code>[sudo] gem install jnicklas-eb_nested_set --source http://gems.github.com</code></pre>
+<p>From source:</p>
+<pre><code>git clone git://github.com/jnicklas/eb_nested_set.git
+cd eb_nested_set
+rake install</code></pre>
+<p>If you’re running Rails, just add it to your environment.rb file</p>
+<pre><code>config.gem &#39;eb_nested_set&#39;</code></pre>
+<p>You can also install it as a Rails plugin.</p>
+<pre><code>script/plugin install git://github.com/jnicklas/eb_nested_set.git</code></pre>
+<h2 id="contributing">Contributing</h2>
+<p>EvenBetterNestedSet is hosted at</p>
+<h2 id="declaring-nested-sets">Declaring nested sets</h2>
+<p>This is how you declare a nested set:</p>
+<pre><code>class Directory &lt; ActiveRecord::Base
+
+  acts_as_nested_set
+
+end</code></pre>
+<p>The directories table should have the columns ‘parent_id’, ‘left’ and ‘right’.</p>
+<p>Now just set the parent to wherever you want your node to be located and EvenBetterNestedSet will do the rest for you.</p>
+<pre><code>d = Directory.new
+
+d.children.create!(:name =&gt; &#39;blah&#39;)
+d.children.create!(:name =&gt; &#39;gurr&#39;)</code></pre>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jlouis_etorrent2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>BEP 03 - The BitTorrent Protocol Specification.</li>
+<li>BEP 04 - Known Number Allocations.</li>
+<li>BEP 05 - DHT Protocol</li>
+<li>BEP 10 - Extension Protocol</li>
+<li>BEP 12 - Multitracker Metadata Extension.</li>
+<li>BEP 15 - UDP Tracker Protocol</li>
+<li>BEP 23 - Tracker Returns Compact Peer Lists.</li>
+</ul>
+<h2 id="required-software">Required software:</h2>
+<ul>
+<li>rebar - you need a working rebar installation to build etorrent. The rebar must have commit 618b292c3d84. It is known that rebar version <code>rebar version: 2 date: 20110310_155239 vcs: git 2e1b4da</code> works, and later versions probably will too.</li>
+<li><p>Erlang/OTP R13B04 or R14 - the etorrent system is written in Erlang and thus requires a working Erlang distribution to work. It may work with older versions, but has mostly been tested with newer versions.</p>
+If you have the option, running on R14B02 is preferred. The developers are usually running on fairly recent Erlang/OTP releases, so you have much better chances with these systems.</li>
+<li><p>A UNIX-derivative or Windows as the operating system Support has been tested by mulander and is reported to work with some manual labor. For details see the Windows getting started section.</p></li>
+</ul>
+<h2 id="getting-started">GETTING STARTED</h2>
+<ol start="0" type="1">
+<li><code>make deps</code> - Pull the relevant dependencies into <em>deps/</em></li>
+<li><code>make compile</code> - this compiles the source code</li>
+<li><code>make rel</code> - this creates an embedded release in <em>rel/etorrent</em> which can subsequently be moved to a location at your leisure.</li>
+<li>edit <code>${EDITOR} rel/etorrent/etc/app.config</code> - there are a number of directories which must be set in order to make the system work.</li>
+<li>check <code>${EDITOR} rel/etorrent/etc/vm.args</code> - Erlang args to supply</li>
+<li>be sure to protect the erlang cookie or anybody can connect to your erlang system! See the Erlang user manual in</li>
+<li>run <code>rel/etorrent/bin/etorrent console</code></li>
+<li>drop a .torrent file in the watched dir and see what happens.</li>
+<li>call <code>etorrent:help()</code>. from the Erlang CLI to get a list of available commands.</li>
+<li>If you enabled the webui, you can try browsing to its location. By default the location is ‘http://localhost:8080’.</li>
+</ol>
+<h2 id="getting-started-windows">GETTING STARTED (Windows)</h2>
+<ol start="0" type="1">
+<li>Obviously get and install erlang from erlang.org. This process was tested with R14B01 release. You may want to add the bin directory to your PATH in order to reduce the length of the commands you will enter later on.</li>
+<li>Install .</li>
+<li>Install . The installer hang on me midway through the process but the libs were properly copied to C:32.</li>
+<li>Confirm that your crypto works correctly by running <code>crypto:start().</code> from an erlang shell (Start-&gt;Erlang OTP R14B01-&gt;Erlang).</li>
+</ol>
+</body>
+</html>

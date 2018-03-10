@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sunspot_sunspot17</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>PhotoContainer.search do with(:caption, ‘blah’) with(:photos_created).between(Date.new(2011,3,1)..Date.new(2011,4,1))</p>
+<p>any do fulltext(“keyword1”, :fields =&gt; :name) fulltext(“keyword2”, :fields =&gt; :description) # will be joined from the Photo model end end ```</p>
+<h4 id="if-your-models-have-fields-with-the-same-name">If your models have fields with the same name</h4>
+<p>```ruby class Tweet &lt; ActiveRecord::Base searchable do text :keywords integer :profile_id end end</p>
+<p>class Rss &lt; ActiveRecord::Base searchable do text :keywords integer :profile_id end end</p>
+<p>class Profile &lt; ActiveRecord::Base searchable do text :name join(:keywords, :prefix =&gt; “tweet”, :target =&gt; Tweet, :type =&gt; :text, :join =&gt; { :from =&gt; :profile_id, :to =&gt; :id }) join(:keywords, :prefix =&gt; “rss”, :target =&gt; Rss, :type =&gt; :text, :join =&gt; { :from =&gt; :profile_id, :to =&gt; :id }) end end</p>
+<p>Profile.search do any do fulltext(“keyword1 keyword2”, :fields =&gt; [:tweet_keywords]) do minimum_match 1 end</p>
+<pre><code>fulltext(&quot;keyword3&quot;, :fields =&gt; [:rss_keywords])</code></pre>
+<p>end end</p>
+<h1 id="produces">…produces:</h1>
+<h1 id="sort-score-desc-fl-score-start-0-rows-20">sort: “score desc”, fl: “* score”, start: 0, rows: 20,</h1>
+<h1 id="fq-typeprofile">fq: [“type:Profile”],</h1>
+</body>
+</html>

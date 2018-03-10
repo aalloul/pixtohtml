@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>spejman_bn4r1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="bayesian-networks-for-ruby-bn4r">Bayesian Networks for Ruby ( bn4r )</h1>
+<p>bn4r is a bayesian networks library on ruby that provides the user with classes for create bayesian networks and diverse algorithms for solve them.</p>
+<p>Its algorithms implementation are based on: S.Russell, P.Norving, “Artificial Intelligence, A Modern Approach”, 2nd Edition.</p>
+<p>Website: http://bn4r.rubyforge.org</p>
+<p>Spanish Website: http://bn4r.rubyforge.org/es</p>
+<p>Rubyforge Project: http://rubyforge.org/projects/bn4r</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>rgl-0.2.3 ( Ruby Graph Library ), http://rgl.rubyforge.org</p>
+<h2 id="design-principles">Design principles</h2>
+<p>The library consists on the object BayesNet thinked to be filled with BayesNetNode, these objects are defined in bn.rb. BayesNet object is a especialization of RGL::DirectedAdjacencyGraph ( http://rgl.rubyforge.org ).</p>
+<p>The file bn_algorithms.rb has the implementation of the inference algorithms that can be used to solve BayesNet structures.</p>
+<p>Files bn_export.rb and bn_import.rb have methods for import and export bayesian networked in different formats.</p>
+<p>Finally, a set of objects and methods are given to automaticly fill BayesNetNode probabilities tables.</p>
+<h2 id="usage-examples">Usage Examples</h2>
+<ol type="1">
+<li><p>Install the gem ( bn4r-0.9.0.gem )</p>
+<p><code>gem install bn4r</code></p></li>
+<li><p>Include the bn4r</p></li>
+</ol>
+</body>
+</html>

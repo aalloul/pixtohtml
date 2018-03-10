@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nekokak_qudo1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="name">NAME</h1>
+<p>Qudo - simple and extensible job queue manager</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code># enqueue job:
+use Qudo;
+my $qudo = Qudo-&gt;new(
+    driver_class =&gt; &#39;Skinny&#39;, # optional.
+    databases =&gt; [+{
+        dsn      =&gt; &#39;dbi:SQLite:/tmp/qudo.db&#39;,
+        username =&gt; &#39;&#39;,
+        password =&gt; &#39;&#39;,
+    }],
+);
+$qudo-&gt;enqueue(&quot;Worker::Test&quot;, { arg =&gt; &#39;arg&#39;, uniqkey =&gt; &#39;uniqkey&#39;});
+
+# do work:
+use Qudo;
+my $qudo2 = Qudo-&gt;new(
+    driver_class =&gt; &#39;Skinny&#39;, # optional.
+    databases =&gt; [+{
+        dsn      =&gt; &#39;dbi:SQLite:/tmp/qudo.db&#39;,
+        username =&gt; &#39;&#39;,
+        password =&gt; &#39;&#39;,
+    }],
+    manager_abilities =&gt; [qw/Worker::Test/],
+);
+$qudo2-&gt;work(); # boot manager
+# work work work!</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>Qudo is simple and extensible job queue manager system.</p>
+<p>Your application can insert job into DB ,that is managed by Qudo. And Your application can get &amp; execute job by Qudo worker. Qudo corresponds to deal with DB as MySQL and SQLite.</p>
+<p>If you add Hook Point around job’s working method , you can add it easily and many point of work milestone. Qudo is consided about adding Hook Point Flexibility.</p>
+<h1 id="useage">USEAGE</h1>
+<h2 id="qudo-new-args"><code>Qudo-&gt;new( %args )</code></h2>
+<p>Optional members of <code>%args</code> are:</p>
+</body>
+</html>

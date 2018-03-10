@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pezra_rspec-mode1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="emacs-rspec-mode">Emacs RSpec Mode</h1>
+<p>RSpec mode provides some convenience functions for dealing with RSpec.</p>
+<h2 id="installation">Installation</h2>
+<p>You can install via ELPA, or manually by downloading <code>rspec-mode</code> and adding the following to your init file:</p>
+<pre class="emacs"><code>(add-to-list &#39;load-path &quot;/path/to/rspec-mode&quot;)
+(require &#39;rspec-mode)</code></pre>
+<p>Provided you have <code>yasnippet</code> installed, you can load the snippets:</p>
+<pre class="emacs"><code>(eval-after-load &#39;rspec-mode
+ &#39;(rspec-install-snippets))</code></pre>
+<p>(This isn’t done automatically to avoid conflicts with snippets you may already have set up.)</p>
+<h2 id="usage">Usage</h2>
+<p>If <code>rspec-mode</code> is installed properly, it will be started automatically when <code>ruby-mode</code> is started.</p>
+<h3 id="rspec-verifiable-mode">RSpec Verifiable mode</h3>
+<p>These keybindings are available in any Ruby source file:</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Keybinding</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>C-c , v</code></td>
+<td>Verify the spec file associated with the current buffer</td>
+</tr>
+<tr class="even">
+<td><code>C-c , a</code></td>
+<td>Run spec for entire project</td>
+</tr>
+<tr class="odd">
+<td><code>C-c , t</code></td>
+<td>Toggle back and forth between a spec and its target</td>
+</tr>
+<tr class="even">
+<td><code>C-c , e</code></td>
+<td>Toggle back and forth between a method and its examples in the spec file</td>
+</tr>
+<tr class="odd">
+<td><code>C-c , 4 t</code></td>
+<td>Find in the other window the spec or the target file</td>
+</tr>
+<tr class="even">
+<td><code>C-c , 4 e</code></td>
+<td>As above, but try to navigate to the example or method corresponding to point</td>
+</tr>
+<tr class="odd">
+<td><code>C-c , r</code></td>
+<td>Re-run the last verification process</td>
+</tr>
+<tr class="even">
+<td><code>C-c , y</code></td>
+<td>Yank the last verification command to clipboard</td>
+</tr>
+<tr class="odd">
+<td><code>C-c , m</code></td>
+<td>Run all specs related to the current buffer</td>
+</tr>
+<tr class="even">
+<td><code>C-c , c</code></td>
+<td>Run the current spec and all after it</td>
+</tr>
+<tr class="odd">
+<td><code>C-c , s</code></td>
+<td>Verify the example or method defined at point</td>
+</tr>
+<tr class="even">
+<td><code>C-c , f</code></td>
+<td>Re-run just the failed examples from the last run</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rspec-mode">RSpec mode</h3>
+<p>These keybindings are available in Ruby spec files:</p>
+</body>
+</html>

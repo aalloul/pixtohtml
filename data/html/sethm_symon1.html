@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sethm_symon1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="symon---a-6502-system-simulator">SYMON - A 6502 System Simulator</h1>
+<p><strong>Version:</strong> 1.2.1</p>
+<p><strong>Last Updated:</strong> 8 January, 2016</p>
+<p>See the file COPYING for license.</p>
+<p>!</p>
+<h2 id="about">1.0 About</h2>
+<p>Symon is a general purpose simulator for systems based on the MOS Technologies 6502 microprocessor and compatibles. Symon is implemented in Java. Its core goals are accuracy, ease of development, clear documentation, and extensive test suites for validating correctness.</p>
+<p>Symon simulates a complete system with a 1 MHz NMOS 6502, 32KB of RAM, 16KB of ROM, a MOS 6551 or Motorola 6850 ACIA, a MOS 6522 VIA, and an experimental 6545 CRTC.</p>
+<p>Symon has extensive unit tests to verify correctness, and fully passes Klaus Dormann’s 6502 Functional Test Suite as of version 0.8.2 (See for more information about this functional test suite).</p>
+<p>Symon is under constant, active development. Feedback and patches are always welcome.</p>
+<h2 id="requirements">2.0 Requirements</h2>
+<ul>
+<li>Java 1.8 or higher</li>
+<li>Maven 2.0.x or higher (for building from source)</li>
+<li>JUnit 4 or higher (for testing)</li>
+</ul>
+<h2 id="features">3.0 Features</h2>
+<p>Symon can simulate multiple 6502 based architectures. At present, three machines are implemented: Symon (the default), MULTICOMP, and a “Simple” machine useful for debugging.</p>
+<h3 id="memory-maps">3.1 Memory Maps</h3>
+<h4 id="symon-memory-map">3.1.1 Symon Memory Map</h4>
+<ul>
+<li><code>$0000</code>–<code>$7FFF</code>: 32KB RAM</li>
+<li><code>$8000</code>–<code>$800F</code>: 6522 VIA</li>
+<li><code>$8800</code>–<code>$8803</code>: MOS 6551 ACIA (Serial Console)</li>
+<li><code>$9000</code>–<code>$9001</code>: MOS 6545 CRTC</li>
+</ul>
+</body>
+</html>

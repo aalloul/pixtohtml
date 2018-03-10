@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>LauJensen_clojureql1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="clojureql">ClojureQL</h1>
+<p>ClojureQL is an abstraction layer sitting on top of standard low-level JDBC SQL integration. It lets you interact with a database through objects which work as Clojure data types and thus can be composed and extended.</p>
+<p>ClojureQL is modeled around the primitives defined in Relational Algebra. http://en.wikipedia.org/wiki/Relational_algebra</p>
+<p>For the user, this means that all queries compose and are never executed unless dereferenced or called with a function that has the ! suffix.</p>
+<p>As a help for debugging, wrap your statements in (binding [*debug* true]) to see the compiled SQL statement printed to stdout.</p>
+<h1 id="installation">Installation</h1>
+<p>Add the following to your <strong>project.clj</strong> or pom.xml:</p>
+<p>Cake/Lein artifact:</p>
+<pre><code>[clojureql &quot;1.0.5&quot;]</code></pre>
+<p>Maven:</p>
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;clojureql&lt;/groupId&gt;
+  &lt;artifactId&gt;clojureql&lt;/artifactId&gt;
+  &lt;version&gt;1.0.5&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+<p>Then execute</p>
+<pre><code>cake deps or lein deps</code></pre>
+<p>And import the library into your namespace</p>
+<pre><code>(:use clojureql.core)</code></pre>
+<h1 id="manual">Manual</h1>
+<p>Please visit for updated documentation.</p>
+<h1 id="credit">Credit</h1>
+</body>
+</html>

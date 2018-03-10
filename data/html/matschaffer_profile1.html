@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>matschaffer_profile1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="my-bash-profile">My Bash Profile</h1>
+<p>This is the profile that I’m now using across a number of machines that I administer. Most of the tricks I use are fairly general and could be reused by anyone.</p>
+<h2 id="whats-it-look-like">What’s it look like?</h2>
+<p>!</p>
+<h2 id="installation">Installation</h2>
+<pre><code>curl -s https://raw.github.com/matschaffer/profile/master/install | bash</code></pre>
+<p>From here you can now put any <code>*.conf</code> in <code>~/.profile.d</code> and it’ll get loaded in alphabetical order. You can also make directories that end in <code>.conf</code> which profile will then load all the <code>.conf</code> files in that directory in order.</p>
+<p>Additionally, if you need to have OS-specific configuration just put a folder in <code>.profile.d</code> or <code>.profile.d/core</code> with the name returned by <code>uname</code>, for example <code>.profile.d/Darwin</code>. The profile checks <code>uname</code> when bash starts and loads any <code>.conf</code> files or directories in this OS-specific folder.</p>
+<h2 id="load-order">Load order</h2>
+<p>This profile loads <code>init</code> first, followed by all the <code>.conf</code> files in <code>.profile.d/core</code>, then any <code>.conf</code> files in <code>.profile.d</code>. This way you can put any general use configs in <code>core</code> and anything personal in <code>.profile.d</code>. If you want to keep your personal profile information in git, just set up <code>core</code> as a submodule to your personal repository.</p>
+<h2 id="features">Features</h2>
+<p>This list is not guaranteed to be comprehensive, but here are some of the major features included as of the last time this document was updated.</p>
+<ul>
+<li>Reactive prompt - includes date and exit code of last command and git branch.</li>
+<li>Tab Completion for Git and Subversion</li>
+<li>Tab completion for Rake, Maven 2 and Ant</li>
+<li>Tab completion for ssh hosts on OS X.</li>
+<li>Git aliases</li>
+<li>‘safeedit’ function that makes a timestamped backup copy of a file before editing</li>
+<li>Basic java set up on solaris and Darwin</li>
+<li>Maven memory settings</li>
+<li>‘profile_push’ function for pushing these files out to other servers</li>
+<li>Auto setup of .foward file on Linux and Solaris</li>
+<li>Integration with</li>
+<li>Integration with</li>
+<li>Integration with</li>
+</ul>
+<h2 id="planned-features">Planned features</h2>
+<ul>
+<li>‘link_dotfiles’ command that will create symlinks for all the files listed in the dotfiles directory</li>
+<li>Tab completion for ssh hosts in Solaris/Ubuntu</li>
+<li>Single-command for SSH key distribution and profile distribution</li>
+</ul>
+</body>
+</html>

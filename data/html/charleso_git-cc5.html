@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>charleso_git-cc5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="for-developers">For developers</h2>
+<p>This section provides information for git-cc developers.</p>
+<h3 id="required-packages">Required packages</h3>
+<p>To develop git-cc, several Python packages are required that are not part of the standard Python distribution and that you have to install separately. As these packages might conflict with your system Python environment, you are strongly advised to set up a [virtualenv] [virtualenv] for your work.</p>
+<p>The file ‘requirements.txt’, which is in the root of the repo, lists the Python packages that are needed for development. To install these packages, use the following command:</p>
+<pre><code>git-cc $ pip install -r requirements.txt</code></pre>
+<h3 id="testing">Testing</h3>
+<p>git-cc comes with a small suite of unit tests, which you can find in subdirectory tests/. There are several ways to run the unit tests. For example, you can let Python search for the unit tests and run them in the current Python environment. To do so, execute the following command <em>from the root of the repo</em>:</p>
+<pre><code>git-cc $ python -m unittest discover tests/</code></pre>
+<p>This will result in output such as this:</p>
+<pre><code>........
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+ 
+OK</code></pre>
+<p>If you run the unit tests from the root of the repo, all unit tests will be able to import the git-cc package even when it is not installed. If you run the unit tests from another directory, you have to install git_cc first.</p>
+<p>Another way to run the unit test is to use the Python tool [tox] [tox]. tox does more than just run the unit tests:</p>
+<ul>
+<li>it creates a source distribution of your Python package for each Python interpreter that you specify,</li>
+<li>it creates a virtualenv for each Python interpreter you specify, and</li>
+<li>for each virtualenv, installs the package using the source distribution and runs the unit tests.</li>
+</ul>
+<p>If you execute tox from the root of the repo, its output will look like this:</p>
+</body>
+</html>

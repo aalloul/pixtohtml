@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra13</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&lt;td&gt;Example&lt;/td&gt;
+&lt;td&gt;&lt;tt&gt;haml :index, :format =&gt; :html5&lt;/tt&gt;&lt;/td&gt;</code></pre>
+</tr>
+</table>
+<h4 id="erb-templates">Erb Templates</h4>
+<table>
+<tr>
+<td>
+Dependency
+</td>
+<td>
+<a href="http://www.kuwata-lab.com/erubis/" title="erubis">erubis</a> or erb (included in Ruby)
+</td>
+</tr>
+<tr>
+<td>
+File Extensions
+</td>
+<td>
+<tt>.erb</tt>, <tt>.rhtml</tt> or <tt>.erubis</tt> (Erubis only)
+</td>
+</tr>
+<tr>
+<td>
+Example
+</td>
+<td>
+<tt>erb :index</tt>
+</td>
+</tr>
+</table>
+<h4 id="builder-templates">Builder Templates</h4>
+<table>
+<tr>
+<td>
+Dependency
+</td>
+<td>
+<a href="https://github.com/jimweirich/builder" title="builder">builder</a>
+</td>
+</tr>
+<tr>
+<td>
+File Extension
+</td>
+<td>
+<tt>.builder</tt>
+</td>
+</tr>
+<tr>
+<td>
+Example
+</td>
+<td>
+<tt>builder { |xml| xml.em “hi” }</tt>
+</td>
+</tr>
+</table>
+<p>It also takes a block for inline templates (see <a href="#inline-templates">example</a>).</p>
+<h4 id="nokogiri-templates">Nokogiri Templates</h4>
+<table>
+<tr>
+</body>
+</html>

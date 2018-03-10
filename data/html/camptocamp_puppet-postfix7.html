@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>camptocamp_puppet-postfix7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Example: ‘mailman’.</p>
+<h5 id="nexthop"><code>nexthop</code></h5>
+<p>A string to define where and how to deliver the mail (transport(5)).<br />
+Default: Undefined.<br />
+Example: ‘[smtp.google.com]:25’.</p>
+<h4 id="examples">Examples</h4>
+<h3 id="postfixvirtual">postfix::virtual</h3>
+<p>Manages the contents of the virtual map.</p>
+<h4 id="requirements">Requirements</h4>
+<p>Augeas is, of course, required.</p>
+<p>The following code is necessary to make virtual maps work:</p>
+<pre class="puppet"><code>include postfix
+
+postfix::hash { &#39;/etc/postfix/virtual&#39;:
+  ensure =&gt; present,
+}
+
+postfix::config { &#39;virtual_alias_maps&#39;:
+  ensure  =&gt; present,
+  value   =&gt; &#39;hash:/etc/postfix/virtual&#39;,
+}</code></pre>
+<h4 id="parameters">Parameters</h4>
+<h5 id="ensure"><code>ensure</code></h5>
+<p>A string whose valid values are present or absent.<br />
+Default: present.<br />
+Example: absent.</p>
+<h5 id="file"><code>file</code></h5>
+<p>A string defining the location of the virtual map, pre hash.<br />
+Default: ‘/etc/postfix/virtual’.<br />
+Example: ‘/etc/postfix/my_virtual_map’.</p>
+<h5 id="destination"><code>destination</code></h5>
+<p>A string defining where the e-mails will be delivered to, (virtual(8)).<br />
+Default: Undefined.<br />
+Example: ‘root’</p>
+<h4 id="examples-1">Examples</h4>
+<h5 id="route-mail-bound-for-userexample.com-to-root.">Route mail bound for ‘user@example.com’ to root.</h5>
+<p>```puppet postfix::virtual {‘user@example.com’:</p>
+</body>
+</html>

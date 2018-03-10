@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yui_builder5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p>A YUI 2 Component (either a JS or CSS component), use:</p>
+<p>builder/componentbuild/templates/yui2</p>
+<pre><code> build.xml
+ build.properties</code></pre></li>
+<li><p>A YUI 3 Component (either a JS or CSS component), use:</p>
+<p>builder/componentbuild/templates/yui3</p>
+<pre><code> build.xml
+ build.properties</code></pre></li>
+<li><p>A YUI 3 Rollup Component, use:</p>
+<p>builder/componentbuild/templates/yui3/rollup</p>
+<p>For the rollup component: build.xml build.properties</p>
+<p>For the sub components: subcomponentone.xml subcomponentone.properties subcomponenttwo.xml subcomponenttwo.properties</p></li>
+</ul>
+<h2 id="further-customization">Further Customization</h2>
+<p>If required, you can define custom values for any of the properties defined in builder/componentbuild/docs/properties.html to customize the build for your new component, however as mentioned above, for most components the properties defined in the template files should be sufficient.</p>
+<p>You can also override or extend existing targets, to customize the actual build process for a component if required. The list of targets and their role is defined in builder/componentbuild/docs/targets.html.</p>
+<h2 id="log-verbosity">Log Verbosity</h2>
+<ul>
+<li><code>ant all</code> will give you the default log output, may be a little noisy</li>
+<li><code>ant all -v</code> will give you full log output (really noisy)</li>
+<li><code>ant all -q</code> will give you only the jslint output from your build</li>
+</ul>
+</body>
+</html>

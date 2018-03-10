@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>p8_redirect1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="redirect">Redirect</h1>
+<p>http://github.com/p8/redirect/tree/master</p>
+<h2 id="description">Description</h2>
+<p>Redirect is a simple Ruby redirect DSL built on Rack. It’s like a simple Ruby mod_rewrite, so you can write and test your redirects in Ruby.</p>
+<h2 id="getting-started">Getting started</h2>
+<ul>
+<li>Install the gem <code>gem install redirect</code></li>
+<li>Create a new redirect rack app: <code>redirect_app my_redirect_app</code></li>
+<li>This creates a directory called <code>my_redirect_app</code> with the required files and tests.</li>
+<li>Open <code>my_redirect_app/my_redirect_app.rb</code> in your favorite editor and add some redirect rules.</li>
+</ul>
+<p>To run the app locally just run the main rb file: <code>ruby my_redirect_app.rb</code>.</p>
+<h2 id="defining-redirects">Defining redirects</h2>
+<p>Redirects are processed in the same order as they are defined:</p>
+<pre><code>redirect  [&#39;/catch_url&#39;, &#39;/redirect_url&#39;], [&#39;/catch_url2&#39;, &#39;/redirect_url2&#39;]</code></pre>
+<p>The first one is evaluated first, then the next one, etc..<br />
+The catch_url can be a regular expression:</p>
+<pre><code>[&#39;^/some_regexp&#39;, &#39;/all&#39;]
+[/old\/(.*)/, &#39;/new/$1&#39;]  # /old/2008/02/01 will be redirected to /new/2008/02/01</code></pre>
+<p>You can also pass extra options as follows:</p>
+<pre><code>:code # Overwrite the http code (defaults is 301) in the options,
+:name # named redirects are public so they&#39;ll appear in you sitemap.
+[&#39;/catch_url&#39;, &#39;/redirect_url&#39;, {:code =&gt; 307, :name =&gt; &#39;redirect link&#39;}]`</code></pre>
+<p>The default redirect code can be changed by specifying:</p>
+<pre><code>Redirect.default_code = 307</code></pre>
+<p>All redirects with a name will be specified in the generated /sitemap.xml.</p>
+<h2 id="license">License</h2>
+<p>(The MIT License)</p>
+<p>Copyright (c) 2009 Petrik de Heus</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to</p>
+</body>
+</html>

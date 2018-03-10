@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mnaberez_supervisor_cache2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&gt;&gt;&gt; s.cache.getKeys()
+[]
+&gt;&gt;&gt; s.cache.store(&#39;foo&#39;, &#39;bar baz&#39;)
+True
+&gt;&gt;&gt; s.cache.fetch(&#39;foo&#39;)
+&#39;bar baz&#39;
+&gt;&gt;&gt; s.cache.getKeys()
+[&#39;foo&#39;]</code></pre>
+<p>The key must be a string and cannot be zero-length. The value may be any type that can be marshalled by XML-RPC.</p>
+<p>Please consult the inline source documentation for the specifics of each command available.</p>
+<h2 id="supervisorctl">Supervisorctl</h2>
+<p>You can also interact with the cache using <code>supervisorctl</code>. The <code>help</code> command with no arguments will list the available cache commands:</p>
+<pre><code>supervisor&gt; help
+...
+
+cache commands (type help &lt;topic&gt;):
+===================================
+cache_clear  cache_count  cache_delete  cache_fetch  cache_keys  cache_store</code></pre>
+<p>Each command provides a thin wrapper around an XML-RPC method:</p>
+<pre><code>supervisor&gt; cache_keys
+[]
+supervisor&gt; cache_store &#39;foo&#39; &#39;bar baz&#39;
+supervisor&gt; cache_fetch &#39;foo&#39;
+&#39;bar baz&#39;
+supervisor&gt; cache_keys
+[&#39;foo&#39;]</code></pre>
+<p>In <code>supervisorctl</code>, the <code>cache_store</code> command always stores the value as a string.</p>
+<h2 id="warnings">Warnings</h2>
+<p>Data is not discarded from the cache until it is explicitly deleted with the <code>cache.delete()</code> method. Data does not persist after Supervisor is shut down.</p>
+<p>Your Supervisor instance should never be exposed to the outside world. It is quite easy to perform a denial of service attack by filling <code>supervisor_cache</code> with large amounts of data.</p>
+</body>
+</html>

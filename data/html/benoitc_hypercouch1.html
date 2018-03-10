@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>benoitc_hypercouch1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="hypercouch">HyperCouch</h1>
+<p>Full text indexing for [CouchDB][couchdb]. (I really mean it this time.)</p>
+<h2 id="requriements">Requriements</h2>
+<p>There are a couple dependancies that should hopefully be easy to overcome. I have things working on OS X 10.4 so Linux should be a breeze. Windows installation is left as an exercise to the reader.</p>
+<ol type="1">
+<li>[CouchDB][couchdb] - Obviously</li>
+<li>[HyperEstraier][hyper] - Full text indexing goodness</li>
+<li>[Spidermonkey][spider] - Requirement of CouchDB as well <strong>Might require Spidermonkey 1.7</strong></li>
+<li>[hypy][hypy] - Python bindings to HyperEstraier</li>
+<li>[python-spidermonkey][pyspider] - <strong>My version on github</strong></li>
+<li><a href="#hypercouch">hypercouch</a> - This project?</li>
+</ol>
+<p>OpenBSD: $ pkg_add -iv py-simplejson $ pkg_add -iv py-httplib2 $ pkg_add -iv py-nose</p>
+<p>OS X python modules:</p>
+<pre><code>$ sudo port install py25-simplejson
+$ sudo port install py25-httplib2
+$ sudo port install py25-nose</code></pre>
+<p>Ubuntu:</p>
+<pre><code>$ sudo apt-get install simplejson
+$ sudo apt-get isntall httplib2
+$ sudo apt-get install python-nose</code></pre>
+<p>And couchdb-python:</p>
+<pre><code>$ svn checkout http://couchdb-python.googlecode.com/svn/trunk/ couchdb-python
+$ cd couchdb-python
+$ sudo python setup.py install</code></pre>
+<p>For the moment I haven’t performed this installation on Linux. Tomorrow I’ll sit down and install on one of my severs but for now I’ll just go over the OS X procedure and hope the Linux equivalent isn’t too far off.</p>
+<h2 id="installation">Installation</h2>
+<p>I won’t go over installing CouchDB because it’s pretty well covered on the [wiki][wiki]. If you need help with it check there or hop onto the IRC channel (#couchdb on irc.freenode.net) and ask questions.</p>
+<h2 id="linux-people">Linux People</h2>
+</body>
+</html>

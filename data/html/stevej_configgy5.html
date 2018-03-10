@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevej_configgy5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>error, critical, or fatal levels. It’s rolled once a week, at midnight on Tuesday morning.</p>
+<p>None of <code>filename</code>, <code>console</code>, or <code>syslog_host</code> are mutually exclusive, so you can define any or all of those targets, to have log messages sent to any possible combination of places.</p>
+<h2 id="advanced-features">Advanced Features</h2>
+<p>There are a few features you may not use right away, but you’ll usually start wanting after the code matures a bit.</p>
+<h3 id="config-files">Config Files</h3>
+<p>Previously-set config values can be included in new ones by using variable substitution, with shell syntax. This also pulls in values from the environment:</p>
+<pre><code>server_home = &quot;$(HOME)/servers/pingd&quot;
+pid_file = &quot;$(server_home)/pingd.pid&quot;</code></pre>
+<p>Files can be included/imported into each other:</p>
+<pre><code>include &quot;$(server_home)/config/local.conf&quot;</code></pre>
+<p>(The context is preserved, so if you are inside a block, the imported file is injected inside that block too.) The default importer uses the local filesystem. You can set your own importer to use other sources.</p>
+<p>To set a value only if it hasn’t been set earlier (possibly by an included file), use shell syntax:</p>
+<pre><code>server_home ?= &quot;/opt/pingd&quot;</code></pre>
+<p>Common config blocks can be inherited by later blocks:</p>
+<pre><code>&lt;daemon-base&gt;
+    timeout = 15
+    chroot = &quot;/opt/magic&quot;
+&lt;/daemon-base&gt;
+
+&lt;pingd inherit=&quot;daemon-base&quot;&gt;
+    timeout = 30
+&lt;/ping&gt;</code></pre>
+<p>The pingd block will use its own value of “timeout” (30), but will inherit “chroot” from daemon-base. That is, “pingd.chroot” will be “/opt/magic”.</p>
+</body>
+</html>

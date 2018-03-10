@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>clescuyer_rails-i18n2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h4 id="test-your-locale-file">Test your locale file</h4>
+<p>Before commit and push your changes, test the integrity of your locale file.</p>
+<p>Make sure you have the <code>i18n</code> and <code>thor</code> installed. If you haven’t, install them:</p>
+<pre><code>sudo gem install i18n thor</code></pre>
+<p>You can test your locale by running following command on the root directory of this repository:</p>
+<pre><code>thor locales:test [your-locale]</code></pre>
+<p>Assuming that there is a file <code>rails/locale/[your-locale].{rb,yml}</code> you will get a list of keys missing from your locale data.</p>
+<p>Invoke following command to test all locale files:</p>
+<pre><code>thor locales:test_all</code></pre>
+<p>You can list all locales that are ready both for Rails version 2 and 3:</p>
+<pre><code>thor locales:ready</code></pre>
+<p>You can also list the locales ready for a specific version of Rails. For example:</p>
+<pre><code>thor locales:ready_for 3</code></pre>
+<p>Lastly, you can list all available locales:</p>
+<pre><code>thor locales:list</code></pre>
+<h4 id="edit-readme.md">Edit README.md</h4>
+<p>Add your locale name to the list in <code>README.md</code> if it isn’t there.</p>
+<h4 id="send-pull-request">Send pull request</h4>
+<p>I you are ready, push the repository into the Github and send us a pull request.</p>
+<p>We will do the formality check and publish it as quick as we can.</p>
+<h2 id="rails-i18n-textmate-bundle">Rails I18n Textmate bundle</h2>
+<h3 id="the-bundle-adds-the-following-commands">The bundle adds the following commands:</h3>
+<h4 id="extract-translation-cmd-shift-e">Extract Translation (cmd-shift-e):</h4>
+<ul>
+<li>prompts you for a dot-separated key</li>
+<li>adds the translation (mapping the dot-separated key to nested yaml keys)</li>
+<li>replaces the selected string in your source-code with the dot-separated key wrapped into a call to t(your.key), if interpolations are detected within translation, the replacement text will prompt for them.</li>
+</ul>
+</body>
+</html>

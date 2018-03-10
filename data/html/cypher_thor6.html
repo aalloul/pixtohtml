@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cypher_thor6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>class Newgem &lt; Thor::Group
+  include Thor::Actions
+
+  # Define arguments and options
+  argument :name
+  class_option :test_framework, :default =&gt; :test_unit
+
+  def self.source_root
+    File.dirname(__FILE__)
+  end
+
+  def create_lib_file
+    template(&#39;templates/newgem.tt&#39;, &quot;#{name}/lib/#{name}.rb&quot;)
+  end
+
+  def create_test_file
+    test = options[:test_framework] == &quot;rspec&quot; ? :spec : :test
+    create_file &quot;#{name}/#{test}/#{name}_#{test}.rb&quot;
+  end
+
+  def copy_licence
+    if yes?(&quot;Use MIT license?&quot;)
+      # Make a copy of the MITLICENSE file at the source root
+      copy_file &quot;MITLICENSE&quot;, &quot;#{name}/MITLICENSE&quot;
+    else
+      say &quot;Shame on you…&quot;, :red
+    end
+  end
+end</code></pre>
+<p>Doing a <tt>thor -T</tt> will show how to run our generator. It should read: <tt>thor newgem NAME</tt>. This shows that we have to supply a NAME argument for our generator to run.</p>
+<p>The <tt>create_lib_file</tt> uses an ERB template. This is what it looks like:</p>
+<pre><code>class &lt;%= name.capitalize %&gt;
+end</code></pre>
+<p>The arguments that you set in your generator will automatically be passed in when <tt>template</tt> gets called. Be sure to read the for more options.</p>
+<p>Running the generator with <tt>thor newgem devise</tt> will create two files: “devise/lib/devise.rb”, and “devise/test/devise_test.rb”. The user will then be asked (via a prompt by the <tt>yes?</tt> method) whether or not they would like to copy the MIT License. If you want to change the test framework, you can add the option: <tt>thor newgem devise –test-framework=rspec</tt></p>
+<p>This will generate two files - “devise/lib/devise.rb” and “devise/spec/devise_spec.rb”.</p>
+<h2 id="further-reading">Further Reading</h2>
+</body>
+</html>

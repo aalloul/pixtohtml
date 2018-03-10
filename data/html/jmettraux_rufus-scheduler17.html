@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmettraux_rufus-scheduler17</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>job = s.schedule_in(‘1d’) do fail ‘again’ end</p>
+<p>job.call(true) # # true lets the error_handler deal with error in the job call ```</p>
+<h2 id="atjob-and-injob-methods">AtJob and InJob methods</h2>
+<h3 id="time">time</h3>
+<p>Returns when the job will trigger (hopefully).</p>
+<h3 id="next_time">next_time</h3>
+<p>An alias to time.</p>
+<h2 id="everyjob-intervaljob-and-cronjob-methods">EveryJob, IntervalJob and CronJob methods</h2>
+<h3 id="next_time-1">next_time</h3>
+<p>Returns the next time the job will trigger (hopefully).</p>
+<h3 id="count">count</h3>
+<p>Returns how many times the job fired.</p>
+<h2 id="everyjob-methods">EveryJob methods</h2>
+<h3 id="frequency">frequency</h3>
+<p>It returns the scheduling frequency. For a job scheduled “every 20s”, it’s 20.</p>
+<p>It’s used to determine if the job frequency is higher than the scheduler frequency (it raises an ArgumentError if that is the case).</p>
+<h2 id="intervaljob-methods">IntervalJob methods</h2>
+<h3 id="interval">interval</h3>
+<p>Returns the interval scheduled between each execution of the job.</p>
+<p>Every jobs use a time duration between each start of their execution, while interval jobs use a time duration between the end of an execution and the start of the next.</p>
+<h2 id="cronjob-methods">CronJob methods</h2>
+<h3 id="frequency-1">frequency</h3>
+</body>
+</html>

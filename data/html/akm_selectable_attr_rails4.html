@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akm_selectable_attr_rails4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="エントリの名称の更新">エントリの名称の更新</h3>
+<p>実行時に名称を変えたい場合には、そのidに該当するレコードを追加／更新します。 例えば、 room_typeが“04”、nameが“３ベッド”というレコードがINSERTされると、その後は 04のエントリはの名称は“３ベッド”に変わり、また別の名称にUPDATEすると、それに よってエントリの名称も変わります。</p>
+<p>このようにコードによってエントリが定義されている場合は、DELETEされてもエントリは削除されず、 DELETE後は、名称が元に戻ります。</p>
+<h2 id="i18n対応">I18n対応</h2>
+<p>エントリのロケールにおける名称をRails2.2からの機能である、I18nを内部的にしようして取得できます。</p>
+<p>上記RoomPlanモデルの場合、</p>
+<p>config/locales/ja.yml</p>
+<pre><code>ja:
+  selectable_attrs:
+    room_types:
+      single: シングル
+      twin: ツイン
+      double: ダブル
+      triple: トリプル
+  </code></pre>
+<p>config/locales/en.yml</p>
+<pre><code>en:
+  selectable_attrs:
+    room_types:
+      single: Single
+      twin: Twin
+      double: Double
+      triple: Triple
+  </code></pre>
+<p>というYAMLを用意した上で、モデルを以下のように記述します。</p>
+<pre><code>class RoomPlan &lt; ActiveRecord::Base
+  include ::SelectableAttr::Base
+  
+  selectable_attr :room_type do
+    i18n_scope(:selectable_attrs, :room_types)
+    entry &#39;01&#39;, :single, &#39;シングル&#39;
+    entry &#39;02&#39;, :twin, &#39;ツイン&#39;
+    entry &#39;03&#39;, :double, &#39;ダブル&#39;
+    entry &#39;04&#39;, :triple, &#39;トリプル&#39;
+  end
+end</code></pre>
+</body>
+</html>

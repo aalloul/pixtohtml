@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jasonroelofs_rbgccxml1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="what-is-rbgccxml">What is rbgccxml?</h2>
+<p>RbGCCXML allows one to easily parse out and query C++ code. This library uses CastXML to parse out the C++ code into XML, and then nokogiri for parsing and querying.</p>
+<p>CastXML (https://github.com/CastXML/CastXML) is an application that takes takes the parse tree of g++ and constructs a very parsable and queryable XML file with all related information. CastXML currently only works with code declarations; there currently are no plans to support code bodies.</p>
+<p>Note: For those familiar with pygccxml, the similarities are minimal. Outside of the purpose of both libraries, rbgccxml was built from scratch to provide a Ruby-esque query API instead of being a port. However, many thanks to Roman for his work, without which this library would also not exist.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>nokogiri</li>
+<li>castxml</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code>gem install rbgccxml</code></pre>
+<p>RbGCCXML will work on all platforms that CastXML supports, which includes Windows, Mac, and *nix.</p>
+<h2 id="the-project">The Project</h2>
+<p>RbGCCXML’s source is in a git repository hosted on github:</p>
+<p>Project page:</p>
+<pre><code>http://github.com/jasonroelofs/rbgccxml</code></pre>
+<p>Clone with:</p>
+<pre><code>git clone git://github.com/jasonroelofs/rbgccxml.git</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="parsing">Parsing</h3>
+<p>All rbgccxml parses start with the RbGCCXML.parse method:</p>
+<p>```ruby # Parse a single header file RbGCCXML.parse(“/path/to/header/file.h”)</p>
+<h1 id="parse-out-all-files-that-match-a-given-glob">Parse out all files that match a given glob</h1>
+<p>RbGCCXML.parse(“/my/headers/**/*.h“)</p>
+<h1 id="parse-out-a-specified-set-of-files">Parse out a specified set of files&quot;</h1>
+<p>RbGCCXML.parse([“/path/to/file1.h”, “/path/to/file2.h”, …])</p>
+</body>
+</html>

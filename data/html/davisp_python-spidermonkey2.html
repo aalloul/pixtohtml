@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>davisp_python-spidermonkey2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>If you have python installed, then the headers should already be installed.</p>
+<h2 id="netscape-portable-runtime-nspr">Netscape Portable Runtime (nspr)</h2>
+<p>The nspr library is required for building the Spidermonkey sources. You should be able to grab it from your package manager of choice with something like the following:</p>
+<p>Mac OS X:</p>
+<pre><code>$ sudo port install nspr</code></pre>
+<p>Debian/Ubuntu:</p>
+<pre><code>$ sudo apt-get install libnspr4-dev</code></pre>
+<p>Gentoo:</p>
+<pre><code>$ sudo emerge dev-libs/nspr</code></pre>
+<p>Alternatively you can build from [source][nspr]. If you choose this route make sure that the nspr-config command is on your $PATH when running the install commands below.</p>
+<p>If you choose this route make sure that the pkg-config command is on your <code>$PATH</code> when running the install commands below. Additionally, make sure that <code>$PKG_CONFIG_PATH</code> is properly set.</p>
+<h2 id="xulrunner-optional">XULRunner (optional)</h2>
+<p>You can optionally build the extension linked to your system’s spidermonkey library, which is installed with XULRunner. You should be able to grab it from your package manager of choice with something like the following:</p>
+<p>Mac OS X:</p>
+<pre><code>$ sudo port install xulrunner</code></pre>
+<p>Debian/Ubuntu:</p>
+<pre><code>$ sudo apt-get install xulrunner-1.9-dev</code></pre>
+<p>Gentoo:</p>
+<pre><code>$ sudo emerge net-libs/xulrunner</code></pre>
+<p>As with [nspr][nspr], you can also build [xulrunner][xulrunner] from source. And as with [nspr][nspr] you need to make sure hat <code>$PATH</code> and <code>$PKG_CONFIG_PATH</code> are properly set when building the module.</p>
+</body>
+</html>

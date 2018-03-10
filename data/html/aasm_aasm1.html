@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aasm_aasm1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="aasm---ruby-state-machines">AASM - Ruby state machines</h1>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="#upgrade-from-version-3-to-4">Upgrade from version 3 to 4</a></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#callbacks">Callbacks</a>
+<ul>
+<li><a href="#lifecycle">Lifecycle</a></li>
+<li><a href="#the-current-event-triggered">The current event triggered</a></li>
+</ul></li>
+<li><a href="#guards">Guards</a></li>
+<li><a href="#transitions">Transitions</a></li>
+<li><a href="#multiple-state-machines-per-class">Multiple state machines per class</a>
+<ul>
+<li><a href="#handling-naming-conflicts-between-multiple-state-machines">Handling naming conflicts between multiple state machines</a></li>
+<li><a href="#binding-event">Binding event</a></li>
+</ul></li>
+<li><a href="#auto-generated-status-constants">Auto-generated Status Constants</a></li>
+<li><a href="#extending-aasm">Extending AASM</a></li>
+<li><a href="#activerecord">ActiveRecord</a></li>
+<li><a href="#bang-events">Bang events</a></li>
+<li><a href="#activerecord-enums">ActiveRecord enums</a></li>
+<li><a href="#sequel">Sequel</a></li>
+<li><a href="#dynamoid">Dynamoid</a></li>
+<li><a href="#mongoid">Mongoid</a></li>
+<li><a href="#nobrainer">Nobrainer</a></li>
+<li><a href="#redis">Redis</a></li>
+<li><a href="#automatic-scopes">Automatic Scopes</a></li>
+<li><a href="#transaction-support">Transaction support</a></li>
+<li><a href="#pessimistic-locking">Pessimistic Locking</a></li>
+<li><a href="#column-name--migration">Column name &amp; migration</a></li>
+<li><a href="#inspection">Inspection</a></li>
+<li><a href="#warning-output">Warning output</a></li>
+<li><a href="#rubymotion-support">RubyMotion support</a></li>
+<li><a href="#testing">Testing</a>
+<ul>
+<li><a href="#rspec">RSpec</a></li>
+<li><a href="#minitest">Minitest</a>
+<ul>
+<li><a href="#assertions">Assertions</a></li>
+<li><a href="#expectations">Expectations</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#installation">Installation</a>
+<ul>
+<li><a href="#manually-from-rubygemsorg">Manually from RubyGems.org</a></li>
+<li><a href="#or-if-you-are-using-bundler">Bundler</a></li>
+<li><a href="#building-your-own-gems">Building your own gems</a></li>
+</ul></li>
+<li><a href="#generators">Generators</a></li>
+<li><a href="#docker">Test suite with Docker</a></li>
+<li><a href="#latest-changes">Latest changes</a></li>
+<li><a href="#questions">Questions?</a></li>
+<li><a href="#maintainers">Maintainers</a></li>
+<li><a href="CONTRIBUTING.md">Contributing</a></li>
+</ul>
+</body>
+</html>

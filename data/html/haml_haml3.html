@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>haml_haml3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>You can also put plain text as a child of an element:</p>
+<pre class="haml"><code>%p
+  Hello,
+  World!</code></pre>
+<p>It’s also possible to embed Ruby code into Haml documents. An equals sign, <code>=</code>, will output the result of the code. A hyphen, <code>-</code>, will run the code but not output the result. You can even use control statements like <code>if</code> and <code>while</code>:</p>
+<pre class="haml"><code>%p
+  Date/Time:
+  - now = DateTime.now
+  %strong= now
+  - if now &gt; DateTime.parse(&quot;December 31, 2006&quot;)
+    = &quot;Happy new &quot; + &quot;year!&quot;</code></pre>
+<p>Haml provides far more tools than those presented here. Check out the <a href="http://haml.info/docs/yardoc/file.REFERENCE.html">reference documentation</a> for full details.</p>
+<h3 id="indentation">Indentation</h3>
+<p>Haml’s indentation can be made up of one or more tabs or spaces. However, indentation must be consistent within a given document. Hard tabs and spaces can’t be mixed, and the same number of tabs or spaces must be used throughout.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Contributions are welcomed, but before you get started please read the .</p>
+<p>After forking and then cloning the repo locally, install Bundler and then use it to install the development gem dependencies: ~<del>sh gem install bundler bundle install</del>~</p>
+<p>Once this is complete, you should be able to run the test suite: ~<del>sh rake</del>~</p>
+<p>You’ll get a warning that you need to install haml-spec, so run this:</p>
+</body>
+</html>

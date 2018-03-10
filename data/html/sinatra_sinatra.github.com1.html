@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra.github.com1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sinatra-website-documentation">Sinatra Website / Documentation</h1>
+<p>This repo contains the Sinatra website and documentation sources published at .</p>
+<h2 id="working-locally">Working Locally</h2>
+<p>Grab the sources from GitHub:</p>
+<pre><code>$ git clone git://github.com/sinatra/sinatra.github.com.git
+$ cd sinatra.github.com</code></pre>
+<p>Make sure you have the <code>bundler</code> gem installed on your machine:</p>
+<pre><code>$ gem install bundler</code></pre>
+<p>Install dependencies:</p>
+<pre><code>$ bundle install</code></pre>
+<p>Run the test server:</p>
+<pre><code>$ rake server</code></pre>
+<p>Changes are immediately available at:</p>
+<pre><code>http://localhost:4000/sinatra.github.com/</code></pre>
+<h2 id="sass-css-gulp">Sass / CSS / Gulp</h2>
+<p>It would be appreciated if you could introduce your changes using the indented Sass syntax (.sass) in one of the existing Sass partials or if needed via new ones of your own. Not a friend of curlies and stuff.</p>
+<p>Gulp was to streamline your build process. Simply run:</p>
+<pre><code>$ gulp watch</code></pre>
+<p><code>gulp watch</code> triggers a couple of processes: - After changes have been introduced in the <code>_sass</code> directory, it first builds uncompressed <code>.css</code> files from the corresponding <code>.sass</code> files and puts them into <code>/css/development</code>. - Gulp also watches any changes made in the <code>/css/development</code> directory. - In turn, any changes in <code>/css/development</code> will get compressed, prefixed and purified of any obsolete style declarations before being placed in their final destination at <code>/css</code>. - Your site is reloaded automatically using Browsersync which watches any changes to <code>.css</code> files in <code>/css</code>. No need to install any additional gimmicks.</p>
+<p>That means Gulp is configured so that you can either work on <code>.sass</code> files in the <code>/_sass</code> directory or on <code>.css</code> files directly in the <code>/css/development</code> directory. If you want to introduce changes in <code>/css/development</code>, you need to create new filenames to avoid being overwritten when new versions of Sass files get built.</p>
+<p>Contributing</p>
+</body>
+</html>

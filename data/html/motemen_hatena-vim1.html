@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>motemen_hatena-vim1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="hatena.vim">hatena.vim</h1>
+<p>Vim から日記への投稿をおこなうプラグインです。</p>
+<h2 id="使用方法">使用方法</h2>
+<pre class="vim"><code>:HatenaUser [グループ名:]ユーザ名</code></pre>
+<p>もしくは</p>
+<pre class="vim"><code>:let g:hatena_user = &#39;[グループ名:]ユーザ名&#39;</code></pre>
+<p>としてユーザ名を設定し、</p>
+<pre class="vim"><code>:HatenaEdit [[[YYYY]MM]DD]</code></pre>
+<p>で編集バッファが開きます。日記を書いたら <code>:w</code> で送信します。</p>
+<h2 id="コマンド">コマンド</h2>
+<h3 id="hatenaedit"><code>:HatenaEdit</code></h3>
+<p>はてなにログインし、日記を編集します。</p>
+<pre class="vim"><code>:HatenaEdit [[[YYYY]MM]DD]</code></pre>
+<p>日付の形式は YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD</p>
+<h3 id="hatenaupdate"><code>:HatenaUpdate</code></h3>
+<p><code>:HatenaEdit</code> で開いたバッファの内容をはてなに送信し、日記を更新します。</p>
+<pre class="vim"><code>:HatenaUpdate [title_of_the_day]</code></pre>
+<p>title_of_the_day を指定しない場合は既に設定されているタイトルが使われます。</p>
+<h3 id="hatenaupdatetrivial"><code>:HatenaUpdateTrivial</code></h3>
+<p><code>:HatenaUpdate</code> と一緒だけど、とします。</p>
+</body>
+</html>

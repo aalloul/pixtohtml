@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TwP_inifile4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="install">Install</h2>
+<pre><code>gem install inifile</code></pre>
+<h2 id="testing">Testing</h2>
+<p>To run the tests:</p>
+<pre><code>$ rake</code></pre>
+<h2 id="examples">Examples</h2>
+<pre><code>require &#39;inifile&#39;
+myini = IniFile.load(&#39;mytest.ini&#39;)
+myini.each_section do |section|
+  puts &quot;I want #{myini[section][&#39;somevar&#39;]} printed here!&quot;
+end</code></pre>
+<h2 id="contributing">Contributing</h2>
+<p>Contributions are gladly welcome! For small modifications (fixing typos, improving documentation) you can use GitHub’s in-browser editing capabilities to create a pull request. For larger modifications I would recommend forking the project, creating your patch, and then submitting a pull request.</p>
+<p>Mr Bones is used to manage rake tasks and to install dependent files. To setup your environment …</p>
+<pre><code>$ gem install bones
+$ rake gem:install_dependencies</code></pre>
+<p>And always remember that <code>rake -T</code> will show you the list of available tasks.</p>
+<h2 id="license">License</h2>
+<p>MIT License Copyright (c) 2006 - 2014</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nathanj_kirss1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="kirss---a-simple-rss-aggregator">kirss - A simple RSS aggregator</h1>
+<h2 id="description">Description</h2>
+<p>kirss is a RSS aggregator. It allows you to download small RSS feeds and view them in your web browser all in one page.</p>
+<p>You can view an to determine if kirss is right for you.</p>
+<h2 id="download">Download</h2>
+<p>The latest release can be downloaded .</p>
+<p>The latest code can be retrieved via git.</p>
+<pre><code>$ git clone git://github.com/nathanj/kirss.git</code></pre>
+<h2 id="requirements">Requirements</h2>
+<p>Python - I have version 2.5 installed, earlier versions may work.</p>
+<h2 id="install">Install</h2>
+<pre><code>$ python setup.py install</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Run kirss.py to create the output HTML file (~/.kirss/rss.htm). You can then view the file in any web browser. Edit ~/.kirss/config to add or remove feeds.</p>
+<p>Once the config file is set up, the easiest way to keep the feeds up to date is by adding a cron job.</p>
+<pre><code>5 * * * * /usr/bin/python /usr/bin/kirss.py -q</code></pre>
+<h2 id="features">Features</h2>
+<ul>
+<li>Allows turning off the description, good for conserving space if you’re going to click the link anyway or just like keeping things neat.</li>
+<li>Choose how many items you want to see, which is nice for those feeds that have a month’s worth of comics, but you only want to see maybe the latest one or two.</li>
+</ul>
+<p>Todo</p>
+</body>
+</html>

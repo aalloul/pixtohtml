@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>flype_typus4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>end</code></pre>
+<p>You can even add “virtual fields”. For example you have a model and you need special attributes like an slug, which is generated from the title.</p>
+<pre><code>##
+# app/models/post.rb
+#
+class Post &lt; ActiveRecord::Base
+
+  validates_presence_of :title
+
+  def slug
+    title.parameterize
+  end
+
+end</code></pre>
+<p>You can add <code>slug</code> a as attribute and it’ll be shown on the lists.</p>
+<pre><code>##
+# config/typus/application.yml
+Post:
+  fields:
+    list: title, slug
+    form: title</code></pre>
+<h3 id="external-forms">External Forms</h3>
+<p>Typus will detect automatically which kind of relationships has the model.</p>
+<pre><code>relationships: users, projects</code></pre>
+<h3 id="filters">Filters</h3>
+<p>You can define filters per model on the config file …</p>
+<pre><code>filters: status, author, created_at</code></pre>
+<p>Or directly on the model:</p>
+<pre><code>class Post &lt; ActiveRecord::Base
+
+  def self.admin_filters
+    [ :status, :author, :created_at ]
+  end
+
+end</code></pre>
+</body>
+</html>

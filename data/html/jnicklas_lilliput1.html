@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jnicklas_lilliput1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="lilliput">Lilliput</h1>
+<p>Lilliput is a blogging engine so minimalistic, it doesn’t even include a webframework.</p>
+<p>You can use Lilliput with Sinatra like this:</p>
+<pre><code>require &#39;rubygems&#39;
+require &#39;sinatra&#39;
+require &#39;lilliput&#39;
+
+Lilliput.folder = File.join(File.dirname(__FILE__), &#39;posts&#39;)
+
+get &#39;/&#39; do
+  @posts = Lilliput.all
+  erb :index
+end
+
+get &#39;/:slug&#39; do
+  @post = Lilliput.find(params[:slug])
+  erb :show
+end</code></pre>
+<p>This will serve markdown files from the ./posts folder. The name of the markdown file must contain a date, an may contain a slug, where the post is accessible</p>
+<pre><code>2009-02-14.md
+2009-02-14-my-first-lilliput-post.md</code></pre>
+<p>The first line of the post is used as title. If there is no slug in the filename, the title is parameterized and used. The markdown file can contain an optional author annotation like this:</p>
+<pre><code>/ Jonas Nicklas &lt;jonas.nicklas@gmail.com</code></pre>
+<p>It must be the last line of the file.</p>
+<p>In your view, you can do something like this:</p>
+<pre><code>&lt;% @posts.each do |post| %&gt;
+  &lt;h1&gt;&lt;%= post.title %&gt;&lt;
+
+  &lt;p class=&quot;date&quot;&gt;&lt;%= post.published_at %&gt;&lt;/p&gt;
+  
+  &lt;%= @post.html %&gt;
+&lt;% end %&gt;</code></pre>
+<p>There’s also</p>
+<pre><code>Lilliput.published</code></pre>
+</body>
+</html>

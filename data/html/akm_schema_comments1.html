@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akm_schema_comments1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="schemacomments">SchemaComments</h1>
+<h2 id="install">Install</h2>
+<h3 id="with-bundler">With Bundler</h3>
+<p>add this line into Gemfile</p>
+<pre><code>gem &quot;schema_comments&quot;</code></pre>
+<p>And do bundle install</p>
+<pre><code>bundle install</code></pre>
+<p>Or install gem manually</p>
+<pre><code>$ gem install schema_comments</code></pre>
+<h2 id="overview">Overview</h2>
+<p>schema_commentsプラグインを使うと、テーブルとカラムにコメントを記述することができます。</p>
+<pre><code>class CreateProducts &lt; ActiveRecord::Migration
+  def self.up
+    create_table &quot;products&quot;, :comment =&gt; &#39;商品&#39; do |t|
+      t.string   &quot;product_type_cd&quot;, :comment =&gt; &#39;種別コード&#39;
+      t.integer  &quot;price&quot;, :comment =&gt; &quot;価格&quot;
+      t.string   &quot;name&quot;, :comment =&gt; &quot;商品名&quot;
+      t.datetime &quot;created_at&quot;, :comment =&gt; &quot;登録日時&quot;
+      t.datetime &quot;updated_at&quot;, :comment =&gt; &quot;更新日時&quot;
+    end
+  end
+
+  def self.down
+    drop_table &quot;products&quot;
+  end
+end</code></pre>
+<p>このようなマイグレーションを実行すると、db/schema.rb のコメントが設定されているテーブル、カラムには以下のように出力されます。</p>
+<p>``` ActiveRecord::Schema.define(:version =&gt; 0) do create_table “products”, :force =&gt; true, :comment =&gt; ‘商品’ do |t|</p>
+</body>
+</html>

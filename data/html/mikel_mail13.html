@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mikel_mail13</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  body &#39;hello&#39;
+end</code></pre>
+<p>end</p>
+<p>it { is_expected.to have_sent_email } # passes if any email at all was sent</p>
+<p>it { is_expected.to have_sent_email.from(‘you@you.com’) } it { is_expected.to have_sent_email.to(‘mike1@me.com’) }</p>
+<p># can specify a list of recipients… it { is_expected.to have_sent_email.to([‘mike1@me.com’, ‘mike2@me.com’]) }</p>
+<p># …or chain recipients together it { is_expected.to have_sent_email.to(‘mike1@me.com’).to(‘mike2@me.com’) }</p>
+<p>it { is_expected.to have_sent_email.with_subject(‘testing’) }</p>
+<p>it { is_expected.to have_sent_email.with_body(‘hello’) }</p>
+<p># Can match subject or body with a regex # (or anything that responds_to? :match)</p>
+<p>it { is_expected.to have_sent_email.matching_subject(/test(ing)?/) } it { is_expected.to have_sent_email.matching_body(/h(a|e)llo/) }</p>
+<p># Can chain together modifiers # Note that apart from recipients, repeating a modifier overwrites old value.</p>
+<p>it { is_expected.to have_sent_email.from(‘you@you.com’).to(‘mike1@me.com’).matching_body(/hell/)</p>
+<p># test for attachments</p>
+<p># … by specific attachment it { is_expected.to have_sent_email.with_attachments(my_attachment) }</p>
+<p># … or any attachment it { is_expected.to have_sent_email.with_attachments(any_attachment) }</p>
+<p># … by array of attachments it { is_expected.to have_sent_email.with_attachments([my_attachment1, my_attachment2]) } #note that order is important</p>
+<p>#… by presence it { is_expected.to have_sent_email.with_any_attachments }</p>
+<p>#… or by absence it { is_expected.to have_sent_email.with_no_attachments }</p>
+<p>end ```</p>
+</body>
+</html>

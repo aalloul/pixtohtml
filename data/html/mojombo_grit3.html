@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mojombo_grit3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>      #&lt;Grit::Commit &quot;4ea50f4754937bf19461af58ce3b3d24c77311d9&quot;&gt;]</code></pre>
+<p>Called without arguments, <code>Repo#commits</code> returns a list of up to ten commits reachable by the <strong>master</strong> branch (starting at the latest commit). You can ask for commits beginning at a different branch, commit, tag, etc.</p>
+<pre><code>repo.commits(&#39;mybranch&#39;)
+repo.commits(&#39;40d3057d09a7a4d61059bca9dca5ae698de58cbe&#39;)
+repo.commits(&#39;v0.1&#39;)</code></pre>
+<p>You can specify the maximum number of commits to return.</p>
+<pre><code>repo.commits(&#39;master&#39;, 100)</code></pre>
+<p>If you need paging, you can specify a number of commits to skip.</p>
+<pre><code>repo.commits(&#39;master&#39;, 10, 20)</code></pre>
+<p>The above will return commits 21-30 from the commit list.</p>
+<h3 id="the-commit-object">The Commit object</h3>
+<p><code>Commit</code> objects contain information about that commit.</p>
+<pre><code>head = repo.commits.first
+
+head.id
+# =&gt; &quot;e80bbd2ce67651aa18e57fb0b43618ad4baf7750&quot;
+
+head.parents
+# =&gt; [#&lt;Grit::Commit &quot;91169e1f5fa4de2eaea3f176461f5dc784796769&quot;&gt;]
+
+head.tree
+# =&gt; #&lt;Grit::Tree &quot;3536eb9abac69c3e4db583ad38f3d30f8db4771f&quot;&gt;
+
+head.author
+# =&gt; #&lt;Grit::Actor &quot;Tom Preston-Werner &lt;tom@mojombo.com&gt;&quot;&gt;
+
+head.authored_date
+# =&gt; Wed Oct 24 22:02:31 -0700 2007
+
+head.committer
+# =&gt; #&lt;Grit::Actor &quot;Tom Preston-Werner &lt;tom@mojombo.com&gt;&quot;&gt;
+
+head.committed_date
+# =&gt; Wed Oct 24 22:02:31 -0700 2007
+
+head.message
+# =&gt; &quot;add Actor inspect&quot;</code></pre>
+</body>
+</html>

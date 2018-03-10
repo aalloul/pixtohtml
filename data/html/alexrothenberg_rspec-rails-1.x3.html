@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>alexrothenberg_rspec-rails-1.x3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>means that its entirely possible that you’ll pull from these repos and they won’t play nice together. If playing nice is important to you, stick to the published gems.</p>
+<h2 id="backwards-compatibility">Backwards compatibility</h2>
+<p>This is a complete rewrite of the rspec-rails extension designed to work with rails-3.x and rspec-2.x. It will not work with older versions of either rspec or rails. Many of the APIs from rspec-rails-1 have been carried forward, however, so upgrading an app from rspec-1/rails-2, while not pain-free, should not send you to the doctor with a migraine.</p>
+<h2 id="known-issues">Known issues</h2>
+<p>See http://github.com/rspec/rspec-rails/issues</p>
+<h1 id="request-specs">Request Specs</h1>
+<p>Request specs live in spec/requests.</p>
+<pre><code>describe &quot;widgets resource&quot; do
+  describe &quot;GET index&quot; do
+    it &quot;contains the widgets header&quot; do
+      get &quot;/widgets/index&quot;
+      response.should have_selector(&quot;h1&quot;, :content =&gt; &quot;Widgets&quot;)
+    end
+  end
+end</code></pre>
+<p>Request specs mix in behavior from Rails’ integration tests. See the docs for ActionDispatch::Integration::Runner for more information.</p>
+<h1 id="controller-specs">Controller Specs</h1>
+<p>Controller specs live in spec/controllers, and mix in ActionController::TestCase::Behavior. See the documentation for ActionController::TestCase to see what facilities are available from Rails.</p>
+<p>You can use RSpec expectations/matchers or Test::Unit assertions.</p>
+<h2 id="render_views"><code>render_views</code></h2>
+<p>By default, controller specs do not render views. This supports specifying controllers without concern for whether the views they render work correctly (NOTE: the template must exist, unlike rspec-rails-1. See Upgrade.markdown for more information about this). If you prefer to render the views (a la Rails’ functional tests), you can use the <code>render_views</code> declaration in each example group:</p>
+<pre><code>describe SomeController do</code></pre>
+</body>
+</html>

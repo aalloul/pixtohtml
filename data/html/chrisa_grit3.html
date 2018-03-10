@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chrisa_grit3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="the-commit-object">The Commit object</h3>
+<p><code>Commit</code> objects contain information about that commit.</p>
+<pre><code>head = repo.commits.first
+
+head.id
+# =&gt; &quot;e80bbd2ce67651aa18e57fb0b43618ad4baf7750&quot;
+
+head.parents
+# =&gt; [#&lt;Grit::Commit &quot;91169e1f5fa4de2eaea3f176461f5dc784796769&quot;&gt;]
+
+head.tree
+# =&gt; #&lt;Grit::Tree &quot;3536eb9abac69c3e4db583ad38f3d30f8db4771f&quot;&gt;
+
+head.author
+# =&gt; #&lt;Grit::Actor &quot;Tom Preston-Werner &lt;tom@mojombo.com&gt;&quot;&gt;
+
+head.authored_date
+# =&gt; Wed Oct 24 22:02:31 -0700 2007
+
+head.committer
+# =&gt; #&lt;Grit::Actor &quot;Tom Preston-Werner &lt;tom@mojombo.com&gt;&quot;&gt;
+
+head.committed_date
+# =&gt; Wed Oct 24 22:02:31 -0700 2007
+
+head.message
+# =&gt; &quot;add Actor inspect&quot;</code></pre>
+<p>You can traverse a commit’s ancestry by chaining calls to <code>#parents</code>.</p>
+<pre><code>repo.commits.first.parents[0].parents[0].parents[0]</code></pre>
+<p>The above corresponds to <strong>master^^^</strong> or <strong>master~3</strong> in Git parlance.</p>
+<h3 id="the-tree-object">The Tree object</h3>
+<p>A tree records pointers to the contents of a directory. Let’s say you want the root tree of the latest commit on the <strong>master</strong> branch.</p>
+<pre><code>tree = repo.commits.first.tree
+# =&gt; #&lt;Grit::Tree &quot;3536eb9abac69c3e4db583ad38f3d30f8db4771f&quot;&gt;
+
+tree.id
+# =&gt; &quot;3536eb9abac69c3e4db583ad38f3d30f8db4771f&quot;</code></pre>
+<p>Once you have a tree, you can get the contents.</p>
+</body>
+</html>

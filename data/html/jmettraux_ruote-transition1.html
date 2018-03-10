@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmettraux_ruote-transition1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ruote-transition">ruote-transition</h1>
+<h2 id="overview">overview</h2>
+<p>An experimental project. Turns place-transition based process definitions to ruote process definitions.</p>
+<p>For now, is able to parse XPDL (http://www.wfmc.org/standards/xpdl.htm) and YAWL (http://www.yawl-system.com/)</p>
+<h2 id="note">note</h2>
+<p>The process definitions created by this tool are not very efficient. Nothing beats analyzing the process and re-writing it [manually].</p>
+<h2 id="get-it">get it</h2>
+<pre><code>git clone git://github.com/jmettraux/ruote-transition.git
+
+cd ruote-transition
+bundle install</code></pre>
+<p>(I tend to do “bundle install –path .bundle”)</p>
+<h2 id="run-it">run it</h2>
+<pre><code>./bin/to_ruote --help
+
+./bin/to_ruote -o ruby -i xpdl test/xpdl/troubleticket.xpdl
+./bin/to_ruote -o xml -i yawl test/yawl/sample.yawl
+./bin/to_ruote -o dot -i xpdl test/xpdl/troubleticket.xpdl</code></pre>
+<h2 id="links">links</h2>
+<p>http://ruote.rubyforge.org https://github.com/jmettraux/ruote</p>
+<h2 id="license">license</h2>
+<p>MIT</p>
+<h2 id="feedback">feedback</h2>
+<p>mailing list : http://groups.google.com/group/openwferu-users issue tracker : https://github.com/jmettraux/ruote-transition/issues</p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>netzke_netzke-basepack1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="netzke-basepack">Netzke Basepack</h1>
+<p>A pack of pre-built components that can be used as building blocks for your webapps.</p>
+<p><em>Notes on versioning:</em></p>
+<ul>
+<li>The latest <em>released</em> version is:</li>
+<li>The version under development (master):</li>
+<li>For other versions check corresponding</li>
+</ul>
+<h2 id="included-components">Included components</h2>
+<p>Basepack includes the following components:</p>
+<ul>
+<li><ul>
+<li>a grid panel with a thick bag of features</li>
+</ul></li>
+<li><ul>
+<li>a tree panel with features similar to the Grid</li>
+</ul></li>
+<li><ul>
+<li>a form panel with automatic binding of fields</li>
+</ul></li>
+<li><ul>
+<li>a window which stores its size, position, and maximized state</li>
+</ul></li>
+<li><ul>
+<li>a full-window component usually used as one-page application base</li>
+</ul></li>
+</ul>
+<p>Besides, Basepack implements:</p>
+<ul>
+<li>persistence of region sizes and collapsed states of an arbitrary component that uses Ext’s border layout (see</li>
+<li><ul>
+<li>a plugin that allows enhancing any grid with live search functionality</li>
+</ul></li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Ruby &gt;= 1.9.3</li>
+<li>Rails ~&gt; 4.2.0</li>
+<li>Ext JS = 5.1.1</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>In your Gemfile:</p>
+<pre><code>gem &#39;netzke-basepack&#39;</code></pre>
+<p>For the “edge” stuff, instruct bundler to get the gem straight from GitHub:</p>
+<pre><code>gem &#39;netzke-basepack&#39;, github: &quot;netzke/netzke-basepack&quot;</code></pre>
+<h2 id="basic-usage">Basic usage</h2>
+<p>Embed a basepack component into a view as any other Netzke component, e.g.:</p>
+<p>```erb</p>
+</body>
+</html>

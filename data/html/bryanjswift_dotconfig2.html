@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bryanjswift_dotconfig2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Mutt](http://stevelosh.com/blog/2012/10/the-homely-mutt/), specifically the section on <a href="http://stevelosh.com/blog/2012/10/the-homely-mutt/#retrieving-passwords">Retrieving Passwords</a> for more information about seeting this up.</p>
+<pre><code>brew install lynx msmtp mutt notmuch offlineimap openssl
+brew install keith/formulae/contacts-cli
+ln -s ~/Documents/code/dotconfig/config/mutt ~/.mutt
+ln -s ~/Documents/code/dotconfig/config/offlineimap ~/.offlineimap
+ln -s ~/Documents/code/dotconfig/config/msmtprc ~/.msmtprc
+ln -s ~/Documents/code/dotconfig/config/offlineimap/offlineimaprc ~/.offlineimaprc
+ln -s ~/Documents/code/dotconfig/certs/ca-bundle.crt /Volumes/Mail/ca-bundle.crt
+cp ~/Documents/code/dotconfig/config/notmuch-config ~/.notmuch-config</code></pre>
+<p>Make sure to edit ~/.notmuch-config for the correct <code>database.path</code> config value.</p>
+<h2 id="certificate-authority">Certificate Authority</h2>
+<p><a href="certs/ca-bundle.crt" class="uri">certs/ca-bundle.crt</a> comes from <a href="https://curl.haxx.se/docs/caextract.html">curl.haxx.se</a> and can be used as a certificate authority trust file. The bundle is linked from the <a href="http://curl.haxx.se/docs/caextract.html">curl project</a>. The certs are extracted fromt he Mozilla CA bundle and converted to PEM using <a href="https://github.com/bagder/curl/blob/master/lib/mk-ca-bundle.pl">mk-ca-bundle.pl</a> from the curl repository.</p>
+<h1 id="gpg">gpg</h1>
+<p>If <code>gpg-agent</code> isn’t installed and running then signing commits can get to be quite cumbersome, particularly during <code>git rebase</code> executions. The gpg setup and config files are cribbed from <a href="https://gist.github.com/yoshuawuyts/69f25b0384d41b46a126f9b42d1f9db2">yoshuawuyts</a>.</p>
+<pre><code>brew install gnupg gpg-agent pinentry-mac
+mkdir ~/.gnupg
+cp config/gpg/gpg.conf config/gpg/gpg-agent.conf ~/.gnupg</code></pre>
+<h1 id="link-other-dotfiles">Link other dotfiles</h1>
+<pre><code>ln -s ~/Documents/code/dotconfig/config/rtorrent.rc ~/.rtorrent.rc
+ln -s ~/Documents/code/dotconfig/config/screenrc ~/.screenrc
+ln -s ~/Documents/code/dotconfig/config/tmux.conf ~/.tmux.conf
+ln -s ~/Documents/code/dotconfig/config/tigrc ~/.tigrc</code></pre>
+<h1 id="get-applications-from-web">Get Applications from web</h1>
+<ul>
+<li></li>
+</ul>
+</body>
+</html>

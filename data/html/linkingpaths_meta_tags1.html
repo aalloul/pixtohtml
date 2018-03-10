@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>linkingpaths_meta_tags1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="meta_tags">meta_tags</h1>
+<p>A rails plugin that gives you control over the xhtml meta tags rendered in your template on a application/controller/action basis.</p>
+<h2 id="install">Install</h2>
+<p>´sudo gem install linkingpaths-meta_tags´</p>
+<h2 id="the-junk">The junk</h2>
+<ul>
+<li>In your controllers</li>
+</ul>
+<p>You can setup a default value for any meta name/content pair in your application controller:</p>
+<pre>
+class ApplicationController < ActionController::Base
+  meta  :title        => "My default page title",
+        :description  => "Add a sexy default description here.",
+        :keywords     => "sex, lies, video tapes"
+end
+</pre>
+<p>Additionally you can get these values overwrited in any controller/action:</p>
+<pre>
+class SpecificController < ApplicationController
+  meta :title => "This is an app related controller"
+
+  def spice_up
+    meta :title => "overwriten in this action",
+         :keywords => "p0rn, Jenna Jameson, Kristal Summers"
+    render
+    # :title => "toverwriten in this action"
+    # :keywords => "p0rn, Jenna Jameson, Kristal Summers"
+    # :description => "My default page description"
+  end
+
+  def not_spice_up
+    render
+    # :title       => "This is an app related controller"
+    # :description => "Add a sexy default description here."
+    # :keywords    => "sex, lies, video tapes"
+  end
+
+end
+</pre>
+</body>
+</html>

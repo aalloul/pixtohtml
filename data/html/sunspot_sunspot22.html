@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sunspot_sunspot22</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&lt;lst name=&quot;spellchecker&quot;&gt;
+   &lt;str name=&quot;name&quot;&gt;default&lt;/str&gt;
+   &lt;!-- change field to textSpell and use copyField in schema.xml
+   to spellcheck multiple fields --&gt;
+   &lt;str name=&quot;field&quot;&gt;textSpell&lt;/str&gt;
+   &lt;str name=&quot;buildOnCommit&quot;&gt;true&lt;/str&gt;
+ &lt;/lst&gt;</code></pre>
+<p>Define the <code>textSpell</code> field in your <code>schema.xml</code>.</p>
+<pre><code>&lt;field name=&quot;textSpell&quot; stored=&quot;false&quot; type=&quot;textSpell&quot; multiValued=&quot;true&quot; indexed=&quot;true&quot;/&gt;</code></pre>
+<p>To get some data into your spellchecking field, you can use <code>copyField</code> in <code>schema.xml</code>:</p>
+<pre><code>&lt;copyField source=&quot;*_text&quot;  dest=&quot;textSpell&quot; /&gt;
+&lt;copyField source=&quot;*_s&quot;  dest=&quot;textSpell&quot; /&gt;</code></pre>
+<p><code>copyField</code> works <em>before</em> any analyzers you have set up on the source fields. You can add your own analyzer by customizing the <code>textSpell</code> field type in <code>schema.xml</code>:</p>
+<pre><code>&lt;fieldType name=&quot;textSpell&quot; class=&quot;solr.TextField&quot; positionIncrementGap=&quot;100&quot; omitNorms=&quot;true&quot;&gt;
+  &lt;analyzer&gt;
+    &lt;tokenizer class=&quot;solr.StandardTokenizerFactory&quot;/&gt;
+    &lt;filter class=&quot;solr.StandardFilterFactory&quot;/&gt;
+    &lt;filter class=&quot;solr.LowerCaseFilterFactory&quot;/&gt;
+  &lt;/analyzer&gt;
+&lt;/fieldType&gt;</code></pre>
+<p>It’s dangerous to add too much to this analyzer chain. It runs before words are inserted into the spellcheck dictionary, which means the suggestions that come back from solr are post-analyzer. With the default above, that means all spelling suggestions will be lower-case.</p>
+<p>Once you have solr configured, you can turn it on for a given query using the query DSL (see spellcheck_spec.rb for more examples):</p>
+<pre><code>search = Sunspot.search(Post) do
+  keywords &#39;Cofee&#39;
+  spellcheck :count =&gt; 3
+end</code></pre>
+<p>Access the suggestions via the <code>spellcheck_suggestions</code> or <code>spellcheck_suggestion_for</code> (for just the top one) methods:</p>
+<pre><code>search.spellcheck_suggestion_for(&#39;cofee&#39;) # =&gt; &#39;coffee&#39;
+
+search.spellcheck_suggestions # =&gt; [{word: &#39;coffee&#39;, freq: 10}, {word: &#39;toffee&#39;, freq: 1}]</code></pre>
+<p>If you’ve turned on ,</p>
+</body>
+</html>

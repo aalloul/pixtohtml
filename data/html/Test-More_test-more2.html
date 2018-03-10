@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Test-More_test-more2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>Once turned on threading and forking operate sanely and work as one would
+expect.</code></pre>
+<h1 id="getting-started">GETTING STARTED</h1>
+<p>If you are interested in writing tests using new tools then you should look at is a separate cpan distribution that contains many tools implemented on Test2.</p>
+<p>If you are interested in writing new tools you should take a look at first.</p>
+<h1 id="namespace-layout">NAMESPACE LAYOUT</h1>
+<p>This describes the namespace layout for the Test2 ecosystem. Not all the namespaces listed here are part of the Test2 distribution, some are implemented in .</p>
+<h2 id="test2tools">Test2::Tools::</h2>
+<p>This namespace is for sets of tools. Modules in this namespace should export tools like <code>ok()</code> and <code>is()</code>. Most things written for Test2 should go here. Modules in this namespace <strong>MUST NOT</strong> export subs from other tools. See the <a href="#test2-bundle">“Test2::Bundle::”</a> namespace if you want to do that.</p>
+<h2 id="test2plugin">Test2::Plugin::</h2>
+<p>This namespace is for plugins. Plugins are modules that change or enhance the behavior of Test2. An example of a plugin is a module that sets the encoding to utf8 globally. Another example is a module that causes a bail-out event after the first test failure.</p>
+<h2 id="test2bundle">Test2::Bundle::</h2>
+<p>This namespace is for bundles of tools and plugins. Loading one of these may load multiple tools and plugins. Modules in this namespace should not implement tools directly. In general modules in this namespace should load tools and plugins, then re-export things into the consumers namespace.</p>
+<h2 id="test2require">Test2::Require::</h2>
+<p>This namespace is for modules that cause a test to be skipped when conditions do not allow it to run. Examples would be modules that skip the test on older perls, or when non-essential modules have not been installed.</p>
+<h2 id="test2formatter">Test2::Formatter::</h2>
+<p>Formatters live under this namespace. is the only formatter currently. It is acceptable for third party distributions to create new formatters under this namespace.</p>
+</body>
+</html>

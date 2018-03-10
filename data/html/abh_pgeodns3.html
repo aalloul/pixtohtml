@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>abh_pgeodns3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>This will enable a query to shutdown.$domain to make pgeodns exit. Obviously not a good idea in production, but can be handy in a development/testing environment.</p>
+<h2 id="configuration-options">Configuration Options</h2>
+<p>The options allowed in the ‘base’ configuration file are</p>
+<ul>
+<li>ns name.server.tld</li>
+</ul>
+<p>Add <code>name.server.tld</code> as a nameserver for this zone (or globally). If you specify one or more NS’es for a zone, it’ll override the global configuration. You can also specify the ns records in the JSON data, but doing it in the configuration gives some flexibility for re-using the data under different namespaces.</p>
+<ul>
+<li>serial 123</li>
+</ul>
+<p>Set the serial number of the zone; generally this is better done in the JSON data.</p>
+<ul>
+<li>ttl 300</li>
+</ul>
+<p>Set the default time-to-live for the zone in seconds.</p>
+<ul>
+<li>include filename</li>
+</ul>
+<p>Include another filename.</p>
+<h2 id="special-queries">Special queries</h2>
+<p>To ease monitoring pgeodns supports some special queries, all <code>txt</code> type.</p>
+<p>If your application is sensitive to revealing this sort of information you will need to disable this in the code.</p>
+<p>They work with both ‘IN’ (internet) and ‘CH’ (chaos) class queries; in the future we might only support CH.</p>
+<ul>
+<li>status.pgeodns</li>
+</ul>
+<p>Returns a text status with the “id”</p>
+<ul>
+<li>version.pgeodns</li>
+</ul>
+<p>Returns a text status with the “version”.</p>
+<p>For example:</p>
+</body>
+</html>

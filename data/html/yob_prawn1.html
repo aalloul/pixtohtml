@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yob_prawn1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="prawn-fast-nimble-pdf-generation-for-ruby">Prawn: Fast, Nimble PDF Generation For Ruby</h1>
+<p>Prawn is a pure Ruby PDF generation library that provides a lot of great functionality while trying to remain simple and reasonably performant. Here are some of the important features we provide:</p>
+<ul>
+<li>Vector drawing support, including lines, polygons, curves, ellipses, etc.</li>
+<li>Extensive text rendering support, including flowing text and limited inline formatting options.</li>
+<li>Support for both PDF builtin fonts as well as embedded TrueType fonts</li>
+<li>A variety of low level tools for basic layout needs, including a simple grid system</li>
+<li>PNG and JPG image embedding, with flexible scaling options</li>
+<li>Reporting tools for rendering complex data tables, with pagination support</li>
+<li>Security features including encryption and password protection</li>
+<li>Tools for rendering repeatable content (i.e headers, footers, and page numbers)</li>
+<li>Comprehensive internationalization features, including full support for UTF-8 based fonts, right-to-left text rendering, fallback font support, and extension points for customizable text wrapping.</li>
+<li>Support for PDF outlines for document navigation</li>
+<li>Low level PDF features, allowing users to create custom extensions by dropping down all the way to the PDF object tree layer. (Mostly useful to those with knowledge of the PDF specification)</li>
+<li>Lots of other stuff!</li>
+</ul>
+<h2 id="should-you-use-prawn">Should You Use Prawn?</h2>
+<p>If you are looking for a highly flexible PDF document generation system, Prawn might be the tool for you. It is not a reporting tool or a publishing toolchain, though it could be fairly easily used to build those things.</p>
+<p>One thing Prawn is not, and will never be, is an HTML to PDF generator. For those needs, consider looking into FlyingSaucer via JRuby, or one of the webkit based tools, like Wicked or PDFKit. We do have basic support for inline styling but it is limited to a very small subset of functionality and is not suitable for rendering rich HTML documents.</p>
+<h2 id="supported-ruby-versions-and-implementations">Supported Ruby Versions and Implementations</h2>
+<p>Because Prawn is pure Ruby and virtually all of its dependencies are maintained by our core team, it should run pretty much anywhere, including Rubinius, JRuby, MacRuby, etc. While we officially support MRI 1.8.7 and 1.9.2 only, we will accept patches to fix problems on other Ruby platforms if they aren’t too invasive.</p>
+<h2 id="installing-prawn">Installing Prawn</h2>
+<p>Prawn is distributed via RubyGems, and can be installed the usual way that you install gems: by simply typing <code>gem install prawn</code> on the command line.</p>
+<p>You can also install from git if you’d like, the <em>master</em> branch contains the latest developments, and <em>stable</em> represents the latest bug fixes to the currently released version of Prawn. If you go this route, using Bundler is encouraged.</p>
+<h2 id="release-policies">Release Policies</h2>
+<p>We may introduce backwards incompatible changes each time our minor version number is bumped, but that any tiny version number bump should be bug fixes and internal changes only. Be sure to read the release notes each time we cut a new release and lock your gems accordingly. You can find the project CHANGELOG at: https://github.com/prawnpdf/prawn/wiki/CHANGELOG</p>
+<h2 id="hello-world">Hello World!</h2>
+<p>If the following code runs and produces a working PDF file, you’ve successfully installed Prawn.</p>
+<pre><code>require &quot;prawn&quot;
+
+Prawn::Document.generate(&quot;hello.pdf&quot;) do
+  text &quot;Hello World!&quot;
+end</code></pre>
+<p>Of course, you’ll probably want to do more interesting things than that…</p>
+<h2 id="manual">Manual</h2>
+</body>
+</html>

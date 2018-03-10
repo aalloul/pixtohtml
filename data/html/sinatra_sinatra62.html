@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra62</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>2.2 is fully supported and recommended. There are currently no plans to
+drop official support for it.</code></pre>
+</dd>
+<dt>
+Rubinius
+</dt>
+<dd>
+Rubinius is officially supported (Rubinius &gt;= 2.x). It is recommended to <tt>gem install puma</tt>.
+</dd>
+<dt>
+JRuby
+</dt>
+<dd>
+The latest stable release of JRuby is officially supported. It is not recommended to use C extensions with JRuby. It is recommended to <tt>gem install trinidad</tt>.
+</dd>
+</dl>
+<p>Versions of Ruby prior to 2.2.2 are no longer supported as of Sinatra 2.0.</p>
+<p>We also keep an eye on upcoming Ruby versions.</p>
+<p>The following Ruby implementations are not officially supported but still are known to run Sinatra:</p>
+<ul>
+<li>Older versions of JRuby and Rubinius</li>
+<li>Ruby Enterprise Edition</li>
+<li>MacRuby, Maglev, IronRuby</li>
+<li>Ruby 1.9.0 and 1.9.1 (but we do recommend against using those)</li>
+</ul>
+<p>Not being officially supported means if things only break there and not on a supported platform, we assume it’s not our issue but theirs.</p>
+<p>We also run our CI against ruby-head (future releases of MRI), but we can’t guarantee anything, since it is constantly moving. Expect upcoming 2.x releases to be fully supported.</p>
+<p>Sinatra should work on any operating system supported by the chosen Ruby implementation.</p>
+<p>If you run MacRuby, you should <code>gem install control_tower</code>.</p>
+<p>Sinatra currently doesn’t run on Cardinal, SmallRuby, BlueRuby or any Ruby version prior to 2.2.</p>
+<h2 id="the-bleeding-edge">The Bleeding Edge</h2>
+<p>If you would like to use Sinatra’s latest bleeding-edge code, feel free to run your application against the master branch, it should be rather stable.</p>
+</body>
+</html>

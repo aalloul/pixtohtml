@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_gist.el3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="install-gist.el-from-git">Install gist.el from git</h2>
+<p>After installing the required dependencies, proceed with:</p>
+<pre><code>$ cd ~/.emacs.d/vendor
+$ git clone git://github.com/defunkt/gist.el.git</code></pre>
+<p>In your emacs config:</p>
+<pre><code>(add-to-list &#39;load-path &quot;~/.emacs.d/vendor/gist.el&quot;)
+(require &#39;gist)</code></pre>
+<h1 id="getting-started">Getting started</h1>
+<p>When you first run a gist.el operation, you might be asked for your GitHub username and password. The username will be stored for future use, and a OAuth token will be stored in place of your password.</p>
+<p>To make gist.el forget about those information, just remove them from your ~/.gitconfig file</p>
+<h1 id="functions">Functions</h1>
+<pre><code>gist-list - Lists your gists in a new buffer. Use arrow keys
+to browse, RET to open one in the other buffer.
+
+gist-region - Copies Gist URL into the kill ring.
+With a prefix argument, makes a private gist.
+
+gist-region-private - Explicitly create a private gist.
+
+gist-buffer - Copies Gist URL into the kill ring.
+With a prefix argument, makes a private gist.
+
+gist-buffer-private - Explicitly create a private gist.
+
+gist-region-or-buffer - Post either the current region, or if mark
+is not set, the current buffer as a new paste at gist.github.com .
+Copies the URL into the kill ring.
+With a prefix argument, makes a private paste.
+
+gist-region-or-buffer-private - Explicitly create a gist from the
+region or buffer.</code></pre>
+<h1 id="config">Config</h1>
+<p>Set <code>gist-view-gist</code> to non-nil if you want to view your Gist using <code>browse-url</code> after it is created.</p>
+</body>
+</html>

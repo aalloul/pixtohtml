@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sprinkle-tool_sprinkle4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>prefix &quot;/opt/local/apache2-#{version}&quot;
+post :install, &#39;install -m 755 support/apachectl /etc/init.d/apache2&#39;, &#39;update-rc.d -f apache2 defaults&#39;</code></pre>
+<p>end requires :apache_dependencies end</p>
+<p>package :apache_dependencies do description ‘Apache 2 HTTP Server Build Dependencies’ apt %w( openssl libtool mawk zlib1g-dev libssl-dev ) end</p>
+<p>package :rubygems do description ‘Ruby Gems Package Management System’ version ‘1.2.0’ source “http://rubyforge.org/frs/download.php/38646/rubygems-#{version}.tgz” do custom_install ‘ruby setup.rb’ end requires :ruby end</p>
+<p>package :rails do description ‘Ruby on Rails’ gem ‘rails’ version ‘3.2’ end</p>
+<p>package :mongrel do description ‘Mongrel Application Server’ gem ‘mongrel’ version ‘1.1.5’ end</p>
+<p>package :mongrel_cluster, :provides =&gt; :appserver do description ‘Cluster Management for Mongrel’ gem ‘mongrel_cluster’ # :source =&gt; ‘http://gems.github.com/’ for alternate gem server version ‘1.0.5’ requires :mongrel end</p>
+<p>package :git, :provides =&gt; :scm do description ‘Git Distributed Version Control’ version ‘1.5.6.3’ source “http://kernel.org/pub/software/scm/git/git-#{version}.tar.gz” requires :git_dependencies end</p>
+<p>package :git_dependencies do description ‘Git Build Dependencies’ apt ‘git’, :dependencies_only =&gt; true end</p>
+</body>
+</html>

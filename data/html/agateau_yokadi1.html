@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>agateau_yokadi1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="what-is-it">What is it?</h1>
+<p>Yokadi is a command-line oriented, SQLite powered, TODO list tool. It helps you organize all the things you have to do and must not forget. It aims to be simple, intuitive and very efficient.</p>
+<p>In Yokadi you manage projects, which contain tasks. At the minimum, a task has a title, but it can also have a description, a due date, an urgency or keywords. Keywords can be any word that help you find and sort your tasks.</p>
+<h1 id="dependencies">Dependencies</h1>
+<p>Yokadi should run on any Unix-like systems. There is also some support for Windows but it is not as tested.</p>
+<p>Yokadi requires Python 3.4 or more and a few other modules, which you can install with:</p>
+<pre><code>pip install -r requirements.txt</code></pre>
+<p>It can also make use of other modules listed in extra-requirements.txt. You can install them with:</p>
+<pre><code>pip install -r extra-requirements.txt</code></pre>
+<p>These modules are needed for the Yokadi Daemon and for the cryptography features.</p>
+<h1 id="quickstart">Quickstart</h1>
+<p>Here is an example of a short Yokadi session:</p>
+<p>Start Yokadi:</p>
+<pre><code>./bin/yokadi
+Creating database
+Added keyword &#39;_severity&#39;
+Added keyword &#39;_likelihood&#39;
+Added keyword &#39;_bug&#39;
+Added keyword &#39;_note&#39;</code></pre>
+<p>Create your first task:</p>
+<pre><code>yokadi&gt; t_add birthday Buy food and drinks
+Project &#39;birthday&#39; does not exist, create it (y/n)? y
+Added project &#39;birthday&#39;
+Added task &#39;Buy food and drinks&#39; (id=1)</code></pre>
+<p>Add two other tasks, you can use _ to refer to last project used:</p>
+</body>
+</html>

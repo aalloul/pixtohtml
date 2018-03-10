@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>furf_jquery-onavailable1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="onavailable-and-.oncontentready">$.onAvailable and $.onContentReady</h1>
+<p>A plugin for the which adds two useful DOM events - onAvailable and onContentReady - to allow the detection and retrieval of DOM nodes before the DOM has finished loading. These methods help to enable advanced functionality while keeping markup clean and unobtruded.</p>
+<p><em>Thanks to .</em></p>
+<h2 id="quick-start-installation-usage">Quick Start: Installation &amp; Usage</h2>
+<p>Add jQuery and the onAvailable plugin to the head of your HTML document.</p>
+<pre><code>&lt;script src=&quot;path/to/jquery/jquery.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;path/to/onavailable/jquery.onavailable.pack.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code></pre>
+<p>Add your detection code the head of your document.</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt; 
+
+var callback = function() {
+  alert(this.id + &#39; is available.&#39;);
+};
+
+$.onAvailable(&#39;myelementid&#39;, callback);
+
+&lt;/script&gt;</code></pre>
+<p>Add the markup to body of your document.</p>
+<pre><code>&lt;div id=&quot;myelementid&quot;&gt;my element&lt;/div&gt; </code></pre>
+<h2 id="description">Description</h2>
+<p>The $.onAvailable method takes five arguments: two required and <em>three optional</em>. The fifth argument <strong>checkContent</strong> is used by $.onContentReady and can be ignored.</p>
+<pre><code>$.onAvailable(el, callback /*, obj, override, checkContent */);</code></pre>
+<ol type="1">
+<li><strong>el</strong> An element ID (or an array of element IDs)</li>
+<li><strong>callback</strong> The function to execute when the element is detected</li>
+<li><strong><em>obj</em></strong> An object to pass as an argument to the callback method</li>
+<li><strong><em>override</em></strong> Either a boolean (true) or another object. If true, the callback will execute in the scope of <em>obj</em>, meaning the <strong>this</strong> keyword will refer to <em>obj</em> inside the callback. If an object, the callback will execute in the scope of <em>override</em>, meaning the <strong>this</strong> keyword will refer to <em>override</em> inside the callback.</li>
+</ol>
+<h3 id="passing-an-object-as-an-argument">Passing an object as an argument</h3>
+<pre><code>var p1 = {
+  name:  &#39;Dave&#39;,
+  hobby: &#39;snowboarding&#39;
+};
+
+var callback = function(obj) {
+  alert(obj.name + &#39; enjoys &#39; + obj.hobby);</code></pre>
+</body>
+</html>

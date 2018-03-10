@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>wting_autojump2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>`j in` would jump into /home/user/mail/inbox as the higher
+weighted entry. However you can pass multiple arguments to autojump
+to prefer a different entry. In the above example, `j w in` would
+then change directory to /home/user/work/inbox.</code></pre>
+<p>For more options refer to help:</p>
+<pre><code>autojump --help</code></pre>
+<h2 id="installation">INSTALLATION</h2>
+<h3 id="requirements">REQUIREMENTS</h3>
+<ul>
+<li>Python v2.6+ except v3.2</li>
+<li>Supported shells:
+<ul>
+<li>bash v4.0+</li>
+<li>zsh</li>
+<li>fish</li>
+<li>tcsh (experimental)</li>
+<li>clink (Windows, experimental)</li>
+</ul></li>
+</ul>
+<h3 id="automatic">AUTOMATIC</h3>
+<h4 id="linux">Linux</h4>
+<p>autojump is included in the following distro repositories, please use relevant package management utilities to install (e.g. yum, apt-get, etc):</p>
+<ul>
+<li><p>Debian testing/unstable, Ubuntu, Linux Mint</p>
+<p>All Debian-derived distros require manual activation for policy reasons, please see <code>/usr/share/doc/autojump/README.Debian</code>.</p></li>
+<li>RedHat, Fedora, CentOS (install <code>autojump-zsh</code> for zsh, <code>autojump-fish</code> for fish, etc.)</li>
+<li>ArchLinux</li>
+<li>Gentoo</li>
+<li>Frugalware</li>
+<li><p>Slackware</p></li>
+</ul>
+<h4 id="os-x">OS X</h4>
+<p>Homebrew is the recommended installation method for Mac OS X:</p>
+<pre><code>brew install autojump</code></pre>
+<p>MacPorts also available:</p>
+</body>
+</html>

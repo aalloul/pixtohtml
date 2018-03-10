@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_github-gem1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-github-gem">The GitHub Gem</h1>
+<p>This gem works hand-in-hand with GitHub’s API to help you out.</p>
+<p>Catch us in the #github room on freenode if you want to get involved. Or just fork and send a pull request.</p>
+<h2 id="getting-started">Getting started</h2>
+<pre><code>$ gem install github</code></pre>
+<p>Run it:</p>
+<pre><code>$ github &lt;command&gt; &lt;args&gt;
+$ gh &lt;command&gt; &lt;args&gt;</code></pre>
+<h2 id="requirements">Requirements</h2>
+<p>Only installs pure JSON gem <code>json_pure</code> by default. If you are able to install the C-extension <code>json</code> gem, it will use that instead.</p>
+<p>Try:</p>
+<pre><code>gem install json github</code></pre>
+<h2 id="pulling-upstream-changes">Pulling Upstream Changes</h2>
+<p>Let’s say you just forked <code>github-gem</code> on GitHub from defunkt.</p>
+<pre><code>$ gh clone YOU/github-gem
+$ cd github-gem
+$ gh pull defunkt</code></pre>
+<p>This will setup a remote and branch for defunkt’s repository at master. In this case, a ‘defunkt/master’ branch.</p>
+<p>If defunkt makes some changes you want, simply <code>github pull defunkt</code>. This will leave you in the ‘defunkt/master’ branch after pulling changes from defunkt’s remote. After confirming that defunkt’s changes were what you wanted, run <code>git checkout master</code> and then <code>git merge defunkt/master</code> to merge defunkt’s changes into your own master branch. In summary:</p>
+<pre><code>$ gh pull defunkt
+$ gh checkout master
+$ gh merge defunkt/master</code></pre>
+<p>If you’ve already reviewed defunkt’s changes and just want to merge them into your master branch, use the <code>merge</code> flag:</p>
+<pre><code>$ gh pull --merge defunkt</code></pre>
+</body>
+</html>

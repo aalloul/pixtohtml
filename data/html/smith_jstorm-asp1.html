@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>smith_jstorm-asp1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>This readme file provides a brief overview of the file and folder structure included in the default MontageJS project directory.</p>
+<blockquote>
+<p>IMPORTANT: Be sure to replace the contents of this readme file with information about the final application before deploying the application or passing it on to a client.</p>
+</blockquote>
+<h1 id="project-directory">Project Directory</h1>
+<p>The default project directory includes the following files and folders:</p>
+<ul>
+<li>assets/ - Contains global stylesheets and images for the application.</li>
+<li>index.html - Is the entry-point document for the application.</li>
+<li><p>node_modules/ - Contains the code dependencies required in development.</p>
+<p>Includes Montage, the core framework, and Digit, a mobile-optimized user interface widget set by default. Since MontageJS uses the CommonJS module system, you can leverage the npm ecosystem for additional modules. To add dependencies (e.g., foo), use <code>npm install foo</code> in the project directory.</p>
+<p>NOTE: All packages in this directory must be included as dependencies in package.json.</p></li>
+<li>package.json - Describes the application and the dependencies included in the node_modules directory.</li>
+<li>README.md - The default readme file.</li>
+<li>run-tests.html - Is a page to run Jasmine tests manually in the browser.</li>
+<li><p>test/ - Contains tests for the application.</p>
+<p>By default, this directory includes all.js, a module that points the test runner to all jasmine specs.</p></li>
+<li><p>ui/ - Contains the application user interface components.</p>
+<p>By default, this directory contains one component: main.reel (the Main user interface component)</p></li>
+</ul>
+<p>In development, you can expand this project directory as necessary; for example, depending on the project you may want to add the following folders:</p>
+<ul>
+<li>locale/ - For localized content.</li>
+<li>scripts/ - For JS libraries that do not support the CommonJS exports object and, therefore, have to be loaded using a <code>&lt;script&gt;</code> tag.</li>
+</ul>
+<h1 id="unit-testing">Unit Testing</h1>
+<p>MontageJS uses some pure unit tests that are straightforward [Jasmine specs][1].</p>
+</body>
+</html>

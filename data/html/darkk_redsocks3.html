@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>darkk_redsocks3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>eglibc resolver fails without any attempt to send request via TCP;</li>
+<li>powerdns-recursor can’t properly startup without UDP connectivity as it can’t load root hints.</li>
+</ul>
+<p>On the other hand, DNS via TCP using bind9 may be painfully slow. If your bind9 setup is really slow, you may want to try caching server that can run in TCP-only mode.</p>
+<h3 id="relaying-dnsudp-to-dnstcp-via-dnsu2t">Relaying DNS/UDP to DNS/TCP via <code>dnsu2t</code></h3>
+<p>The code acts as DNS server that multiplexes several UDP queries into single stream of TCP queries over keep-alive connection to upstream DNS server that should be recursive resolver. TCP connection may be handled by <code>redsocks</code> itself if firewall is configured with corresponding rules.</p>
+<p>Different resolvers have different timeouts and allow different count of in-flight connections, so you have to tune options yourself for optimal performance (with some black magic, as script testing for optimal DNS/TCP connection parameters is not written yet).</p>
+<p>There are other programs doing alike job (with, probably, different bugs)</p>
+<ul>
+<li></li>
+<li>for Windows</li>
+<li></li>
+</ul>
+<h2 id="source">Source</h2>
+<p>Source is available at .</p>
+<p>Issue tracker is also at GitHub, but keep in mind that the project is not actively maintained, so feature requests will unlikely be implemented within reasonable timeframe. Reproducable bugs having clean desciption will likely be fixed. Destiny of hard-to-reproduce bugs is hard to predict.</p>
+<p>New network protocols will unlikely be implemented within this source tree, but if you’re seeking for censorship circumvention protocols, you may want to take a look at by Zhuofei Wang AKA <span class="citation" data-cites="semigodking">@semigodking</span> who is actively maintaining the fork with GFW in mind.</p>
+<h2 id="license">License</h2>
+<p>All source code is licensed under Apache 2.0 license. You can get a copy at http://www.apache.org/licenses/LICENSE-2.0.html</p>
+<h2 id="packages">Packages</h2>
+<ul>
+<li>Archlinux: https://aur.archlinux.org/packages/redsocks-git</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mwlang_elemental4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>So you roll with this for a few months and decided you don’t like primary colors? Its simple to change the color constants (in display):</p>
+<pre><code>class Color
+    extend Elemental
+    member :red,      :display &quot;#AA5555&quot;
+    member :green,    :display &quot;#55AA55&quot;
+    member :blue,     :display &quot;#5555AA&quot;
+end</code></pre>
+<p>Your code logic remains the same because the symbols didn’t change!</p>
+<p>Once you have your Elemental classes defined, replace your conditionals that use string literals.</p>
+<p>So, instead of:</p>
+<pre><code>if widget.widget_type == &quot;Foo bar&quot;</code></pre>
+<p>(where widget is an Activerecord instance and widget_type is an attribute/column) (mental note: was that “FOO BAR”, “foobar”, “Foo Bar”, “foo bar”, or “Foo bar”??)</p>
+<p>Do this and be confident:</p>
+<pre><code>if WidgetType[widget.widget_type] == WidgetType::foo_bar</code></pre>
+<p>Or shorter:</p>
+<pre><code>if WidgetType[widget.widget_type].is?(WidgetType::foo_bar)</code></pre>
+<p>Or shorter, still:</p>
+<pre><code>if WidgetType[widget.widget_type].is?(:foo_bar)</code></pre>
+<p>Although Elemental wasn’t specifically written for Rails, it is trivial to put to use. Instead if creating a new model and migration script and all that, simply establish your Elemental class definition and then iterate the Elemental to construct your views as appropriate.</p>
+<p>With Elemental, simply populate select dropdowns like this:</p>
+<p>in your $RAILS_ROOT/config/initializers/constants.rb:</p>
+<pre><code>class AccountStatus
+    extend Elemental
+    member :active,       :display =&gt; &#39;Active&#39;, :default =&gt; true
+    member :delinquent,   :display =&gt; &quot;Account Past Due&quot;
+    member :inactive      :display =&gt; &quot;Inactive&quot;
+end</code></pre>
+<p>Then in your view:</p>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akm_selectable_attr2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>irb(main):023:0&gt; Person.gender_options
+=&gt; [[&quot;男性&quot;, &quot;1&quot;], [&quot;女性&quot;, &quot;2&quot;], [&quot;その他&quot;, &quot;9&quot;]] # railsでoptions_for_selectメソッドなどに使えます。
+irb(main):024:0&gt; Person.gender_key_by_id(&quot;1&quot;)
+=&gt; :male
+irb(main):025:0&gt; Person.gender_name_by_id(&quot;1&quot;)
+=&gt; &quot;男性&quot;
+irb(main):026:0&gt; Person.gender_id_by_key(:male) # 特定のキーから対応するidを取得できます。
+=&gt; &quot;1&quot;
+irb(main):027:0&gt; Person.gender_name_by_key(:male)
+=&gt; &quot;男性&quot;</code></pre>
+<p>また使用可能なインスタンスメソッドには以下のようなものがあります。</p>
+<pre><code>irb&gt; person = Person.new
+=&gt; #&lt;Person:0x133b9d0&gt;
+irb&gt; person.gender_key
+=&gt; nil
+irb&gt; person.gender_name
+=&gt; nil
+irb&gt; person.gender = &quot;2&quot;
+=&gt; &quot;2&quot;
+irb&gt; person.gender_key
+=&gt; :female
+irb&gt; person.gender_name
+=&gt; &quot;女性&quot;
+irb&gt; person.gender_key = :other
+=&gt; :other
+irb&gt; person.gender
+=&gt; &quot;9&quot;
+irb&gt; person.gender_name
+=&gt; &quot;その他&quot;</code></pre>
+<p>genderに加えて、gender_keyも代入可能となりますが、gender_nameには代入できません。</p>
+<h3 id="複数の値を取りうるパターン">複数の値を取りうるパターン</h3>
+<pre><code>require &#39;rubygems&#39;
+require &#39;selectable_attr&#39;
+
+class RoomSearch
+  include ::SelectableAttr::Base
+
+  multi_selectable_attr :room_type do
+    entry &#39;01&#39;, :single, &#39;シングル&#39;
+    entry &#39;02&#39;, :twin, &#39;ツイン&#39;
+    entry &#39;03&#39;, :double, &#39;ダブル&#39;
+    entry &#39;04&#39;, :triple, &#39;トリプル&#39;
+  end
+end</code></pre>
+<p>multi_selectable_attrを使った場合に使用できるクラスメソッドは、selectable_attrの場合と同じです。</p>
+</body>
+</html>

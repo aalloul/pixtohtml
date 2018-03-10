@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>linuxfrorg_linuxfr.org3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>pull the premade image
+<ul>
+<li><code>docker pull mose/linuxfr-dev</code></li>
+</ul></li>
+<li>or if you already know docker make your own with the <code>Dockerfile</code> present in the repo
+<ul>
+<li><code>docker build -t linuxfr .</code></li>
+</ul></li>
+<li>remove <code>database.yml</code> if you already customised it, as it will use the default one</li>
+<li>launch the container either manually
+<ul>
+<li><code>docker run -d -v /path/to/linuxfr-cloned-repo:/srv/linuxfr --name linuxfr mose/linuxfr-dev</code></li>
+</ul></li>
+<li>or use the small bash script
+<ul>
+<li><code>./docker-files/docker.sh</code> it will
+<ul>
+<li>create a user with same uid as you so the mounted repo will have no prem trouble</li>
+<li>copy your ssh public keys in the container root and user account <code>authorized_keys</code></li>
+<li>run a bundle install –path vendor so the bundled gems will be in vendor/ruby/ (note later on if you are on the same ARCH as the container (ie 64bits) you can bundle install from your local repo)</li>
+<li>propose you to refresh or not the db</li>
+<li>add in your /etc/hosts an entry for the container ip to resolve to linuxfr.dev</li>
+</ul></li>
+</ul></li>
+<li>you can access the launched app
+<ul>
+<li><code>x-www-browser http://172.17.0.2:3000</code> reach the app in your browser</li>
+<li><code>mysql -h 172.17.0.2 -ulinuxfr.dev linuxfr_rails</code> to access the db</li>
+<li><code>ssh root@172.17.0.2</code> and password <code>docker</code> to reach it via ssh</li>
+</ul></li>
+<li>you will have to do the step 7 from the normal install for init the admin account.</li>
+</ul>
+<p>Usage:</p>
+<ul>
+<li>your local git clone of linuxfr.org code is mounted in the container, so all you change in your local dir are taken in account immediatelyin the container</li>
+<li><code>docker ps</code> should list the container if it’s launched</li>
+<li><code>docker stop linuxfr</code> stops the container</li>
+<li><code>docker start linuxfr</code> restarts the container if it was stopped</li>
+<li><code>docker rm linuxfr</code> will erase a container so you can relaunch a fresh one from the image</li>
+<li><code>docker images</code> lists the docker images you can launch</li>
+<li>the docker.sh script also puts a linuxfr.dev somain resolution to the container ip for ease of use</li>
+<li>you can launch a rails console with <code>ssh root@linuxfr.dev &quot;cd /srv/linuxfr &amp;&amp; bundle exec rails c&quot;</code></li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>this dockerisation is still experimental and not very well tested but it proved to work at least once</li>
+<li>please report any bugs or suggest improvements by opening an issue.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<p>If you want the full stack for running LinuxFr.org, you should also look at:</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</body>
+</html>

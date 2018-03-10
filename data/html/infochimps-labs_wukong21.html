@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infochimps-labs_wukong21</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>end end ```</p>
+<p>Let’s look at each kind of helper:</p>
+<ul>
+<li><p>The <code>a processor</code> shared example (invoked with RSpec’s <code>it_behaves_like</code> helper) adds some tests that ensure that the processor conforms to the API of a Wukong::Processor.</p></li>
+<li><p>The <code>processor</code> method is actually an alias for the more aptly named (but less convenient) <code>unit_test_runner</code>. This method accepts a processor name and options (just like <code>wu-local</code> and other command-line tools) and returns a Wukong::UnitTestRunner instance. This runner handles the</p>
+<p>a (registered) processor name and options and creates a new processor. If no name is given, the argument of the enclosing <code>describe</code> or <code>context</code> block is used. The object returned by <code>processor</code> is the Wukong::Processor you’re testing so you can directly declare introspect on it or declare expectations about its behavior.</p></li>
+<li><p>The <code>given</code> method (and other helpers like <code>given_json</code>, <code>given_tsv</code>, &amp;c.) is a method on the runner. It’s a way of lazily feeding records to a processor, without having to go through the <code>process</code> method directly and having to handle the block or the processor’s lifecycle as in the prior example.</p></li>
+<li><p>The <code>output</code> and <code>emit</code> matchers will <code>process</code> all previously <code>given</code> records when they are called. This lets you separate instantiation, input, expectations, and output. Here’s a more complicated example.</p></li>
+</ul>
+<p>The same helpers can be used to test dataflows as well as processors.</p>
+<h4 id="section"></h4>
+<h4 id="functions-vs.objects">Functions vs. Objects</h4>
+<p>The above test helpers are designed to aid in testing processors functionally because:</p>
+<ul>
+<li>they accept the</li>
+</ul>
+<h3 id="integration-tests">Integration Tests</h3>
+<p>If you are implementing a new Wukong command (akin to <code>wu-local</code>) then</p>
+</body>
+</html>

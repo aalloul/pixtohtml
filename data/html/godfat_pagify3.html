@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>godfat_pagify3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>pagify, new your own DataMapperPager or so to remember instance level html setting. for example, see below:</p>
+<pre><code>class Pet
+# same as above
+  def self.page num
+    @pager ||= begin
+      pager = Pagify::DataMapperPager.new(:per_page =&gt; 20)
+      # below would be pager instance level setting
+      # you can setup global setting mentioned above in your init script perhaps
+      pager.html.setting[:separator] = &#39; . &#39;
+      pager.html.setting[:ellipsis]  = &#39;...&#39;
+      pager
+    end
+    @pager.page(num)
+  end
+end</code></pre>
+<p>Then you would use <code>Pet.page(3)</code> or <code>user.pets.page(2)</code> to retrieve data. This would create next/prev links only.</p>
+<pre><code>Pet.page(1).html.links_navigate{ |page|
+  &quot;/pets/list?page=#{page}&quot;
+}</code></pre>
+<p>This would create next/prev links and other page links</p>
+<pre><code>pet_pager.page(1).html.links_full{ |page|
+  &quot;/pets/show?page=#{page}&quot;
+}</code></pre>
+<p>and you can build your pager from scratch via BasicPager. e.g. <code>BasicPager.new :fetcher =&gt; lambda{|*a|[]}, :counter =&gt; lambda{0}</code> this would be similar to <code>Pagify::NullPager</code>.</p>
+<p>You can disable null page via passing <code>:null_page =&gt; false</code> to any pager, or set <code>pager.null_page = false</code> anytime.</p>
+<p>See example or test for more examples (and use case for <code>ActiveRecordPager</code>).</p>
+<h2 id="contributors">CONTRIBUTORS:</h2>
+<ul>
+<li>Lin Jen-Shin (<span class="citation" data-cites="godfat">@godfat</span>)</li>
+<li><span class="citation" data-cites="agios">@agios</span></li>
+</ul>
+<h2 id="license">LICENSE:</h2>
+<p>Apache License 2.0</p>
+<p>Copyright (c) 2008-2011, Lin Jen-Shin (godfat)</p>
+</body>
+</html>

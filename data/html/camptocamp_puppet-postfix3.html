@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>camptocamp_puppet-postfix3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><strong>This setting does NOT effect the following files:</strong> * /etc/aliases * /etc/postfix/main.cf</p>
+<p>Default: true.</p>
+<h5 id="manage_mailx"><code>manage_mailx</code></h5>
+<p>A Boolean defining whether the puppet module should manage the mailx package. See also $mailx_ensure.</p>
+<p>Default: true.</p>
+<h5 id="mastercf_source"><code>mastercf_source</code></h5>
+<p>A string defining the location of a skeleton master.cf file to be used.<br />
+Default: Undefined.<br />
+Example: ‘puppet:///modules/some/other/location/master.cf’.</p>
+<h5 id="master_smtp"><code>master_smtp</code></h5>
+<p>A string to define the smtp line in the /etc/postfix/master.cf file. If this is defined the smtp_listen parameter will be ignored.<br />
+Default: Undefined.<br />
+Example: ‘smtp inet n - n - - smtpd’.</p>
+<h5 id="master-smtps"><code>master smtps</code></h5>
+<p>A string to define the smtps line in the /etc/postfix/master.cf file.<br />
+Default: Undefined.<br />
+Example: ‘smtps inet n - n - - smtpd’.</p>
+<h5 id="master_submission"><code>master_submission</code></h5>
+<p>A string to define the submission line in the /etc/postfix/master.cf file.<br />
+Default: Undefined.<br />
+Example: ‘submission inet n - n - - smtpd’.</p>
+<h5 id="master_entries"><code>master_entries</code></h5>
+<p>Array of strings containing additional entries for the /etc/postfix/master.cf file. Default: Undefined. Example: ‘submission inet n - n - - smtpd’.</p>
+<h5 id="mta"><code>mta</code></h5>
+<p>A Boolean to define whether to configure Postfix as a mail transfer agent. This option is mutually exclusive with the satellite Boolean.<br />
+Default: False.</p>
+<h5 id="mydestination"><code>mydestination</code></h5>
+<p>A string to define the mydestination parameter in main.cf (postconf(5)).<br />
+Default: The systems FQDN.<br />
+Example: ‘example.com, foo.example.com’.</p>
+<h5 id="mynetworks"><code>mynetworks</code></h5>
+<p>A string to define the mynetworks parameter that holds trusted remote smtp clients (postconf(5)).<br />
+Default: ‘127.0.0.0/8’.</p>
+</body>
+</html>

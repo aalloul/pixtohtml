@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kiko_ramaze2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Ramaze offers following features at the moment:</p>
+<h3 id="adapters">Adapters</h3>
+<p>Ramaze takes advantage of the Rack library to provide a common way of handling different ways to serve its content. A few of the supported Rack adapters are:</p>
+<ul>
+<li>Mongrel</li>
+<li>WEBrick</li>
+<li>FCGI</li>
+<li>LiteSpeed</li>
+<li>Thin</li>
+</ul>
+<h3 id="templates">Templates</h3>
+<p>Ramaze can in theory support any template engine as long as there’s an adapter for it. To make your life easier Ramaze ships with adapters for the following template engines:</p>
+<ul>
+<li></li>
+<li>Etanni (small engine created for Ramaze)</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h3 id="cache">Cache</h3>
+<ul>
+<li>Hash</li>
+<li>YAML::Store</li>
+<li>LocalMemCache</li>
+<li>MemCache</li>
+<li>Sequel</li>
+</ul>
+<h3 id="helpers">Helpers</h3>
+<p>Helpers are modules that can be included in your controllers or other classes to make it easier to work with certain classes or systems without having to write the same boilerplate code over and over again. Ramaze has a lot of helpers, the following helpers are loaded by default:</p>
+<ul>
+<li>CGI: Shortcuts for escape/unescape of the CGI module.</li>
+<li>File: Helps you serving files from your Controller.</li>
+<li>Flash: Store a couple of values for one request associated with a session.</li>
+<li>Link: Easier linking to the various parts of your applications Controllers and Actions.</li>
+<li>Redirect: Easy redirection.</li>
+</ul>
+<p>Other helpers worth mentioning are:</p>
+<ul>
+<li>CSRF helper: protect your forms from CSRF attacks using a single method.</li>
+</ul>
+</body>
+</html>

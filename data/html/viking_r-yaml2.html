@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>viking_r-yaml2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="git-via-devtools">Git (via devtools)</h3>
+<ol type="1">
+<li>Install the <code>devtools</code> package from CRAN.</li>
+<li>In R, run the following: <code>R  library(devtools)  install_github('viking/r-yaml')</code></li>
+</ol>
+<h2 id="usage">Usage</h2>
+<p>The <code>yaml</code> package provides three functions: <code>yaml.load</code>, <code>yaml.load_file</code> and <code>as.yaml</code>.</p>
+<h3 id="yaml.load">yaml.load</h3>
+<p><code>yaml.load</code> is the YAML parsing function. It accepts a YAML document as a string. Here’s a simple example that parses a YAML sequence:</p>
+<pre><code>x &lt;- &quot;
+- 1
+- 2
+- 3
+&quot;
+yaml.load(x)  #=&gt; [1] 1 2 3</code></pre>
+<h4 id="scalars">Scalars</h4>
+<p>A YAML scalar is the basic building block of YAML documents. Example of a YAML document with one element:</p>
+<pre><code>1.2345</code></pre>
+<p>In this case, the scalar “1.2345” is typed as a <code>float</code> (or numeric) by the parser. <code>yaml.load</code> would return a numeric vector of length 1 for this document.</p>
+<pre><code>yaml.load(&quot;1.2345&quot;)  #=&gt; [1] 1.2345</code></pre>
+<h4 id="sequences">Sequences</h4>
+<p>A YAML sequence is a list of elements. Here’s an example of a simple YAML sequence:</p>
+<pre><code>- this
+- is
+- a
+- simple
+- sequence</code></pre>
+</body>
+</html>

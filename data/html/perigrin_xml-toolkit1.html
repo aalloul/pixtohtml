@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>perigrin_xml-toolkit1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="xmltoolkit">XML::Toolkit</h1>
+<p>XML::Toolkit is a suite of tools that work to make handling XML easier. It is designed to marshall XML documents into Moose classes and back again with minimal changes.</p>
+<p>For example given a xml document like the following</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;note&gt;
+    &lt;to&gt;Tove&lt;/to&gt;
+    &lt;from&gt;Jani&lt;/from&gt;
+    &lt;heading&gt;Reminder&lt;/heading&gt;
+    &lt;body&gt;Don&#39;t forget me this weekend!&lt;/body&gt;
+&lt;/note&gt;</code></pre>
+XML::Toolkit will generate classes for each of the elements. The
+<note >
+<p>element’s class would be something like</p>
+<pre><code>package MyApp::Note;
+use Moose;
+use namespace::autoclean;
+use XML::Toolkit;
+
+has &#39;to_collection&#39; =&gt; (
+    isa         =&gt; &#39;ArrayRef[MyApp::To]&#39;,
+    is          =&gt; &#39;ro&#39;,
+    init_arg    =&gt; &#39;tos&#39;,
+    traits      =&gt; [qw(XML Array)],
+    lazy        =&gt; 1,
+    auto_deref  =&gt; 1,
+    default     =&gt; sub { [] },
+    handles    =&gt; { add_to =&gt; [&#39;push&#39;] },
+    description =&gt; {
+       Prefix =&gt; &quot;&quot;,
+       LocalName =&gt; &quot;to&quot;,
+       node_type =&gt; &quot;child&quot;,
+       Name =&gt; &quot;to&quot;,
+       NamespaceURI =&gt; &quot;&quot;,
+       sort_order =&gt; 0,
+    },
+);
+
+has &#39;from_collection&#39; =&gt; (
+    isa         =&gt; &#39;ArrayRef[MyApp::From]&#39;,
+    is          =&gt; &#39;ro&#39;,
+    init_arg    =&gt; &#39;froms&#39;,
+    traits      =&gt; [qw(XML Array)],
+    lazy        =&gt; 1,
+    auto_deref  =&gt; 1,
+    default     =&gt; sub { [] },
+    handles    =&gt; { add_from =&gt; [&#39;push&#39;] },
+    description =&gt; {</code></pre>
+</body>
+</html>

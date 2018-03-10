@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="clone">clone</h2>
+<pre><code>my $ua2 = $ua-&gt;clone;</code></pre>
+<p>Returns a copy of the object.</p>
+<p><strong>CAVEAT</strong>: Please be aware that the clone method does not copy or clone your <code>cookie_jar</code> attribute. Due to the limited restrictions on what can be used for your cookie jar, there is no way to clone the attribute. The <code>cookie_jar</code> attribute will be <code>undef</code> in the new object instance.</p>
+<h2 id="new">new</h2>
+<pre><code>my $ua = LWP::UserAgent-&gt;new( %options )</code></pre>
+<p>This method constructs a new object and returns it. Key/value pair arguments may be provided to set up the initial state. The following options correspond to attribute methods described below:</p>
+<pre><code>KEY                     DEFAULT
+-----------             --------------------
+agent                   &quot;libwww-perl/#.###&quot;
+from                    undef
+conn_cache              undef
+cookie_jar              undef
+default_headers         HTTP::Headers-&gt;new
+local_address           undef
+ssl_opts                { verify_hostname =&gt; 1 }
+max_size                undef
+max_redirect            7
+parse_head              1
+protocols_allowed       undef
+protocols_forbidden     undef
+requests_redirectable   [&#39;GET&#39;, &#39;HEAD&#39;]
+timeout                 180
+proxy                   undef
+no_proxy                []</code></pre>
+<p>The following additional options are also accepted: If the <code>env_proxy</code> option is passed in with a true value, then proxy settings are read from environment variables (see . If <code>env_proxy</code> isn’t provided, the <code>PERL_LWP_ENV_PROXY</code> environment variable controls if is called during initialization. If the <code>keep_alive</code> option is passed in, then a <code>LWP::ConnCache</code> is set up (see . The <code>keep_alive</code> value is passed on as the <code>total_capacity</code> for the connection cache.</p>
+<p><code>proxy</code> must be set as an arrayref of key/value pairs. <code>no_proxy</code> takes an arrayref of domains.</p>
+</body>
+</html>

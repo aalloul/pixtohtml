@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>adamhjk_chef2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>cd chef
+
+# Install dependencies with bundler
+bundle install
+
+# Build a gem
+rake gem
+
+# Install the gem you just built
+gem install pkg/chef-VERSION.gem</code></pre>
+<h2 id="contributingdevelopment">Contributing/Development</h2>
+<p>Before working on the code, if you plan to contribute your changes, you need to read the .</p>
+<p>You will also need to set up the repository with the appropriate branches. We document the process on the page of the Chef wiki.</p>
+<p>Once your repository is set up, you can start working on the code. We do use TDD with RSpec, so you’ll need to get a development environment running. Follow the above procedure (“Installing from Git”) to get your local copy of the source running.</p>
+<h2 id="reporting-issues">Reporting Issues</h2>
+<p>Issues can be reported by using .</p>
+<p>Full details on how to report issues can be found in the doc.</p>
+<p>Note that this repository is primarily for reporting chef-client issues. For reporting issues against other Chef projects, please look up the appropriate repository to report issues against in the Chef docs in the . If you can’t detemine the appropriate place to report an issue, then please open it against the repository you think best fits and it will be directed to the appropriate project.</p>
+<h2 id="testing">Testing</h2>
+<p>We use RSpec for unit/spec tests. It is not necessary to start the development environment to run the specs–they are completely standalone.</p>
+<pre><code># Run All the Tests
+bundle exec rake spec
+
+# Run a Single Test File</code></pre>
+</body>
+</html>

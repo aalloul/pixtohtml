@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bwaldvogel_liblinear-java11</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>This function gives nr_class probability estimates in the array
+prob_estimates. nr_class can be obtained from the function
+get_nr_class. The class with the highest probability is
+returned. Currently, we support only the probability outputs of
+logistic regression.</code></pre>
+<ul>
+<li><p>Function: <code>int get_nr_feature(const model *model_);</code></p>
+<p>The function gives the number of attributes of the model.</p></li>
+<li><p>Function: <code>int get_nr_class(const model *model_);</code></p>
+<p>The function gives the number of classes of the model. For a regression model, 2 is returned.</p></li>
+<li><p>Function: <code>void get_labels(const model *model_, int* label);</code></p>
+<p>This function outputs the name of labels into an array called label. For a regression model, label is unchanged.</p></li>
+<li><p>Function: <code>double get_decfun_coef(const struct model *model_, int feat_idx,           int label_idx);</code></p>
+<p>This function gives the coefficient for the feature with feature index = feat_idx and the class with label index = label_idx. Note that feat_idx starts from 1, while label_idx starts from 0. If feat_idx is not in the valid range (1 to nr_feature), then a zero value will be returned. For classification models, if label_idx is not in the valid range (0 to nr_class-1), then a zero value will be returned; for regression models, label_idx is ignored.</p></li>
+<li><p>Function: <code>double get_decfun_bias(const struct model *model_, int label_idx);</code></p>
+<p>This function gives the bias term corresponding to the class with the label_idx. For classification models, if label_idx is not in a valid range (0 to nr_class-1), then a zero value will be returned; for regression models, label_idx is ignored.</p></li>
+<li><p>Function: <code>const char *check_parameter(const struct problem *prob,           const struct parameter *param);</code></p>
+<p>This function checks whether the parameters are within the feasible range of the problem. This function should be called before calling train() and cross_validation(). It returns NULL if the parameters are feasible, otherwise an error message is returned.</p></li>
+<li><p>Function: <code>int check_probability_model(const struct model *model);</code></p>
+<p>This function returns 1 if the model supports probability output; otherwise, it returns 0.</p></li>
+</ul>
+</body>
+</html>

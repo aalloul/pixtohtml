@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The default is to have no cookie jar, i.e. never automatically add <code>Cookie</code> headers to the requests.</p>
+<p>Shortcut: If a reference to a plain hash is passed in, it is replaced with an instance of that is initialized based on the hash. This form also automatically loads the module. It means that:</p>
+<pre><code>$ua-&gt;cookie_jar({ file =&gt; &quot;$ENV{HOME}/.cookies.txt&quot; });</code></pre>
+<p>is really just a shortcut for:</p>
+<pre><code>require HTTP::Cookies;
+$ua-&gt;cookie_jar(HTTP::Cookies-&gt;new(file =&gt; &quot;$ENV{HOME}/.cookies.txt&quot;));</code></pre>
+<h2 id="credentials">credentials</h2>
+<pre><code>my $creds = $ua-&gt;credentials();
+$ua-&gt;credentials( $netloc, $realm );
+$ua-&gt;credentials( $netloc, $realm, $uname, $pass );
+$ua-&gt;credentials(&quot;www.example.com:80&quot;, &quot;Some Realm&quot;, &quot;foo&quot;, &quot;secret&quot;);</code></pre>
+<p>Get/set the user name and password to be used for a realm.</p>
+<p>The <code>$netloc</code> is a string of the form <code>&lt;host&gt;:&lt;port&gt;</code>. The username and password will only be passed to this server.</p>
+<h2 id="default_header">default_header</h2>
+<pre><code>$ua-&gt;default_header( $field );
+$ua-&gt;default_header( $field =&gt; $value );
+$ua-&gt;default_header(&#39;Accept-Encoding&#39; =&gt; scalar HTTP::Message::decodable());
+$ua-&gt;default_header(&#39;Accept-Language&#39; =&gt; &quot;no, en&quot;);</code></pre>
+<p>This is just a shortcut for <code>$ua-&gt;default_headers-&gt;header( $field =&gt; $value )</code>.</p>
+<h2 id="default_headers">default_headers</h2>
+<pre><code>my $headers = $ua-&gt;default_headers;
+$ua-&gt;default_headers( $headers_obj );</code></pre>
+<p>Get/set the headers object that will provide default header values for any requests sent. By default this will be an empty object.</p>
+<h2 id="from">from</h2>
+<pre><code>my $from = $ua-&gt;from;
+$ua-&gt;from(&#39;foo@bar.com&#39;);</code></pre>
+</body>
+</html>

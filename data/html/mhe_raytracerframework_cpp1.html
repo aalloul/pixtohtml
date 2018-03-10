@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mhe_raytracerframework_cpp1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="raytracer-c-framework-for-introduction-to-computer-graphics">Raytracer C++ framework for “Introduction to Computer Graphics”</h1>
+<p>This is a C++ framework for a raytracer. It is created for the Computer Science course “Introduction to Computer Graphics” taught at the University of Groningen by Tobias Isenberg.</p>
+<p>Author: Maarten Everts</p>
+<p>This framework is inspired by and uses code of the raytracer framework of Bert Freudenberg that can be found at <a href="http://isgwww.cs.uni-magdeburg.de/graphik/lehre/cg2/projekt/rtprojekt.html" class="uri">http://isgwww.cs.uni-magdeburg.de/graphik/lehre/cg2/projekt/rtprojekt.html</a></p>
+<h2 id="description-of-the-included-files">Description of the included files</h2>
+<h3 id="the-raytracer-source-files">The raytracer source files:</h3>
+<dl>
+<dt>main.cpp</dt>
+<dd>Contains main(), starting point. Responsible for parsing command-line arguments.
+</dd>
+<dt>raytracer.cpp/.h</dt>
+<dd>Raytracer class. Responsible for reading the scene description, starting the raytracer and writing the result to an image file.
+</dd>
+<dt>scene.cpp/.h</dt>
+<dd>Scene class. Contains code for the actual raytracing.
+</dd>
+<dt>image.cpp/.h</dt>
+<dd>Image class, includes code for reading from and writing to PNG files.
+</dd>
+<dt>light.cpp/.h</dt>
+<dd>Light class and Ray class.
+</dd>
+<dt>object.cpp/.h</dt>
+<dd>Object class. Represents an object in the scene.
+</dd>
+<dt>sphere.cpp/.h</dt>
+<dd>Sphere class, which is a subclass of the Object class. Respresents a sphere in the scene.
+</dd>
+<dt>triple.cpp/.h</dt>
+<dd>Triple class. Represents a 3-dimensional vector which is used for colors, points, and vectors. Includes a number of useful functions and operators, see the comments in triple.h.
+</dd>
+</dl>
+<h3 id="supporting-source-files">Supporting source files:</h3>
+<p>lodepng.cpp/.h</p>
+</body>
+</html>

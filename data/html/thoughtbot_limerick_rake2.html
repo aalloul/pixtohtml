@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_limerick_rake2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<hr />
+<pre><code>rake rails_two:rename_views   # Renames all .rhtml views to .html.erb, .rjs to .js.rjs, .rxml to .xml.builder and .haml to .html.haml.</code></pre>
+<h2 id="subversion">Subversion</h2>
+<pre><code>rake svn:add                    # Adds all files with an svn status flag of &#39;?&#39;
+rake svn:delete                 # Deletes all files with an svn status flag of &#39;!&#39;
+rake svn:log                    # Writes the log file to doc/svn_log.txt
+rake svn:update\_svn\_ignore    # Updates svn:ignore from .svnignore</code></pre>
+<h2 id="test-coverage">Test Coverage</h2>
+<p>Install rcov from http://github.com/mergulhao/rcov</p>
+<pre><code>rake test:coverage  # Uses rcov to provide reports about test coverage of your application. </code></pre>
+<h2 id="mass-assignment">Mass Assignment</h2>
+<p>From “mhartl”:http://github.com/mhartl/find_mass_assignment</p>
+<pre><code>rake find_mass_assignment</code></pre>
+<h1 id="the-limerick-rake">The Limerick Rake</h1>
+<p>Traditional Irish song.</p>
+<pre><code>I am a young fellow that&#39;s easy and bold,
+In Castletown conners I&#39;m very well known.
+In Newcastle West I spent many a note,
+With Kitty and Judy and Mary.
+
+My father rebuked me for being such a rake,
+And spending me time in such frolicsome ways,
+But I ne&#39;er could forget the good nature of Jane,
+Agus fágaimíd siúd mar atá sé.
+
+My parents had reared me to shake and to mow,
+To plough and to harrow, to reap and to sow.
+But my heart being airy to drop it so low,
+I set out on high speculation.
+
+On paper and parchment they taught me to write,
+In Euclid and grammar they opened my eyes,
+And in multiplication in truth I was bright,
+Agus fágaimíd siúd mar atá sé.</code></pre>
+</body>
+</html>

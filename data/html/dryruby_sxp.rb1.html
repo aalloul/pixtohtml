@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dryruby_sxp.rb1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sxp.rb-s-expressions-for-ruby">SXP.rb: S-Expressions for Ruby</h1>
+<p>This is a Ruby implementation of a universal [S-expression][] parser.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Parses S-expressions in universal, [Scheme][], [Common Lisp][], or [SPARQL][] syntax.</li>
+<li>Adds a <code>#to_sxp</code> method to Ruby objects.</li>
+<li>Compatible with Ruby &gt;= 2.2.2, Rubinius &gt;= 2.0, and JRuby 9+.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<pre><code>require &#39;sxp&#39;</code></pre>
+<h3 id="parsing-basic-s-expressions">Parsing basic S-expressions</h3>
+<pre><code>SXP.read &quot;(* 6 7)&quot;  #=&gt; [:*, 6, 7]
+
+SXP.read &lt;&lt;-EOF
+  (define (fact n)
+    (if (= n 0)
+        1
+        (* n (fact (- n 1)))))
+EOF
+
+#=&gt; [:define, [:fact, :n],
+      [:if, [:&quot;=&quot;, :n, 0],
+            1,
+            [:*, :n, [:fact, [:-, :n, 1]]]]]</code></pre>
+<h3 id="parsing-scheme-s-expressions">Parsing Scheme S-expressions</h3>
+<pre><code>SXP::Reader::Scheme.read %q((and #t #f))             #=&gt; [:and, true, false]</code></pre>
+<h3 id="parsing-common-lisp-s-expressions">Parsing Common Lisp S-expressions</h3>
+<pre><code>SXP::Reader::CommonLisp.read %q((or t nil))          #=&gt; [:or, true, nil]</code></pre>
+<h3 id="parsing-sparql-s-expressions">Parsing SPARQL S-expressions</h3>
+<pre><code>require &#39;rdf&#39;
+
+SXP::Reader::SPARQL.read %q((base &lt;http://ar.to/&gt;))  #=&gt; [:base, RDF::URI(&#39;http://ar.to/&#39;)]</code></pre>
+<h3 id="writing-an-sxp-with-formatting">Writing an SXP with formatting</h3>
+</body>
+</html>

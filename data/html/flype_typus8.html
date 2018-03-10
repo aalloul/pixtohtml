@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>flype_typus8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  ##
+  # Action to deliver emails ...
+  def deliver
+    ...
+    redirect_to :back
+  end
+
+end</code></pre>
+<p>For feedback you can use the following flash methods.</p>
+<ul>
+<li><code>flash[:notice]</code> just some feedback.</li>
+<li><code>flash[:error]</code> when there’s something wrong.</li>
+<li><code>flash[:success]</code> when the action successfully finished.</li>
+</ul>
+<h3 id="applications-modules-and-submodules">Applications, modules and submodules</h3>
+<p>To group modules into an application use <em>application</em>.</p>
+<pre><code>application: CMS</code></pre>
+<p>Each module has submodules grouped using <em>module</em>.</p>
+<pre><code>module: Article</code></pre>
+<p>Example: (E-Commerce Application)</p>
+<pre><code>Product:
+  application: ECommerce
+Client:
+  application: ECommerce
+Category:
+  module: Product
+OptionType:
+  module: Product</code></pre>
+<p>Example: (Blog)</p>
+<pre><code>Post:
+  application: Blog
+Category:
+  application: Blog
+Tag:
+  module: Post</code></pre>
+<h2 id="custom-views">Custom Views</h2>
+<p>You can add your custom views to match your application requirements. Views you can customize.</p>
+</body>
+</html>

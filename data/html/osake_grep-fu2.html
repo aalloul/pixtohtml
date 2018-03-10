@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>osake_grep-fu2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  mig - db/migrate</code></pre>
+<p>So to search only your helpers for the term “helpless”:</p>
+<pre><code>grep-fu h helpless</code></pre>
+<p>Multiple word searches and searches containing special regex characters should be surrounded by quotes:</p>
+<pre><code>grep-fu s &quot;should be tested&quot;
+
+grep-fu &quot;^[^\?] fishy fishy fishy fish$&quot;</code></pre>
+<p>Running grep-fu without parameters will show you what options are available.</p>
+<h2 id="off-the-beaten-path">Off the Beaten Path</h2>
+<p>Occasionally, you’ll want to search a directory that’s not defined in one of the targeted paths, but you don’t want to scan the entire Rails project. In that case, you can provide a specific directory to grep:</p>
+<pre><code>grep-fu lib/tasks troweler</code></pre>
+<p>You can even step up out of the current directory. Grep-Fu will use any path shortcuts your underlying OS recognizes.</p>
+<pre><code>grep-fu ../../different_rails_project &quot;def similar_method&quot;
+
+grep-fu ~/Projects/roger_tracking last_known_location</code></pre>
+<h2 id="i-want-to-see-what-it-found">I want to see what it found!</h2>
+<p>For more detail, you can add the ‘–verbose’ flag to command:</p>
+<pre><code>grep-fu c budget_dragon --verbose</code></pre>
+<p>This will output the filename, line number, and found line.</p>
+<pre><code>./app/model/budget.rb:18:
+  budget_dragon # Bob in accounting&#39;s been drinking again</code></pre>
+<p>This should be used for fairly narrow searches, as it can produce a whole lot of output.</p>
+<p>Thanks go out to for this feature.</p>
+<h2 id="colors">Colors</h2>
+<p>If you’d like to see grep-fu’s output in color, add the ‘–color’ flag:</p>
+<pre><code>grep-fu mig ExtraBiggened --color --verbose</code></pre>
+</body>
+</html>

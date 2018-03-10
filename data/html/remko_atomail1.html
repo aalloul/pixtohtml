@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>remko_atomail1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="section"></h1>
+<h2 id="about">About</h2>
+<p>AtoMail is a Python script that converts email (or other messages) into an ( RSS feed. This is for example useful for tracking announcement mailinglists in your favorite RSS reader, if no classic RSS feed is available. Mail can be retrieved from many different sources, including local mailboxes, remote mailboxes (POP3/IMAP4), and usenet newsgroups (NNTP). The goal of AtoMail is to be clean, modular, well documented, and easy to modify.</p>
+<p>Beware that AtoMail is still in alpha stage, and that it probably contains bugs.</p>
+<h2 id="usage">Usage</h2>
+<p>AtoMail can be used to create feeds of messages coming from many different sources. The source from which AtoMail is to retrieve the messages is set by the <code>--mode</code> parameter. Here are some example use cases.</p>
+<h3 id="piping-messages">Piping messages</h3>
+<p>AtoMail by default reads a mail message from stdin, and adds it as an entry to a given feed file. This is called ‘pipe’ mode. This mode makes it very easy to create RSS feeds of mailinglists using a simple a procmail rule:</p>
+<pre><code>    :0
+    * ^TO_somemailinglist@example.com
+    | atomail.py --title &#39;Some Mailinglist&#39; --uri=&#39;http://mysite.com/somemailinglist.xml&#39; --strip-subjects $HOME/public_html/somemailinglist.xml</code></pre>
+<h3 id="getting-messages-from-local-mailboxes">Getting messages from local mailboxes</h3>
+<p>AtoMail can be used to create an RSS feed of local mailboxes (in mailbox or maildir format), specified by the <code>--file</code> flag:</p>
+<pre><code>    atomail.py --title &#39;Some Mailbox&#39; --uri=&#39;http://mysite.com/somemailbox.xml&#39; $HOME/public_html/somemailbox.xml --mode=mbox --file $HOME/mail/somemailbox</code></pre>
+<h3 id="getting-messages-from-pop3imap">Getting messages from POP3/IMAP</h3>
+<p>Mail can be retrieved from remote POP3 or IMAP accounts:</p>
+<pre><code>    atomail.py --title &#39;Some Mailbox&#39; --uri=&#39;http://mysite.com/somemailbox.xml&#39; $HOME/public_html/somemailbox.xml --mode=pop3 --host pop.myserver.com --user=myusername --password=mypassword</code></pre>
+<h3 id="getting-messages-from-usenetnewsgroupsnntp">Getting messages from Usenet/Newsgroups/NNTP</h3>
+<p>AtoMail can be used to create RSS feeds from (NNTP) usenet newsgroups:</p>
+<pre><code>    atomail.py --title &#39;Some Mailbox&#39; --uri=&#39;http://mysite.com/somegroup.xml&#39; $HOME/public_html/somegroup.xml --mode=nntp --host news.myserver.com --group=comp.some.group</code></pre>
+<h2 id="related-softwaresites">Related software/sites</h2>
+<p>Several other email to RSS services and programs exist. Here are a few, together with a brief comparison with AtoMail:</p>
+<ul>
+<li>mail2rss.org: This website provides a mail2rss service without needing extra setup. However, it does not give you full control over your RSS feed, is not very reliable (in my experience), and of course requires you to deliver all your mail to a third party. Notice that it should be easy to set up a similar service using AtoMail.</li>
+<li>: Another mail-to-RSS gateway, yet currently more reliable than mail2rss.org. The same remarks apply as for mail2rss.org.</li>
+</ul>
+</body>
+</html>

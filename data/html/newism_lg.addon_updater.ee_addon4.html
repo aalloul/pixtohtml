@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>newism_lg.addon_updater.ee_addon4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    if($this-&gt;settings[&#39;check_for_extension_updates&#39;] == &#39;y&#39;)
+        $sources[] = &#39;http://leevigraham.com/version-check/versions.xml&#39;;
+        
+    return $sources;
+}</code></pre>
+<h4 id="lg_addon_update_register_addon"><code>lg_addon_update_register_addon</code></h4>
+<p>This hook registers the 3rd party addon. This hook returns data so make sure you check if anyone else is using the hook using <code>$EXT-&gt;last_call</code>.</p>
+<p>An example of the function called by the <code>lg_addon_update_register_addon</code> hook:</p>
+<pre><code>/**
+ * Register a new Addon
+ *
+ * @param    array $addons The existing sources
+ * @return   array The new addon list
+ * @since    Version 1.0.0
+ */
+function register_my_addon_id($addons)
+{
+    global $EXT;
+
+    if($EXT-&gt;last_call !== FALSE)
+        $addons = $EXT-&gt;last_call;
+    
+    if($this-&gt;settings[&#39;check_for_extension_updates&#39;] == &#39;y&#39;)
+        $addons[LG_AU_addon_id] = $this-&gt;version;
+    
+    return $addons;
+}</code></pre>
+<h4 id="more-examples">More Examples?</h4>
+<p>The best example of how to register your addon is to look at the LG Addon extension source code. The extension actually registers itself to check for updates!</p>
+<h2 id="release-notes">Release Notes</h2>
+<h3 id="upgrading">Upgrading?</h3>
+<ul>
+<li>Before upgrading back up your database and site first, you can never be too careful.</li>
+<li>Never upgrade a live site, you’re asking for trouble regardless of the addon.</li>
+<li>After an upgrade if you are experiencing errors re-save the extension settings for each site in your ExpressionEngine install.</li>
+</ul>
+<p>There are no specific upgrade notes for this version.</p>
+<h3 id="change-log">Change log</h3>
+<h4 id="section">1.1.2</h4>
+</body>
+</html>

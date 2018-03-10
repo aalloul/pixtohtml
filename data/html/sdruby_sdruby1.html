@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sdruby_sdruby1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sd-ruby">SD Ruby</h1>
+<p>This app is the website of , a local Ruby user group based in San Diego, CA.</p>
+<p>Currently, this application includes support for our video podcast, member signup and registration, member profiles, and a Github project list. We’re also working on adding other features.</p>
+<h2 id="system-dependencies">System Dependencies</h2>
+<h3 id="ruby">Ruby</h3>
+<p>This app is designed to run on Ruby 1.9.3.</p>
+<h3 id="imagemagick">ImageMagick</h3>
+<p>To work best, you must have ImageMagick installed on your local machine:</p>
+<ul>
+<li>For Linux, install using a package manager such as aptitude: <code>aptitude install imagemagick</code></li>
+<li>For Mac OS X, install this via homebrew: <code>brew install imagemagick</code></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre class="shell"><code>bundle install                                          # Install project dependencies
+cp config/database.example.yml config/database.yml      # Configure your database(s)
+cp config/app_config.example.yml config/app_config.yml  # Configure your application settings
+cp config/.env.sample .env                              # Configure your env
+rake sunspot:solr:start                                 # Start Solr search engine
+rake db:migrate db:seed                                 # Setup database and load sample data
+rake sunspot:solr:reindex                               # Index the database
+rails s                                                 # Start Rails server</code></pre>
+<p>Note: You will need to add your AWS credentials and Meetup API key to <code>config/app_config.yml</code>.</p>
+<h2 id="running-tests">Running Tests</h2>
+<pre class="shell"><code>rake db:test:prepare # if this is your first time running the tests
+rspec spec</code></pre>
+<p>Tests can also be run automatically using watchers. In order to begin watching files, simple start Guard using the <code>guard</code> command.</p>
+<p>Please be sure to run the tests and ensure all are passing before issuing a pull request!</p>
+<h2 id="deployment">Deployment</h2>
+<p>You can deploy to the staging or production Heroku apps, if you have the appropriate permissions, using one of the the following commands: ``` shell</p>
+</body>
+</html>

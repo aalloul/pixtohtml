@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>langalex_couch_potato1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="couch-potato">Couch Potato</h2>
+<p>… is a persistence layer written in ruby for CouchDB.</p>
+<h3 id="upgrading-from-1.x-to-2.x">Upgrading from 1.x to 2.x</h3>
+<p>Version 1.x monkey patched Date#to_json (=&gt; “2015/01/01”) and Time#to_json (=&gt; “2016/01/01 12:00:00 +0000”), 2.x does not (Date =&gt; “&quot;2015-01-01&quot;”, Time =&gt; “&quot;2016-01-01 12:00:00 +0100&quot;”).</p>
+<p>In order to keep the old behavior, add the following to your code:</p>
+<pre><code>require &#39;couch_potato/core_ext/time&#39;
+require &#39;couch_potato/core_ext/date&#39;</code></pre>
+<p>This will again apply the monkey patches. It is highly recommended to add the require statements if you are upgrading from 1.x. Otherwise, the format of Date and Time objects written to your database and used to query it will change, which means data written before the update won’t be returned. To avoid the monkey patching, you have to re-write all your documents, so that dates/times are stored in the new format.</p>
+<h3 id="mission">Mission</h3>
+<p>The goal of Couch Potato is to create a minimal framework in order to store and retrieve Ruby objects to/from CouchDB and create and query views.</p>
+<p>It follows the document/view/querying semantics established by CouchDB and won’t try to mimic ActiveRecord behavior in any way as that IS BAD.</p>
+<p>Code that uses Couch Potato should be easy to test.</p>
+<p>Lastly Couch Potato aims to provide a seamless integration with Ruby on Rails, e.g. routing, form helpers etc.</p>
+<h3 id="core-features">Core Features</h3>
+<ul>
+<li>persisting objects by including the CouchPotato::Persistence module</li>
+<li>declarative views with either custom or generated map/reduce functions</li>
+<li>extensive spec suite</li>
+</ul>
+<h3 id="supported-environments">Supported Environments</h3>
+<ul>
+<li>Ruby 2.0, 2.1, 2.2, Rubinius</li>
+<li>CouchDB 1.6.0</li>
+<li>ActiveSupport 4.0, 4.1, 4.2</li>
+</ul>
+<p>(Supported means I run the specs against those before releasing a new gem.)</p>
+<h3 id="installation">Installation</h3>
+</body>
+</html>

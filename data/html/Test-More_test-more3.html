@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Test-More_test-more3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="test2event">Test2::Event::</h2>
+<p>Events live under this namespace. It is considered acceptable for third party distributions to add new event types in this namespace.</p>
+<h2 id="test2hub">Test2::Hub::</h2>
+<p>Hub subclasses (and some hub utility objects) live under this namespace. It is perfectly reasonable for third party distributions to add new hub subclasses in this namespace.</p>
+<h2 id="test2ipc">Test2::IPC::</h2>
+<p>The IPC subsystem lives in this namespace. There are not many good reasons to add anything to this namespace, with exception of IPC drivers.</p>
+<h3 id="test2ipcdriver">Test2::IPC::Driver::</h3>
+<p>IPC drivers live in this namespace. It is fine to create new IPC drivers and to put them in this namespace.</p>
+<h2 id="test2util">Test2::Util::</h2>
+<p>This namespace is for general utilities used by testing tools. Please be considerate when adding new modules to this namespace.</p>
+<h2 id="test2api">Test2::API::</h2>
+<p>This is for Test2 API and related packages.</p>
+<h2 id="test2">Test2::</h2>
+<p>The Test2:: namespace is intended for extensions and frameworks. Tools, Plugins, etc should not go directly into this namespace. However extensions that are used to build tools and plugins may go here.</p>
+<p>In short: If the module exports anything that should be run directly by a test script it should probably NOT go directly into <code>Test2::XXX</code>.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<ul>
+<li><p>Primary API functions.</p></li>
+<li><p>Detailed documentation of the context object.</p></li>
+<li><p>The IPC system used for threading/fork support.</p></li>
+<li><p>Formatters such as TAP live here.</p></li>
+</ul>
+</body>
+</html>

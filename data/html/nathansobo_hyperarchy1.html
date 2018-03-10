@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nathansobo_hyperarchy1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="hyperarchy">Hyperarchy</h1>
+<p>Hyperarchy is a collaborative decision-making tool based on ranked-pairs voting. This version is a stripped-down prototype designed for internal use at GitHub. It’s licensed under the AGPL, and I will be developing it gradually based on our needs and experience within GitHub over the coming months.</p>
+<p>! !</p>
+<p>Hyperarchy is a Rails app and is designed for easy deployment to Heroku. With exceptions noted below getting Hyperarchy running should be similar to any standard Rails application that you’d put on Heroku. In addition to the typical Postgres database requirement, Hyperarchy also requires Redis and a real-time messaging service called . Configuring the application will require changes to environment variables in a <code>.env</code> file and entries in <code>database.yml</code>.</p>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Hyperarchy loads various environment variables from a <code>.env</code> file located in the application’s root in development. There’s a .env.example file which lists various environment variables you’ll need to run the application. Run <code>cp .env.example .env</code> and then edit the file to fill in relevant values for your variables.</p>
+<ul>
+<li><p><code>RAILS_SECRET_TOKEN</code>: This is any random string, 128 characters long. Rails uses it as a unique identifier of your app for security purposes.</p></li>
+<li><p><code>PUSHER_URL</code>: Hyperarchy uses a service called to send real-time updates to clients. You’ll need to setup an account with them, then synthesize this URL based on the the API credentials. Don’t follow the instructions on their site, just find the page with a listing like the following and use these values to construct a URL based on the example:</p>
+<p>Pusher.app_id = ‘xxxx’ Pusher.key = ‘xxxxxxxxxxxxxxxxxxxx’ Pusher.secret = ‘xxxxxxxxxxxxxxxxxxxx’</p></li>
+<li><p><code>PUSHER_CHANNEL</code>: This can be any name. Different environments should have different channel names, like “hyperarchy_production”, “hyperarchy_staging”, and “hyperarchy_development” so that messages stay separate.</p></li>
+<li><p>REDISTOGO_URL: Hyperarchy requires a Redis server for synchronization purposes. You can install redis with homebrew: <code>brew install redis</code> and follow the instructions to start the server on your machine. Make sure the URL in the file matches your server’s hostname and port.</p></li>
+</ul>
+<h2 id="database.yml">Database.yml</h2>
+<p>Like most Rails apps, Hyperarchy depends on a relational database. Because it’s</p>
+</body>
+</html>

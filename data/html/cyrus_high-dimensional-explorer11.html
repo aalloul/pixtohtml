@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cyrus_high-dimensional-explorer11</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>use 4Gb of RAM, and RAM usage increases linearly as stepsize increases.</p>
+<p>eod: End of Document marker. Used when processing the corpus. HiDEx does not count co-occurrence accross document boundaries. See section 2E for details.</p>
+<p>(outputpath): (Optional!) An absolute path for program output. HiDEx defaults to the Working Directory is this is not set.</p>
+<p>metric: Choose your similarity metric here. If it is blank, HiDEx will default to using (inverse) Euclidean distance. Other possible values are Cosine, CityBlock and Correlation. For more information on these metrics, please see the references listed in the Bibliography.</p>
+<p>normalization: Choose your method for vector normalization here. Default is co-occurrence divided by target word frequency. Other possibilities are PPMI (Positive Pointwise Mutual Information) and Correlation. For more information on these normalization methods, please see the references listed in the Bibliography.</p>
+<p>weightingScheme: Code number to choose a weighting scheme. The names are fairly self explanatory! The original HAL model used #1, Ramped Linear Weighting.</p>
+<p>FLAT = 0 RAMPED LINEAR = 1 RAMPED QUADRATIC = 2 FORWARD RAMP = 3 BACKWARD RAMP = 4 INVERSE RAMP = 5 INVERSE QUADRATIC = 6 SECOND WORD = 7 THIRD WORD = 8 FOURTH WORD = 9</p>
+<p>contextSize: The number of dimensions to use in the co-occurrence vector. If contextSize is set to N, only the N most frequent word’s vectors are included in the final GCM.</p>
+<p>windowLenBehind: Size of the window behind the target word. Can be any number from 1 to MaxWindowLenBehind.</p>
+<p>windowLenAhead: Size of the window behind the target word. Can be any number from 1 to MaxWindowLenAhead.</p>
+<p>useThreshold: Setting to turn on z-score based neighborhood membership thresholds (words more that 1 standard deviation similar than the average similarity. 1 means it is ON, 0 means it is OFF.</p>
+<p>percenttosample: When using thresholds, the percent of pairs to sample during the calculation of the z-scores. 0.1 means 10%.</p>
+</body>
+</html>

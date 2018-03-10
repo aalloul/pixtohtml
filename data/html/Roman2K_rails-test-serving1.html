@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Roman2K_rails-test-serving1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="railstestserving">RailsTestServing</h1>
+<p>Tired of waiting 10 seconds before your tests run? <code>RailsTestServing</code> can make them run almost instantly.</p>
+<h2 id="usage">Usage</h2>
+<ol type="1">
+<li><p>Install the gem:</p>
+<pre><code>gem install &lt;gem&gt; -s http://gems.github.com</code></pre></li>
+<li><p>Insert the following lines at the very top of <code>test/test_helper.rb</code>:</p>
+<pre><code>require &#39;rubygems&#39;
+require &#39;rails_test_serving&#39;
+RailsTestServing.boot</code></pre></li>
+<li><p>Append the following line to <code>~/.bash_profile</code>:</p>
+<pre><code>export RUBYLIB=&quot;.:test:$RUBYLIB&quot;</code></pre>
+If you get loading errors during the next steps:
+<ul>
+<li>Move the <code>RUBYLIB</code> line from <code>~/.bash_profile</code> to <code>~/.bash_login</code> instead.</li>
+<li>If you are using TextMate, you may try to apply <del>this (hopefully temporary) fix</del>.</li>
+</ul></li>
+<li><p>Start the server:</p>
+<pre><code>cd &lt;project-dir&gt;
+ruby test/test_helper.rb --serve</code></pre></li>
+<li><p>Run tests as you usually do:</p>
+<pre><code>ruby test/unit/account_test.rb
+ruby test/unit/account_test.rb -n /balance/</code></pre>
+<p>As a consequence, they work in RubyMate too (⌘R in TextMate).</p></li>
+<li><p>Have a lot a models and/or mixins? You can reduce reloading time to almost nothing by using <code>RailsTestServing</code> in combination with RailsDevelopmentBoost. Since was originally intended to speed up web-browsing in development mode, be sure to read the note in the <code>README</code> for how to enable it in test mode.</p></li>
+</ol>
+<p><strong>Note:</strong> if the server is not started, tests fall back to running the usual way.</p>
+<h2 id="options">Options</h2>
+<p>An option hash can be specified for <code>RailsTestServing</code> to use, by defining <code>$test_server_options</code> right before <code>require 'rails_test_serving'</code>. It must be a hash with symbol keys. Currently available options are:</p>
+<ul>
+<li><code>reload</code>: An array of regular expressions (or any object responding to <code>===</code>) matching the name of the files that should be forced to reload right after the regular constant cleanup. Note that the constants these files have defined are kept around before being re-<code>require</code>’d.</li>
+</ul>
+<p>Example <code>test_helper.rb</code> head:</p>
+<pre><code>require &#39;rubygems&#39;</code></pre>
+</body>
+</html>

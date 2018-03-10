@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kiko_innate1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="innate">Innate</h1>
+<p>Innate is the core of Ramaze, but useful on its own.</p>
+<h2 id="philosophy">Philosophy</h2>
+<p>The philosophy behind Innate is to provide a simple web framework that:</p>
+<ul>
+<li>Stays below 2000 easily readable lines of code</li>
+<li>Has Rack as the only dependency</li>
+<li>Provides the default helpers</li>
+<li>Is easy to encapsulate and reuse in other contexts as a simple rack app</li>
+<li>Has a rock-solid and fast implementation</li>
+<li>Scores at least 95% in rcov</li>
+<li>Is fully documented using YARD</li>
+</ul>
+<h2 id="innate-vs.ramaze">Innate vs. Ramaze</h2>
+<p>Numerous people asked where Innate fits into the picture of Ramaze and when it would be appropriate to use Innate alone.</p>
+<p>The answer to this is not as simple as I thought, given that Ramaze improves on it a lot by taking full advantage of the encapsulation.</p>
+<p>Innate started out as I grew increasingly annoyed by the many hacks and add-ons that diluted the original simplicity of Ramaze as we discovered ways to do things better, so I went on to create something that is impossible to dilute and simply works as a multiplier.</p>
+<p>It does work standalone, and it might be suitable for applications that just need the little extra over plain old Rack, making it easy to deploy and rely on the stability that comes with simple code. It’s also the starting point if you want to study the inner workings of Ramaze without being distracted, all you need to keep in mind is Rack.</p>
+<p>If all you need is a couple of ERB templates and a few nodes then Innate is the way to go. Upgrading to Ramaze later is quite easy, just change a couple of lines and the power of your code multiplies (again).</p>
+<p>The split between Innate and Ramaze is clear cut and gives Ramaze freedom to expand in any direction (and I have quite some ideas where to take it).</p>
+<p>Ramaze adds things that require other dependencies, caching with memcached or sequel, logging with analogger or growl, templating with haml or erubis, just to name a few.</p>
+<p>Ramaze also adds Apps to the mix, and it is easier to understand them when the</p>
+</body>
+</html>

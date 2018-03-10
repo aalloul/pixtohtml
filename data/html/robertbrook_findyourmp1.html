@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>robertbrook_findyourmp1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="installation">Installation</h2>
+<p>clone the repository</p>
+<p>create your database.yml file using the supplied example</p>
+<p>cp config/database.yml.example config/database.yml</p>
+<p>run the rake tasks to create the database</p>
+<p>rake db:create:all rake db:migrate:reset RAILS_ENV=xxx</p>
+<p>restore the data from a recent database dump or use the rake tasks to load the data from files (not included as part of the repository - to big, would infringe copyright, would be a job in its own right keeping this updated.)</p>
+<h3 id="load-constituency-data">load constituency data</h3>
+<p>rake fymp:constituencies RAILS_ENV=xxx</p>
+<p>expects a TSV formatted file consisting of ID, constituency name as <code>data/new_constituencies.txt</code></p>
+<h3 id="load-the-member-data">load the member data</h3>
+<p>rake fymp:members RAILS_ENV=xxx</p>
+<p>expects a TSV formatted file consisting of consituency name, mp name (party) as <code>data/FYMP_all.txt</code> (unless another file name is specified using file= on the command line)</p>
+<h3 id="prepare-the-postcode-data-for-loading">prepare the postcode data for loading</h3>
+<p>Creates postcodes.txt. If you already have a <code>data/postcodes.txt</code> that looks promising DO NOT RUN THIS STEP, otherwise go make a cup of tea; this bit isn’t quick.</p>
+<p>rake fymp:parse RAILS_ENV=xxx source_file=xxx</p>
+<p>expects the sort of file one would expect to pay ONS a recurring subscription fee to receive (plaintext version)</p>
+<h3 id="load-the-postcode-data">load the postcode data</h3>
+<p>Definitely cup of tea time, consider renting a movie, maybe 2. Takes the simplified postcode data from <code>data/postcodes.txt</code> - still millions of records but just the bits we actually want from the massive file - and loads them into the database. Takes hours (on my MacBook Pro, I’m getting a 4 hour estimate).</p>
+<p>rake fymp:populate RAILS_ENV=xx</p>
+<h3 id="set-up-the-postcode-districts">set up the postcode districts</h3>
+<p>Runs some SQL against the postcodes table in order to populate the postcode districts information. Reasonably fast.</p>
+<p>rake fymp:load_postcode_districts RAILS_ENV=xx</p>
+</body>
+</html>

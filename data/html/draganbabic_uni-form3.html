@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>draganbabic_uni-form3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="options-and-layout-control">Options and Layout Control</h2>
+<p>Uni–Form by default has two form layouts: default and inline. This is controlled by adding (or removing) a CSS class .inlineLabels to the fieldset element.</p>
+<p>There is another option in regards to the layout and it concerns what is referred to as “multifields”. These are fields that contain multiple inputs per unit and are usually used for checkboxes and radio buttons. Each layout supports an alternate multifield layout. This is achieved by adding (or removing) a CSS class .alternate to the ul element.</p>
+<h2 id="events">Events</h2>
+<p>Triggering an error event on the form fields will apply the error class to the controller and overwrite the supplied description of that controller with the error text, an example would be:</p>
+<pre><code>$(selector).trigger(&#39;error&#39;,[&#39;an error occured&#39;]);</code></pre>
+<p>Subsequent calls to success on the form field will remove the error and replace the error text with the originally supplied description, an example:</p>
+<pre><code>$(selector).trigger(&#39;success&#39;);</code></pre>
+<hr />
+<h2 id="form-validation">Form Validation</h2>
+<p>Uni–Form can be used with the included uni-form-validation.js file for client side validation. This is accomplished by using class names on the form elements to trigger validation rules on blur(). It must be noted that these validation rules should be used to supplement a server side solution.</p>
+<p>Required element, cannot be empty:</p>
+<pre><code>&lt;input type=&quot;text&quot; class=&quot;textInput required&quot; /&gt;</code></pre>
+<p>Integer with value greater than or equal to 8:</p>
+<pre><code>&lt;input type=&quot;text&quot; class=&quot;textInput validateInteger validateMin val-8&quot; /&gt;</code></pre>
+<h3 id="available-validators">Available validators:</h3>
+<ul>
+<li>required</li>
+<li>validateMinLength</li>
+<li>validateMin</li>
+<li>validateMaxLength</li>
+<li>validateMax</li>
+</ul>
+</body>
+</html>

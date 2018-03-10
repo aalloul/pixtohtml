@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pagebakers_soapsource1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="cakephp-soapsource">CakePHP SoapSource</h1>
+<p>A Soap datasource for CakePHP</p>
+<hr />
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>PHP5 with Soap extension enabled</li>
+<li>Cakephp 2.x</li>
+</ul>
+<h3 id="usage">Usage</h3>
+<p>Copy the SoapSource.php file to your app/models/datasources/ directory</p>
+<p>Add a configuration to your database.php in app/config/</p>
+<pre><code>var $soap = array(
+    &#39;datasource&#39; =&gt; &#39;SoapSource&#39;,
+    &#39;wsdl&#39; =&gt; &#39;http://localhost/soapservice.wsdl&#39;, // wsdl mode
+    &#39;location&#39; =&gt; &#39;&#39;, // Required for non wsdl mode
+    &#39;uri&#39; =&gt; &#39;&#39;, // Required for non wsdl mode
+    &#39;proxy_host&#39; =&gt; &#39;http://proxy.com&#39;, // optional
+    &#39;proxy_port&#39; =&gt; 3128, // optional
+    &#39;curl_off&#39; =&gt; true, // optional - turns curl wsdl fetch off
+    &#39;headers&#39; =&gt; array( // optional - used with 3rd parameter in model
+      &#39;ns&#39; =&gt; &#39;namespace&#39;,
+      &#39;container&#39; =&gt; &#39;session_key&#39;,
+    )
+    &#39;use&#39; =&gt; SOAP_ENCODED // optional - used only for non wsdl mode
+);</code></pre>
+<p>Then in your model set:</p>
+<pre><code>var $useDbConfig = &#39;soap&#39;;
+
+var $useTable = false;</code></pre>
+<p>And you’re ready to go.</p>
+<p>Asuming that you parameters are:</p>
+<pre><code>$params = array(&#39;param1&#39; =&gt; &#39;value1&#39;, &#39;param2&#39; =&gt; &#39;value2&#39;);</code></pre>
+<p>In your controller you can now use</p>
+<pre><code>$this-&gt;Model-&gt;query(&#39;SoapMethod&#39;, array($params));</code></pre>
+<p><strong>Important</strong>: notice the <em>array()</em> enclosing your params array.</p>
+</body>
+</html>

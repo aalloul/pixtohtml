@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevenbristol_less-js-routes3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>function new_post_path(format){ var _format = less_check_format(format);return ‘/posts’ + ‘/new’ + _format} function new_post_ajax(format, verb, params, options){ var _format = less_check_format(format);return less_ajax(‘/posts’ + ‘/new’ + _format, verb, params, options)} function edit_post_path(id, format){ var _id = less_check_parameter(id);var _format = less_check_format(format);return ‘/posts’ + ‘/’ + _id + ‘/edit’ + _format} function edit_post_ajax(id, format, verb, params, options){ var _id = less_check_parameter(id);var _format = less_check_format(format);return less_ajax(‘/posts’ + ‘/’ + _id + ‘/edit’ + _format, verb, params, options)} function post_path(id, format){ var _id = less_check_parameter(id);var _format = less_check_format(format);return ‘/posts’ + ‘/’ + _id + _format} function post_ajax(id, format, verb, params, options){ var _id = less_check_parameter(id);var _format = less_check_format(format);return less_ajax(‘/posts’ + ‘/’ + _id + _format, verb, params, options)} function comments_path(format){ var _format = less_check_format(format);return ‘/comments’ + _format} function comments_ajax(format, verb, params, options){ var _format = less_check_format(format);return less_ajax(‘/comments’ + _format, verb, params, options)} function new_comment_path(format){ var _format = less_check_format(format);return ‘/comments’ + ‘/new’ + _format} function new_comment_ajax(format, verb, params, options){ var _format = less_check_format(format);return less_ajax(‘/comments’ + ‘/new’ + _format, verb, params, options)} function edit_comment_path(id, format){ var _id = less_check_parameter(id);var _format = less_check_format(format);return ‘/comments’ + ‘/’ + _id + ‘/edit’ + _format} function edit_comment_ajax(id, format, verb, params, options){ var _id = less_check_parameter(id);var _format = less_check_format(format);return less_ajax(‘/comments’ + ‘/’ + _id + ‘/edit’ + _format, verb, params, options)} function comment_path(id, format){ var _id = less_check_parameter(id);var _format = less_check_format(format);return ‘/comments’ + ‘/’ + _id + _format} function comment_ajax(id, format, verb, params, options){ var _id = less_check_parameter(id);var _format = less_check_format(format);return less_ajax(‘/comments’ + ‘/’ + _id + _format, verb, params, options)} ```</p>
+<h3 id="note">Note</h3>
+<ul>
+<li>Nested routes are generated.</li>
+<li>new and edit routes are generated.</li>
+<li>Singular and plural routes are generated.</li>
+<li>For each route two functions are generated:</li>
+</ul>
+<h3 id="functions">Functions</h3>
+<h4 id="path-functions"><code>*_path</code> Functions:</h4>
+<ul>
+<li>Params: id(s), format
+<ul>
+<li>id(s): The integer ids for the resource you’re accessing. Default is ’’.</li>
+<li>format: The format you would like returned for the resource, example: “js”, “json,” “xml,” etc. Default is ’’.</li>
+</ul></li>
+<li>Returns: string that is the path to the resource.</li>
+</ul>
+<p>Example:</p>
+<p>``` js //function comments_path(format) comments_path() “/comments” //function comments_path(format) comments_path(‘json’) “/comments.json” //function comment_path(id, format) comment_path(1) “/comments/1” //function comment_path(id, format) comment_path(1, ‘js’) “/comments/1.js” //function edit_comment_path(id, format)</p>
+</body>
+</html>

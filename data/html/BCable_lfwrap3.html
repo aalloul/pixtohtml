@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BCable_lfwrap3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>install_shell &lt;ext&gt;   - Install the shell extensions for the specified file
+                        extension.  Please note, these shell extensions rely on
+                        the current location of the lfwrap.exe file, which
+                        means if you move this file, you must uninstall, then
+                        reinstall these shell extensions.
+
+install_shell_dir     - Install the shell extensions for all directories.
+                        Please note, these shell extensions rely on the current
+                        location of the lfwrap.exe file, which means if you move
+                        this file, you must uninstall, then reinstall these
+                        shell extensions.
+
+uninstall_shell &lt;ext&gt; - Uninstall the shell extensions for the specified file
+                        extension.
+
+uninstall_shell_dir   - Uninstall the shell extensions for all directories.</code></pre>
+<h2 id="iii-config">III: Config</h2>
+<h2 id="iii.a-lfwrap.conf">III.a: lfwrap.conf</h2>
+<pre><code>LFW_USER              - Name of user to use when checking out files.
+
+LFW_EMAIL             - Email of user to use when checking out files.
+
+LFW_CONFIG_DIR        - Directory that stores configuration files.
+
+LFW_CONFIG_SITES      - &quot;sites.conf&quot; filename.  Just leave as &quot;sites.conf&quot;.
+
+LFW_STATUS_DIR        - Directory that stores status files.  Same directory as
+                        LFW_CONFIG_DIR works fine.
+
+LFW_EDITOR            - Path to editor you wish to execute when using the &quot;edit&quot;
+                        command.  On UNIX systems, if editor is in PATH
+                        environment variable, the binary name is all that&#39;s
+                        necessary.
+
+LFW_EDITOR_OPTS       - Options to pass to the LFW_EDITOR.
+
+LFW_EDITORSECOND      - Same as LFW_EDITOR, but if the editor is already
+                        running, this is the file to execute instead.  Usually
+                        the same as LFW_EDITOR.
+
+LFW_EDITORSECOND_OPTS - Options to pass to the LFW_EDITORSECOND.</code></pre>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sebastien_paml6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>tells that the text content should be preserved &#39;&#39;as-is&#39;&#39;, which is
+espectially useful for preformatted elements:
+|
+&gt;   &lt;pre|p
+&gt;     def myPythonFunction(a,b):
+&gt;       print &quot;Hello, &quot;, someone, &quot;!&quot;
+|
+will be rendered as
+|
+&gt;   &lt;pre&gt;  def myPythonFunction(a,b):
+&gt;     print &quot;Hello, &quot;, someone, &quot;!&quot;&lt;/pre&gt;</code></pre>
+<p>Normalize (‘n’):: indicates that you want ‘’ and ‘’ to be converted to spaces, and multiple spaces to be compressed into one. | &gt; &lt;code: Lorem ipsum &gt; dolor sit amet | will be rendered as | &gt; <code> Lorem ipsum dolor sit amet</code></p>
+Strip (‘s’):: indicates that you want your string content to be stripped out leading and trailing spaces. | &gt; &lt;h1|s: Stripped heading | will be rendered as | &gt;
+<h1>
+Stripped heading
+</h1>
+Compact (‘c’):: tells that no new-lines or spaces should be inserted before and after the opening tag, like in the following example | &gt; &lt;p|c &gt; Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean ante leo, &gt; suscipit sit amet, iaculis sed, rutrum eu, mi. Aenean laoreet, erat &gt; consequat aliquam tempor, nibh nisl porta augue. | will be rendered as | &gt;
+<p>
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean ante leo, &gt; suscipit sit amet, iaculis sed, rutrum eu, mi. Aenean laoreet, erat &gt; consequat aliquam tempor, nibh nisl porta augue.
+</p>
+<pre><code>|
+instead of 
+|</code></pre>
+</body>
+</html>

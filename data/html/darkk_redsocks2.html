@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>darkk_redsocks2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Linux/iptables is supported. OpenBSD/pf and FreeBSD/ipfw may work with some hacks. The author has no permanent root access to machines running OpenBSD, FreeBSD and MacOSX to test and develop for these platforms.</p>
+<p>is alike project but it has noticable performance penality.</p>
+<p>is alike project too, but it has no HTTPS-proxy support and does not support authentication.</p>
+<p>Several Android apps also use redsocks under-the-hood:</p>
+<p>and</p>
+<p>. And that’s over 1’500’000 downloads! Wow!</p>
+<h2 id="features">Features</h2>
+<p>Redirect any TCP connection to Socks4, Socks5 or HTTPS (HTTP/CONNECT) proxy server.</p>
+<p>Login/password authentication is supported for Socks5/HTTPS connections. Socks4 supports only username, password is ignored. for HTTPS, currently only Basic and Digest scheme is supported.</p>
+<p>Redirect UDP packets via Socks5 proxy server. NB: UDP still goes via UDP, so you can’t relay UDP via OpenSSH.</p>
+<p>Handle DNS/UDP queries sending “truncated reply” as an answer or making them DNS/TCP queries to some recursive resolver.</p>
+<p>Redirect any HTTP connection to proxy that does not support transparent proxying (e.g. old SQUID had broken `acl myport’ for such connections).</p>
+<h3 id="enforcing-dns-over-tcp-using-dnstc">Enforcing DNS over TCP using <code>dnstc</code></h3>
+<p>DNS is running over UDP and it may be an issue in some environments as proxy servers usually don’t handle UDP as a first-class citizen. Redsocks includes <code>dnstc</code> that is fake and really dumb DNS server that returns “truncated answer” to every query via UDP. RFC-compliant resolver should repeat same query via TCP in this case - so the request can be redirected using usual redsocks facilities.</p>
+<p>Known compliant resolvers are:</p>
+<ul>
+<li>bind9 (server);</li>
+<li>dig, nslookup (tools based on bind9 code).</li>
+</ul>
+<p>Known non-compliant resolvers are:</p>
+</body>
+</html>

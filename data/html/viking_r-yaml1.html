@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>viking_r-yaml1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="r-yaml-package">R YAML package</h1>
+<p>The R package implements the YAML parser and emitter for R.</p>
+<h2 id="what-is-yaml">What is YAML?</h2>
+<p>YAML is a human-readable markup language. With it, you can create easily readable documents that can be consumed by a variety of programming languages.</p>
+<h3 id="examples">Examples</h3>
+<p>Hash of baseball teams per league:</p>
+<pre><code>american:
+- Boston Red Sox
+- Detroit Tigers
+- New York Yankees
+national:
+- New York Mets
+- Chicago Cubs
+- Atlanta Braves</code></pre>
+<p>Data dictionary specification:</p>
+<pre><code>- field: ID
+  description: primary identifier
+  type: integer
+  primary key: yes
+- field: DOB
+  description: date of birth
+  type: date
+  format: yyyy-mm-dd
+- field: State
+  description: state of residence
+  type: string</code></pre>
+<h2 id="installation">Installation</h2>
+<h3 id="cran">CRAN</h3>
+<p>You can install this package directly from CRAN by running (from within R): <code>install.packages('yaml')</code></p>
+<h3 id="ziptarball">Zip/Tarball</h3>
+<ol type="1">
+<li>Download the appropriate zip file or tar.gz file from the page.</li>
+<li>Run <code>R CMD INSTALL &lt;filename&gt;</code></li>
+</ol>
+</body>
+</html>

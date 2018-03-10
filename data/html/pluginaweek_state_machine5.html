@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>```</p>
+<p><strong>Note</strong> the comment made on the <code>initialize</code> method in the class. In order for state machine attributes to be properly initialized, <code>super()</code> must be called. See <code>StateMachine::MacroMethods</code> for more information about this.</p>
+<p>Using the above class as an example, you can interact with the state machine like so:</p>
+<p>```ruby vehicle = Vehicle.new # =&gt; #&lt;Vehicle:0xb7cf4eac <span class="citation" data-cites="state">@state</span>=“parked”, <span class="citation" data-cites="seatbelt_on">@seatbelt_on</span>=false&gt; vehicle.state # =&gt; “parked” vehicle.state_name # =&gt; :parked vehicle.human_state_name # =&gt; “parked” vehicle.parked? # =&gt; true vehicle.can_ignite? # =&gt; true vehicle.ignite_transition # =&gt; #<StateMachine::Transition attribute=:state event=:ignite from="parked" from_name=:parked to="idling" to_name=:idling> vehicle.state_events # =&gt; [:ignite] vehicle.state_transitions # =&gt; [#<StateMachine::Transition attribute=:state event=:ignite from="parked" from_name=:parked to="idling" to_name=:idling>] vehicle.speed # =&gt; 0 vehicle.moving? # =&gt; false</p>
+<p>vehicle.ignite # =&gt; true vehicle.parked? # =&gt; false vehicle.idling? # =&gt; true vehicle.speed # =&gt; 10 vehicle # =&gt; #&lt;Vehicle:0xb7cf4eac <span class="citation" data-cites="state">@state</span>=“idling”, <span class="citation" data-cites="seatbelt_on">@seatbelt_on</span>=true&gt;</p>
+<p>vehicle.shift_up # =&gt; true vehicle.speed # =&gt; 10 vehicle.moving? # =&gt; true vehicle # =&gt; #&lt;Vehicle:0xb7cf4eac <span class="citation" data-cites="state">@state</span>=“first_gear”, <span class="citation" data-cites="seatbelt_on">@seatbelt_on</span>=true&gt;</p>
+<h1 id="a-generic-event-helper-is-available-to-fire-without-going-through-the-events-instance-method">A generic event helper is available to fire without going through the event’s instance method</h1>
+<p>vehicle.fire_state_event(:shift_up) # =&gt; true</p>
+<h1 id="call-state-driven-behavior-thats-undefined-for-the-state-raises-a-nomethoderror">Call state-driven behavior that’s undefined for the state raises a NoMethodError</h1>
+<p>vehicle.speed # =&gt; NoMethodError: super: no superclass method `speed’ for #<Vehicle:0xb7cf4eac> vehicle # =&gt; #&lt;Vehicle:0xb7cf4eac <span class="citation" data-cites="state">@state</span>=“second_gear”, <span class="citation" data-cites="seatbelt_on">@seatbelt_on</span>=true&gt;</p>
+<h1 id="the-bang-operator-can-raise-exceptions-if-the-event-fails">The bang (!) operator can raise exceptions if the event fails</h1>
+<p>vehicle.park! # =&gt; StateMachine::InvalidTransition: Cannot transition state via :park from :second_gear</p>
+<h1 id="generic-state-predicates-can-raise-exceptions-if-the-value-does-not-exist">Generic state predicates can raise exceptions if the value does not exist</h1>
+<p>vehicle.state?(:parked) # =&gt; false vehicle.state?(:invalid) # =&gt; IndexError: :invalid is an invalid name</p>
+<h1 id="namespaced-machines-have-uniquely-generated-methods">Namespaced machines have uniquely-generated methods</h1>
+<p>vehicle.alarm_state # =&gt; 1 vehicle.alarm_state_name # =&gt; :active</p>
+</body>
+</html>

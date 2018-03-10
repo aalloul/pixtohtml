@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>shawn42_gamebox1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="gamebox">Gamebox</h1>
+<ul>
+<li>A <strong>game template</strong> for building and distributing Gosu games.</li>
+<li>Quickly <strong>generate a game</strong> and have it <strong>up and running</strong>.</li>
+<li>Provide <strong>conventions and DSL</strong> for building your game.</li>
+<li>Facilitate quickly building <strong>distributable artifacts</strong>.</li>
+<li>http://gamebox.io/</li>
+<li>see for the list of requirements</li>
+</ul>
+<h2 id="getting-started-with-gamebox">Getting started with Gamebox</h2>
+<h3 id="purpose">Purpose</h3>
+<p><strong>Why use Gamebox?</strong> Gamebox was designed to spring board game development. It allows the developer to define business rules about a game very quickly without having to worry about resource loading, sound/music management, creating windows, or messing with viewports. Gamebox allows you to define a game’s business rules within minutes, using the metaphor of a 5th grade play.</p>
+<p>The driving idea behind Gamebox is to provide the ability to have as many of the basic common pieces of a <strong>2D game</strong> at the developers disposal from the beginning.</p>
+<p>The reason I wrote Gamebox is twofold: first, to aid in 48 hour game writing competitions and second, to allow me to write simple educational games for my kids.</p>
+<h3 id="installation">Installation</h3>
+<ul>
+<li><code>gem install gamebox</code></li>
+<li><code>git clone git://github.com/shawn42/gamebox.git &amp;&amp; cd gamebox &amp;&amp; bundle &amp;&amp; rake install</code></li>
+</ul>
+<h3 id="game-creation">Game Creation</h3>
+<p>To create a new Gamebox project run:</p>
+<pre><code>$ gamebox new zapper</code></pre>
+<p>This will create the directory structure and needed files to get a basic actor up on the screen:</p>
+<p>``` zapper ├── Gemfile ├── README.rdoc ├── Rakefile ├── config │ ├── boot.rb │ ├── environment.rb │ └── game.yml ├── data</p>
+</body>
+</html>

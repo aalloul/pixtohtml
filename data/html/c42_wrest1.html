@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>c42_wrest1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="wrest-2.2.0">Wrest 2.2.0</h1>
+<ol start="3" type="a">
+<li>Copyright 2009-2016 . All Rights Reserved.</li>
+</ol>
+<p>Wrest is a ruby REST/HTTP client library. It is currently in use at substantial scale across all Ruby/JRuby systems at .</p>
+<ul>
+<li>Allows you to pick your Ruby: use CRuby or JRuby</li>
+<li>Supports RFC 2616 based</li>
+<li>Async http calls using Threads (truly useful only on JRuby due to or EventMachine</li>
+<li>Allows you to quickly build object oriented wrappers around any web service</li>
+<li>Is designed to be used as a library, not just a command line REST client (fewer class/static methods, more object oriented)</li>
+<li>Is spec driven, strongly favours immutable objects and avoids class methods and setters making it better suited for use as a library, especially in multi-threaded environments</li>
+<li>Provides convenient HTTP wrappers, redirect handling, serialisation, deserialisation and xpath based lookup</li>
+</ul>
+<p>To receive notifications whenever new features are added to Wrest, please subscribe to my .</p>
+<h2 id="examples">Examples</h2>
+<p>For Facebook, Twitter, Delicious, GitHub and other API examples, see http://github.com/c42/wrest/tree/master/examples</p>
+<h3 id="basic-http-calls">Basic Http Calls</h3>
+<h4 id="get">GET</h4>
+<ul>
+<li><p>Basic API calls</p>
+<pre><code># Works with json and xml out of the box
+# See lib/wrest/components/translators to add other formats
+
+&#39;https://api.github.com/repos/c42/wrest/issues&#39;.to_uri.get.deserialize</code></pre></li>
+<li><p>Timeout support</p>
+<pre><code>&#39;https://api.github.com/repos/c42/wrest/issues&#39;.to_uri(timeout: 5).get.body</code></pre></li>
+<li><p>Redirect support</p>
+<pre><code>&#39;http://google.com&#39;.to_uri(follow_redirects: false).get
+
+&#39;http://google.com&#39;.to_uri(follow_redirects_limit: 1).get</code></pre>
+<p>:follow_redirects_limit defaults to 5 if not specified.</p></li>
+</ul>
+</body>
+</html>

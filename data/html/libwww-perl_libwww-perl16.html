@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl16</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>signal that there is no more content.</p>
+<h2 id="simple_request">simple_request</h2>
+<pre><code>my $request = HTTP::Request-&gt;new( ... );
+my $res = $ua-&gt;simple_request( $request );
+my $res = $ua-&gt;simple_request( $request, $content_file );
+my $res = $ua-&gt;simple_request( $request, $content_cb );
+my $res = $ua-&gt;simple_request( $request, $content_cb, $read_size_hint );</code></pre>
+<p>This method dispatches a single request and returns the response received. Arguments are the same as for the described above.</p>
+<p>The difference from is that <code>simple_request</code> will not try to handle redirects or authentication responses. The method will, in fact, invoke this method for each simple request it sends.</p>
+<h1 id="callback-methods">CALLBACK METHODS</h1>
+<p>The following methods will be invoked as requests are processed. These methods are documented here because subclasses of might want to override their behaviour.</p>
+<h2 id="get_basic_credentials">get_basic_credentials</h2>
+<pre><code># This checks wantarray and can either return an array:
+my ($user, $pass) = $ua-&gt;get_basic_credentials( $realm, $uri, $isproxy );
+# or a string that looks like &quot;user:pass&quot;
+my $creds = $ua-&gt;get_basic_credentials($realm, $uri, $isproxy);</code></pre>
+<p>This is called by to retrieve credentials for documents protected by Basic or Digest Authentication. The arguments passed in is the <code>$realm</code> provided by the server, the <code>$uri</code> requested and a <code>boolean flag</code> to indicate if this is authentication against a proxy server.</p>
+<p>The method should return a username and password. It should return an empty list to abort the authentication resolution attempt. Subclasses can override this method to prompt the user for the information. An example of this can be found in <code>lwp-request</code> program distributed with this library.</p>
+<p>The base implementation simply checks a set of pre-stored member variables, set up with the method.</p>
+<h2 id="prepare_request">prepare_request</h2>
+<pre><code>$request = $ua-&gt;prepare_request( $request );</code></pre>
+<p>This method is invoked by . Its task is to modify the given <code>$request</code> object by setting up various headers based</p>
+</body>
+</html>

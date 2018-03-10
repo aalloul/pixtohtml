@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>(counting from 1).</code></pre>
+<ul>
+<li><p>Footnotes: <kbd>C-c C-s f</kbd></p>
+<p><kbd>C-c C-s f</kbd> inserts a footnote marker at the point, inserts a footnote definition below, and positions the point for inserting the footnote text. Note that footnotes are an extension to Markdown and are not supported by all processors.</p></li>
+<li><p>Wiki Links: <kbd>C-c C-s w</kbd></p>
+<p><kbd>C-c C-s w</kbd> inserts a wiki link of the form <code>[[WikiLink]]</code>. If there is an active region, use the region as the link text. If the point is at a word, use the word as the link text. If there is no active region and the point is not at word, simply insert link markup. Note that wiki links are an extension to Markdown and are not supported by all processors.</p></li>
+<li><p>Markdown and Maintenance Commands: <kbd>C-c C-c</kbd></p>
+<p><em>Compile:</em> <kbd>C-c C-c m</kbd> will run Markdown on the current buffer and show the output in another buffer. <em>Preview</em>: <kbd>C-c C-c p</kbd> runs Markdown on the current buffer and previews, stores the output in a temporary file, and displays the file in a browser. <em>Export:</em> <kbd>C-c C-c e</kbd> will run Markdown on the current buffer and save the result in the file <code>basename.html</code>, where <code>basename</code> is the name of the Markdown file with the extension removed. <em>Export and View:</em> press <kbd>C-c C-c v</kbd> to export the file and view it in a browser. <em>Open:</em> <kbd>C-c C-c o</kbd> will open the Markdown source file directly using <code>markdown-open-command</code>. <em>Live Export</em>: Press <kbd>C-c C-c l</kbd> to turn on <code>markdown-live-preview-mode</code> to view the exported output side-by-side with the source Markdown. <strong>For all export commands, the output file will be overwritten without notice.</strong> <code>markdown-live-preview-window-function</code> can be customized to open in a browser other than <code>eww</code>. If you want to force the preview window to appear at the bottom or right, you can customize <code>markdown-split-window-direction</code>.</p>
+<p>To summarize:</p>
+<ul>
+<li><kbd>C-c C-c m</kbd>: <code>markdown-command</code> &gt; <code>*markdown-output*</code> buffer.</li>
+<li><kbd>C-c C-c p</kbd>: <code>markdown-command</code> &gt; temporary file &gt; browser.</li>
+<li><kbd>C-c C-c e</kbd>: <code>markdown-command</code> &gt; <code>basename.html</code>.</li>
+<li><kbd>C-c C-c v</kbd>: <code>markdown-command</code> &gt; <code>basename.html</code> &gt; browser.</li>
+<li><kbd>C-c C-c w</kbd>: <code>markdown-command</code> &gt; kill ring.</li>
+<li><kbd>C-c C-c o</kbd>: <code>markdown-open-command</code>.</li>
+<li><kbd>C-c C-c l</kbd>: <code>markdown-live-preview-mode</code> &gt; <code>*eww*</code> buffer.</li>
+</ul>
+<p><kbd>C-c C-c c</kbd> will check for undefined references. If there are</p></li>
+</ul>
+</body>
+</html>

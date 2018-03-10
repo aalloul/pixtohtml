@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>georgi_shinmun3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  + 2007
+  + 2008
+    + 9
+      + my-article.md
++ public
+  + styles.css
++ templates
+  + 404.rhtml
+  + archive.rhtml
+  + category.rhtml
+  + index.rhtml
+  + index.rxml
+  + layout.rhtml
+  + page.rhtml
+  + post.rhtml  </code></pre>
+<h3 id="blog-configuation">Blog configuation</h3>
+<p>In <code>config.ru</code> you can set the properties of your blog:</p>
+<pre><code>blog.config = {
+  :language =&gt; &#39;en&#39;,
+  :title =&gt; &quot;Blog Title&quot;,
+  :author =&gt; &quot;The Author&quot;,
+  :categories =&gt; [&quot;Ruby&quot;, &quot;Javascript&quot;],
+  :description =&gt; &quot;Blog description&quot;
+}</code></pre>
+<h3 id="templates">Templates</h3>
+<p>Layout and templates are rendered by <em>ERB</em>. The layout is defined in <code>templates/layout.rhtml</code>. The content will be provided in the variable <code>@content</code>. A minimal example:</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;&lt;%= @blog.title %&gt;&lt;/title&gt;
+    &lt;%= stylesheet_link_tag &#39;style&#39; %&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+     &lt;%= @content %&gt;
+  &lt;/body&gt;
+ &lt;/html&gt;</code></pre>
+<p>The attributes of a post are accessible via the <span class="citation" data-cites="post">@post</span> variable:</p>
+<pre><code>&lt;div class=&quot;article&quot;&gt;
+ 
+  &lt;h1&gt;&lt;%= @post.title %&gt;&lt;/h1&gt;</code></pre>
+</body>
+</html>

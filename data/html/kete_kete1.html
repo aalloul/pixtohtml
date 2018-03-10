@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kete_kete1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="kete-2.0">Kete 2.0</h1>
+<p>Kete is a knowledge basket of images, audio, video and documents which are collected and catalogued by the community.</p>
+<h2 id="deploy-to-your-own-heroku">Deploy to your own heroku</h2>
+<h2 id="important-note-for-kete-1.x-users">Important note for Kete 1.x users</h2>
+<p>There is no upgrade path from the old kete1 to kete2 yet. Patches are very welcome.</p>
+<h2 id="development-milestones">Development Milestones</h2>
+<h3 id="read-only-functionality">Read Only Functionality</h3>
+<ul>
+<li>there is a known issue where some links are broken on pages within Kete. These are pending investigation</li>
+</ul>
+<h3 id="user-accounts-and-createedit-functionality-on-items">User Accounts and Create/Edit Functionality on Items</h3>
+<p>next milestone</p>
+<h3 id="administrator-features-are-complete">Administrator features are complete</h3>
+<p>final milestone of this development phase</p>
+<h2 id="contributing">Contributing</h2>
+<p>The following is a brief summary how to setup Kete for development</p>
+<p>```sh git clone https://github.com/kete/kete cd kete git checkout kete2</p>
+<p>cp ./config/database.example.yml ./config/database.yml</p>
+<p>npm install # install grunt which is used to lint JS bundle # install gems bundle exec rspec # run specs bundle exec rake db:create # create databases bundle exec rake db:setup # includes db:schema:load and db:seed bundle exec rails server</p>
+</body>
+</html>

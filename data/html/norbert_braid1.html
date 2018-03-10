@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>norbert_braid1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="braid">Braid</h1>
+<p>Braid is a simple tool to help track git and svn vendor branches in a git repository.</p>
+<p>The project homepage is .</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>git 1.6+ (and git-svn if you want to mirror svn repositories)</li>
+<li>main &gt;= 4.2.0</li>
+<li>open4 &gt;= 1.0.1 (unless using jruby)</li>
+</ul>
+<h2 id="installing-using-rubygems---official-releases">Installing using rubygems - official releases</h2>
+<pre><code>gem install braid</code></pre>
+<h2 id="installing-from-source">Installing from source</h2>
+<pre><code>git clone git://github.com/evilchelu/braid.git
+cd braid
+bundle install
+rake install # possibly requiring sudo</code></pre>
+<h2 id="quick-usage---ruby-project">Quick usage - ruby project</h2>
+<p>Let’s assume we’re writing something like gitnub that needs grit in lib/grit. Initialize the repo (nothing braid related here):</p>
+<pre><code>git init gritty
+cd gritty
+touch README
+git add README
+git commit -m &quot;initial commit&quot;</code></pre>
+<p>Now let’s vendor grit:</p>
+<pre><code>braid add git://github.com/mojombo/grit.git lib/grit</code></pre>
+<p>And you’re done! Braid vendored grit into lib/grit. Feel free to inspect the changes with git log or git show.</p>
+<p>If further down the line, you want to bring new changes from grit in your repository, just update the mirror:</p>
+<pre><code>braid update lib/grit</code></pre>
+<h2 id="quick-usage---rails-project">Quick usage - rails project</h2>
+<p>Let’s assume you want to start a new rails app called shiny. Initialize the repo (nothing braid related here):</p>
+<pre><code>git init shiny</code></pre>
+</body>
+</html>

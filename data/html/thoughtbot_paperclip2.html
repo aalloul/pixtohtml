@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_paperclip2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><a href="#file-preservation-for-soft-delete">File Preservation for Soft-Delete</a></li>
+<li><a href="#dynamic-configuration">Dynamic Configuration</a>
+<ul>
+<li><a href="#dynamic-styles">Dynamic Styles:</a></li>
+<li><a href="#dynamic-processors">Dynamic Processors:</a></li>
+</ul></li>
+<li><a href="#logging">Logging</a></li>
+<li><a href="#deployment">Deployment</a>
+<ul>
+<li><a href="#attachment-styles">Attachment Styles</a></li>
+</ul></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#about-thoughtbot">About thoughtbot</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p>Paperclip is intended as an easy file attachment library for ActiveRecord. The intent behind it was to keep setup as easy as possible and to treat files as much like other attributes as possible. This means they aren’t saved to their final locations on disk, nor are they deleted if set to nil, until ActiveRecord::Base#save is called. It manages validations based on size and presence, if required. It can transform its assigned image into thumbnails if needed, and the prerequisites are as simple as installing ImageMagick (which, for most modern Unix-based systems, is as easy as installing the right packages). Attached files are saved to the filesystem and referenced in the browser by an easily understandable specification, which has sensible and useful defaults.</p>
+<p>See the documentation for <code>has_attached_file</code> in for more detailed options.</p>
+<p>The complete is online.</p>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<h3 id="ruby-and-rails">Ruby and Rails</h3>
+<p>Paperclip now requires Ruby version <strong>&gt;= 2.1</strong> and Rails version <strong>&gt;= 4.2</strong> (only if you’re going to use Paperclip with Ruby on Rails).</p>
+<h3 id="image-processor">Image Processor</h3>
+<p>must be installed and Paperclip must have access to it. To ensure that it does, on your command line, run <code>which convert</code> (one of the ImageMagick utilities). This will give you the path where that utility is installed. For example, it might return <code>/usr/local/bin/convert</code>.</p>
+<p>Then, in your environment config file, let Paperclip know to look there by adding that directory to its path.</p>
+</body>
+</html>

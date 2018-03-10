@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Shougo_neocomplcache.vim2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="omni-completion.">Omni completion.</h2>
+<p>!</p>
+<h2 id="completion-with-vimshellhttpgithub.comshougovimshell.">Completion with vimshell(http://github.com/Shougo/vimshell).</h2>
+<p>!</p>
+<h2 id="vim-completion">Vim completion</h2>
+<p>!</p>
+<p>Setting examples</p>
+<p>```vim “Note: This option must set it in .vimrc(_vimrc). NOT IN .gvimrc(_gvimrc)! &quot; Disable AutoComplPop. let g:acp_enableAtStartup = 0 &quot; Use neocomplcache. let g:neocomplcache_enable_at_startup = 1 &quot; Use smartcase. let g:neocomplcache_enable_smart_case = 1 &quot; Set minimum syntax keyword length. let g:neocomplcache_min_syntax_length = 3 let g:neocomplcache_lock_buffer_name_pattern = ‘*ku*’</p>
+<p>&quot; Enable heavy features. &quot; Use camel case completion. “let g:neocomplcache_enable_camel_case_completion = 1” Use underbar completion. “let g:neocomplcache_enable_underbar_completion = 1</p>
+<p>&quot; Define dictionary. let g:neocomplcache_dictionary_filetype_lists = {  ‘default’ : ’‘,  ’vimshell’ : $HOME.’/.vimshell_hist’,  ‘scheme’ : $HOME.’/.gosh_completions’  }</p>
+<p>&quot; Define keyword. if !exists(‘g:neocomplcache_keyword_patterns’) let g:neocomplcache_keyword_patterns = {} endif let g:neocomplcache_keyword_patterns[‘default’] = ‘’</p>
+<p>&quot; Plugin key-mappings. inoremap <expr><C-g> neocomplcache#undo_completion() inoremap <expr><C-l> neocomplcache#complete_common_string()</p>
+</body>
+</html>

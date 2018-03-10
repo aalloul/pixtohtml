@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ljcooke_dotfiles1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="my-configuration">My configuration</h1>
+<p>An accretion of configuration files.</p>
+<h2 id="install">Install</h2>
+<p>Clone the repository into <code>~/.myconf</code>:</p>
+<pre><code>$ git clone https://github.com/ljcooke/dotfiles.git ~/.myconf</code></pre>
+<p>Install the required fonts:</p>
+<ul>
+<li>(look for the ‘Roman fonts’ download)</li>
+</ul>
+<p>Set up symlinks:</p>
+<ul>
+<li><p>Bash:</p>
+<pre><code>$ ln -s .myconf/bash $HOME/.bash
+$ ln -s .bash/bashrc $HOME/.bashrc
+$ ln -s .bash/bash_profile $HOME/.bash_profile</code></pre></li>
+<li><p>Vim:</p>
+<pre><code>$ ln -s .myconf/vim $HOME/.vim
+$ maintenance/vim-help-update</code></pre></li>
+</ul>
+<p>Additional configuration is detailed in other documents:</p>
+<ul>
+<li><p><a href="git/README.md">Git</a></p></li>
+<li><p><a href="macos/README.md">macOS</a></p></li>
+<li><p><a href="sublime/README.md">Sublime Text</a></p></li>
+</ul>
+<h2 id="bash">Bash</h2>
+<p>Local bash settings can be stored in <code>~/.bashrc.local</code>. This file will be sourced by <code>~/.bashrc</code>.</p>
+<h2 id="vim">Vim</h2>
+<p>Plugins are stored in the <code>vim/bundle</code> directory, which is symlinked from <code>vim/pack/bundle/start</code>. These are loaded natively in Vim 8 (using the <em>packages</em> feature); Pathogen is used as a fallback in Vim 7.</p>
+<p>Plugins that are available via git can be managed using the <code>git-subtree</code> feature. There is a script to make this easy to use. To install a new plugin named <code>foo</code>:</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tckz_redmine-wiki_graphviz_plugin3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    * The plugin uses fork() and IO.pipe to capture STDERR which holds error message output from Gv.
+* The other one is using external dot command which is on the PATH.
+    * For Windows system, Only this way of setting is available.
+    * The dot command is executed twice by the plugin when one graph is rendered. First one to render the image. Second one to create clickable map.</code></pre>
+<ul>
+<li><p>Example of installed graphviz package.</p>
+<pre><code>```</code></pre>
+e.g.) CentOS 5.5 using Gv. graphviz-2.26.3-1.el5 graphviz-gd-2.26.3-1.el5 graphviz-ruby-2.26.3-1.el5 e.g.) Ubuntu (10.04) using Gv. graphviz graphviz-dev libgv-ruby e.g.) Windows XP Pro SP3(ja) using external dot command. graphviz-2.26.3 ```</li>
+<li><p>memcached (optional)</p></li>
+</ul>
+<h2 id="getting-the-plugin">Getting the plugin</h2>
+<p>https://github.com/tckz/redmine-wiki_graphviz_plugin</p>
+<p>e.g.)</p>
+<pre><code>git clone git://github.com/tckz/redmine-wiki_graphviz_plugin.git wiki_graphviz_plugin</code></pre>
+<h2 id="install">Install</h2>
+<ol type="1">
+<li><p>Copy the plugin tree into #{RAILS_ROOT}/plugins/</p>
+<pre><code>#{RAILS_ROOT}/plugins/
+    wiki_graphviz_plugin/</code></pre></li>
+<li><p>Make sure the temporary directory writable by the process of redmine.</p>
+<pre><code>#{RAILS_ROOT}/tmp/</code></pre>
+<p>This plugin try to create follwing directory and create tmporary file under it.</p>
+<pre><code>#{RAILS_ROOT}/tmp/wiki_graphviz_plugin/</code></pre></li>
+</ol>
+</body>
+</html>

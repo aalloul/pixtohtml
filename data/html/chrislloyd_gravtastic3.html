@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chrislloyd_gravtastic3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&lt;td&gt;gif, jpg or png&lt;/td&gt;</code></pre>
+</tr>
+</table>
+<h3 id="other-orms">Other ORMs</h3>
+<p>Gravatar is really just simple Ruby. There is no special magic which ties it to one ORM (like ActiveRecord or MongoMapper). You can use the following pattern to include it anywhere:</p>
+<pre><code>require &#39;gravtastic&#39;
+class MyClass
+  include Gravtastic
+  is_gravtastic
+end</code></pre>
+<p>For instance, with the excellent you can use do this:</p>
+<pre><code>class Person
+  include MongoMapper::Document
+  include Gravtastic
+
+  is_gravtastic
+
+  key :email
+end</code></pre>
+<p>And wallah! It’s exactly the same as with ActiveRecord! Now all instances of the <code>Person</code> class will have <code>#gravatar_url</code> methods.</p>
+<p><em>Note: the <code>#gravatar_url</code> methods don’t get included until you specify the class <code>is_gravtastic!</code></em></p>
+<h2 id="javascript">Javascript</h2>
+<p><em>Note: this feature requires Rails 3.1 &amp; CoffeeScript.</em></p>
+<p>Web applications are increasingly performing client side rendering in Javascript. It’s not always practical or clean to calculate the <code>gravatar_url</code> on the server. As of version 3.2, Gravtastic comes bundled with Javascript helpers.</p>
+<p>If you are using Rails 3.1 you can simple require Gravtastic in your <code>Gemfile</code> and add</p>
+<pre><code>//= require gravtastic</code></pre>
+<p>in your <code>application.js</code> file. This will include a function, <code>Gravtastic</code> which performs similarly to <code>gravtastic_url</code>.</p>
+<pre><code>&gt; Gravtastic(&#39;christopher.lloyd@gmail.com&#39;)
+  &quot;https://secure.gravatar.com/avatar/08f077ea061585744ee080824f5a8e65.png?r=PG&quot;
+&gt; Gravtastic(&#39;christopher.lloyd@gmail.com&#39;, {default: &#39;identicon&#39;, size: 64})
+  &quot;https://secure.gravatar.com/avatar/08f077ea061585744ee080824f5a8e65.png?r=PG&amp;d=identicon&amp;s=64&quot;</code></pre>
+<h2 id="making-changes-yourself">Making Changes Yourself</h2>
+</body>
+</html>

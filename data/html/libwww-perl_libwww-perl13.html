@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl13</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>:read_size_hint =&gt; $bytes</code></pre>
+<p>If a $filename is provided with the <code>:content_file</code> option, then the response content will be saved here instead of in the response object. If a callback is provided with the <code>:content_cb</code> option then this function will be called for each chunk of the response content as it is received from the server. If neither of these options are given, then the response content will accumulate in the response object itself. This might not be suitable for very large response bodies. Only one of <code>:content_file</code> or <code>:content_cb</code> can be specified. The content of unsuccessful responses will always accumulate in the response object itself, regardless of the <code>:content_file</code> or <code>:content_cb</code> options passed in. Note that errors writing to the content file (for example due to permission denied or the filesystem being full) will be reported via the <code>Client-Aborted</code> or <code>X-Died</code> response headers, and not the <code>is_success</code> method.</p>
+<p>The <code>:read_size_hint</code> option is passed to the protocol module which will try to read data from the server in chunks of this size. A smaller value for the <code>:read_size_hint</code> will result in a higher number of callback invocations.</p>
+<p>The callback function is called with 3 arguments: a chunk of data, a reference to the response object, and a reference to the protocol object. The callback can abort the request by invoking die(). The exception message will show up as the “X-Died” header field in the response returned by the get() function.</p>
+<h2 id="head">head</h2>
+<pre><code>my $res = $ua-&gt;head( $url );
+my $res = $ua-&gt;head( $url , $field_name =&gt; $value, ... );</code></pre>
+<p>This method will dispatch a <code>HEAD</code> request on the given URL. Otherwise it works like the method described above.</p>
+<h2 id="is_protocol_supported">is_protocol_supported</h2>
+<pre><code>my $bool = $ua-&gt;is_protocol_supported( $scheme );</code></pre>
+<p>You can use this method to test whether this user agent object supports the specified <code>scheme</code>. (The <code>scheme</code> might be a string (like <code>http</code> or <code>ftp</code>) or it might be an</p>
+<p>Whether a scheme is supported is determined by the user agent’s <code>protocols_allowed</code> or <code>protocols_forbidden</code> lists (if any), and by the capabilities of LWP. I.e., this will return true only if LWP supports this protocol <em>and</em> it’s permitted for this particular object.</p>
+</body>
+</html>

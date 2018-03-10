@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>janfri_mini_exiftool3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The philosophy of MiniExiftool is safety over performance. It can not handle more than one file at once. Writing operations are executed on a copy of the original file to have atomar writing: Either all changed values are written or none. To be able to assign errors to a specific tag writing operations also call the Exiftool command-line application once for each changed tag!</p>
+<p>In short: MiniExiftool has a very bad performance especially at write operations.</p>
+<p><strong>If you work with many files it is strongly recommended not to use MiniExiftool but instead my other gem . This is designed to handle many files and do reading and writing fast.</strong></p>
+<h2 id="encodings">Encodings</h2>
+<p>In MiniExiftool all strings are encoded in UTF-8. If you need other encodings in your project use the String#encod* methods.</p>
+<p>If you have problems with corrupted strings when using MiniExiftool there are two reasons for this:</p>
+<h3 id="internal-character-sets">Internal character sets</h3>
+<p>You can specify the charset in which the meta data is in the file encoded if you read or write to some sections of meta data (i.e. IPTC, XMP …). It exists various options of the form *_encoding: exif, iptc, xmp, png, id3, pdf, photoshop, quicktime, aiff, mie and vorbis.</p>
+<p>For IPTC meta data it is recommended to set also the CodedCharacterSet tag.</p>
+<p>Please read the section about the character sets of the ExifTool command line application carefully to understand what’s going on (http://www.sno.phy.queensu.ca/~phil/exiftool/faq.html#Q10)!</p>
+<p>```ruby # Using UTF-8 as internal encoding for IPTC tags and MacRoman # as internal encoding for EXIF tags photo = MiniExiftool.new(‘photo.jpg’, iptc_encoding: ‘UTF8’, exif_encoding: ‘MacRoman’ # IPTC CaptionAbstract is already UTF-8 encoded puts photo.caption_abstract # EXIF Comment is converted from MacRoman to UTF-8 puts photo.comment</p>
+<p>photo = MiniExiftool.new(‘photo.jpg’, iptc_encoding: ‘UTF8’, exif_encoding: ‘MacRoman’ # When saving IPTC data setting CodedCharacterSet as recommended photo.coded_character_set = ‘UTF8’ # IPTC CaptionAbstract will be stored in UTF-8 encoding</p>
+</body>
+</html>

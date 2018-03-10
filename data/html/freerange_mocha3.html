@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>freerange_mocha3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Note: As of version 0.9.8, the Mocha plugin is not automatically setup at plugin load time. Instead it must be manually setup e.g. at the bottom of your <code>test_helper.rb</code>.</p>
+<h5 id="minitest">MiniTest</h5>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># At bottom of test_helper.rb (or at least after `require &#39;rails/test_help&#39;`)</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">require <span class="st">&#39;mocha/minitest&#39;</span></a></code></pre></div>
+<h4 id="known-issues">Known Issues</h4>
+<ul>
+<li>In Mocha v1.2.0 there is a scenario where stubbing a class method originally defined in a module hangs the Ruby interpreter due to . See #272. This was fixed in Mocha v1.2.1.</li>
+<li>Since v1.1.0 Mocha has used prepended modules internally for stubbing methods. There is versions of Ruby between v2.0 &amp; v2.3 which under certain circumstances may cause your Ruby interpreter to hang. See the Ruby bug report for more details. The bug has been fixed in Ruby v2.3.3 &amp; v2.4.0.</li>
+<li>Stubbing an aliased class method, where the original method is defined in a module that’s used to <code>extend</code> the class doesn’t work in Ruby 1.8.x. See stub_method_defined_on_module_and_aliased_test.rb for an example of this behaviour.</li>
+<li>0.13.x versions cause a harmless, but annoying, deprecation warning when used with Rails 3.2.0-3.2.12, 3.1.0-3.1.10 &amp; 3.0.0-3.0.19.</li>
+<li>0.11.x versions don’t work with Rails 3.2.13 (<code>TypeError: superclass mismatch for class ExpectationError</code>). See #115.</li>
+<li>Versions 0.10.2, 0.10.3 &amp; 0.11.0 of the Mocha gem were broken. Please do not use these versions.</li>
+<li>Versions 0.9.6 &amp; 0.9.7 of the Mocha Rails plugin were broken. Please do not use these versions.</li>
+</ul>
+<h3 id="usage">Usage</h3>
+<h4 id="quick-start">Quick Start</h4>
+<p>```ruby require ‘test/unit’ require ‘mocha/test_unit’</p>
+<p>class MiscExampleTest &lt; Test::Unit::TestCase def test_mocking_a_class_method product = Product.new Product.expects(:find).with(1).returns(product) assert_equal product, Product.find(1) end</p>
+<p>def test_mocking_an_instance_method_on_a_real_object product = Product.new product.expects(:save).returns(true) assert product.save end</p>
+<p>def test_stubbing_instance_methods_on_real_objects prices = [stub(:pence =&gt; 1000), stub(:pence =&gt; 2000)] product = Product.new product.stubs(:prices).returns(prices) assert_equal [1000, 2000], product.prices.collect {|p| p.pence} end</p>
+<p>def test_stubbing_an_instance_method_on_all_instances_of_a_class Product.any_instance.stubs(:name).returns(‘stubbed_name’) product = Product.new</p>
+</body>
+</html>

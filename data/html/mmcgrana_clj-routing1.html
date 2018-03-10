@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mmcgrana_clj-routing1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><code>clj-routing</code> is a library for implementing fast, 2-way URL routing in Clojure web applications.</p>
+<p>The library allows you to separate the core routing implementation (handled by <code>clj-routing</code>) from the interface or DSL for describing routes (typically handled by a web framework).</p>
+<h2 id="usage">Usage</h2>
+<pre><code>(use &#39;clj-routing.core)
+
+(def routes
+  [[:index-bars  :get &quot;/foo/bars&quot;                         ]
+   [:show-bar    :get &quot;/foo/bars/:id&quot;                     ]
+   [:create-bat  :put &quot;/foo/bars&quot;                         ]
+   [:with-conds  :get &quot;/foo/:action&quot; {:action &quot;biz|bats&quot;} ]
+   [:catch-all   :any &quot;/:path&quot;       {:path   &quot;.*&quot;}       ]])
+
+(def generate  (compiled-generator  routes))
+(def recognize (compiled-recognizer routes))
+
+(generate :index-bars)
+=&gt; [:get &quot;/foo/bars&quot; nil]
+
+(generate :show-bar {:id &quot;theid&quot;})
+=&gt; [:get &quot;/foo/bars/theid&quot; {}]
+
+(generate :show-bar {:id &quot;theid&quot; :more &quot;extra&quot;})
+=&gt; [:get &quot;/foo/bars/theid&quot; {:more &quot;extra&quot;}]
+
+(generate :show-bar)
+=&gt; Exception: &quot;Missing param: :id&quot;
+
+(generate :foo-bar)
+=&gt; Exception: &quot;Unrecognized route name: :foo-bar&quot; 
+
+(recognize :get &quot;/foo/bars&quot;)
+=&gt; [:index-bars {}]
+
+(recognize :get &quot;/foo/bars/bat&quot;)
+=&gt; [:show-bar {:id &quot;bat&quot;}]
+
+(recognize :get &quot;/foo/biz&quot;)
+=&gt; [:with-conds {:action &quot;biz&quot;}]
+
+(recognize :get &quot;/foo/fiz&quot;)
+=&gt; [:catch-all {:path &quot;foo/fiz&quot;}]
+
+(recognize :foo &quot;/foo/bars&quot;)
+=&gt; Exception: &quot;Unrecognized method: :foo&quot;</code></pre>
+<p>Please see the <code>clj-routing.core</code> docstring and the <code>clj-routing.core-test</code> code for additional documentation.</p>
+</body>
+</html>

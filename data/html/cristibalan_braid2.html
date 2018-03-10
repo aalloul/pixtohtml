@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cristibalan_braid2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Let’s assume we’re writing the project <code>myproject</code> that needs grit in lib/grit. Initialize the repo (nothing braid related here):</p>
+<pre><code>git init myproject
+cd myproject
+touch README
+git add README
+git commit -m &quot;initial commit&quot;</code></pre>
+<p>Now let’s vendor grit:</p>
+<pre><code>braid add git://github.com/mojombo/grit.git lib/grit</code></pre>
+<p>And you’re done! Braid vendored grit into lib/grit. Feel free to inspect the changes with git log or git show.</p>
+<p>If further down the line, you want to bring new changes from grit into your repository, just update the mirror:</p>
+<pre><code>braid update lib/grit</code></pre>
+<p>If you make changes to the grit library and want to generate a patch file so that you can submit the patch file to the grit project:</p>
+<pre><code>braid diff lib/grit &gt; grit.patch</code></pre>
+<p>Alternatively you can push changes back to the source directory directly using the following command. The command will push the changes to the branch <code>myproject_customizations</code> that has been branched off the source branch (<code>master</code> in this example). Omit the <code>--branch</code> argument to push directly to the source branch.</p>
+<pre><code>braid push lib/grit --branch myproject_customizations</code></pre>
+<p>Once those changes have been applied to grit you probably want to update your local version of grit again.</p>
+<pre><code>braid update lib/grit</code></pre>
+<h2 id="more-usage">More usage</h2>
+<p>Use the built in help system to find out about all commands and options:</p>
+<pre><code>braid help
+braid help add # or braid add --help</code></pre>
+<h3 id="examples">Examples</h3>
+<h4 id="adding-a-mirror">Adding a mirror</h4>
+<pre><code>braid add git://github.com/rails/rails.git vendor/rails</code></pre>
+<h4 id="adding-a-subdirectory-from-a-mirror">Adding a subdirectory from a mirror</h4>
+<p>This is useful if you want to add a subdirectory from a mirror into your own project.</p>
+</body>
+</html>

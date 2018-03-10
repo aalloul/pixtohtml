@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>spree_spree5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre class="shell"><code>cd sandbox
+rails server</code></pre>
+<h3 id="running-tests">Running Tests</h3>
+<p>We use to run the tests for Spree.</p>
+<p>You can see the build statuses at .</p>
+<hr />
+<p>Each gem contains its own series of tests, and for each directory, you need to do a quick one-time creation of a test application and then you can use it to run the tests. For example, to run the tests for the core project.</p>
+<pre class="shell"><code>cd core
+BUNDLE_GEMFILE=../Gemfile bundle exec rake test_app
+bundle exec rspec spec</code></pre>
+<p>If you would like to run specs against a particular database you may specify the dummy app’s database, which defaults to sqlite3.</p>
+<pre class="shell"><code>DB=postgres bundle exec rake test_app</code></pre>
+<p>If you want to run specs for only a single spec file</p>
+<pre class="shell"><code>bundle exec rspec spec/models/spree/state_spec.rb</code></pre>
+<p>If you want to run a particular line of spec</p>
+<pre class="shell"><code>bundle exec rspec spec/models/spree/state_spec.rb:7</code></pre>
+<p>You can also enable fail fast in order to stop tests at the first failure</p>
+<pre class="shell"><code>FAIL_FAST=true bundle exec rspec spec/models/state_spec.rb</code></pre>
+<p>If you want to run the simplecov code coverage report</p>
+<pre class="shell"><code>COVERAGE=true bundle exec rspec spec</code></pre>
+<p>If you’re working on multiple facets of Spree to test,</p>
+</body>
+</html>

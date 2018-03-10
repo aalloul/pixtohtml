@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>radiant_radiant-event-calendar-extension2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="subscribing-to-a-calendar">Subscribing to a calendar</h3>
+<ol type="1">
+<li>Create a calendar source. You can do that by publishing a feed from your desktop calendar application, by making a google calendar public or by setting up a CalDAV calendar and persuading all the right people to subscribe to it.</li>
+<li>Find the ical subscription address of your calendar.</li>
+<li>Choose ‘new calendar’ in the radiant admin menu and enter the address and any authentication information you need to get at it. See below for notes about connecting to CalDAV. In the case of an ical file or google calendar you should only need an address. Give the calendar a slug, just as you would for a page, and optionally a category. Let’s say you call it ‘test’.</li>
+<li>Your calendar should appear in the subscription list. Click through to browse its events and make sure everything is as it should be.</li>
+</ol>
+<h3 id="adding-events-manually">Adding events manually</h3>
+<p>Should be obvious. There are a few points to remember:</p>
+<ul>
+<li>Event venues are expected to be reused, so they present as a list with the option to add a new one.</li>
+<li>The postcode field is a convenience for geocoding purposes. You can leave it blank unless you’re mapping and your locations are a bit odd.</li>
+<li>Recurrence is for the repetition of identical separate events. A single event that spans several days only needs to have the right start and end times.</li>
+<li>End times are optional: an event with just a start time is just listed where it begins.</li>
+</ul>
+<h3 id="displaying-events-with-an-eventcalendar-page">Displaying events with an EventCalendar page</h3>
+<p>This is the preferred method. Set up a new page at /events/ with the type ‘EventCalendar’. To show a pageable calendar view of the current month, all you need is this:</p>
+<pre><code>&lt;r:events:as_calendar month=&quot;now&quot; month_links=&quot;true&quot; /&gt;</code></pre>
+<p>Or to show a list of all events in the next six months:</p>
+<pre><code>&lt;p&gt;&lt;r:calendars:summary /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;event_list&quot;&gt;
+  &lt;r:events:each calendar_months=&quot;6&quot;&gt;
+    &lt;r:event:header name=&quot;date&quot;&gt;
+      &lt;h2 id=&quot;&lt;r:event:year /&gt;_&lt;r:event:month /&gt;&quot;&gt;&lt;r:event:month /&gt; &lt;r:event:year /&gt;&lt;/h2&gt;
+    &lt;/r:event:header&gt;
+    &lt;p id=&quot;event_&lt;r:event:id /&gt;&quot;&gt;
+      &lt;acronym class=&quot;date&quot;&gt;
+        &lt;r:event:day_ordinal /&gt;
+      &lt;/acronym&gt;
+      &lt;r:event:link class=&quot;title&quot; /&gt;
+      &lt;r:event:if_location&gt;
+        &lt;span class=&quot;location&quot;&gt;&lt;r:event:location /&gt;&lt;/span&gt;
+      &lt;/r:event:if_location&gt;
+      &lt;r:event:if_description&gt;
+        &lt;br /&gt;
+        &lt;span class=&quot;description&quot;&gt;&lt;r:event:description /&gt;&lt;/span&gt;
+      &lt;/r:event:if_description&gt;
+    &lt;/p&gt;
+  &lt;/r:events:each&gt;
+&lt;/div&gt;  </code></pre>
+<p>Note that the <code>event:header</code> tag only shows when it changes, which in this case gives you a non-repeating date slip. For more about the available radius tags, see the extension wiki or the ‘available tags’ documentation.</p>
+</body>
+</html>

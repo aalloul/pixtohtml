@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>showaltb_shoulda1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="shoulda">shoulda</h1>
+<p>The shoulda gem is a meta gem with two dependencies:</p>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<p>Official documentation for each gem:</p>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<p>The following describes different use cases and combinations.</p>
+<h2 id="rspec-with-shoulda-matchers">rspec with shoulda-matchers</h2>
+<p>This is what thoughtbot currently does. We write tests like:</p>
+<pre><code>describe Post do
+  it { should belong_to(:user) }
+  it { should validate_presence_of(:title) }
+end</code></pre>
+<p>The belong_to and validate_presence_of methods are the matchers. All matchers are Rails 3-specific.</p>
+<p>Add rspec-rails and shoulda-matchers to the project’s Gemfile:</p>
+<pre><code>group :test do
+  gem &#39;rspec-rails&#39;
+  gem &#39;shoulda-matchers&#39;
+end</code></pre>
+<h2 id="testunit-with-shoulda">test/unit with shoulda</h2>
+<p>For the folks who prefer Test::Unit, they’d write tests like:</p>
+<pre><code>class UserTest &lt; Test::Unit::TestCase
+  should have_many(:posts)
+  should_not allow_value(&quot;blah&quot;).for(:email)
+end</code></pre>
+<p>The have_many and allow_value methods are the same kind of matchers seen in the RSpec example. They come from the shoulda-matchers gem.</p>
+<p>Add shoulda to the project’s Gemfile:</p>
+<pre><code>group :test do</code></pre>
+</body>
+</html>

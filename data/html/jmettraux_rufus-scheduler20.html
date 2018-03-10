@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmettraux_rufus-scheduler20</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="schedulerdown">Scheduler#down?</h3>
+<p>Returns true if the scheduler has been shut down.</p>
+<h3 id="schedulerstarted_at">Scheduler#started_at</h3>
+<p>Returns the Time instance at which the scheduler got started.</p>
+<h3 id="scheduler-uptime-uptime_s">Scheduler #uptime / #uptime_s</h3>
+<p>Returns since the count of seconds for which the scheduler has been running.</p>
+<p><code>#uptime_s</code> returns this count in a String easier to grasp for humans, like <code>&quot;3d12m45s123&quot;</code>.</p>
+<h3 id="schedulerjoin">Scheduler#join</h3>
+<p>Let’s the current thread join the scheduling thread in rufus-scheduler. The thread comes back when the scheduler gets shut down.</p>
+<h3 id="schedulerthreads">Scheduler#threads</h3>
+<p>Returns all the threads associated with the scheduler, including the scheduler thread itself.</p>
+<h3 id="schedulerwork_threadsqueryallactivevacant">Scheduler#work_threads(query=:all/:active/:vacant)</h3>
+<p>Lists the work threads associated with the scheduler. The query option defaults to :all.</p>
+<ul>
+<li>:all : all the work threads</li>
+<li>:active : all the work threads currently running a Job</li>
+<li>:vacant : all the work threads currently not running a Job</li>
+</ul>
+<p>Note that the main schedule thread will be returned if it is currently running a Job (ie one of those :blocking =&gt; true jobs).</p>
+<h3 id="schedulerscheduledjob_or_job_id">Scheduler#scheduled?(job_or_job_id)</h3>
+<p>Returns true if the arg is a currently scheduled job (see Job#scheduled?).</p>
+<h3 id="scheduleroccurrencestime0-time1">Scheduler#occurrences(time0, time1)</h3>
+<p>Returns a hash <code>{ job =&gt; [ t0, t1, ... ] }</code> mapping jobs to their potential trigger time within the <code>[ time0, time1 ]</code> span.</p>
+<p>Please note that, for interval jobs, the <code>#mean_work_time</code> is used, so the result is only a prediction.</p>
+<h3 id="schedulertimelinetime0-time1">Scheduler#timeline(time0, time1)</h3>
+<p>Like <code>#occurrences</code> but returns a list <code>[ [ t0, job0 ], [ t1, job1 ], ... ]</code> of time + job pairs.</p>
+<h2 id="dealing-with-job-errors">dealing with job errors</h2>
+</body>
+</html>

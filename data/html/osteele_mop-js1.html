@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>osteele_mop-js1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="javascript-mop-utilities">JavaScript MOP Utilities</h1>
+<p>This library defines utilities for JavaScript metaprogramming. See the specs for examples.</p>
+<h2 id="status">Status</h2>
+<p>This library predates, and has not been updated for, ECMAScript 5’s getters, setters, and <code>Object.defineProperty</code> method.</p>
+<h2 id="method-definition-methods">Method Definition Methods</h2>
+<pre><code>MOP.Object(object).accessor(propertyName)
+MOP.Class(klass).accessor(propertyName)</code></pre>
+<p>Attaches <code>getXXX</code> and <code>setXXX</code> to <code>object</code> or to <code>klass.prototype</code>. <code>XXX</code> is the capitalized form of <code>propertyName</code>; for example, <code>name</code> generates <code>getName</code> and <code>setName</code>.</p>
+<pre><code>MOP.Object(object).getter(propertyName)
+MOP.Class(klass).getter(propertyName)</code></pre>
+<p>Attaches <code>getXXX</code> to <code>object</code> or to <code>klass.prototype</code>. <code>XXX</code> is the capitalized form of <code>propertyName</code>; for example, <code>name</code> generates <code>getName</code>.</p>
+<pre><code>MOP.Object(object).delegate(propertyName, methods)
+MOP.Class(klass).delegate(propertyName, methods)</code></pre>
+<p>For each name in <code>methods</code>, defines a method on <code>object</code> or <code>klass.prototype</code> with this name, that delegates to the method of the <code>propertyName</code> property of <code>object</code> with the same name.</p>
+<h2 id="method-wrapper-methods">Method Wrapper Methods</h2>
+<pre><code>MOP.Object(object).method(methodName).guardBy(guardFn)
+MOP.Class(klass).method(methodName).guardBy(guardFn)</code></pre>
+<p>Replaces <code>object.methodName</code> by a method that calls the underlying method only if <code>guardFn</code>, applied to the same arguments, returns a true value.</p>
+<pre><code>MOP.Object(object).method(methodName).guardUntil(guardFn, ms)
+MOP.Class(klass).method(methodName).guardUntil(guardFn, ms)</code></pre>
+<p>A call to <code>object.methodName</code> causes a timer to periodically call <code>guardFn</code> until it returns a true value, at which point the underlying function is called, and the timer stops.</p>
+<pre><code>MOP.Object(object).method(methodName).time(guardFn)</code></pre>
+</body>
+</html>

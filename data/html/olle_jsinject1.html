@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>olle_jsinject1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jsinject">JSInject</h1>
+<p>JSInject is a dependency injection library and an IoC (Inversion of Control) container for JavaScript. It has no dependencies to other JavaScript libraries or frameworks.</p>
+<h2 id="features">Features:</h2>
+<ul>
+<li>Application context (IoC container)</li>
+<li>Bean wiring factory</li>
+<li>Constructor arguments</li>
+<li>Support for bean properties</li>
+<li>Referenced bean properties</li>
+<li>Inner (anonymous) bean properties</li>
+<li>Supports bean scopes</li>
+<li>Singleton bean scope (default)</li>
+<li>Prototype bean scope</li>
+</ul>
+<h3 id="quick-guide">Quick Guide</h3>
+<h4 id="usage">Usage:</h4>
+<p>Beans can be wired from a JSON bean configuration.</p>
+<pre><code>JSInject.wireBeans({
+  foo : {
+     type : FooClass, 
+     args : [&#39;arg1&#39;, &#39;arg2&#39;],
+     props : {
+       &#39;myBar&#39; : {ref : &#39;bar&#39;}
+     }
+  },
+  bar : {
+     type : BarClass, 
+     props : {
+       &#39;myBaz&#39; : {type : BazClass}
+     }
+  }
+});</code></pre>
+<p>And referred to in the application context by unique name.</p>
+<pre><code>var foo = JSInject.getBean(&#39;foo&#39;);
+var bar = JSInject.getBean(&#39;bar&#39;);</code></pre>
+<p>More information can be found in the project documentation.</p>
+<h3 id="developer-information">Developer Information</h3>
+</body>
+</html>

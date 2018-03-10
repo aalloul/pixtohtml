@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sickill_off-plugin1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<hr>
+<h1 style="color: #FF0000">
+Looking for maintainers, who want to take over the development!
+</h1>
+<hr>
+<h1>
+Open File Fast
+</h1>
+<h2>
+Introduction
+</h2>
+<p>
+<strong>Open File Fast</strong> is a plugin for <a href="http://netbeans.org">Netbeans IDE</a> which allows you to quickly find and open files in your projects.
+</p>
+<p>
+It is inspired by <a href="http://macromates.com/">Textmate’s</a> quick open file dialog. However, it has a lot more features. Basically it works like this: you type only several characters of filename you are searching for and you get list of all files matching your pattern. For example, when you are looking for FooBar.java you can type <em>fbj</em> and you will find it. It really helps navigating through the project (especially bigger ones) as you don’t need to use a mouse nor locate a filename visually in project tree but just use filename shortcuts.
+</p>
+<h2>
+Download
+</h2>
+<p>
+You can download the plugins from the <a href="https://github.com/sickill/off-plugin/releases">releases page</a>.<br> The NetBeans plugin can be downloaded from the NetBeans Plugin Portal <a href="http://plugins.netbeans.org/plugin/16495/open-file-fast">≤8.0</a>, <a href="http://plugins.netbeans.org/plugin/63478/open-file-fast">≥8.1</a>
+</p>
+<h2>
+Key features of Open File Fast
+</h2>
+<ul>
+<li>
+Quick finding and opening any file from selected project
+</li>
+<li>
+Two matching modes:
+<ul>
+<li>
+<em>Smart</em> (like in Textmate, matching filenames must contain all typed characters, they can be separated by other characters)
+</li>
+<li>
+<em>Exact</em> (like Netbeans’ Go-To-File, matching filenames must contain exact phrase)
+</li>
+</ul>
+</li>
+<li>
+Matching from start of filename or anywhere in filename
+</li>
+<li>
+Support for * wildcard in <em>exact</em> mode
+</li>
+<li>
+Changing minimum entered pattern length needed for searching (default: 3)
+</li>
+<li>
+Changing delay (time from last keystroke) after which searching starts (default: 300ms)
+</li>
+<li>
+Optional cleaning of search input field when O-F-F window opens
+</li>
+<li>
+Hiding files you don’t work on (matching specified regular expresions) from results
+</li>
+<li>
+Moving less important files (matching specified regular expresions) to the bottom of results list
+</li>
+<li>
+Results sorted by:
+<ul>
+<li>
+File popularity (files opened frequently at the top of list)
+</li>
+<li>
+Match accuracy (distance between characters from search phrase in matched filenames)
+</li>
+</ul>
+</li>
+<li>
+Opening multiple files at once (selected with ctrl/shift + mouse)
+</li>
+<li>
+Switching between search history entries by CTRL-Up/CTRL-Down
+</li>
+</ul>
+<h2>
+Usage
+</h2>
+<p>
+Open File Fast plugin installs itself in Netbeans’ <i>Navigate</i> menu as <i>Open File Fast</i>. I recommend creating a keyboard shortcut for it in <em>Tools/Options/Keymap/Project</em>.
+</p>
+<p>
+When invoked, it opens a search dialog. Type <em>some</em> characters from filename you want to find. <em>Some</em> as you may skip any characters you want. Use * as a placeholder for any text. You can narrow down the search to files in specified directory by typing a directory prefix followed by slash and then a filename pattern.
+</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1857095/13906271/9b8c8004-eed2-11e5-8a16-25e5445eb51f.png"></p>
+<p>
+For example, type:
+</p>
+<ul>
+<li>
+<em>user</em> when looking for <em>user.rb</em> or <em>UberServer.java</em>
+</li>
+<li>
+<em>ush</em> when looking for <em>users_helper.rb</em>
+</li>
+<li>
+<em><em>.js</em> when you want to list all javascript files (<em></em></em> is not needed here if “Matching from start of filename” is turned off in preferences)
+</li>
+<li>
+<em>a/m/</em> when you want to list all files in <em>app/models</em> directory
+</li>
+<li>
+<em>a/v/s</em> when you are looking for <em>show.html</em> in <em>app/views</em> directory
+</li>
+</ul>
+<h2>
+Configuration
+</h2>
+</body>
+</html>

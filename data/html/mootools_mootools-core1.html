@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mootools_mootools-core1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mootools-core">MooTools Core</h1>
+<hr />
+<p>This repository is for MooTools developers; not users. All users should download MooTools from</p>
+<hr />
+<h2 id="contribute">Contribute</h2>
+<p>You are welcome to contribute to MooTools! What we ask of you:</p>
+<ol type="a">
+<li><p><strong>To report a bug:</strong></p>
+<ol type="1">
+<li>Create a with the minimal amount of code to reproduce the bug.</li>
+<li>Create a , and link to the jsFiddle.</li>
+</ol></li>
+<li><p><strong>To fix a bug:</strong></p>
+<ol type="1">
+<li>Clone the repo.</li>
+<li>Add a .</li>
+<li>Fix the bug.</li>
+<li>Build and run the specs.</li>
+<li>Push to your GitHub fork.</li>
+<li>Create Pull Request, and send Pull Request.</li>
+</ol></li>
+</ol>
+<p><strong>Do try to contribute!</strong> This is a community project.</p>
+<h2 id="building-testing">Building &amp; Testing</h2>
+<p>Current build process uses .</p>
+<p><strong>By default</strong>, the build process runs the tests (specs) relevant to the build. To build without testing see the <code>packager</code> build targets.</p>
+<h3 id="building-mootools-with-compatibility">Building MooTools <em>With</em> Compatibility</h3>
+<p>This means <code>1.5.1</code> that is compatible with: <code>1.4.6</code>, <code>1.3.x</code>, <code>1.2.x</code>, and so on.</p>
+<p><strong>Examples</strong></p>
+<pre><code>grunt compat             # or
+grunt packager:compat    # to only build the source</code></pre>
+<h3 id="building-mootools-without-compatibility">Building MooTools <em>Without</em> Compatibility</h3>
+<p>This means <code>1.5.1</code> <strong>without</strong> deprecated code in <code>1.4.6</code>, <code>1.3.x</code>, <code>1.2.x</code>, and so on.</p>
+</body>
+</html>

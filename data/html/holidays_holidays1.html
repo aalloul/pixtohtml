@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>holidays_holidays1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ruby-holidays-gem">Ruby Holidays Gem</h1>
+<p>A set of functions to deal with holidays in Ruby.</p>
+<p>Extends Ruby’s built-in Date class and supports custom holiday definition lists.</p>
+<p>Full documentation can be found .</p>
+<h2 id="installation">Installation</h2>
+<p>To install the gem from RubyGems:</p>
+<pre><code>gem install holidays</code></pre>
+<p>The Holidays gem is tested on Ruby 2.2.0, 2.3.0, 2.4.0 and JRuby.</p>
+<p>This gem follows . The only methods covered by this guarantee are under the <code>Holidays</code> namespace specifically. Anything that is not a method off of <code>Holidays</code> or the core extension is not covered by semver. Please take this into account when relying on this gem as a dependency.</p>
+<p>Also note that we consider definition changes as ‘minor’ bumps, meaning they are backwards compatible with your code but might give different holiday results!</p>
+<h2 id="time-zones">Time zones</h2>
+<p>Time zones are ignored. This library assumes that all dates are within the same time zone.</p>
+<h3 id="using-the-holidays-class">Using the Holidays class</h3>
+<p>Get all holidays on April 25, 2008 in Australia.</p>
+<pre><code>date = Date.civil(2008,4,25)
+
+Holidays.on(date, :au)
+=&gt; [{:name =&gt; &#39;ANZAC Day&#39;,...}]</code></pre>
+<p>Get holidays that are observed on July 2, 2007 in British Columbia, Canada.</p>
+<pre><code>date = Date.civil(2007,7,2)
+
+Holidays.on(date, :ca_bc, :observed)
+=&gt; [{:name =&gt; &#39;Canada Day&#39;,...}]</code></pre>
+<p>Get all holidays in July, 2008 in Canada and the US.</p>
+<pre><code>from = Date.civil(2008,7,1)
+to = Date.civil(2008,7,31)
+
+Holidays.between(from, to, :ca, :us)
+=&gt; [{:name =&gt; &#39;Canada Day&#39;,...}</code></pre>
+</body>
+</html>

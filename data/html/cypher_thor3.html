@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cypher_thor3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>By default, your Thor tasks are invoked using Ruby namespace. In the example above, tasks are invoked as:</p>
+<pre><code>thor app:install name --force</code></pre>
+<p>However, you could namespace your class as:</p>
+<pre><code>module Sinatra
+  class App &lt; Thor
+    # tasks
+  end
+end</code></pre>
+<p>And then you should invoke your tasks as:</p>
+<pre><code>thor sinatra:app:install name --force</code></pre>
+<p>If desired, you can change the namespace:</p>
+<pre><code>module Sinatra
+  class App &lt; Thor
+    namespace :myapp
+    # tasks
+  end
+end</code></pre>
+<p>And then your tasks should be invoked as:</p>
+<pre><code>thor myapp:install name --force</code></pre>
+<h2 id="invocations">Invocations</h2>
+<p>Thor comes with a invocation-dependency system as well, which allows a task to be invoked only once. For example:</p>
+<pre><code>class Counter &lt; Thor
+  desc &quot;one&quot;, &quot;Prints 1, 2, 3&quot;
+  def one
+    puts 1
+    invoke :two
+    invoke :three
+  end
+  
+  desc &quot;two&quot;, &quot;Prints 2, 3&quot;
+  def two
+    puts 2
+    invoke :three
+  end
+  
+  desc &quot;three&quot;, &quot;Prints 3&quot;
+  def three</code></pre>
+</body>
+</html>

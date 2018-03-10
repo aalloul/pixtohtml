@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>holidays_holidays3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Will default to <code>Date.today</code> if no date is provided.</p>
+<h3 id="loading-custom-definitions-on-the-fly">Loading Custom Definitions on the fly</h3>
+<p>Load custom definitions file on the fly and use them immediately.</p>
+<p>Load custom ‘Company Founding’ holiday on June 1st:</p>
+<pre><code>Holidays.load_custom(&#39;/home/user/holiday_definitions/custom_holidays.yaml&#39;)
+
+date = Date.civil(2013,6,1)
+
+Holidays.on(date, :my_custom_region)
+  =&gt; [{:name =&gt; &#39;Company Founding&#39;,...}]</code></pre>
+<p>Custom definition files must match the format of the existing definition YAML files location in the ‘definitions’ directory.</p>
+<p>Multiple files can also be passed:</p>
+<pre><code>Holidays.load_custom(&#39;/home/user/holidays/custom_holidays1.yaml&#39;, &#39;/home/user/holidays/custom_holidays2.yaml&#39;)</code></pre>
+<h3 id="extending-rubys-date-and-time-classes">Extending Ruby’s Date and Time classes</h3>
+<p>To extend the ‘Date’ class:</p>
+<pre><code>require &#39;holidays/core_extensions/date&#39;
+class Date
+  include Holidays::CoreExtensions::Date
+end</code></pre>
+<p>Now you can check which holidays occur in Iceland on January 1, 2008:</p>
+<pre><code>d = Date.civil(2008,7,1)
+
+d.holidays(:is)
+=&gt; [{:name =&gt; &#39;Nýársdagur&#39;}...]</code></pre>
+<p>Or lookup Canada Day in different regions:</p>
+<pre><code>d = Date.civil(2008,7,1)
+
+d.holiday?(:ca) # Canada
+=&gt; true
+
+d.holiday?(:ca_bc) # British Columbia, Canada
+=&gt; true
+
+d.holiday?(:fr) # France
+=&gt; false</code></pre>
+</body>
+</html>

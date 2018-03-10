@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yoon_rawk1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rawklog">RawkLog</h1>
+<p>RawkLog - RAWK - Rail’s Analyzer With Klass updated and packaged a Gem</p>
+<p>This tool gives statistics for Ruby on Rails log files. The times for each request are grouped and totals are displayed. If process ids are present in the log files then requests are sorted by ActionController actions otherwise requests are grouped by url. By default total request times are used for comparison but database time or render time can be used by specifying the correct flag. The log file is read from standard input unless the -f flag is specified.</p>
+<p>Supports Rails versions 2.3, 3.0, 3.1, 3.2 and 4.0</p>
+<h2 id="installation">Installation</h2>
+<p>Add this line to your application’s Gemfile:</p>
+<pre><code>gem &#39;rawk_log&#39;</code></pre>
+<p>And then execute:</p>
+<pre><code>$ bundle</code></pre>
+<p>Or install it yourself as:</p>
+<pre><code>$ gem install rawk_log</code></pre>
+<h3 id="patching-logger">Patching logger</h3>
+<p>To enable reporting by controller#action add the following to at the end of the environment.rb file:</p>
+<pre><code>require &#39;rawk_log/patch_logger&#39;</code></pre>
+<p>This will patch Logger and/or ActiveSupport::BufferedLogger to append &quot; (pid:#{$$})&quot; to each line of the log file.</p>
+<p>This patch is required where the url is not listed on the completed line (eg rails 3.2).</p>
+<h2 id="usage">Usage</h2>
+<p>rawk_log usage:</p>
+<p>-? Display this help.</p>
+<p>-d Use DB times as data points. These times are found after ‘DB:’ in the log file. This overrides the default behavior of using the total request time.</p>
+<p>-f <filename> Use the specified file instead of standard input.</p>
+<p>-h Display this help.</p>
+<p>-r Use Render times as data points. These times are found after ‘Rendering:’ in the log file. This overrides the default behavior of using the total request time.</p>
+<p>-s <count> Display <count> results in each group of data.</p>
+</body>
+</html>

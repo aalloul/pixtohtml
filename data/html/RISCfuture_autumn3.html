@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RISCfuture_autumn3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>destroy - Destroys Autumn objects</li>
+<li>generate - Creates Autumn objects</li>
+<li>server - Starts Autumn</li>
+<li><strong>shared/</strong> - Shared code libraries available to all leaves</li>
+<li><strong>tmp/</strong> - Temporary files, such as PID files</li>
+</ul>
+<h2 id="configuring-autumn-for-your-first-launch">Configuring Autumn for Your First Launch</h2>
+<p>Before you can run Autumn and try out the example leaves, you’ll need to set up a few things. Here are the steps:</p>
+<h3 id="configure-your-testing-season">Configure Your Testing Season</h3>
+<p>In Autumn, your leaves run in an environment, called a “season.” Each season has different leaves and different settings for those leaves. By default, Autumn comes with a season called “testing” already set up for you. You can edit that season or create a new one with <code>script/generate season [season name]</code>. The files for your season are stored in the <code>config/seasons</code> directory.</p>
+<p>First, edit the <code>stems.yml</code> file. This file stores information about your IRC connection. Edit it to connect to an IRC server of your choosing. For more information, see <strong>Stems</strong> below.</p>
+<p>Next, edit the <code>database.yml</code> file. As mentioned previously, Scorekeeper requires the DataMapper gem because it uses a persistent store. By default it’s set up to use a SQLite database, but you can use PostgreSQL or MySQL if you’d like. If you’d prefer not to install any of these database solutions, delete the <code>database.yml</code> file and remove the Scorekeeper leaf from the <code>leaves.yml</code> and <code>stems.yml</code> files.</p>
+<p>If you do choose to set up a database, you will have to run <code>DB=Scorekeeper rake db:migrate</code> after your <code>database.yml</code> file is configured and your database is created.</p>
+<p>Lastly, view the <code>leaves.yml</code> file. You shouldn’t have to make any changes to this file, but it’s a good idea to look at it to see how leaves are configured. You can do the same with the <code>season.yml</code> file. See “Seasons” and “Leaves” below for more.</p>
+<h3 id="starting-the-server">Starting the Server</h3>
+<p>Run the command <code>script/server</code> to start the server. After a short while, your leaf should appear in the channel you specified. You can type “!points Coolguy +5” and then “!points” to get started using Scorekeeper, or “!insult Steve” to play with Insulter. Have some fun, and when you’re satisfied, stop the server by typing “!quit”.</p>
+<p>If you’d like to daemonize your server, you can use the shell commands <code>rake app:start</code> and <code>rake app:stop</code>. For more information, see <strong>Tasks</strong> below.</p>
+</body>
+</html>

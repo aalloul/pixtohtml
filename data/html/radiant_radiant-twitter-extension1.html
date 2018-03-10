@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>radiant_radiant-twitter-extension1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="twitter">Twitter</h1>
+<p>An extension to Radiant that will automatically tweet the publication of new pages in selected parts of your site, and which provides a set of radius tags that allow you to feature twitter feeds of different kinds on your site.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>sudo gem install radiant-twitter-extension</code></pre>
+<p>add this to your Gemfile</p>
+<pre><code>gem &#39;radiant-twitter-extension&#39;, &#39;~&gt; 2.0.0&#39;</code></pre>
+<p>and then:</p>
+<pre><code>rake radiant:extensions:twitter:update
+rake radiant:extensions:twitter:migrate</code></pre>
+<h2 id="status">Status</h2>
+<p>Nearly stable. I’ve just made some quite sweeping changes to bring this up to date, so small bugs are likely. Please file issues.</p>
+<h2 id="configuration">Configuration</h2>
+<p>You can present twitter searches and feeds without authenticating, but if you want to post automatically to twitter you need to provide login information. The extension adds a ‘twitter’ block to the main radiant configuration interface: enter your screen name and password. Future versions may integrate with Twitter as an application but for now all we need is the ability to tweet.</p>
+<h2 id="tweet-on-publication">Tweet on publication</h2>
+<p>To post a tweet every time you publish a blog entry, check the ‘Notify Twitter of newly published child pages?’ box on the parent blog page. The tweet will contain the title of the page and its url.</p>
+<h2 id="display-a-twitter-feed">Display a twitter feed</h2>
+<p>If radiant is configured to tweet for you, all you need is this radius tag:</p>
+<pre><code>&lt;r:twitter:tweets [max=&quot;10&quot;] /&gt;</code></pre>
+<p>If it’s not configured, or you want to display another user:</p>
+<pre><code>&lt;r:twitter:tweets user=&quot;screen_name&quot; /&gt;</code></pre>
+<p>To display a hashtag, or any other search:</p>
+<pre><code>&lt;r:twitter:tweets search=&quot;#radiant&quot; /&gt;</code></pre>
+<p>To display tweets from someone’s list:</p>
+<pre><code>&lt;r:twitter:tweets user=&quot;screen_name&quot; list=&quot;list_name&quot; /&gt;</code></pre>
+<p>The default presentation of tweets is exactly as and if you include their widget script and the provided css it should all just work. If you want to present tweets differently, a range of more detailed radius tags is available. This is a slightly more compact format:</p>
+<pre><code>&lt;r:twitter:tweets user=&quot;screen_name&quot; /&gt;</code></pre>
+</body>
+</html>

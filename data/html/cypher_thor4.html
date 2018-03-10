@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cypher_thor4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    puts 3
+  end
+end</code></pre>
+<p>When invoking the task one:</p>
+<pre><code>thor counter:one</code></pre>
+<p>The output is “1 2 3”, which means that the three task was invoked only once.<br />
+You can even invoke tasks from another class, so be sure to check the .</p>
+<p>Notice invocations do not share the same object. I.e, Thor will instantiate Counter once to invoke the task one, then, it instantiates another to invoke the task two and another for task three. This happens to allow options and arguments to parsed again. For example, if two and three have different options and both of them were given to the command line, calling invoke makes them be parsed each time and used accordingly by each task.</p>
+<h2 id="thorgroup">Thor::Group</h2>
+<p>Thor has a special class called Thor::Group. The main difference to Thor class is that it invokes all tasks at once. The example above could be rewritten in Thor::Group as this:</p>
+<pre><code>class Counter &lt; Thor::Group
+  desc &quot;Prints 1, 2, 3&quot;
+  
+  def one
+    puts 1
+  end
+ 
+  def two
+    puts 2
+  end
+  
+  def three
+    puts 3
+  end
+end</code></pre>
+<p>When invoked:</p>
+<pre><code>thor counter</code></pre>
+<p>It prints “1 2 3” as well. Notice you should describe (using the method <tt>desc</tt>) only the class and not each task anymore. Thor::Group is a great tool to create generators, since you can define several steps which are invoked in the order they are defined (Thor::Group is the tool use in generators in Rails 3.0).</p>
+<p>Besides, Thor::Group can parse arguments and options as Thor tasks:</p>
+<pre><code>class Counter &lt; Thor::Group
+  # number will be available as attr_accessor
+  argument :number, :type =&gt; :numeric, :desc =&gt; &quot;The number to start counting&quot;</code></pre>
+</body>
+</html>

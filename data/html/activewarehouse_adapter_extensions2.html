@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>activewarehouse_adapter_extensions2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+</tr>
+<tr>
+<td>
+MRI 1.9.3
+</td>
+<td>
+OK
+</td>
+<td>
+Untested
+</td>
+</tr>
+<tr>
+<td>
+MRI 1.8.7
+</td>
+<td>
+OK
+</td>
+<td>
+Should be OK
+</td>
+</tr>
+</table>
+<h3 id="important-notes-on-mysql-support">Important notes on MySQL support</h3>
+<h4 id="security-warning">Security warning</h4>
+<p>Be sure to first read and understand the of <code>LOAD DATA LOCAL INFILE</code>. In particular, having this enabled on a web app is probably not a good idea.</p>
+<h4 id="v0.9.5">v0.9.5</h4>
+<p>v0.9.5 will always use <code>LOAD DATA LOCAL INFILE</code> for bulk load - this is not configurable.</p>
+<h4 id="v1.0.0.rc1">v1.0.0.rc1</h4>
+<p>This version should by default use <code>LOAD DATA INFILE</code> for safer defaults.</p>
+<p>You can override this by passing <code>:local_infile =&gt; true</code> though.</p>
+<h4 id="troubleshooting-local-infile">Troubleshooting LOCAL INFILE</h4>
+<p>If you enable <code>:local_infile =&gt; true</code> and meet the following error, then you’ll have to work it around.</p>
+<pre><code>The used command is not allowed with this MySQL version: LOAD DATA LOCAL INFILE</code></pre>
+<p>For mysql2 with AR &gt;= 3.1:</p>
+<ul>
+<li>use is merged</li>
+<li>add <code>local_infile: true</code> to your database.yml</li>
+</ul>
+<p>For mysql2 with AR &lt; 3.1:</p>
+<ul>
+<li>no current easy solution afaik</li>
+</ul>
+<p>For mysql:</p>
+<ul>
+<li>try this</li>
+</ul>
+</body>
+</html>

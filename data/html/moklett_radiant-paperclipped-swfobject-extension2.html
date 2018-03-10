@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>moklett_radiant-paperclipped-swfobject-extension2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>If used as a single tag, the alternate content can be specified using the <code>alt</code> attribute.</li>
+<li>If used as a single tag AND no <code>alt</code> attribute is specified, the default alternate content will be inserted (see below).</li>
+</ul>
+<h4 id="attributes">Attributes</h4>
+<p><strong><code>id</code></strong> (Required, unless an asset has already been set in to context by an outer <code>r:assets</code> tag): Used to identify the asset being referenced. This corresponds to the database ID of the Asset. Note: Specifying an asset via the <code>title</code> attribute, as is supported in Paperclipped, is not supported here.</p>
+<p><strong><code>namespace</code></strong> (Optional): Used to specify a namespace for the html <code>id</code> attributes used to identify the Flash content container. This <code>namespace</code> is suffixed with the ID of the Paperclipped Asset being referenced to create the final id. **This should match the namespace specified in the <code>r:assets:swfembed</code> tag. (Defaults to <code>pcswf_</code>)</p>
+<h4 id="default-alternate-content">Default Alternate Content</h4>
+<p>The default alternate content for the Flash movie can be specified via the Radiant Config key <code>assets.swfobject.default_alternate_content</code>. For example, at the console you could issue:</p>
+<pre><code>Radiant::Config[&#39;assets.swfobject.default_alternate_content&#39;] = &quot;My alternate content&quot;</code></pre>
+<p>You can also use the <a href="http://github.com/Squeegy/radiant-settings/tree/master">Settings Extension</a> to manage this and all of the other Radiant Config values.</p>
+<p>If no value is given for this Config key, the extension falls back on its default alternate content, which is currently set as the following:</p>
+<pre><code>&lt;div class=&quot;swfalt&quot;&gt;
+    In order to view this content, you must have the Flash Player
+    installed, and Javascript enabled in your browser.
+&lt;/div&gt;</code></pre>
+<p>TODO: Add helpful links to this default content for installing Flash Player or enabling Javascript.</p>
+<hr />
+<h2 id="installation">Installation</h2>
+<p>Place the extension files within the directory <code>vendor/extensions/paperclipped_swfobject</code> and run</p>
+<pre><code>rake radiant:extensions:paperclipped_swfobject:update</code></pre>
+<p>This rake task copies 2 files to your project’s public directory:</p>
+<ol type="1">
+<li><code>javascripts/swfobject.js</code>: The SWFObject javascript</li>
+<li><code>images/expressInstall.swf</code>: A default express installation movie (See the [SWFObject Documentation][]</li>
+</ol>
+</body>
+</html>

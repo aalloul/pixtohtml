@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>vangberg_ltt1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-lil-cute-time-tracker">the lil’ (cute) time tracker</h1>
+<p>!</p>
+<p>this is a replacement for my old system, with a workflow based on shuffling post-it’s and calculating total hours and all kind of boring shit. this is teh eazy way:</p>
+<ol type="1">
+<li>log in to the lil’ tracker before you start working and track project X</li>
+<li>do that work stuff or smoke cigarettes or smth</li>
+<li>stop tracking project X</li>
+</ol>
+<p>and the time you spent will be added to the lil’.</p>
+<h2 id="command-line-interface">command line interface</h2>
+<p>oh yes, even easier.</p>
+<pre><code>$ ltt track project-x
+$ vim /path/to/my/workz
+$ ltt stop</code></pre>
+<p>that’s it! here’s a fish function that does the job (if you care about bash, write it yrself):</p>
+<pre><code>function ltt
+  switch $argv[1]
+    case track
+      curl -X POST $LILURL/track/$argv[2] -w &quot;%{http_code}&quot;
+      echo
+    case stop
+      curl -X POST $LILURL/stop -s
+  end
+end</code></pre>
+<h2 id="setup">setup</h2>
+<p>run it from the cli or configure passenger or however you roll, like this:</p>
+<pre><code>ruby app.rb -e production</code></pre>
+<p>you will have to add users manually. something like this:</p>
+<pre><code>sqlite3 db/production.db &quot;INSERT INTO users (login, password) VALUES (&#39;foo&#39;,
+&#39;bar)&quot;</code></pre>
+<h2 id="todo">todo</h2>
+<ul>
+<li>write that cli wrapper</li>
+<li>add the two calls to Digest::SHAlala for a little obscurity</li>
+<li>check TODO, mhm.</li>
+</ul>
+<h2 id="license">license</h2>
+</body>
+</html>

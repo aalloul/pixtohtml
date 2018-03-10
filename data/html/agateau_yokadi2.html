@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>agateau_yokadi2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>yokadi&gt; t_add _ Invite Bob
+Added task &#39;Invite Bob&#39; (id=2)
+yokadi&gt; t_add _ Invite Wendy
+Added task &#39;Invite Wendy&#39; (id=3)</code></pre>
+<p>List tasks for project “birthday”:</p>
+<pre><code>yokadi&gt; t_list birthday
+                                         birthday
+ID |Title                                                       |U  |S|Age    |Due date
+--------------------------------------------------------------------------------------------------
+1  |Buy food and drinks                                         |0  |N|1m     |
+2  |Invite Bob                                                  |0  |N|0m     |
+3  |Invite Wendy                                                |0  |N|0m     |</code></pre>
+<p>Once you have called Bob, you can mark task 2 as done:</p>
+<pre><code>yokadi&gt; t_mark_done 2
+Task &#39;Invite Bob&#39; marked as done
+
+yokadi&gt; t_list birthday
+                                         birthday
+ID |Title                                                       |U  |S|Age    |Due date
+--------------------------------------------------------------------------------------------------
+1  |Buy food and drinks                                         |0  |N|2m     |
+3  |Invite Wendy                                                |0  |N|1m     |</code></pre>
+<p>Task 2 has not disappeared, but <code>t_list</code> skips done tasks by default. To list all tasks use:</p>
+<pre><code>yokadi&gt; t_list birthday --all
+                                         birthday
+ID |Title                                                       |U  |S|Age    |Due date
+--------------------------------------------------------------------------------------------------
+1  |Buy food and drinks                                         |0  |N|2m     |
+2  |Invite Bob                                                  |0  |D|1m     |
+3  |Invite Wendy                                                |0  |N|1m     |</code></pre>
+<p>To list only tasks marked as done today:</p>
+<pre><code>yokadi&gt; t_list birthday --done today
+                                         birthday
+ID |Title                                                       |U  |S|Age    |Due date
+--------------------------------------------------------------------------------------------------
+2  |Invite Bob                                                  |0  |D|1m     |</code></pre>
+<p>You may want to attach your grocery list to task 1. This can be done with <code>t_describe</code>.</p>
+</body>
+</html>

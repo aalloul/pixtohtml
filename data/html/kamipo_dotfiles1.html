@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kamipo_dotfiles1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dotfiles">dotfiles</h1>
+<h2 id="install">Install</h2>
+<h3 id="homebrew">Homebrew</h3>
+<pre><code>xcode-select --install
+sudo xcodebuild -license
+
+sudo mkdir /usr/local
+sudo chown -R `whoami` /usr/local
+ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+brew doctor
+
+git clone https://github.com/kamipo/dotfiles.git
+cd dotfiles
+
+./brewfile.sh
+./dotsetup.sh
+./xxenv_setup.sh
+
+sudo vi /etc/shells
+chpass -s /usr/local/bin/zsh</code></pre>
+<h3 id="ghq">ghq</h3>
+<pre><code>go get github.com/motemen/ghq
+ghq get kamipo/mysql-build</code></pre>
+<h3 id="rbenv">rbenv</h3>
+<p>``` git clone git@github.com:sstephenson/rbenv.git ~/.rbenv ln -nfs ~/dotfiles/default-gems ~/.rbenv/default-gems mkdir -p ~/.rbenv/plugins cd ~/.rbenv/plugins git clone git@github.com:sstephenson/ruby-build.git git clone git@github.com:sstephenson/rbenv-default-gems.git git clone git@github.com:rkh/rbenv-update.git</p>
+<p>export PATH=“<span class="math inline"><em>H</em><em>O</em><em>M</em><em>E</em>/.<em>r</em><em>b</em><em>e</em><em>n</em><em>v</em>/<em>b</em><em>i</em><em>n</em>:</span>PATH” eval “$(rbenv init -)”</p>
+<h1 id="ruby-required-libssl-dev-libreadline6-dev-libncurses5-dev-libsqlite3-dev">ruby required libssl-dev libreadline6-dev libncurses5-dev libsqlite3-dev</h1>
+<h1 id="nokogiri-required-libxml2-dev-libxslt1-dev">nokogiri required libxml2-dev libxslt1-dev</h1>
+</body>
+</html>

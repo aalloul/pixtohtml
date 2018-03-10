@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>duritong_puppet-nagios1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="introductionnotes">Introduction/Notes</h1>
+<p>This modules was inspired and based on the work of David Schmitt The immerda project group adapted and improved this module. Mainly we made it using the new native puppet nagios commands as well we made it more modular to fit for multidistro usage.</p>
+<p>In it’s current form, this module can be used on CentOS and Debian.</p>
+<h1 id="overview">Overview</h1>
+<p>To use the nagios resources, activate storeconfigs on the puppetmaster.</p>
+<p>You need to be running verison 0.25 or later of puppet.</p>
+<h2 id="monitor">Monitor</h2>
+<p>On one node the <code>nagios</code> class has to be included. By default this installs apache using the <code>apache</code> module. To use <code>lighttpd</code> instead, <code>include &quot;nagios::lighttpd&quot;</code>, or, if the web server is not to be managed by puppet, <code>include &quot;nagios::headless&quot;</code>.</p>
+<h2 id="hosts">Hosts</h2>
+<p>On a node which shall be monitored with nagios, <code>include the &quot;nagios::target&quot;</code>. This just creates a host declaration for this host’s <code>$::ipaddress</code> fact. If the <code>$::ipaddress</code> of your target is not the one you wish to modify, you can use <code>nagios::target::fqdn</code> instead, which will use the <code>$::fqdn</code> fact of the host instead.</p>
+<p>Pass the $parents variable to the target class for enabling the reachability features of nagios. If a node needs more customisation, use the native <code>@@nagios_host</code> type directly (the double-ampersand declares the object as an exported resource).</p>
+<p>To monitor hosts not managed by puppet, add <code>nagios_host</code> objects to the monitoring node. The required parameters are <code>alias</code>, <code>address</code> and <code>use</code>. If you don’t specify a proper nagios template with the <code>use</code> parameter, some extra parameters are needed. You may look up the nagios documentation for this.</p>
+<h2 id="services">Services</h2>
+</body>
+</html>

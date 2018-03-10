@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>turn-project_turn1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="turn---minitest-reporters">TURN - MiniTest Reporters</h1>
+<pre><code>by Tim Pease &amp; Trans
+http://rubygems.org/gems/turn</code></pre>
+<h2 id="turn-is-no-longer-being-maintained">TURN is no longer being maintained!</h2>
+<p><i>Ruby’s built-in test framework has changed so frequently (and rather poorly) over the last few years that it has been a relative nightmare to try keep Turn working. From the deprecation of Test::Unit and the switch to MiniTest and thru all the many API changes made to MiniTest itself (we’re at major version 5 now!), it is simply not conducive to a coder’s productivity to have to rewrite a program every year while explaining to gracious bug reporters that it’s broken because the underlying API has changed yet again.</i></p>
+<p><i>The most recent major change finally added something of a real reporter API. That’s a good thing! Although it should have been there from day one. Yet the new version also removed the runner API. That means Turn would have revert back to old subclassing and monkey patching tricks in order support certain features such as the solo and cross runners.</i></p>
+<p><i>As any programmer can well understand, I have no interest in playing these musical chairs any longer. I have endeavored to provide preliminary support for Minitest v5+, which is now in the master branch. For the most part, the reporter part, it is working. But there are plenty of loose ends that have to be tied up if everything is to work as it should.</i></p>
+<p><i>If someone else would like to take up the mantle of this project please have at it. I’m available to answer any questions. Until then, consider this entire project <strong>deprecated</strong>.</i></p>
+<p>Sincerely,<br/>   <strong>trans</strong> </b></p>
+<h2 id="description">DESCRIPTION</h2>
+<p>TURN is a new way to view test results. With longer running tests, it can be very frustrating to see a failure (….F…) and then have to wait till all the tests finish before you can see what the exact failure was. TURN displays each test on a separate line with failures being displayed immediately instead of at the end of the tests.</p>
+<p>If you have the ‘ansi’ gem installed, then TURN output will be displayed in wonderful technicolor (but only if your terminal supports ANSI color codes). Well, the only colors are green and red, but that is still color.</p>
+<h2 id="features">FEATURES</h2>
+</body>
+</html>

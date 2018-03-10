@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mojombo_grit4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>You can traverse a commit’s ancestry by chaining calls to <code>#parents</code>.</p>
+<pre><code>repo.commits.first.parents[0].parents[0].parents[0]</code></pre>
+<p>The above corresponds to <strong>master^^^</strong> or <strong>master~3</strong> in Git parlance.</p>
+<h3 id="the-tree-object">The Tree object</h3>
+<p>A tree records pointers to the contents of a directory. Let’s say you want the root tree of the latest commit on the <strong>master</strong> branch.</p>
+<pre><code>tree = repo.commits.first.tree
+# =&gt; #&lt;Grit::Tree &quot;3536eb9abac69c3e4db583ad38f3d30f8db4771f&quot;&gt;
+
+tree.id
+# =&gt; &quot;3536eb9abac69c3e4db583ad38f3d30f8db4771f&quot;</code></pre>
+<p>Once you have a tree, you can get the contents.</p>
+<pre><code>contents = tree.contents
+# =&gt; [#&lt;Grit::Blob &quot;4ebc8aea50e0a67e000ba29a30809d0a7b9b2666&quot;&gt;,
+      #&lt;Grit::Blob &quot;81d2c27608b352814cbe979a6acd678d30219678&quot;&gt;,
+      #&lt;Grit::Tree &quot;c3d07b0083f01a6e1ac969a0f32b8d06f20c62e5&quot;&gt;,
+      #&lt;Grit::Tree &quot;4d00fe177a8407dbbc64a24dbfc564762c0922d8&quot;&gt;]</code></pre>
+<p>This tree contains two <code>Blob</code> objects and two <code>Tree</code> objects. The trees are subdirectories and the blobs are files. Trees below the root have additional attributes.</p>
+<pre><code>contents.last.name
+# =&gt; &quot;lib&quot;
+
+contents.last.mode
+# =&gt; &quot;040000&quot;</code></pre>
+<p>There is a convenience method that allows you to get a named sub-object from a tree.</p>
+<pre><code>tree / &quot;lib&quot;
+# =&gt; #&lt;Grit::Tree &quot;e74893a3d8a25cbb1367cf241cc741bfd503c4b2&quot;&gt;</code></pre>
+<p>You can also get a tree directly from the repo if you know its name.</p>
+<pre><code>repo.tree
+# =&gt; #&lt;Grit::Tree &quot;master&quot;&gt;
+
+repo.tree(&quot;91169e1f5fa4de2eaea3f176461f5dc784796769&quot;)
+# =&gt; #&lt;Grit::Tree &quot;91169e1f5fa4de2eaea3f176461f5dc784796769&quot;&gt;</code></pre>
+</body>
+</html>

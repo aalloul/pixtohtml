@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>codahale_bcrypt-ruby2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>@password ||= Password.new(password_hash)</code></pre>
+<p>end</p>
+<p>def password=(new_password) <span class="citation" data-cites="password">@password</span> = Password.create(new_password) self.password_hash = <span class="citation" data-cites="password">@password</span> end end <code>### Creating an account</code>ruby def create <span class="citation" data-cites="user">@user</span> = User.new(params[:user]) <span class="citation" data-cites="user.password">@user.password</span> = params[:password] <span class="citation" data-cites="user.save">@user.save</span>! end <code>### Authenticating a user</code>ruby def login <span class="citation" data-cites="user">@user</span> = User.find_by_email(params[:email]) if <span class="citation" data-cites="user.password">@user.password</span> == params[:password] give_token else redirect_to home_url end end <code>## How to use bcrypt-ruby in general</code>ruby require ‘bcrypt’</p>
+<p>my_password = BCrypt::Password.create(“my password”) #=&gt; “$2a<span class="math inline">10</span>vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa”</p>
+<p>my_password.version #=&gt; “2a” my_password.cost #=&gt; 10 my_password == “my password” #=&gt; true my_password == “not my password” #=&gt; false</p>
+<p>my_password = BCrypt::Password.new(“$2a<span class="math inline">10</span>vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa”) my_password == “my password” #=&gt; true my_password == “not my password” #=&gt; false ``` Check the rdocs for more details – BCrypt, BCrypt::Password.</p>
+<h2 id="how-bcrypt-works">How <code>bcrypt()</code> works</h2>
+<p><code>bcrypt()</code> is a hashing algorithm designed by Niels Provos and David Mazières of the OpenBSD Project.</p>
+</body>
+</html>

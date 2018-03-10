@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>olcai_ais-logger1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ais-logger">AIS Logger</h1>
+<p>AIS Logger is a simple viewer and logger for data received by AIS-transponders or -receivers.</p>
+<p>In summary:</p>
+<ul>
+<li>Capture raw data from a serial port or through a network</li>
+<li>Display data in list views and maps</li>
+<li>Can log data to a SQLite database</li>
+<li>Platform independent, written in Python and WxPython</li>
+<li>Free software under the [MIT license][mitlicense]</li>
+<li>Homepage: [http://sourceforge.net/apps/trac/aislogger/][homepage]</li>
+<li>Releases: [http://sourceforge.net/projects/aislogger/files/][releases]</li>
+<li>Git repository: [http://github.com/olcai/ais-logger/][repo]</li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li>Can capture raw data from several sources at the same time</li>
+<li>Can act as a server for streaming raw data</li>
+<li>Decodes standard NMEA AIS sentences as well as SAAB TransponderTech sentences</li>
+<li>Logs data to a SQLite database</li>
+<li>Plots positions on vector maps</li>
+<li>Displays data in two fully sortable list views</li>
+<li>Alerts can be set to notify user of approaching ships</li>
+<li>Remarks can be added to ships</li>
+</ul>
+<h2 id="status">Status</h2>
+<p>The software is quite stable for daily use, but has some rough edges. The GUI is not as friendly as it could be with regards to helpful error messages and wizards. There are also a few GUI problems when running on *nix systems, but it is usable.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>AIS Logger has a few, but large, dependencies that needs to be installed in order to use it. All of these should be readily available in package repositories on *nix systems. If you plan to use AIS Logger under Windows, please use a release binary as they are mostly self contained (see the install instructions below).</p>
+</body>
+</html>

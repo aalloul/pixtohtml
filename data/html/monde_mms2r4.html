@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>monde_mms2r4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>puts “does the mail have quicktime video? #{!mail.media[‘video/quicktime’].nil?}”</p>
+<p>puts “plus run anything that Mail provides, e.g. #{mail.to.inspect}”</p>
+<p># check if the mail is from a mobile phone puts “mail is from a mobile phone #{mail.is_mobile?}”</p>
+<p># determine the device type of the phone puts “mail is from a mobile phone of type #{mail.device_type?}”</p>
+<p># inspect default media’s exif data if exifr gem is installed and default # media is a jpeg or tiff puts “mail’s default media’s exif data is:” puts mail.exif.inspect</p>
+<p># Block support, process and receive all media types of video. mail.process do |media_type, files| # assumes a Clip model that is an AttachmentFu Clip.create(:uploaded_data =&gt; files.first, :title =&gt; “From phone”) if media_type =~ /video/ end</p>
+<p># Another AttachmentFu example, Picture model is an AttachmentFu picture = Picture.new picture.title = mail.subject picture.uploaded_data = mail.default_media picture.save!</p>
+<p>#remove all the media that was put to temporary disk mail.purge</p>
+<pre><code>
+## REQUIREMENTS
+
+* Mail (mail)
+* Nokogiri (nokogiri)
+* UUIDTools (uuidtools)
+* EXIF Reader (exif)
+
+## INSTALL
+</code></pre>
+<p>sudo gem install mms2r</p>
+<pre><code>
+## SOURCE
+</code></pre>
+<p>git clone git://github.com/monde/mms2r.git ```</p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TwP_inifile2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>var2 = shoodle</code></pre>
+<h2 id="implementation">Implementation</h2>
+<p>The format of INI files is not well defined. Several assumptions are made by the <strong>inifile</strong> gem when parsing INI files. Most of these assumptions can be modified at, but the defaults are listed below.</p>
+<h3 id="global-properties">Global Properties</h3>
+<p>If the INI file lacks any section declarations, or if there are properties decalared before the first section, then these properties will be placed into a default “global” section. The name of this section can be configured when creating an <code>IniFile</code> instance.</p>
+<h3 id="duplicate-properties">Duplicate Properties</h3>
+<p>Duplicate properties are allowed in a single section. The last property value set is the one that will be stored in the <code>IniFile</code> instance.</p>
+<pre><code>[section1]
+var1 = foo
+var2 = bar
+var1 = poodle</code></pre>
+<p>The resulting value of <code>var1</code> will be <code>poodle</code>.</p>
+<h3 id="duplicate-sections">Duplicate Sections</h3>
+<p>If you have more than one section with the same name then the sections will be merged. Duplicate properties between the two sections will follow the rules discussed above. Properties in the latter section will override properties in the earlier section.</p>
+<h3 id="comments">Comments</h3>
+<p>The comment character can be either a semicolon <em>;</em> or a number sign <em>#</em>. The comment character can appear anywhere on a line including at the end of a name/value pair declaration. If you wish to use a comment character in your value then you will need to either escape the character or put the value in double quotations.</p>
+<pre><code>[section1]
+var1 = foo  # a comment
+var2 = &quot;foo # this is not a comment&quot;
+var3 = foo \# this is not a comment either</code></pre>
+<h3 id="multi-line-values">Multi-Line Values</h3>
+</body>
+</html>

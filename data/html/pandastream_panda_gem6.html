@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandastream_panda_gem6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>encodings = Panda::Encoding.page(4)
+
+or
+
+encodings = Panda::Encoding.all(:page =&gt; 4)
+=&gt; [...]
+
+encodings = Panda::Encoding.video(video_id)
+=&gt; [...]
+
+encoding = Panda::Encoding.video(video_id).profile_name(&quot;h264&quot;).first
+
+or
+
+encoding = Panda::Encoding.find_by :video_id =&gt; &quot;video_id&quot;, :profile_name =&gt; &quot;h264&quot;
+encoding.encoding_time
+=&gt; 3
+
+profile = encodings.first.profile
+profile.title
+=&gt; &quot;H264 profile&quot;</code></pre>
+<h5 id="find-all-success-encodings">Find all success encodings</h5>
+<pre><code>encodings = Panda::Encoding.video(&quot;1234&quot;).status(&quot;success&quot;)
+or
+encodings = Panda::Encoding.all(:video_id =&gt; &quot;1234&quot;, :status =&gt; &quot;success&quot;)
+=&gt; [...]
+
+or
+
+video = Panda::Video.find(&quot;1234&quot;)
+video.encodings.status(&quot;success&quot;)
+
+status: success | processing | fail</code></pre>
+<h5 id="retrieve-the-encoding">Retrieve the encoding</h5>
+<pre><code>encoding = Panda::Encoding.find(&quot;4567&quot;)
+encoding.url
+=&gt; &quot;http://s3.amazonaws.com/my_panda_bucket/4567.mp4&quot;
+
+encoding.screenshots[0]
+=&gt; &quot;http://s3.amazonaws.com/my_panda_bucket/4567_1.jpg&quot;</code></pre>
+<h5 id="create-a-new-encoding">Create a new encoding</h5>
+<pre><code>encoding = Panda::Encoding.create(:video_id =&gt; 1234, :profile_id =&gt; 6789)
+
+or</code></pre>
+</body>
+</html>

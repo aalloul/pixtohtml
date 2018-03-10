@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl14</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="is_online">is_online</h2>
+<pre><code>my $bool = $ua-&gt;is_online;</code></pre>
+<p>Tries to determine if you have access to the Internet. Returns <code>1</code> (true) if the built-in heuristics determine that the user agent is able to access the Internet (over HTTP) or <code>0</code> (false).</p>
+<p>See also .</p>
+<h2 id="mirror">mirror</h2>
+<pre><code>my $res = $ua-&gt;mirror( $url, $filename );</code></pre>
+<p>This method will get the document identified by URL and store it in file called <code>$filename</code>. If the file already exists, then the request will contain an <code>If-Modified-Since</code> header matching the modification time of the file. If the document on the server has not changed since this time, then nothing happens. If the document has been updated, it will be downloaded again. The modification time of the file will be forced to match that of the server.</p>
+<p>The return value is an object.</p>
+<h2 id="post">post</h2>
+<pre><code>my $res = $ua-&gt;post( $url, \%form );
+my $res = $ua-&gt;post( $url, \@form );
+my $res = $ua-&gt;post( $url, \%form, $field_name =&gt; $value, ... );
+my $res = $ua-&gt;post( $url, $field_name =&gt; $value, Content =&gt; \%form );
+my $res = $ua-&gt;post( $url, $field_name =&gt; $value, Content =&gt; \@form );
+my $res = $ua-&gt;post( $url, $field_name =&gt; $value, Content =&gt; $content );</code></pre>
+<p>This method will dispatch a <code>POST</code> request on the given URL, with <code>%form</code> or <code>@form</code> providing the key/value pairs for the fill-in form content. Additional headers and content options are the same as for the method.</p>
+<p>This method will use the <code>POST</code> function from to build the request. See for a details on how to pass form content and other advanced features.</p>
+<h2 id="put">put</h2>
+<pre><code># Any version of HTTP::Message works with this form:
+my $res = $ua-&gt;put( $url, $field_name =&gt; $value, Content =&gt; $content );
+
+# Using hash or array references requires HTTP::Message &gt;= 6.07
+use HTTP::Request 6.07;
+my $res = $ua-&gt;put( $url, \%form );</code></pre>
+</body>
+</html>

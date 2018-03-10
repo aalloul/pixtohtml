@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akm_selectable_attr1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="selectableattr">SelectableAttr</h1>
+<h2 id="introduction">Introduction</h2>
+<p>selectable_attr は、コードが割り振られるような特定の属性について<em>コード</em>、<em>プログラム上での名前</em>、 <em>表示するための名前</em>などをまとめて管理するものです。 http://github.com/akm/selectable_attr/tree/master</p>
+<p>Railsで使用する場合、selectable_attr_railsと一緒に使うことをオススメします。 http://github.com/akm/selectable_attr_rails/tree/master</p>
+<h2 id="install">Install</h2>
+<h3 id="railsプロジェクトで使う場合">1. Railsプロジェクトで使う場合</h3>
+<h4 id="a.-plugin-install">a. plugin install</h4>
+<pre><code>ruby script/plugin install git://github.com/akm/selectable_attr.git
+ruby script/plugin install git://github.com/akm/selectable_attr_rails.git</code></pre>
+<h4 id="b.-gem-install">b. gem install</h4>
+<pre><code>[sudo] gem install akimatter-selectable_attr akimatter-selectable_attr_rails -s http://gems.github .com</code></pre>
+<h3 id="非railsで使う場合">2. 非Railsで使う場合</h3>
+<h4 id="a.-gem-install">a. gem install</h4>
+<pre><code>[sudo] gem install akimatter-selectable_attr -s http://gems.github .com</code></pre>
+<h2 id="tutorial">Tutorial</h2>
+<h3 id="シンプルなパターン">シンプルなパターン</h3>
+<pre><code>require &#39;rubygems&#39;
+require &#39;selectable_attr&#39;
+
+class Person
+  include ::SelectableAttr::Base
+
+  selectable_attr :gender do
+    entry &#39;1&#39;, :male, &#39;男性&#39;
+    entry &#39;2&#39;, :female, &#39;女性&#39;
+    entry &#39;9&#39;, :other, &#39;その他&#39;
+  end
+end</code></pre>
+<p>上記のようなクラスがあった場合、以下のようなクラスメソッドを使うことが可能です。</p>
+<pre><code>irb(main):020:0&gt; Person.gender_ids
+=&gt; [&quot;1&quot;, &quot;2&quot;, &quot;9&quot;]
+irb(main):021:0&gt; Person.gender_keys
+=&gt; [:male, :female, :other]
+irb(main):022:0&gt; Person.gender_names
+=&gt; [&quot;男性&quot;, &quot;女性&quot;, &quot;その他&quot;]</code></pre>
+</body>
+</html>

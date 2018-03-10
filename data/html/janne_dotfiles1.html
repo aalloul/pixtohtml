@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>janne_dotfiles1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dotfiles">Dotfiles</h1>
+<h2 id="about">About</h2>
+<p>Dockerised dotfiles.</p>
+<h2 id="how-to-install-them">How to install them?</h2>
+<ul>
+<li>Install</li>
+</ul>
+<h3 id="develop-locally">Develop locally</h3>
+<h4 id="run-container">Run container</h4>
+<pre><code>docker pull janne/dotfiles
+docker run -it -h dev -v $HOME/src:/home/user/src janne/dotfiles</code></pre>
+<h3 id="run-on-amazon-ec2">Run on Amazon EC2</h3>
+<h4 id="setup-.awscredentials">Setup <code>~/.aws/credentials</code></h4>
+<pre><code>[default]
+aws_access_key_id = AKID1234567890
+aws_secret_access_key = MY-SECRET-KEY</code></pre>
+<h4 id="setup-ec2-instance">Setup EC2 instance</h4>
+<pre><code>docker-machine create --driver amazonec2 --amazonec2-region eu-central-1 --amazonec2-instance-type t2.nano sandbox
+eval $(docker-machine env sandbox)</code></pre>
+<h4 id="run-container-1">Run container</h4>
+<pre><code>docker pull janne/dotfiles
+docker run -it -h dev -v $HOME/src:/home/user/src janne/dotfiles</code></pre>
+<h4 id="tear-down-ec2-instance">Tear down EC2 instance</h4>
+<p>``` docker-machine rm sandbox</p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>godfat_dm-is-reflective2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>dm = DataMapper.setup :default, ‘sqlite::memory:’</p>
+<p>class User include DataMapper::Resource is :reflective</p>
+<p># map all, returning an array of properties indicating fields it mapped reflect /.*/ # e.g. =&gt; [#&lt;Property:#<Class:0x18f89b8>:id&gt;, # #&lt;Property:#<Class:0x18f89b8>:title&gt;, # #&lt;Property:#<Class:0x18f89b8>:body&gt;, # #&lt;Property:#<Class:0x18f89b8>:user_id&gt;]</p>
+<p># map all (with no argument at all) reflect</p>
+<p># mapping for field name ended with <em>at, and started with salt</em> reflect /<em>at$/, /^salt</em>/</p>
+<p># mapping id and email reflect :id, :email</p>
+<p># mapping all fields with type String, and id reflect String, :id</p>
+<p># mapping login, and all fields with type Integer reflect :login, Integer end</p>
+<h1 id="theres-no-guarantee-of-the-order-in-storages-array">there’s no guarantee of the order in storages array</h1>
+<p>dm.storages # =&gt; [‘users’]</p>
+<h1 id="show-all-indices">show all indices</h1>
+<p>dm.indices(‘users’) # [:id, {:unique_index =&gt; :users_pkey}]</p>
+<h1 id="theres-no-guarantee-of-the-order-in-fields-array">there’s no guarantee of the order in fields array</h1>
+<p>User.fields # =&gt; [[:created_at, DateTime, {:required =&gt; false}], [:email, String, {:required =&gt; false, :length =&gt; 255, :default =&gt; ‘nospam@nospam.tw’}], [:id, Serial, {:required =&gt; true, :serial =&gt; true, :key =&gt; true}], [:salt_first, String, {:required =&gt; false, :length =&gt; 50}], [:salt_second, String, {:required =&gt; false, :length =&gt; 50}]]</p>
+<p>dm.fields(‘users’).sort_by{ |field| field.first.to_s } == User.fields.sort_by{ |field| field.first.to_s } # =&gt; true</p>
+<p>dm.storages_and_fields</p>
+</body>
+</html>

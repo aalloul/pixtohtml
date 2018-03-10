@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ruby-git_ruby-git3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>commit = g.gcommit(&#39;1cc8667014381&#39;)
+
+commit.gtree
+commit.parent.sha
+commit.parents.size
+commit.author.name
+commit.author.email
+commit.author.date.strftime(&quot;%m-%d-%y&quot;)
+commit.committer.name
+commit.date.strftime(&quot;%m-%d-%y&quot;)
+commit.message
+
+tree = g.gtree(&quot;HEAD^{tree}&quot;)
+
+tree.blobs
+tree.subtrees
+tree.children # blobs and subtrees
+
+g.revparse(&#39;v2.5:Makefile&#39;)
+
+g.branches # returns Git::Branch objects
+g.branches.local
+g.branches.remote
+g.branches[:master].gcommit
+g.branches[&#39;origin/master&#39;].gcommit
+
+g.grep(&#39;hello&#39;)  # implies HEAD
+g.blob(&#39;v2.5:Makefile&#39;).grep(&#39;hello&#39;)
+g.tag(&#39;v2.5&#39;).grep(&#39;hello&#39;, &#39;docs/&#39;)
+g.describe()
+g.describe(&#39;0djf2aa&#39;)
+g.describe(&#39;HEAD&#39;, {:all =&gt; true, :tags =&gt; true})
+
+g.diff(commit1, commit2).size
+g.diff(commit1, commit2).stats
+g.diff(commit1, commit2).name_status
+g.gtree(&#39;v2.5&#39;).diff(&#39;v2.6&#39;).insertions
+g.diff(&#39;gitsearch1&#39;, &#39;v2.5&#39;).path(&#39;lib/&#39;)
+g.diff(&#39;gitsearch1&#39;, @git.gtree(&#39;v2.5&#39;))
+g.diff(&#39;gitsearch1&#39;, &#39;v2.5&#39;).path(&#39;docs/&#39;).patch
+g.gtree(&#39;v2.5&#39;).diff(&#39;v2.6&#39;).patch
+
+g.gtree(&#39;v2.5&#39;).diff(&#39;v2.6&#39;).each do |file_diff|
+   puts file_diff.path
+   puts file_diff.patch
+   puts file_diff.blob(:src).contents
+end
+
+g.config(&#39;user.name&#39;)  # returns &#39;Scott Chacon&#39;
+g.config # returns whole config hash</code></pre>
+</body>
+</html>

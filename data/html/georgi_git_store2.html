@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>georgi_git_store2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>store = GitStore.new(&#39;/path/to/repo&#39;)
+
+store.transaction do
+  # If an exception happens here, the transaction will be aborted.
+  store[&#39;pages/home.yml&#39;] = Page.new(&#39;matthias&#39;, &#39;Home&#39;)
+end</code></pre>
+<p>A transaction without a block looks like this:</p>
+<pre><code>store.start_transaction
+
+store[&#39;pages/home.yml&#39;] = Page.new(&#39;matthias&#39;, &#39;Home&#39;)
+
+store.rollback # This will restore the original state</code></pre>
+<h3 id="data-storage">Data Storage</h3>
+<p>When you call the <code>commit</code> method, your data is written back straight into the git repository. No intermediate file representation. So if you want to have a look at your data, you can use a git browser like [git-gui][6] or checkout the files:</p>
+<pre><code>$ git checkout</code></pre>
+<h3 id="iteration">Iteration</h3>
+<p>Iterating over the data objects is quite easy. Furthermore you can iterate over trees and subtrees, so you can partition your data in a meaningful way. For example you may separate the config files and the pages of a wiki:</p>
+<pre><code>store[&#39;pages/home.yml&#39;] = Page.new(&#39;matthias&#39;, &#39;Home&#39;)
+store[&#39;pages/about.yml&#39;] = Page.new(&#39;matthias&#39;, &#39;About&#39;)
+store[&#39;config/wiki.yml&#39;] = { &#39;name&#39; =&gt; &#39;My Personal Wiki&#39; }
+
+# Enumerate all objects
+store.each { |obj| ... } 
+
+# Enumerate only pages
+store[&#39;pages&#39;].each { |page| ... }</code></pre>
+<h3 id="serialization">Serialization</h3>
+<p>Serialization is dependent on the filename extension. You can add more handlers if you like, the interface is like this:</p>
+</body>
+</html>

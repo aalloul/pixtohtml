@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>godfat_pagify1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="pagify">pagify</h1>
+<p>by Lin Jen-Shin (</p>
+<h2 id="links">LINKS:</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2 id="description">DESCRIPTION:</h2>
+<p>Pagination tools for Array(or custom class), DataMapper and ActiveRecord. Helpers for Innate/Ramaze and Rails included.</p>
+<h2 id="requirements">REQUIREMENTS:</h2>
+<ul>
+<li>Ruby 1.8+ or 1.9.1+</li>
+<li>For Basic/ArrayPager: only Ruby is needed</li>
+<li>For DataMapperPager: dm-core and dm-aggregates 1.2+</li>
+<li>for ActiveRecordPager: activerecord 2.3.14+ or activerecord 3.1+</li>
+<li>for Innate helper: innate 2011.10+</li>
+</ul>
+<h2 id="installation">INSTALLATION:</h2>
+<pre><code>gem install pagify</code></pre>
+<h2 id="features">FEATURES:</h2>
+<ul>
+<li>Aims to be as flexible as possible</li>
+<li>Separate intrusive “pagify” method and Array/DataMapper/ActiveRecord Pager.</li>
+<li>Separate view helpers. There’s only html helper right now.</li>
+<li>Web framework specific helper included. Currently for Innate/Ramaze and Rails.</li>
+</ul>
+<h2 id="synopsis">SYNOPSIS:</h2>
+<p>For fast Rails will_paginate replacement:</p>
+<pre><code>require &#39;pagify/active_record&#39;
+require &#39;pagify/helper/rails&#39;</code></pre>
+<p>in controller:</p>
+<pre><code>@photos = Photo.pagify(:page =&gt; params[:page])</code></pre>
+<p>in view:</p>
+<pre><code>pagify_links(@photos)</code></pre>
+<p>For Innate/Ramaze:</p>
+</body>
+</html>

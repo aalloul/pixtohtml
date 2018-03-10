@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>git-cola_git-cola2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p>1.1.0 or newer.</p></li>
+<li><p>1.1 or newer. argparse is part of the stdlib in Python 2.7; install argparse separately if you are running on Python 2.6.</p></li>
+<li><p>for building the documentation.</p></li>
+</ul>
+<p><em>git-cola</em> uses <em>QtPy</em>, so you can choose between <em>PyQt4</em>, <em>PyQt5</em>, and <em>PySide</em> by setting the <code>QT_API</code> environment variable to <code>pyqt4</code>, <code>pyqt5</code> or <code>pyside</code> as desired. <code>qtpy</code> defaults to <code>pyqt5</code> and falls back to <code>pyqt4</code> if <code>pyqt5</code> is not installed.</p>
+<p>Any of the following Python Qt libraries must be installed:</p>
+<ul>
+<li><p>4.6 or newer</p></li>
+<li><p>5.2 or newer</p></li>
+<li><p>1.1.0 or newer</p></li>
+</ul>
+<p>Set <code>QT_API=pyqt4</code> in your environment if you have both versions of <em>PyQt</em> installed and want to ensure that PyQt4 is used.</p>
+<p><em>NOTE</em>: <em>git-cola</em> includes a vendored copy of its <em>QtPy</em> dependency.</p>
+<p>We provide a copy of the <code>qtpy</code> module when installing <em>git-cola</em> so that you are not required to install <em>QtPy</em> separately. If you’d like to provide your own <code>qtpy</code> module, for example from the <code>python-qtpy</code> Debian package, then use <code>make NO_VENDOR_LIBS=1 ...</code> when invoking <code>make</code>, or export <code>GIT_COLA_NO_VENDOR_LIBS=1</code> into the build environment.</p>
+<h2 id="additives">ADDITIVES</h2>
+<p><em>git-cola</em> enables additional features when the following Python modules are installed.</p>
+<p>enables cross-platform “Send to Trash” functionality.</p>
+<h1 id="brewing-instructions">BREWING INSTRUCTIONS</h1>
+<h2 id="run-from-source">RUN FROM SOURCE</h2>
+<p>You don’t need to install <em>git-cola</em> to run it. Running <em>git-cola</em> from its source tree is the easiest</p>
+</body>
+</html>

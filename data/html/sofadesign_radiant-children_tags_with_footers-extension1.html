@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sofadesign_radiant-children_tags_with_footers-extension1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="children-tags-with-footers">Children Tags With Footers</h1>
+<p>Provides extra footer children tags, in addition to the children header tag.</p>
+<h2 id="example">Example</h2>
+<pre><code>&lt;r:children:each order=&quot;desc&quot; by=&quot;published_at&quot;&gt;
+    &lt;r:header&gt;
+      &lt;div class=&quot;month&quot; id=&quot;&lt;r:date format=&#39;f%Y-%m&#39; /&gt;&quot;&gt;
+        &lt;h2&gt;&lt;a class=&quot;toggle&quot; href=&quot;&lt;r:date format=&#39;#f%Y-%m&#39; /&gt;&quot;&gt;&lt;r:date format=&quot;%B %Y&quot; /&gt; &lt;span&gt;-&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+        &lt;div class=&quot;events&quot;&gt;
+          &lt;dl&gt;
+    &lt;/r:header&gt;
+            &lt;dt class=&quot;day&quot;&gt;&lt;r:date format=&quot;%d&quot; /&gt;&lt;/dt&gt;
+            &lt;dd&gt;&lt;r:link&gt;&lt;r:title /&gt;&lt;/r:link&gt;&lt;/dd&gt;
+            &lt;dd class=&quot;sep&quot;&gt;&lt;/dd&gt;
+    &lt;r:footer&gt;
+          &lt;/dl&gt;
+          &lt;p class=&quot;close&quot;&gt;&lt;a class=&quot;toggle&quot; href=&quot;&lt;r:date format=&#39;#f%Y-%m&#39; /&gt;&quot;&gt;[ - ]&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;&lt;!-- end &lt;r:date format=&quot;%Y-%m&quot; /&gt; --&gt;
+    &lt;/r:footer&gt;
+&lt;/r:children:each&gt;
+&lt;r:children:last_footer /&gt;</code></pre>
+<p>can output something like this</p>
+<pre><code>&lt;div class=&quot;month&quot; id=&quot;f2008-12&quot;&gt;
+  &lt;h2&gt;&lt;a class=&quot;toggle&quot; href=&quot;#f2008-12&quot;&gt;December 2008 &lt;span&gt;-&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+  &lt;div class=&quot;events&quot;&gt;
+    &lt;dl&gt;
+        &lt;dt class=&quot;day&quot;&gt;20&lt;/dt&gt;
+        &lt;dd&gt;&lt;a href=&quot;/events/2008/12/20/lorem/&quot;&gt;Ipsum&lt;/a&gt;&lt;/dd&gt;
+        &lt;dd class=&quot;sep&quot;&gt;&lt;/dd&gt;
+
+        &lt;dt class=&quot;day&quot;&gt;19&lt;/dt&gt;
+        &lt;dd&gt;&lt;a href=&quot;/events/2008/12/19/dolor/&quot;&gt;Dolor&lt;/a&gt;&lt;/dd&gt;
+        &lt;dd class=&quot;sep&quot;&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;p class=&quot;close&quot;&gt;&lt;a class=&quot;toggle&quot; href=&quot;#f2008-12&quot;&gt;[ - ]&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;!-- end 2008-12 --&gt;
+
+&lt;div class=&quot;month&quot; id=&quot;f2008-11&quot;&gt;
+  &lt;h2&gt;&lt;a class=&quot;toggle&quot; href=&quot;#f2008-11&quot;&gt;November 2008 &lt;span&gt;-&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+  &lt;div class=&quot;events&quot;&gt;
+    &lt;dl&gt;
+      &lt;dt class=&quot;day&quot;&gt;24&lt;/dt&gt;
+      &lt;dd&gt;&lt;a href=&quot;/events/2008/11/24/an-other-event/&quot;&gt;My new event&lt;/a&gt;&lt;/dd&gt;
+      &lt;dd class=&quot;sep&quot;&gt;&lt;/dd&gt;</code></pre>
+</body>
+</html>

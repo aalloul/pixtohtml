@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>camptocamp_puppet-postfix4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Example: ‘127.0.0.0/8, [::1]/128’.</p>
+<h5 id="myorigin"><code>myorigin</code></h5>
+<p>A string to define the myorigin parameter that holds the domain name that mail appears to come from (postconf(5)).<br />
+Default: The FQDN of the host.<br />
+Example: ‘example.com’</p>
+<h5 id="relayhost"><code>relayhost</code></h5>
+<p>A string to define the relayhost parameter (postconf(5)).<br />
+Default: Undefined.<br />
+Example: ‘smtp.example.com’.</p>
+<h5 id="root_mail_recipient"><code>root_mail_recipient</code></h5>
+<p>A string to define the e-mail address to which all mail directed to root should go (aliases(5)).<br />
+Default: ‘nobody’.<br />
+Example: ‘root_catch@example.com’.</p>
+<h5 id="chroot"><code>chroot</code></h5>
+<p>A boolean to define if postfix should be run in a chroot jail or not. If not defined, ‘-’ is used (OS dependant) Default: Undefined. Example: true</p>
+<h5 id="satellite"><code>satellite</code></h5>
+<p>A Boolean to define whether to configure postfix as a satellite relay host. This setting is mutually exclusive with the mta Boolean.<br />
+Default: False.</p>
+<h5 id="smtp_listen"><code>smtp_listen</code></h5>
+<p>A string to define the IP on which to listen in master.cf. This can also be set to ‘all’ to listen on all interfaces. If master_smtp is defined smtp_listen will not be used.<br />
+Default: ‘127.0.0.1’.<br />
+Example: ‘::1’.</p>
+<h5 id="use_amavisd"><code>use_amavisd</code></h5>
+<p>A Boolean to define whether to configure master.cf to allow the use of the amavisd scanner.<br />
+Default: False.</p>
+<h5 id="use_dovecot_lda"><code>use_dovecot_lda</code></h5>
+<p>A Boolean to define whether to configure master.cf to use dovecot as the local delivery agent.<br />
+Default: False.</p>
+<h5 id="use_schleuder"><code>use_schleuder</code></h5>
+<p>A Boolean to define whether to configure master.cf to use the Schleuder GPG-enabled mailing list.<br />
+Default: False.</p>
+<h5 id="use_sympa"><code>use_sympa</code></h5>
+<p>A Boolean to define whether to configure master.cf to use the Sympa mailing list management software.<br />
+Default: False.</p>
+<h4 id="examples">Examples</h4>
+<h3 id="postfixconfig">postfix::config</h3>
+</body>
+</html>

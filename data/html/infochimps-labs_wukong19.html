@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infochimps-labs_wukong19</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>other <code>wu-</code> commands in the context of a Ruby project with a .</p>
+<p>Instead of typing</p>
+<pre><code>$ bundle exec wu-local my_flow --option=value ...</code></pre>
+<p>which would run <code>wu-local</code> using the exact version of <code>wukong</code> (and any other dependencies) as declared in your project’s <code>Gemfile</code> and <code>Gemfile.lock</code>, the <code>wu</code> command lets you type</p>
+<pre><code>$ wu local my_flow --option=value ...</code></pre>
+<p>essentially adding the <code>bundle exec</code> prefix and munging <code>wu local</code> to <code>wu-local</code> for you. This can be very helpful when doing lots of work with Wukong.</p>
+<p><strong>Note:</strong> If <code>bundle exec wu-whatever</code> works in your project but <code>wu   whatever</code> fails it is probably because Bundler is resolving <code>wu-</code> commands to some installation that is not on your <code>$PATH</code> (often the case if you ran <code>bundle install --standalone</code>). Ensure that the <code>wukong</code> gem is installed on your system and that it’s binaries are your <code>$PATH</code> to use the <code>wu</code> command.</p>
+<h2 id="testing">Testing</h2>
+<p>Wukong comes with several helpers to make writing specs using easier.</p>
+<p>The only method that you need to test in a Processor is the <code>process</code> method. The rest of the processor’s methods and functionality are provided by Wukong and are already tested.</p>
+<p>You may want to test this process method in two ways:</p>
+<ul>
+<li>unit tests of the class itself in various contexts</li>
+<li>integration tests of running the class with the <code>wu-local</code> (or other) command-line runner</li>
+</ul>
+<h3 id="unit-tests">Unit Tests</h3>
+<p>Let’s start with a simple processor</p>
+<p>```ruby # in tokenizer.rb Wukong.processor(:tokenizer) do def process text</p>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>99designs_ergo1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ergo">Ergo</h1>
+<p>A light-weight library for processing requests and responses in PHP5.3. Provides a closure-based infrastructure for routing, controllers and templating.</p>
+<p>The name is from the latin, Cogito ergo sum. “I think, therefore I am”.</p>
+<h2 id="install">Install</h2>
+<p>Ergo is designed to be easy to install and integrate.</p>
+<pre><code>$ pear channel-discover pearhub.org
+$ pear install pearhub/Ergo</code></pre>
+<p>Alternately, check it out as a submodule and use your own classloader on the classes dir.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<pre><code>require_once(&#39;Ergo/ergo.php&#39;);
+
+Ergo::router()-&gt;connect(&#39;/helloworld&#39;, &#39;helloworld&#39;, function() {
+    return Ergo::template(&#39;helloworld.tpl.php&#39;, array(
+      &#39;greeting&#39;=&gt;&#39;Hello World&#39;
+    ));
+});
+
+Ergo::router()-&gt;connect(&#39;/*&#39;, &#39;any&#39;, function() {
+    throw new \Ergo\Http\NotFound(&quot;Not implemented yet&quot;);
+});</code></pre>
+<h2 id="how-to-develop">How to develop</h2>
+<p>For running, Ergo has no external dependancies. For development [Composer][1] is used to pull in SimpleTest as a dependancy.</p>
+<p>To install dependancies via Composer:</p>
+<pre><code>$ composer install --dev</code></pre>
+<p>Run the test suite:</p>
+<pre><code>$ phpunit
+PHPUnit 3.7.10 by Sebastian Bergmann.</code></pre>
+</body>
+</html>

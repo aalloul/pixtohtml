@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmettraux_rufus-decision1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rufus-decision">rufus-decision</h1>
+<p>CSV based Ruby decision tables.</p>
+<p><em>WARNING</em>: this library is not maintained anymore. Sorry.</p>
+<h2 id="getting-it">getting it</h2>
+<pre><code>  gem install rufus-decision</code></pre>
+<p>or add <code>gem 'rufus-decision'</code> to your Gemfile.</p>
+<h2 id="tools-based-on-rufus-decision">tools based on rufus-decision</h2>
+<ul>
+<li>https://github.com/lastobelus/rudelo - Set Logic matcher</li>
+</ul>
+<h2 id="blog-posts">blog posts</h2>
+<ul>
+<li>http://jmettraux.wordpress.com/2009/04/25/rufus-decision-11-ruby-decision-tables/</li>
+<li>http://jmettraux.wordpress.com/2010/02/17/ruote-and-decision-tables/</li>
+</ul>
+<h2 id="usage">usage</h2>
+<p>More info at http://rufus.rubyforge.org/rufus-decision/Rufus/Decision/Table.html but here is a recap.</p>
+<p>An example where a few rules determine which salesperson should interact with a customer with given characteristics.</p>
+<p>```ruby require ‘rubygems’ require ‘rufus/decision’</p>
+<p>TABLE = Rufus::Decision::Table.new(%{ in:age,in:trait,out:salesperson</p>
+<pre><code>18..35,,adeslky
+25..35,,bronco
+36..50,,espadas
+51..78,,thorsten
+44..120,,ojiisan</code></pre>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sebastien_paml8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>In case you want to add additional class attributes or specific attributes, you can add (and override) the included elements attributes by doing:</p>
+<blockquote>
+<p>%include widget/datepicker +.Imported(date=2009-10-23)</p>
+</blockquote>
+<p>in the above example, the ‘widget/datepicker.paml’ snippet will be included, the ‘Imported’ class will be added to the element class attributes and a ‘date’ attribute will be set with the value ‘2009-10-23’.</p>
+<ol start="7" type="1">
+<li>Ideas about using Pamela ===========================</li>
+</ol>
+<p>If you’re like me and have stopped using XML as a data-format because there was no simple editor, you should really consider Pamela. Pamela can be great for hand-writing XML code specific to your application.</p>
+<p>Let’s take the FOAF or RDF XML applications…</p>
+<ol start="8" type="1">
+<li>Quick reference ==================</li>
+</ol>
+<p>== Pamela elements basic syntax ============================================================================= Element || Syntax || HTML ============================================================================= <em>inlined element</em> || ‘&lt;tag:…&gt;’ || ‘<tag>…</tag>’ —————————————————————————– Here is an example where you use ‘span’ and ‘a’ elements: &gt; Lorem <span:ipsum dolor> sit &lt;a(href=http://www.google.com):amet&gt; ——————++——————————————————— <em>block element</em> || &gt; &lt;tag || ‘<tag>Lorem ipsum</tag>’ || &gt; Lorem ipsum || ——————++——————————————————— <em>attributes</em> || ‘&lt;a(href=http://…):link’ || ‘<a href="http://...">link</a>’ =============================================================================</p>
+<p>== Pamela ID and class specification ===================================================================================== Element || Syntax || HTML ===================================================================================== <em>element id</em> || ‘&lt;tag#myid:…&gt;’ || ‘<tag id="myid">…</tag>’ ————————————————————————————- <em>element class</em> || ‘&lt;span.mySpanClass:…’ || ’&lt;span class=“mySpanClass&gt;…</span>’ =====================================================================================</p>
+<p>== Pamela element declaration and inclusion =============================================================================</p>
+</body>
+</html>

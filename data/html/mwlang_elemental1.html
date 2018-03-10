@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mwlang_elemental1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="elemental">ELEMENTAL</h1>
+<p>Elemental gives you enumerated sets. You code symbolically, keeping literals away from your conditional logic.</p>
+<h2 id="requirements">REQUIREMENTS:</h2>
+<ul>
+<li>Ruby 1.8+</li>
+<li>Ruby Gems</li>
+</ul>
+<h2 id="install">INSTALL:</h2>
+<p>Project Hosts: * *</p>
+<p>From Gem:</p>
+<pre><code>sudo gem install elemental</code></pre>
+<p>From Source:</p>
+<pre><code>gem install bones, rake, test-unit
+git clone git://github.com/mwlang/elemental.git
+cd elemental
+rake gem:package
+cd pkg
+sudo gem install elemental</code></pre>
+<h3 id="working-examples">Working Examples:</h3>
+<p>Check out the projects in the examples folder for working examples of using Elemental. Examples may be limited presently, but more are planned. If you have a unique/interesting application of Elemental, please feel free to contact me and let me know about it for possible inclusion.</p>
+<h2 id="featuresproblems">FEATURES/PROBLEMS:</h2>
+<ul>
+<li>Code with symbols, easily display what the user needs to see.</li>
+<li>Associate any number of values/attributes with a symbolic element.</li>
+<li>Change the display values without worrying about logical side-effects.</li>
+<li>Access elements in a variety of ways: symbol, constant, index.</li>
+<li>Store in database as either string (the default) or ordinal value.</li>
+<li>Elemental is also Enumerable. You can iterate all members and sort, too.</li>
+<li>A default flag can be set that makes it easier to render views.</li>
+</ul>
+<h2 id="description">DESCRIPTION:</h2>
+<p>Elemental provides enumerated collection of elements that allow you to associate ruby symbols to arbitrary “display” values, thus allowing your code to “think” symbolically and unambiguously while giving you the means to easily display what end-users need to see. Additionally, symbols are associated with ordinal values, allowing easy storage/retrieval to persistent stores (databases, files, marshalling, etc) by saving the Element#value as appropriate (String by default,</p>
+</body>
+</html>

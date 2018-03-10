@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RISCfuture_autumn23</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="scripts">Scripts</h2>
+<p>Autumn includes some scripts to help you control it. Each script accepts a <code>--help</code> command-line argument.</p>
+<h3 id="scriptconsole">script/console</h3>
+<p>Bootstraps an IRb console with the Autumn environment configured. Stems and leaves are accessile from the Foliater instance. DataMapper models can be used. Does not start any stems (in other words, no actual server login occurs).</p>
+<h3 id="scriptdaemon">script/daemon</h3>
+<p>Controller for the Autumn daemon. Starts, stops, and manages the daemon. Must be run from the Autumn root directory.</p>
+<h3 id="scriptdestroy">script/destroy</h3>
+<p>Destroys the files for leaves, seasons, and other objects of the Autumn framework.</p>
+<h3 id="scriptgenerate">script/generate</h3>
+<p>Generates template files for leaves, seasons, and other Autumn objects.</p>
+<h3 id="scriptserver">script/server</h3>
+<p>Runs Autumn from the command line. This script will not exit until all leaves have exited. You can set the <code>SEASON</code> environment variable to override the season.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>Autumn is a multi-threaded IRC client. When a message is received, a new thread is spawned to process the message. In this thread, the message will be parsed, and all listener hooks will be invoked, including your leaf’s methods. The thread will terminate once the message has been fully processed and all methods invoked.</p>
+<p>I have made every effort to ensure that Autumn::Stem and Autumn::Leaf are thread-safe, as well as other relevant support classes such as Autumn::CTCP. It is now in your hands to ensure your leaves are thread-safe! This basically means recognizing that, while your leaf is churning away at whatever command it received, things can and will change in the background. If your command requires your leaf to have operator privileges, write your code under the assumption that operator could be taken from your leaf in the middle of executing the command. Write data in critical blocks, use transactions in your database calls … you know the deal. Don’t assume things will be the same between one line of code and</p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsutphin_oracle-enhanced4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  # set which columns should be ignored in ActiveRecord
+  ignore_table_columns :attribute1, :attribute2
+end</code></pre>
+<p>You can also access remote tables over database link using</p>
+<pre><code>set_table_name &quot;hr_employees@db_link&quot;</code></pre>
+<h3 id="custom-create-update-and-delete-methods">Custom create, update and delete methods</h3>
+<p>If you have legacy schema and you are not allowed to do direct INSERTs, UPDATEs and DELETEs in legacy schema tables and need to use existing PL/SQL procedures for create, updated, delete operations then you should add <code>ruby-plsql</code> gem to your application and then define custom create, update and delete methods, see example:</p>
+<pre><code>class Employee &lt; ActiveRecord::Base
+  # when defining create method then return ID of new record that will be assigned to id attribute of new object
+  set_create_method do
+    plsql.employees_pkg.create_employee(
+      :p_first_name =&gt; first_name,
+      :p_last_name =&gt; last_name,
+      :p_employee_id =&gt; nil
+    )[:p_employee_id]
+  end
+  set_update_method do
+    plsql.employees_pkg.update_employee(
+      :p_employee_id =&gt; id,
+      :p_first_name =&gt; first_name,
+      :p_last_name =&gt; last_name
+    )
+  end
+  set_delete_method do
+    plsql.employees_pkg.delete_employee(
+      :p_employee_id =&gt; id
+    )
+  end
+end</code></pre>
+<p>In addition in <code>config/initializers/oracle.rb</code> initializer specify that ruby-plsql should use ActiveRecord database connection:</p>
+<pre><code>plsql.activerecord_class = ActiveRecord::Base</code></pre>
+<h3 id="oracle-context-index-support">Oracle CONTEXT index support</h3>
+<p>Every edition of Oracle database includes option for free which provides several full text indexing capabilities. Therefore in Oracle database case you don’t need external full text indexing and searching engines which can simplify your application deployment architecture.</p>
+<p>To create simple single column index create migration with, e.g.</p>
+<pre><code>add_context_index :posts, :title</code></pre>
+<p>and you can remove context index with</p>
+<pre><code>remove_context_index :posts, :title</code></pre>
+</body>
+</html>

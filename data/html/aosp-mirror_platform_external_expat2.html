@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aosp-mirror_platform_external_expat2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>libexpat into <code>/usr/local/lib</code>, <code>expat.h</code> into <code>/usr/local/include</code>, and <code>xmlwf</code> into <code>/usr/local/bin</code>. If, for example, you’d prefer to install into <code>/home/me/mystuff/lib</code>, <code>/home/me/mystuff/include</code>, and <code>/home/me/mystuff/bin</code>, you can tell <code>configure</code> about that with:</p>
+<pre class="console"><code>./configure --prefix=/home/me/mystuff</code></pre>
+<p>Another interesting option is to enable 64-bit integer support for line and column numbers and the over-all byte index:</p>
+<pre class="console"><code>./configure CPPFLAGS=-DXML_LARGE_SIZE</code></pre>
+<p>However, such a modification would be a breaking change to the ABI and is therefore not recommended for general use — e.g. as part of a Linux distribution — but rather for builds with special requirements.</p>
+<p>After running the configure script, the <code>make</code> command will build things and <code>make install</code> will install things into their proper location. Have a look at the <code>Makefile</code> to learn about additional <code>make</code> options. Note that you need to have write permission into the directories into which things will be installed.</p>
+<p>If you are interested in building Expat to provide document information in UTF-16 encoding rather than the default UTF-8, follow these instructions (after having run <code>make distclean</code>). Please note that we configure with <code>--without-xmlwf</code> as xmlwf does not support this mode of compilation (yet):</p>
+<ol type="1">
+<li><p>Mass-patch <code>Makefile.am</code> files to use <code>libexpatw.la</code> for a library name: <br/> <code>find -name Makefile.am -exec sed     -e 's,libexpat\.la,libexpatw.la,'     -e 's,libexpat_la,libexpatw_la,'     -i {} +</code></p></li>
+<li><p>Run <code>automake</code> to re-write <code>Makefile.in</code> files:<br/> <code>automake</code></p></li>
+<li><p>For UTF-16 output as unsigned short (and version/error strings as char), run:<br/> <code>./configure CPPFLAGS=-DXML_UNICODE --without-xmlwf</code><br/> For UTF-16 output as <code>wchar_t</code> (incl. version/error strings), run:<br/> <code>./configure CFLAGS=&quot;-g -O2 -fshort-wchar&quot; CPPFLAGS=-DXML_UNICODE_WCHAR_T     --without-xmlwf</code> <br/>Note: The latter requires libc compiled with <code>-fshort-wchar</code>, as well.</p></li>
+</ol>
+</body>
+</html>

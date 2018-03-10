@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>This handler is called for each chunk of data received for the
+response.  The handler might croak to abort the request.
+
+This handler needs to return a TRUE value to be called again for
+subsequent chunks for the same request.</code></pre>
+<ul>
+<li><p>response_done =&gt; sub { my($response, $ua, $h) = @_; … }</p>
+<p>The handler is called after the response has been fully received, but before any redirect handling is attempted. The handler can be used to extract information or modify the response.</p></li>
+<li><p>response_header =&gt; sub { my($response, $ua, $h) = @_; … }</p>
+<p>This handler is called right after the response headers have been received, but before any content data. The handler might set up handlers for data and might croak to abort the request.</p>
+<p>The handler might set the $response-&gt;{default_add_content} value to control if any received data should be added to the response object directly. This will initially be false if the $ua-&gt;request() method was called with a $content_file or $content_cb argument; otherwise true.</p></li>
+<li><p>request_prepare =&gt; sub { my($request, $ua, $h) = @_; … }</p>
+<p>The handler is called before the request is sent and can modify the request any way it see fit. This can for instance be used to add certain headers to specific requests.</p>
+<p>The method can assign a new request object to $_[0] to replace the request that is sent fully.</p>
+<p>The return value from the callback is ignored. If an exception is raised it will abort the request and make the request method return a “400 Bad request” response.</p></li>
+<li><p>request_preprepare =&gt; sub { my($request, $ua, $h) = @_; … }</p>
+<p>The handler is called before the <code>request_prepare</code> and other standard initialization of the request. This can be used to set up headers and attributes that the <code>request_prepare</code> handler depends on. Proxy initialization should take place here; but in general don’t register handlers for this phase.</p></li>
+<li><p>request_send =&gt; sub { my($request, $ua, $h) = @_; … }</p>
+<p>This handler gets a chance of handling requests before they’re sent to the protocol handlers. It should return an HTTP::Response object if it wishes to terminate the processing; otherwise it should return nothing.</p></li>
+</ul>
+</body>
+</html>

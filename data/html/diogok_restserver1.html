@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>diogok_restserver1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="restserver">RestServer</h1>
+<p>RestServer is a PHP library/framework for building RESTful webservices and also websites.</p>
+<p>It allows you to route <em>Method</em>,<em>URI</em> and <em>MIME-TYPE</em> to specific Resources handlers, access the Requested data and provide a proper Response.</p>
+<p>Here it’s decribe its documentation, together with the example folder and tests for reference.</p>
+<p>This version is based on the .</p>
+<h2 id="usage">Usage</h2>
+<p>The simplest way is using <em>composer</em>, just declare the restserver dependency in you composer.json:</p>
+<pre><code>{
+    &quot;require&quot;:{
+        &quot;restserver/restserver&quot;: &quot;*&quot;
+    }
+}</code></pre>
+<p>If not using composer, you can use the <em>restserver.phar</em>: just download and require it in your application.</p>
+<p>Checkout the .</p>
+<h3 id="the-server">The Server</h3>
+<p>The first step to defining you REST service is to instantiate the server, as follows:</p>
+<pre><code>$rest = new Rest\Server</code></pre>
+<p>This way the server will grab the requested URI to work with, or you can specify a URI if you are not working with UrlRewrite.</p>
+<p>For example, if the resource to load is coming from $_GET[“q”]:</p>
+<pre><code>$rest = new Rest\Serve($_GET[&#39;q&#39;]);</code></pre>
+<p>This way restserver will treat $_GET[‘q’] as the requested URI.</p>
+<h3 id="creating-resources">Creating resources</h3>
+<p>This is the main funcionality of this package, is to define the available resources.</p>
+<pre><code>$rest-&gt;addMap(&quot;GET&quot;,&quot;/url&quot;,&quot;action&quot;);</code></pre>
+<p>Dissecating this, you get a METHOD, a URI and an ACTION. Any method is available, even custom ones. URIs can be any URI and it support variable parameters, as follow:</p>
+<pre><code>$rest-&gt;addMap(&quot;POST&quot;,&quot;/user/:id&quot;,&quot;action&quot;);
+$rest-&gt;addMap(&quot;GET&quot;,&quot;/user/:id/posts&quot;,&quot;action&quot;);</code></pre>
+<p>Will give you a map to the “id” parameter (more on this later).</p>
+</body>
+</html>

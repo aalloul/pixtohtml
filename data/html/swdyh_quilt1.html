@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>swdyh_quilt1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="quilt">quilt</h1>
+<p>!</p>
+<p>A Ruby library for generating identicon.</p>
+<p>Identicon: http://en.wikipedia.org/wiki/Identicon</p>
+<h2 id="updates">Updates</h2>
+<p>2014-11-09T00:44:08+09:00 Add SVG support 2014-11-03T02:05:32+09:00 Add transparent background option</p>
+<h2 id="installation">Installation</h2>
+<p>Required rmagick or ruby-gd. (default rmagick)</p>
+<pre><code>gem install quilt</code></pre>
+<h2 id="example">Example</h2>
+<pre><code># input: any string
+# output: 15 * 15 png (default)
+identicon = Quilt::Identicon.new &#39;sample&#39;
+identicon.write &#39;sample15_15.png&#39;
+
+# input: identicon code(32 bit integer)
+# output: 15 * 15 png (default)
+identicon = Quilt::Identicon.new 1, :type =&gt; :code
+identicon.write &#39;sample15_15_code.png&#39;
+
+# input: ip address
+identicon = Quilt::Identicon.new &#39;100.100.100.100&#39;, :type =&gt; :ip
+identicon.write &#39;sample15_15_ip.png&#39;
+
+# output: 150 * 150 png
+identicon = Quilt::Identicon.new &#39;sample&#39;, :scale =&gt; 10
+identicon.write &#39;sample150_150.png&#39;
+
+# output: blob
+identicon = Quilt::Identicon.new &#39;sample&#39;
+print identicon.to_blob
+
+# output: 150 * 150 png tranparent background
+identicon = Quilt::Identicon.new &#39;sample&#39;, :scale =&gt; 10,  :transparent =&gt; true
+identicon.write &#39;sample_t_150_150.png&#39;
+
+# output: 150 * 150 svg
+identicon = Quilt::Identicon.new &#39;sample&#39;, :scale =&gt; 10, :format =&gt; &#39;svg&#39;</code></pre>
+</body>
+</html>

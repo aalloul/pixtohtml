@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>is active or not (i.e., when `transient-mark-mode` is off but
+the mark is set).  The appropriate amount of indentation, if
+any, is calculated automatically given the surrounding context,
+but may be adjusted later using the region indentation
+commands.
+
+&lt;kbd&gt;C-c C-s p&lt;/kbd&gt; behaves similarly for inserting preformatted code
+blocks (with &lt;kbd&gt;C-c C-s P&lt;/kbd&gt; being the region-only counterpart)
+and &lt;kbd&gt;C-c C-s C&lt;/kbd&gt; inserts a GFM style backquote fenced code block.</code></pre>
+<ul>
+<li><p>Headings: <kbd>C-c C-s</kbd></p>
+<p>To insert or replace headings, there are two options. You can insert a specific level heading directly or you can have <code>markdown-mode</code> determine the level for you based on the previous heading. As with the other markup commands, the heading insertion commands use the text in the active region, if any, as the heading text. Otherwise, if the current line is not blank, they use the text on the current line. Finally, the setext commands will prompt for heading text if there is no active region and the current line is blank.</p>
+<p><kbd>C-c C-s h</kbd> inserts a heading with automatically chosen type and level (both determined by the previous heading). <kbd>C-c C-s H</kbd> behaves similarly, but uses setext (underlined) headings when possible, still calculating the level automatically. In cases where the automatically-determined level is not what you intended, the level can be quickly promoted or demoted (as described below). Alternatively, a <kbd>C-u</kbd> prefix can be given to insert a heading <em>promoted</em> (lower number) by one level or a <kbd>C-u C-u</kbd> prefix can be given to insert a heading demoted (higher number) by one level.</p>
+<p>To insert a heading of a specific level and type, use <kbd>C-c C-s 1</kbd> through <kbd>C-c C-s 6</kbd> for atx (hash mark) headings and <kbd>C-c C-s !</kbd> or <kbd>C-c C-s @</kbd> for setext headings of level one or two, respectively. Note that <kbd>!</kbd> is <kbd>S-1</kbd> and <kbd>@</kbd> is <kbd>S-2</kbd>.</p>
+<p>If the point is at a heading, these commands will replace the existing markup in order to update the level and/or type of the heading. To remove the markup of the heading at the point, press <kbd>C-c C-k</kbd> to kill the heading and press <kbd>C-y</kbd> to yank the heading text back into the buffer.</p></li>
+<li><p>Horizontal Rules: <kbd>C-c C-s -</kbd></p>
+<p><kbd>C-c C-s -</kbd> inserts a horizontal rule. By default, insert the first string in the list <code>markdown-hr-strings</code> (the most prominent rule). With a <kbd>C-u</kbd> prefix, insert the last string. With a numeric prefix <kbd>N</kbd>, insert the string in position <kbd>N</kbd></p></li>
+</ul>
+</body>
+</html>

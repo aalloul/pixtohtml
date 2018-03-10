@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mkristian_dm-ldap-adapter1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dm-ldap-adapter">dm-ldap-adapter</h1>
+<p><em>Homepage</em>:</p>
+<p><em>Git</em>: <a href="git://github.com/mkristian/dm-ldap-adapter.git" class="uri">git://github.com/mkristian/dm-ldap-adapter.git</a></p>
+<p><em>Author</em>: Kristian Meier</p>
+<p><em>Copyright</em>: 2008-2009</p>
+<h2 id="note-on-patchespull-requests">Note on Patches/Pull Requests</h2>
+<ul>
+<li><p>Fork the project.</p></li>
+<li><p>Make your feature addition or bug fix.</p></li>
+<li><p>Add tests for it. This is important so I don’t break it in a future version unintentionally.</p></li>
+<li><p>Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)</p></li>
+<li><p>Send me a pull request.</p></li>
+</ul>
+<h2 id="description">DESCRIPTION:</h2>
+<h3 id="usecase">usecase</h3>
+<p>the usecase for that implementation was using an ldap server for user authentication and authorization. the ldap server is configured to have posixAccounts and posixGroups. on the datamapper side these accounts/groups are modeled with many-to-many relationship. further more the model classes should be in such a way that they can be used with another repository as well, i.e. they carry some ldap related configuration but this is only relevant for the ldap-adapter.</p>
+<h3 id="low-level-ldap-library">low level ldap library</h3>
+<p>the ldap library which does the actual ldap protocol stuff is [http://rubyforge.org/projects/net-ldap] which is the default. the other ldap library is [http://rubyforge.org/projects/ruby-ldap]. just add a facade parameter when setting up DataMapper</p>
+<pre><code>DataMapper.setup(:ldap, {
+               :adapter  =&gt; &#39;ldap&#39;,
+               :facade =&gt; :ruby_ldap,
+ .... })</code></pre>
+<p>or</p>
+<pre><code>DataMapper.setup(:ldap, {
+               :adapter  =&gt; &#39;ldap&#39;,
+               :facade =&gt; :net_ldap,
+ .... })</code></pre>
+<h3 id="setup-datamapper">setup DataMapper</h3>
+<pre><code>DataMapper.setup(:ldap, {
+               :adapter  =&gt; &#39;ldap&#39;,
+               :host =&gt; &#39;localhost&#39;,
+               :port =&gt; &#39;389&#39;,</code></pre>
+</body>
+</html>

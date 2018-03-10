@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>joseph_castanaut1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="castanaut-automate-your-screencasts.">Castanaut: Automate your screencasts.</h1>
+<p>Author: Joseph Pearson<br />
+http://gadgets.inventivelabs.com.au/castanaut</p>
+<h2 id="description">DESCRIPTION</h2>
+<p>Castanaut lets you write executable scripts for your screencasts. With a simple dictionary of stage directions, you can create complex interactions with a variety of applications. Currently, and for the foreseeable future, Castanaut supports Mac OS X 10.5 only.</p>
+<h2 id="synopsis">SYNOPSIS</h2>
+<h3 id="writing-screenplays">Writing screenplays</h3>
+<p>You write your screenplays as Ruby files. Castanaut has been designed to read fairly naturally to the non-technical, within Ruby’s constraints.</p>
+<p>Here’s a simple screenplay:</p>
+<pre><code>launch &quot;Safari&quot;, at(10, 10, 800, 600)
+type &quot;http://www.inventivelabs.com.au&quot;
+hit Enter
+pause 2
+move to(100, 100)
+move to(200, 100)
+move to(200, 200)
+move to(100, 200)
+move to(100, 100)
+say &quot;I drew a square!&quot;</code></pre>
+<p>With any luck we don’t need to explain to you what this screenplay does. The only thing that might need some explanation is “say” – this has a robotic voice speak the given string. (Also: all numbers are pixel co-ordinates).</p>
+<p>About the robot: no, we don’t recommend you use this in real screencasts for a large audience. Most people find it a little offputting. You are free to contravene our recommendation though. You can tweak the robot in the Mac OS X Speech Preferences pane.</p>
+<h3 id="running-your-screenplay">Running your screenplay</h3>
+<p>Simply give the screenplay to the castanaut command, like this:</p>
+<pre><code>castanaut test.screenplay</code></pre>
+<p>This assumes you have a screenplay file called “test.screenplay” in the directory where you are running the command.</p>
+</body>
+</html>

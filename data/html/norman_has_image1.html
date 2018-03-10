@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>norman_has_image1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="has_image---an-image-attachment-library-for-active-record">has_image - An Image attachment library for Active Record</h1>
+<p>** THIS LIBRARY IS NO LONGER MAINTAINED OR SUPPORTED **</p>
+<p>The has_image library extends Active Record to allow Rails applications to have attached images. It is very small and lightweight: it only requires one column in your model to store the uploaded image’s file name.</p>
+<p>It was originally created as a smaller, simpler, lighter alternative to for applications that need to handle uploaded images.</p>
+<p>It only supports using a filesystem for storage, and only supports as an image processor. However, its code is very small, clean and hackable, so adding support for other backends or processors should be fairly easy.</p>
+<p>Some typical use cases are: websites that want to create photo galleries with fixed-dimension thumbnails, or that want to store user profile pictures without creating a separate model for the images.</p>
+<p>It creates only one database record per image, and uses ImageMagick’s and <a href="http://www.imagemagick.org/script/command-line-options.php#gravity">center gravity</a> functions to produce thumbnails that generally look acceptable, unless the image is a panorama, or the subject matter is close to one of the margins, etc. For most sites where people upload pictures of themselves the generated thumbnails will look good almost all the time.</p>
+<h2 id="examples">Examples</h2>
+<p>Point-and-drool use case. It’s probably not what you want, but it may be useful for bootstrapping.</p>
+<pre><code>class Member &lt; ActiveRecord::Base
+  has_image
+end</code></pre>
+<p>Single image, no thumbnails, with some size limits:</p>
+<pre><code>class Picture &lt; ActiveRecord::Base
+  has_image :resize_to =&gt; &quot;200x200&quot;,
+    :max_size =&gt; 3.megabytes,
+    :min_size =&gt; 4.kilobytes
+end</code></pre>
+<p>Image with some thumbnails:</p>
+<pre><code>class Photo &lt; ActiveRecord::Base</code></pre>
+</body>
+</html>

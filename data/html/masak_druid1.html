@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>masak_druid1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Druid is a connection-oriented board game created by Cameron Browne.</p>
+<p>This is how a typical board might look:</p>
+<pre><code>      A     B     C     D     E
+   +-----+-----+-----+-----+-----+
+ 5 |                             | 5
+   |+-----+           +-----+    |
+   /| h h |    +     /| v v |    +
+ 4 || h h |          || v v |    | 4
+   |+-----+-----+    |+-----+    |
+   /-----/| v v |    /-----/     +
+ 3 |     || v v |                | 3
+   |     |+-----+     +-----+    |
+   +     /-----/     /| v v |    +
+ 2 |             +-----+-----+-----+
+   |      +-----/| h h   h h   h h |
+   +     /| v v || h h   h h   h h |
+ 1 |     || v v |+-----+-----+-----+
+   |     |+-----/-----/-----/-----/
+   +-----/-----/-----/-----/-----/
+      A     B     C     D     E</code></pre>
+<p>Rules and a bit of strategy can be found at http://www.cameronius.com/games/druid/</p>
+<p>Instructions on getting Druid running:</p>
+<ul>
+<li>Get Rakudo Star or install Rakudo and Panda manually.</li>
+<li>Call ‘panda install druid’.</li>
+</ul>
+<h2 id="get-rakudo">Get Rakudo</h2>
+<p>You need Rakudo to run the Perl 6 code in Druid – instructions here: <a href="http://rakudo.org/how-to-get-rakudo/" class="uri">http://rakudo.org/how-to-get-rakudo/</a>.</p>
+<h2 id="call-perl6-druid">Call ‘perl6 druid’</h2>
+<p>Yup, you’re ready to go.</p>
+<pre><code>% perl6 -Ilib bin/druid
+% perl6 -Ilib bin/druid --size=10 --computer=1
+% perl6 -Ilib bin/druid --help</code></pre>
+<h2 id="for-those-who-want-to-compile-things">For those who want to compile things</h2>
+<p>(After all, compilation does make startup a little faster.)</p>
+<p>Install ufo with panda or get it from github. Then run</p>
+</body>
+</html>

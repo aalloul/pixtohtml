@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>anutron_mootools-more3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h4 id="changes-in-mootools-more-1.2.4.4">Changes in MooTools More 1.2.4.4</h4>
+<ul>
+<li>Fixed Tips. Again.</li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.4.3">Changes in MooTools More 1.2.4.3</h4>
+<ul>
+<li>Nearly 50 bug fixes (.</li>
+<li>Keyboard:
+<ul>
+<li>Added some support for just pressing ‘shift’, ‘control’, or ‘alt’</li>
+<li>Added a bunch of keycodes for Mac compatibility</li>
+</ul></li>
+<li>Keyboard.Extras:
+<ul>
+<li>Support for “shortcuts” which are keyboard entries that have names and descriptions.</li>
+<li>Also provides methods for listing all the active shortcuts as well as allowing a shortcut to be rebound (for instance, if you were to allow the user to choose a key for a shortcut).</li>
+<li>Added a change event to Keyboard.manager whenever any keyboard is activated.</li>
+</ul></li>
+<li>Tips:
+<ul>
+<li>They work again (I know, that’s not really a feature).</li>
+<li>NEW Tips option “windowPadding” allows you to reduce or expand the virtual size of the window for tip positioning. Defaults to <code>{x:0, y:0}</code>. You can use that is a workaround for the scrollbars not being considered when calculating tip positions.</li>
+</ul></li>
+<li>HtmlTable:
+<ul>
+<li>fixed numerous bugs filed in Lighthouse</li>
+<li>ensuring that HtmlTable doesn’t apply it’s click behavior more than once…</li>
+<li>fixing a bug where HtmlTable couldn’t push headers defined in the options.</li>
+<li>reworking HtmlTable’s dom a bit to allow for positioning of the sort icon</li>
+<li>adding new set method for headers and footers.</li>
+<li>Fixed error in HtmlTable.Parsers when sorting by date. format(‘db’) was being applied to the text and not the date object.</li>
+</ul></li>
+<li>Array:
+<ul>
+<li>Added Array.shuffle</li>
+</ul></li>
+<li>Request.JSONP:
+<ul>
+<li>making JSONP pass all arguments, not just the first, to its complete/success methods; .</li>
+</ul></li>
+<li>Fx.Slide:
+<ul>
+<li>Added an option to specify the wrapper element for Fx.Slide. Was already present in the docs but could not be passed as an option.</li>
+</ul></li>
+<li>Mask:
+<ul>
+<li>adding options for the IframeShim for Mask</li>
+</ul></li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.4.2">Changes in MooTools More 1.2.4.2</h4>
+<ul>
+<li>Per the change in -core, $ is no longer used (uses document.id instead)</li>
+<li>Element.Measure: trying cssText solution for Element.expose (again).</li>
+<li>Element.Forms: swapping feature detection for browser support per</li>
+<li>Date: Massive refactoring of Date.js and Date.Extras.js</li>
+<li>Drag.Move: Fixing drag with grid issues</li>
+<li>IframeShim: altering zindex assignment in IframeShim to better ensure that it’s always underneath the shimmed element, updating Iframeshim’s empty document creation; fixes https issues in IE6</li>
+<li>FormValidator: reworking formvalidator scroll-to logic to be a little more efficient</li>
+<li>OverText: preventing overtext from focusing on inputs except when they are interacted with (so OverText.update() does not focus an input);now stops polling when elements are hidden (when polling is enabled)</li>
+<li>Fx.Scroll: adding scrollIntoView method - scrolls an element so that it is completely visible; if below the view, scrolls down until it is at the bottom of the screen, if above, scrolls up until it is at the top.</li>
+<li>JSONP: was calling (the deprecated) this.request instead of this.send during retries</li>
+<li>URI: Adding set(‘data’, obj) to set</li>
+<li>Assets: adding error callback for Assets.images</li>
+<li>Tips: removing dependency for Element.Measure for Tips; updating CSS class name in OverText</li>
+<li>Numerous small fixes, speed improvements, documentation tweaks, etc.</li>
+</ul>
+</body>
+</html>

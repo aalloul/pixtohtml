@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>krobertson_dm-paperclip1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="datamapper-paperclip">DataMapper Paperclip</h1>
+<p>DM-Paperclip is a port of Thoughtbot’s Paperclip plugin that works with DataMapper. This plugin is fully compatible with the original ActiveRecord-oriented Paperclip. You can take an existing ActiveRecord database and use it with DataMapper. The module also includes updates validation handling and automatic including of the necessary ‘property’ fields into your model.</p>
+<p>To use it within your models, you need to ensure the three database fields are included. They are <code>{name}_file_name</code>, <code>{name}_content_type</code>, and <code>{name}_file_size</code>. The first two are strings, the final <code>_file_size</code> column is an integer. So if your user model has an avatar field, then you would add <code>avatar_file_name</code>, <code>avatar_content_type</code>, and <code>avatar_file_size</code>.</p>
+<p>As with the original Paperclip plugin, it allows processing of thumbnails at the time the record is saved though ImageMagick. It processes the thumbnails through the command-line application instead of using RMagick.</p>
+<p>See the documentation for the <code>has_attached_file</code> method for options.</p>
+<h2 id="code">Code</h2>
+<p>The code DM-Paperclip is available at Github:</p>
+<pre><code>git clone git://github.com/krobertson/dm-paperclip.git</code></pre>
+<p>It is regularly updated to keep in sync with the latest from Thoughtbot.</p>
+<p>Releases are tagged within the repository and versioned the same as the original model. You can also get the latest release packaged as a gem through Rubygems.org:</p>
+<pre><code>sudo gem install dm-paperclip</code></pre>
+<h2 id="usage">Usage</h2>
+<p>In your model:</p>
+<p>```ruby class User include DataMapper::Resource include Paperclip::Resource property :id, Serial property :username, String</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pistos_better-benchmark1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="better-benchmark">Better Benchmark</h1>
+<p>Statistically correct benchmarking for Ruby.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code># Linux:
+gem install better-benchmark -- --with-R-dir=/usr/lib/R
+# OSX:
+gem install better-benchmark -- --with-R-dir=/Library/Frameworks/R.framework/Resources</code></pre>
+<p>Change the argument of <code>--with-R-dir</code> to whatever is appropriate for your system if either of the above don’t work.</p>
+<h3 id="with-bundler">With Bundler</h3>
+<p>Bundler needs to be configured to use the build option:</p>
+<pre><code># Linux:
+bundle config build.rsruby --with-R-dir=/usr/lib/R
+# OSX:
+bundle config build.rsruby --with-R-dir=/Library/Frameworks/R.framework/Resources</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="comparing-code-blocks">Comparing code blocks</h3>
+<pre><code>result = Benchmark.compare_realtime {
+  do_something_one_way
+}.with {
+  do_it_another_way
+}
+Benchmark.report_on result</code></pre>
+<p>See also example.rb for a more comprehensive example.</p>
+<h3 id="comparing-git-revisions">Comparing git revisions</h3>
+<h4 id="with-a-test-script-recommended">With a test script (recommended)</h4>
+<p>To test two revisions of a library, create a simple runner script:</p>
+<pre><code># runner.rb
+require &#39;mylib&#39;</code></pre>
+</body>
+</html>

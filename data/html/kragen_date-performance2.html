@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kragen_date-performance2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>FreeBSD 5.4 (x86) and 6.1 (AMD64)</li>
+<li>Linux / Fedora Core 6 (x86)</li>
+<li>MacOS X (Intel)</li>
+</ul>
+<p>The easiest way to install the package is to use RubyGems:</p>
+<pre><code>$ gem install date-performance --source=http://tomayko.com</code></pre>
+<p>Old versions and other dist formats are available at:</p>
+<pre><code>http://tomayko.com/dist/date-performance/</code></pre>
+<p>A git repository is also available:</p>
+<pre><code>$ git clone git://github.com/rtomayko/date-performance.git</code></pre>
+<h2 id="background">Background</h2>
+<p>The <em>Date</em> class is often the cause of poor performance in Ruby programs. A frequent suggestion is to use the <em>Time</em> class, which is much faster, but that solution has correctness problems in a wide range of data typing cases. It is often the case that you want separate <em>Date</em>, <em>Time</em>, and <em>DateTime</em> types.</p>
+<p>There are a couple of reasons why <em>Date</em> runs slowly when compared with <em>Time</em>. The common assumption is that this is mostly due to <em>Time</em> being written in C and <em>Date</em> being written in Ruby. While that clearly has an impact, I would argue that the reason <em>Date</em> is slow is because it’s not designed to be fast. The code opts for readability over performance in almost every case. <em>This is a feature</em>.</p>
+<p>Have you read the <em>date.rb</em> documentation [1]? The implementation is pretty hard core; it can handle a lot of weird cases that <em>Time</em> [2] does not and would appear to be a correct implementation of date handling, which has the usual side-effect of being slow.</p>
+<p>The <em>Date</em> implementation uses a single Astronomical Julian Day (AJD) number to represent dates internally. In fact, <em>Date#initialize</em> takes a single <code>ajd</code> argument, which means that all date forms that are commonly used (UNIX timestamp, Civil, etc.) must be converted to an AJD before we can even instantiate the thing.</p>
+<p>The real performance hit seems to come from the various rational number operations performed on the way from a civil, ordinal, and julian date to an AJD.</p>
+<p>When I began writing <em>Date::Performance</em>, I was getting pretty big (3x - 4x) performance boosts in many places simply by optimizing the Ruby code a bit. These boosts came at the expense of readability, however, and so the decision</p>
+</body>
+</html>

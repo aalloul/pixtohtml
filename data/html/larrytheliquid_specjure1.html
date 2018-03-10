@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>larrytheliquid_specjure1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="specjure">Specjure</h1>
+<p>Specjure is a software specification library for the programming language. Specjure shares many similarities with , but is differnet in ways that make it more suitable for a functional programming language, and Clojure specifically.</p>
+<h2 id="getting">Getting</h2>
+<p>Checkout Specjure using Git:</p>
+<pre><code> git clone git://github.com/larrytheliquid/specjure.git</code></pre>
+<p>Then, build the latest jar:</p>
+<pre><code>ant jar</code></pre>
+<p>Make sure to add the generated <code>clojure.jar</code> to your classpath.</p>
+<h2 id="updating">Updating</h2>
+<p>If you already have the Git repository and jar file but want the latest version:</p>
+<pre><code>git pull
+ant clean
+ant jar</code></pre>
+<h2 id="basic-spec-definition">Basic Spec Definition</h2>
+<p>To get top-level access to all Specjure functions, use Specjure in your namespace:</p>
+<pre><code>(ns specjure.example (:use specjure))</code></pre>
+<p>Now you are ready to specify some behavior using plain English (or your language of choice):</p>
+<pre><code>(spec &quot;specjure.example/greet without arguments greets generally&quot;)</code></pre>
+<p>If you are spec’ing a specific function, you can optionally use its var:</p>
+<pre><code>(spec greet &quot;without arguments greets generally&quot;)</code></pre>
+<p>Now specify what you mean in Clojure:</p>
+<pre><code>(spec greet &quot;without arguments greets generally&quot;
+  (ie = &quot;Greetings!&quot; (greet))</code></pre>
+<p>The <code>ie</code> macro is similar to <code>clojure.core/apply</code>, but the last argument is not a list, and you can pass it macros. <code>ie</code> closes its environment in a function for later verification (it checks for logical true or logical false), so</p>
+</body>
+</html>

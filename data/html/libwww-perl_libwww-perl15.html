@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl15</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>my $res = $ua-&gt;put( $url, \@form );
+my $res = $ua-&gt;put( $url, \%form, $field_name =&gt; $value, ... );
+my $res = $ua-&gt;put( $url, $field_name =&gt; $value, Content =&gt; \%form );
+my $res = $ua-&gt;put( $url, $field_name =&gt; $value, Content =&gt; \@form );</code></pre>
+<p>This method will dispatch a <code>PUT</code> request on the given URL, with <code>%form</code> or <code>@form</code> providing the key/value pairs for the fill-in form content. Additional headers and content options are the same as for the method.</p>
+<p>CAVEAT:</p>
+<p>This method can only accept content that is in key-value pairs when using prior to version <code>6.07</code>. Any use of hash or array references will result in an error prior to version <code>6.07</code>.</p>
+<p>This method will use the <code>PUT</code> function from to build the request. See for a details on how to pass form content and other advanced features.</p>
+<h2 id="request">request</h2>
+<pre><code>my $res = $ua-&gt;request( $request );
+my $res = $ua-&gt;request( $request, $content_file );
+my $res = $ua-&gt;request( $request, $content_cb );
+my $res = $ua-&gt;request( $request, $content_cb, $read_size_hint );</code></pre>
+<p>This method will dispatch the given <code>$request</code> object. Normally this will be an instance of the class, but any object with a similar interface will do. The return value is an object.</p>
+<p>The <code>request</code> method will process redirects and authentication responses transparently. This means that it may actually send several simple requests via the method described below.</p>
+<p>The request methods described above; , will all dispatch the request they build via this method. They are convenience methods that simply hide the creation of the request object for you.</p>
+<p>The <code>$content_file</code>, <code>$content_cb</code> and <code>$read_size_hint</code> all correspond to options described with the method above. Note that errors writing to the content file (for example due to permission denied or the filesystem being full) will be reported via the <code>Client-Aborted</code> or <code>X-Died</code> response headers, and not the <code>is_success</code> method.</p>
+<p>You are allowed to use a CODE reference as <code>content</code> in the request object passed in. The <code>content</code> function should return the content when called. The content can be returned in chunks. The content function will be invoked repeatedly until it return an empty string to</p>
+</body>
+</html>

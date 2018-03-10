@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>herlambang_h2o-php5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>       &lt;p&gt; H2O template inheritance is a powerful tool &lt;/p&gt; 
+   {% endblock %}
+ &lt;/div&gt;
+
+ &lt;div id=&quot;sidebar&quot;&gt;
+   {% block sidebar %}{% endblock %}
+ &lt;/div&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>As you can see, the base template is a typical web page using a two column layout, we defined two blocks (content, sidebar) and HTML code common across all your page.</p>
+<p><em>page.html</em> - to define a template specific of a page.</p>
+<pre><code>{% extends &#39;base.html&#39; %}
+
+{% block content %}
+    &lt;h1&gt; extended page &lt;/h1&gt;
+    &lt;p&gt; Body of extended page&lt;/p&gt;
+{% endblock %}
+
+{% block sidebar %}
+    Sidebar contains use links.
+{% endblock %}</code></pre>
+<p>The page.html extends base.html, now you will be able to override any block previously defined.</p>
+<p>There is a very good article about template inheritance in Django, in area of template inheritance h2o work exactly the same way.</p>
+<p><a href="http://www2.jeffcroft.com/blog/2006/feb/25/django-templates-the-power-of-inheritance/">Power of inheritance</a> is a very good blog post explaining inheritance</p>
+<p><em>Tips</em></p>
+<ul>
+<li>if you found you have a lot of common element inside the template, it may be a good idea to put that portion of template in side a block in a base template.</li>
+<li>block gives you a hook, especially useful they are useful for javascript, css too</li>
+<li>When defining a block use a short and distinctive name</li>
+</ul>
+<h3 id="configuration">Configuration</h3>
+<p>There are a range of option to set up the template system the way you want it.</p>
+</body>
+</html>

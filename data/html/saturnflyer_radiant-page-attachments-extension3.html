@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>saturnflyer_radiant-page-attachments-extension3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>If you’ve already started storing attachments on your hard drive <strong>this will break</strong> any <code>&lt;r:attachment...&gt;</code> tags pointing to those files. You’ll need to remove all existing attachments and re-add them to Amazon S3.</li>
+<li>You have to install the <code>AWS::S3</code> gem. In some shared hosting environments this might not be possible.</li>
+<li>The <code>AWS::S3</code> gem does not (currently) support EU buckets, so if that’s all you have you’ll need to create a bucket in the US.</li>
+</ul>
+<p>Before you start make sure you have <code>page_attachments</code> working using your hard drive. Once you’ve tested an upload or two to the hard drive and feel confident the basic setup is working, dive right in.</p>
+<ol type="1">
+<li><code>gem install aws-s3</code></li>
+<li><code>cd /path/to/radiant</code></li>
+<li><code>cp vendor/plugins/attachment_fu/amazon_s3.yml.tpl config/amazon_s3.yml</code></li>
+<li>edit <code>config/amazon_s3.yml</code> with your S3 credentials</li>
+<li>restart your server</li>
+</ol>
+<p>Add an attachment and make sure the link it gives back is on S3. You should see all your attachments start showing up at <code>http://s3.amazonaws.com/bucket-name/page_attachments/</code>. While it is possible to customize the URL to Amazon (i.e. http://attachments.your-domain.com/) but it’s beyond the scope of this document and a task best left for those that really need custom URLs.</p>
+<h2 id="contributors">Contributors</h2>
+<p>These people have contributed patches that have been added to the extension:</p>
+<ul>
+<li><a href="http://saturnflyer.com/">Jim Gay</a></li>
+<li>[Taylor Barstow][tb]</li>
+<li>Paul Hoehne</li>
+<li><a href="http://rubyforge.org/projects/mini-magick/">Mislav Marohnić</a></li>
+<li><a href="http://github.com/johnmuhl">John Muhl</a></li>
+<li>[Daniel Collis-Puro][djcp]</li>
+<li>[James Burka][jb]</li>
+<li>[Istvan Hoka][ihoka]</li>
+<li>[Jim Gay][sf]</li>
+<li>[Oleg Ivanov][oleg]</li>
+</ul>
+</body>
+</html>

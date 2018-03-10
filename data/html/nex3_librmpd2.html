@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nex3_librmpd2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>end
+song = mpd.current_song
+puts &quot;Current Song: #{song.artist} - #{song.title}&quot;</code></pre>
+<p>You can find documentation for each command</p>
+<h2 id="callbacks">Callbacks</h2>
+<p>Callbacks are a simple way to make your client respond to events, rather that have to continuously ask the server for updates. This allows you (the client creator) to focus on displaying the data, rather that working overly hard to get it. This is done by having a background thread continuously check the server for changes. Because of this thead, enabling callbacks also means your client will stay connected to the server without having to worry about timeouts.</p>
+<p>To make use of callbacks, the following steps are taken:</p>
+<ol type="1">
+<li>Setup a method to be called when something happens. This is called the callback method.</li>
+<li>Tell librmpd about your callback method by adding it to the appropriate list of callbacks.</li>
+<li>Connect to the server with callbacks set as enabled.</li>
+<li>???</li>
+<li>Profit!</li>
+</ol>
+<p>Ok, so the first three are all you really need. Lets look at step one: Setup a method to be called when something happens. Each callback method will be given specific data relevant to that callback. For example, the state changed callback passes the new state to the callback. This means your state callback method has to be defined as taking one argument:</p>
+<pre><code>class MyClient
+  ...
+  def my_state_callback( newstate )
+    puts &quot;MPD Changed State: #{newstate}&quot;
+  end
+  ...
+end</code></pre>
+<p>That’s it. As long as your defined method matches what the callback’s requirements are, you’re good to go. You can see the requirements for each callback under the CONSTANTS section</p>
+<p>In step two, you have to actually inform librmpd about the callback, and which callback it belongs to. This is done by the <code>register_callback</code> method. <code>register_callback</code> takes two arguments, first, the Method object of the callback method, and second, the type of callback to register this method as. Sound complicated? its not. Using the above example callback, here’s how we’d tell librmpd about it:</p>
+<pre><code>client = MyClient.new
+state_cb = client.method &#39;my_state_callback&#39;
+mpd.register_callback state_cb, MPD::STATE_CALLBACK</code></pre>
+<p>Blammo! that’s it. The second line is the biggy. the <code>method</code> method returns a Method object which can then be called at some arbitrary point in time. This Method object is stored in a list inside librmpd, so whenever the state changes, all of the Method objects in that list are then informed of the change. Since they’re stored in a list, this means you are free to add as many callbacks as you want, without side effects.</p>
+<p>Finally, the easiest step. In order for callbacks to work, you must connect to the server with callbacks enabled:</p>
+<pre><code>mpd.connect true</code></pre>
+<p>Easy as pie. The above will connect to the server like normal, but this time it will create a new thread that loops until you issue a <code>disconnect</code>. This loop checks the server, then sleeps for two tenths of a second, then loops. Because it’s continuously polling the server, there’s the added benefit of your client not being disconnected due to inactivity.</p>
+<h2 id="example-clients">Example Clients</h2>
+<p>Inside the release tar/zip, there is an example directory that contains two very simple clients. The first client, <code>rmpc.rb</code> behaves just like mpc. This is just a command line client that lets you issue a single command such as</p>
+<pre><code>$ rmpc.rb play</code></pre>
+</body>
+</html>

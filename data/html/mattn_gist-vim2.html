@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mattn_gist-vim2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    :Gist -s something
+    :Gist -e -s something</code></pre>
+<ul>
+<li><p>Delete the gist (you need to have opened the gist buffer first). Password authentication is needed.</p>
+<pre><code>  :Gist -d</code></pre></li>
+<li><p>Fork the gist (you need to have opened the gist buffer first). Password authentication is needed.</p>
+<pre><code>  :Gist -f</code></pre></li>
+<li><p>Star the gist (you need to have opened the gist buffer first). Password authentication is needed.</p>
+<pre><code>  :Gist +1</code></pre></li>
+<li><p>Unstar the gist (you need to have opened the gist buffer first). Password authentication is needed.</p>
+<pre><code>  :Gist -1</code></pre></li>
+<li><p>Get gist XXXXX.</p>
+<pre><code>  :Gist XXXXX</code></pre></li>
+<li><p>Get gist XXXXX and add to clipboard.</p>
+<pre><code>  :Gist -c XXXXX</code></pre></li>
+<li><p>List your public gists.</p>
+<pre><code>  :Gist -l</code></pre></li>
+<li><p>List gists from user “mattn”.</p>
+<pre><code>  :Gist -l mattn</code></pre></li>
+<li><p>List everyone’s gists.</p>
+<pre><code>  :Gist -la</code></pre></li>
+<li><p>List gists from your starred gists.</p>
+<pre><code>  :Gist -ls</code></pre></li>
+<li><p>Open the gist on browser after you post or update it.</p>
+<pre><code>  :Gist -b</code></pre></li>
+</ul>
+</body>
+</html>

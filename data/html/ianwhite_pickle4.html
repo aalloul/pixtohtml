@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ianwhite_pickle4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>If you find that your steps aren’t working with your factories, it’s probably the case that your factory setup is not being included in your cucumber environment (see comments above regarding machinist and factory-girl).</p>
+<h2 id="api">API</h2>
+<h3 id="steps">Steps</h3>
+<p>When you run <code>script/generate pickle</code> you get the following steps</p>
+<h4 id="given-steps">Given steps</h4>
+<p>“Given <strong>a model</strong> exists”, e.g.</p>
+<pre class="gherkin"><code>Given a user exists
+Given a user: &quot;fred&quot; exists
+Given the user exists</code></pre>
+<p>“Given <strong>a model</strong> exists with <strong>fields</strong>”, e.g.</p>
+<pre class="gherkin"><code>Given a user exists with name: &quot;Fred&quot;
+Given a user exists with name: &quot;Fred&quot;, activated: false</code></pre>
+<p>This last step could be better expressed by using Machinist/FactoryBot to create an activated user. Then you can do</p>
+<pre class="gherkin"><code>Given an activated user exists with name: &quot;Fred&quot;</code></pre>
+<p>You can refer to other models in the fields</p>
+<pre class="gherkin"><code>Given a user exists
+And a post exists with author: the user
+
+Given a person &quot;fred&quot; exists
+And a person &quot;ethel&quot; exists
+And a fatherhood exists with parent: person &quot;fred&quot;, child: person &quot;ethel&quot;</code></pre>
+<p>This last step is given by the default pickle steps, but it would be better written as:</p>
+<pre class="gherkin"><code>And &quot;fred&quot; is the father of &quot;ethel&quot;</code></pre>
+<p>It is expected that you’ll need to expand upon the default pickle steps to make your features readable. To write the above step, you could do something like:</p>
+</body>
+</html>

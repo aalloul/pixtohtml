@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>speedmax_simplespec1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="simplespec">SimpleSpec</h1>
+<p>PHP SimpleTest extension for Behavior driven development(BDD), An extension class for SimpleTest</p>
+<p>why not PHPSpec? well its a good project but SimpleTest i want something simpler</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Reuse SimpleTest framework</li>
+<li>simplly one include from away</li>
+<li>Underscore for readibility - all examples uses underscore to seperate descriptions.</li>
+<li>Natural language grammer</li>
+<li>before_all, after_all is not supported, i don’t want to modify SimpleTest</li>
+<li>conventional before/after named prepare/cleanup respectively</li>
+</ul>
+<h2 id="requirement">Requirement</h2>
+<ul>
+<li>PHP 5.1 +</li>
+<li>SimpleTest installed</li>
+</ul>
+<h2 id="example">Example</h2>
+<pre><code>&lt;?php
+require &#39;spec_helper.php&#39;;
+
+class Describe_his_mum extends SimpleSpec {
+    function prepare() {
+        $this-&gt;mum = new Mum(array(&#39;mood&#39;=&gt;&#39;angry&#39;)); 
+    }
+
+    function should_be_very_angry_when_i_break_my_lunch_box() {
+        expects($this-&gt;mum-&gt;mood)-&gt;should_be(&#39;angry&#39;);
+    }
+
+   function should_be_very_happy_when_i_punch_her_in_the_face() {
+        punch($this-&gt;mum);
+        expects($this-&gt;mum-&gt;mood)-&gt;should_be(&#39;happy&#39;);
+    }
+
+    function cleanup() {
+        unset($this-&gt;mum); // kill da mum
+    }
+}
+
+?&gt;</code></pre>
+<p>Author</p>
+</body>
+</html>

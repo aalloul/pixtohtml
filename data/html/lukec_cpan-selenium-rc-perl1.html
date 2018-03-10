@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lukec_cpan-selenium-rc-perl1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="overview">Overview</h1>
+<p><em>Test-WWW-Selenium</em> is a perl driver and test library for Selenium Remote Control (SRC). You will need to setup a Selenium Server that can launch browsers.</p>
+<p><em>Selenium Remote Control (SRC)</em> is a test tool that allows you to write automated web application UI tests in any programming language against any HTTP website using any mainstream JavaScript-enabled browser. SRC provides a Selenium Server, which can automatically start/stop/control any supported browser. It works by using Selenium Core, a pure-HTML+JS library that performs automated tasks in JavaScript; the Selenium Server communicates directly with the browser using AJAX (XmlHttpRe- quest).</p>
+<p>This module sends commands directly to the Server using simple HTTP GET/POST requests. Using this module together with the Selenium Server, you can automatically control any supported browser.</p>
+<h1 id="prereqs">Prereqs</h1>
+<p>To use this module, you need to have already downloaded and started the Selenium Server. (The Selenium Server is a Java application.)</p>
+<p>The Selenium Server is available here:</p>
+<p>http://www.seleniumhq.org/download/</p>
+<p>or on CPAN in the Alien-SeleniumRC package:</p>
+<p>http://search.cpan.org/dist/Alien-SeleniumRC</p>
+<h1 id="installation">Installation</h1>
+<pre><code>perl Makefile.PL
+make
+make test
+make install</code></pre>
+<h1 id="usage">Usage</h1>
+<p>Once installed, your test script will look something like this:</p>
+<pre><code>#!/usr/bin/perl
+use strict;
+use warnings;
+use Test::More tests =&gt; 4;
+use Test::WWW::Selenium;</code></pre>
+</body>
+</html>

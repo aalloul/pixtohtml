@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>briot_geneapro1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>This is GeneaProve, a web-based genealogical software. This README is organized as a FAQ, hopefully this will make it more readable.</p>
+<p>Q. What do I need to install first ?</p>
+<p>Compiling and running geneaprove requires the following packages: python 3.6 django &gt;= 1.10.x sqlite &gt;= 3.6 nodejs &gt;= 7.7.3 npm &gt;= 4.2.0 tmux</p>
+<p>We know that things will not work as well with older versions, and the current priority of the project is to implement new features rather than support obsolete versions of these tools.</p>
+<p>The only database backend that has been tested so far is sqlite, although Django is such that it might work with other backends.</p>
+<p>Q. How do I start the server ?</p>
+<p>Run the following:</p>
+<pre><code>   sh ./setup.sh</code></pre>
+<p>This command will download required nodejs and python dependencies (which might take a while the first time), and then start split the window into several parts: one makes sure the server is running, another that the resources needed by the web browser are compiled.</p>
+<p>This command also creates an empty database if none exists yet.</p>
+<p>Once the second window shows that all web resources have been compiled, open a web browser and connect to:</p>
+<pre><code>  http://127.0.0.1:8000/</code></pre>
+<p>Tested web browers include Safari, Firefox and Chrome.</p>
+<p>Q. How do I import my GEDCOM data ?</p>
+<p>Currently, GeneaProve is a read-only view. You should therefore have a GEDCOM file created by another genealogy software.</p>
+<p>Once you have this file, you can click on “Import” in your web browser to import it into GeneaProve.</p>
+<p>Q. Why did you implement this as a web server ?</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aosp-mirror_platform_bionic4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>this system call?“. The answer is usually”no“.</p>
+<p>The answer is “yes” if the system call is part of the POSIX standard.</p>
+<p>The answer is probably “yes” if the system call has a wrapper in at least one other C library.</p>
+<p>The answer may be “yes” if the system call has three/four distinct users in different projects, and there isn’t a more specific library that would make more sense as the place to add the wrapper.</p>
+<p>In all other cases, you should use instead.</p>
+<p>Adding a system call usually involves:</p>
+<ol type="1">
+<li>Add entries to SYSCALLS.TXT. See SYSCALLS.TXT itself for documentation on the format.</li>
+<li>Run the gensyscalls.py script.</li>
+<li>Add constants (and perhaps types) to the appropriate header file. Note that you should check to see whether the constants are already in kernel uapi header files, in which case you just need to make sure that the appropriate POSIX header file in libc/include/ includes the relevant file or files.</li>
+<li>Add function declarations to the appropriate header file. Don’t forget to include the appropriate <code>__INTRODUCED_IN()</code>.</li>
+<li>Add the function name to the correct section in libc/libc.map.txt and run <code>./libc/tools/genversion-scripts.py</code>.</li>
+<li>Add at least basic tests. Even a test that deliberately supplies an invalid argument helps check that we’re generating the right symbol and have the right declaration in the header file, and that you correctly updated the maps in step 5. (You can use strace(1) to confirm that the correct system call is being made.)</li>
+</ol>
+<h2 id="updating-kernel-header-files">Updating kernel header files</h2>
+<p>As mentioned above, this is currently a two-step process:</p>
+<ol type="1">
+<li>Use generate_uapi_headers.sh to go from a Linux source tree to appropriate contents for external/kernel-headers/.</li>
+<li>Run update_all.py to scrub those headers and import them into bionic.</li>
+</ol>
+<p>Note that if you’re actually just trying to expose device-specific headers to build your device drivers, you shouldn’t modify bionic. Instead use <code>TARGET_DEVICE_KERNEL_HEADERS</code> and friends described in .</p>
+<p>Updating tzdata</p>
+</body>
+</html>

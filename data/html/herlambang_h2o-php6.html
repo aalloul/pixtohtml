@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>herlambang_h2o-php6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&lt;?php
+    $h2o = new H2o(&#39;template.tpl&#39;, array(
+        [option_name] =&gt; [option_value]
+    ));
+?&gt;</code></pre>
+<h4 id="loader">loader</h4>
+<p>name of loader or a instance of H2o_Loader</p>
+<p><strong>Use file loader [default]</strong></p>
+<p><code>$template = new H2o('index.html', array('loader'=&gt;'file');</code></p>
+<p><strong>Advance setup</strong> &lt;?php <span class="math inline"><em>l</em><em>o</em><em>a</em><em>d</em><em>e</em><em>r</em> = <em>n</em><em>e</em><em>w</em><em>H</em>2<em>o</em><sub><em>F</em></sub><em>i</em><em>l</em><em>e</em><sub><em>L</em></sub><em>o</em><em>a</em><em>d</em><em>e</em><em>r</em>(</span>custom_searchpath); $template = new H2o(‘index.html’, array(‘loader’=&gt; $loader ); ?&gt;</p>
+<p><strong>Use dictionary loader</strong></p>
+<p>You may want to load template from other resource than file then this will be your friend. h2o use <code>dict_loader()</code> for testing.</p>
+<pre><code>&lt;?php
+    $loader = dict_loader(array(
+        &quot;index.html&quot; =&gt; &#39;Hello {{ person }}&#39;
+    ));
+    $template = new H2o(&#39;index.html&#39;, array(&#39;loader&#39; =&gt; $loader&#39;));
+?&gt; </code></pre>
+<h4 id="searchpath">searchpath</h4>
+<p>default: this will be the base path of your template</p>
+<p>h2o use this path to load additional templates and extensions.</p>
+<p>You can either explicity set the search path</p>
+<p><code>$template = new H2o('index.html', array('searchpath' =&gt; '/sites/common_templates'));</code></p>
+<p>or It will try to find the searchpath for you</p>
+<p><code>$template = new H2o('/sites/common_templates/index.html');</code></p>
+<h4 id="cache">cache</h4>
+<p>define type of caching engine h2o needs to use, set to false to disable caching, you can read more about performance and caching in following sections</p>
+</body>
+</html>

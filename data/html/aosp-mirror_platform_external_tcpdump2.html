@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aosp-mirror_platform_external_tcpdump2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>through the <code>CHANGES</code> file). We are grateful for all the input.</p>
+<p>Richard Stevens gives an excellent treatment of the Internet protocols in his book <em>“TCP/IP Illustrated, Volume 1”</em>. If you want to learn more about tcpdump and how to interpret its output, pick up this book.</p>
+<p>Some tools for viewing and analyzing tcpdump trace files are available from the Internet Traffic Archive:</p>
+<ul>
+<li>http://www.sigcomm.org/ITA/</li>
+</ul>
+<p>Another tool that tcpdump users might find useful is tcpslice:</p>
+<ul>
+<li>https://github.com/the-tcpdump-group/tcpslice</li>
+</ul>
+<p>It is a program that can be used to extract portions of tcpdump binary trace files. See the above distribution for further details and documentation.</p>
+<p>Current versions can be found at www.tcpdump.org.</p>
+<ul>
+<li>The TCPdump team</li>
+</ul>
+<p>original text by: Steve McCanne, Craig Leres, Van Jacobson</p>
+<hr />
+<p>``` This directory also contains some short awk programs intended as examples of ways to reduce tcpdump data when you’re tracking particular network problems:</p>
+<p>send-ack.awk Simplifies the tcpdump trace for an ftp (or other unidirectional tcp transfer). Since we assume that one host only sends and the other only acks, all address information is left off and we just note if the packet is a “send” or an “ack”.</p>
+<pre><code>There is one output line per line of the original trace.
+Field 1 is the packet time in decimal seconds, relative
+to the start of the conversation.  Field 2 is delta-time
+from last packet.  Field 3 is packet type/direction.
+&quot;Send&quot; means data going from sender to receiver, &quot;ack&quot;
+means an ack going from the receiver to the sender.  A
+preceding &quot;*&quot; indicates that the data is a retransmission.
+A preceding &quot;-&quot; indicates a hole in the sequence space
+(i.e., missing packet(s)), a &quot;#&quot; means an odd-size (not max
+seg size) packet.  Field 4 has the packet flags
+(same format as raw trace).  Field 5 is the sequence
+number (start seq. num for sender, next expected seq number
+for acks).  The number in parens following an ack is</code></pre>
+</body>
+</html>

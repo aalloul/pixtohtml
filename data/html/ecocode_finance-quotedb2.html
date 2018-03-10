@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ecocode_finance-quotedb2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>user symbols (comma separated list). Range will be one day if $date_end is omitted.</p>
+<h2 id="dumpquotes">dumpquotes</h2>
+<p>dumpquotes ( $USERsymbols, <span class="math inline">$date\_start \[,$</span>date_end] )</p>
+<p>This function dumps quotes between $date_start and $date_end for the specified user symbols (comma separated list). Range will be one day if $date_end is omitted.</p>
+<h2 id="dumpstocks">dumpstocks</h2>
+<p>dumpstocks ()</p>
+<p>This function dumps the symbols of the stocks in the database.</p>
+<h2 id="add_yahoo_stocks">add_yahoo_stocks</h2>
+<p>add_yahoo_stocks( $exchanges , [ $refsearchlist ] )</p>
+<p>retrieves yahoo tickers for specified exchanges and stores them in your database NOTE: $exchanges being the ID as coming from yahoo. NYQ for Nyse, PAR for Paris $refsearchlist is an optional reference to a list of search patterns. defaults to [**AA .. **ZZ]</p>
+<h2 id="schema">schema</h2>
+<p>schema()</p>
+<p>If necessary, creates a DBIx::Class::Schema and returns a reference to that DBIx::Class::Schema.</p>
+<h2 id="today">today</h2>
+<p>today()</p>
+<p>returns current date in isodate format</p>
+<h1 id="author">AUTHOR</h1>
+<p>Erik Colson, <code>&lt;eco at ecocode.net&gt;</code></p>
+<h1 id="bugs">BUGS</h1>
+<p>Please report any bugs or feature requests to <code>bug-finance-quotedb at rt.cpan.org</code>, or through the web interface at . I will be notified, and you’ll automatically be notified of progress on your bug as I make changes.</p>
+</body>
+</html>

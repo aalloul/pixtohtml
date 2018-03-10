@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kcomandich_openconferenceware2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ol start="7" type="1">
+<li><p>Edit <code>config/initializers/01_open_conference_ware.rb</code> and <code>config/secrets.yml</code> to configure OCW’s settings. You’ll find comments in these files explaining the available options.</p></li>
+<li><p>All of these newly-generated files, <em>except config/secrets.yml</em>, should be added to your version control system. If you’re using git, you may want to add <code>config/secrets.yml</code> to your <code>.gitignore</code>, to ensure it doesn’t get shared accidentally.</p></li>
+<li><p>At this point, you should be able to fire up a server and see OpenConferenceWare at</p>
+<pre><code> $ bin/rails server</code></pre></li>
+</ol>
+<h3 id="authentication">Authentication</h3>
+<p>OpenConferenceWare uses . No authentication method is enabled by default, so you’ll need to configure one before deploying OCW.</p>
+<p>To do this, just add the gem for the desired provider to your Gemfile, run <code>bundle install</code>, and configure it in <code>config/initializers/02_omniauth.rb</code>.</p>
+<p>For example, to enable sign-in with gem to your Gemfile</p>
+<pre><code>gem &#39;omniauth-persona&#39;</code></pre>
+<p>and add the provider to <code>02_omniauth.rb</code></p>
+<pre><code>provider :persona</code></pre>
+<h4 id="sign-in-forms">Sign In Forms</h4>
+<p>Friendly sign-in forms are provided for , but it’s easy to add your own. After enabling an OmniAuth provider, create a partial view at <code>app/views/open_conference_ware/authentications/_provider_name.html.erb</code>, where <code>provider_name</code> is the name passed to the provider method in the initializer.</p>
+<h2 id="customization">Customization</h2>
+<h3 id="feature-flags">Feature Flags</h3>
+<p>Many features of OCW can be enabled or disabled to meet your event’s needs. These can be toggled by editing flags in <code>config/initializers/01_open_conference_ware.rb</code>.</p>
+<h3 id="views-and-styles">Views and Styles</h3>
+<p>Since OpenConferenceWare is an engine, all of its views are packaged inside the gem. To customize things, you can easily override any view by creating one with the same name in your application.</p>
+<p>To simplify this process, we’ve included a generator that will copy views out of the gem for you. Invoking the following command will copy all of OpenConferenceWare’s views:</p>
+<pre><code>$ bin/rails generate open_conference_ware:views</code></pre>
+<p>If you only need to override a particular set of views, you can pass arguments to the generator to narrow things down. This will copy only the layout file and view related to rooms:</p>
+<pre><code>$ bin/rails generate open_conference_ware:views layouts rooms</code></pre>
+<p>You can see a full list of available arguments by running:</p>
+<pre><code>$ bin/rails generate open_conference_ware:views --help</code></pre>
+<p>Releases</p>
+</body>
+</html>

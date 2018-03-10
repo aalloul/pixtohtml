@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_jester2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>true</code></pre>
+<p>Create takes a hash of attribute values. After calling create, the model will fetch its new ID from the return headers.</p>
+<pre><code>&gt;&gt;&gt; floyd = User.create({name: &quot;Floyd Wright&quot;, email: &quot;tfwright@thoughtbot.com&quot;})
+POST http://localhost:3000/users.xml
+Object _name=User _singular=user _plural=users
+
+&gt;&gt;&gt; floyd.id
+9
+
+&gt;&gt;&gt; User.find(9).name
+GET http://localhost:3000/users/9.xml
+&quot;Floyd Wright&quot;</code></pre>
+<p>Updating is as simple as changing one of the properties and calling save.</p>
+<pre><code>&gt;&gt;&gt; eric = User.find(1)
+GET http://localhost:3000/users/1.xml
+Object _name=User _singular=user _plural=users
+
+&gt;&gt;&gt; eric.email
+&quot;emill@thoughtbot.com&quot;
+&gt;&gt;&gt; eric.email = &quot;sandybeach@wintermute.com&quot;
+&quot;sandybeach@wintermute.com&quot;
+
+&gt;&gt;&gt; eric.save()
+POST http://localhost:3000/users/1.xml
+true
+
+&gt;&gt;&gt; User.find(eric.id).email
+GET http://localhost:3000/users/1.xml
+&quot;sandybeach@wintermute.com&quot;</code></pre>
+<p>Sadly, there’s one area where Jester’s syntax can’t match ActiveResource’s perfectly. The method “new” has been renamed to build, due to “new” being an illegal method name in JavaScript up to 1.6. Hopefully this can be updated as the browser landscape evolves. Build was chosen because it is similarly used in ActiveRecord to replace “new” on an association array, where “new” cannot be used.</p>
+<pre><code>&gt;&gt;&gt; chad = User.build({email: &quot;cpytel@thoughtbot.com&quot;, name: &quot;Chad Pytel&quot;})
+Object _name=User _singular=user _plural=users
+
+&gt;&gt;&gt; chad.new_record()
+true
+&gt;&gt;&gt; chad.save()
+POST http://localhost:3000/users.xml
+true
+
+&gt;&gt;&gt; chad.id
+9
+&gt;&gt;&gt; chad.new_record()
+false</code></pre>
+</body>
+</html>

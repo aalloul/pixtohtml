@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cdmoyer_couchapp2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>{
+  &quot;lib&quot; : {
+    &quot;templates&quot; : {
+      &quot;post&quot; : &quot;&lt;html&gt; ... &lt;/html&gt;&quot;,
+      &quot;comment&quot; : &quot;&lt;html&gt; ... &lt;/html&gt;&quot;
+    },
+    &quot;render&quot; : {
+      &quot;html&quot; : &quot;function(template, object){...}&quot;
+    }
+  },
+  &quot;blog&quot; : {
+    &quot;title&quot; : &quot;My Rad Blog&quot;
+  }
+}</code></pre>
+<h4 id="the-function">The Function</h4>
+<pre><code>function(doc) {
+  // !json lib.templates.post
+  // !json blog.title  
+  ...
+  doSomething(lib.templates.post, blog.title);
+}</code></pre>
+<h4 id="the-result">The Result</h4>
+<pre><code>function(doc) {
+  var lib = {
+    &quot;templates&quot; : {
+      &quot;post&quot; : &quot;&lt;html&gt; ... &lt;/html&gt;&quot;
+    }
+  };
+  var blog = {
+    &quot;title&quot; : &quot;My Rad Blog&quot;
+  };
+  ...
+  doSomething(lib.templates.post, blog.title);
+}</code></pre>
+<p>The upshot is that only the requested fields are included in the function. This allows you to put as many templates and libraries in your design doc as you wish, without creating overlong functions.</p>
+<h4 id="silly-counter-example">Silly Counter-example</h4>
+<pre><code>function(doc) {
+  // !json lib
+  // !json lib.templates.post
+}</code></pre>
+<p>In this example, the second usage of the macro is redundant, as the first usage will include the entire <code>lib</code> field as a JSON macro.</p>
+</body>
+</html>

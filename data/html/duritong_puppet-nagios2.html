@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>duritong_puppet-nagios2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Services can be monitored by using the <code>nagios::service</code> component.</p>
+<p>The simplest form is:</p>
+<pre><code>nagios::service { &#39;check_http&#39;:
+    check_command =&gt; &#39;http_port!80&#39;,
+}</code></pre>
+<p>The intention being obviously to put such declarations into a component defining a service, thereby being automatically applied together with all instances of the service.</p>
+<p>Obviously, the check command must either be defined using nagios_command objects (some are supplied in <code>nagios::defaults::commands</code>) or in the nagios configuration files directly.</p>
+<h2 id="nrpe-services">NRPE Services</h2>
+<p>Some Nagios services need to be checked via NRPE. The following will make the nagios server define a service that will check the NRPE command <code>check_cpu</code> on the current node:</p>
+<pre><code>nagios::service { &#39;CPU Usage&#39;:
+  use_nrpe =&gt; &#39;true&#39;,
+  check_command =&gt; &quot;check_cpu&quot;,
+  nrpe_args =&gt; &quot;-t 60&quot;
+}</code></pre>
+<h2 id="nrpe-commands">NRPE Commands</h2>
+<p>To be able to call NRPE commands on a host, one needs to define that command and what it is going to execute:</p>
+<pre><code>nagios::nrpe::command { &#39;debsums&#39;:
+  check_command =&gt; &#39;/usr/lib/nagios/plugins/check_debsums openssh-server&#39;
+}</code></pre>
+<h1 id="upgrade-notes">Upgrade Notes</h1>
+<p>The <code>nagios::target</code> bits have been reworked, the notable changes that may affect an upgrade are:</p>
+<ul>
+<li>previous versions had <code>nagios::target::nat</code> which used the <code>$::fqdn</code> for the address part of <code>nagios::target</code>, this has been renamed to <code>nagios::target::fqdn</code> to be more clear. if you were using <code>nagios::target::nat</code> then you will need to change those references to</li>
+</ul>
+</body>
+</html>

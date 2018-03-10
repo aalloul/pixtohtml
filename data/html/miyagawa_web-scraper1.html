@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>miyagawa_web-scraper1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="name">NAME</h1>
+<p>Web::Scraper - Web Scraping Toolkit using HTML and CSS Selectors or XPath expressions</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>use URI;
+use Web::Scraper;
+use Encode;
+
+# First, create your scraper block
+my $authors = scraper {
+    # Parse all TDs inside &#39;table[width=&quot;100%]&quot;&#39;, store them into
+    # an array &#39;authors&#39;.  We embed other scrapers for each TD.
+    process &#39;table[width=&quot;100%&quot;] td&#39;, &quot;authors[]&quot; =&gt; scraper {
+      # And, in each TD,
+      # get the URI of &quot;a&quot; element
+      process &quot;a&quot;, uri =&gt; &#39;@href&#39;;
+      # get text inside &quot;small&quot; element
+      process &quot;small&quot;, fullname =&gt; &#39;TEXT&#39;;
+    };
+};
+
+my $res = $authors-&gt;scrape( URI-&gt;new(&quot;http://search.cpan.org/author/?A&quot;) );
+
+# iterate the array &#39;authors&#39;
+for my $author (@{$res-&gt;{authors}}) {
+    # output is like:
+    # Andy Adler      http://search.cpan.org/~aadler/
+    # Aaron K Dancygier       http://search.cpan.org/~aakd/
+    # Aamer Akhter    http://search.cpan.org/~aakhter/
+    print Encode::encode(&quot;utf8&quot;, &quot;$author-&gt;{fullname}\t$author-&gt;{uri}\n&quot;);
+}</code></pre>
+<p>The structure would resemble this (visually) { authors =&gt; [ { fullname =&gt; $fullname, link =&gt; $uri }, { fullname =&gt; $fullname, link =&gt; $uri }, ] }</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Web::Scraper is a web scraper toolkit, inspired by Ruby’s equivalent Scrapi. It provides a DSL-ish interface for traversing HTML documents and returning a neatly arranged Perl data structure.</p>
+<p>The <em>scraper</em> and <em>process</em> blocks provide a method to define what segments of a document to extract. It understands HTML and CSS Selectors as well as</p>
+</body>
+</html>

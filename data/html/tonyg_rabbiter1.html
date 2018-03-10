@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tonyg_rabbiter1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rabbiter">Rabbiter</h1>
+<p>Rabbiter is an ejabberd module providing a bot - <code>rabbiter@rabbiter.DOMAIN</code>, by default - which provides a microblogging service when you add it to your roster. It builds upon RabbitMQ and ejabberd.</p>
+<h2 id="compiling-and-running-rabbiter">Compiling and Running Rabbiter</h2>
+<p>Get ejabberd sources:</p>
+<pre><code>svn co http://svn.process-one.net/ejabberd/trunk ejabberd</code></pre>
+<p>Get, and install, RabbitMQ:</p>
+<pre><code>hg clone http://hg.rabbitmq.com/rabbitmq-codegen/
+hg clone http://hg.rabbitmq.com/rabbitmq-server/
+make -C rabbitmq-server</code></pre>
+<p>Symlink the <code>rabbitmq-server</code> directory so it is available at your <code>lib/erlang</code> directory:</p>
+<pre><code>ln -s rabbitmq-server /usr/lib/erlang/lib/rabbitmq_server
+# (note underscore instead of hyphen)
+# for macports users
+ln -s rabbitmq-server /opt/local/lib/erlang/lib/rabbitmq_server</code></pre>
+<p>Get rabbiter sources from Github.</p>
+<p>Symlink <code>mod_rabbiter.erl</code> into <code>ejabberd/src/</code>.</p>
+<p>Build ejabberd using the traditional <code>configure</code>, <code>make</code>, <code>make install</code>.</p>
+<p>Add a <code>mod_rabbiter</code> stanza to <code>ejabberd.cfg</code>:</p>
+<pre><code>{modules,
+ [
+  ...
+  {mod_rabbiter, []},
+  ...
+ ]}.</code></pre>
+<p>Finally, start ejabberd.</p>
+<p>If you configured ejabberd to serve <code>DOMAIN</code>, and you didn’t supply any special domain for the rabbiter module, you can now add <code>rabbiter@rabbiter.DOMAIN</code> to your roster. It ought to send you a welcome message.</p>
+<p>If you want <code>rabbiter@someother.domain</code>, change the <code>ejabberd.cfg</code></p>
+</body>
+</html>

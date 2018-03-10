@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mikel_mail9</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>content_type &#39;text/html; charset=UTF-8&#39;
+body &#39;&lt;h1&gt;This is HTML&lt;/h1&gt;&#39;</code></pre>
+<p>end end</p>
+<pre><code>
+Mail then delivers the email at the end of the block and returns the
+resulting Mail::Message object, which you can then inspect if you
+so desire...
+</code></pre>
+<p>puts mail.to_s #=&gt;</p>
+<p>To: nicolas@test.lindsaar.net.au From: Mikel Lindsaar <a href="mailto:mikel@test.lindsaar.net.au">mikel@test.lindsaar.net.au</a> Subject: First multipart email sent with Mail Content-Type: multipart/alternative; boundary=–==_mimepart_4a914f0c911be_6f0f1ab8026659 Message-ID: <a href="mailto:4a914f12ac7e_6f0f1ab80267d1@baci.local.mail">4a914f12ac7e_6f0f1ab80267d1@baci.local.mail</a> Date: Mon, 24 Aug 2009 00:15:46 +1000 Mime-Version: 1.0 Content-Transfer-Encoding: 7bit</p>
+<p>—-==_mimepart_4a914f0c911be_6f0f1ab8026659 Content-ID: <a href="mailto:4a914f12c8c4_6f0f1ab80268d6@baci.local.mail">4a914f12c8c4_6f0f1ab80268d6@baci.local.mail</a> Date: Mon, 24 Aug 2009 00:15:46 +1000 Mime-Version: 1.0 Content-Type: text/plain Content-Transfer-Encoding: 7bit</p>
+<p>This is plain text —-==_mimepart_4a914f0c911be_6f0f1ab8026659 Content-Type: text/html; charset=UTF-8 Content-ID: <a href="mailto:4a914f12cf86_6f0f1ab802692c@baci.local.mail">4a914f12cf86_6f0f1ab802692c@baci.local.mail</a> Date: Mon, 24 Aug 2009 00:15:46 +1000 Mime-Version: 1.0 Content-Transfer-Encoding: 7bit</p>
+<h1>
+This is HTML
+</h1>
+<p>—-==_mimepart_4a914f0c911be_6f0f1ab8026659– ```</p>
+<p>Mail inserts the content transfer encoding, the mime version, the content-id’s and handles the content-type and boundary.</p>
+<p>Mail assumes that if your text in the body is only us-ascii, that your transfer encoding is 7bit and it is text/plain. You can override this by explicitly declaring it.</p>
+</body>
+</html>

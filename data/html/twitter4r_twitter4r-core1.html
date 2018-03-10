@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>twitter4r_twitter4r-core1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="twitter4r">Twitter4R</h1>
+<ul>
+<li>Project Website - http://twitter4r.rubyforge.org</li>
+<li>Mailing List - http://groups.google.com/group/twitter4r-users</li>
+<li>Issues - http://github.com/twitter4r/twitter4r-core/issues</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Twitter4R provides an object based API to query or update your Twitter account via pure Ruby. It hides the ugly HTTP/REST code from your code.</p>
+<h2 id="installation">Installation</h2>
+<p><code>gem install twitter4r</code></p>
+<h2 id="getting-started">Getting Started</h2>
+<p>Add the <code>twitter4r</code> dependency to your <code>Gemfile</code>:</p>
+<pre><code>
+gem 'twitter4r', :require => 'twitter'
+</code></pre>
+<p>Set your OAuth consumer key and token like so:</p>
+<pre><code>
+Twitter.configure do |config|
+  config.oauth_consumer_token = CONSUMER_KEY_HERE
+  config.oauth_consumer_secret = CONSUME_SECRET_HERE
+end
+</code></pre>
+<p>To create a client object with access tokens:</p>
+<pre><code>
+  client = Twitter::Client.new(:oauth_access => {
+      :key => ACCESS\_KEY, :secret => ACCESS\_SECRET
+    }
+  client.status(:post, "Your awesome less than 140 characters tweet goes here!!! #with #hashtag #goodness")
+</code></pre>
+<h2 id="usage-examples">Usage Examples</h2>
+<p>Twitter4R starting with version 0.1.1 and above is organized into seven parts:</p>
+<ul>
+<li><a href="link:examples/configure_rb.html">Configuration API</a></li>
+<li><a href="link:examples/friendship_rb.html">Friendship API</a></li>
+<li><a href="link:examples/messaging_rb.html">Messaging API</a></li>
+<li><a href="link:examples/model_rb.html">Model API</a></li>
+<li><a href="link:examples/status_rb.html">Status API</a></li>
+</ul>
+</body>
+</html>

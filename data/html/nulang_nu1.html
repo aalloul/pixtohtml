@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nulang_nu1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="introduction">Introduction</h1>
+<p>Hello and welcome to Nu.</p>
+<p>I created Nu because I wanted a better way to write software.</p>
+<p>I wanted to write with a language as flexible and powerful as Lisp, but I also wanted to be able to work with the many libraries and high-performance subsystems written in C, including the ones that I write myself. So a tight integration with C was my highest priority; that ruled and drove the implementation of Nu. That’s why Nu is “C over lambda.”</p>
+<p>It is easier to integrate with C when you have a disciplined way of structuring C code. Popular scripting languages (Python, Ruby, Lua, etc.) make many implementation-dependent impositions on the C code that they call. Their artifacts are often called “glue code” and are usually ugly, cumbersome, and unpleasant to generate.</p>
+<p>Objective-C provides a proven way of structuring C code that has no scripting language implementation dependencies. But it can do much more than that. Objective-C can also serve as a platform for a powerful dynamic language.<br />
+Nu was designed to take full advantage of that. It was also designed to provide many of the elements of successful scripting languages, notably Ruby, while adding the syntactic simplicity and flexibility of Lisp.</p>
+<h2 id="legal">Legal</h2>
+<p>Nu is copyrighted open-source software that is released under the Apache License, version 2.0. For details on the license, see the LICENSE file. In its use to name a programming language, “Nu” is a trademark of Radtastical Inc.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="macintosh-ubuntu">Macintosh / Ubuntu</h3>
+<p>These are the instructions for installing Nu on a Macintosh or Linux system. Linux builds require several additional dependencies. The included <a href="ubuntu.sh" class="uri">ubuntu.sh</a> script can be used to install these dependencies on a system running Ubuntu 14.04 (and possibly other versions). Installation instructions for some other UNIX-based operating systems (Debian, OpenSolaris, and FreeBSD) are in <a href="notes/OBSOLETE" class="uri">notes/OBSOLETE</a> and will probably not work without modifications. Macintosh and Ubuntu builds are verified with <a href=".travis.yml">Travis</a>.</p>
+<p>If you’ve installed Nu previously using a package manager (e.g. Fink, MacPorts), start by using the package manager to uninstall the old version.</p>
+</body>
+</html>

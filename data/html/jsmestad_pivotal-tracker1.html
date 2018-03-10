@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jsmestad_pivotal-tracker1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="pivotal-tracker.rb---the-original-ruby-gem">pivotal-tracker.rb - the original ruby gem</h2>
+<h4 id="notice">NOTICE</h4>
+<p>I am currently re-writing this gem to address the biggest feature requests that are long overdue:</p>
+<ul>
+<li>Gem is thread-safe</li>
+<li>Support Pivotal Tracker APIv5 and dropping V3 support</li>
+<li>Overhauled spec suite</li>
+</ul>
+<p>This will become the <code>v1.x</code> release.</p>
+<h3 id="original-readme-for-v0.x-releases">Original README (for <code>v0.x</code> releases)</h3>
+<h2 id="features">Features</h2>
+<ul>
+<li>Compatible with Pivotal Tracker API version 3</li>
+<li>ActiveRecord-style Wrapper API</li>
+<li>Support for SSL protected repositories</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p>```ruby PivotalTracker::Client.token(‘myusername@email.com’, ‘secretpassword’) # Automatically fetch API Token PivotalTracker::Client.token = ‘jkfduisj97823974j2kl24899234’ # Manually set API Token</p>
+<p>PivotalTracker::Client.timeout = 50 # Set timeout on the connection with pivotal. Default is 60 seconds</p>
+<p><span class="citation" data-cites="projects">@projects</span> = PivotalTracker::Project.all # return all projects <span class="citation" data-cites="a_project">@a_project</span> = PivotalTracker::Project.find(84739) # find project with a given ID</p>
+<p><span class="citation" data-cites="a_project.stories.all">@a_project.stories.all</span> # return all stories for “a_project” <span class="citation" data-cites="a_project.stories.all">@a_project.stories.all</span>(:label =&gt; ‘overdue’, :story_type =&gt; [‘bug’, ‘chore’]) # return all stories that match the passed filters <span class="citation" data-cites="a_project.stories.find">@a_project.stories.find</span>(847762630) # find story with a given ID</p>
+<p><span class="citation" data-cites="a_project.stories.create">@a_project.stories.create</span>(:name =&gt; ‘My Story’, :story_type =&gt; ‘feature’) # create a story for this project</p>
+<h1 id="all-tracker-defined-filters-are-allowed-as-well-as-limit-offset-for-pagination">all tracker defined filters are allowed, as well as :limit &amp; :offset for pagination</h1>
+<h1 id="the-below-pattern-below-is-planned-to-be-added-to-the-final-release">The below pattern below is planned to be added to the final release:</h1>
+<p><span class="citation" data-cites="a_project.stories">@a_project.stories</span> &lt;&lt; PivotalTracker::Story.new(84739, :name =&gt; ‘Ur Story’) # same as earlier story creation, useful for copying/cloning from proj</p>
+<p><span class="citation" data-cites="story">@story</span> = <span class="citation" data-cites="a_project.stories.find">@a_project.stories.find</span>(847762630) <span class="citation" data-cites="story.notes.all">@story.notes.all</span> # return all notes (comments) for a story <span class="citation" data-cites="story.notes.create">@story.notes.create</span>(:text =&gt; ‘A new comment’, :noted_at =&gt; ‘06/29/2010 05:00 EST’) # add a new note</p>
+</body>
+</html>

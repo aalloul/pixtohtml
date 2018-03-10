@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lsegal_yard1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="yard-yay-a-ruby-documentation-tool">YARD: Yay! A Ruby Documentation Tool</h1>
+<h2 id="synopsis">Synopsis</h2>
+<p>YARD is a documentation generation tool for the Ruby programming language. It enables the user to generate consistent, usable documentation that can be exported to a number of formats very easily, and also supports extending for custom Ruby constructs such as custom class level definitions. Below is a summary of some of YARD’s notable features.</p>
+<h2 id="feature-list">Feature List</h2>
+<p><strong>1. RDoc/SimpleMarkup Formatting Compatibility</strong>: YARD is made to be compatible with RDoc formatting. In fact, YARD does no processing on RDoc documentation strings, and leaves this up to the output generation tool to decide how to render the documentation.</p>
+<p><strong>2. Yardoc Meta-tag Formatting Like Python, Java, Objective-C and other languages</strong>: YARD uses a ‘<span class="citation" data-cites="tag">@tag</span>’ style definition syntax for meta tags alongside regular code documentation. These tags should be able to happily sit side by side RDoc formatted documentation, but provide a much more consistent and usable way to describe important information about objects, such as what parameters they take and what types they are expected to be, what type a method should return, what exceptions it can raise, if it is deprecated, etc.. It also allows information to be better (and more consistently) organized during the output generation phase. You can find a list of tags in the {file:docs/Tags.md#taglist Tags.md} file.</p>
+<p>YARD also supports an optional “types” declarations for certain tags. This allows the developer to document type signatures for ruby methods and parameters in a non intrusive but helpful and consistent manner. Instead of describing this data in the body of the description, a developer may formally declare the parameter or return type(s) in a single line. Consider the following method documented with YARD formatting:</p>
+<p>```ruby # Reverses the contents of a String or IO object. # # <span class="citation" data-cites="param">@param [String, #read]</span> contents the contents to reverse # <span class="citation" data-cites="return">@return [String]</span> the contents reversed lexically def reverse(contents)</p>
+</body>
+</html>

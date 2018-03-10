@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>c42_wrest6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p># Wait until the background threads finish execution before letting the program end. Wrest::AsyncRequest.wait_for_thread_pool!</p>
+<pre><code>
+You can change the default to eventmachine or to threads.
+</code></pre>
+<p>Wrest::AsyncRequest.default_to_em!</p>
+<pre><code>or</code></pre>
+<p>Wrest::AsyncRequest.default_to_threads!</p>
+<pre><code>
+You can also override the default on Uri objects.
+</code></pre>
+<p>“http://c42.in”.to_uri.using_em.get_async do |callback| callback.on_ok do |response| Wrest.logger.info “Ok.” end end</p>
+<pre><code>
+You can decide which AsyncBackend to use at runtime through to `to_uri`&#39;s options hash.
+</code></pre>
+<p>“http://c42.in”.to_uri(asynchronous_backend: ThreadBackend.new(number_of_threads)).get_async do |callback| callback.on_ok do |response| Wrest.logger.info “Ok.” end end</p>
+<pre><code>
+
+### Other useful stuff
+
+#### Hash container with ActiveResource-like semantics
+
+Allows any class to hold an attributes hash, somewhat like ActiveResource. It also supports several extensions to this base fuctionality such as support for typecasting attribute values. See examples/twitter.rb and examples/wow_realm_status.rb for more samples.
+
+Example:
+</code></pre>
+<p>class Demon include Wrest::Components::Container</p>
+<p>always_has :id typecast :age =&gt; as_integer, :chi =&gt; lambda{|chi| Chi.new(chi)}</p>
+</body>
+</html>

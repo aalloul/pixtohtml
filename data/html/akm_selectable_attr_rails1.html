@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akm_selectable_attr_rails1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="selectableattrrails">SelectableAttrRails</h1>
+<h2 id="introduction">Introduction</h2>
+<p>selectable_attr_railsは、selectable_attrをRailsで使うときに便利なヘルパーメソッドを提供し、 エントリをDBから取得したり、I18n対応するものです。 http://github.com/akm/selectable_attr_rails/tree/master</p>
+<p>selectable_attr は、コードが割り振られるような特定の属性について<em>コード</em>、<em>プログラム上での名前</em>、 <em>表示するための名前</em>などをまとめて管理するものです。 http://github.com/akm/selectable_attr/tree/master</p>
+<h2 id="install">Install</h2>
+<h3 id="a.-plugin-install">a. plugin install</h3>
+<p>ruby script/plugin install git://github.com/akm/selectable_attr.git ruby script/plugin install git://github.com/akm/selectable_attr_rails.git</p>
+<h3 id="b.-gem-install">b. gem install</h3>
+<pre><code>[sudo] gem install selectable_attr_rails</code></pre>
+<p>config/initializers/selectable_attr.rb require ‘selectable_attr’ require ‘selectable_attr_i18n’ require ‘selectable_attr_rails’ SelectableAttrRails.setup</p>
+<h2 id="チュートリアル">チュートリアル</h2>
+<h3 id="selectヘルパーメソッド">selectヘルパーメソッド</h3>
+<p>以下のようなモデルが定義してあった場合 class Person &lt; ActiveRecord::Base include ::SelectableAttr::Base</p>
+<pre><code>  selectable_attr :gender do
+    entry &#39;1&#39;, :male, &#39;男性&#39;
+    entry &#39;2&#39;, :female, &#39;女性&#39;
+    entry &#39;9&#39;, :other, &#39;その他&#39;
+  end
+end</code></pre>
+<p>ビューでは以下のように選択肢を表示することができます。 &lt;% form_for(:person) do |f| %&gt; &lt;%= f.select :gender %&gt; &lt;% end %&gt;</p>
+<p>form_for、fields_forを使用しない場合でも、オブジェクト名を設定して使用可能です。 &lt;%= select :person, :gender %&gt;</p>
+<p>また以下のように複数の値を取りうる場合にもこのメソドを使用することが可能です。</p>
+</body>
+</html>

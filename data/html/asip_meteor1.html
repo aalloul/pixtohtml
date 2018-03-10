@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>asip_meteor1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="meteor">Meteor</h1>
+<p>A lightweight (X)HTML(5) &amp; XML Parser</p>
+<pre class="shell"><code>  gem install meteor #gem installation</code></pre>
+<pre class="shell"><code>  #archive installation
+  gem build meteor.gemspec
+  gem install meteor-*.gem</code></pre>
+<h2 id="explanation">Explanation</h2>
+<p>This libarary is lightweight (X)HTML(5) parser. This can use as XML parser. This may be false parser.</p>
+<p>This libarary doesn’t support all of XML spec. This supports a range of xml spec thought to be the need routinely.</p>
+<p>軽量(簡易?)(X)HTML(5)パーサです。 XMLパーサとしても使用可能です。 パーサもどきかもしれません。</p>
+<p>(X)HTML(5)、XMLの仕様の全てをサポートしてはいません、 日常的に必要と思われる範囲をサポートしています。</p>
+<p>This doesn’t convert the whole into objects but converts only elements for the operation into objects. (This library uses regular expression internally but user don’t need to concern yourself with internal logic.)</p>
+<p>DOMのように全体をオブジェクトのツリー構造に変換するのではなく、 操作対象の要素のみをオブジェクトに変換します。 (内部では正規表現を使っていますが、ユーザがそれを意識する 必要は全くありません。)</p>
+<h2 id="api">API</h2>
+<p>http://rubydoc.info/github/asip/meteor/frames</p>
+<h2 id="gem">Gem</h2>
+<p>https://rubygems.org/gems/meteor</p>
+<h2 id="examples">Examples</h2>
+<p>https://github.com/asip/meteor/tree/master/demo</p>
+<h2 id="license">License</h2>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Yuffster_rabidrunner1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="introduction">Introduction</h1>
+<p>RabidRunner is a super-lightweight PHP5 test suite by Michelle Steigerwalt. Meant to be a companion project to RabidCore <a href="http://rabidcore.com" class="uri">http://rabidcore.com</a>, RabidRunner follows the same principles, namely accomplishing the task at hand in the most code-efficient manner possible.</p>
+<p>The entire package consists of two classes, TestRunner and Test, along with an HTML frontend for reviewing the results and an example Test class to test the runner itself.</p>
+<p>This allows the end user to get up and running as quickly as possible without having to dedicate an inordinate amount of time to understanding the codebase. The end result is a lightweight but powerful foundation which can be easily extened to fit specific developer needs.</p>
+<h1 id="basic-usage">Basic Usage</h1>
+<p>To use the TestRunner, create a new class which ends in ‘Test’ and save it in the TEST_DIR defined at the top of TestRunner.php (the default is tests/). The file name should be the same as the class name, and the class should extend the base Test class.</p>
+<p>Test methods begin with ‘should_’.</p>
+<h1 id="running-tests">Running Tests</h1>
+<p>To run tests, create a new TestRunner (or child) object. The constructor method takes three distinct parameters:</p>
+<pre><code>NULL   : The TestRunner will search through the test directory for every
+         file ending in Test.php, and add each test to the test queue.
+
+String : The name of the test to run.  Ie, TestRunner, DataModel, Alarm.
+         The name will prepended with &#39;Test&#39; and the appropriate file will
+         be loaded from the tests directory.  Ie, TestRunner will invoke
+         TestRunnerTest.php, or the TestRunnerTest class.
+
+Array  : An array of strings is the equivalent of creating multiple
+         TestRunner objects.</code></pre>
+<p>Calling the runTests() metho of the TestRunner object will return the result of the operation. Use a print_r on the resulting data to explore its contents.</p>
+<h1 id="failures-and-success">Failures and Success</h1>
+</body>
+</html>

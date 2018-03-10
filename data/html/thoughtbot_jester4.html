@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_jester4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&gt;&gt;&gt; post = Post.find(1)
+GET http://localhost:3000/posts/1.xml
+Object _name=Post _singular=post _plural=posts
+
+&gt;&gt;&gt; post.body
+&quot;Today I *almost* passed the bar exam. The ring waits one more day.&quot;
+&gt;&gt;&gt; post.user
+Object _name=User _singular=user _plural=users
+&gt;&gt;&gt; post.user.name
+&quot;Eric Mill&quot;</code></pre>
+<h2 id="using-jester">Using Jester</h2>
+<p>Jester depends on Prototype, which comes with Rails versions 3.0.x and lower. It includes portions of , a nice DOM parsing engine for JavaScript.</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/prototype.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jester.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>JavaScript in the browser is limited to requests with in only the same domain as the script is running in, so without iframe hackery, Jester is probably only useful for writing client code in your own apps, to talk to itself. We’re investigating whether Jester can use this hackery to make cross-domain requests, but it’s not clear if this will be feasible.</p>
+<p>There are also some basic unit tests included inside Jester’s repository, which run using JsUnit. To run them yourself, from Jester’s repository open the file test/jsunit/testRunner.html in your browser, and choose test/jester_test.html as the test file.</p>
+<h2 id="the-server-side">The Server Side</h2>
+<p>These examples are talking with a Rails application whose controllers were generated with “./script generate scaffold_resource”—in other words, the ideal RESTful controllers. It’s very easy to make your controller RESTful. Here’s the source for the User controller I’m using. The lines that deal with returning HTML have been removed, and I have added “(:include =&gt; :posts)” as an argument to to_xml in two places, so associations are included (it’s that easy!).</p>
+<p>An example of the XML produced here, of a User with one Post, at /users/2.xml:</p>
+<pre><code>&lt;user&gt;
+  &lt;active type=&quot;boolean&quot;&gt;true&lt;/active&gt;
+  &lt;email&gt;cpytel@thoughtbot.com&lt;/email&gt;
+  &lt;id type=&quot;integer&quot;&gt;2&lt;/id&gt;
+  &lt;name&gt;Chad Pytel&lt;/name&gt;
+  &lt;posts&gt;
+    &lt;post&gt;
+      &lt;title&gt;Life as a Jester&lt;/title&gt;
+      &lt;body&gt;It&#39;s not as hard as Master said it would be.  Today I made 200 dollars.&lt;/body&gt;
+      &lt;created-at type=&quot;datetime&quot;&gt;2007-04-01T04:01:56-04:00&lt;/created-at&gt;
+      &lt;id type=&quot;integer&quot;&gt;2&lt;/id&gt;
+      &lt;user-id type=&quot;integer&quot;&gt;2&lt;/user-id&gt;
+    &lt;/post&gt;
+  &lt;/posts&gt;
+&lt;/user&gt;</code></pre>
+<h2 id="jsonic-rest">JSONic REST</h2>
+<p>Using JSON in Jester is easy. Set the “format” option when defining your model, and JSON will be the format used for all requests dealing with that model. Requests are made using “.json” as a URL suffix. Like so:</p>
+</body>
+</html>

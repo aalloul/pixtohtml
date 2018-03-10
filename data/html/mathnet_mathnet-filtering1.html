@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathnet_mathnet-filtering1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="math.net-filtering">Math.NET Filtering</h1>
+<p>Math.NET Filtering is a <strong>digital signal processing toolkit</strong>, offering an infrastructure for digital filter design, applying those filters to data streams using data converters, as well as digital signal generators..</p>
+<p>Supports Mono and .NET 4.0 on Linux, Mac and Windows.</p>
+<p>Math.NET Filtering is covered under the terms of the <a href="LICENSE.md">MIT/X11</a> license. You may therefore link to it and use it in both opensource and proprietary software projects.</p>
+<p><strong><a href="RELEASENOTES.md">Release Notes &amp; Changes</a></strong></p>
+<h2 id="installation-instructions">Installation Instructions</h2>
+<p>The recommended way to get Math.NET Filtering is to use NuGet. The following packages are provided and maintained in the public :</p>
+<ul>
+<li><strong>MathNet.Filtering</strong> - core package (MIT license)</li>
+<li><strong>MathNet.Filtering.Kalman</strong> - Kalman filter (LGPL license - until we can relicense)</li>
+</ul>
+<p>Supported Platforms:</p>
+<ul>
+<li>.Net 4.0 and Mono: Windows, Linux and Mac.</li>
+</ul>
+<h2 id="building-math.net-filtering">Building Math.NET Filtering</h2>
+<p>Windows (.Net):<br />
+Linux (Mono):</p>
+<p>If you do not want to use the official binaries, or if you like to modify, debug or contribute, you can compile Math.NET Filtering locally either using Visual Studio or manually with the build scripts.</p>
+<ul>
+<li>The Visual Studio solutions should build out of the box, without any preparation steps or package restores.</li>
+<li>Instead of a compatible IDE you can also build the solutions with <code>msbuild</code>, or on Mono with <code>xbuild</code>.</li>
+<li>The full build including unit tests, docs, NuGet and Zip packages is using .</li>
+</ul>
+<h3 id="how-to-build-with-msbuildxbuild">How to build with MSBuild/XBuild</h3>
+<pre><code>restore.cmd (or restore.sh)
+msbuild MathNet.Filtering.sln            # only build for .Net 4 (main solution)
+msbuild MathNet.Filtering.Net35Only.sln  # only build for .Net 3.5
+msbuild MathNet.Filtering.All.sln        # full build with .Net 4, 3.5 and PCL profiles
+xbuild MathNet.Filtering.sln             # build with Mono, e.g. on Linux or Mac</code></pre>
+<h3 id="how-to-build-with-fake">How to build with FAKE</h3>
+<pre><code>build.cmd    # normal build (.Net 4.0), run unit tests
+./build.sh   # normal build (.Net 4.0), run unit tests - on Linux or Mac
+./buildn.sh  # normal build (.Net 4.0), run unit tests - bash on Windows (.Net instead of mono)
+
+build.cmd Build              # normal build (.Net 4.0)</code></pre>
+</body>
+</html>

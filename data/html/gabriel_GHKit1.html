@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gabriel_GHKit1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ghkit">GHKit</h1>
+<p>The GHKit framework is a set of extensions and utilities for Mac OS X and iOS.</p>
+<h2 id="podfile">Podfile</h2>
+<pre><code>pod &quot;GHKit&quot;</code></pre>
+<h2 id="usage">Usage</h2>
+<p>GHKit defines various categories and general purpose utilities.</p>
+<p>For example, parsing date strings, date math, string manipulations, URL dictionary formatting, etc. Some examples are below.</p>
+<p>All categories are namespaced with gh_ to avoid conflicts.</p>
+<p><strong><em>Import:</em></strong></p>
+<pre class="objc"><code>#import &lt;GHKit/GHKit.h&gt;</code></pre>
+<p><strong><em>Dates:</em></strong></p>
+<p><code>GHNSDate+Formatters.h</code>: Date parsers, formatting and formatters for ISO8601, RFC822, HTTP (RFC1123, RFC850, asctime) and since epoch.</p>
+<pre class="objc"><code>NSDate *date = [NSDate gh_parseISO8601:@&quot;2010-10-07T04:25Z&quot;];
+NSString *dateString = [date gh_formatHTTP]; // Formatted like: Sun, 06 Nov 1994 08:49:37 GMT&quot;
+NSDate *date = [NSDate gh_parseTimeSinceEpoch:@(1234567890)];</code></pre>
+<p><code>GHNSDate+Utils.h</code>: For time ago in words and date component arithmentic (adding days), tomorrow, yesterday, and more.</p>
+<pre class="objc"><code>NSDate *date = [NSDate date];
+[date gh_isToday]; // YES
+[[date gh_yesterday] gh_isToday]; // NO
+
+date = [date gh_addDays:-1];
+[date gh_wasYesterday]; // YES
+
+[date gh_timeAgo:NO]; // @&quot;1 day&quot;</code></pre>
+<p><strong><em>Arrays:</em></strong></p>
+<p><code>GHNSArray+Utils.h</code>: Random object, safe object at index, uniq, compact</p>
+</body>
+</html>

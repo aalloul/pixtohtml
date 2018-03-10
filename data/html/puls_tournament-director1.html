@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>puls_tournament-director1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="tournament-director">Tournament Director</h1>
+<p>Tournament Director is an app for running quizbowl tournaments.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Tracks statistics!</li>
+<li>Supports multi-user entry!</li>
+</ul>
+<h2 id="lacking-features">Lacking features</h2>
+<ul>
+<li>Anything beyond statistics</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Tournament Director is a written in with , and . Its build system is .</p>
+<h3 id="in-the-cloud">In the cloud</h3>
+<p>You can get a fully-functioning installation of Tournament Director by visiting http://www.tournamentdirector.org and signing up. It’s free!</p>
+<h3 id="mac">Mac</h3>
+<p>You’re using ? Great! Install :</p>
+<pre><code>brew install couchdb node</code></pre>
+<p>Install the right Node modules to run the build system:</p>
+<pre><code>npm install -g grunt-cli bower local-tld
+npm install</code></pre>
+<p>Configure and start CouchDB:</p>
+<pre><code>cp scripts/couchdb.ini /usr/local/etc/couchdb/local.ini
+couchdb &amp;</code></pre>
+<p>Build Tournament Director and generate some test data:</p>
+</body>
+</html>

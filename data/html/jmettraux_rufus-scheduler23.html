@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmettraux_rufus-scheduler23</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The <code>trigger_time</code> is the time at which the job triggers. It might be a bit before <code>Time.now</code>.</p>
+<p>Warning: these two callbacks are executed in the scheduler thread, not in the work threads (the threads were the job execution really happens).</p>
+<h3 id="rufusscheduleron_pre_trigger-as-a-guard">Rufus::Scheduler#on_pre_trigger as a guard</h3>
+<p>Returning <code>false</code> in on_pre_trigger will prevent the job from triggering. Returning anything else (nil, -1, true, …) will let the job trigger.</p>
+<p>Note: your business logic should go in the scheduled block itself (or the scheduled instance). Don’t put business logic in on_pre_trigger. Return false for admin reasons (backend down, etc) not for business reasons that are tied to the job itself.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">def</span> s.on_pre_trigger(job, trigger_time)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">return</span> <span class="dv">false</span> <span class="kw">if</span> <span class="dt">Backend</span>.down?</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  puts <span class="st">&quot;triggering job </span><span class="ot">#{</span>job.id<span class="ot">}</span><span class="st">...&quot;</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">end</span></a></code></pre></div>
+<h2 id="rufusscheduler.new-options">Rufus::Scheduler.new options</h2>
+<h3 id="frequency">:frequency</h3>
+<p>By default, rufus-scheduler sleeps 0.300 second between every step. At each step it checks for jobs to trigger and so on.</p>
+<p>The :frequency option lets you change that 0.300 second to something else.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb2-1" data-line-number="1">scheduler = <span class="dt">Rufus</span>::<span class="dt">Scheduler</span>.new(<span class="st">:frequency</span> =&gt; <span class="dv">5</span>)</a></code></pre></div>
+<p>It’s OK to use a time string to specify the frequency.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb3-1" data-line-number="1">scheduler = <span class="dt">Rufus</span>::<span class="dt">Scheduler</span>.new(<span class="st">:frequency</span> =&gt; <span class="st">&#39;2h10m&#39;</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="co"># this scheduler will sleep 2 hours and 10 minutes between every &quot;step&quot;</span></a></code></pre></div>
+<p>Use with care.</p>
+<h3 id="lockfile-mylockfile.txt">:lockfile =&gt; “mylockfile.txt”</h3>
+<p>This feature only works on OSes that support the flock (man 2 flock) call.</p>
+<p>Starting the scheduler with <code>:lockfile =&gt; &quot;.rufus-scheduler.lock&quot;</code> will make the scheduler attempt to create and lock the file <code>.rufus-scheduler.lock</code> in the current working directory. If that fails, the scheduler will not start.</p>
+<p>The idea is to guarantee only one scheduler (in a group of scheduler sharing the same lockfile) is running.</p>
+<p>This is useful in environments where the Ruby process holding the scheduler gets started multiple times.</p>
+</body>
+</html>

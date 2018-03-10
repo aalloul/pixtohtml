@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>charleso_git-cc7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>- Fixes issue Z
+
+1.1.0 (2016-02-03)
+------------------
+
+- Adds support for feature Y
+- Updates documentation of feature X
+
+1.0.0 (2016-01-03)
+------------------
+ 
+- Started versioning at 1.0.0</code></pre>
+<p>The file mentions that versions 1.0.0 and 1.1.0 have been released and that the next version will be 1.2.0.</p>
+<p>The process of putting a new release out can be cumbersome and error prone: you have to update the CHANGES file and setup.py, create a tag, update the CHANGES file and setup.py again for the development version, etc. For git-cc, the process of creating a release is fully automated using tools provided by Python package [zest.releaser] [zest-releaser].</p>
+<p>To show how zest.releaser works, the following is the (sanitized) output of the zest.releaser command ‘fullrelease’ with the example CHANGES file:</p>
+<pre><code># execute fullrelease on the command-line
+git-cc $ fullrelease
+
+# the command outputs the beginning of the CHANGES file 
+Changelog entries for version 1.2.0:
+ 
+1.2.0 (unreleased)
+------------------
+ 
+- Fixes issue Z
+ 
+1.1.0 (2016-02-03)
+------------------
+# the command proposes to set the release version to 1.2.0
+Enter version [1.2.0]:    
+# pressed RETURN to accept the proposed release version
+# the command automatically updates the CHANGES file and the version number used by setup.py
+
+OK to commit this (Y/n)?
+# pressed RETURN to commit the changes
+
+Tag needed to proceed, you can use the following command:
+git tag 1.2.0 -m &quot;Tagging 1.2.0&quot;
+Run this command (Y/n)?</code></pre>
+</body>
+</html>

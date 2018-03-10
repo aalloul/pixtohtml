@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>brunobord_tdaemon1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="test-daemon">Test Daemon</h2>
+<p>The test daemon watches the content of files in a directory and if any of them changes (the content is edited), it runs the tests.</p>
+<h3 id="installation">Installation</h3>
+<p>Put the tdaemon somewhere where it’s executable.</p>
+<h3 id="basic-usage">Basic Usage</h3>
+<p>Simply run this:</p>
+<pre><code>$ python /path/to/tdaemon.py</code></pre>
+<p>The daemon starts watching the current directory and subdirectories. As soon as one file changes, the daemon runs <code>nosetests</code> and you may watch the result.</p>
+<h3 id="advanced-usage">Advanced usage</h3>
+<h4 id="change-the-scanned-path">Change the scanned path</h4>
+<p>If you want to run the daemon from another directory than your current directory, just run:</p>
+<pre><code>$ tdaemon.py /path/to/your/project</code></pre>
+<h4 id="change-the-test-program">Change the test program</h4>
+<p>For example, try out <code>py.test</code>:</p>
+<pre><code>$ tdaemon.py --test-program=py</code></pre>
+<p><code>Nosetests</code> is the default test program, but you may use others.</p>
+<p>The available test programs are:</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p>Bear in mind that if you want to use one of these program, you <strong>must</strong> install them on your system.</p>
+</body>
+</html>

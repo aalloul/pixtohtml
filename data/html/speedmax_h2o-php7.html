@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>speedmax_h2o-php7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>$template = new H2o(&#39;index.html&#39;, array(&#39;loader&#39;=&gt; $loader );
+?&gt;</code></pre>
+<p><strong>Use dictionary loader</strong></p>
+<p>If you want to load templates from resources other than files, then this will be your friend. H2o uses <code>dict_loader()</code> for testing.</p>
+<pre><code>&lt;?php
+    $loader = dict_loader(array(
+        &quot;index.html&quot; =&gt; &#39;Hello {{ person }}&#39;
+    ));
+    $template = new H2o(&#39;index.html&#39;, array(&#39;loader&#39; =&gt; $loader&#39;));
+?&gt; </code></pre>
+<h4 id="searchpath">Searchpath</h4>
+<p>default: this will be the base path of your template</p>
+<p>H2o use this path to load additional templates and extensions.</p>
+<p>You can either explicity set the search path,</p>
+<p><code>$template = new H2o('index.html', array('searchpath' =&gt; '/sites/common_templates'));</code></p>
+<p>or h2o will try to find the searchpath for you.</p>
+<p><code>$template = new H2o('/sites/common_templates/index.html');</code></p>
+<h4 id="cache">Cache</h4>
+<p>You can define the type of caching engine h2o should use, if any. Set ‘cache’ to false to disable caching. You can read more about performance and caching in following sections</p>
+<p>Use file cache [default]</p>
+<p><code>$template = new H2o('index.html', array('cache'=&gt;'file'));</code></p>
+<p>Use apc cache:</p>
+<p><code>$template = new H2o('index.html', array('cache'=&gt;'apc'));</code></p>
+<p>Use memcache cache</p>
+<p><code>$template = new H2o('index.html', array('cache'=&gt;'memcache'));</code></p>
+<p>Disable caching</p>
+<p><code>$template = new H2o('index.html', array('cache'=&gt;false));</code></p>
+</body>
+</html>

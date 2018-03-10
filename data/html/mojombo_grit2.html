@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mojombo_grit2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="contributing">Contributing</h3>
+<p>If you’d like to hack on Grit, follow these instructions. To get all of the dependencies, install the gem first.</p>
+<ol type="1">
+<li>Fork the project to your own account</li>
+<li>Clone down your fork</li>
+<li>Create a thoughtfully named topic branch to contain your change</li>
+<li>Hack away</li>
+<li>Add tests and make sure everything still passes by running <code>rake</code></li>
+<li>If you are adding new functionality, document it in README.md</li>
+<li>Do not change the version number, I will do that on my end</li>
+<li>If necessary, rebase your commits into logical chunks, without errors</li>
+<li>Push the branch up to GitHub</li>
+<li>Send a pull request for your branch</li>
+</ol>
+<h2 id="usage">Usage</h2>
+<p>Grit gives you object model access to your Git repositories. Once you have created a <code>Repo</code> object, you can traverse it to find parent commits, trees, blobs, etc.</p>
+<h3 id="initialize-a-repo-object">Initialize a Repo object</h3>
+<p>The first step is to create a <code>Grit::Repo</code> object to represent your repo. In this documentation I include the <code>Grit</code> module to reduce typing.</p>
+<pre><code>require &#39;grit&#39;
+repo = Grit::Repo.new(&quot;/Users/tom/dev/grit&quot;)</code></pre>
+<p>In the above example, the directory <code>/Users/tom/dev/grit</code> is my working directory and contains the <code>.git</code> directory. You can also initialize Grit with a bare repo.</p>
+<pre><code>repo = Repo.new(&quot;/var/git/grit.git&quot;)</code></pre>
+<h3 id="getting-a-list-of-commits">Getting a list of commits</h3>
+<p>From the <code>Repo</code> object, you can get a list of commits as an array of <code>Commit</code> objects.</p>
+<pre><code>repo.commits
+# =&gt; [#&lt;Grit::Commit &quot;e80bbd2ce67651aa18e57fb0b43618ad4baf7750&quot;&gt;,
+      #&lt;Grit::Commit &quot;91169e1f5fa4de2eaea3f176461f5dc784796769&quot;&gt;,
+      #&lt;Grit::Commit &quot;038af8c329ef7c1bae4568b98bd5c58510465493&quot;&gt;,
+      #&lt;Grit::Commit &quot;40d3057d09a7a4d61059bca9dca5ae698de58cbe&quot;&gt;,</code></pre>
+</body>
+</html>

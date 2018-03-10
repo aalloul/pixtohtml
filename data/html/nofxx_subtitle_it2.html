@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nofxx_subtitle_it2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>You can filter by language:</p>
+<pre><code>subtitle_it -l Eng Cool-Video.avi</code></pre>
+<p>You can use -c option. It convert subtitles to given format:</p>
+<pre><code>subtitle_it -l Eng -c srt Cool-Video.avi</code></pre>
+<h3 id="bash-tool">Bash tool</h3>
+<p>Convert a srt to sub:</p>
+<pre><code>subtitle_it in.srt out.sub</code></pre>
+<p>or</p>
+<pre><code>subtitle_it -c sub in.srt</code></pre>
+<p>Add a delay of 1 minute:</p>
+<pre><code>subtitle_it -d 60 in.srt</code></pre>
+<p>Create a template</p>
+<pre><code>subtitle_it unexistent.file</code></pre>
+<h2 id="install">Install</h2>
+<pre><code>gem install subtitle_it</code></pre>
+<h2 id="the-ruby-subtitle-format---rsb">The “Ruby Subtitle” Format - RSB</h2>
+<p>It`s just a easy way, proof of concept to edit subtitles. Here is what it looks like:</p>
+<pre><code>00:32 =&gt; 00:33 == Nice police work! | Thank you!
+00:35 =&gt; 3 == Nice job!
+
+MM:SS =&gt; MM:SS or N == TEXT | NEWLINE</code></pre>
+<p>Create a template to check it out.</p>
+<h2 id="automatic-download">Automatic Download</h2>
+</body>
+</html>

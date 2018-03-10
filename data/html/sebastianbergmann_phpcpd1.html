@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sebastianbergmann_phpcpd1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="php-copypaste-detector-phpcpd">PHP Copy/Paste Detector (PHPCPD)</h1>
+<p><code>phpcpd</code> is a Copy/Paste Detector (CPD) for PHP code.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="php-archive-phar">PHP Archive (PHAR)</h3>
+<p>The easiest way to obtain PHPCPD is to download a that has all required dependencies of PHPCPD bundled in a single file:</p>
+<pre><code>$ wget https://phar.phpunit.de/phpcpd.phar
+$ chmod +x phpcpd.phar
+$ mv phpcpd.phar /usr/local/bin/phpcpd</code></pre>
+<p>You can also immediately use the PHAR after you have downloaded it, of course:</p>
+<pre><code>$ wget https://phar.phpunit.de/phpcpd.phar
+$ php phpcpd.phar</code></pre>
+<h3 id="composer">Composer</h3>
+<p>You can add this tool as a local, per-project, development-time dependency to your project using :</p>
+<pre><code>$ composer require --dev sebastian/phpcpd</code></pre>
+<p>You can then invoke it using the <code>vendor/bin/phpcpd</code> executable.</p>
+<h2 id="usage-example">Usage Example</h2>
+<p>``` $ phpcpd wordpress-4.7.1 phpcpd 4.0.0 by Sebastian Bergmann.</p>
+<p>Found 59 clones with 2548 duplicated lines in 39 files:</p>
+<ul>
+<li>/home/sb/wordpress-4.7.1/wp-admin/includes/class-ftp-pure.php:99-114 /home/sb/wordpress-4.7.1/wp-admin/includes/class-ftp-sockets.php:119-134 . . .</li>
+</ul>
+</body>
+</html>

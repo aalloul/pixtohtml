@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>konklone_basecamper1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="inactive">Inactive</h1>
+<p>This project is inactive, and hasn’t been touched in years.</p>
+<h3 id="basecamper---command-line-time-tracker-for-basecamp">Basecamper - Command line time tracker for Basecamp</h3>
+<p>Basecamper is a command line interface to log and manage your times on your Basecamp. It uses and extends the Basecamp API Ruby wrapper. Perhaps in the future it will do more than time tracking. This time is not now.</p>
+<h3 id="install">Install</h3>
+<p>gem sources -a http://gems.github.com sudo gem install Klondike-basecamper</p>
+<h3 id="usage">Usage</h3>
+<p>Configure the tracker with your Basecamp URL, login details, and whether the Basecamp uses SSL. This will take a while as it caches project information from your Basecamp. Example:</p>
+<pre><code>track configure example.clientsection.com username password true</code></pre>
+<p>Set a project as “current”, so any times logged are assumed to be meant for that project.</p>
+<pre><code>track project &quot;Johnson Industries&quot;
+track project joh</code></pre>
+<p>Log a time by giving the duration, or by giving two times. You can optionally specify the project to log time to, which won’t change the default project.</p>
+<pre><code>track log 0.25 &quot;Log message&quot;
+track log :15 &quot;Log message&quot; &quot;Johnson Industries&quot;
+track log 2:30p 5:30pm &quot;Log message&quot;
+track log 10:00 1:00 &quot;Log message&quot; joh</code></pre>
+<p>In the last case (10:00 to 1:00), the tracker will assume that the 2nd time is later than the 1st one, and calculate it as 3 hours, not -9.</p>
+<p>Log time by starting a timer. If you don’t specify a starting time, it’s assumed you’re starting now. You can optionally specify a project, which will change the default project.</p>
+<pre><code>track start
+track start &quot;Johnson Industries&quot;
+track start 3:15
+track start 3:15 &quot;Johnson Industries&quot;</code></pre>
+</body>
+</html>

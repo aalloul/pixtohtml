@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>roodi_roodi2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="running-it-as-part-of-your-build">Running it as part of your build</h2>
+<p>Add the following to your Rakefile:</p>
+<pre><code>require &#39;roodi_task&#39;
+task :default =&gt; [:roodi]</code></pre>
+<p>or if you want to supply your own config file…</p>
+<pre><code>require &#39;roodi_task&#39;
+RoodiTask.new :config =&gt; &#39;config/roodi.yml&#39;
+task :default =&gt; [:roodi]</code></pre>
+<h2 id="editor-integration">Editor integration</h2>
+<p>You can run Roodi in Atom using the package.</p>
+<h2 id="custom-configuration">Custom Configuration</h2>
+<p>To change the set of checks included, or to change the default values of the checks, you can provide your own config file. The config file is a YAML file that lists the checks to be included. Each check can optionally include a hash of options that are passed to the check to configure it. For example, the default config file looks like this:</p>
+<pre><code>AssignmentInConditionalCheck:
+CaseMissingElseCheck:
+ClassLineCountCheck:
+  line_count: 300
+ClassNameCheck:
+  pattern: !ruby/regexp /^[A-Z][a-zA-Z0-9]*$/
+ClassVariableCheck:
+CyclomaticComplexityBlockCheck:
+  complexity: 4
+CyclomaticComplexityMethodCheck:
+  complexity: 8
+EmptyRescueBodyCheck:
+ForLoopCheck:
+MethodLineCountCheck:
+  line_count: 20
+MethodNameCheck:
+  pattern: !ruby/regexp /^[_a-z&lt;&gt;=\[|+-\/\*`]+[_a-z0-9_&lt;&gt;=~@\[\]]*[=!\?]?$/
+ModuleLineCountCheck:
+  line_count: 300
+ModuleNameCheck:
+  pattern: !ruby/regexp /^[A-Z][a-zA-Z0-9]*$/
+ParameterNumberCheck:
+  parameter_count: 5</code></pre>
+<h2 id="supported-checks">Supported Checks</h2>
+<ul>
+<li>AssignmentInConditionalCheck - Check for an assignment inside a conditional. It’s probably a mistaken equality comparison.</li>
+<li>CaseMissingElseCheck - Check that case statements have an else statement so that all cases are covered.</li>
+<li>ClassLineCountCheck - Check that the number of lines in a class is below the threshold.</li>
+</ul>
+</body>
+</html>

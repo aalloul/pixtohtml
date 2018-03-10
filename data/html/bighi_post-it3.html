@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bighi_post-it3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Aliases: max_thumbnail, max_thumb</p>
+<p>– Smart Parameters –</p>
+<p>Smart parameters are special. They can be applied to the main picture OR the thumbnail, but will not affect both at the same time (exception: maximize_both()). The effect of the smart methods depends on the moment you call then.</p>
+<p>If you call a smart method after calling a main picture method, then it will work on the main picture.</p>
+<p>Example:</p>
+<pre><code>$this-&gt;Postit-&gt;image(&quot;avatar&quot;)-&gt;to_folder(&quot;avatars&quot;)-&gt;upload();</code></pre>
+<p>In this example, to_folder is being applied to the main picture</p>
+<p>If you call a smart method after calling a thumbnail method, then it will work on the thumbnail.</p>
+<p>Example:</p>
+<pre><code>$this-&gt;Postit-&gt;image(&quot;avatar&quot;)-&gt;with_thumbnail(&quot;90x90&quot;)-&gt;to_folder(&quot;thumbs&quot;)-&gt;upload();</code></pre>
+<p>In this example, to_folder is being applied to the thumbnail.</p>
+<p>maximize() –&gt; Activates image maximization. See chapter Maximization above.</p>
+<p>Aliases: max.</p>
+<p>maximize_both() –&gt; Activates the main picture’s AND thumbnail’s maximization. See chapter Maximization above.</p>
+<p>Aliases: max_both</p>
+<p>height(‘0’) –&gt; Set the image height. If it was already set before, this new value overwrite the old one. Aliases: h</p>
+<p>width(‘0’) –&gt; Set the image width. If it was already set before, this new value overwrite the old one. Aliases: w</p>
+<p>to_folder(‘img/’) –&gt; Defines the folder the image is going to be saved at. It is not necessary to add img/ at the beginning, because the system does it for you.</p>
+<p>Aliases: save_to, folder, dir</p>
+<p>name(‘imagename’) –&gt; Defines what the image file will be named after its been resized and moved.</p>
+<p>upload() –&gt; This is the final method. It should be called last! This method gets all passed params and then handles file upload, resizing, copying, moving and renaming. It is the magic method that makes everything happen!</p>
+<p>Aliases: send, up</p>
+</body>
+</html>

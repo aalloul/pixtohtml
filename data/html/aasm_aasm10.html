@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aasm_aasm10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>event :stop do
+  transitions :from =&gt; :processing, :to =&gt; :sleeping
+end</code></pre>
+<p>end end</p>
+<p>simple = SimpleMultipleExample.new</p>
+<p>simple.aasm(:move).current_state # =&gt; :standing simple.aasm(:work).current # =&gt; :sleeping</p>
+<p>simple.start simple.aasm(:move).current_state # =&gt; :standing simple.aasm(:work).current # =&gt; :processing</p>
+<p>```</p>
+<h4 id="handling-naming-conflicts-between-multiple-state-machines">Handling naming conflicts between multiple state machines</h4>
+<p><em>AASM</em> doesn’t prohibit to define the same event in more than one state machine. If no namespace is provided, the latest definition “wins” and overrides previous definitions. Nonetheless, a warning is issued: <code>SimpleMultipleExample: overriding method 'run'!</code>.</p>
+<p>Alternatively, you can provide a namespace for each state machine:</p>
+<p>```ruby class NamespacedMultipleExample include AASM aasm(:status) do state :unapproved, :initial =&gt; true state :approved</p>
+<pre><code>event :approve do
+  transitions :from =&gt; :unapproved, :to =&gt; :approved
+end
+
+event :unapprove do
+  transitions :from =&gt; :approved, :to =&gt; :unapproved
+end</code></pre>
+<p>end</p>
+<p>aasm(:review_status, namespace: :review) do state :unapproved, :initial =&gt; true state :approved</p>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rtomayko_tilt3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Instant gratification:</p>
+<pre><code>require &#39;erb&#39;
+require &#39;tilt&#39;
+template = Tilt.new(&#39;templates/foo.erb&#39;)
+=&gt; #&lt;Tilt::ERBTemplate @file=&quot;templates/foo.erb&quot; ...&gt;
+output = template.render
+=&gt; &quot;Hello world!&quot;</code></pre>
+<p>It’s recommended that calling programs explicitly require template engine libraries (like ‘erb’ above) at load time. Tilt attempts to lazy require the template engine library the first time a template is created but this is prone to error in threaded environments.</p>
+<p>The {Tilt} module contains generic implementation classes for all supported template engines. Each template class adheres to the same interface for creation and rendering. In the instant gratification example, we let Tilt determine the template implementation class based on the filename, but {Tilt::Template} implementations can also be used directly:</p>
+<pre><code>require &#39;tilt/haml&#39;
+template = Tilt::HamlTemplate.new(&#39;templates/foo.haml&#39;)
+output = template.render</code></pre>
+<p>The <code>render</code> method takes an optional evaluation scope and locals hash arguments. Here, the template is evaluated within the context of the <code>Person</code> object with locals <code>x</code> and <code>y</code>:</p>
+<pre><code>require &#39;tilt/erb&#39;
+template = Tilt::ERBTemplate.new(&#39;templates/foo.erb&#39;)
+joe = Person.find(&#39;joe&#39;)
+output = template.render(joe, :x =&gt; 35, :y =&gt; 42)</code></pre>
+<p>If no scope is provided, the template is evaluated within the context of an object created with <code>Object.new</code>.</p>
+<p>A single <code>Template</code> instance’s <code>render</code> method may be called multiple times with different scope and locals arguments. Continuing the previous example, we render the same compiled template but this time in jane’s scope:</p>
+<pre><code>jane = Person.find(&#39;jane&#39;)
+output = template.render(jane, :x =&gt; 22, :y =&gt; nil)</code></pre>
+<p>Blocks can be passed to <code>render</code> for templates that support running arbitrary ruby code (usually with some form of <code>yield</code>). For instance, assuming the following in <code>foo.erb</code>:</p>
+<pre><code>Hey &lt;%= yield %&gt;!</code></pre>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infochimps-labs_wukong14</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>      select(&amp;:american?) | ... | to_json,
+      select(&amp;:canadian?) | ... | to_json,
+      select(&amp;:mexican?)  | ... | to_json,
+    ],
+    select(&amp;:asian?)    | ... | to_json,
+    select(&amp;:european?) | ... | to_json,
+  ],
+],
+map(&amp;:title) | ... | to_json</code></pre>
+<p>] end</p>
+<pre><code>
+&lt;a name=&quot;serialization&gt;&lt;/a&gt;
+## Serialization
+
+The process method for a Processor must accept a String argument and
+yield a String argument (or something that will `to_s` appropriately).
+
+**Coming Soon:** The ability to define `consumes` and `emits` to
+  automatically handle serialization and deserialization.
+
+&lt;a name=&quot;widgets&gt;&lt;/a&gt;
+## Widgets
+
+Wukong has a number of built-in widgets that are useful for
+scaffolding your dataflows or using as starting off points for your
+own processors.
+
+For any of these widgets you can get customized help, say
+</code></pre>
+<p>$ wu-local group –help ```</p>
+<h3 id="serializers">Serializers</h3>
+<p>Serializers are widgets which don’t change the semantic meaning of a record, merely its representation. Here’s a list:</p>
+<ul>
+<li><code>to_json</code>, <code>from_json</code> for turning records into JSON or parsing JSON into records</li>
+<li><code>to_tsv</code>, <code>from_tsv</code> for turning Array records into TSV or parsing TSV into Array records</li>
+<li><code>pretty</code> for pretty printing JSON inputs</li>
+</ul>
+<p>When you’re writing processors that are capable of running in isolation you’ll want to ensure that you deserialize and serialize records on the way in and out, using the serialization/deserialization options <code>--to</code> and <code>--from</code> on the command-line, as <a
+href="#serialization">defined above</a>.</p>
+</body>
+</html>

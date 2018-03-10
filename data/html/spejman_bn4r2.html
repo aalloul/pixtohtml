@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>spejman_bn4r2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>`require &#39;bn4r&#39;`</code></pre>
+<ol start="3" type="1">
+<li><p>Create your first bayes net</p>
+<pre><code> #Create BayesNet
+ bn_aima = BayesNet.new
+
+ # Create nodes for the Bayes Net (BayesNetNodes)
+ burglary = BayesNetNode.new(&quot;Burglary&quot;)
+ earthquake = BayesNetNode.new(&quot;Earthquake&quot;)
+ alarm = BayesNetNode.new(&quot;Alarm&quot;)
+ john_calls = BayesNetNode.new(&quot;JohnCalls&quot;)
+ mary_calls = BayesNetNode.new(&quot;MaryCalls&quot;)
+
+ # Add nodes ( vertex ) to the BayesNet
+ bn_aima.add_vertex(burglary)
+ bn_aima.add_vertex(earthquake)
+ bn_aima.add_vertex(alarm)
+ bn_aima.add_vertex(john_calls)
+ bn_aima.add_vertex(mary_calls)
+
+ # Add relations ( edges ) between nodes in the BayesNet
+ bn_aima.add_edge(burglary,alarm)
+ bn_aima.add_edge(earthquake,alarm)
+ bn_aima.add_edge(alarm,john_calls)
+ bn_aima.add_edge(alarm,mary_calls)
+
+ # Assign probabilities to each node
+ burglary.set_probability_table([], [0.001, 0.999] )
+ earthquake.set_probability_table([], [0.002, 0.998] )
+
+ alarm.set_probability_table([burglary,earthquake], [0.95, 0.05, 0.94, 0.06, 0.29, 0.71, 0.001,0.999] )
+
+ john_calls.set_probability_table([alarm], [0.90,0.10,0.05,0.95])
+ mary_calls.set_probability_table([alarm], [0.70,0.30,0.01,0.99])</code></pre></li>
+<li><p>Solve it!</p>
+<pre><code> # John and Mary are calling ...
+ john_calls.set_value(true)  
+ mary_calls.set_value(true)
+
+ # Why?
+ is_there_a_burglary = bn_aima.enumeration_ask( burglary, [john_calls, mary_calls] )
+ puts &quot;Call the police!&quot; if is_there_a_burglary[0] &gt; is_there_a_burglary[1]
+
+ is_the_alarm_on = bn_aima.enumeration_ask( alarm, [john_calls, mary_calls] )
+ puts &quot;Run home, your alarm is distubing the neigborhood!&quot; if is_the_alarm_on[0] &gt; is_the_alarm_on[1]</code></pre></li>
+</ol>
+</body>
+</html>

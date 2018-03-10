@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>HERA-Team_aipy1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="aipy-astronomical-interferometry-in-python">AIPY (Astronomical Interferometry in PYthon)</h1>
+<h2 id="description">Description</h2>
+<p>This package collects together tools for radio astronomical interferometry. In addition to pure-python phasing, calibration, imaging, and deconvolution code, this package includes interfaces to MIRIAD (a Fortran interferometry package) and HEALPix (a package for representing spherical data sets), and some math/fitting routines from SciPy.</p>
+<p>Instructions, documentation, and a FAQ may be found at .</p>
+<h2 id="installation">Installation</h2>
+<p>We strongly recommend installing AIPY with the packaging tool using the public package repository:</p>
+<pre><code>$ conda install -c conda-forge aipy</code></pre>
+<h2 id="documentation">Documentation</h2>
+<p>If you want to build HTML documentation, you’ll need to have installed. Then, change to the <code>doc/</code> directory and run:</p>
+<pre><code>$ make html</code></pre>
+<p>The results will appear in <code>doc/build/html</code>. There are plenty of other build options, too. Many thanks to Jayce Dowell for his work on this.</p>
+<p>Enjoy, Aaron Parsons</p>
+<hr />
+<h1 id="package-info-for-developers">Package Info for Developers</h1>
+<p>The subpackage “optimize” was copied in from scipy-0.6.0, and then all code that depended on non-pure-python modules was removed. If these ever need to be updated, download scipy source and copy scipy/scipy/optimize into aipy, and then remove any code deemed unnecessary. Unfortunately,</p>
+</body>
+</html>

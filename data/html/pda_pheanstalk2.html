@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pda_pheanstalk2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>-&gt;useTube(‘testtube’) -&gt;put(“job payload goes here”);</p>
+<p>// —————————————- // worker (performs jobs)</p>
+<p>$job = $pheanstalk -&gt;watch(‘testtube’) -&gt;ignore(‘default’) -&gt;reserve();</p>
+<p>echo $job-&gt;getData();</p>
+<p><span class="math inline"><em>p</em><em>h</em><em>e</em><em>a</em><em>n</em><em>s</em><em>t</em><em>a</em><em>l</em><em>k</em> −  &gt; <em>d</em><em>e</em><em>l</em><em>e</em><em>t</em><em>e</em>(</span>job);</p>
+<p>// —————————————- // check server availability</p>
+<p>$pheanstalk-&gt;getConnection()-&gt;isServiceListening(); // true or false</p>
+<pre><code>
+
+Running the tests
+-----------------
+
+There is a section of the test suite which depends on a running beanstalkd
+at 127.0.0.1:11300, which was previously opt-in via `--with-server`.
+Since porting to PHPUnit, all tests are run at once. Feel free to submit
+a pull request to rectify this.
+</code></pre>
+<h1 id="ensure-you-have-composer-set-up">ensure you have Composer set up</h1>
+<p>$ wget http://getcomposer.org/composer.phar $ php composer.phar install</p>
+<p>$ ./vendor/bin/phpunit PHPUnit 4.0.19 by Sebastian Bergmann.</p>
+<p>Configuration read from /Users/pda/code/pheanstalk/phpunit.xml.dist</p>
+<p>……………………………………………………….. 65 / 83 ( 78%) ………………</p>
+<p>Time: 239 ms, Memory: 6.00Mb</p>
+<p>OK (83 tests, 378 assertions) ```</p>
+</body>
+</html>

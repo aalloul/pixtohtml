@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>finance-quote_finance-quote4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Note that the FQ_LOAD_QUOTELET environment variable must begin with “-defaults” if you wish the default modules to be loaded.</p>
+<p>Any modules specified will automatically be looked for in the Finance::Quote:: module-space. Hence, Finance::Quote-&gt;new(“ASX”) will load the module Finance::Quote::ASX.</p>
+<p>Please read the Finance::Quote hacker’s guide for information on how to create new modules for Finance::Quote.</p>
+<h2 id="fetch">FETCH</h2>
+<pre><code>my %stocks  = $q-&gt;fetch(&quot;usa&quot;,&quot;IBM&quot;,&quot;MSFT&quot;,&quot;LNUX&quot;);
+my $hashref = $q-&gt;fetch(&quot;usa&quot;,&quot;IBM&quot;,&quot;MSFT&quot;,&quot;LNUX&quot;);</code></pre>
+<p>Fetch takes an exchange as its first argument. The second and remaining arguments are treated as stock-names. In the standard Finance::Quote distribution, the following exchanges are recognised:</p>
+<pre><code>australia   Australan Stock Exchange
+dwsfunds    Deutsche Bank Gruppe funds
+fidelity    Fidelity Investments
+tiaacref    TIAA-CREF
+troweprice    T. Rowe Price
+europe    European Markets
+canada    Canadian Markets
+usa     USA Markets
+nyse    New York Stock Exchange
+nasdaq    NASDAQ
+uk_unit_trusts  UK Unit Trusts
+vanguard    Vanguard Investments
+vwd     Vereinigte Wirtschaftsdienste GmbH</code></pre>
+<p>When called in an array context, a hash is returned. In a scalar context, a reference to a hash will be returned. The structure of this hash is described earlier in this document.</p>
+<p>The fetch method automatically arranges for failover support and currency conversion if requested.</p>
+<p>If you wish to fetch information from only one particular source, then consult the documentation of that sub-module for further information.</p>
+<h2 id="sources">SOURCES</h2>
+<pre><code>my @sources = $q-&gt;sources;
+my $listref = $q-&gt;sources;</code></pre>
+</body>
+</html>

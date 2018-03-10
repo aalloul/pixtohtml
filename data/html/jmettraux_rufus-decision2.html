@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmettraux_rufus-decision2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>25..35,rich,kerfelden
+,cheerful,swanson
+,maniac,korolev</code></pre>
+<p>})</p>
+<p># Given a customer (a Hash instance directly, for # convenience), returns the name of the first # corresponding salesman. # def determine_salesperson (customer)</p>
+<pre><code>TABLE.transform(customer)[&quot;salesperson&quot;]</code></pre>
+<p>end</p>
+<p>puts determine_salesperson( “age” =&gt; 72) # =&gt; thorsten</p>
+<p>puts determine_salesperson( “age” =&gt; 25, “trait” =&gt; “rich”) # =&gt; adeslky</p>
+<p>puts determine_salesperson( “age” =&gt; 23, “trait” =&gt; “cheerful”) # =&gt; adeslky</p>
+<p>puts determine_salesperson( “age” =&gt; 25, “trait” =&gt; “maniac”) # =&gt; adeslky</p>
+<p>puts determine_salesperson( “age” =&gt; 44, “trait” =&gt; “maniac”) # =&gt; espadas ```</p>
+<p>More at Rufus::Decision::Table</p>
+<p>Note that you can use a CSV table served over HTTP like in :</p>
+<p>```ruby require ‘rubygems’ require ‘rufus/decision’</p>
+<p>TABLE = Rufus::DecisionTable.new( ‘https://spreadsheets.google.com/pub?key=pCkopoeZwCNsMWOVeDjR1TQ&amp;output=csv’)</p>
+<p># the CSV is : # # in:weather,in:month,out:take_umbrella? # # raining,,yes # sunny,,no # cloudy,june,yes # cloudy,may,yes # cloudy,,no</p>
+</body>
+</html>

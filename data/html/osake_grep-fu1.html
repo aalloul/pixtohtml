@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>osake_grep-fu1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="grep-fu">Grep-Fu</h1>
+<p>Grep-Fu is a very fast, Rails-oriented command-line helper script for grep. It’s a ruby wrapper for speeding up text searches within the files of a Rails project. The simplest, common usage:</p>
+<pre><code>grep-fu account_deletion</code></pre>
+<p>This will display a list of files which contain the search text:</p>
+<pre><code>./app/models/account.rb
+./app/controllers/accounts_controller.rb</code></pre>
+<p><em>NOTE:</em> Grep-Fu will only work as expected if you are in the root directory of a Rails project!</p>
+<h2 id="installation">Installation</h2>
+<p>Grep-Fu is now a gem:</p>
+<pre><code>gem install grep-fu</code></pre>
+<p>Often, it can help reduce typing by aliasing the admittedly lengthy “grep-fu” command:</p>
+<pre><code>alias g=&#39;grep-fu&#39;</code></pre>
+<p>Putting this (or a similar shortcut) in your .bashrc or .profile will allow you to use a shorthand version of the command:</p>
+<pre><code>g account_deletion</code></pre>
+<h2 id="even-faster">Even Faster</h2>
+<p>For more targeted (faster) searches, you can specify one of the following flags to narrow down the search:</p>
+<pre><code>  a - app
+  m - app/models
+  c - app/controllers
+  v - app/views
+  h - app/helpers
+
+  l - lib
+
+  p - public
+  css - public/stylesheets
+  js - public/javascripts
+
+  s - spec
+  t - test
+
+  vp - vendor/plugins</code></pre>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>subtleGradient_subtlepager1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="subtlepager">subtlePager</h1>
+<h2 id="super-simple-javascript-paging-system">Super Simple Javascript Paging System</h2>
+<h4 id="by-thomas-aylott-aka-oblivious-at-subtlegradient.com">by <strong>Thomas Aylott</strong> aka <em>oblivious at subtleGradient.com</em></h4>
+<hr />
+<h2 id="how-does-it-work">How does it work?</h2>
+<p>First, include all your html on the page. Give each paged element a classname of <code>page1</code>, <code>page2</code>, etc… as many as there are. Then add the classnames <code>subtlePager</code> <code>page1</code> and <code>pages10</code> to the parent element. You can have unlimited pagers per page. See the <code>subtlePager.demo.html</code> file for a working demo.</p>
+<h3 id="setup">Setup</h3>
+<ul>
+<li>HTML
+<ul>
+<li><strong>[required]</strong> Parent element
+<ul>
+<li><code>id</code> attribute</li>
+<li><code>class</code> attribute<br />
+EG: <code>subtlePager pages5 page1</code>
+<ul>
+<li><code>subtlePager</code><br />
+This classname is required by the default CSS</li>
+<li><code>pages#</code><br />
+<code>#</code> is the maximum number of pages, EG: <code>pages5</code> for a total of 5 pages</li>
+<li><code>page#</code><br />
+<code>#</code> is the default page to display. I recommend just using <code>page1</code> here</li>
+</ul></li>
+</ul></li>
+<li><strong>[required]</strong> Child elements
+<ul>
+<li><code>class</code> attribute
+<ul>
+<li><code>page#</code><br />
+<code>#</code> is the page number that you want this element to be visible on.</li>
+</ul></li>
+</ul></li>
+<li><strong>[required]</strong> Trigger element(s)
+<ul>
+<li><strong>[optional]</strong> <code>onclick</code>
+<ul>
+<li><code>subtlePager.page(elementId)</code><br />
+</li>
+<li><code>subtlePager.page(elementId, true)</code><br />
+</li>
+<li><code>subtlePager.page(elementId, 5)</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>CSS
+<ul>
+<li><strong>[optional]</strong> Define your custom <em>“CSS Static Logic”</em></li>
+</ul></li>
+<li>JS
+<ul>
+<li><strong>[optional]</strong> Redefine defaults</li>
+</ul></li>
+</ul>
+<p>You’ll need to attach the functions to your trigger elements somehow, the simplest method is to just use an <code>onclick</code> attribute. But I highly recommend you use an eventListener somehow. I leave that as an exercise for the reader.</p>
+<h3 id="triggering-functions">Triggering Functions</h3>
+<p><code>subtlePager.page(elementId)</code><br />
+Goes to the previous page</p>
+<p><code>subtlePager.page(elementId, true)</code></p>
+</body>
+</html>

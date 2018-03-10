@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RJ_irccat3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p>“%TOPIC #chan new topic” just changes the topic of #chan</p></li>
+<li><p>“%TOPIC #channel1,#channel2 this channel is great” this changes the topics of two channels</p></li>
+<li><p>“%TOPIC #* Important Topic” this changes the topics in all channels the bot is in</p></li>
+</ul>
+<h2 id="built-in-commands">Built-in commands</h2>
+<p>There are a handful of built-in commands for instructing the bot at runtime.</p>
+<p>Built-in commands are prefixed with a !</p>
+<pre><code>!join #chan pass        - joins another channel. pass is optional
+!part #chan             - parts chan
+!channels               - lists channels the bot is in
+!spam blah blah..       - repeats your message in all joined channels
+!exit                   - System.exit()</code></pre>
+<h2 id="trust">Trust</h2>
+<p>Any command (?.. !..) uttered in a channel with irccat in is executed and implicitly trusted.</p>
+<p>Any command PMed to irccat is ignored unless the user is joined to the default (first) channel in the config file.</p>
+<h2 id="svn-commit-notifications">SVN commit notifications</h2>
+<p>svn hooks let you announce commits etc. For example, try this in your SVN repo/hooks/post-commit file:</p>
+<p>REPOS=“$1” REV=“$2” LOG=<code>/usr/bin/svnlook log -r $REV $REPOS</code> AUTHOR=<code>/usr/bin/svnlook author -r $REV $REPOS</code> echo “SVN commit by <span class="math inline"><em>A</em><em>U</em><em>T</em><em>H</em><em>O</em><em>R</em>(<em>r</em></span>REV) ’<span class="math inline"><em>L</em><em>O</em><em>G</em>′<em>h</em><em>t</em><em>t</em><em>p</em> : //<em>w</em><em>e</em><em>b</em> − <em>s</em><em>v</em><em>n</em> − <em>i</em><em>n</em><em>t</em><em>e</em><em>r</em><em>f</em><em>a</em><em>c</em><em>e</em>.<em>e</em><em>x</em><em>a</em><em>m</em><em>p</em><em>l</em><em>e</em>.<em>c</em><em>o</em><em>m</em>/?<em>r</em><em>e</em><em>v</em>=</span>REV” | netcat -q0 machinename 12345</p>
+<h2 id="nagios-alerts-to-irc">Nagios alerts to irc</h2>
+<p>Buried in our nagios config is this, from misccommands.cfg:</p>
+<p>define command {</p>
+</body>
+</html>

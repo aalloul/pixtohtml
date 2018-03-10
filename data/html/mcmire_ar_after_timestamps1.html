@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mcmire_ar_after_timestamps1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ar_after_timestamps">ar_after_timestamps</h1>
+<h2 id="summary">Summary</h2>
+<p>A little gem that gives you a way to add a callback to the ActiveRecord callback chain that will be executed right after the record’s timestamp columns are set, but before the record is actually saved to the database. This is useful if you want to do something with the timestamps, such as defaulting another time column to created_at, or rolling back a timestamp by a certain amount.</p>
+<h2 id="example">Example</h2>
+<p>Let’s say you have a migration like this:</p>
+<pre><code>class AddFoo &lt; ActiveRecord::Migration
+  def self.up
+    create_table :foo {|t| t.timestamps }
+  end
+  def self.down
+    drop_table :foo
+  end
+end</code></pre>
+<p>And a model like this:</p>
+<pre><code>class Foo &lt; ActiveRecord::Base
+  after_timestamps_on_create :roll_back_created_at_by_two_hours
+  after_timestamps_on_update :roll_back_updated_at_by_two_hours
+
+private
+  def roll_back_created_at_by_two_hours
+    self.created_at -= 2.hours
+  end
+
+  def roll_back_updated_at_by_two_hours
+    self.updated_at -= 2.hours
+  end
+end</code></pre>
+<p>Now if you say</p>
+<pre><code>Foo.create!</code></pre>
+<p><code>created_at</code> and <code>updated_at</code> will be set, but 2 hours will be subtracted from them before they’re put into the database.</p>
+<h2 id="installation">Installation</h2>
+<ol type="1">
+<li>Run <code>gem install ar_after_timestamps</code> (probably as root)</li>
+<li>Add <code>config.gem 'ar_after_timestamps'</code> to environment.rb</li>
+<li>Optionally run <code>rake gems:build</code></li>
+</ol>
+<h2 id="support">Support</h2>
+<p>If you find any bugs with this plugin, feel free to:</p>
+</body>
+</html>

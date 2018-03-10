@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>denis_capone1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="capone">Capone</h1>
+<p>!</p>
+<p>Capone is the set of Capistrano recipes that help me to deploy my applications.</p>
+<p>Capone by default uses Mongrel cluster (or Passenger) as an application server, nginx as a web server, MySQL as a database server and git as a SCM.</p>
+<p>The latest version of Capone was inspired by Rubaidh’s and some code has been borrowed from its sources.</p>
+<h2 id="installation">Installation</h2>
+<p>Capone could be installed either as a gem or as Rails plugin.</p>
+<h3 id="gem-preferred">Gem (preferred)</h3>
+<p>Add to the end of your <code>config/environments/development.rb</code> file:</p>
+<pre><code>config.gem &#39;capone&#39;, :lib =&gt; false, :version =&gt; &#39;&gt;= 0.1.0&#39;</code></pre>
+<h3 id="rails-plugin">Rails plugin</h3>
+<pre><code>./script/plugin install git://github.com/denis/capone.git</code></pre>
+<h2 id="example-usage">Example usage</h2>
+<p>To start using Capone you just need to add <code>require &quot;capone&quot;</code> to your <code>config/deploy.rb</code> file (only if Capone is installed as a gem) and set some variables:</p>
+<pre><code>require &quot;capone&quot;
+
+set :application, &quot;set your application name here&quot;
+set :repository,  &quot;set your repository location here&quot;
+set :host,        &quot;set your host here&quot;
+
+# See capone/recipes/defaults.rb for defaults</code></pre>
+<h2 id="features">Features</h2>
+<p>In process…</p>
+<h2 id="thanks">Thanks</h2>
+<ul>
+<li>Jamis Buck for ,</li>
+<li>Rubaidh Ltd for their awesome</li>
+</ul>
+</body>
+</html>

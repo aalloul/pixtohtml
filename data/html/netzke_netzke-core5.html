@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>netzke_netzke-core5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="calling-client-class-methods-from-endpoint">Calling client class methods from endpoint</h3>
+<p>An endpoint can instruct the client instance of the component to execute a set of methods in response, passing those methods arbitrary parameters, by using the <code>client</code> method. For example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> <span class="dt">SimpleComponent</span> &lt; <span class="dt">Netzke</span>::<span class="dt">Base</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  endpoint <span class="st">:whats_up_server</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    client.set_title(<span class="st">&quot;Response from server&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    client.my_method</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="kw">end</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">end</span></a></code></pre></div>
+<p>Here the client class will first call its <code>setTitle</code> method (defined in <code>Ext.panel.Panel</code>) with parameter passed from the endpoint. Then a custom method <code>myMethod</code> will be called with no parameters.</p>
+<p>For more details on client-server communication see <a href="%22http://www.rubydoc.info/github/netzke/netzke-core/Netzke/Core/Services%22">Netzke::Core::Services</a>.</p>
+<h2 id="icons-support">Icons support</h2>
+<p>Netzke can optionally make use of icons for making clickable elements like buttons and menu items more visual. The icons should be (by default) located in <code>app/assets/images/icons</code>.</p>
+<p>An example of specifying an icon for an action:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb2-1" data-line-number="1">action <span class="st">:logout</span> <span class="kw">do</span> |c|</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  c.icon = <span class="st">:door</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">end</span></a></code></pre></div>
+<p>The logout action will be configured with <code>public/assets/icons/door.png</code> as icon.</p>
+<p>For more details on using icons refer to <a href="%22http://www.rubydoc.info/github/netzke/netzke-core/Netzke/Core/Actions%22">Netzke::Core::Actions</a>.</p>
+<h2 id="i18n">I18n</h2>
+<p>Netzke Core will automatically include Ext JS localization files based on current <code>I18n.locale</code>.</p>
+<p>Also, Netzke Core uses some conventions for localizing actions. Refer to .</p>
+<h2 id="routing">Routing</h2>
+<p>Any Netzke component can react on a specific hash-route in the URL, which can be achieved by specifying <code>netzkeRoutes</code> hash on the client class, similarly to how Ext JS handles routes in its controllers:</p>
+<pre><code>// e.g. in my_component/client/my_component.js
+{
+  netzkeRoutes: {
+    &#39;users&#39;: &#39;onUsers&#39;,
+    &#39;users/:id&#39;: &#39;onUser&#39;
+  },</code></pre>
+</body>
+</html>

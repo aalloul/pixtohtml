@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rtomayko_tilt2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="line-block">Markaby | .mab | markaby | Tilt team |<br />
+Nokogiri | .nokogiri | nokogiri | Community |<br />
+CoffeeScript | .coffee | coffee-script (+ javascript) | Tilt team |<br />
+CoffeeScript (literate) | .litcoffee | coffee-script (&gt;= 1.5.0) (+ javascript) | Tilt team |<br />
+LiveScript | .ls | livescript (+ javascript) | Tilt team |<br />
+TypeScript | .ts | typescript (+ javascript) | Tilt team |<br />
+Creole (Wiki markup) | .wiki, .creole | creole | Community |<br />
+WikiCloth (Wiki markup) | .wiki, .mediawiki, .mw | wikicloth | Community |<br />
+Yajl | .yajl | yajl-ruby | Community |<br />
+CSV | .rcsv | none (Ruby &gt;= 1.9), fastercsv (Ruby &lt; 1.9) | Tilt team |<br />
+Prawn | .prawn | prawn (&gt;= 2.0.0) | Community |<br />
+Babel | .es6, .babel, .jsx | babel-transpiler | Tilt team |<br />
+Opal | .rb | opal | Community |<br />
+Sigil | .sigil | sigil | Community |</div>
+<p>Every supported template engine has a <em>maintainer</em>. Note that this is the maintainer of the Tilt integration, not the maintainer of the template engine itself. The maintainer is responsible for providing an adequate integration and keeping backwards compatibility across Tilt version. Some integrations are maintained by the <em>community</em>, which is handled in the following way:</p>
+<ul>
+<li>The Tilt team will liberally accept pull requests against the template integration. It’s up to the community as a whole to make sure the integration stays consistent and backwards compatible over time.</li>
+<li>Test failures in community-maintained integrations will not be prioritized by the Tilt team and a new version of Tilt might be released even though these tests are failing.</li>
+<li>Anyone can become a maintainer for a template engine integration they care about. Just open an issue and we’ll figure it out.</li>
+</ul>
+<p>These template engines ship with their own Tilt integration:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Engine</th>
+<th>File Extensions</th>
+<th>Required Libraries</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Slim</td>
+<td>.slim</td>
+<td>slim (&gt;= 0.7)</td>
+</tr>
+<tr class="even">
+<td>Embedded JavaScript</td>
+<td></td>
+<td>sprockets</td>
+</tr>
+<tr class="odd">
+<td>Embedded CoffeeScript</td>
+<td></td>
+<td>sprockets</td>
+</tr>
+<tr class="even">
+<td>JST</td>
+<td></td>
+<td>sprockets</td>
+</tr>
+<tr class="odd">
+<td>Org-mode</td>
+<td>.org</td>
+<td>org-ruby (&gt;= 0.6.2)</td>
+</tr>
+<tr class="even">
+<td>Handlebars</td>
+<td>.hbs, handlebars</td>
+<td>tilt-handlebars</td>
+</tr>
+<tr class="odd">
+<td>Jbuilder</td>
+<td>.jbuilder</td>
+<td>tilt-jbuilder</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="http://github.com/rtomayko/tilt/blob/master/docs/TEMPLATES.md" title="Tilt Template Engine Documentation">TEMPLATES.md</a> for detailed information on template engine options and supported features.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+</body>
+</html>

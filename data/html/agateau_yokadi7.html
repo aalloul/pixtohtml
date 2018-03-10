@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>agateau_yokadi7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>export YOKADI_DB=$HOME/work/yokadi.db</code></pre>
+<h2 id="history-location">History location</h2>
+<p>By default, Yokadi will store input history in <code>$HOME/.cache/yokadi/history</code>. This file stores commands used in Yokadi for future use and reference.</p>
+<p>If you do now want to use the default history file location, you can define the <code>YOKADI_HISTORY</code> environment variable to point to your history file:</p>
+<pre><code>export YOKADI_HISTORY=$HOME/.hist/yokadi_history</code></pre>
+<h2 id="yokadid-the-yokadid-daemon">Yokadid, the Yokadid daemon</h2>
+<p>If you want to be automatically reminded of due tasks, you can use the Yokadi daemon.</p>
+<p>The Yokadi daemon can be launched via desktop autostart services. In most desktop environments, you just need to create a symbolic link to yokadid (or a shell script that calls it) in <code>$HOME/.config/autostart/</code>:</p>
+<pre><code>ln -s `which yokadid` $HOME/.config/autostart/</code></pre>
+<h1 id="contact">Contact</h1>
+<p>The project is hosted on <a href="http://yokadi.github.io" class="uri">http://yokadi.github.io</a>.</p>
+<p>All discussions happen on Yokadi mailing-list, hosted by our friends from the Sequanux LUG. To join, visit <a href="http://sequanux.org/cgi-bin/mailman/listinfo/ml-yokadi" class="uri">http://sequanux.org/cgi-bin/mailman/listinfo/ml-yokadi</a>.</p>
+<p>You can also find some of us on #yokadi, on the Freenode IRC network.</p>
+<h1 id="authors">Authors</h1>
+<p>Yokadi has been brought to you by:</p>
+<ul>
+<li>Aurélien Gâteau <a href="mailto:mail@agateau.com">mail@agateau.com</a>: Developer, founder</li>
+<li>Sébastien Renard <a href="mailto:sebastien.renard@digitalfox.org">sebastien.renard@digitalfox.org</a>: Developer</li>
+<li>Benjamin Port <a href="mailto:benjamin.port@brobase.fr">benjamin.port@brobase.fr</a>: Developer</li>
+</ul>
+<p>Other people contributed to Yokadi:</p>
+<ul>
+<li>Olivier Hervieu <a href="mailto:olivier.hervieu@wallix.com">olivier.hervieu@wallix.com</a>: first working setup.py release</li>
+<li>Marc-Antoine Gouillart <a href="mailto:marsu_pilami@msn.com">marsu_pilami@msn.com</a>: Windows port</li>
+<li>Kartik Mistry <a href="mailto:kartik@debian.org">kartik@debian.org</a>: man pages</li>
+<li>Jonas Christian Drewsen <a href="mailto:jdrewsen@gmail.com">jdrewsen@gmail.com</a>: quarterly recurrence feature</li>
+</ul>
+<!-- vim: set ts=4 sw=4 et: -->
+</body>
+</html>

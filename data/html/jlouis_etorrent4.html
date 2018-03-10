@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jlouis_etorrent4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ol start="17" type="1">
+<li>If you enabled the webui, you can try browsing to its location. By default the location is ‘http://localhost:8080’.</li>
+</ol>
+<h2 id="testing-etorrent">Testing etorrent</h2>
+<p>Read the document <a href="/jlouis/etorrent/tree/master/TEST.md">etorrent/TEST.md</a> for how to run tests of the system.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If the above commands doesn’t work, we want to hear about it. This is a list of known problems:</p>
+<ul>
+<li><p>General: Many distributions are insane and pack erlang in split packages, so each part of erlang is in its own package. This <em>always</em> leads to build problems due to missing stuff. Be sure you have all relevant packages installed. And when you find which packages are needed, please send a patch to this file for the distribution and version so we can keep it up-to-date.</p></li>
+<li><p>Ubuntu 10.10: Ubuntu has a symlink <code>/usr/lib/erlang/man -&gt;    /usr/share/man</code>. This is insane and generates problems when building a release (spec errors on missing files if a symlink points to nowhere). The easiest fix is to remove the man symlink from <code>/usr/lib/erlang</code>. A way better fix is to install a recent Erlang/OTP yourself and use <strong>Begone(tm)</strong> on the supplied version.</p></li>
+</ul>
+<h3 id="installing-erlang">Installing Erlang</h3>
+<p>I (jlouis@) use the following commands to install Erlang:</p>
+<ul>
+<li>Install <em>stow</em>, <code>sudo aptitude install stow</code></li>
+<li>Execute <code>sudo aptitude build-dep erlang</code> to pull in all build dependencies we need.</li>
+<li>Execute <code>git clone git://github.com/erlang/otp.git</code></li>
+<li>Get into the directory and fire away <code>git checkout dev &amp;&amp; ./otp_build autoconf</code></li>
+<li>Get a useful tag for the otp version you have built <code>otp_version=$(git describe)</code></li>
+<li><code>./configure --prefix=/usr/local/stow/${otp_version}</code></li>
+<li><code>make; make docs</code></li>
+<li><code>make install install-docs</code></li>
+</ul>
+<p>And then I enable it in stow:</p>
+<pre><code>cd /usr/local/stow &amp;&amp; stow ${otp_version}</code></pre>
+<p>You may have to use <code>stow -D</code> on an old</p>
+<p>Another way is to use , a simple shell script:</p>
+<p>``` bash $ curl -O https://raw.github.com/spawngrid/kerl/master/kerl; chmod a+x kerl</p>
+</body>
+</html>

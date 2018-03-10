@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mcmire_htmldoc-rails1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="htmldoc-rails">htmldoc-rails</h1>
+<h2 id="summary">Summary</h2>
+<p>Generate PDFs from your Rails views using .</p>
+<h2 id="usage">Usage</h2>
+<p>Let’s say we’ve got this setup:</p>
+<pre><code># controller
+class FooController &lt; ApplicationController
+  def bar
+    # render bar.html.erb
+  end
+end
+
+# view - bar.html.erb
+&lt;p&gt;Some content goes here&lt;/p&gt;</code></pre>
+<p>Now let’s say we want to give the user a regular HTML view when they go to <code>/foo/bar</code>, but a PDF file when they go to <code>/foo/bar.pdf</code>. We can use <code>respond_to</code> to differentiate between the two course of actions, but as for generating the PDF file itself, <code>htmldoc-rails</code> provides a special method called <code>render_pdf</code>. This method is responsible for piping a view through HTMLDoc and telling the action to return a PDF file. It also accepts options such as which view you want the PDF to be generated from, whether or not a download box should appear, and so on (you can find the possible options in the . Since we want to use the HTML view to generate the PDF, all we have to say is this:</p>
+<pre><code># controller
+class FooController &lt; ApplicationController
+  def bar
+    respond_to do |wants|
+      wants.html
+      wants.pdf { render_pdf }
+    end
+  end
+end</code></pre>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>HTMLDoc 1.9.x</li>
+<li>htmldoc gem</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>First, you’ll need to download, compile, and install the htmldoc executable. If you’re on Mac or Linux, this is really easy. Just head on over to . Once you’ve done that, you should be able to just</p>
+<pre><code>./configure
+make
+sudo make install</code></pre>
+<p>If you happen to be on Windows, well, you aren’t so lucky. If you’re fine with using 1.8, you can find a pre-compiled copy either from the HTMLDoc website or from Cygwin. If you really want a version of 1.9, you’ll have to look around – possibly someone has been generous enough to put one out there.</p>
+<p>Once you’ve got the htmldoc executable installed, you’ll need the htmldoc Ruby gem, which provides a thin wrapper around the executable. Just</p>
+<pre><code>gem install htmldoc</code></pre>
+</body>
+</html>

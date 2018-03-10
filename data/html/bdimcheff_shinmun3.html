@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bdimcheff_shinmun3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><strong>Note that the declaration MUST be followed by a blank line!</strong></p>
+<h3 id="directory-layout">Directory layout</h3>
+<ul>
+<li><code>assets</code>: contains images, stylesheets and javascripts</li>
+<li><code>comments</code>: comments are stored as yaml files</li>
+<li><code>config</code>: configuration of blog, aggregations and assets</li>
+<li><code>posts</code>: post files sorted by year/month.</li>
+<li><code>pages</code>: contains static pages</li>
+<li><code>templates</code>: ERB templates for layout, posts and others</li>
+</ul>
+<p>An example tree:</p>
+<pre><code>+ config.ru
++ map.rb
++ helpers.rb
++ assets
+  + images
+  + stylesheets
+  + javascripts      
++ config
+  + aggregations.yml
+  + assets.yml
+  + blog.yml
++ pages
+  + about.md
++ posts
+  + 2007
+  + 2008
+    + 9
+      + my-article.md
++ templates
+  + category.rhtml
+  + category.rxml
+  + _comments.rhtml
+  + _comment_form.rhtml
+  + feed.rxml
+  + helpers.rb
+  + index.rhtml
+  + index.rxml
+  + layout.rhtml
+  + post.rhtml  
+  + page.rhtml</code></pre>
+<h3 id="blog-configuation">Blog configuation</h3>
+<p>Inside <code>config/blog.yml</code> you set the properties of your blog:</p>
+</body>
+</html>

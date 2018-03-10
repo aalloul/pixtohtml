@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dan-manges_unit-record1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="unitrecord">UnitRecord</h1>
+<p>Enables unit testing ActiveRecord classes without hitting the database.</p>
+<h2 id="why">Why?</h2>
+<p>Rationale:</p>
+<p>One of the biggest benefits to disconnecting unit tests from the database is having a faster test suite. Here is the benchmark from one of my current projects:</p>
+<pre><code>Finished in 19.302702 seconds.
+4920 tests, 7878 assertions, 0 failures, 0 errors</code></pre>
+<p>4 seconds per 1,000 tests is a good guideline.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>gem install unit_record</code></pre>
+<h2 id="usage">Usage</h2>
+<h2 id="restructuring-the-rails-test-directory">Restructuring the Rails Test Directory</h2>
+<p>The Rails test directory typically places testing for models under <tt>test/unit</tt> and tests for controllers under <tt>test/functional</tt>. However, we need to change the definition of unit and functional. Controllers can be unit tested (mocking out models and not rendering the view). Models can be functionally tested (hitting the database). Also, each type of test needs its own test_helper. I recommend restructuring your test directory like this:</p>
+<pre><code>test
+  test_helper.rb
+  unit
+    unit_test_helper.rb
+    controllers
+    models
+  functional
+    functional_test_helper.rb
+    controllers
+    models</code></pre>
+<p>You should move existing functional tests into functional/controllers. You will also need to change the require line at the top of those tests to require the functional_test_helper.rb file instead of the test_helper.rb file.</p>
+<p>The <tt>functional_test_helper.rb</tt> file only needs to require <tt>test_helper.rb</tt>:</p>
+<pre><code>require File.dirname(__FILE__) + &quot;/../test_helper&quot;</code></pre>
+<p>For moving unit tests, you have a few options. I recommend moving them to unit/models and then disconnecting your unit tests from the database. Any tests that fail should then be modified to not hit the database or moved to functional/models.</p>
+<p>Usage</p>
+</body>
+</html>

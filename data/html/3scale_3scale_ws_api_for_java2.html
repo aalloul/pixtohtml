@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>3scale_3scale_ws_api_for_java2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>ServiceApi serviceApi = ServiceApiDriver.createApi();</p>
+<p>// When connecting to an on-premise instance of the 3scale platform, create the API object for a given host and port: // ServiceApi serviceApi = ServiceApiDriver.createApi(“backend.example.com”, 80, true);</p>
+<p>ParameterMap params = new ParameterMap(); // the parameters of your call params.add(“app_id”, “your_app_id”); // Add app_id of your application for authorization params.add(“app_key”, “your_app_key”); // Add app_key of your application for authorization</p>
+<p>String serviceToken = …; // Your 3scale service token String serviceId = …; // The service id of your application</p>
+<p>ParameterMap usage = new ParameterMap(); // Add a metric to the call usage.add(“hits”, “1”); params.add(“usage”, usage); // metrics belong inside the usage parameter</p>
+<p>AuthorizeResponse response = null; // the ‘preferred way’ of calling the backend: authrep try { response = serviceApi.authrep(serviceToken, serviceId, params); System.out.println(“AuthRep on App Id Success:” + response.success()); if (response.success() == true) { // your api access got authorized and the traffic added to 3scale backend System.out.println(“Plan:” + response.getPlan()); } else { // your api access did not authorized, check why System.out.println(“Error:” + response.getErrorCode()); System.out.println(“Reason:” + response.getReason()); } } catch (ServerError serverError) { serverError.printStackTrace(); } ```</p>
+<h1 id="usage-on-api-key-auth-mode">Usage on API Key auth mode</h1>
+<p>On API Key mode you call <em>authrep</em> to: grant access to your API, and also report the traffic on it at the same time.</p>
+<p>```java // import the 3scale library into your code import threescale.v3.api.<em>; import threescale.v3.api.impl.</em>;</p>
+<p>// … somewhere inside your code</p>
+<p>// Create the API object with default settings. This will communicate with the 3scale platform SaaS default server. ServiceApi serviceApi = ServiceApiDriver.createApi();</p>
+</body>
+</html>

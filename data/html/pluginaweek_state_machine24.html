@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine24</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="merb">Merb</h3>
+<h4 id="rake-tasks">Rake tasks</h4>
+<p>Like Ruby on Rails, there is a special integration Rake task for generating state machines for classes used in a Merb application. This task will load the application environment, meaning that it’s unnecessary to specify the actual files to load.</p>
+<p>For example,</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">rake</span> state_machine:draw CLASS=Vehicle</a></code></pre></div>
+<h2 id="testing">Testing</h2>
+<p>To run the core test suite (does <strong>not</strong> test any of the integrations):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="ex">bundle</span> install</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="ex">bundle</span> exec rake test</a></code></pre></div>
+<p>To run integration tests:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">bundle</span> install</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">rake</span> appraisal:install</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="ex">rake</span> appraisal:test</a></code></pre></div>
+<p>You can also test a specific version:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="ex">rake</span> appraisal:active_model-3.0.0 test</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="ex">rake</span> appraisal:active_record-2.0.0 test</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="ex">rake</span> appraisal:data_mapper-0.9.4 test</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="ex">rake</span> appraisal:mongoid-2.0.0 test</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="ex">rake</span> appraisal:mongo_mapper-0.5.5 test</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="ex">rake</span> appraisal:sequel-2.8.0 test</a></code></pre></div>
+<h2 id="caveats">Caveats</h2>
+<p>The following caveats should be noted when using state_machine:</p>
+<ul>
+<li>Overridden event methods won’t get invoked when using attribute-based event transitions</li>
+<li><strong>DataMapper</strong>: Attribute-based event transitions are disabled when using dm-validations 0.9.4 - 0.9.6</li>
+</ul>
+</body>
+</html>

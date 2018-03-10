@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lethain_apache-log-parser1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="apache_parser.py">apache_parser.py</h1>
+<p>This is a Python script and command-line tool, with no dependencies, that allows parsing data from Apache log files.</p>
+<p>At this time it supports generating supports for:</p>
+<ul>
+<li><strong>uri</strong> - pageviews for each uri</li>
+<li><strong>time</strong> - datetime with highest request/second</li>
+<li><strong>status_code</strong> - hits for each http status code</li>
+<li><strong>referral</strong> - uris of referring sites</li>
+<li><strong>agent</strong> - hits for each user agent</li>
+<li><strong>subscriptions</strong> - the number of feed subscribers per uri. This is done by parsing user agents for their subscriber count.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>Here are some example uses:</p>
+<pre><code>python parser.py access.log subscriptions
+python parser.py access.log uri --quantity 5
+python parser.py access.log agent --cutoff 100</code></pre>
+<p>There is help available at the command-line as well.</p>
+<pre><code>python parser.py --help</code></pre>
+<h2 id="user-agents-successfully-parsed-for-feed-subscribers">User agents successfully parsed for feed subscribers</h2>
+<p>These are the feeds that have been tested against the feed subscription system:</p>
+<pre><code>Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; 3 subscribers; feed-id=7675226481817637975)
+Netvibes (http://www.netvibes.com/; 5 subscribers; feedId: 5404723)
+Bloglines/3.1 (http://www.bloglines.com; 1 subscriber)
+NewsGatorOnline/2.0 (http://www.newsgator.com; 1 subscribers)
+Zhuaxia.com 1 Subscribers
+AideRSS/1.0 (aiderss.com); 2 subscribers
+xianguo-rssbot/0.1 (http://www.xianguo.com/; 1 subscribers)
+Fastladder FeedFetcher/0.01 (http://fastladder.com/; 1 subscriber)
+HanRSS/1.1 (http://www.hanrss.com; 1 subscriber)
+livedoor FeedFetcher/0.01 (http://reader.livedoor.com/; 1 subscriber)</code></pre>
+<h2 id="credits">Credits</h2>
+<p>This script draws inspiration and code from:</p>
+</body>
+</html>

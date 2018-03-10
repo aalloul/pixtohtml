@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ianwhite_pickle6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>You could create a user with pickle by simply adding the name of the blueprint before the model:</p>
+<pre class="gherkin"><code>Given a super admin user exists
+And an activated user exists with name: &quot;Fred&quot;</code></pre>
+<p>This is much nicer than having to set up common configurations in your steps all the time, and far more readable to boot.</p>
+<h4 id="then-steps">Then steps</h4>
+<h5 id="asserting-existence-of-models">Asserting existence of models</h5>
+<p>“Then <strong>a model</strong> should exist”, e.g.</p>
+<pre class="gherkin"><code>Then a user should exist</code></pre>
+<p>“Then <strong>a model</strong> should exist with <strong>fields</strong>”, e.g.</p>
+<pre class="gherkin"><code>Then a user: &quot;fred&quot; should exist with name: &quot;Fred&quot; # we can label the found user for later use</code></pre>
+<p>You can use other models, booleans, numerics, and strings as fields</p>
+<pre class="gherkin"><code>Then a person should exist with child: person &quot;ethel&quot;
+Then a user should exist with activated: false
+Then a user should exist with activated: true, email: &quot;fred@gmail.com&quot;</code></pre>
+<p>“Then <strong>n models</strong> should exist”, e.g.</p>
+<pre class="gherkin"><code>Then 10 events should exist</code></pre>
+<p>“Then <strong>n models</strong> should exist with <strong>fields</strong>”, e.g.</p>
+<pre class="gherkin"><code>Then 2 people should exist with father: person &quot;fred&quot;</code></pre>
+<p>“Then the following <strong>models</strong> exist”. This allows the creation of multiple models using a table syntax. Using a column with the singularized name of the model creates a referenceable model. E.g.</p>
+<p>```gherkin Then the following users exist:</p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>weppos_www-delicious1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="wwwdelicious">WWW::Delicious</h1>
+<p><em>WWW::Delicious</em> is a Ruby client for XML API.</p>
+<p><em>WWW::Delicious</em> maps all the original delicious.com API calls and provides some additional convenient methods to perform common tasks. For a full API overview, visit the official .</p>
+<p><em>WWW::Delicious</em> is compatible with all API constraints, including the requirement to set a valid user agent or wait at least one second between queries.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Ruby &gt;= 1.8.6 or Ruby 1.9.x</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>The best way to install <em>WWW::Delicious</em> is via .</p>
+<pre><code>$ gem install www-delicious</code></pre>
+<p>You might need administrator privileges on your system to install the gem.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>In order to use this library you need a valid Delicious account. Go to http://delicious.com and register for a new account if you don’t already have one.</p>
+<p>Then create a valid instance of <code>WWW::Delicious</code> providing your account credentials.</p>
+<pre><code>require &#39;www/delicious&#39;
+
+# create a new instance with given username and password
+d = WWW::Delicious.new(&#39;username&#39;, &#39;password&#39;)</code></pre>
+<p>Now you can use your instance to interact with the API interface.</p>
+<h3 id="last-account-update">Last account update</h3>
+<p>The following example show you how to get the last account update Time.</p>
+<pre><code>time = d.update # =&gt; Fri May 02 18:02:48 UTC 2008</code></pre>
+<h3 id="reading-posts">Reading Posts</h3>
+<p>You can fetch your posts in 3 different ways:</p>
+</body>
+</html>

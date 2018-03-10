@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>baldwindavid_gutterless_blueprint_css1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="gutterless-blueprint-css">Gutterless Blueprint CSS</h1>
+<h3 id="what">What?</h3>
+<p>Gutterless Blueprint CSS is an opinionated method and slightly supplemented flavor of the . It is a Blueprint setup that never needs to be regenerated. The default is set to 150 columns, each spanning 10px and with a <strong>0px</strong> gutter width. The width of the layout is specified by overriding the <code>container</code> class in your custom stylesheet.</p>
+<h3 id="why">Why?</h3>
+<p>Blueprint is great, but I often find that the gutters work against me rather than for me. Sometimes I want a gutter between columns and sometimes not. Because the Gutterless column widths are only 10px, I am free to use them to create gutters if necessary (though you will see that the <code>box</code> class usually makes this unecessary).</p>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li>No need to generate new Blueprint files for each layout. Layout widths are set via the <code>container</code> class and the column (10px) and gutter (0px) widths never change.</li>
+<li>Easy math. No more computing of (column width x 40) - 10px to figure out the amount of space in a column. Simply add a zero to span-x and you know the exact pixel amount.</li>
+<li>No need to end rows with the <code>last</code> class. This class simply sets right-margin (gutter) to 0px. Since we have no gutter, this is unecessary.</li>
+</ul>
+<h3 id="box-is-your-friend.">Box is your friend.</h3>
+<p>Gutterless suggests copious usage of the <code>box</code> class. The defaults of this class have been overriden from percentage based to exact pixel amounts. Placing a div with the <code>box</code> class inside of a column will set 20 pixels of padding within the div. There are also box classes with pad values from 10 to 100px. These classes are, unsurprisingly, named <code>box-1</code>, <code>box-2</code> (same as <code>box</code>), <code>box-3</code>…<code>box-10</code>.</p>
+<p>The Gutterless <code>box</code> will even allow nesting of span-x divs, as they will always have a calculable inner-width divisible by 10. <strong>Note:</strong> The precise pixel amounts of the box class will disrupt the vertical rhythm promoted by the Blueprint factory setup. If this is important to you, the box class can always be overwritten back to default values. Personally, the efficiency and simplicity of the box class with pixel values is of more value to me than ensuring a perfect vertical rhythm.</p>
+<h2 id="simple-tutorial">Simple Tutorial</h2>
+<p><strong>Stylesheets</strong> - Place links to the following stylesheets in your page. Note the addition of <code>gutterless.css</code>:</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/blueprint/screen.css&quot; type=&quot;text/css&quot; media=&quot;screen, projection&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/blueprint/gutterless.css&quot; type=&quot;text/css&quot; media=&quot;screen, projection&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/blueprint/print.css&quot; type=&quot;text/css&quot; media=&quot;print&quot;&gt;    
+&lt;!--[if IE]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;css/blueprint/ie.css&quot; type=&quot;text/css&quot; media=&quot;screen, projection&quot;&gt;&lt;![endif]--&gt;
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/my_custom_styles.css&quot; type=&quot;text/css&quot; media=&quot;screen, projection, print&quot;&gt;</code></pre>
+<p><strong>Layout Width</strong> - Set the width of your layout in your custom stylesheet by overriding the <code>container</code> class:</p>
+<pre><code>css/my_custom_styles.css
+
+.container {
+  width: 1000px;
+}</code></pre>
+<p><strong>Basic Layout</strong> - Below is a basic three column layout with a header and footer. Note that our left and right columns are 300px and our main content column is 400px. Our header and footer span the entire layout. There is no need to add the <code>last</code> class to the last column in the middle section because there are no gutter margins to remove.</p>
+<pre><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;span-100&quot;&gt;
+    Header
+  &lt;/div&gt;
+  &lt;div class=&quot;span-30&quot;&gt;</code></pre>
+</body>
+</html>

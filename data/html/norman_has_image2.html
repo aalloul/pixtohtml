@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>norman_has_image2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  has_image :resize_to =&gt; &quot;640x480&quot;,
+    :thumbnails =&gt; {
+      :square =&gt; &quot;200x200&quot;,
+      :medium =&gt; &quot;320x240&quot;
+    },
+    :max_size =&gt; 3.megabytes,
+    :min_size =&gt; 4.kilobytes
+end</code></pre>
+<p>It also provides a view helper to make displaying the images extremely simple:</p>
+<pre><code>&lt;%= image_tag_for(@photo) # show the full-sized image %&gt;
+&lt;%= image_tag_for(@photo, :thumb =&gt; :square) # show the square thumbnail %&gt;</code></pre>
+<p>The image_tag_for helper calls Rails’ image_tag, so you can pass in all the regular options to set the alt property, CSS class, etc:</p>
+<pre><code>&lt;%= image_tag_for(@photo, :alt =&gt; &quot;my cool picture&quot;, :class =&gt; &quot;photo&quot;) %&gt;</code></pre>
+<p>Setting up forms for has_image is simple, too:</p>
+<pre><code>&lt;% form_for(@photo, :html =&gt; {:multipart =&gt; true}) do |f| %&gt;
+  &lt;p&gt;
+    &lt;%= f.label :image_data %&gt;
+    &lt;%= f.file_field :image_data %&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;%= f.submit %&gt;
+  &lt;/p&gt;
+&lt;% end %&gt;</code></pre>
+<h2 id="compatibility">Compatibility</h2>
+<p>Has_image is compatible with Rails 2.1.x - 3.0.x.</p>
+<h2 id="getting-it">Getting it</h2>
+<p>Install has_image via RubyGems:</p>
+<p>gem install has_image</p>
+<p>and add it to your Gemfile (Rails 3.0.x) or environment.rb (Rails 2.x).</p>
+<p>Then, add a column named <code>has_image_file</code> to your model.</p>
+<h2 id="api-docs">API Docs</h2>
+<h2 id="source-code">Source code</h2>
+</body>
+</html>

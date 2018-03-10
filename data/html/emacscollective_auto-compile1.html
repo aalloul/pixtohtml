@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>emacscollective_auto-compile1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="automatically-compile-emacs-lisp-libraries">Automatically compile Emacs Lisp libraries</h2>
+<p>This package provides two minor modes which automatically recompile Emacs Lisp source files. Together these modes guarantee that Emacs never loads outdated byte code files.</p>
+<p><code>auto-compile-on-save-mode</code> re-compiles source files when they are being saved and <code>auto-compile-on-load-mode</code> does so before they are being loaded (by advising <code>load</code> and <code>require</code>). Both modes only ever <em>re-compile</em> a source file when the respective byte code file already exists but is outdated. Otherwise they do <em>not</em> compile the source file.</p>
+<p>Even when using <code>auto-compile-on-save-mode</code> it can happen that some source file is newer than the respective byte code file, which is a problem because by default Emacs loads the byte code file even when the respective source file has been modified more recently.</p>
+<p>Starting with Emacs version 24.4, setting <code>load-prefer-newer</code> to t prevents outdated byte code files from being loaded. However this does not cause re-compilation of the source file, to actually do that <code>auto-compile-on-load-mode</code> is still required.</p>
+<h2 id="setup">Setup</h2>
+<p>To reduce the risk of loading outdated byte code files, you should set <code>load-prefer-newer</code> and enable <code>auto-compile-on-load-mode</code> as early as possible. Then also enable <code>auto-compile-on-save-mode</code>. You should also consider not byte-compiling your personal init file, or setting <code>load-prefer-newer</code> in a system-wide init file.</p>
+<p>If you use <code>package.el</code> then use something like this:</p>
+<pre><code>;;; init.el --- user init file
+(setq load-prefer-newer t)
+(package-initialize)
+(require &#39;auto-compile)
+(auto-compile-on-load-mode)
+(auto-compile-on-save-mode)</code></pre>
+<p>otherwise:</p>
+<pre><code>;;; init.el --- user init file
+(setq load-prefer-newer t)
+(add-to-list &#39;load-path &quot;/path/to/dash&quot;)
+(add-to-list &#39;load-path &quot;/path/to/packed&quot;)
+(add-to-list &#39;load-path &quot;/path/to/auto-compile&quot;)
+(require &#39;auto-compile)</code></pre>
+</body>
+</html>

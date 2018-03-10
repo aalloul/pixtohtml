@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cgrand_enlive6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>At the core, <em>every selector is a vector</em>. The items of this vector are called <em>steps</em>.</p>
+<p>A step is a predicate, for example <code>:h1</code>, <code>:p.some-class</code> or even <code>(attr? :lang)</code>.</p>
+<p>To select elements which match several predicates, you need to group predicates into a vector: <em>inside steps, vectors mean “and”</em>. This may seem confusing but the rule is simple: the outer-most vector hierarchically chains steps, all other vectors denote intersection (and) between steps.</p>
+<p>So <code>[:p (attr? :lang)]</code> is going to match any elements with a <code>lang</code> attribute inside a <code>:p</code> element. On the other hand, <code>[[:p (attr? :lang)]]</code> is going to match any <code>p</code> with a <code>lang</code> attribute.</p>
+<p>Similarly, sets group predicates in an union. Hence <em>inside steps, sets mean “or”</em>. So <code>[#{:div.class1 :div.class2}]</code> match every <code>div</code> which has either <code>class1</code> or <code>class2</code>. This can alternatively be written as <code>[[:div #{:.class1 .class2}]]</code>. Indeed you can have nested “ors” and “ands” which means nested sets and vectors.</p>
+<p>At the top level you can have a big “or” between selectors by wrapping several selectors in a set. <code>#{[:td :em] [:th :em]}</code> is going to match any <code>em</code> insides either a <code>th</code> or a <code>td</code>. This is equivalent to <code>[#{:td :th} :em]</code>.</p>
+<h3 id="selector-syntax">Selector Syntax</h3>
+<p>See</p>
+<p>Some examples:</p>
+<pre><code>Enlive                                       CSS
+=======================================================
+[:div]                                       div
+[:body :script]                              body script
+#{[:ul.outline :&gt; :li] [:ol.outline :&gt; li]}  ul.outline &gt; li, ol.outline &gt; li
+[#{:ul.outline :ol.outline} :&gt; :li]          ul.outline &gt; li, ol.outline &gt; li
+[[#{:ul :ol} :.outline] :&gt; :li]              ul.outline &gt; li, ol.outline &gt; li
+[:div :&gt; :*]                                 div &gt; *
+[:div :&gt; text-node]                          (text children of a div)
+[:div :&gt; any-node]                           (all children (including text nodes and comments) of a div)
+{[:dt] [:dl]}                                (fragments starting by DT and ending at the *next* DD)</code></pre>
+<h2 id="the-at-form">The <code>at</code> form</h2>
+<p>The <code>at</code> form is the most important form in Enlive. There are implicit <code>at</code> forms in <code>snippet</code> and <code>template</code>.</p>
+</body>
+</html>

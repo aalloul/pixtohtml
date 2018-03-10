@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>justinfrench_formtastic8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="delegation-for-label-lookups">Delegation for label lookups</h2>
+<p>Formtastic decides which label to use in the following order:</p>
+<pre><code>  1. :label             # :label =&gt; &quot;Choose Title&quot;
+  2. Formtastic i18n    # if either :label =&gt; true || i18n_lookups_by_default = true (see Internationalization)
+  3. Activerecord i18n  # if localization file found for the given attribute
+  4. label_str_method   # if nothing provided this defaults to :humanize but can be set to a custom method</code></pre>
+<h2 id="internationalization-i18n">Internationalization (I18n)</h2>
+<h3 id="basic-localization">Basic Localization</h3>
+<p>Formtastic has some neat I18n-features. ActiveRecord object names and attributes are, by default, taken from calling <code>@object.human_name</code> and <code>@object.human_attribute_name(attr)</code> respectively. There are a few words specific to Formtastic that can be translated. See <code>lib/locale/en.yml</code> for more information.</p>
+<p>Basic localization (labels only, with ActiveRecord):</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs do %&gt;
+      &lt;%= f.input :title %&gt;        # =&gt; :label =&gt; I18n.t(&#39;activerecord.attributes.user.title&#39;)    or &#39;Title&#39;
+      &lt;%= f.input :body %&gt;         # =&gt; :label =&gt; I18n.t(&#39;activerecord.attributes.user.body&#39;)     or &#39;Body&#39;
+      &lt;%= f.input :section %&gt;      # =&gt; :label =&gt; I18n.t(&#39;activerecord.attributes.user.section&#39;)  or &#39;Section&#39;
+    &lt;% end %&gt;
+  &lt;% end %&gt;</code></pre>
+<p><em>Note:</em> This is perfectly fine if you just want your labels/attributes and/or models to be translated using <em>ActiveRecord I18n attribute translations</em>, and you don’t use input hints and legends. But what if you do? And what if you don’t want same labels in all forms?</p>
+<h3 id="enhanced-localization-formtastic-i18n-api">Enhanced Localization (Formtastic I18n API)</h3>
+<p>Formtastic supports localized <em>labels</em>, <em>hints</em>, <em>legends</em>, <em>actions</em> using the I18n API for more advanced usage. Your forms can now be DRYer and more flexible than ever, and still fully localized. This is how:</p>
+<p><em>1. Enable I18n lookups by default (<code>config/initializers/formtastic.rb</code>):</em></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb3-1" data-line-number="1">  <span class="dt">Formtastic</span>::<span class="dt">FormBuilder</span>.i18n_lookups_by_default = <span class="dv">true</span></a></code></pre></div>
+<p><em>2. Add some label-translations/variants (<code>config/locales/en.yml</code>):</em></p>
+<p>```yml en: formtastic: titles: post_details: “Post details” labels: post:</p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>johnl_news-sniffer1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="news-sniffer">News Sniffer</h1>
+<p>News Sniffer monitors news websites and detects when articles change. The versions are viewable and the changes are highlighted.</p>
+<p>The main deployment is at http://www.newssniffer.co.uk/ which currently monitors a key feeds from several news sources excluding a few sections like Sports (as they change too often with just scores).</p>
+<p>The code is available under a free software license, so anybody can run their own deployment and monitor whatever news sources they wish (or just contribute to development).</p>
+<h1 id="the-code">The code</h1>
+<p>News Sniffer uses the Ruby on Rails web framework. This document presumes you’re familiar with that.</p>
+<p>News Sniffer uses the <code>web-page-parser</code> ruby library to parse the text out of the news article html pages. If you want to add support for other news sources, then start with adding it there: https://github.com/johnl/web-page-parser</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Check out the code, and install the gems:</p>
+<pre><code>$ bundle install </code></pre>
+<p>configure a local mysql or sqlite development database and create the db and load the schema:</p>
+<pre><code>$ bundle exec rake db:create
+$ bundle exec rake db:schema:load</code></pre>
+<p>Then, using the rails console, add your first rss news feed. Let’s add a BBC news feed:</p>
+<pre><code>$ bundle exec rails console
+
+irb(main):001:0&gt; NewsArticleFeed.create :name =&gt; &quot;BBC News&quot;, :url =&gt; &quot;http://feeds.bbci.co.uk/news/rss.xml&quot;, :source =&gt; &quot;bbc&quot;, :check_period =&gt; 300</code></pre>
+<p>The <code>:source</code> option is an arbitrary key that is used to group several feeds with the same source (and it’s displayed on the article page). The <code>:check_period</code> options is the number of seconds to wait between re-downloading the feed to check for new articles.</p>
+<p>Then run the <code>newssniffer:articles:update</code> rake task which will download the feeds and create <code>NewsArticle</code> records for any articles it finds:</p>
+</body>
+</html>

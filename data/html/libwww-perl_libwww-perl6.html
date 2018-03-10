@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Get/set a value indicating whether we should initialize response headers from the &lt;head&gt; section of HTML documents. The default is true. <em>Do not turn this off</em> unless you know what you are doing.</p>
+<h2 id="protocols_allowed">protocols_allowed</h2>
+<pre><code>my $aref = $ua-&gt;protocols_allowed;      # get allowed protocols
+$ua-&gt;protocols_allowed( \@protocols );  # allow ONLY these
+$ua-&gt;protocols_allowed(undef);          # delete the list
+$ua-&gt;protocols_allowed([&#39;http&#39;,]);      # ONLY allow http</code></pre>
+<p>By default, an object has neither a <code>protocols_allowed</code> list, nor a list.</p>
+<p>This reads (or sets) this user agent’s list of protocols that the request methods will exclusively allow. The protocol names are case insensitive.</p>
+<p>For example: <code>$ua-&gt;protocols_allowed( [ 'http', 'https'] );</code> means that this user agent will <em>allow only</em> those protocols, and attempts to use this user agent to access URLs with any other schemes (like <code>ftp://...</code>) will result in a 500 error.</p>
+<p>Note that having a <code>protocols_allowed</code> list causes any list to be ignored.</p>
+<h2 id="protocols_forbidden">protocols_forbidden</h2>
+<pre><code>my $aref = $ua-&gt;protocols_forbidden;    # get the forbidden list
+$ua-&gt;protocols_forbidden(\@protocols);  # do not allow these
+$ua-&gt;protocols_forbidden([&#39;http&#39;,]);    # All http reqs get a 500
+$ua-&gt;protocols_forbidden(undef);        # delete the list</code></pre>
+<p>This reads (or sets) this user agent’s list of protocols that the request method will <em>not</em> allow. The protocol names are case insensitive.</p>
+<p>For example: <code>$ua-&gt;protocols_forbidden( [ 'file', 'mailto'] );</code> means that this user agent will <em>not</em> allow those protocols, and attempts to use this user agent to access URLs with those schemes will result in a 500 error.</p>
+<h2 id="requests_redirectable">requests_redirectable</h2>
+<pre><code>my $aref = $ua-&gt;requests_redirectable;
+$ua-&gt;requests_redirectable( \@requests );
+$ua-&gt;requests_redirectable([&#39;GET&#39;, &#39;HEAD&#39;,]); # the default</code></pre>
+<p>This reads or sets the object’s list of request names that</p>
+</body>
+</html>

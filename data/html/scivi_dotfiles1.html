@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>scivi_dotfiles1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dotfiles">.DOTFILES</h1>
+<p><em>by Christof Glaser</em></p>
+<hr />
+<h2 id="currently">Currently:</h2>
+<ul>
+<li><p><code>etc/bashrc</code> – An eclectic bash profile.</p>
+<p>Current state: Works For Me™, a.k.a. Βητα, a.k.a. Beta-eta-tau-alpha. See the comments.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Distinguishes Darwin (BSD) and Linux.</li>
+<li>History per directory (default) or per terminal, plus a global command archive.</li>
+<li>Directory stack aliased to <code>cd</code> / <code>pd</code>.</li>
+<li>Directory change hook (in <code>prompt_callback</code>), e.g. to display a TODO or README file.</li>
+<li>“Session Restore” on startup: current per-tty directory is saved and cd’d into upon startup.</li>
+<li>Common aliases: shortcuts considered useful.</li>
+<li>Common path setup: the usual <code>*/bin</code> places plus <code>./script</code> (for Rails and the like).</li>
+<li>Git branch and status display in prompt.</li>
+<li>Can exec a command instead of dropping user to the prompt: Set <code>EXEC_IMMEDIATELY</code> to command before invoking bash.</li>
+<li>Uses color for <code>ls</code>, <code>grep</code>, <code>less</code>, <code>man</code>, and the prompt.</li>
+<li>Certainly abuses ‘certainly’. But see the comments.</li>
+</ul>
+<hr /></li>
+<li><p>`etc/gitconfig`` – A basic git default config.</p>
+<p>Needs editing to be useful: just insert your name and email address.</p>
+<ul>
+<li>Defines some common aliases.</li>
+<li>Enables colour.</li>
+</ul></li>
+<li><p><code>etc/gitignore-global</code> – Global ignore settings for git.</p></li>
+<li><p><code>etc/irbrc</code> – For Ruby’s irb to load a ~/.railsrc when in a Rails project.</p></li>
+<li><p><code>etc/psqlrc</code> – An eclectic psql (PostgreSQL interactive client) profile.</p>
+<p>It has neither known bugs nor comments.</p>
+<p><strong>Features:</strong></p>
+<pre><code>* Prompt showing user and database.
+* Per-Database History.
+* Always uses PAGER -- works well with less set to exit-if-single-page.</code></pre></li>
+</ul>
+</body>
+</html>

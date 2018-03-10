@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chriseppstein_haml1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="haml-and-sass">Haml and Sass</h1>
+<p>Haml and Sass are templating engines for the two most common types of documents on the web: HTML and CSS, respectively. They are designed to make it both easier and more pleasant to code HTML and CSS documents, by eliminating redundancy, reflecting the underlying structure that the document represents, and providing elegant, easily understandable, and powerful syntax.</p>
+<h2 id="using">Using</h2>
+<p>Haml and Sass can be used from the command line or as part of a Ruby web framework. The first step is to install the gem:</p>
+<pre><code>gem install haml</code></pre>
+<p>After you convert some HTML to Haml or some CSS to Sass, you can run</p>
+<pre><code>haml document.haml
+sass style.scss</code></pre>
+<p>to compile them. For more information on these commands, check out</p>
+<pre><code>haml --help
+sass --help</code></pre>
+<p>To install Haml and Sass in Rails 2, just add <code>config.gem &quot;haml&quot;</code> to <code>config/environment.rb</code>. In Rails 3, add <code>gem &quot;haml&quot;</code> to your Gemfile instead. and both Haml and Sass will be installed. Views with the <code>.html.haml</code> extension will automatically use Haml. Sass is a little more complicated; <code>.sass</code> files should be placed in <code>public/stylesheets/sass</code>, where they’ll be automatically compiled to corresponding CSS files in <code>public/stylesheets</code> when needed (the Sass template directory is customizable… see .</p>
+<p>For Merb, <code>.html.haml</code> views will work without any further modification. To enable Sass, you also need to add a dependency. To do so, just add</p>
+<pre><code>dependency &quot;merb-haml&quot;</code></pre>
+<p>to <code>config/dependencies.rb</code> (or <code>config/init.rb</code> in a flat/very flat Merb application).</p>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra46</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  and public folder and inline templates.
+&lt;/dd&gt;</code></pre>
+<dt>
+bind
+</dt>
+<pre><code>&lt;dd&gt;
+  IP address to bind to (default: &lt;tt&gt;0.0.0.0&lt;/tt&gt; &lt;em&gt;or&lt;/em&gt;
+  &lt;tt&gt;localhost&lt;/tt&gt; if your `environment` is set to development). Only
+  used for built-in server.
+&lt;/dd&gt;</code></pre>
+<dt>
+default_encoding
+</dt>
+<pre><code>&lt;dd&gt;Encoding to assume if unknown (defaults to &lt;tt&gt;&quot;utf-8&quot;&lt;/tt&gt;).&lt;/dd&gt;</code></pre>
+<dt>
+dump_errors
+</dt>
+<pre><code>&lt;dd&gt;Display errors in the log.&lt;/dd&gt;</code></pre>
+<dt>
+environment
+</dt>
+<pre><code>&lt;dd&gt;
+  Current environment. Defaults to &lt;tt&gt;ENV[&#39;APP_ENV&#39;]&lt;/tt&gt;, or
+  &lt;tt&gt;&quot;development&quot;&lt;/tt&gt; if not available.
+&lt;/dd&gt;</code></pre>
+<dt>
+logging
+</dt>
+<pre><code>&lt;dd&gt;Use the logger.&lt;/dd&gt;</code></pre>
+<dt>
+lock
+</dt>
+<pre><code>&lt;dd&gt;
+  Places a lock around every request, only running processing on request
+  per Ruby process concurrently.
+&lt;/dd&gt;
+&lt;dd&gt;Enabled if your app is not thread-safe. Disabled by default.&lt;/dd&gt;</code></pre>
+<dt>
+method_override
+</dt>
+<pre><code>&lt;dd&gt;
+  Use &lt;tt&gt;_method&lt;/tt&gt; magic to allow put/delete forms in browsers that
+  don&#39;t support it.
+&lt;/dd&gt;</code></pre>
+<dt>
+mustermann_opts
+</dt>
+<dd>
+A default hash of options to pass to Mustermann.new when compiling routing paths.
+</dd>
+<dt>
+port
+</dt>
+<pre><code>&lt;dd&gt;Port to listen on. Only used for built-in server.&lt;/dd&gt;</code></pre>
+<dt>
+prefixed_redirects
+</dt>
+<pre><code>&lt;dd&gt;
+  Whether or not to insert &lt;tt&gt;request.script_name&lt;/tt&gt; into redirects</code></pre>
+</body>
+</html>

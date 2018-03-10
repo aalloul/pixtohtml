@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mojombo_erlectricity2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  Payload = term_to_binary({echo, &lt;&lt;&quot;hello world!&quot;&gt;&gt;}),
+  port_command(Port, Payload),
+  receive
+    {Port, {data, Data}} -&gt;
+      {result, Text} = binary_to_term(Data),
+      io:format(&quot;~p~n&quot;, [Text])
+  end.</code></pre>
+<h2 id="data-type-conversions-and-matching">Data Type Conversions and Matching</h2>
+<pre><code>% Port is the port opened via open_port({spawn, Cmd}, [{packet, 4}, ...])
+% Message is the Erlang term to encode and send to the port
+send(Port, Message) -&gt;
+  port_command(Port, term_to_binary(Message)).
+
+# Each triplet below represents:
+# (line 1) the Erlang call
+# (line 2) the Ruby matcher
+# (line 3) the Ruby output
+
+send(Port, test).
+f.when(:test) { p :ok }
+# :ok
+
+send(Port, {atom, symbol}).
+f.when([:atom, Symbol]) { |sym| p sym }
+# :symbol
+
+send(Port, {number, 1}).
+f.when([:number, Fixnum]) { |num| p num }
+# 1
+
+send(Port, {string, &lt;&lt;&quot;foo&quot;&gt;&gt;}).
+f.when([:string, String]) { |str| p str }
+# &quot;foo&quot;
+
+send(Port, {array, [1,2,3]}).
+f.when([:array, Array]) { |arr| p arr }
+# [1, 2, 3]
+
+send(Port, {array, [&lt;&lt;&quot;abc&quot;&gt;&gt;, &lt;&lt;&quot;def&quot;&gt;&gt;]}).
+f.when([:array, Array]) { |arr| p arr }
+# [&quot;abc&quot;, &quot;def&quot;]
+
+send(Port, {hash, [{key,val}]}).
+f.when([:hash, Erl.hash]) { |hash| p hash }
+# {:key=&gt;:val}</code></pre>
+</body>
+</html>

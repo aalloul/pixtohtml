@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jimweirich_flexmock5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>these methods. Indicate safe mode by passing the symbol :safe as the first argument of flexmock. A block <em>is required</em> when using safe mode (the partial_mock returned in safe mode does not have a <code>should_receive</code> method).</p>
+<p>The methods added to partial mocks in non-safe mode are:</p>
+<ul>
+<li>should_receive</li>
+<li>new_instances</li>
+<li>flexmock_get</li>
+<li>flexmock_teardown</li>
+<li>flexmock_verify</li>
+<li>flexmock_received?</li>
+<li><p>flexmock_calls</p></li>
+<li><p><b>mock = flexmock(…) { |mock| mock.should_receive(…) }</b></p>
+<p>If a block is given to any of the <code>flexmock</code> forms, the mock object will be passed to the block as an argument. Code in the block can set the desired expectations for the mock object.</p></li>
+<li><p><b>mock_model = flexmock(:model, <em>YourModel</em>, …) { |mock| mock.should_receive(…) }</b></p>
+<p>When given <code>:model</code>, <code>flexmock()</code> will return a pure mock (not a partial mock) that will have some ActiveRecord specific methods defined. YourModel should be the class of an ActiveRecord model. These predefined methods make it a bit easier to mock out ActiveRecord model objects in a Rails application. Other that the predefined mocked methods, the mock returned is a standard FlexMock mock object.</p>
+<p>The predefined mocked methods are:</p>
+<ul>
+<li>id – returns a unique ID for each mocked model.</li>
+<li>to_params – returns a stringified version of the id.</li>
+<li>new_record? – returns false.</li>
+<li>errors – returns an empty (mocked) errors object.</li>
+<li>is_a?(other) – returns true if other == YourModel.</li>
+<li>instance_of?(class) – returns true if class == YourModel</li>
+<li>kind_of?(class) – returns true if class is YourModel or one of its ancestors</li>
+<li>class – returns YourModel.</li>
+</ul></li>
+<li><p><b>mock = flexmock(… :on, <em>class_object</em>, …)</b></p></li>
+</ul>
+<p><strong>NOTE:</strong> Versions of FlexMock prior to 0.6.0 used <code>flexstub</code> to create partial mocks. The <code>flexmock</code> method now assumes all the functionality that was spread out between two different methods. <code>flexstub</code> is deprecated, but still available for backward compatibility.</p>
+</body>
+</html>

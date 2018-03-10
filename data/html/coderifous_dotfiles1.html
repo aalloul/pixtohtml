@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>coderifous_dotfiles1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="quick-start">Quick start</h2>
+<pre><code>curl https://raw.githubusercontent.com/coderifous/dotfiles/master/get.vimfiles.sh | sh</code></pre>
+<p>This clones the repo, installs the vim plugins, and links the vim-related dotfiles. Running this command should get you up and running with this vim config without any other work.</p>
+<p>The vim status line is configured using the Powerline plugin. This looks best with a special font: . Install that and then configure your terminal application (e.g. iTerm 2) to use it.</p>
+<h2 id="make-it-your-own">Make it your own</h2>
+<p>If you want to copy this Vim config as a base for your own, you should:</p>
+<ul>
+<li>Fork this repository.</li>
+<li>Change the mention of “coderifous” in the get.vimfiles.sh script to your own github name.</li>
+<li>Customize the vim config to suit you.</li>
+</ul>
+<h2 id="highlights">Highlights</h2>
+<h3 id="vimrc-organization">vimrc Organization</h3>
+<p>This Vim config (loaded from .vimrc) is broken up across several files that are sourced. Each file performs a different kind of customization.</p>
+<ul>
+<li>vimrc_settings - basic vim configuration</li>
+<li>vimrc_autocmds - custom autocommands</li>
+<li>vimrc_commands - custom ex commands, e.g. :Vimrc</li>
+<li>vimrc_functions - custom functions, e.g. :call RemoveWhiteSpace()</li>
+<li>vimrc_mappings - custom mappings, the goto file for rapidly improving your workflow.</li>
+<li>vimrc_plugins - conditionally loaded configuration depending on whether the –noplugins flag was used.</li>
+</ul>
+<h3 id="fosters-rapid-workflow-experimentation-and-extension">Fosters rapid workflow experimentation and extension</h3>
+<p>You should be able access and modify your vim config with the least effort possible.</p>
+<ul>
+<li><code>:VimrcMaps</code> - opens vimrc_mappings for editing</li>
+<li><code>,V</code> - normal mode mapping that evals the current line as vimscript</li>
+</ul>
+<p>With those two helpers, you can quickly add mappings when you recognize a pattern in your workflow.</p>
+<h3 id="pathogen-and-the-stupid-vim-plugin-installer">pathogen and the stupid vim plugin installer</h3>
+<p>This Vim config uses the very popular pathogen plugin to load module vim</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ecocode_finance-quotedb1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="name">NAME</h1>
+<p>Finance::QuoteDB - User database tools based on Finance::Quote</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>Please take a look at script/fqdb which is the command-line frontend to Finance::QuoteDB. Type following command at your command prompt for more information:</p>
+<pre><code>fqdb --help</code></pre>
+<h1 id="methods">METHODS</h1>
+<h2 id="new">new</h2>
+<p>new({dsn=&gt;$dsn})</p>
+<h2 id="createdb">createdb</h2>
+<p>createdb()</p>
+<h2 id="updatedb">updatedb</h2>
+<p>updatedb()</p>
+<h2 id="updatedbmarketstock">updatedbMarketStock</h2>
+<p>updatedbMarketStock($market,\%symbolIDs)</p>
+<h2 id="backpopulate">backpopulate</h2>
+<p>backpopulate($start_date, $end_date, $overwrite, $stocks)</p>
+<h2 id="delstock">delstock</h2>
+<p>delstock($stocks)</p>
+<h2 id="addstock">addstock</h2>
+<p>addstock(<span class="math inline"><em>m</em><em>a</em><em>r</em><em>k</em><em>e</em><em>t</em>,</span>stocks)</p>
+<p>$stocks is in the format FQsymbol[USERsymbol],… If USERsymbol is ommitted then USERsymbol will be set to FQsymbol</p>
+<h2 id="getquotes">getquotes</h2>
+<p>getquotes( $USERsymbols, <span class="math inline">$date\_start \[,$</span>date_end] )</p>
+<p>This function returns quotes between $date_start and $date_end for the specified</p>
+</body>
+</html>

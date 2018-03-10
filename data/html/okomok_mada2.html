@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>okomok_mada2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>import java.nio.channels.Channels
+
+class DocTezt { // extends org.scalatest.junit.JUnit3Suite {
+    def testTrivial {
+        scope {
+            val source = use(Channels.newChannel(System.in))
+            val dest = use(Channels.newChannel(System.out))
+            channelCopy(source, dest)
+        }
+    }
+
+    def channelCopy(src: channels.ReadableByteChannel, dest: channels.WritableByteChannel) {
+        // exercise.
+    }
+}</code></pre>
+<p><code>dest.close</code> and <code>source.close</code> are automatically invoked in order.</p>
+<p>References:</p>
+<ul>
+<li>[scala-arm]</li>
+<li>[ARM in Java]</li>
+</ul>
+<h2 id="peg">peg</h2>
+<p><code>peg</code> package provides “pure” <a href="#peg">PEG</a> parser combinators:</p>
+<pre><code>import com.github.okomok.mada
+import mada.peg._
+import mada.peg.Compatibles._
+
+class AbcTest extends org.scalatest.junit.JUnit3Suite {
+    val S, A, B = new Rule[Char]
+
+    S ::= ~(A &gt;&gt; !&quot;b&quot;) &gt;&gt; from(&quot;a&quot;).+ &gt;&gt; B &gt;&gt; !(&quot;a&quot;|&quot;b&quot;|&quot;c&quot;)
+    A ::= &quot;a&quot; &gt;&gt; A.? &gt;&gt; &quot;b&quot;
+    B ::= (&quot;b&quot; &gt;&gt; B.? &gt;&gt; &quot;c&quot;){ println(_) }
+
+    def testTrivial {
+        assert(S matches &quot;abc&quot;)
+        assert(S matches &quot;aabbcc&quot;)
+        assert(S matches &quot;aaabbbccc&quot;)
+        assert(!(S matches &quot;aaabbccc&quot;))
+    }
+}</code></pre>
+<p>You might notice that:</p>
+</body>
+</html>

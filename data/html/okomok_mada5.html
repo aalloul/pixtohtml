@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>okomok_mada5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>import com.github.okomok.mada.sequence._
+
+class ParTest extends org.scalatest.junit.JUnit3Suite {
+    def testTrivial {
+        val v = Vector(0,1,2,3,4).par
+        v.map(_ + 10).seek(_ == 13) match {
+            case Some(e) =&gt; expect(13)(e)
+            case None =&gt; fail(&quot;doh&quot;)
+        }
+
+        val i = new java.util.concurrent.atomic.AtomicInteger(0)
+        v.each {
+            _ =&gt; i.incrementAndGet
+        }
+        expect(5)(i.get)
+    }
+}</code></pre>
+<p><code>Vector</code> summary:</p>
+<ul>
+<li>Random access to any subsequence.</li>
+<li><code>map</code> is lightweight, but <code>filter</code> is not available. (<code>mutatingFilter</code> is provided instead.)</li>
+<li>Parallel algorithm support. (<code>fold</code>, <code>seek</code>, and <code>sort</code> etc.)</li>
+<li>Recursive sequence is infeasible.</li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="http://github.com/okomok/mada/tree/master/src/main/scala/" title="Browse Source">Browse Source</a></li>
+<li><a href="http://github.com/okomok/mada/tree/master/src/test/scala/" title="Browse Test Source">Browse Test Source</a></li>
+<li><a href="http://www.scala-lang.org/" title="The Scala Programming Language">The Scala Programming Language</a></li>
+</ul>
+<p>Shunsuke Sogame &lt;<a href="mailto:okomok@gmail.com">okomok@gmail.com</a>&gt;</p>
+</body>
+</html>

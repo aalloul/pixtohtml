@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RISCfuture_autumn16</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>necessary.</p>
+<p><strong>Another important note:</strong> You will need to make a call to <code>database</code> in any child threads your leaf creates. The database context is not automatically carried over to such threads.</p>
+<h3 id="your-leafs-module-or-what-do-i-do-about-namespace-conflicts">Your Leaf’s Module; or, “What Do I Do About Namespace Conflicts?”</h3>
+<p>So, if you have two database-backed leaves, it’s entirely likely that both of them will use some sort of DataMapper resource named <code>Channel</code>, or something similar. You can’t define the class <code>Channel</code> twice in two different ways, so how do you deal with this?</p>
+<p>The answer is: It’s already dealt with for you. Go ahead and define the class twice. Or three times.</p>
+<p>The longer explanation is: Secretly, behind the scenes, <strong>all your leaf code is being cleverly loaded into a module named after your leaf</strong>. So, when, in your <code>controller.rb</code> code, it says <code>class Controller &lt; Autumn::Leaf</code>, you should read it as <code>class MyLeafName::Controller &lt; Autumn::Leaf</code>. When you define your model with <code>class Channel</code>, it’s really read as <code>class MyLeafName::Channel</code>.</p>
+<p>Don’t worry about table names or associations or anything, either. Just go ahead and use it as if it weren’t in a module. The <code>libs/datamapper_hacks.rb</code> file has all the necessary code changes to make this bit of trickery work.</p>
+<h3 id="using-support-modules">Using Support Modules</h3>
+<p>Helper modules placed in your leaf’s helpers directory will automatically be loaded and included in your leaf controller and views. To create a helper module, place Ruby files to be loaded into the <code>helpers</code> directory. Make sure your helper modules’ names end with the word “Helper”.</p>
+<p>For instance, if your leaf’s name is “Fortune”, and you needed two helpers, a database helper and a network helper, you could create two modules named <code>DatabaseHelper</code> and <code>NetworkHelper</code>. Any modules named in this fashion and placed in the helpers subdirectory will be loaded and appended to the controller and its views automatically.</p>
+<h3 id="loading-libraries-and-gems">Loading libraries and gems</h3>
+<p>Files placed in your leaf’s lib directory will be loaded and run before your leaf’s controller, helpers, and views are parsed. You can place any extra code in this file, or preload any class definitions.</p>
+<p>If you have specific gem requirements for your leaf, place them in a Gemfile in your leaf’s root directory. If you place the gems in a group named after your leaf, the gems will only be loaded if your leaf is loaded. See the Scorekeeper Gemfile for an example.</p>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>diogok_restserver4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The same apply to Views, but implements Rest.</p>
+<h3 id="default-controllers-and-views">Default Controllers and Views</h3>
+<p>The Restcomes with some default Controller and Views for most common use cases.</p>
+<ul>
+<li>Rest</li>
+<li>Rest</li>
+<li>Rest</li>
+<li>Rest</li>
+<li>Rest</li>
+<li>Rest($newLocation)</li>
+<li>Rest</li>
+<li>Rest</li>
+<li>Rest</li>
+<li>Rest</li>
+<li>Rest($newLocation)</li>
+<li>Rest([<span class="math inline"><em>f</em><em>i</em><em>l</em><em>e</em><em>T</em><em>o</em><em>R</em><em>e</em><em>n</em><em>d</em><em>e</em><em>r</em>,</span>data])</li>
+<li>Rest($object)</li>
+</ul>
+<h3 id="authenticator">Authenticator</h3>
+<p>RestServer support both BASIC and DIGEST http authentication mechanisms. You can access the Authenticator object as follow:</p>
+<pre><code>$auth = $rest-&gt;getAuthenticator();</code></pre>
+<p>It will get the user/password provided on the request. For BASIC auth, you can get it simply:</p>
+<pre><code>$user = $auth-&gt;getUser();
+$pass = $auth-&gt;getPassword();</code></pre>
+<p>Or for Digest:</p>
+<pre><code>    $user = $auth-&gt;getUser();
+    // your logic to lookup user pass
+    $auth-&gt;validate($user,$pass);</code></pre>
+<p>You can them test or set the authentication status:</p>
+<pre><code>    $auth-&gt;setAuthenticated(true);
+    $ok = $auth-&gt;isAuthenticated();</code></pre>
+<p>If by “execute” time authentication fail, server will respond properly.</p>
+<h3 id="request">Request</h3>
+<p>To deal with the request, withing a rest action, you can access it as follows:</p>
+<pre><code>$req = $rest-&gt;getRequest();</code></pre>
+</body>
+</html>

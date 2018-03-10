@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>henrypoydar_chronic_duration1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="chronic-duration">Chronic Duration</h1>
+<p>A simple Ruby natural language parser for elapsed time. (For example, 4 hours and 30 minutes, 6 minutes 4 seconds, 3 days, etc.) Returns all results in seconds. Will return an integer unless you get tricky and need a float. (4 minutes and 13.47 seconds, for example.)</p>
+<p>The reverse can also be accomplished with the output method. So pass in seconds and you can get strings like 4 mins 31.51 secs (default format), 4h 3m 30s, or 4:01:29.</p>
+<h2 id="usage">Usage</h2>
+<pre><code>&gt;&gt; require &#39;chronic_duration&#39;
+=&gt; true
+&gt;&gt; ChronicDuration.parse(&#39;4 minutes and 30 seconds&#39;)
+=&gt; 270
+&gt;&gt; ChronicDuration.parse(&#39;0 seconds&#39;)
+=&gt; nil
+&gt;&gt; ChronicDuration.parse(&#39;0 seconds&#39;, :keep_zero =&gt; true)
+=&gt; 0
+&gt;&gt; ChronicDuration.output(270)
+=&gt; 4 mins 30 secs
+&gt;&gt; ChronicDuration.output(0)
+=&gt; nil
+&gt;&gt; ChronicDuration.output(0, :keep_zero =&gt; true)
+=&gt; 0 secs
+&gt;&gt; ChronicDuration.output(270, :format =&gt; :short)
+=&gt; 4m 30s
+&gt;&gt; ChronicDuration.output(270, :format =&gt; :long)
+=&gt; 4 minutes 30 seconds
+&gt;&gt; ChronicDuration.output(270, :format =&gt; :chrono)
+=&gt; 4:30
+&gt;&gt; ChronicDuration.output(1299600, :weeks =&gt; true)
+=&gt; 2 wks 1 day 1 hr
+&gt;&gt; ChronicDuration.output(1299600, :weeks =&gt; true, :units =&gt; 2)
+=&gt; 2 wks 1 day
+&gt;&gt; ChronicDuration.output(45*24*60*60 + 15*60, :limit_to_hours =&gt; true)
+=&gt; 1080 hrs 15 mins
+&gt;&gt; ChronicDuration.output(1299600, :weeks =&gt; true, :units =&gt; 2, :joiner =&gt; &#39;, &#39;)
+=&gt; 2 wks, 1 day
+&gt;&gt; ChronicDuration.output(1296000)
+=&gt; 15 days</code></pre>
+<p>Nil is returned if the string can’t be parsed</p>
+<p>Examples of parse-able strings:</p>
+<ul>
+<li>‘12.4 secs’</li>
+<li>‘1:20’</li>
+<li>‘1:20.51’</li>
+<li>‘4:01:01’</li>
+<li>‘3 mins 4 sec’</li>
+</ul>
+</body>
+</html>

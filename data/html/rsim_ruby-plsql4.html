@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsim_ruby-plsql4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Make sure to setup the following Oracle-specific environment variables properly</p>
+<ul>
+<li><ul>
+<li>preferred value <code>NLS_LANG=AMERICAN_AMERICA.AL32UTF8</code></li>
+</ul></li>
+<li>.</li>
+<li></li>
+</ul>
+<p>You may either alter your environment settings or set the values in file <code>spec/support/custom_config.rb</code>. Sample file <code>custom_config.rb.sample</code> shows how to do that.</p>
+<p>Make sure you use correct version of Oracle client for database you’re connecting to. Otherwise you may encounter TimeZone errors like</p>
+<h2 id="tests">TESTS</h2>
+<p>Review <code>spec/spec_helper.rb</code> to see default schema/user names and database names (use environment variables to override defaults)</p>
+<h5 id="prepare-database">Prepare database</h5>
+<ul>
+<li><p>With local based Oracle XE database.</p>
+<p>Download Oracle XE database <code>oracle-xe-11.2.0-1.0.x86_64.rpm.zip</code> from and put it into project home directory.</p>
+<p>From project home directory run <code>vagrant up</code> command to build fully functioning <strong>Centos 6.6</strong> virtual machine with installed Oracle XE database.</p></li>
+<li><p>Within other Oracle Database create Oracle database schema for test purposes.</p>
+<pre><code>  SQL&gt; CREATE USER hr IDENTIFIED BY hr;
+  SQL&gt; GRANT unlimited tablespace, create session, create table, create sequence, create procedure, create type, create view, create synonym TO hr;
+
+  SQL&gt; CREATE USER arunit IDENTIFIED BY arunit;
+  SQL&gt; GRANT create session TO arunit;</code></pre></li>
+</ul>
+<h5 id="prepare-dependencies">Prepare dependencies</h5>
+<ul>
+<li><p>Install bundler with</p>
+<pre><code>  gem install bundler</code></pre></li>
+<li><p>Install necessary gems with</p>
+<pre><code>  bundle install</code></pre></li>
+</ul>
+<h5 id="run-tests">Run tests</h5>
+<ul>
+<li><p>Run tests with local Vagrant based Oracle XE database</p>
+<pre><code>  USE_VM_DATABASE=Y rake spec</code></pre></li>
+</ul>
+</body>
+</html>

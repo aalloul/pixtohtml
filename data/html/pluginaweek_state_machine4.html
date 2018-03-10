@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  end
+end
+
+state :parked, :stalled, :idling do
+  def moving?
+    false
+  end
+end</code></pre>
+<p>end</p>
+<p>state_machine :alarm_state, :initial =&gt; :active, :namespace =&gt; ‘alarm’ do event :enable do transition all =&gt; :active end</p>
+<pre><code>event :disable do
+  transition all =&gt; :off
+end
+
+state :active, :value =&gt; 1
+state :off, :value =&gt; 0</code></pre>
+<p>end</p>
+<p>def initialize <span class="citation" data-cites="seatbelt_on">@seatbelt_on</span> = false <span class="citation" data-cites="time_used">@time_used</span> = 0 <span class="citation" data-cites="auto_shop_busy">@auto_shop_busy</span> = true super() # NOTE: This <em>must</em> be called, otherwise states won’t get initialized end</p>
+<p>def put_on_seatbelt <span class="citation" data-cites="seatbelt_on">@seatbelt_on</span> = true end</p>
+<p>def passed_inspection? false end</p>
+<p>def tow # tow the vehicle end</p>
+<p>def fix # get the vehicle fixed by a mechanic end</p>
+<p>def log_start_failure # log a failed attempt to start the vehicle end end</p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dmarkow_slimtimer4r1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="slimtimer4r">SlimTimer4R</h1>
+<h2 id="overview">Overview</h2>
+<p>A basic wrapper against the SlimTimer (www.slimtimer.com) API.</p>
+<h2 id="installation">Installation</h2>
+<p>Install via RubyGems:</p>
+<pre><code>gem install slimtimer4r</code></pre>
+<h2 id="usage">Usage</h2>
+<pre><code>require &#39;slimtimer4r&#39;
+
+slimtimer = SlimTimer.new(&quot;EMAIL&quot;, &quot;PASSWORD&quot;, &quot;API_KEY&quot;)
+tasks = slimtimer.list_tasks
+    =&gt; [#&lt;Record(Task) &quot;name&quot;=&gt;&quot;Ta...&quot;&gt;, #&lt;Record(Task) &quot;name&quot;=&gt;&quot;Br...&quot;&gt;...]</code></pre>
+<p>The #list_tasks and #list_timeentries methods each return an array, which you can call standard array methods on, such as:</p>
+<pre><code>tasks.collect { |task| task.hours }
+    =&gt; [0.25, 1.0, 40]
+tasks.inject(0) { |total, task| total + task.hours }
+    =&gt; 41.25
+tasks.collect { |task| task.hours &gt; 20 }
+    =&gt; [#&lt;Record(Task) &quot;hours&quot; =&gt; 40, ...&gt;]</code></pre>
+<h2 id="thanks">Thanks</h2>
+<ul>
+<li>37 Signals for their sample Backpack/Basecamp Ruby wrappers</li>
+</ul>
+<h2 id="author">Author</h2>
+<ul>
+<li>Dylan Markow (dylan@dylanmarkow.com)</li>
+</ul>
+<h2 id="license">License</h2>
+<p>(The MIT License)</p>
+<p>Copyright (c) 2010</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the</p>
+</body>
+</html>

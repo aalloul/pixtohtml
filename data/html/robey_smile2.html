@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>robey_smile2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>thread. The second does 1000 each from 10 different threads, to verify that performance increases. The third does the same test but randomly picks one of three memcache servers for each “get”, to simulate a real-world environment where you would have more than one memcache server, and could run operations on each server in parallel.</p>
+<h2 id="api">API</h2>
+<p>To get/set UTF-8 strings using a single-node memcache cluster on localhost:</p>
+<pre><code>val cache = MemcacheClient.create(Array(&quot;localhost&quot;), &quot;default&quot;, &quot;crc32-itu&quot;)
+cache.set(&quot;name&quot;, &quot;smile&quot;)
+cache.get(&quot;name&quot;)</code></pre>
+<h2 id="configuration">Configuration</h2>
+<p>Configuration can be done with a configgy block, like so:</p>
+<pre><code>memcache {
+  distribution = &quot;ketama&quot;
+  hash = &quot;fnv1a-64&quot;
+  namespace = &quot;widgets:&quot;
+  servers = [ &quot;memcache1:11211&quot;, &quot;memcache2:11211&quot;, &quot;memcache3:11211&quot; ]
+}</code></pre>
+<p>The name “memcache” is arbitrary – use whatever name you want, and pass the nested block into <code>MemcacheClient.create</code>.</p>
+<p>Config settings:</p>
+<ul>
+<li><strong><code>distribution</code></strong> - algorithm for finding a server for a key; builtin distributions are “modulo”, “ketama”, and “sequential”, or you can add your own</li>
+<li><strong><code>hash</code></strong> - hash function to use when determining the server; builtin functions are “crc32-itu”, “ketama”, “fnv1-32”, “fnv1a-32”, “fnv1-64”, “fnv1a-64”</li>
+<li><strong><code>namespace</code></strong> - optional prefix to put in front of each key before hashing</li>
+<li><strong><code>servers</code></strong> - list of memcache servers</li>
+<li><strong><code>retry_delay_sec</code></strong> - when we fail to connect to a server, how many seconds should we wait before trying again; all requests to that server will fail immediately in the interim</li>
+<li><strong><code>read_timeout_msec</code></strong> - timeout for reading server responses before giving up and raising an exception</li>
+<li><strong><code>connect_timeout_msec</code></strong> -</li>
+</ul>
+</body>
+</html>

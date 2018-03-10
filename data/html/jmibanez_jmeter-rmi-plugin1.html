@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmibanez_jmeter-rmi-plugin1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rmi-sampler-and-proxy-for-apache-jmeter">RMI Sampler and Proxy for Apache JMeter</h1>
+<p>An Apache JMeter plugin for recording and performing RMI calls.</p>
+<h2 id="requirements">Requirements</h2>
+<p>This plugin needs Java 8 and Apache Ant &gt;1.8 to build; it runs on Apache JMeter 3.2 onwards.</p>
+<h2 id="building">Building</h2>
+<p>To download project dependencies:</p>
+<pre><code>    $ ant bootstrap</code></pre>
+<p>To build and run tests:</p>
+<pre><code>    $ ant build-rmi
+    $ ant test</code></pre>
+<p>To package JAR for installation:</p>
+<pre><code>    $ ant jar</code></pre>
+<h2 id="installation">Installation</h2>
+<ol type="1">
+<li>Copy ApacheJMeter_rmi.jar to <code>lib/ext</code> in your JMeter installation</li>
+<li>Copy your application’s dependencies and any JAR files containing relevant classes to <code>lib/</code> in your JMeter installation</li>
+<li>Run JMeter.</li>
+</ol>
+<h2 id="classpath-and-dependencies">Classpath and Dependencies</h2>
+<p>Currently, the plugin depends on your application’s classes being in JAR files in the <code>lib</code> folder of your JMeter installation; it does not rely on the RMI class loader. This may be changed in the future.</p>
+<h2 id="rmi-socket-factories">RMI Socket Factories</h2>
+<p>This plugin is compatible with any RMI SocketFactory that your</p>
+</body>
+</html>

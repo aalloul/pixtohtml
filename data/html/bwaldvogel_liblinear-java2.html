@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bwaldvogel_liblinear-java2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>classification and regression. It currently supports - L2-regularized logistic regression/L2-loss support vector classification/L1-loss support vector classification - L1-regularized L2-loss support vector classification/L1-regularized logistic regression - L2-regularized L2-loss support vector regression/L1-loss support vector regression. This document explains the usage of LIBLINEAR.</p>
+<p>To get started, please read the <strong>Quick Start</strong> section first. For developers, please check the <strong>Library Usage</strong> section to learn how to integrate LIBLINEAR in your software.</p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li>When to use LIBLINEAR but not LIBSVM</li>
+<li>Quick Start</li>
+<li><code>train</code> Usage</li>
+<li><code>predict</code> Usage</li>
+<li>Examples</li>
+<li>Library Usage</li>
+<li>Additional Information</li>
+</ul>
+<h1 id="when-to-use-liblinear-but-not-libsvm">When to use LIBLINEAR but not LIBSVM</h1>
+<p>There are some large data for which with/without nonlinear mappings gives similar performances. Without using kernels, one can efficiently train a much larger set via linear classification/regression. These data usually have a large number of features. Document classification is an example.</p>
+<p>Warning: While generally liblinear is very fast, its default solver may be slow under certain situations (e.g., data not scaled or C is large). See Appendix B of our SVM guide about how to handle such cases.</p>
+<p>http://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf</p>
+<p>Warning: If you are a beginner and your data sets are not large, you should consider LIBSVM first.</p>
+<p>LIBSVM page: http://www.csie.ntu.edu.tw/~cjlin/libsvm</p>
+<h1 id="quick-start">Quick Start</h1>
+<p>See the section <strong>Installation</strong> for installing LIBLINEAR.</p>
+<p>After installation, there are programs <code>train</code> and <code>predict</code> for</p>
+</body>
+</html>

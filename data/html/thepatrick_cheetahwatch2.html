@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thepatrick_cheetahwatch2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>        &lt;integer&gt;4099&lt;/integer&gt;
+        &lt;key&gt;
+            idVendor
+        &lt;/key&gt;
+        &lt;integer&gt;4817&lt;/integer&gt;
+    &lt;/dict&gt;
+&lt;/dict&gt;</code></pre>
+<h2 id="devicepath">devicePath</h2>
+<p>the path to the special device to control the modem - must be cu entry since most tty entries block at open.</p>
+<h2 id="ioproviderclass">IOProviderClass</h2>
+<p>Depends on the device, IOUSBDevice for USB devices, IOPCIDevice for PCI devices etc.</p>
+<h2 id="idproduct">idProduct</h2>
+<p>USB product ID</p>
+<h2 id="idvendor">idVendor</h2>
+<p>USB vendor ID Please note that the entry within matchingDictionary depend on the device type (IOProviderClass)</p>
+<h2 id="cwnetworks">CWNetworks:</h2>
+<p>Translates combined MCC and MNC string to human readable operator name (as listed in . It reads networks.plist once and caches the entries.</p>
+<h2 id="cwmodel-cwpreferences-cwconnectionrecord">CWModel, CWPreferences, CWConnectionRecord</h2>
+<p>Data model of application. CWModel as the topmost class stores all volatile data and has references into the connection list (NSArray of CWConnectionRecord) and the application setting (CWPreferences).</p>
+<h2 id="cwprettyprint">CWPrettyPrint</h2>
+<p>Offers functions (not methods) to pretty print a byte amount, a speed amount and a duration.</p>
+<p>CWBytesValueTransformer.m, CWCarrierValueTransformer.m, CWConnectButtonValueTransformer.m CWConnectionStateValueTransformer.m, CWDurationValueTransformer.m, CWIconValueTransformer.m CWModeValueTransformer.m</p>
+<p>NSValueTranformer subclasses required to display information in the GUI. Names should give enough hints about their use.</p>
+<h2 id="cwstatuswindow">CWStatusWindow</h2>
+<p>NSWindow subclass implementing show/hide of a section with a triangle control.</p>
+<h2 id="nswindowextensions">NSWindowExtensions</h2>
+<p>Category to NSWindow implementing a generic sheet button action (which will stop the modal loop with the sender’s tag as the return code) and ordering the window to the front and activating the application at the same time, since this is required for menu bar items for its windows always appear in front.</p>
+</body>
+</html>

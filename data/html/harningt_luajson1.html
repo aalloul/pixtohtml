@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>harningt_luajson1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="luajson">LuaJSON</h2>
+<p>JSON Parser/Constructor for Lua</p>
+<h3 id="author">Author:</h3>
+<p>Thomas Harning Jr. <a href="mailto:harningt@gmail.com">harningt@gmail.com</a></p>
+<h3 id="source-code">Source code:</h3>
+<p>http://repo.or.cz/luajson</p>
+<h3 id="bug-reports">Bug reports:</h3>
+<p>http://github.com/harningt/luajson harningt@gmail.com</p>
+<h3 id="requirements">Requirements</h3>
+<p>Lua 5.1, 5.2, 5.3, LuaJIT 2.0, or LuaJIT 2.1 LPeg (Tested with 0.7, 0.8, 0.9, 0.10, 0.12rc2, 1.0.1) For regressionTest: lfs (Tested with 1.6.3) ### For lunit-tests: lunitx &gt;= 0.8</p>
+<h3 id="note">NOTE:</h3>
+<p>LPeg 0.11 may not work - it crashed during my initial tests, it is not in the test matrix.</p>
+<h3 id="lua-versions-tested-recently">Lua versions tested recently:</h3>
+<ul>
+<li>Lua 5.1.5</li>
+<li>Lua 5.2.4</li>
+<li>Lua 5.3.4</li>
+<li>LuaJIT-2.0.4</li>
+<li>LuaJIT-2.1.0-beta2</li>
+</ul>
+<h3 id="license">License</h3>
+<p>All-but tests: MIT-style, See LICENSE for details tests/*: Public Domain / MIT - whichever is least restrictive</p>
+<h3 id="modulefunction-overview">Module/Function overview:</h3>
+<h3 id="json.encode-callable-module-referencing-json.encode.encode">json.encode (callable module referencing json.encode.encode)</h3>
+<p><strong><em>encode ( value : ANY-valid )</em></strong></p>
+<p>Takes in a JSON-encodable value and returns the JSON-encoded text Valid input types: * table * array-like table (spec below) * string * number * boolean * ‘null’ - represented by json.util.null</p>
+<p>Table keys (string,number,boolean) are encoded as strings, others are erroneus</p>
+</body>
+</html>

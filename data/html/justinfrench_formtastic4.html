@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>justinfrench_formtastic4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>To specify the order of the fields, skip some of the fields or even add in fields that Formtastic couldn’t infer. You can pass in a list of field names to <code>inputs</code> and list of action names to <code>actions</code>:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @user do |f| %&gt;
+    &lt;%= f.inputs :title, :body, :section, :categories, :created_at %&gt;
+    &lt;%= f.actions :submit, :cancel %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>You probably want control over the input type Formtastic uses for each field. You can expand the <code>inputs</code> and <code>actions</code> to block helper format and use the <code>:as</code> option to specify an exact input type:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs do %&gt;
+      &lt;%= f.input :title %&gt;
+      &lt;%= f.input :body %&gt;
+      &lt;%= f.input :section, :as =&gt; :radio %&gt;
+      &lt;%= f.input :categories %&gt;
+      &lt;%= f.input :created_at, :as =&gt; :string %&gt;
+    &lt;% end %&gt;
+    &lt;%= f.actions do %&gt;
+      &lt;%= f.action :submit, :as =&gt; :button %&gt;
+      &lt;%= f.action :cancel, :as =&gt; :link %&gt;
+    &lt;% end %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>If you want to customize the label text, or render some hint text below the field, specify which fields are required/optional, or break the form into two fieldsets, the DSL is pretty comprehensive:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs &quot;Basic&quot;, :id =&gt; &quot;basic&quot; do %&gt;
+      &lt;%= f.input :title %&gt;
+      &lt;%= f.input :body %&gt;
+    &lt;% end %&gt;
+    &lt;%= f.inputs :name =&gt; &quot;Advanced Options&quot;, :id =&gt; &quot;advanced&quot; do %&gt;
+      &lt;%= f.input :slug, :label =&gt; &quot;URL Title&quot;, :hint =&gt; &quot;Created automatically if left blank&quot;, :required =&gt; false %&gt;
+      &lt;%= f.input :section, :as =&gt; :radio %&gt;
+      &lt;%= f.input :user, :label =&gt; &quot;Author&quot; %&gt;
+      &lt;%= f.input :categories, :required =&gt; false %&gt;
+      &lt;%= f.input :created_at, :as =&gt; :string, :label =&gt; &quot;Publication Date&quot;, :required =&gt; false %&gt;
+    &lt;% end %&gt;
+    &lt;%= f.actions do %&gt;
+      &lt;%= f.action :submit %&gt;
+    &lt;% end %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>You can create forms for nested resources:</p>
+</body>
+</html>

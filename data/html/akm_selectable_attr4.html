@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akm_selectable_attr4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>end</code></pre>
+<p>クラスメソッドで各エントリを取得することが可能です。 entry = Site.protocol_entry_by_key(:https) entry = Site.protocol_entry_by_id(‘02’)</p>
+<p>インスタンスメソッドでは以下のように取得できます。 site = Site.new site.protocol_key = :https entry = site.protocol_entry</p>
+<h4 id="エントリの属性">エントリの属性</h4>
+<p>id, key, nameもそのままメソッドとして用意されています。 irb&gt; entry.id =&gt; “02” irb&gt; entry.key =&gt; :https irb&gt; entry.name =&gt; “HTTPS”</p>
+<p>またオプションの属性もHashのようにアクセス可能です。 irb&gt; entry[:port] =&gt; 443</p>
+<p>to_hashメソッドで、id, key, nameを含むHashを作成します。 irb&gt; entry.to_hash =&gt; {:key=&gt;:https, :port=&gt;443, :name=&gt;“HTTPS”, :id=&gt;“02”}</p>
+<p>matchメソッドでid,key,nameを除くオプションの属性群と一致しているかどうかを判断可能です。</p>
+<pre><code>irb&gt; entry.match?(:port =&gt; 22)
+=&gt; false
+irb&gt; entry.match?(:port =&gt; 443)
+=&gt; true</code></pre>
+<p>ここではオプションの属性として:portしか設定していないので、matchに渡すHashのキーと値の組み合わせも一つだけですが、 複数ある場合にmatch?がtrueとなるためには、完全に一致している必要があります。</p>
+<h4 id="クラスメソッドでのエントリの扱い">クラスメソッドでのエントリの扱い</h4>
+<p>クラスメソッドでエントリを取得する方法として、xxx_entry_by_id, xxx_entry_by_keyを紹介しましたが、 全てのエントリで構成される配列を取得するメソッドが xxx_entriesです。</p>
+<pre><code>irb&gt; entries = Site.protocol_entries
+irb&gt; entries.length
+=&gt; 4</code></pre>
+<p>また、各エントリをto_hashでHashに変換した配列を xxx_hash_arrayメソッドで取得することも可能です。 irb&gt; Site.protocol_hash_array =&gt; [</p>
+</body>
+</html>

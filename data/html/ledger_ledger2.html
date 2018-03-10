@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ledger_ledger2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><strong>RELEASE</strong> | <code>git checkout -b stable v3.1</code> | <strong>CURRENT</strong> | <code>git checkout -b master origin/master</code> | <strong>BETA</strong> | <code>git checkout -b 3.1.1 release/3.1.1</code> | <strong>ALPHA</strong> | <code>git checkout -b next origin/next</code> |</p>
+<p>There are also several topic branches which contain experimental features, though none of these are guaranteed to compile. Best to chat with me on [IRC] or via the [mailing list] before going too much further with those.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>If you wish to proceed in this venture, you’ll need a few dependencies. The easiest way to get them for your platform is to run this handy Python script:</p>
+<pre><code>$ ./acprep dependencies</code></pre>
+<p>If that doesn’t completely work, here are the dependencies for building the current <code>master</code> branch:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Dependency</th>
+<th>Version (or greater)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[Boost]</td>
+<td>1.49</td>
+</tr>
+<tr class="even">
+<td>[GMP]</td>
+<td>4.2.2</td>
+</tr>
+<tr class="odd">
+<td>[MPFR]</td>
+<td>2.4.0</td>
+</tr>
+<tr class="even">
+<td>[utfcpp]</td>
+<td>2.3.4</td>
+</tr>
+<tr class="odd">
+<td>[gettext]</td>
+<td>0.17 <em>optional</em></td>
+</tr>
+<tr class="even">
+<td>[libedit]</td>
+<td>20090111-3.0 <em>optional</em></td>
+</tr>
+<tr class="odd">
+<td>[Python]</td>
+<td>2.4 <em>optional</em></td>
+</tr>
+<tr class="even">
+<td>[doxygen]</td>
+<td>1.5.7.1 <em>optional</em>, for <code>make docs</code></td>
+</tr>
+<tr class="odd">
+<td>[graphviz]</td>
+<td>2.20.3 <em>optional</em>, for <code>make docs</code></td>
+</tr>
+<tr class="even">
+<td>[texinfo]</td>
+<td>4.13 <em>optional</em>, for <code>make docs</code></td>
+</tr>
+<tr class="odd">
+<td>[lcov]</td>
+<td>1.6 <em>optional</em>, for <code>make report</code>, used with <code>/./acprep gcov</code></td>
+</tr>
+<tr class="even">
+<td>[sloccount]</td>
+<td>2.26 <em>optional</em>, for <code>make sloc</code></td>
+</tr>
+</tbody>
+</table>
+<p>And for building the outdated <code>release/2.6.3</code> branch:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Dependency</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[GMP]</td>
+<td>4.2.2</td>
+</tr>
+<tr class="even">
+<td>[pcre]</td>
+<td>7.7</td>
+</tr>
+<tr class="odd">
+<td>[libofx]</td>
+<td>0.8.3 <em>optional</em></td>
+</tr>
+<tr class="even">
+<td>[expat]</td>
+<td>2.0.1 <em>optional</em></td>
+</tr>
+<tr class="odd">
+<td>[libxml2]</td>
+<td>2.7.2 <em>optional</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mac-os-x">Mac OS X</h3>
+<p>You can use [Homebrew] or [MacPorts] to install Ledger easily on OS X.</p>
+<h4 id="homebrew">1. Homebrew</h4>
+</body>
+</html>

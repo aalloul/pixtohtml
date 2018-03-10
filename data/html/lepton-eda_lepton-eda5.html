@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lepton-eda_lepton-eda5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>To generate the configure script, run:</p>
+<pre><code>./autogen.sh</code></pre>
+<p>You can then proceed to configure and build Lepton as described above.</p>
+<h1 id="building-lepton-developer-api-documentation">Building Lepton developer API documentation</h1>
+<p>Several of the Lepton libraries and applications have doxygen API documentation available. To generate the API documentation from the source code, install doxygen (see <a href="#Dependencies">Dependencies</a> above. Next, add <code>--enable-doxygen</code> to your <code>configure</code> command line, i.e.:</p>
+<pre><code>./configure --enable-doxygen</code></pre>
+<p>To compile the documentation (quite a slow process), run:</p>
+<pre><code>make doxygen</code></pre>
+<p>The documentation can then be found in:</p>
+<pre><code>*/docs/html/index.html
+*/docs/latex/refman.pdf</code></pre>
+<p>Some modules don’t automatically generate the PDF version of the documentation. If you want them you have to build them explicitly, e.g.:</p>
+<pre><code>cd gattrib/docs &amp;&amp; make refman.pdf</code></pre>
+<h1 id="getting-help">Getting help</h1>
+<p>There are several ways to get help with installing and using Lepton and the rest of the gEDA tools:</p>
+<ul>
+<li><p>The gEDA website <a href="http://www.geda-project.org" class="uri">http://www.geda-project.org</a> has more extensive information on the gEDA tools, and links to some successful projects which use gEDA.</p></li>
+<li><p>The gEDA documentation wiki contains a large amount of helpful information. A static copy is included with this distribution; see the <code>docs/wiki/index.html</code> file. The wiki is accessible online at <a href="http://wiki.geda-project.org/" class="uri">http://wiki.geda-project.org/</a>.</p></li>
+<li><p>If the resources above didn’t help you resolve your problem, or you are having a <em>design</em> problem that you want to get help with, consider subscribing to and posting your question to the <code>geda-user</code> mailing list.</p></li>
+</ul>
+</body>
+</html>

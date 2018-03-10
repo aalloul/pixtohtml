@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>alexrothenberg_waywework1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="waywework">WayWeWork</h1>
+<h2 id="introduction">Introduction</h2>
+<p>WayWeWork is a RSS and Atom feed aggregator. It has an ability to collect blogs from different sources and show them at one place. It also has an ability to poll the sources and update the database as new blogs get published.</p>
+<p>Formats supported are Atom and RSS.</p>
+<p>A working example is hosted at</p>
+<h2 id="main-features">Main Features</h2>
+<ul>
+<li>Register/ manage sources of feeds.</li>
+<li>Collect posts from registered sources.</li>
+<li>Get new posts from registered sources.</li>
+<li>Tweet about the new posts received.</li>
+<li>Categorize feeds and provide filters for easy look up.</li>
+<li>Show a list of contributors in chronological order of their latest blog posts.</li>
+<li>Infinite scrolling on the website to pull more blog posts when requested by a user.</li>
+</ul>
+<h2 id="technology-stack">Technology Stack</h2>
+<p>The application uses the following:</p>
+<ul>
+<li>Ruby 2.0</li>
+<li>Rails 4.0</li>
+<li>Sqlite 3</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="pre-requisites">Pre requisites</h3>
+<p>Before you install the application, please ensure you have the following:</p>
+<ol type="1">
+<li>RVM</li>
+<li>Ruby 2.0</li>
+</ol>
+<h3 id="installing-the-app">Installing the app</h3>
+<p>To install the app, run the following</p>
+<pre><code>git clone &lt;THIS REPOSITORY&gt;
+cd waywework
+rvm use 2.0.0
+rake db:migrate
+rake feeds:initialize
+rails server</code></pre>
+<p>The application can then be accessed at</p>
+</body>
+</html>

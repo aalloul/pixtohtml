@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>will allow redirection for. By default, this is <code>. To change to include</code>POST`, consider:</p>
+<pre><code>push @{ $ua-&gt;requests_redirectable }, &#39;POST&#39;;</code></pre>
+<h2 id="show_progress">show_progress</h2>
+<pre><code>my $bool = $ua-&gt;show_progress;
+$ua-&gt;show_progress( $boolean );</code></pre>
+<p>Get/set a value indicating whether a progress bar should be displayed on the terminal as requests are processed. The default is false.</p>
+<h2 id="ssl_opts">ssl_opts</h2>
+<pre><code>my @keys = $ua-&gt;ssl_opts;
+my $val = $ua-&gt;ssl_opts( $key );
+$ua-&gt;ssl_opts( $key =&gt; $value );</code></pre>
+<p>Get/set the options for SSL connections. Without argument return the list of options keys currently set. With a single argument return the current value for the given option. With 2 arguments set the option value and return the old. Setting an option to the value <code>undef</code> removes this option.</p>
+<p>The options that LWP relates to are:</p>
+<ul>
+<li><p><code>verify_hostname</code> =&gt; $bool</p>
+<p>When TRUE LWP will for secure protocol schemes ensure it connects to servers that have a valid certificate matching the expected hostname. If FALSE no checks are made and you can’t be sure that you communicate with the expected peer. The no checks behaviour was the default for libwww-perl-5.837 and earlier releases.</p>
+<p>This option is initialized from the <code>PERL_LWP_SSL_VERIFY_HOSTNAME</code> environment variable. If this environment variable isn’t set; then <code>verify_hostname</code> defaults to 1.</p></li>
+<li><p><code>SSL_ca_file</code> =&gt; $path</p>
+<p>The path to a file containing Certificate Authority certificates. A default setting for this option is provided by checking the environment variables <code>PERL_LWP_SSL_CA_FILE</code> and <code>HTTPS_CA_FILE</code> in order.</p></li>
+<li><p><code>SSL_ca_path</code> =&gt; $path</p>
+<p>The path to a directory containing files containing Certificate Authority certificates. A default setting for this option is provided by checking the environment variables <code>PERL_LWP_SSL_CA_PATH</code> and <code>HTTPS_CA_DIR</code> in order.</p></li>
+</ul>
+</body>
+</html>

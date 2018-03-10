@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jeremyevans_fixture_dependencies8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>loads all fixtures inside of a transaction (one per test method), where Rails defaults to loading the fixtures once per test suite (outside of a transaction), and only deletes fixtures from a table when overwriting it with new fixtures.</p>
+<p>Instantiated fixtures are not available with this plugin. Instead, you should use load(:model__fixture_name).</p>
+<h2 id="namespace-issues">Namespace Issues</h2>
+<p>By default, fixture dependencies is going to load the model with the camelized name in the symbol used. So for :foo_bar__baz, it’s going to look for the fixture with name baz for the model FooBar. If your model is namespaced, such as Foo::Bar, this isn’t going to work well. In that case, you can override the default mapping:</p>
+<pre><code>  FixtureDependencies.class_map[:bar] = Foo::Bar</code></pre>
+<p>and then use :bar__baz to load the fixture with name baz for the model Foo::Bar.</p>
+<h2 id="custom-fixture-filenames">Custom Fixture Filenames</h2>
+<p>Fixture dependencies will look for a file that corresponds to the table name for the model by default. You can override this by defining a fixtures_filename class method in the model:</p>
+<pre><code>  class Artist &lt; Sequel::Model
+    def self.fixture_filename
+      :artists_custom_fixture_file
+    end
+  end</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If you run into problems with loading your fixtures, it can be difficult to see where the problems are. To aid in debugging an error, add the following to test/test_helper.rb:</p>
+<pre><code>  FixtureDependencies.verbose = 3</code></pre>
+<p>This will give a verbose description of the loading and saving of fixtures for every test, including the recursive loading of the dependency graph.</p>
+</body>
+</html>

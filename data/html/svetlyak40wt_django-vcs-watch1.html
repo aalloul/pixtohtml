@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>svetlyak40wt_django-vcs-watch1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="django-vcs-watch">Django VCS Watch</h2>
+<p>This is a django application which serve as RSS proxy for different VCSs.</p>
+<h1 id="dependencies">Dependencies</h1>
+<h3 id="required">Required</h3>
+<p><strong>django_globals</strong> is required to automatic update of the ‘user’ field.</p>
+<p>To install <code>django_globals</code>, download sources from a repository <a href="http://github.com/svetlyak40wt/django-globals/" class="uri">http://github.com/svetlyak40wt/django-globals/</a> and install package <code>django_globals</code> somewhere in your python path.</p>
+<p>Then, add <code>django_globals</code> in to the <code>INSTALLED_APPS</code>, and add <code>django_globals.middleware.User</code> into the <code>MIDDLEWARE_CLASSES</code>.</p>
+<p><strong>django_fields</strong> required for encrypted passwords and authentication. You can find it at <a href="http://github.com/svetlyak40wt/django-fields" class="uri">http://github.com/svetlyak40wt/django-fields</a>, also, it have it’s own dependencies, for example, from django-pycrypto.</p>
+<p><strong>python-dateutil</strong> this package used to parse ISO dates. Under <em>debian</em> like systems, just do <code>sudo apt-get install python-dateutil</code></p>
+<h3 id="optional">Optional</h3>
+<p>There are some test templates in the <code>templates/django_vcs_watch</code>. They use modified ‘Colorize’ filter by , but you can use another colorizer in your own templates.</p>
+<h1 id="example">Example</h1>
+<p>Example project is in the <code>example</code> directory.</p>
+<h1 id="options">Options</h1>
+<p>These options can be added to your settings.py:</p>
+<ul>
+<li><p><code>VCS_WATCH_CHECK_INTERVAL</code> – Interval in minutes, to check feeds for updated. In case if there is no any information about feed, it will be polled for updates with this frequency. If there are two or more commits already fetched, then, check interval will be interval between two latest commits, so that more actively developed projects will be polled more oftenly. <strong>Default value is 60 minutes.</strong></p></li>
+<li><p><code>VCS_WATCH_PID_DIR</code> – Directory, where to story pid file for jobs.</p></li>
+</ul>
+</body>
+</html>

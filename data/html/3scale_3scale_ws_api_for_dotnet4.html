@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>3scale_3scale_ws_api_for_dotnet4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>usage = new System.Collections.Hashtable(); usage.Add(“hits”, 1); transaction.Add(“usage”, usage); transactions.Add(“1”, transaction);</p>
+<p>// Call report on the backend with the list of transactions to be reported on _3ScaleAPI.report(transactions); ```</p>
+<h1 id="usage-on-api-key-auth-mode">Usage on API Key auth mode</h1>
+<p>On API Key mode you call <em>authrep</em> to: grant access to your API, and also report the traffic on it at the same time.</p>
+<p>```csharp // import the 3scale library into your code using CS_threescale;</p>
+<p>// … somewhere inside your code</p>
+<p>// create the API object IApi _3ScaleAPI = new Api ();</p>
+<p>// If you need to set your on premise backend host _3ScaleAPI.HostURI = “http://yourbackend.com:80”;</p>
+<p>// build a hashtable of parameters Hashtable parameters = new Hashtable();</p>
+<p>// Add the service_token string service_token = “service_token” parameters.Add (“service_token”, service_token);</p>
+<p>// And the credentials and service_id parameters.Add(“user_key”, “your_user_key”); parameters.Add(“service_id”, “your_user_key_service_id”);</p>
+<p>// Add a metric to the call Hashtable usage = new Hashtable(); usage.Add(“hits”, “1”); parameters.Add(“usage”,usage);</p>
+<p>try { // The preferred way of calling the backend: authrep // The response will be the object AuthorizeResponse or an exception<br />
+AuthorizeResponse resp = _3ScaleAPI.authrep(parameters); } catch (ApiException e) {</p>
+</body>
+</html>

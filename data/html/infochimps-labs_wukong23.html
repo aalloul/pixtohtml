@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infochimps-labs_wukong23</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>def integration_env
+  { &quot;THIS&quot; =&gt; &quot;ENV_HASH&quot;, &quot;WILL_BE&quot; =&gt; &quot;MERGED_OVER_EXISTING_ENV&quot; }
+end</code></pre>
+<p>end</p>
+<p># in spec/spec_helper.rb require_relative(“support/integration_helper”) RSpec.configure do |config| config.include(IntegrationHelper) end ```</p>
+<ul>
+<li><p>The <code>command</code> helper can accept input with the <code>&lt;</code> method. Input can be either a String or an Array of strings. It will be passed to the command over STDIN.</p></li>
+<li><p>The <code>have_stdout</code> and <code>have_stderr</code> matchers let you test the STDOUT or STDERR of the command for particular strings or regular expressions.</p></li>
+<li><p>The <code>exit_with</code> matcher lets you test the exit code of the command. You can pass the symbol <code>:non_zero</code> to set the expectation of <em>any</em> non-zero exit code.</p></li>
+</ul>
+<h2 id="plugins">Plugins</h2>
+<p>Wukong has a built-in plugin framework to make it easy to adapt Wukong processors to new backends or add other functionality. The <code>Wukong::Local</code> module and the <code>wu-local</code> program it supports is itself a Wukong plugin.</p>
+<p>The following shows how you might build a simplified version of <code>Wukong::Local</code> as a new plugin. We’ll call this plugin <code>Cat</code> as it will implement a program <code>wu-cat</code> that is similar in function to <code>wu-local</code> (just simplified).</p>
+<p>The first thing to do is include the <code>Wukong::Plugin</code> module in your code:</p>
+<p>```Ruby # in lib/cat.rb # # This Wukong plugin works like wu-local but replicates some silly # features of cat like numbered lines. module Cat</p>
+<p># This registers Cat as a Wukong plugin. include Wukong::Plugin</p>
+<p># Defines any settings specific to Cat. Cat doesn’t need to, but # you can define global settings here if you want. You can also # check the <code>program</code> name to decide whether to apply your settings. # This helps you not pollute other commands with your stuff. def self.configure settings, program case program</p>
+</body>
+</html>

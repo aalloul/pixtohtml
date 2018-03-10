@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>darkwing_mootools-more2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>Request.JSONP:
+<ul>
+<li>making JSONP pass all arguments, not just the first, to its complete/success methods; .</li>
+</ul></li>
+<li>Fx.Slide:
+<ul>
+<li>Added an option to specify the wrapper element for Fx.Slide. Was already present in the docs but could not be passed as an option.</li>
+</ul></li>
+<li>Mask:
+<ul>
+<li>adding options for the IframeShim for Mask</li>
+</ul></li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.4.2">Changes in MooTools More 1.2.4.2</h4>
+<ul>
+<li>Per the change in -core, $ is no longer used (uses document.id instead)</li>
+<li>Element.Measure: trying cssText solution for Element.expose (again).</li>
+<li>Element.Forms: swapping feature detection for browser support per</li>
+<li>Date: Massive refactoring of Date.js and Date.Extras.js</li>
+<li>Drag.Move: Fixing drag with grid issues</li>
+<li>IframeShim: altering zindex assignment in IframeShim to better ensure that it’s always underneath the shimmed element, updating Iframeshim’s empty document creation; fixes https issues in IE6</li>
+<li>FormValidator: reworking formvalidator scroll-to logic to be a little more efficient</li>
+<li>OverText: preventing overtext from focusing on inputs except when they are interacted with (so OverText.update() does not focus an input);now stops polling when elements are hidden (when polling is enabled)</li>
+<li>Fx.Scroll: adding scrollIntoView method - scrolls an element so that it is completely visible; if below the view, scrolls down until it is at the bottom of the screen, if above, scrolls up until it is at the top.</li>
+<li>JSONP: was calling (the deprecated) this.request instead of this.send during retries</li>
+<li>URI: Adding set(‘data’, obj) to set</li>
+<li>Assets: adding error callback for Assets.images</li>
+<li>Tips: removing dependency for Element.Measure for Tips; updating CSS class name in OverText</li>
+<li>Numerous small fixes, speed improvements, documentation tweaks, etc.</li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.4.1">Changes in MooTools More 1.2.4.1</h4>
+<ul>
+<li></li>
+<li>Numerous documentation updates</li>
+<li>Spinner: Adding a getSpinner method to Request in Spinner’s refactoring of that Class</li>
+<li>Spinner: Fixing default styles</li>
+<li>Form.Validator, Date: Added Ukrainian translations</li>
+<li>Date: Added new Date parser (parses “Thu Oct 22 08:11:23 +0000 2009”)</li>
+<li>Fx.Accordion: handling the alwaysHide option so you can still have returnHeightToAuto set to true (see</li>
+<li>Tips: Restoring arguments to the show/hide events; tip no longer defaults to display:none (this restores the previous behavior)</li>
+<li>Fx.Reveal: stores cssText whenever it starts a transition and restores it when it finishes or is canceled, leaving the element without a bunch of inline styles, as if you’d just done setStyle(‘display’, ‘block’/‘none’)</li>
+<li>Fx.SmoothScroll: adding a “scrolledTo” event</li>
+<li>Drag: added new ‘stopPropagation’ option</li>
+<li>HtmlTable.Select: ensuring that instances only delegates to immediate children (for nested tables)</li>
+<li>HtmlTable.Sort.js: detects and sorts date columns more accurately, handles negative integers and floats</li>
+<li>Reorganized scripts json so Depender can implement Log</li>
+</ul>
+<h5 id="changes-to-clientcide-plugins-adopted-by-mootools-more-in-this-release">Changes to Clientcide plugins adopted by MooTools More in this release</h5>
+<ul>
+<li>Fupdate is now named Form.Request; see compat layer on</li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.3.1">Changes in MooTools More 1.2.3.1</h4>
+<ul>
+<li>Issues fixed (in lighthouse): #50, #55, #65, and various other minor bugs</li>
+<li>Replaced all occurrences of $ with document.id</li>
+<li>Overhauled Date.js</li>
+</ul>
+</body>
+</html>

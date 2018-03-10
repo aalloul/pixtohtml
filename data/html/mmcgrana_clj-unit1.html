@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mmcgrana_clj-unit1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><code>clj-unit</code> is a simple unit testing library for Clojure. The goal of <code>clj-unit</code> is to provide a non-magical, developer-friendly unit testing API along with a wide variety of assertion helpers.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Extremely small core implementation with a simple interface.</li>
+<li>Pluggable reporters, with a built-in console reporter that uses to provide trimmed, cleaned, and colorized backtraces on unit test errors.</li>
+<li>Stateless facade for reporters, eliminating the need for them to maintain their own global state.</li>
+<li>Many built in assertions.</li>
+<li>New assertions can be implemented as stand-alone functions; they don’t need to be methods or macros.</li>
+</ul>
+<h2 id="available-assertions">Available Assertions</h2>
+<ul>
+<li><code>assert=</code></li>
+<li><code>assert-not=</code></li>
+<li><code>assert-in-delta</code></li>
+<li><code>assert-that</code></li>
+<li><code>assert-not</code></li>
+<li><code>assert-nil</code></li>
+<li><code>assert-fn</code></li>
+<li><code>assert-not-fn</code></li>
+<li><code>assert-instance</code></li>
+<li><code>assert-isa</code></li>
+<li><code>assert-match</code></li>
+<li><code>assert-throws</code></li>
+<li><code>flunk</code> (always fails)</li>
+<li><code>success</code>, <code>failure</code>, <code>assert-truth</code> (for defining custom assertions)</li>
+</ul>
+<h2 id="example">Example</h2>
+<pre><code>(ns myapp.utils-test
+  (:use clj-unit.core))
+
+(deftest &quot;re-match?&quot;
+  (assert-that (re-match? #&quot;o&quot;   &quot;foo&quot;))
+  (assert-not  (re-match? #&quot;bar&quot; &quot;foo&quot;)))
+
+(deftest &quot;url-escape, url-unescape: round-trip as expected&quot;
+  (let [given &quot;foo123!@#$%^(){}[]?/&quot;]
+    (assert= given (url-unescape (url-escape given)))))
+
+(deftest &quot;check-keys: throws on unrecognized keys&quot;
+  (assert-throws #&quot;unrecognized keys&quot;
+    (check-keys {:foo &quot;bar&quot; :fiz &quot;bat&quot;} [:foo :bar])))
+
+(run-tests &#39;myapp.utils-test)</code></pre>
+<p>License</p>
+</body>
+</html>

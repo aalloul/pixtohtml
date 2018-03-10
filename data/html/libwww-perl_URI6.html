@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_URI6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>$uri-&gt;path</li>
+<li><p>$uri-&gt;path( $new_path )</p>
+<p>Sets and returns the escaped path component of the $uri (the part between the host name and the query or fragment). The path can never be undefined, but it can be the empty string.</p></li>
+<li>$uri-&gt;path_query</li>
+<li><p>$uri-&gt;path_query( $new_path_query )</p>
+<p>Sets and returns the escaped path and query components as a single entity. The path and the query are separated by a “?” character, but the query can itself contain “?”.</p></li>
+<li>$uri-&gt;path_segments</li>
+<li><p>$uri-&gt;path_segments( $segment, … )</p>
+<p>Sets and returns the path. In a scalar context, it returns the same value as $uri-&gt;path. In a list context, it returns the unescaped path segments that make up the path. Path segments that have parameters are returned as an anonymous array. The first element is the unescaped path segment proper; subsequent elements are escaped parameter strings. Such an anonymous array uses overloading so it can be treated as a string too, but this string does not include the parameters.</p>
+<p>Note that absolute paths have the empty string as their first <em>path_segment</em>, i.e. the <em>path</em> <code>/foo/bar</code> have 3 <em>path_segments</em>; “”, “foo” and “bar”.</p></li>
+<li>$uri-&gt;query</li>
+<li><p>$uri-&gt;query( $new_query )</p>
+<p>Sets and returns the escaped query component of the $uri.</p></li>
+<li>$uri-&gt;query_form</li>
+<li>$uri-&gt;query_form( $key1 =&gt; $val1, $key2 =&gt; $val2, … )</li>
+<li>$uri-&gt;query_form( $key1 =&gt; $val1, $key2 =&gt; $val2, …, $delim )</li>
+<li>$uri-&gt;query_form( \<span class="citation" data-cites="key">@key</span>_value_pairs )</li>
+<li>$uri-&gt;query_form( \<span class="citation" data-cites="key">@key</span>_value_pairs, $delim )</li>
+<li>$uri-&gt;query_form( \%hash )</li>
+<li><p>$uri-&gt;query_form( \%hash, $delim )</p>
+<p>Sets and returns query components that use the <em>application/x-www-form-urlencoded</em> format. Key/value pairs are separated by “&amp;”, and the key is separated from the value by a “=” character.</p></li>
+</ul>
+</body>
+</html>

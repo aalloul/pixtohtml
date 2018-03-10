@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rakudo_rakudo2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>https://github.com/MoarVM/MoarVM manually and install them individually.</p>
+<p>Configuration flags can be passed to MoarVM’s Configure.pl using the –moar-option flag. For example, if you wish to use Clang when GCC is the default compiler selected for your OS, use the –compiler flag:</p>
+<pre><code>$ perl Configure.pl --gen-moar --moar-option=&#39;--compiler=clang&#39; \
+    --gen-nqp --backends=moar</code></pre>
+<p>If the compiler you want to use isn’t known by MoarVM or you have multiple versions of the same compiler installed, the –cc flag can be used to pass its exact binary:</p>
+<pre><code>$ perl Configure.pl --gen-moar --moar-option=&#39;--cc=egcc&#39; \
+    --gen-nqp --backends=moar</code></pre>
+<p>Custom optimization and debugging levels may also be passed through:</p>
+<pre><code>$ perl Configure.pl --gen-moar --moar-option=&#39;--optimize=0 --debug=3&#39; \
+    --gen-nqp --backends=moar</code></pre>
+<p>For more information on how MoarVM can be configured, view MoarVM’s Configure.pl.</p>
+<h3 id="configuring-rakudo-to-run-on-the-jvm">Configuring Rakudo to run on the JVM</h3>
+<p>Note that to run Rakudo on JVM, JDK 1.8 must be installed. To automatically download, build, and install a fresh NQP, run:</p>
+<pre><code>$ perl Configure.pl --gen-nqp --backends=jvm</code></pre>
+<p>If you get an out of memory error building rakudo on the JVM, you may need to modify your NQP runner to limit memory use. e.g. edit the nqp-j / nqp-j.bat executable (found wherever you installed to, or in the <code>install/bin</code> directory) to include <code>-Xms500m -Xmx2g</code> as options passed to java.</p>
+<p>Please be aware, that this will install NQP into your given –prefix before Configure.pl exits.</p>
+<p>Alternatively, feel free to git clone https://github.com/perl6/nqp manually and install it individually.</p>
+<h3 id="multiple-backends-at-the-same-time">Multiple backends at the same time</h3>
+<p>By supplying combinations of backends to the <code>--backends</code> flag, you can get two or three backends built in the same prefix. The first backend you supply in the list is the one that gets the <code>perl6</code> name as a symlink, and all backends are installed separately as <code>perl6-m</code> or <code>perl6-j</code> for Rakudo on MoarVM, or JVM respectively.</p>
+</body>
+</html>

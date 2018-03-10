@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>camptocamp_puppet-postfix1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="postfix-puppet-module">Postfix Puppet Module</h1>
+<p>This module requires Augeas.</p>
+<h2 id="simple-usage">Simple usage</h2>
+<pre class="puppet"><code>include postfix
+
+postfix::config { &#39;relay_domains&#39;:
+  ensure  =&gt; present,
+  value   =&gt; &#39;localhost host.foo.com&#39;,
+}</code></pre>
+<h2 id="exec-paths">Exec paths</h2>
+<p>In order to not have any path problem, you should add the following line in some globally included .pp file:</p>
+<pre class="puppet"><code>Exec {
+  path =&gt; &#39;/some/relevant/path:/some/other:...&#39;,
+}</code></pre>
+<p>For example:</p>
+<pre class="puppet"><code>Exec {
+  path =&gt; &#39;/bin:/sbin:/usr/sbin:/usr/bin&#39;,
+}</code></pre>
+<h2 id="classes">Classes</h2>
+<h3 id="postfix">postfix</h3>
+<p>The top-level class, to install and configure Postfix.</p>
+<h4 id="parameters">Parameters</h4>
+<h5 id="alias_maps"><code>alias_maps</code></h5>
+<p>A string defining the location of the alias map file.<br />
+Default: ‘hash:/etc/aliases’.<br />
+Example: ‘hash:/etc/other_aliases’.</p>
+<h5 id="inet_interfaces"><code>inet_interfaces</code></h5>
+<p>A string defining the network interfaces that Postfix will listen on.</p>
+</body>
+</html>

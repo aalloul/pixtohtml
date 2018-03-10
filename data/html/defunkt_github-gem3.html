@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_github-gem3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>670a1a (jchris/gist~5)           kevin@sb.org          Hoist the specs into a per-binary sp   4 months ago
+6aa18e (jchris/gist~6)           kevin@sb.org          Hoist commands/helpers into a per-co   4 months ago
+ee013a (luislavena/master)       luislavena@gmail.com  Replaced STDOUT by $stdout in specs.   2 weeks ago
+d543c4 (luislavena/master~3)     luislavena@gmail.com  Exclude package folder.                8 weeks ago
+a8c3eb (luislavena/master~5)     luislavena@gmail.com  Fixed specs for open under Windows.    5 months ago
+33d003 (riquedafreak/master)     enrique.osuna@gmail.  Make sure it exists on the remote an   5 weeks ago
+157155 (riquedafreak/master~1)   enrique.osuna@gmail.  Updated specs.                         5 weeks ago
+f44e99 (riquedafreak/master~3)   enrique.osuna@gmail.  Only work with a clean branch.         3 months ago</code></pre>
+<p>These are all the commits that you don’t have in your current branch that have been pushed to other forks of your project. If you want to incorporate them, you can use:</p>
+<pre><code>$ gh cherry-pick ee013a</code></pre>
+<p>for example to apply that single patch to your branch. You can also merge a branch, if you want all the changes introduced in another branch:</p>
+<pre><code>$ gh merge jchris/gist</code></pre>
+<p>The next time you run the ‘github network commits’ command, you won’t see any of the patches you have cherry-picked or merged (or rebased). If you want to ignore a commit, you can simply run:</p>
+<pre><code>$ gh ignore a8c3eb</code></pre>
+<p>Then you won’t ever see that commit again. Or, if you want to ignore a range of commits, you can use the normal Git revision selection shorthands - for example, if you want to ignore all 7 jchris/gist commits there, you can run:</p>
+<pre><code>$ gh ignore ..jchris/gist</code></pre>
+<p>You can also filter the output, if you want to see some subset. You can filter by project, author and date range, or (one of the cooler things) you can filter by whether the patch applies cleanly to your branch head or not. For instance, I can do this:</p>
+<pre><code>$ ./bin/github network commits --applies
+
+ca15af (jchris/master~1)         jchris@grabb.it       fixed github gemspecs broken referen   8 weeks ago
+ee013a (luislavena/master)       luislavena@gmail.com  Replaced STDOUT by $stdout in specs.   2 weeks ago
+157155 (riquedafreak/master~1)   enrique.osuna@gmail.  Updated specs.                         5 weeks ago
+f44e99 (riquedafreak/master~3)   enrique.osuna@gmail.  Only work with a clean branch.         3 months ago
+
+$ ./bin/github network commits --applies --project=riq
+
+157155 (riquedafreak/master~1)   enrique.osuna@gmail.  Updated specs.                         5 weeks ago
+f44e99 (riquedafreak/master~3)   enrique.osuna@gmail.  Only work with a clean branch.         3 months ago</code></pre>
+<p>Pretty freaking sweet. Also, you can supply the –shas option to just get a list of the shas instead of the pretty printout here, so you can pipe that into other scripts (like ‘github ignore’ for instance).</p>
+</body>
+</html>

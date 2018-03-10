@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>NetworkBlockDevice_nbd2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    authfile = /export/nbd/export1-authfile
+    timeout = 30
+    filesize = 10000000
+    readonly = false
+    multifile = false
+    copyonwrite = false
+    prerun = dd if=/dev/zero of=%s bs=1k count=500
+    postrun = rm -f %s
+[otherexport]
+    exportname = /export/nbd/experiment
+    # The other options are all optional</code></pre>
+<p>The configuration file is parsed with GLib’s GKeyFile, which parses key files as they are specified in the Freedesktop.org Desktop Entry Specification, as can be found at <a href="http://freedesktop.org/Standards/desktop-entry-spec" class="uri">http://freedesktop.org/Standards/desktop-entry-spec</a>. While this format was not intended to be used for configuration files, the glib API is flexible enough for it to be used as such.</p>
+<p>Now start the server:</p>
+<pre><code>nbd-server -C /path/to/configfile</code></pre>
+<p>Note that the filename must be an absolute path; i.e., something like <code>/path/to/file</code>, not <code>../file</code>. See the nbd-server manpage for details on any available options.</p>
+<p>Finally, you’ll be able to start the client:</p>
+<pre><code>nbd-client &lt;hostname&gt; -N &lt;export name&gt; &lt;nbd device&gt;</code></pre>
+<p>e.g.,</p>
+<pre><code>nbd-client 10.0.0.1 -N otherexport /dev/nbd0</code></pre>
+<p>will use the second export in the above example (the one that exports <code>/export/nbd/experiment</code>)</p>
+<p><code>nbd-client</code> must be ran as root; the same is not true for nbd-server (but do make sure that /var/run is writeable by the server that <code>nbd-server</code> runs as; otherwise, you won’t get a PID file, though the server will keep running).</p>
+<p>There are packages (or similar) available for the following operating systems:</p>
+<ul>
+<li>Debian (and derivatives, like Ubuntu): <code>nbd-client</code> and <code>nbd-server</code>, since Debian woody.</li>
+<li>Gentoo: the <code>nbd</code> ebuild in the <code>sys-block</code> category, available in Portage since 2002.</li>
+</ul>
+</body>
+</html>

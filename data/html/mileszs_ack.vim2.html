@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mileszs_ack.vim2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="usage">Usage</h2>
+<pre><code>:Ack [options] {pattern} [{directories}]</code></pre>
+<p>Search recursively in <code>{directories}</code> (which defaults to the current directory) for the <code>{pattern}</code>.</p>
+<p>Files containing the search term will be listed in the quickfix window, along with the line number of the occurrence, once for each occurrence. <code>&lt;Enter&gt;</code> on a line in this window will open the file and place the cursor on the matching line.</p>
+<p>Just like where you use <code>:grep</code>, <code>:grepadd</code>, <code>:lgrep</code>, and :<code>lgrepadd</code>, you can use <code>:Ack</code>, <code>:AckAdd</code>, <code>:LAck</code>, and <code>:LAckAdd</code> respectively. (See <code>:help Ack</code> after installing, or <a href="https://github.com/mileszs/ack.vim/blob/master/doc/ack.txt"><code>doc/ack.txt</code></a> in the repo, for more information.)</p>
+<p>For more ack help see .</p>
+<h3 id="keyboard-shortcuts">Keyboard Shortcuts</h3>
+<p>The quickfix results window is augmented with these convenience mappings:</p>
+<pre><code>?    a quick summary of these keys, repeat to close
+o    to open (same as Enter)
+O    to open and close the quickfix window
+go   to preview file, open but maintain focus on ack.vim results
+t    to open in new tab
+T    to open in new tab without moving to it
+h    to open in horizontal split
+H    to open in horizontal split, keeping focus on the results
+v    to open in vertical split
+gv   to open in vertical split, keeping focus on the results
+q    to close the quickfix window</code></pre>
+<h3 id="gotchas">Gotchas</h3>
+<p>To search for a pattern that contains whitespace, you need to enclose the pattern in single quotes. For example: <code>:Ack 'foo bar'</code> to search for ‘foo bar’.</p>
+<p>Some characters have special meaning, and need to be escaped in your search pattern. For instance, <code>#</code>. You need to escape it with <code>:Ack '\\\#define foo'</code> to search for ‘#define foo’. See <a href="https://github.com/mileszs/ack.vim/issues/5">issue #5</a>.</p>
+<h2 id="possibly-faq">Possibly FAQ</h2>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl17</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>on the attributes of the user agent. The return value should normally be the <code>$request</code> object passed in. If a different request object is returned it will be the one actually processed.</p>
+<p>The headers affected by the base implementation are; <code>User-Agent</code>, <code>From</code>, <code>Range</code> and <code>Cookie</code>.</p>
+<h2 id="progress">progress</h2>
+<pre><code>my $prog = $ua-&gt;progress( $status, $request_or_response );</code></pre>
+<p>This is called frequently as the response is received regardless of how the content is processed. The method is called with <code>$status</code> “begin” at the start of processing the request and with <code>$state</code> “end” before the request method returns. In between these <code>$status</code> will be the fraction of the response currently received or the string “tick” if the fraction can’t be calculated.</p>
+<p>When <code>$status</code> is “begin” the second argument is the object, otherwise it is the object.</p>
+<h2 id="redirect_ok">redirect_ok</h2>
+<pre><code>my $bool = $ua-&gt;redirect_ok( $prospective_request, $response );</code></pre>
+<p>This method is called by before it tries to follow a redirection to the request in <code>$response</code>. This should return a true value if this redirection is permissible. The <code>$prospective_request</code> will be the request to be sent if this method returns true.</p>
+<p>The base implementation will return false unless the method is in the object’s <code>requests_redirectable</code> list, false if the proposed redirection is to a <code>file://...</code> URL, and true otherwise.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>See and the scripts <code>lwp-request</code> and <code>lwp-download</code> for examples of usage.</p>
+<p>See for a description of the message objects dispatched and received. See and for other ways to build request objects.</p>
+<p>See for examples of more specialized user agents based on .</p>
+<h1 id="copyright-and-license">COPYRIGHT AND LICENSE</h1>
+</body>
+</html>

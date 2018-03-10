@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kondr_xui2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>x$(&#39;a.navigation&#39;).css({ background:&#39;blue&#39; });</code></pre>
+<p>The query selection engine is based on the browser implementation of querySelectorAll so its fast. Real fast. XUI allows for a single expression, an element or an array of elements to be passed</p>
+<pre><code>x$(window);</code></pre>
+<h2 id="dom">Dom</h2>
+<p>Manipulating the document object model (DOM).</p>
+<h3 id="html">html</h3>
+<p>Adds elements or changes the content of an element on a page.</p>
+<p>syntax:</p>
+<pre><code>x$(window).html( location, htmlFragment );</code></pre>
+<p>or..</p>
+<pre><code>x$(window).html( htmlFragment );</code></pre>
+<p>arguments:</p>
+<ul>
+<li>location:string can be one of inner, outer, top, bottom</li>
+<li>htmlFragment:string any string of html markup</li>
+</ul>
+<p>example:</p>
+<pre><code>x$(&#39;#foo&#39;).html( &#39;inner&#39;,  htmlFragment );
+x$(&#39;#foo&#39;).html( &#39;outer&#39;,  htmlFragment );
+x$(&#39;#foo&#39;).html( &#39;top&#39;,    htmlFragment );
+x$(&#39;#foo&#39;).html( &#39;bottom&#39;, htmlFragment );</code></pre>
+<p>or</p>
+<pre><code>x$(&#39;#foo&#39;).html(&#39;&lt;p&gt;sweet as honey&lt;/p&gt;&#39;);</code></pre>
+</body>
+</html>

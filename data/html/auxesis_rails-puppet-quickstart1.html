@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>auxesis_rails-puppet-quickstart1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rails-puppet-quickstarter">Rails Puppet Quickstarter</h1>
+<p>This is a really simple collection of Puppet <strong>manifests to set up a single Ubuntu Hardy machine</strong> with the necessary dependencies to run Rails.</p>
+<p>It uses mod_passenger with apache2 to serve Rails, Postfix for mailing, and collectd for performance monitoring.</p>
+<p>It’s intended that Puppet is run against these manifests locally, negating the need for a Puppetmaster. That said, the manifests should work in a Puppet/Puppetmaster setup with minimal alteration.</p>
+<h2 id="installing-puppet-on-machine">Installing Puppet on machine</h2>
+<pre><code>$ sudo aptitude install puppet git-core
+$ git clone git://github.com/auxesis/rails-puppet-quickstart.git  </code></pre>
+<h2 id="describing-your-machine">Describing your machine</h2>
+<p>You’ll need to know the fqdn of the machine you’re managing. The easiest way to get this is by running:</p>
+<pre><code>$ facter |grep ^fqdn</code></pre>
+<p>(facter collects facts about a system that Puppet can use)</p>
+<p>Next you’ll need to specify the FQDN of the machine in <code>manifests/nodes/railsnode.pp</code>. Substitute the FQDN into the node section.</p>
+<p>You might want to rename the <code>railsnode.pp</code> file to the hostname of the machine, but it’s personal preference.</p>
+<p>Lastly, Rename the <code>config/nodes/railsnode</code> directory to the FQDN of the machine.</p>
+<h2 id="running-puppet">Running Puppet</h2>
+<p>Because we’re not using Puppet in an end-to-end provisioning setup, we have to do a small amount of lifting to get it going:</p>
+<pre><code>$ sudo puppet --debug --verbose rails-puppet-quickstart/puppet/manifests/site.pp --tags ruby
+$ sudo puppet --debug --verbose rails-puppet-quickstart/puppet/manifests/site.pp</code></pre>
+<p>(path to <code>site.pp</code> is relative to your current working directory)</p>
+<p>We run with <code>--tags ruby</code> the first time so that <code>/etc/apt/sources.list</code> can be modified, and apt can be updated.</p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>brianlmoon_net_gearman1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="net-gearman">Net Gearman</h1>
+<h2 id="about">About</h2>
+<p>Net_Gearman is a package for interfacing with Gearman. Gearman is a system to farm out work to other machines, dispatching function calls to machines that are better suited to do work, to do work in parallel, to load balance lots of function calls, or to call functions between languages.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>$ composer require brianlmoon/net_gearman</code></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="client">Client</h3>
+<pre><code>$client = new Net_Gearman_Client(&quot;localhost&quot;);
+$set = new Net_Gearman_Set();
+$task = new Net_Gearman_Task(&quot;Reverse_String&quot;, &quot;foobar&quot;);
+$task-&gt;attachCallback(
+    function($func, $handle, $result){
+        print_r($result)
+    }
+);
+$set-&gt;addTask($task);
+$client-&gt;runSet($set, $timeout);</code></pre>
+<h3 id="job">Job</h3>
+<pre><code>class Reverse_String extends Net_Gearman_Job_Common {
+
+    public function run($workload) {
+        $result = strrev($workload);
+        return $result;
+    }
+}</code></pre>
+<h3 id="worker">Worker</h3>
+<p>For easiest use, use GearmanManager for running workers. See: https://github.com/brianlmoon/GearmanManager</p>
+<pre><code>$worker = new Net_Gearman_Worker(&#39;localhost&#39;);
+$worker-&gt;addAbility(&#39;Reverse_String&#39;);
+$worker-&gt;beginWork();</code></pre>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>namelessjon_notable1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="notable">Notable</h1>
+<p>A very simple to talk to the backend data-store. Also included is ‘note_taker’, a simple jabber bot which knows how to use the JSON api to talk to notable.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="notable-1">Notable</h3>
+<p>First, you’ll be wanting some rubygems. Obviously you’ll be wanting sinatra (at least 1.2), but also:</p>
+<ul>
+<li>dm-core</li>
+<li>dm-timestamps</li>
+<li>dm-validations</li>
+<li>dm-aggregates</li>
+<li>dm-sqlite-adapter (Or other DataMapper adapter of your choice)</li>
+<li>dm-migrations</li>
+<li>haml</li>
+</ul>
+<p>There is a Gemfile for use with bundler which can be used to install all of these.</p>
+<p>You’ll also want a rack-aware webserver (I use . Once you have this, getting started is easy:</p>
+<pre><code>cp config.ru.sample config.ru
+rackup</code></pre>
+<p>notable should now be running on port 9292 on the local host. It should also have created an sqlite3 database in the notable directory, called notes.db. If you want to change the data-store notable connects to, change the <code>DATABASE_URL</code> to any DataMapper understands. To change aspects of how rackup serves the application, check out the options <code>rackup -h</code> gives you.</p>
+<h3 id="note_taker">note_taker</h3>
+<p>If you also want to be able to talk to note_taker, the jabber bot, you’ll need a few more gems:</p>
+<ul>
+<li>uppercut</li>
+<li>rest-client</li>
+<li>daemons</li>
+</ul>
+<p>note_taker takes a variety of options, which can be seen by running <code>note_taker -h</code>. However for convenience one of those options, <code>-C</code>, reads in options from YAML formatted file. There’s an example file included in the repo, so:</p>
+<pre><code>cp note_taker.yml.sample note_taker.yml
+# edit to set a correct JID and password.
+# JIDs are formatted as user@example.com/resource
+note_taker start -C note_taker.yml</code></pre>
+<p>And your jabber bot should start up. If you change the port notable listens on, you’ll need to make the corresponding change in the <code>url:</code> (or <code>-u</code> option).</p>
+<h2 id="licensing-and-credit">Licensing and Credit</h2>
+<h3 id="icon">Icon</h3>
+</body>
+</html>

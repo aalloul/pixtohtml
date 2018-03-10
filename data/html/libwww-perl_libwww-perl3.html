@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="attributes">ATTRIBUTES</h1>
+<p>The settings of the configuration attributes modify the behaviour of the when it dispatches requests. Most of these can also be initialized by options passed to the constructor method.</p>
+<p>The following attribute methods are provided. The attribute value is left unchanged if no argument is given. The return value from each method is the old attribute value.</p>
+<h2 id="agent">agent</h2>
+<pre><code>my $agent = $ua-&gt;agent;
+$ua-&gt;agent(&#39;Checkbot/0.4 &#39;);    # append the defaul to the end
+$ua-&gt;agent(&#39;Mozilla/5.0&#39;);
+$ua-&gt;agent(&quot;&quot;);                 # don&#39;t identify</code></pre>
+<p>Get/set the product token that is used to identify the user agent on the network. The agent value is sent as the <code>User-Agent</code> header in the requests.</p>
+<p>The default is a string of the form <code>libwww-perl/#.###</code>, where <code>#.###</code> is substituted with the version number of this library.</p>
+<p>If the provided string ends with space, the default <code>libwww-perl/#.###</code> string is appended to it.</p>
+<p>The user agent string should be one or more simple product identifiers with an optional version number separated by the <code>/</code> character.</p>
+<h2 id="conn_cache">conn_cache</h2>
+<pre><code>my $cache_obj = $ua-&gt;conn_cache;
+$ua-&gt;conn_cache( $cache_obj );</code></pre>
+<p>Get/set the for details.</p>
+<h2 id="cookie_jar">cookie_jar</h2>
+<pre><code>my $jar = $ua-&gt;cookie_jar;
+$ua-&gt;cookie_jar( $cookie_jar_obj );</code></pre>
+<p>Get/set the cookie jar object to use. The only requirement is that the cookie jar object must implement the <code>extract_cookies($response)</code> and <code>add_cookie_header($request)</code> methods. These methods will then be invoked by the user agent as requests are sent and responses are received. Normally this will be a object or some subclass.</p>
+</body>
+</html>

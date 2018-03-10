@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aissac_radiant-database-mailer-extension3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Any attachments that the e-mail might have will be saved on the file system. They can be downloaded from the details page of every record.</p>
+<p>If you want to take advantage of the blob field you need to create a <code>email</code> page part. The blob field keeps the sent version of the email.</p>
+<p>Fields that are not specified by <code>DATABASE_MAILER_COLUMNS</code> are silently ignored.</p>
+<h2 id="usage">Usage</h2>
+<p>Create your Mailer pages and make sure to use the same field names:</p>
+<pre><code>&lt;r:mailer:form&gt;
+  &lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;&lt;br/&gt;
+  &lt;r:mailer:text name=&quot;name&quot; /&gt;&lt;br/&gt;
+
+  &lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;&lt;br/&gt;
+  &lt;r:mailer:text name=&quot;email&quot; /&gt;&lt;br/&gt;
+
+  &lt;label for=&quot;message&quot;&gt;Message:&lt;/label&gt;&lt;br/&gt;
+  &lt;r:mailer:textarea name=&quot;message&quot; /&gt; &lt;br/&gt;
+
+  &lt;label for=&quot;attachment&quot;&gt;Image:&lt;/label&gt;&lt;br/&gt;
+  &lt;r:mailer:file name=&quot;attachment&quot; /&gt;&lt;br/&gt;
+
+  &lt;input type=&quot;submit&quot; value=&quot;Send&quot; /&gt;
+&lt;/r:mailer:form&gt;</code></pre>
+<p>Create the <code>mailer</code> page part:</p>
+<pre><code>subject: From the website of Whatever
+from: noreply@example.com
+redirect_to: /contact/thank-you
+recipients:
+  - one@one.com
+  - two@two.com
+  </code></pre>
+<p>Create an <code>email</code> page part (to take advantage of the blob field):</p>
+<pre><code>&lt;r:mailer&gt;
+  Name: &lt;r:get name=&quot;name&quot; /&gt;
+  Email: &lt;r:get name=&quot;email&quot; /&gt;
+  Message: &lt;r:get name=&quot;message&quot; /&gt;
+&lt;/r:mailer&gt;</code></pre>
+<h2 id="contributors">Contributors</h2>
+<ul>
+<li>Cristi Duma (<span class="citation" data-cites="cristi_duma">[@cristi_duma]</span>[cd])</li>
+<li>Istvan Hoka (<span class="citation" data-cites="ihoka">[@ihoka]</span>[ih])</li>
+</ul>
+</body>
+</html>

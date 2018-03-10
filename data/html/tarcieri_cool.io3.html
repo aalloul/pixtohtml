@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tarcieri_cool.io3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  on_connect do
+    puts &quot;#{remote_addr}:#{remote_port} connected&quot;
+  end
+
+  on_close do
+    puts &quot;#{remote_addr}:#{remote_port} disconnected&quot;
+  end
+
+  on_read do |data|
+    write data
+  end
+end
+
+puts &quot;Echo server listening on #{ADDR}:#{PORT}&quot;
+cool.io.server ADDR, PORT, :echo_server_connection
+cool.io.run</code></pre>
+<p>This creates a new connection class called :echo_server_connection and defines a set of callbacks for when various events occur.</p>
+<p>We then create a new server on the given address and port. When this server receives new connections, it will create new instances of the given connection class for each connection.</p>
+<p>Finally, we kick everything off with cool.io.run. Calling cool.io.run will block, listening for events on our server.</p>
+<h2 id="using-cool.io-subclasses-directly">Using Cool.io subclasses directly</h2>
+<p>Below is an example of how to write an echo server using a subclass instead of the DSL:</p>
+<pre><code>require &#39;cool.io&#39;
+HOST = &#39;localhost&#39;
+PORT = 4321
+
+class EchoServerConnection &lt; Cool.io::TCPSocket
+  def on_connect
+    puts &quot;#{remote_addr}:#{remote_port} connected&quot;
+  end
+
+  def on_close
+    puts &quot;#{remote_addr}:#{remote_port} disconnected&quot;
+  end
+
+  def on_read(data)
+    write data
+  end
+end</code></pre>
+</body>
+</html>

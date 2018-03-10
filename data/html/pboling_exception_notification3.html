@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pboling_exception_notification3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ol start="3" type="1">
+<li><p>Make sure you have your ActionMailer server settings correct if you are using the e-mail features.</p></li>
+<li><p>That’s it! The defaults take care of the rest.</p></li>
+</ol>
+<p>Code:</p>
+<pre><code>class ApplicationController &lt; ActionController::Base
+  ############################################################
+  # ERROR HANDLING et Foo
+  include ExceptionNotification::ExceptionNotifiable
+  #Comment out the line below if you want to see the normal rails errors in normal development.
+  alias :rescue_action_locally :rescue_action_in_public if Rails.env == &#39;development&#39;
+  #self.error_layout = &#39;errors&#39;
+  self.exception_notifiable_verbose = true #SEN uses logger.info, so won&#39;t be verbose in production
+  self.exception_notifiable_pass_through = :hoptoad # requires the standard hoptoad gem to be installed, and setup normally
+  self.exception_notifiable_silent_exceptions = [Acl9::AccessDenied, MethodDisabled, ActionController::RoutingError ]
+  #specific errors can be handled by something else:
+  rescue_from &#39;Acl9::AccessDenied&#39;, :with =&gt; :access_denied
+  # END ERROR HANDLING
+  ############################################################
+  ...
+end
+
+ExceptionNotification::Notifier.configure_exception_notifier do |config|
+  config[:exception_recipients] = %w(joe@example.com bill@example.com)
+end</code></pre>
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<p>There is a lot more you can configure, and do:</p>
+<h2 id="authors">Authors</h2>
+<p>[Peter Boling][peterboling] is the original author of the code, and current maintainer.</p>
+<h2 id="contributors">Contributors</h2>
+<p>See the</p>
+<h2 id="how-you-can-help">How you can help!</h2>
+<p>Take a look at the <code>reek</code> list which is the file called <code>REEK</code> and stat fixing things. Once you complete a change, run the tests:</p>
+</body>
+</html>

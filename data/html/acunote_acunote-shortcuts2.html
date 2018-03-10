@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>acunote_acunote-shortcuts2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    }
+},
+&#39;&lt;strong&gt;b&lt;/strong&gt;&#39;: {
+    &#39;&lt;strong&gt;a&lt;/strong&gt;&#39;: {
+        &#39;&lt;strong&gt;R&lt;/strong&gt;&#39;: function() { alert(&#39;&quot;baR&quot; has been typed!&#39;); },
+        &#39;&lt;strong&gt;z&lt;/strong&gt;&#39;: function() { alert(&#39;&quot;baz&quot; has been typed!&#39;); }
+    }
+}</code></pre>
+} &lt;/script&gt;
+</pre>
+<ol start="4" type="1">
+<li>Initialize keyboard shortcuts listener on page load.
+<pre>
+&lt;body onload="shortcutListener.init();"&gt;
+</pre></li>
+</ol>
+<h2 id="four-simple-steps-to-use-shortcuts-from-rubyonrails">Four Simple Steps To Use Shortcuts from Ruby on Rails</h2>
+<p>Rails helper supports global and page-specific keymaps and merges these at runtime.<br/>This way you can define global shortcuts for the whole site in the layout, and modify them as needed for specific pages. This example uses this functionality.</p>
+<ol type="1">
+<li>Configure global shortcuts in your layout template.
+<pre>
+&lt;%
+@global_shortcuts = {
+ <strong>:h</strong> =&gt;  "alert('Help!');",
+ <strong>:f</strong> =&gt; {
+     <strong>:o</strong> =&gt; {
+         <strong>:o</strong> =&gt; "alert('"foo" has been typed!');"
+     }
+ }
+}
+%&gt;
+</pre></li>
+<li>Add local page shortcuts to the page template.
+<pre>
+&lt;%
+@page_shortcuts = {
+ <strong>:b</strong> =&gt; {
+     <strong>:a</strong> =&gt; {
+         <strong>:R</strong> =&gt; "alert('"bar" has been typed!');",
+         <strong>:z</strong> =&gt; "alert('"baz" has been typed!');"
+     }
+ }
+}
+%&gt;
+</pre></li>
+<li>Place <a href="https://github.com/acunote/acunote-shortcuts/raw/master/rails/helper/acunote_shortcuts_helper.rb">acunote_shortcuts_helper.rb</a> into you app/helpers directory and include it into ApplicationHelper class
+<pre>
+module ApplicationHelper
+ include AcunoteShortcutsHelper
+end
+</pre></li>
+<li>Call render_shortcuts where your javascript code is rendered
+<pre></li>
+</ol>
+</body>
+</html>

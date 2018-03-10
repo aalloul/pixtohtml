@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sethm_symon5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>address space.</p>
+<p>By default, any file named <code>rom.bin</code> that exists in the same directory where Symon is launched will be loaded as a ROM image. ROM images can also be swapped out at run-time with the “Load ROM Image…” in the File menu.</p>
+<p>The “samples” directory contains a ROM image for the Symon architecture named ‘ehbasic.rom’, containing Lee Davison’s Enhanced 6502 BASIC. This serves as a good starting point for exploration.</p>
+<p><em>Note</em>: Presently, EhBASIC only works with the Symon machine architecture, not with MULTICOMP.</p>
+<h3 id="loading-a-program">4.3 Loading A Program</h3>
+<p>In addition to ROM images, programs in the form of raw binary object files can be loaded directly into memory from “Load Program…” in the File menu.</p>
+<p>Programs are loaded starting at addres $0300. After loading the program, the simulated CPU’s reset vector is loaded with the values $00, $03, and the CPU is reset.</p>
+<p>There are two very simple sample program in the “samples” directory, for testing.</p>
+<ul>
+<li><p>‘echo.prg’ will echo back anything typed at the console.</p></li>
+<li><p>‘hello.prg’ will continuously print “Hello, 6502 World!” to the console.</p></li>
+</ul>
+<h3 id="running">4.4 Running</h3>
+<p>After loading a program or ROM image, clicking “Run” will start the simulator running.</p>
+<h2 id="revision-history">5.0 Revision History</h2>
+<ul>
+<li><p><strong>1.2.1:</strong> 8 January, 2016 - Remove dependency on Java 8. Now supports compiling and running under Java 1.7.</p></li>
+<li><p><strong>1.2.0:</strong> 3 January, 2016 - Add symbolic disassembly to breakpoints window.</p></li>
+<li><p><strong>1.1.1:</strong> 2 January, 2016 - Minor enhancement: Allows breakpoints to be added with the Enter key.</p></li>
+<li><p><strong>1.1.0:</strong> 31 December, 2015 - Fixed delay loop to better simulate various clock speeds. Added ability to select clock speed at runtime. Status display now shows the next instruction to be executed, instead of the last instruction executed.</p></li>
+</ul>
+</body>
+</html>

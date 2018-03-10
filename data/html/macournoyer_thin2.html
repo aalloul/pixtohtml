@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>macournoyer_thin2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Store the server process ID, log to a file and daemonize:</p>
+<pre><code>thin -p 9292 -P tmp/pids/thin.pid -l logs/thin.log -d start</code></pre>
+<p>Thin is quite flexible in that many options can be specified at the command line (see <code>thin -h</code> for more).</p>
+<h3 id="configuration-files">Configuration files</h3>
+<p>You can create a configuration file using <code>thin config -C config/thin.yml</code>.</p>
+<p>You can then use it with all commands, such as: <code>thin start -C config/thin.yml</code>.</p>
+<p>Here is an example config file:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="ot">--- </span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="fu">user:</span><span class="at"> www-data</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="fu">group:</span><span class="at"> www-data</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="fu">pid:</span><span class="at"> tmp/pids/thin.pid</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="fu">timeout:</span><span class="at"> 30</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="fu">wait:</span><span class="at"> 30</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="fu">log:</span><span class="at"> log/thin.log</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="fu">max_conns:</span><span class="at"> 1024</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="fu">require:</span><span class="at"> </span><span class="kw">[]</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="fu">environment:</span><span class="at"> production</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="fu">max_persistent_conns:</span><span class="at"> 512</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="fu">servers:</span><span class="at"> 1</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="fu">threaded:</span><span class="at"> true</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="fu">no-epoll:</span><span class="at"> true</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="fu">daemonize:</span><span class="at"> true</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="fu">socket:</span><span class="at"> tmp/sockets/thin.sock</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="fu">chdir:</span><span class="at"> /path/to/your/apps/root</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="fu">tag:</span><span class="at"> a-name-to-show-up-in-ps aux</span></a></code></pre></div>
+<h2 id="license">License</h2>
+<p>Ruby License, http://www.ruby-lang.org/en/LICENSE.txt.</p>
+<h2 id="credits">Credits</h2>
+<p>The parser was originally from Mongrel http://mongrel.rubyforge.org by Zed Shaw. Mongrel is copyright 2007 Zed A. Shaw and contributors. It is licensed under the Ruby license and the GPL2.</p>
+<p>Thin is copyright Marc-Andre Cournoyer <a href="mailto:macournoyer@gmail.com">macournoyer@gmail.com</a></p>
+<p>Get help at http://groups.google.com/group/thin-ruby/</p>
+</body>
+</html>

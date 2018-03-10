@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>norman_has_image3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="faq">FAQ</h2>
+<h3 id="how-do-i-validate-the-mime-type-of-my-uploaded-images">How do I validate the mime type of my uploaded images?</h3>
+<p>You don’t. Rather than examine the mime type, has_image runs the “identify” command on the file to determine if it is processable by ImageMagick, and if it is, converts it to the format you specify, which defaults to JPEG.</p>
+<p>This is better than checking for mime types, because your users may upload exotic image types that you didn’t even realize would work, such as Truevision Targa images, or Seattle Film Works files.</p>
+<p>If you wish to give users a list of file types they can upload, a good start would be jpeg, png, bmp, and maybe gif and ttf if your installation of ImageMagick understands them. You can find out what image types your ImageMagick understands by running:</p>
+<pre><code>identify -list format</code></pre>
+<p>Ideally, if your users just upload files that “look like” images on their computers, it has_image should “just work.”</p>
+<h2 id="hacking-it">Hacking it</h2>
+<p>Don’t like the way it makes images? Want to pipe the images through some <a href="http://eigenclass.org/hiki/seam-carving-in-ocaml">crazy fast seam carving library written in OCaml</a>, or watermark them with your corporate logo? Happiness is just a away:</p>
+<pre><code>module HasImage
+  class Processor
+    def resize_image(size)
+      # your new-and-improved thumbnailer code goes here.
+    end
+  end
+end</code></pre>
+<p>Has_image follows a philosophy of <a href="http://weblog.jamisbuck.org/2006/10/18/skinny-controller-fat-model.">skinny model, fat plugin</a> This means that it tries to pollute your ActiveRecord model with as little functionality as possible, so that in a sense, the model is acts like a “controller” and the plugin like a “model” as regards the image handling functionality. This makes it easier to test, hack, and reuse, because the storage and processing functionality is largely independent of your model, and of Rails.</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>BCable_lfwrap2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="ii.-commands">II. Commands</h2>
+<pre><code>lfwrap &lt;command&gt; &lt;file/ext&gt;</code></pre>
+<p>Argument descriptions:</p>
+<pre><code>dir  - A directory to do the command on.
+
+file - A filename to do the command on.
+
+ext  - A file extension to do the command on.</code></pre>
+<h2 id="ii.a-standard-commands">II.a: Standard Commands</h2>
+<pre><code>-v                - Display version information and quit.
+
+checkin &lt;file&gt;    - Checks for the existence of a DreamWeaver lock file, then
+                    checks the file in if you are the owner of the lock.
+                    Otherwise, a prompt is shown displaying who really owns the
+                    lock, and if you wish to override their lock.
+
+checkin_dir &lt;dir&gt; - Recursively checks for any DreamWeaver lock files within the
+                    specified directory, and checks them in if necessary.
+                    Provides prompts for lock files checked out by other users.
+
+checkout &lt;file&gt;   - Checks out the file as yourself, if the file is not already
+                    checked out.
+
+edit &lt;file&gt;       - Checks out the file, then executes the editor defined in
+                    lfwrap.conf.  If the editor is already running, then the
+                    set of options used for the second editor is used as defined
+                    in lfwrap.conf.
+
+get &lt;file&gt;        - Retrieves the most recent modified date of all files
+                    associated with a file, then overwrites the current file
+                    with the newest file associated with it.
+
+put &lt;file&gt;        - Copies a file&#39;s contents to all other associated files as
+                    defined by sites.conf.
+
+stat &lt;file&gt;       - Prints information about a file, such as if the file is
+                    checked out, who has the file checked out, and any other
+                    files linked to that file through sites.conf.</code></pre>
+<h2 id="ii.b-windows-only-commands">II.b: Windows Only Commands</h2>
+</body>
+</html>

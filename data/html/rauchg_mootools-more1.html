@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rauchg_mootools-more1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>MooTools Plugins and Enhancements Repository</p>
+<h3 id="wiki">Wiki</h3>
+<ul>
+<li>.</li>
+<li>See also</li>
+</ul>
+<h3 id="to-do">TO DO</h3>
+<ul>
+<li>Move demo/tutorials from Clientcide wiki to Mootorial; update links in docs</li>
+<li>Compat for Clientcide</li>
+<li>make detach method for all classes that attach to elements</li>
+<li>make destroy method for all classes that create elements</li>
+</ul>
+<h3 id="styleguide">StyleGuide</h3>
+<ul>
+<li>http://wiki.github.com/mootools/mootools-core/syntax-and-coding-style-conventions</li>
+</ul>
+<h3 id="breaking-changes-from-rc1">Breaking changes from RC1</h3>
+<ul>
+<li>URI</li>
+<li>domain renamed to host</li>
+<li>Fx.Accordion</li>
+<li>no longer organizes the DOM for you</li>
+</ul>
+<h3 id="breaking-changes-from-more">Breaking Changes from More</h3>
+<ul>
+<li>Tips
+<ul>
+<li>options:offsets in Tips renamed to offset</li>
+</ul></li>
+<li>Accorion
+<ul>
+<li>renamed to Fx.Accordion</li>
+</ul></li>
+<li>SmoothScroll
+<ul>
+<li>renamed to Fx.SmoothScroll</li>
+</ul></li>
+</ul>
+<h3 id="breaking-changes-from-clientcide">Breaking Changes from Clientcide</h3>
+<ul>
+<li>IframeShim
+<ul>
+<li>options:zindex renamed to zIndex</li>
+</ul></li>
+<li>JsonP
+<ul>
+<li>renamed to Request.JSONP</li>
+<li>constructor/send/prepareUrl take options hash, no longer an url directly (like Request)</li>
+<li>user can change options on the fly when calling send() with a new hash, reusing the object</li>
+<li>added check method. support for link: ignore, cancel, chain (like Request)</li>
+<li>added success, request and cancel events</li>
+<li>data can be a hash or string now (like Request)</li>
+<li>queryString option gone</li>
+<li>makeUrl logic now moved to new getScript(), which directly returns the script</li>
+<li>changed how it essentially works. instead of storing the object reference, we store a new function every time a request is made, that keeps a reference of the script element and the object instance.</li>
+<li>abortAfter and timeout gone. there’s now a single timeout for retries and for when retries run out.</li>
+<li>globalFunction gone, deemed useless</li>
+</ul></li>
+</ul>
+</body>
+</html>

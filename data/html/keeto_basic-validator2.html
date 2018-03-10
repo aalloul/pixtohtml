@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>keeto_basic-validator2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>For more information on these methods, see the full documentation at Docs/Validator.md</p>
+<h2 id="datatypes">DataTypes</h2>
+<p>Within the <code>Validator</code> object is a property called <code>exps</code>, which is essentially a hash containing key-value pairs. The keys are the names of the datatypes and the value is a regular expression used to check the value passed. There are several “pre-built” datatypes included:</p>
+<ul>
+<li><strong>“alpha”</strong> - checks whether the value contains only letters of the alphabet, whitespaces and punctuation marks.</li>
+<li><strong>“alphaStrict”</strong> - checks whether the value contains only letters of the alphabet.</li>
+<li><strong>“alphaNum”</strong> - checks whether the value contains only alpha-numeric characters, whitespaces and punctuation marks.</li>
+<li><strong>“alphaNumStrict”</strong> - checks whether the value contains only alpha-numeric characters.</li>
+<li><strong>“number”</strong> - checks whether the value is a number.</li>
+<li><strong>“email”</strong> - checks whether the value is a valid email address.</li>
+<li><strong>“URL”</strong> - checks whether the value is a valid url address.</li>
+</ul>
+<p>To test a value against a datatype, simply pass the name of the datatype as the second argument to the <code>Validator:test</code> method. Take note that the names for data types are case sensitive (i.e. “URL” is different from “url”).</p>
+<h3 id="examples">Examples:</h3>
+<pre><code>Validator.test(&quot;Mark Obcena&quot;, &quot;alpha&quot;);          // Returns true;
+Validator.test(&quot;Mark Obcena&quot;, &quot;number&quot;);         // Returns false;
+Validator.test(&quot;markeeto@gmail.com&quot;, &quot;email&quot;);   // Returns true;
+Validator.test(&quot;http://google.com&quot;, &quot;URL&quot;);      // Returns true;</code></pre>
+<h2 id="adding-more-datatypes">Adding More DataTypes</h2>
+<p>You can use the <code>Validator:addType</code> method to create additional datatypes. It requires two arguments: the name of the datatype and a regular expression object that will be used to check values.</p>
+<h3 id="example">Example:</h3>
+<pre><code>// Add a new &quot;date&quot; datatype that checks
+// if the value is in the format &quot;dd/mm/yyyy&quot;
+Validator.addType(&quot;date&quot;, /(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d/);</code></pre>
+<h2 id="magic-isdatatype-methods">Magic “isDataType” Methods</h2>
+<p>For each datatype, a special “isDataType” method is automatically created within the Validator object. These magic methods are shortcut functions that require only one argument: the value to be passed. So with the prebuilt datatypes, the Validator object obtains the following magic methods: isAlpha(), isAlphaStrict(), isAlphaNum(), isAlphaNumStrict(), isNumber(), isEmail() and isURL(). You’ll then be able to use them as such:</p>
+<pre><code>Validator.isAlpha(&quot;Mark Obcena&quot;);           // == Validator.test(&quot;Mark Obcena&quot;, &quot;alpha&quot;);
+Validator.isEmail(&quot;markeeto@gmail.com&quot;);    // == Validator.test(&quot;markeeto@gmail.com&quot;, &quot;email&quot;);</code></pre>
+</body>
+</html>

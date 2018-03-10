@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cgrand_enlive3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>:lockstep {[:a :selector] a-transformation [:another :selector] another-transformation} [:a :dependent :selector] yet-another-transformation</p>
+<pre><code>
+Transformations are now slightly restricted in their return values: a node or
+a collection of nodes (instead of freely nested collections of nodes).
+
+Dynamic selectors: selectors aren&#39;t compiled anymore. It means that you don&#39;t
+need to wrap them in `(selector ...)` forms anymore nor to eval them in the most
+dynamic cases.
+
+Fragment selectors allow to select adjacent nodes. They are denoted by a map of
+two node selectors (eg `{[:h1] [:p]}`), bounds are inclusive and they select
+the smallest matching fragments.
+
+Transformations (the right-hand parts of rules) are now plain old closures.
+These functions take one arg (the selected node) and return nil, another node
+or a collection of nodes.
+
+Rules are applied top-down: the first rule transforms the whole tree and the
+resulting tree is passed to the next rules.
+
+Nodes are transformed deep-first, that is: if a selector selects several nodes,
+descendants are transformed first. Hence, when the transformation is applied to
+an ancestor, you can &quot;see&quot; the transformed descendants (but you can not see
+your transformed siblings).
+</code></pre>
+<p>/B /(T B) A if A and B are selected and transformed by T the the resulting tree is (T A )  ```</p>
+<h2 id="concepts">Concepts</h2>
+<p><code>snippet</code> is a unit of your page. It may be logical or visual entry, such as header, footer, page element. Snippet is usually a part of a <code>template</code>, and may serve as a container for other snippets. For example, for navigation on the web page. For that, let’s first define an html template for the navigation. Snippets are created by using <code>net.cgrand.enlive-html/defsnippet</code> function and, same as templates, they require a corresponding HTML template file to be availble in a classpath.</p>
+<p>So, <code>snippet</code> function returns a seq of nodes, it can be used as a building block for more complex templates.</p>
+<p><code>templates</code> combine snippets together, they serve like a basement for</p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>newism_lg.addon_updater.ee_addon2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>LG Addon Updater has the following extension settings which need to be entered separately for each Multi-Site Manager site.</p>
+<p>Note: All configuration options are site specific. When a new site is created be sure to save the extension settings for the new site to avoid errors.</p>
+<h4 id="update-notification-preferences">Update notification preferences</h4>
+<p>For those extensions that allow it, LG Addon Updater checks the 3rd paty developers site to see if their installed addons (plugins, extensions &amp; modules) have been updated. Results are cached for a set period of time.</p>
+<h4 id="would-you-like-lg-addon-updater-to-check-for-developer-updates-and-display-them-on-your-cp-homepage">Would you like LG Addon Updater to check for developer updates and display them on your CP homepage?</h4>
+<p>Enable / disable new 3rd party addon version notifications.</p>
+<h4 id="how-many-minutes-you-like-the-update-check-cached-for">How many minutes you like the update check cached for?</h4>
+<p>To avoid CP processing LG Addon Updater caches responses from 3rd party developer sites. This setting determines how often requests are sent to 3rd party developers.</p>
+<h4 id="check-for-lg-addon-updater-updates">Check for LG Addon Updater updates?</h4>
+<p>LG Addon Updater can call home, check for recent updates and display them on your CP homepage? This feature requires [LG Addon Updater][lg_addon_updater] to be installed and activated.</p>
+<h5 id="would-you-like-this-extension-to-check-for-updates">Would you like this extension to check for updates?</h5>
+<p>Enable / disable new LG Addon Updater version notifications.</p>
+<h2 id="user-guide">User guide</h2>
+<p>LG Addon Updater is not designed to be implemented by site administrators or end users. It is a developers extension written to facilitate easy delivery of update notifications when a 3rd party addon is updated.</p>
+<p>To include a new addon in the update check you must first register a source file and addon id using LG Addon Updater hooks.</p>
+<h4 id="creating-a-source-file">Creating a source file</h4>
+<p>A source file is just a simple XML file that lists all a developers addons with version numbers, last updated UNIX timestamp and documentation url. It looks like this:</p>
+<pre><code>&lt;versions&gt;
+    &lt;addon id=&#39;LG Addon Updater&#39; version=&#39;1.0.1&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-addon-updater/&#39; /&gt;
+    &lt;addon id=&#39;LG Add Sitename&#39; version=&#39;1.2.2&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-add-sitename/&#39; /&gt;
+    &lt;addon id=&#39;LG Better Meta Commercial&#39; version=&#39;1.6.2&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-better-meta/&#39; /&gt;
+    &lt;addon id=&#39;LG Member List&#39; version=&#39;1.3.3&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-member-list/&#39; /&gt;
+    &lt;addon id=&#39;LG Member Form Customiser&#39; version=&#39;1.2.1&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-member-form-customiser/&#39; /&gt;
+    &lt;addon id=&#39;LG Multi Language&#39; version=&#39;1.0.2&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-multi-language/&#39; /&gt;
+    &lt;addon id=&#39;LG Polls&#39; version=&#39;1.1.0&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-polls/&#39; /&gt;
+    &lt;addon id=&#39;LG Social Bookmarks&#39; version=&#39;2.0.1&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-social-bookmarks/&#39; /&gt;
+    &lt;addon id=&#39;LG TinyMCE&#39; version=&#39;1.3.3&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-tinymce/&#39; /&gt;
+    &lt;addon id=&#39;LG Twitter&#39; version=&#39;2.0.1&#39; last_updated=&#39;1219175483&#39; docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-twitter/&#39; /&gt;
+&lt;/versions&gt;</code></pre>
+<p>The source file must contain a root <code>&lt;versions&gt;</code> node and at least one <code>&lt;addon&gt;</code> child node.</p>
+</body>
+</html>

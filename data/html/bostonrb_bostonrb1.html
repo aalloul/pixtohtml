@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bostonrb_bostonrb1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="bostonrb">BostonRB</h1>
+<p>This is the source code for the Boston Ruby Group’s community website:</p>
+<pre><code>http://bostonrb.org</code></pre>
+<p>It’s a Rails app running and uses:</p>
+<ul>
+<li>Postgres as a SQL database (SQLite for development)</li>
+<li>jQuery for client-side behavior</li>
+<li>Compass for stylesheets</li>
+<li>SimpleForm for forms</li>
+<li>Hoptoad for error notification</li>
+<li>High Voltage for static pages</li>
+<li>Capybara, RSpec, and VCR for integration testing</li>
+<li>RSpec ad VCR for isolation testing</li>
+<li>ValidAttribute for model validation testing</li>
+<li>Factory Girl for test data</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>If you want to make changes locally, follow these steps:</p>
+<p>Install Ruby 1.9.3 (if necessary). RVM is optional, but highly recommended</p>
+<pre><code>rvm install 1.9.3
+rvm use 1.9.3 --default</code></pre>
+<p>Install bundler</p>
+<pre><code>gem install bundler</code></pre>
+<p>Clone your new fork</p>
+<pre><code>git clone git@github.com:your-github-username/bostonrb.git
+cd bostonrb</code></pre>
+<p>For local development, install the required gems, minus the production and staging gemspecs</p>
+<pre><code>bundle install --without production staging</code></pre>
+<p>Setup the development database (uses sqlite)</p>
+<pre><code>cp config/database.example.yml config/database.yml
+rake db:create &amp;&amp; rake db:migrate &amp;&amp; rake db:seed</code></pre>
+<p>Run the tests</p>
+</body>
+</html>

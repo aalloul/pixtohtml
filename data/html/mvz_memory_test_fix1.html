@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mvz_memory_test_fix1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="memorytestfix">MemoryTestFix</h1>
+<p>A simple fix to run your Rails tests with sqlite. From the .</p>
+<h2 id="status">Status</h2>
+<h2 id="usage">Usage</h2>
+<p>Add the gem to your bundle by adding</p>
+<pre><code>gem &#39;memory_test_fix&#39;</code></pre>
+<p>to your <code>Gemfile</code>.</p>
+<p>In your database.yml, use:</p>
+<pre><code>test:
+  adapter: sqlite3
+  database: &quot;:memory:&quot;</code></pre>
+<p>It runs much faster!</p>
+<p>You can also adjust the verbosity of the output:</p>
+<pre><code>test:
+  adapter: sqlite3
+  database: &quot;:memory:&quot;
+  verbosity: silent</code></pre>
+<p>To use rails migrations instead of loading <code>db/schema.rb</code></p>
+<pre><code>test:
+  adapter: sqlite3
+  database: &quot;:memory:&quot;
+  migrate: true</code></pre>
+<p>You can also use this with other (testing) environments, not just ‘test’.</p>
+<h2 id="rails-versions">Rails Versions</h2>
+<p>In general, Bundler should pick a compatible version for you if you don’t specify one in your <code>Gemfile</code>.</p>
+<p>That said, the latest version of this gem is compatible with Rails 5.0 and 5.1. If you’re still on Rails 4, you can use version 1.3.0. Unfortunately, the hard</p>
+</body>
+</html>

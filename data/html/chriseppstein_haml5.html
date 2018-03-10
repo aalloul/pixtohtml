@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chriseppstein_haml5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  color: darken($blue, 10%);
+}
+
+.border {
+  padding: $margin / 2;
+  margin: $margin / 2;
+  border-color: $blue;
+}</code></pre>
+<h4 id="mixins">Mixins</h4>
+<p>Even more powerful than variables, mixins allow you to re-use whole chunks of CSS, properties or selectors. You can even give them arguments.</p>
+<pre><code>@mixin table-scaffolding {
+  th {
+    text-align: center;
+    font-weight: bold;
+  }
+  td, th { padding: 2px; }
+}
+
+@mixin left($dist) {
+  float: left;
+  margin-left: $dist;
+}
+
+#data {
+  @include left(10px);
+  @include table-scaffolding;
+}</code></pre>
+<p>A comprehensive list of features is available in the .</p>
+<h2 id="executables">Executables</h2>
+<p>The Haml gem includes several executables that are useful for dealing with Haml and Sass from the command line.</p>
+<h3 id="haml"><code>haml</code></h3>
+<p>The <code>haml</code> executable transforms a source Haml file into HTML. See <code>haml --help</code> for further information and options.</p>
+<h3 id="sass"><code>sass</code></h3>
+<p>The <code>sass</code> executable transforms a source Sass file into CSS.</p>
+</body>
+</html>

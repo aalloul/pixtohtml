@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra57</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="when-to-use-a-config.ru">When to use a config.ru?</h3>
+<p>A <code>config.ru</code> file is recommended if:</p>
+<ul>
+<li>You want to deploy with a different Rack handler (Passenger, Unicorn, Heroku, …).</li>
+<li>You want to use more than one subclass of <code>Sinatra::Base</code>.</li>
+<li>You want to use Sinatra only for middleware, and not as an endpoint.</li>
+</ul>
+<p><strong>There is no need to switch to a <code>config.ru</code> simply because you switched to the modular style, and you don’t have to use the modular style for running with a <code>config.ru</code>.</strong></p>
+<h3 id="using-sinatra-as-middleware">Using Sinatra as Middleware</h3>
+<p>Not only is Sinatra able to use other Rack middleware, any Sinatra application can in turn be added in front of any Rack endpoint as middleware itself. This endpoint could be another Sinatra application, or any other Rack-based application (Rails/Hanami/Roda/…):</p>
+<p>```ruby require ‘sinatra/base’</p>
+<p>class LoginScreen &lt; Sinatra::Base enable :sessions</p>
+<p>get(‘/login’) { haml :login }</p>
+<p>post(‘/login’) do if params[‘name’] == ‘admin’ &amp;&amp; params[‘password’] == ‘admin’ session[‘user_name’] = params[‘name’] else redirect ‘/login’ end end end</p>
+<p>class MyApp &lt; Sinatra::Base # middleware will run before filters use LoginScreen</p>
+<p>before do unless session[‘user_name’] halt “Access denied, please <a href='/login'>login</a>.” end end</p>
+<p>get(‘/’) { “Hello #{session[‘user_name’]}.” } end</p>
+</body>
+</html>

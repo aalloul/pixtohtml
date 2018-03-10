@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tonio_mootools-more3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>Drag: added new ‘stopPropagation’ option</li>
+<li>HtmlTable.Select: ensuring that instances only delegates to immediate children (for nested tables)</li>
+<li>HtmlTable.Sort.js: detects and sorts date columns more accurately, handles negative integers and floats</li>
+<li>Reorganized scripts json so Depender can implement Log</li>
+</ul>
+<h5 id="changes-to-clientcide-plugins-adopted-by-mootools-more-in-this-release">Changes to Clientcide plugins adopted by MooTools More in this release</h5>
+<ul>
+<li>Fupdate is now named Form.Request; see compat layer on</li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.3.1">Changes in MooTools More 1.2.3.1</h4>
+<ul>
+<li>Issues fixed (in lighthouse): #50, #55, #65, and various other minor bugs</li>
+<li>Replaced all occurrences of $ with document.id</li>
+<li>Overhauled Date.js</li>
+<li>Prevented overtext from focusing on inputs except when they are interacted with</li>
+<li>Moved some methods from Date.Extras into Date because of some dependencies that weren’t seen before.</li>
+<li>Added Date.now for all browsers. Removed unnecessary genericization.</li>
+<li>Date.define2DigitYearStart now in effect. Defaults to 1970. 2 digit dates before 70 will default to 2000*</li>
+<li>Fx.Scroll: added scrollIntoView method</li>
+<li>JSONP was calling this.request instead of this.send</li>
+<li>Patch for FormValidator.Inline’s scrollFxOptions being ignored, .</li>
+<li>Updated Iframeshim’s empty document creation; fixes https issues in IE6</li>
+<li>OverText now stops polling when elements are hidden (when polling is enabled).</li>
+<li>Added error callback for Assets.images</li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.2.2">Changes in MooTools More 1.2.2.2</h4>
+<ul>
+<li>Issues fixed (in lighthouse): #47, #38, and various other minor bugs</li>
+<li>Updated the OverText class to allow for the user to set the element type.</li>
+</ul>
+<h4 id="breaking-changes-from-rc1">Breaking changes from RC1</h4>
+<ul>
+<li>URI</li>
+<li>domain renamed to host</li>
+<li>Fx.Accordion</li>
+<li>no longer organizes the DOM for you</li>
+</ul>
+<h4 id="breaking-changes-from-more">Breaking Changes from More</h4>
+<ul>
+<li>Tips
+<ul>
+<li>options:offsets in Tips renamed to offset</li>
+</ul></li>
+<li>Accorion
+<ul>
+<li>renamed to Fx.Accordion</li>
+</ul></li>
+<li>SmoothScroll
+<ul>
+<li>renamed to Fx.SmoothScroll</li>
+</ul></li>
+</ul>
+<h4 id="breaking-changes-from-clientcide">Breaking Changes from Clientcide</h4>
+<ul>
+<li>IframeShim
+<ul>
+<li>options:zindex renamed to zIndex</li>
+</ul></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>darkk_redsocks4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>Debian: http://packages.debian.org/search?searchon=names&amp;keywords=redsocks</li>
+<li>Gentoo (zugaina overlay): http://gpo.zugaina.org/net-proxy/redsocks</li>
+<li>Gentoo: https://packages.gentoo.org/packages/net-proxy/redsocks</li>
+<li>Ubuntu: http://packages.ubuntu.com/search?searchon=names&amp;keywords=redsocks</li>
+</ul>
+<h2 id="compilation">Compilation</h2>
+<p>is required.</p>
+<p>gcc and clang are supported right now, other compilers can be used but may require some code changes.</p>
+<p>Compilation is as easy as running <code>make</code>, there is no <code>./configure</code> magic.</p>
+<p>GNU Make works, other implementations of make were not tested.</p>
+<h2 id="running">Running</h2>
+<p>Program has following command-line options:</p>
+<ul>
+<li><code>-c</code> sets proper path to config file (“./redsocks.conf” is default one)</li>
+<li><code>-t</code> tests config file syntax</li>
+<li><code>-p</code> set a file to write the getpid() into</li>
+</ul>
+<p>Following signals are understood: SIGUSR1 dumps list of connected clients to log, SIGTERM and SIGINT terminates daemon, all active connections are closed.</p>
+<p>You can see configuration file example in .</p>
+<h3 id="iptables-example">iptables example</h3>
+<p>You have to build iptables with connection tracking and REDIRECT target.</p>
+<p>``` # Create new chain root# iptables -t nat -N REDSOCKS</p>
+<h1 id="ignore-lans-and-some-other-reserved-addresses.">Ignore LANs and some other reserved addresses.</h1>
+<h1 id="see-httpen.wikipedia.orgwikireserved_ip_addressesreserved_ipv4_addresses">See http://en.wikipedia.org/wiki/Reserved_IP_addresses#Reserved_IPv4_addresses</h1>
+<h1 id="and-httptools.ietf.orghtmlrfc5735-for-full-list-of-reserved-networks.">and http://tools.ietf.org/html/rfc5735 for full list of reserved networks.</h1>
+<p>root# iptables -t nat -A REDSOCKS -d 0.0.0.0/8 -j RETURN root# iptables -t nat -A REDSOCKS -d 10.0.0.0/8 -j RETURN root# iptables -t nat -A REDSOCKS -d 100.64.0.0/10 -j RETURN root# iptables -t nat -A REDSOCKS -d 127.0.0.0/8 -j RETURN root# iptables -t nat -A REDSOCKS -d 169.254.0.0/16 -j RETURN root# iptables -t nat -A REDSOCKS -d 172.16.0.0/12 -j RETURN root# iptables -t nat -A REDSOCKS -d 192.168.0.0/16 -j RETURN root# iptables -t nat -A REDSOCKS -d 198.18.0.0/15 -j RETURN root# iptables -t nat -A REDSOCKS -d 224.0.0.0/4 -j RETURN</p>
+</body>
+</html>

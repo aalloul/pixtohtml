@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>c42_wrest8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&#39;https://api.github.com/repos/c42/wrest/issues&#39;.to_uri(detailed_http_logging: $stdout).get.deserialize
+```</code></pre>
+<h3 id="json-backend">Json Backend</h3>
+<p>Wrest uses the multi_json gem to manage Json backends, allowing it to play nice with Rails 3.1. To change the backend used, you can do the following:</p>
+<pre><code>  MultiJson.engine = :json_gem</code></pre>
+<p>For more information, look up the documentation.</p>
+<h3 id="build">Build</h3>
+<p>Standard options are available and can be listed using <code>rake -T</code>. Use rake:rcov for coverage and rake:rdoc to generate documentation. The link to the continuous integration build is over at the C42 Engineering page.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Wrest RDocs can be found at http://wrest.rubyforge.org</p>
+<h2 id="roadmap">Roadmap</h2>
+<p>Features that are planned, in progress or already implemented are documented in the starting from version 0.0.8.</p>
+<h2 id="installation">Installation</h2>
+<p>The source is available at git://github.com/kaiwren/wrest.git</p>
+<p>To install the Wrest gem, do <code>(sudo) gem install wrest</code>.</p>
+<p>Wrest is currently available as a gem for for Ruby and JRuby.</p>
+<h3 id="shell">Shell</h3>
+<p>You can launch the interactive Wrest shell by running bin/wrest if you have the source or invoking <code>wrest</code> from your prompt if you’ve installed the gem.</p>
+<pre><code>  $ wrest
+  &gt;&gt; y &#39;http://twitter.com/statuses/public_timeline.json&#39;.to_uri(timeout: 5).get.deserialise</code></pre>
+<h3 id="testing">Testing</h3>
+<p>Start the Sinatra test server for functional test. The dependencies for the test app are managed separately by a Gemfile under spec/sample_app.</p>
+<p>To start the sample application:</p>
+<p>```</p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rasmusfl0e_amoeba7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The actual DOM element being wrapped.</p>
+<h3 id="insert">#.insert</h3>
+<p>Inserts the supplied content into the wrapped element.</p>
+<h6 id="arguments">Arguments</h6>
+<ul>
+<li><code>content</code> - (String, Number, Element, Array or HtmlCollection) Content to be appended. If an array is supplied it should only consist of strings (text or html), numbers or elements.</li>
+<li><code>context</code> - (String or Number) Optional. A string or number that specifies the relation to the parent element;
+<ul>
+<li><code>&quot;top&quot;</code> - Insert as the first elements inside parent.</li>
+<li><code>&quot;bottom&quot;</code> - Insert as the last elements inside parent.</li>
+<li><code>&quot;before&quot;</code> - Insert before parent (outside).</li>
+<li><code>&quot;after&quot;</code> - Insert after parent (outside).</li>
+<li>(Number) - Corresponds to the index of the childnodes where content will be inserted. Negative numbers have their index calculated in reverse. Default is <code>&quot;bottom&quot;</code>.</li>
+</ul></li>
+</ul>
+<h6 id="returns">Returns</h6>
+<p>(Wrapper) The wrapped element.</p>
+<h3 id="remove">#.remove</h3>
+<p>Remove the element from the DOM.</p>
+<h6 id="returns-1">Returns</h6>
+<p>(Wrapper) The wrapped element.</p>
+<h3 id="get">#.get</h3>
+<p>Finds the first element that matches the provided selector.</p>
+<h6 id="arguments-1">Arguments</h6>
+<ul>
+<li><code>selector</code> - (String) The CSS selector matching the element to be returned.</li>
+</ul>
+<h6 id="returns-2">Returns</h6>
+<p>(Wrapper|Null) An element or null if no matching element is found.</p>
+<h6 id="example">Example</h6>
+<p>```js var body = $(“body”); var firstUserItem = body.get(“ul.users li”);</p>
+</body>
+</html>

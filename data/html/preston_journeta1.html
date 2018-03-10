@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>preston_journeta1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="journeta">Journeta</h1>
+<h2 id="about">About</h2>
+<p>Journeta is a dirt simple peer discovery and message passing library for processes on the same LAN, requiring no advanced networking knowledge to use.</p>
+<p>Only core Ruby libraries are required, making the library fairly light. As all data is sent across the wire in YAML form, any arbitrary Ruby object can be sent to peers, provided they:</p>
+<ol type="1">
+<li>Are running a compatible Journeta version.</li>
+<li>Have access to the same class definitions if you are sending your own custom objects.</li>
+<li>Do not have a firewall preventing network I/O.</li>
+</ol>
+<p>Journeta uses Ruby threading to manage the asynchronous nature of peer-to-peer I/O. Data you send from your application thread will be queued and sent asynrchonously as soon as possible. For insight into events internal to the library, start ruby with the <code>--debug</code> options.</p>
+<h2 id="bundled-sample-code">Bundled Sample Code</h2>
+<h3 id="instant-messenger">Instant Messenger</h3>
+<p>A completely distributed, zero-configuration-required chat room script.</p>
+<p>Fire up several instances in separate terminals. Multiple instances on the same machine is ok. Everything you type will automatically be sent to all other instances on the LAN! For detailed internal event details:</p>
+<pre><code>ruby --debug journeta_instant_messenger.rb</code></pre>
+<h3 id="network-status">Network Status</h3>
+<p>Monitors the presence of all peers on the network.</p>
+<pre><code>journeta_network_status.rb</code></pre>
+<h3 id="distributed-masterslave-job-queue">Distributed Master/Slave Job Queue</h3>
+<p>A simple queue managed by a server. Each client produces jobs to be queued, and processes jobs sent from the server(s). All nodes automatically find eachother. Try running multiples clients, and then multiple servers. Notice that when you have N servers, each job gets run N times, and not necessarilly by the same client!</p>
+<pre><code>journeta_queue_server.rb
+journeta_queue_client.rb</code></pre>
+<h2 id="author">Author</h2>
+<p>Preston Lee</p>
+<ul>
+<li>https://www.leedoes.com</li>
+<li>https://www.github.com/preston</li>
+<li>http://twitter.com/prestonism</li>
+</ul>
+</body>
+</html>

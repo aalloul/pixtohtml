@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>davorg_symbol-approx-sub1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>#Symbol::Approx::Sub#</p>
+<p>##What is Symbol::Approx::Sub?##</p>
+<p>Symbol::Approx::Sub is a Perl module which allows you to call subroutines using approximate names.</p>
+<p>Of course, why you might want to do that is a completely different question. You almost certainly don’t want to do it in production code as it will make your program almost completely unmaintainable.</p>
+<p>I only wrote this module to test my understanding of typeglobs and AUTOLOAD. I really don’t expect it to have any sensible uses at all (but if you find one, I’d be interested in knowing what it is).</p>
+<p>##How Do I Install It?</p>
+<p>Symbol::Approx::Sub uses the standard Perl module architecture and can therefore by installed using the standard Perl method which, in brief, goes something like this:</p>
+<pre class="unix"><code>   gzip -cd Symbol-Approx-Sub-X.XX.tar.gz | tar xvf -
+   cd Symbol-Approx-Sub-X.XX
+   perl Makefile.PL
+   make
+   make test
+   make install</code></pre>
+<p>Where X.XX is the version number of the module which you are installing.</p>
+<p>If this doesn’t work for you then creating a directory called Symbol/Approx somewhere in your Perl library path (<span class="citation" data-cites="INC">@INC</span>) and copying the Sub.pm file into this directory should also do the trick.</p>
+<p>##Prerequisites##</p>
+<p>As of version 1.03, Symbol::Approx::Sub uses Devel::Symdump to do all of the clever glob-walking stuff, so you’ll need to get that from CPAN and install it before installing Symbol::Approx::Sub.</p>
+<p>##Where is the Documentation?##</p>
+<p>All of the documentation is currently in POD format in the Approx.pm</p>
+</body>
+</html>

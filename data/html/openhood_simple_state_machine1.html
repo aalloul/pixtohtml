@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>openhood_simple_state_machine1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="simplestatemachine">SimpleStateMachine</h1>
+<p>Allow an Active Record or MongoMapper model to act as a finite state machine just as the popular plugin acts_as_state_machine but with many enhancements such as the possibility to have multiple states per object.</p>
+<p>It can work together with the classic act_as_state_machine on the same project but both cannot be used at the same time for one given Active Record model. Moreover, simple_state_machine work standalone and doesn’t require acts_as_state_machine.</p>
+<p>You also get magic methods to check current state and a way to revert to previous state in database (or initial value for a new record) if something went wrong.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>Ruby 1.8.7 or 1.9.2</li>
+</ul>
+<h2 id="lazy-dependencies">Lazy dependencies</h2>
+<ul>
+<li>gem “active_record”, “&gt;= 3.0.0”</li>
+<li>gem “mongo_mapper”, “~&gt; 0.9.0”</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<ul>
+<li><p>With ActiveRecord</p>
+<pre><code>    require &quot;simple_state_machine/active_record&quot;
+
+    class Chicken &lt; ActiveRecord::Base
+      state_machine :user_state, [:pending, :active, :removed, :on_hold]
+      state_machine :validation_state, [:waiting, :reviewed, :validated, :invalid]
+      def user_activate!
+        return false if !user_state_pending?
+        self.user_state = :active
+        save! rescue user_state_revert
+        user_state_active?
+      end
+    end
+
+    # And then you can do:
+
+    c = Chicken.create # c.user_state = :pending
+    c.user_activate! # c.user_state = :active</code></pre></li>
+<li><p>With MongoMapper</p>
+<pre><code>    require &quot;simple_state_machine/mongo_mapper&quot;
+
+    class Chicken
+      include MongoMapper::Document</code></pre></li>
+</ul>
+</body>
+</html>

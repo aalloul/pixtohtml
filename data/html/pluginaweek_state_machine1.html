@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="state_machine">state_machine</h1>
+<p><em>state_machine</em> adds support for creating state machines for attributes on any Ruby class.</p>
+<h2 id="resources">Resources</h2>
+<p>API</p>
+<ul>
+<li>http://rdoc.info/github/pluginaweek/state_machine/master/frames</li>
+</ul>
+<p>Bugs</p>
+<ul>
+<li>http://github.com/pluginaweek/state_machine/issues</li>
+</ul>
+<p>Development</p>
+<ul>
+<li>http://github.com/pluginaweek/state_machine</li>
+</ul>
+<p>Testing</p>
+<ul>
+<li>http://travis-ci.org/pluginaweek/state_machine</li>
+</ul>
+<p>Source</p>
+<ul>
+<li>git://github.com/pluginaweek/state_machine.git</li>
+</ul>
+<p>Mailing List</p>
+<ul>
+<li>http://groups.google.com/group/pluginaweek-talk</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>State machines make it dead-simple to manage the behavior of a class. Too often, the state of an object is kept by creating multiple boolean attributes and deciding how to behave based on the values. This can become cumbersome and difficult to maintain when the complexity of your class starts to increase.</p>
+<p><em>state_machine</em> simplifies this design by introducing the various parts of a real state machine, including states, events, transitions, and callbacks. However, the api is designed to be so simple you don’t even need to know what a state machine is :)</p>
+<p>Some brief, high-level features include:</p>
+<ul>
+<li>Defining state machines on any Ruby class</li>
+<li>Multiple state machines on a single class</li>
+<li>Namespaced state machines</li>
+<li>before/after/around/failure transition hooks with explicit transition requirements</li>
+<li>Integration with ActiveModel, ActiveRecord, DataMapper, Mongoid, MongoMapper, and Sequel</li>
+</ul>
+</body>
+</html>

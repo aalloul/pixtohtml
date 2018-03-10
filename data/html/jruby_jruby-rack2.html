@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jruby_jruby-rack2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&lt;context-param&gt;
+  &lt;param-name&gt;rails.env&lt;/param-name&gt;
+  &lt;param-value&gt;production&lt;/param-value&gt;
+&lt;/context-param&gt;
+&lt;context-param&gt;
+  &lt;param-name&gt;jruby.min.runtimes&lt;/param-name&gt;
+  &lt;param-value&gt;1&lt;/param-value&gt;
+&lt;/context-param&gt;
+&lt;context-param&gt;
+  &lt;param-name&gt;jruby.max.runtimes&lt;/param-name&gt;
+  &lt;param-value&gt;1&lt;/param-value&gt;
+&lt;/context-param&gt;
+
+&lt;filter&gt;
+  &lt;filter-name&gt;RackFilter&lt;/filter-name&gt;
+  &lt;filter-class&gt;org.jruby.rack.RackFilter&lt;/filter-class&gt;
+  &lt;!-- optional filter configuration init-params : --&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;resetUnhandledResponse&lt;/param-name&gt;
+    &lt;param-value&gt;true&lt;/param-value&gt; &lt;!-- true (default), false or buffer --&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;addsHtmlToPathInfo&lt;/param-name&gt;
+    &lt;param-value&gt;true&lt;/param-value&gt; &lt;!-- true (default), false --&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;verifiesHtmlResource&lt;/param-name&gt;
+    &lt;param-value&gt;false&lt;/param-value&gt; &lt;!-- true, false (default) --&gt;
+  &lt;/init-param&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;RackFilter&lt;/filter-name&gt;
+  &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+
+&lt;listener&gt;
+  &lt;listener-class&gt;org.jruby.rack.rails.RailsServletContextListener&lt;/listener-class&gt;
+&lt;/listener&gt;</code></pre>
+<h3 id="other-rack-applications">(Other) Rack Applications</h3>
+<p>The main difference when using a non-Rails Rack application is that JRuby-Rack looks for a “rackup” file named <strong>config.ru</strong> in <code>WEB-INF/config.ru</code> or <code>WEB-INF/*/config.ru</code>. Here’s a sample <em>web.xml</em> configuration :</p>
+<pre><code>&lt;filter&gt;
+  &lt;filter-name&gt;RackFilter&lt;/filter-name&gt;
+  &lt;filter-class&gt;org.jruby.rack.RackFilter&lt;/filter-class&gt;
+  &lt;!-- optional filter configuration init-params (@see above) --&gt;
+&lt;/filter&gt;</code></pre>
+</body>
+</html>

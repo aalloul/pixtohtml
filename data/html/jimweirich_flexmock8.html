@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jimweirich_flexmock8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>If a mock has a base class, use the <code>explicitly</code> modifier to override the restriction on method names imposed by the base class. The <code>explicitly</code> modifier must come immediately after the <code>should_receive</code> call and before any other expectation declarators.</p>
+<p>If a mock does not have a base class, this method has no effect.</p>
+<ul>
+<li><p><b>should_expect { |<em>recorder</em>| … }</b></p>
+<p>Creates a mock recording object that will translate received method calls into mock expectations. The recorder is passed to a block supplied with the <code>should_expect</code> method. See examples below.</p></li>
+<li><p><b>with(<em>arglist</em>)</b></p>
+<p>Declares that this expectation matches messages that match the given argument list. The <code>===</code> operator is used on a argument by argument basis to determine matching. This means that most literal values match literally, class values match any instance of a class and regular expression match any matching string (after a <code>to_s</code> conversion). See argument validators (below) for details on argument validation options.</p></li>
+<li><p><b>with_any_args</b></p>
+<p>Declares that this expectation matches the message with any argument (default)</p></li>
+<li><p><b>with_no_args</b></p>
+<p>Declares that this expectation matches messages with no arguments</p></li>
+<li><p><b>zero_or_more_times</b></p>
+<p>Declares that the expected message is may be sent zero or more times (default, equivalent to <code>at_least.never</code>).</p></li>
+<li><p><b>once</b></p>
+<p>Declares that the expected message is only sent once. <code>at_least</code> / <code>at_most</code> modifiers are allowed.</p></li>
+<li><p><b>twice</b></p>
+<p>Declares that the expected message is only sent twice. <code>at_least</code> / <code>at_most</code> modifiers are allowed.</p></li>
+<li><p><b>never</b></p></li>
+</ul>
+</body>
+</html>

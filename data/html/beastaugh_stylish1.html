@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>beastaugh_stylish1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="stylish">Stylish</h1>
+<p>is a tool for writing <abbr title="Cascading Stylesheets">CSS</abbr> with Ruby.</p>
+<h2 id="creating-stylesheets">Creating stylesheets</h2>
+<pre><code>style = Stylish.generate do
+  rule &quot;.header&quot;, :background =&gt; {:color =&gt; &quot;teal&quot;, :image =&gt; &quot;header.png&quot;}
+  rule &quot;.content&quot; do
+    h2 :font_size =&gt; &quot;2em&quot;
+    p :margin =&gt; &quot;0 0 1em 0&quot;
+  end
+end</code></pre>
+<p>Calling the stylesheet’s <code>to_s</code> method would produce the following <abbr title="Cascading Stylesheets">CSS</abbr> code.</p>
+<pre><code>.header {background-color:teal; background-image:url(&#39;header.png&#39;);}
+.content h2 {font-size:2em;}
+.content p {margin:0 0 1em 0;}</code></pre>
+<p>A number of additional examples are available in the <code>example/</code> directory.</p>
+<h2 id="compatibility">Compatibility</h2>
+<p>Stylish is compatible with Ruby 1.9. To expand on this slightly, the Stylish test suite passes under Ruby 1.9; the usual caveats about this apply.</p>
+<h2 id="future-considerations">Future considerations</h2>
+<ul>
+<li>Add a Border class to complement Background.</li>
+<li>Add a parser so CSS can be read as well as written.</li>
+</ul>
+<h2 id="design-notes">Design notes</h2>
+<p>CSS is a remarkably succinct and powerful language, with several marked deficiencies. It lacks both variables and iteration, and its long-winded property names are often irritating. Stylish attempts to address these issues by reducing duplication, providing a cleaner namespacing syntax and reducing transcription errors. It is not intended as a replacement for hand-authored</p>
+</body>
+</html>

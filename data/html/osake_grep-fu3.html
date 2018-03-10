@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>osake_grep-fu3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Under most color schemes, the –color option is only useful if –verbose is used as well.</p>
+<p>If you’d rather have color all the time, you can change the setting COLOR_ON_BY_DEFAULT in the code to true. If you do this, then you can use the ‘–no-color’ flag to disable the feature:</p>
+<pre><code>grep-fu mig DoublePlusUnBiggened --no-color</code></pre>
+<p>Thanks go out to for this feature.</p>
+<h2 id="single-line-output">Single-Line Output</h2>
+<p>Sometimes you need to output all the files grep-fu finds onto a single line; for example, when piping the list into another command:</p>
+<pre><code>grep-fu &quot;# Pipe me!&quot; --single-line</code></pre>
+<p>The list of files with matches will display on a single line:</p>
+<pre><code>./test/unit/calamity_test.rb ./test/unit/havoc_test.rb ./test/unit/mayhem_test.rb...</code></pre>
+<p>This is handy if you want to go ahead and load all the files it finds into a text editor.</p>
+<pre><code>gvim -p `gx &quot;#TODO&quot;`</code></pre>
+<h2 id="ignoring-more-stuff">Ignoring More Stuff</h2>
+<p>When performing an untargeted search, Grep-fu determines which directories to skip by using the PRUNE_PATHS constant. If you have a directory you’d like to skip searching by default, simply add its path (relative to the Rails root) to PRUNE_PATHS.</p>
+<p>For example, if you have an unusually large set of migrations, you might want to step over them by default. Change the line</p>
+<pre><code>PRUNE_PATHS = [&#39;/.svn&#39;, &#39;/.git&#39;, &#39;/vendor&#39;, &#39;/log&#39;, &#39;/public&#39;, &#39;/tmp&#39;, &#39;/coverage&#39;]</code></pre>
+<p>to</p>
+<pre><code>PRUNE_PATHS = [&#39;/.svn&#39;, &#39;/.git&#39;, &#39;/vendor&#39;, &#39;/log&#39;, &#39;/public&#39;, &#39;/tmp&#39;, &#39;/coverage&#39;, &#39;/db/migrations&#39;]</code></pre>
+<p>And migrations will no longer be searched. Note that targeted searches and specified directories always override the PRUNE_PATHS option.</p>
+<h2 id="version-information">Version Information</h2>
+<p>Passing the ‘–version’ flag to grep-fu will return the current version.</p>
+<pre><code>grep-fu --version</code></pre>
+<p>returns</p>
+<pre><code>grep-fu 0.5.0</code></pre>
+<p>Technical mumbo-jumbo</p>
+</body>
+</html>

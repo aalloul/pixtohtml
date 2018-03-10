@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>perigrin_moosex-poe1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="name">NAME</h1>
+<p>MooseX::POE - The Illicit Love Child of Moose and POE</p>
+<h1 id="version">VERSION</h1>
+<p>This document describes MooseX::POE version 0.205</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>package Counter;
+use MooseX::POE;
+
+has count =&gt; (
+    isa     =&gt; &#39;Int&#39;,
+    is      =&gt; &#39;rw&#39;,
+    lazy    =&gt; 1,
+    default =&gt; sub { 0 },
+);
+
+sub START {
+    my ($self) = @_;
+    $self-&gt;yield(&#39;increment&#39;);
+}
+
+event increment =&gt; sub {
+    my ($self) = @_;
+    print &quot;Count is now &quot; . $self-&gt;count . &quot;\n&quot;;
+    $self-&gt;count( $self-&gt;count + 1 );
+    $self-&gt;yield(&#39;increment&#39;) unless $self-&gt;count &gt; 3;
+};
+
+no MooseX::POE;
+
+Counter-&gt;new();
+POE::Kernel-&gt;run();</code></pre>
+<p>or with L&lt;MooseX::Declare|MooseX::Declare&gt;:</p>
+<pre><code>class Counter {
+    use MooseX::POE::SweetArgs qw(event);
+    
+
+    has count =&gt; (
+        isa     =&gt; &#39;Int&#39;,
+        is      =&gt; &#39;rw&#39;,
+        lazy    =&gt; 1,
+        default =&gt; sub { 0 },
+    );
+    </code></pre>
+</body>
+</html>

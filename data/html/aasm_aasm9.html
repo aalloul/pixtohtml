@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aasm_aasm9</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>state :completed
+
+event :stage1_completed do
+  transitions from: :stage1, to: :stage3, guard: :stage2_completed?
+  transitions from: :stage1, to: :stage2
+end</code></pre>
+<p>end</p>
+<p>def stage2_completed? true end end</p>
+<p>job = Job.new job.stage1_completed job.aasm.current_state # stage3 ```</p>
+<h3 id="multiple-state-machines-per-class">Multiple state machines per class</h3>
+<p>Multiple state machines per class are supported. Be aware though that <em>AASM</em> has been built with one state machine per class in mind. Nonetheless, here’s how to do it:</p>
+<p>```ruby class SimpleMultipleExample include AASM aasm(:move) do state :standing, :initial =&gt; true state :walking state :running</p>
+<pre><code>event :walk do
+  transitions :from =&gt; :standing, :to =&gt; :walking
+end
+event :run do
+  transitions :from =&gt; [:standing, :walking], :to =&gt; :running
+end
+event :hold do
+  transitions :from =&gt; [:walking, :running], :to =&gt; :standing
+end</code></pre>
+<p>end</p>
+<p>aasm(:work) do state :sleeping, :initial =&gt; true state :processing</p>
+<pre><code>event :start do
+  transitions :from =&gt; :sleeping, :to =&gt; :processing
+end</code></pre>
+</body>
+</html>

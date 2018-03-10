@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>csiszarattila_zipcodematch3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>A hibaüzeneteket mindig a modellhez és nem az attribútumokhoz társítja! Alapértelmezettként a :city és :zipcode attributumokat használja fel. Ez megváltoztatható az opciókkal, többek között itt adhatjuk azt is meg, hogy mikor alkalmazza az ellenőrzést - alapértelmezettként a mentés során futtatja a validációt.</p>
+<pre><code>validates_zipcode_and_city_match :zipcode_attr_is=&gt;:ir, :city_attr_is=&gt;:varos, :on =&gt; :create</code></pre>
+<p>A <strong>validates_existence_on</strong> segítségével vagy a modellhez tartozó települést vagy az irányítószámot vizsgálhatjuk meg, hogy érvényes-e. Használatához jellezzük a metódusnak első attribútumként, hogy melyiket szeretnénk vizsgálni:</p>
+<p>Települések esetében a :city szimbólummal</p>
+<pre><code>validates_existence_on :city, :message =&gt; &quot;Ilyen nevű település nem létezik!&quot;</code></pre>
+<p>Irányítószámok esetében a :zipcode szimbólummal</p>
+<pre><code>validates_existence_on :zipcode, :message =&gt; &quot;Ilyen irányítószám nem létezik!&quot;</code></pre>
+<p>Az alapértelmezett attribútum ezúttal is a city vagy a zipcode elnevezésű lesz, ezt felülbírálni az :attr_is opcióval lehetséges:</p>
+<pre><code>validates_existence_on :city, :attr_is =&gt; :varos</code></pre>
+<h1 id="milyen-adatokkal-dolgozik">Milyen adatokkal dolgozik?</h1>
+<p>.</p>
+<p>Ez egyben azt is jelenti, hogy egyes településekhez több irányítószám is tartozhat. A budapesti irányítószámok esetében pedig minden irányítószám mellett Budapest szerepel mint város, a kerületeket pedig nem veszi figyelembe. Ha ezen változtatni szeretnél a ZipcodeMatch.import_from_csv metódust tekintsd meg, ez végzi el az irányítószámok adatbázisba töltését - a db:zipcodes:load rake taszk pedig ezt hívja meg.</p>
+<h1 id="hogyan-futtassuk-a-modellek-unit-tesztjeit">Hogyan futtassuk a modellek unit tesztjeit</h1>
+<p>Problémát jelenthet, hogy a modellek egység-tesztjeinél bizonyos esetekben lefuthatnak a validációk megbolondítva ezzel a tesztek kimeneteit.</p>
+<p>A gondot az okozza, hogy a tesztek futtatásakor a Rails kitöröl minden táblát és az fixtureszekkel(alapadatokkal) tölti fel azokat a teszt adatbázisban, így az alapadatokon kívül nem lehet saját, előre definiált adatokkal feltölteni. Viszont így a ZipcodeMatch modul sem találja az adatbázisban a szükséges adatokat.</p>
+<p>Ennek feloldására próbálkozhatunk az irányítószámok fixtures-ként való megadásával - elfogadja a CSV formátumot is - ez azonban jelentősen lelassíthatja a tesztek futtatását, mivel minden teszt futtatása előtt a tesztkörnyezet újratölti az alapadatokat.</p>
+<p>Ezért inkább érdemes létrehozni egy, a ZipcodeMatch modult imitáló úgynevezett mock osztályt, ami tulajdonképpen csak felülírja a modul eredeti metódusait, hogy mindig igaz értékkel térjenek vissza.</p>
+<p>Egy ilyen mock objektumot megtalálsz a plugin mellett, mindössze includold be annak modellnek a unit test fájljában, amelyik használja a plugin metódusait:</p>
+<pre><code>require &#39;zipcodematch/lib/mocks/zipcode_match.rb&#39;
+
+class AddressTest &lt; ActiveSupport::TestCase
+...
+end</code></pre>
+<p>Ezzel a teszteket függetleníthetjük a ZipcodeMatch modultól, amelynek működése külön tesztekkel van biztosítva - lásd plugin/ok/konyvtara/zipcodematch/test/ könyvtárt.</p>
+<h1 id="ötletek-kérés-sóhaj-óhaj">Ötletek, kérés, sóhaj, óhaj…</h1>
+<p>email: csiszar pont ati kukac gmail pont com</p>
+<p>www:</p>
+</body>
+</html>

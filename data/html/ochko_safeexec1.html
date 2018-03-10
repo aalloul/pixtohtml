@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ochko_safeexec1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="safeexecsafe-execution-environment">safeexec(safe execution environment)</h1>
+<p>A general-purpose lightweight sandbox for safely executing user programs. safeexec provides a sandbox environment which you can set limits on system resources like memory, cpu time effectively preventing intended or unintented breach of system. However, running untrusted code on your server should be taken at <em>your own risk</em>.</p>
+<h2 id="how-it-works">How it works</h2>
+<ul>
+<li>Safeexec forks child process.</li>
+<li>Sets various limitations on the child process via <code>setrlimit</code>. So safeexec should have setuid bit on, and uid root.</li>
+<li>Parent process polls memory usage looking into <code>/proc</code> filesystem on linux or via <code>kvm</code> on freebsd.</li>
+<li>Wall clock limit is enforced with alarm() &amp; signal().</li>
+<li>Reports usage stats to <code>stdout</code> or file specified by <code>--usage</code> argument.</li>
+</ul>
+<h3 id="resource-usage-report-format">Resource usage report format</h3>
+<p>Resource usage is in 4 line plain text.</p>
+<p>For memory limit:</p>
+<pre><code>Memory Limit Exceeded
+elapsed time: 0 seconds
+memory usage: 32884 kbytes
+cpu usage: 0.416 seconds</code></pre>
+<p>For time limit:</p>
+<pre><code>Time Limit Exceeded
+elapsed time: 2 seconds
+memory usage: 1424 kbytes
+cpu usage: 1.000 seconds</code></pre>
+<p>File write attempt:</p>
+<pre><code>Command exited with non-zero status (1)
+elapsed time: 0 seconds
+memory usage: 64 kbytes
+cpu usage: 0.000 seconds</code></pre>
+<h2 id="usage-notes">Usage notes</h2>
+<p>Running it with no argument gives:</p>
+<p>``` usage: ./safeexec <options> –exec <command> Available options: –cpu <seconds> Default: 1 second(s)</p>
+</body>
+</html>

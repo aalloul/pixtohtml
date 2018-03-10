@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infochimps-labs_wukong11</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>88
+89
+77
+...
+
+$ cat input.dat | wu-local percentile.rb --mean=85 --std_dev=7
+88.0    66.58824291023753
+89.0    71.61454169013237
+77.0    12.654895447355777</code></pre>
+<p>EOF</p>
+<p>SQRT_1_HALF = Math.sqrt(0.5)</p>
+<p>field :mean, Float, :default =&gt; 0.0, :doc =&gt; “The mean of the assumed distribution” field :std_dev, Float, :default =&gt; 1.0, :doc =&gt; “The standard deviation of the assumed distribution”</p>
+<p>def process value observation = value.to_f z_score = (mean - observation) / std_dev percentile = 50 * Math.erfc(z_score * SQRT_1_HALF) yield [observation, percentile].join(“”) end end</p>
+<pre><code>
+If you call `wu-local` with the file to this processor as an argument
+in addition to the original `--help` argument, you&#39;ll get custom
+documentation.
+</code></pre>
+<p>$ wu-local percentile.rb –help usage: wu-local [ –param=val | –param | -p val | -p ] PROCESSOR|FLOW</p>
+<p>This processor calculates percentiles from input scores based on a given mean score and a given standard deviation for the scores. …</p>
+<p>Params: –mean=Float The mean of the assumed distribution [Default: 0.0] -r, –run=String Name of the processor or dataflow to use. Defaults to basename of the given path. –std_dev=Float The standard deviation of the assumed distribution [Default: 1.0]</p>
+<p>```</p>
+<p><a name="flows"></a> ## Combining Processors into Dataflows</p>
+<p>Wukong provides a DSL for combining processors together into dataflows. This DSL is designed to make it easy to replicate the</p>
+</body>
+</html>

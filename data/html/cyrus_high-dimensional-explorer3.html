@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cyrus_high-dimensional-explorer3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>model and then process a corpus of text to create word vectors. It also allows you to perform comparisons of these word vectors and other calculations. HiDEx has been designed to handle very large corpora and very large vectors, and to process them efficiently on systems with large amounts of RAM and multiple CPUs.</p>
+<p>NOTE: HiDEx has been tested on English, French, Spanish, Serbian, Estonian, Japanese and Chinese, but it may work on other languages as well. Any language that can be encoded in UTF8 and has spaces between words should work. If there are no spaces between words, you may need to use software to insert spaces. The authors are very interested in how HiDEx works in other languages, so please let us know what you are doing!</p>
+<p>Using HiDEx, it is possible to make the following measurements:</p>
+<p>-Average Neighbor Similarity (ANS): [Note that in previous versions of HiDEx, this was called the ARC.] This is the average similarity between the word and its neighbors, as defined by the neighborhood threshold. In the case that a word has zero neighbords within the threshold, the ANS will be taken as the similarity between the word and the most similar word outside the threshold.</p>
+<p>-Inverse Neighbor Count (InvNCOUNT) The inverse of the number of neighbors.</p>
+<p>HiDEx is free software released under the GNU Public License. This means that you are free to change HiDEx to better suit your needs. If you do make improvements, please send them to me so that I can add them to my version of HiDEx and share the improvements with everyone.</p>
+<hr />
+<p>2B) What kind of hardware and software do I need to use HiDEx? ****************************************************************************</p>
+<p>HiDEx is not distributed as a pre-compiled program. It comes as many C++ files, and must be compiled by the user before it will work. Here are the hardware and software requirements for parallel and serial operation.</p>
+<p>HiDEx does not work well or at all on computers that are underpowered. Please make sure that you have sufficient resources to run this program before continuing with the installation process.</p>
+<p>Abbreviations: +Req=Required, +Rec=Recommended</p>
+<h2 id="hardware">Hardware:</h2>
+<p>CPU: (Types: PowerPC, Power5, and Intel/AMD x86 CPUs have been tested so far) -For serial operation: <em>Req: A fast 64-bit CPU. </em>Rec: The fastest CPU you can get your hands on. HiDEx has not been</p>
+</body>
+</html>

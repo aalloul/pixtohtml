@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>hadley_reshape1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="reshape2">reshape2</h1>
+<h2 id="status">Status</h2>
+<p>reshape2 is retired: only changes necessary to keep it on CRAN will be made. We recommend using instead.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Reshape2 is a reboot of the reshape package. It’s been over five years since the first release of reshape, and in that time I’ve learned a tremendous amount about R programming, and how to work with data in R. Reshape2 uses that knowledge to make a new package for reshaping data that is much more focused and much much faster.</p>
+<p>This version improves speed at the cost of functionality, so I have renamed it to <code>reshape2</code> to avoid causing problems for existing users. Based on user feedback I may reintroduce some of these features.</p>
+<p>What’s new in <code>reshape2</code>:</p>
+<ul>
+<li><p>considerably faster and more memory efficient thanks to a much better underlying algorithm that uses the power and speed of subsetting to the fullest extent, in most cases only making a single copy of the data.</p></li>
+<li><p>cast is replaced by two functions depending on the output type: <code>dcast</code> produces data frames, and <code>acast</code> produces matrices/arrays.</p></li>
+<li><p>multidimensional margins are now possible: <code>grand_row</code> and <code>grand_col</code> have been dropped: now the name of the margin refers to the variable that has its value set to (all).</p></li>
+<li><p>some features have been removed such as the <code>|</code> cast operator, and the ability to return multiple values from an aggregation function. I’m reasonably sure both these operations are better performed by plyr.</p></li>
+<li><p>a new cast syntax which allows you to reshape based on functions of variables (based on the same underlying syntax as plyr):</p></li>
+<li><p>better development practices like namespaces and tests.</p></li>
+<li><p>the function <code>melt</code> now names the columns of its returned data frame <code>Var1</code>, <code>Var2</code>, …, <code>VarN</code> instead of <code>X1</code>, <code>X2</code>, …, <code>XN</code>.</p></li>
+<li><p>the argument <code>variable.name</code> of <code>melt</code> replaces the old argument <code>variable_name</code>.</p></li>
+</ul>
+<p>Initial benchmarking has shown <code>melt</code> to be up to 10x faster, pure reshaping <code>cast</code> up to 100x faster, and aggregating <code>cast()</code> up to 10x faster.</p>
+<p>This work has been generously supported by BD (Becton Dickinson).</p>
+<h2 id="installation">Installation</h2>
+<ul>
+<li>Get the released version from cran: <code>install.packages(&quot;reshape2&quot;)</code></li>
+<li>Get the dev version from github: <code>devtools::install_github(&quot;hadley/reshape&quot;)</code></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode16</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>`markdown-coding-system`.</code></pre>
+<ul>
+<li><p><code>markdown-coding-system</code> - used for specifying the character set identifier in the <code>http-equiv</code> attribute when included (default: <code>nil</code>). See <code>markdown-content-type</code>, which must be set before this variable has any effect. When set to <code>nil</code>, <code>buffer-file-coding-system</code> will be used to automatically determine the coding system string (falling back to <code>iso-8859-1</code> when unavailable). Common settings are <code>utf-8</code> and <code>iso-latin-1</code>.</p></li>
+<li><p><code>markdown-xhtml-header-content</code> - additional content to include in the XHTML <code>&lt;head&gt;</code> block (default: <code>&quot;&quot;</code>).</p></li>
+<li><code>markdown-xhtml-body-preamble</code> - additional content to include in the XHTML
+<body>
+<p>block, before the output (default: <code>&quot;&quot;</code>). This is useful for enclosing additional elements around the Markdown output.</p></li>
+<li><code>markdown-xhtml-body-epilogue</code> - additional content to include in the XHTML
+<body>
+<p>block, after the output (default: <code>&quot;&quot;</code>). This is useful for enclosing additional elements around the Markdown output.</p></li>
+<li><p><code>markdown-xhtml-standalone-regexp</code> - a regular expression which <code>markdown-mode</code> uses to determine whether the output of <code>markdown-command</code> is a standalone XHTML document or an XHTML fragment (default: <code>&quot;^\\(&lt;\\?xml\\|&lt;!DOCTYPE\\|&lt;html\\)&quot;</code>). If this regular expression not matched in the first five lines of output, <code>markdown-mode</code> assumes the output is a fragment and adds a header and footer.</p></li>
+<li><p><code>markdown-link-space-sub-char</code> - a character to replace spaces when mapping wiki links to filenames (default: <code>&quot;_&quot;</code>). For example, use an underscore for compatibility with the Python Markdown WikiLinks extension. In <code>gfm-mode</code>, this is set to <code>&quot;-&quot;</code> to conform with GitHub wiki links.</p></li>
+<li><p><code>markdown-reference-location</code> - where to insert reference definitions (default: <code>header</code>). The possible locations are the end of the document (<code>end</code>), after the current block (<code>immediately</code>), the end of the current subtree (<code>subtree</code>), or before the next header (<code>header</code>).</p></li>
+<li><p><code>markdown-footnote-location</code> - where to insert footnote text (default: <code>end</code>). The set of location options is the same as for <code>markdown-reference-location</code>.</p></li>
+<li><p><code>markdown-nested-imenu-heading-index</code> - Use nested imenu heading instead of a flat index (default: <code>t</code>). A nested</p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infused_blamer1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="blamer">Blamer</h1>
+<p>Automatically userstamps create and update operations if the table has columns named <strong>created_by</strong> and/or <strong>updated_by</strong>. The Blamer gem attempts to mirror the simplicity of ActiveRecord’s timestamp module.</p>
+<p>Blamer expects <code>User.current_user</code> to return the current user object. Basic setup involves assigning to <code>User.current_user</code> in a controller before filter:</p>
+<pre><code>class User &lt; ActiveRecord::Base
+  cattr_accessor :current_user
+end
+
+class ApplicationController &lt; ActionController::Base
+  before_filter :set_userstamp
+
+  def set_userstamp
+    User.current_user = User.find(session[:user_id])
+  end
+end</code></pre>
+<p>If you don’t want to use <code>User.current_user</code> you can override this behavior by writing your own <code>userstamp_object</code> method in ActiveRecord::Base or any of your models. For example, to use <code>Person.current</code> instead:</p>
+<pre><code>def userstamp_object
+  Person.current
+end</code></pre>
+<p>If you don’t like created_by/updated_by you can customize the column names:</p>
+<pre><code># Globally in environment.rb
+ActiveRecord::Base.created_userstamp_column = :creator_id
+ActiveRecord::Base.updated_userstamp_column = :updator_id
+
+# In a model definition
+class Subscription
+  self.created_userstamp_column = :creator_id
+  self.updated_userstamp_column = :updater_id
+end</code></pre>
+<p>Automatic userstamping can be turned off globally by setting:</p>
+<pre><code>ActiveRecord::Base.record_userstamps = false</code></pre>
+<p>Blamer adds a <code>userstamps</code> migration helper which will add the created_by and updated_by columns (or your custom column names) to your table:</p>
+<pre><code>create_table :widgets do |t|
+  t.string :name</code></pre>
+</body>
+</html>

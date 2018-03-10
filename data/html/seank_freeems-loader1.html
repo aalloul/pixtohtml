@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>seank_freeems-loader1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="welcome-to-freeems-loader">Welcome to FreeEMS-Loader!</h1>
+<h3 id="prerequisites-for-building-on-all-platforms">PREREQUISITES FOR BUILDING ON ALL PLATFORMS</h3>
+<p>You must first have installed the SerialIO Library availiable at .</p>
+<p><strong>Please note</strong>: If you do not have this installed, you will receive a build error like this: <code>make: *** No rule to make target</code>/usr/local/lib/libSerialIO.so.0.1.1’, needed by <code>FreeEMS-Loader'.  Stop.</code></p>
+<h3 id="linux-users">LINUX USERS</h3>
+<p>**To build and run this application please run the following commands:</p>
+<ol type="1">
+<li><p><code>sudo apt-get update &amp;&amp; sudo apt-get install  qt4-qmake libqt4-dev g++</code></p></li>
+<li><p>Simply type <code>qmake &amp;&amp; make</code> from the src/ directory and hit enter! 2-a. For Fedora users type <code>qmake-qt4 &amp;&amp; make</code></p></li>
+<li><p>execute your freshly built loader by typing <code>./FreeEMS_Loader</code></p></li>
+</ol>
+<p>It’s as easy as that!</p>
+<h3 id="windows-users">WINDOWS USERS</h3>
+<p><strong>Install MinGW</strong></p>
+<pre><code>1. Download MinGW for use with qt4. QT is very specific there for I recommend you use the link below.
+
+
+
+2. Extract to c:\mingw
+
+3. Add c:\mingw\bin to your PATH enviornment variable.
+    PATH can be extended through the Control Panel|System|Advanced|Environment variables menu.</code></pre>
+<p><strong>Install QTLibs</strong></p>
+<pre><code>1. Download QT(MinGW-4.x)
+
+
+
+2. Run installer and install to c:\Qt\$ver\
+
+3. Add c:\Qt\&lt;version&gt;\bin to your PATH var.
+    PATH can be extended through the Control Panel|System|Advanced|Environment variables menu.</code></pre>
+<p><strong>Build Loader Source</strong></p>
+<pre><code>1. Open a new terminal window(cmd.exe)</code></pre>
+</body>
+</html>

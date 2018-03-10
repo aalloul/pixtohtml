@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>larrytheliquid_specjure2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>let’s do that. Note that it stands for the Latin “id est”, more frequenlty seen in English as “i.e.”</p>
+<h2 id="checking-specs">Checking Specs</h2>
+<p>Go into the Clojure REPL of your choice and:</p>
+<pre><code>(require &#39;specjure)</code></pre>
+<p>At this point you can load your file, and use:</p>
+<pre><code>(specjure/check)</code></pre>
+<p>Or, if your file is in a separate file:</p>
+<pre><code>(specjure/check-file &quot;/path/to/file.clj&quot;</code></pre>
+<p>If you give <code>check-file</code> a directory, it will check all files ending in <code>_spec.clj</code> in that directory and subdirectories.</p>
+<p>You should have received an error like:</p>
+<pre><code>java.lang.Exception: Unable to resolve symbol: greet in this context (my-examp.clj:4)
+  [Thrown class clojure.lang.Compiler$CompilerException]</code></pre>
+<p>So let’s define our function (make sure to define it before the spec.)</p>
+<pre><code>(defn greet [])</code></pre>
+<p>Now if you check the spec again it will run and fail. The failure currently includes the spec description, and will include more detailed failure information soon.</p>
+<p>Let’s get our function to pass:</p>
+<pre><code>(defn greet [] &quot;Greetings!&quot;)</code></pre>
+<h2 id="more-specing">More Spec’ing</h2>
+<p>Now we can add more specifications:</p>
+<pre><code>(spec greet &quot;with a single argument greets the individual&quot;
+  (ie = &quot;Greetings Larry!&quot; (greet &quot;Larry&quot;))
+  (ie = &quot;Greetings Frank!&quot; (greet &quot;Frank&quot;)))</code></pre>
+<p>Notice that we can group several Clojure language examples in one natural language specification.</p>
+<p>Although Specjure focuses on simplicity, it can also be used for more complex specification. You can run code before example by passing it to <code>before</code> inside of <code>spec</code>. All the instances of code inside <code>before</code> or <code>after</code> will run before or after each <code>ie</code>.</p>
+</body>
+</html>

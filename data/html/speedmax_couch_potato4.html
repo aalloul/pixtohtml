@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>speedmax_couch_potato4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>class User
+  include CouchPotato::Persistence
+  property :name
+
+  view :all, :key =&gt; :created_at
+end</code></pre>
+<p>This will create a view called “all” in the “user” design document with a map function that emits “created_at” for every user document.</p>
+<pre><code>CouchPotato.database.view User.all</code></pre>
+<p>This will load all user documents in your database sorted by created_at.</p>
+<pre><code>CouchPotato.database.view User.all(:key =&gt; (Time.now- 10)..(Time.now), :descending =&gt; true)</code></pre>
+<p>Any options you pass in will be passed onto CouchDB.</p>
+<p>Composite keys are also possible:</p>
+<pre><code>class User
+  property :name
+
+  view :all, :key =&gt; [:created_at, :name]
+end</code></pre>
+<p>The creation of views is based on view specification classes (see the CouchPotato::View) module. The above code used the ModelViewSpec class which is used to the simple find model by property searches. For more sophisticated searches you can use other view specifications (either use the built-in or provide your own) by passing a type parameter:</p>
+<p>If you have larger structures and you only want to load some attributes you can customize the view you can use the PropertiesViewSpec (the full class name is automatically derived):</p>
+<pre><code>class User
+  property :name
+  property :bio
+
+  view :all, :key =&gt; :created_at, :properties =&gt; [:name], :type =&gt; :properties
+end</code></pre>
+<p>CouchPotato.database.view(User.everyone).first.name # =&gt; “joe” CouchPotato.database.view(User.everyone).first.bio # =&gt; nil</p>
+<p>You can also pass in custom map/reduce functions with the custom view spec:</p>
+<pre><code>class User
+  view :all, :map =&gt; &quot;function(doc) { emit(doc.created_at, null)}&quot;, :include_docs =&gt; true, :type =&gt; :custom
+end</code></pre>
+<p>If you don’t want the results to be converted into models the raw view is your friend:</p>
+<pre><code>class User
+  view :all, :map =&gt; &quot;function(doc) { emit(doc.created_at, doc.name)}&quot;, :type =&gt; :raw
+end</code></pre>
+</body>
+</html>

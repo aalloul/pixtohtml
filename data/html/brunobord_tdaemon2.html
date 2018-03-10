@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>brunobord_tdaemon2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><em>Note</em> : When you’re using django, the path to the project must be the path where <code>manage.py</code> lives.</p>
+<h4 id="add-parameters-to-your-test-program">Add parameters to your test program</h4>
+<p>Most test programs allow you to test using specifig arguments, to test a small part of your project, or using a specific setting. If you want to append specific arguments to your command line, use the <code>--custom-args</code> parameter like this::</p>
+<pre><code>$ tdaemon.py --custom-args=&quot;myapp.MyTestClass&quot; --test-program=django</code></pre>
+<p>The above command will execute the following command in the current directory:</p>
+<pre><code>$ ./manage.py myapp.MyTestClass</code></pre>
+<p>Please refer to the test program manual / documentation to find out which additional argument you may use here.</p>
+<p><strong>WARNING</strong>: Please note that every time you’re going to use this option, it will require your confirmation. You are being warned that any command that would break your system, erase some important data, etc. is <strong>YOUR PLAIN FAULT!</strong>. Not mine. So BE CAREFUL. Please.</p>
+<h4 id="the-max-filesize">The max filesize</h4>
+<p>The <code>tdaemon</code> first checks the total filesize you want to scan. If the total file size exceeds his quota (which is 25MB by default), the program asks you if you still want to go on with this. You may be informed that scanning large directories may take some time, and thus alter the daemon performances.</p>
+<p>You can change this quota by using the <code>--size-max</code> argument. For example:</p>
+<pre><code>$ tdaemon --size-max=100</code></pre>
+<p>With this argument, the programm will only ask for your permission to proceed with a total archive of more than 100MB.</p>
+<h3 id="todo">TODO</h3>
+<pre><code>[ ] Extend the test utilities to other languages
+[ ] Add an &quot;ignore&quot; option to ignore other files (logs, sqlite database,
+    image files, etc)
+[ ] Check other pythonic dependencies (django, py.test). Won&#39;t be possible
+    for non-python test-programs, though</code></pre>
+<h3 id="done">Done</h3>
+<pre><code>[X] implements py.test, if possible
+[X] Fixing bug: when a file vanished, the program fails.</code></pre>
+</body>
+</html>

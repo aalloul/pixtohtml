@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mattsears_validating_form1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="validating_form">validating_form</h1>
+<p>A simple Rails form builder that evaluates the validation instructions on ActiveRecord objects with a little reflection and automatically mark those form fields as being required. In addition, it will append the validation’s :message to the “title” of the form field so that your Javascript can display the same message without making a call to the server. Auto-labeling is also included with a few configuration options.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>script/plugin install git://github.com/mattsears/validating_form.git</code></pre>
+<h2 id="usage">Usage</h2>
+<p>For the ActiveRecord objects, we define the validations normally:</p>
+<pre><code>class User &lt; ActiveRecord::Base
+  validates_presence_of   :name,    :message =&gt; &quot;Your name is required&quot;
+  validates_presence_of   :gender,  :message =&gt; &quot;What is your gender?&quot;
+  validates_presence_of   :age,     :message =&gt; &quot;How old are you?&quot;
+end</code></pre>
+<p>To create a form with validation, we define the form as follows:</p>
+<pre><code>&lt;% validating_form_for(:user, @user) do |f| %&gt;
+  &lt;%= f.text_field(:name) %&gt;
+  &lt;%= f.text_field(:gender) %&gt;
+  &lt;%= f.text_field(:age)  %&gt;
+&lt;% end %&gt;</code></pre>
+<p>That’s it. The validating_form builder will create the label and form fields as well as ‘hints’ for your Javascript knows how to validate:</p>
+<pre><code>&lt;form action=&quot;/users&quot; id=&quot;user_form&quot; method=&quot;post&quot;&gt;
+  &lt;p&gt;
+    &lt;label for=&quot;user_name&quot;&gt;Name:&lt;/label&gt;&lt;br /&gt;
+    &lt;input class=&quot;required&quot; id=&quot;user_name&quot; name=&quot;user[name]&quot; title=&quot;Your name is required&quot; type=&quot;text&quot; /&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+     &lt;label for=&quot;user_gender&quot;&gt;Gender:&lt;/label&gt;&lt;br /&gt;
+     &lt;input class=&quot;required&quot; id=&quot;user_gender&quot; name=&quot;user[gender]&quot; title=&quot;What is your gender?&quot; type=&quot;text&quot; /&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+     &lt;label for=&quot;user_age&quot;&gt;Age:&lt;/label&gt;&lt;br /&gt;
+     &lt;input class=&quot;required&quot; id=&quot;user_age&quot; name=&quot;user[age]&quot; title=&quot;How old are you?&quot; type=&quot;text&quot; /&gt;
+  &lt;/p&gt;
+ &lt;/form&gt;</code></pre>
+<h2 id="misc">Misc</h2>
+<p>The validating_form helper will insert new html elements and attributes. You can customize the html output with the :label hash in each field:</p>
+<pre><code>f.text_field(:name, :label =&gt; {})</code></pre>
+</body>
+</html>

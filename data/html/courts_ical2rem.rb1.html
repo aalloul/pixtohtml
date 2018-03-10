@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>courts_ical2rem.rb1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ical2rem.rb">ical2rem.rb</h1>
+<p>Author: Patrick Hof <a href="mailto:courts@offensivethinking.org">courts@offensivethinking.org</a><br />
+Copyright: Copyright (C) 2008 Patrick Hof<br />
+License: GPLv3</p>
+<p>Download: git clone https://github.com/courts/ical2rem.rb.git<br />
+YARD docs:</p>
+<p><code>ical2rem.rb</code> is based on the Perl program by Justin B. Alcorn . It converts an <em>iCalendar</em> file’s <code>VEVENT</code> and <code>VTODO</code> components to syntax. You should be able to use it as a drop-in replacement for <code>ical2rem.pl</code> with only minor modifications. The command line client which comes with ical2rem.rb is called <code>ical2rem-cli</code> and can be found in the <code>/bin</code> directory.</p>
+<h1 id="installation">Installation</h1>
+<p><code>ical2rem.rb</code> requires You can install it with RubyGems:</p>
+<pre><code>gem install ri_cal</code></pre>
+<p><code>ical2rem.rb</code> itself has a gemspec file, so you can easily build a gem and install it with:</p>
+<pre><code>gem build ical2rem.rb.gemspec
+gem install ical2rem.rb-x.x.x.gem</code></pre>
+<p>Besides that, no further installation steps are required. Note that ical2rem.rb only works with ruby 1.9, not 1.8.</p>
+<h1 id="usage">Usage</h1>
+<p>You can get usage information by running <code>ical2rem-cli</code> with the <code>-h</code> switch:</p>
+<pre><code>Usage: ical2rem-cli [options] &lt; input-file [&gt; output-file]
+        --label LABEL                Calendar name
+        --lead-time LEAD             Advance minutes to start reminders
+        --heading HEADING            Define a priority for static entries
+    -t, --todos                      Process TODOs?
+    -c, --config-file FILE           Use config file FILE (default: .ical2rem.yaml)
+    -d, --debug                      Show debug info
+    -h, --help                       Show this help</code></pre>
+</body>
+</html>

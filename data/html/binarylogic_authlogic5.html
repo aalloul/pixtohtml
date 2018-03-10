@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>binarylogic_authlogic5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  # Authlogic::ActsAsAuthentic::PerishableToken
+  t.string    :perishable_token
+  t.index     :perishable_token, unique: true
+
+  # Authlogic::Session::MagicColumns
+  t.integer   :login_count, default: 0, null: false
+  t.integer   :failed_login_count, default: 0, null: false
+  t.datetime  :last_request_at
+  t.datetime  :current_login_at
+  t.datetime  :last_login_at
+  t.string    :current_login_ip
+  t.string    :last_login_ip
+
+  # Authlogic::Session::MagicStates
+  t.boolean   :active, default: false
+  t.boolean   :approved, default: false
+  t.boolean   :confirmed, default: false
+
+  t.timestamps
+end</code></pre>
+<p>end end ```</p>
+<h3 id="b.-controller">2.b. Controller</h3>
+<p>Your sessions controller will look just like your other controllers.</p>
+<p>```ruby class UserSessionsController &lt; ApplicationController def new <span class="citation" data-cites="user_session">@user_session</span> = UserSession.new end</p>
+<p>def create <span class="citation" data-cites="user_session">@user_session</span> = UserSession.new(user_session_params) if <span class="citation" data-cites="user_session.save">@user_session.save</span> redirect_to account_url else render :action =&gt; :new end end</p>
+<p>def destroy current_user_session.destroy redirect_to new_user_session_url end</p>
+<p>private</p>
+</body>
+</html>

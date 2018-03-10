@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>leto_math--gsl1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mathgsl">Math::GSL</h1>
+<p>Math::GSL is a Perl interface to the . The GNU Scientific Library (GSL) is a numerical library for C and C++ programmers. It is free software under the GNU General Public License. Math::GSL uses SWIG to generate Perl bindings to <em>most</em> GSL functionality.</p>
+<h1 id="dependencies">Dependencies</h1>
+<h2 id="cpan-distribution-dependencies">CPAN distribution dependencies</h2>
+<p>Currently Math::GSL requires at least Perl 5.8.1 and GSL 1.15 to compile. It also requires that the gsl-config binary can be found in your PATH or to find GSL.</p>
+<h2 id="git-repo-dependencies">Git repo dependencies</h2>
+<p>SWIG 2.x is needed to build Math::GSL from the git repo, in addition to all the dependencies above. 2.0.8 or newer is required to work with Perl 5.20 and higher.</p>
+<h1 id="installation">Installation</h1>
+<p>To install this module, run the following commands:</p>
+<pre><code>perl Build.PL
+./Build
+./Build test
+./Build install clean</code></pre>
+<h1 id="support">Support</h1>
+<p>After installing, you can find documentation for this module with the perldoc command.</p>
+<pre><code>perldoc Math::GSL</code></pre>
+<p>You can also look for information at:</p>
+<p>MetaCPAN: https://metacpan.org/release/Math-GSL</p>
+<p>Known bugs/issues: https://github.com/leto/math–gsl/issues/</p>
+<p>AnnoCPAN, Annotated CPAN documentation http://annocpan.org/dist/Math::GSL</p>
+<p>CPAN Ratings http://cpanratings.perl.org/d/Math::GSL</p>
+<p>Search CPAN http://search.cpan.org/dist/Math::GSL</p>
+</body>
+</html>

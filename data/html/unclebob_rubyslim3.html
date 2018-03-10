@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>unclebob_rubyslim3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    end
+
+    def name
+      @arg[:name]
+    end
+
+    def addr
+      @arg[:addr]
+    end
+
+    def set_arg(hash)
+      @arg = hash
+    end
+  end
+end</code></pre>
+<p>This corresponds to the following tables.</p>
+<pre><code>|script|test slim with arguments|!{name:bob addr:here}|
+|check|name|bob|
+|check|addr|here|
+
+|script|test slim with arguments|gunk|
+|check|arg|gunk|
+|set arg|!{name:bob addr:here}|
+|check|name|bob|
+|check|addr|here|</code></pre>
+<p>Note the use of the HashWidgets in the table cells. These get translated into HTML, which RubySlim recognizes and converts to a standard ruby <code>Hash</code>.</p>
+<h2 id="system-under-test">System Under Test</h2>
+<p>If a fixture has a <code>sut</code> method that returns an object, then if a method called by a test is not found in the fixture itself, then if it exists in the object returned by <code>sut</code> it will be called. For example:</p>
+<pre><code>!|script|my fixture|
+|func|1|
+
+class MySystem
+  def func(x)
+    #this is the function that will be called.
+  end
+end
+
+class MyFixture
+  attr_reader :sut</code></pre>
+</body>
+</html>

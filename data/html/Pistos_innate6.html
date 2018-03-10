@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pistos_innate6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Nodes are objects that include Innate::Node and are then considered rack applications that get automatically hooked into the routing.</p>
+<p>Since every existing Ramaze application relies on Ramaze::Controller and normal subclassing is not without merits as well we keep that part entirely in Ramaze, Controller simply includes Innate::Node and makes it suitable for the usage within Apps.</p>
+<h4 id="layouts">Layouts</h4>
+<p>Since layouts were an afterthought in Ramaze, they were made normal actions like every other on the respective controllers, leading to lots of confusion over the correct way to use layouts, the Controller::layout syntax in respect to the real location of layouts, how to exclude/include single actions, where layouts should be stored, how to prevent lookup from external requests, …</p>
+<p>I made layouts just as important as views and methods for the Action in Innate, and they have their own root directory to live in and will not be considered as a normal view template, so they cannot be accidentally be rendered as their own actions.</p>
+<p>This strikes me as important, because I consider layouts to be superior to Ezamar elements and equal to render_partial or render_template, just about every application uses it, so they should be handled in the best way possible.</p>
+<p>The root directory for layouts is in line with the other default locations:</p>
+<pre><code>proto
+|-- layout
+|-- model
+|-- node
+|-- public
+`-- view</code></pre>
+<p>While none of these directories is necessary, they are the default locations and should be included in a new proto for Ramaze (just that ramaze uses <code>/controller</code> instead of <code>/node</code>.</p>
+<p>Innate will not have project generating capabilities, so we just have to document it very well and provide some example apps.</p>
+<h4 id="provides">Provides</h4>
+<p>This is a major new feature stolen from Merb and adapted for the ease of use of Innate/Ramaze. It won’t have all the capabilities one might be used to out of the box, but extending them is easy.</p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cyrus_high-dimensional-explorer10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>filename to the new corpus that you would like to add, and then run this command again:</p>
+<pre><code>hidex -m update</code></pre>
+<p>To remove a database and all the auxiliary files that are related to it use the following command:</p>
+<pre><code>    hidex -m remove</code></pre>
+<p>WARNING: The above command is NOT reversible. Once you have removed the database, it is gone forever. You have been warned! :-)</p>
+<hr />
+<p>2H) How do I set up the configfile config.txt? What settings are available? ****************************************************************************</p>
+<p>The section explains all the settings available in the configfile and what options are possible for each setting. The default name of the config file is “config.txt” and the default location is the current directory. To specify the name and location of the configfile, use the following command:</p>
+<pre><code>  hidex -f alternate.config.file.txt -m getneighbors</code></pre>
+<p>[General Options] dbname: This is the name to use for the database and all of its auxiliary files. You can store multiple databases in one directory and pick which one to by changing this parameter.</p>
+<p>(dbpath): (Optional setting). Used to specify an absolute path for the database. Avoid using this setting unless you need to.</p>
+<p>dictFilename: Name of the lexicon file, assumed to be in the Working Directory. Format is a text file with one word per line.</p>
+<p>[Corpus Processing Options] maxWindowBehind: Maximum size of word window behind target word. maxWindowAhead: Maximum size of word window ahead of target word. These two parameters change the size of the database, as they limit how much context information is saved. The actual size of the window used during vector aggregation is set using the windowLenBehind setting below.</p>
+<p>corpusFilename: The filename of the corpus. Assumed to be in the Working Directory. The format is described in section 2E of this manual.</p>
+<p>stepsize: The number of vectors to collect per pass through the corpus. If you run out of memory during an “update”, reduce this value. If you find that you have more RAM to spare when running update, increase this value. A rough guide to help you set this: a stepsize of 5000 will</p>
+</body>
+</html>

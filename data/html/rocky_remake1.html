@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rocky_remake1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Patched GNU Make 4.1 sources to add improved error reporting, tracing, target listing, graph visualization, and profiling. It also contains debugger. See the remake-3-82 branch for a patched GNU Make 3.82.</p>
+<h2 id="tracing-and-debugging">Tracing and Debugging</h2>
+<p>Although there’s a full debugger here, most of the time I can get by using no options since normal output is a little more verbose and detailed. When that isn’t enough, I use the <em>–trace</em> or <em>-x</em> option, e.g:</p>
+<pre><code>remake -x &lt;other make options&gt;</code></pre>
+<p>But if you want the full debugger, use <em>–debugger</em> or <em>-X</em>:</p>
+<pre><code>remake -X &lt;other make options&gt;</code></pre>
+<p>To enter the debugger from inside a Makefile, use the built-in function <em>$(debugger)</em>. For example here is a Makefile:</p>
+<pre><code>all:
+    $(debugger &#39;arg not used&#39;)
+    echo Nothing here, move along</code></pre>
+<p>When GNU Make is inside the <em>all</em> target, it will make a call to the debugger. The string after <em>debugger</em> is not used, but seems to be needed to get parsing right.</p>
+<h2 id="getting-makefile-information">Getting Makefile Information</h2>
+<p>If there is project that you want a list of “interesting” Makefile targets, try:</p>
+<pre><code>remake --tasks</code></pre>
+<p>If the project has commented its Makefile using remake-friendly comments you may get output like this:</p>
+<pre><code>ChangeLog   # create ChangeLog fom git log via git2cl
+build   # Do what it takes to build software locally
+check   # Run all tests
+clean   # Remove OS- and platform-specific derived files.
+dist    # Create source and binary distribution
+distclean   # Remove all derived files. Like &quot;clean&quot; on steroids.
+install # Install package
+test    # Same as check</code></pre>
+<p>To get a list of <em>all</em> targets, interesting or not, use <em>–targets</em></p>
+</body>
+</html>

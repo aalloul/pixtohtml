@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pistos_ramaze7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    $ git add -p</code></pre>
+<ul>
+<li><p>Commit the changes into the history of your repository</p>
+<pre><code># Create a commit from the hunks added
+$ git commit</code></pre></li>
+<li><p>output your patches into a bundle ready to be mailed (compress it before sending to make sure it arrives in the way you sent it)</p>
+<p>At the end of this process you will have a tar.bz2 for all your changes that you can mail to ramaze@googlegroups.com</p>
+<pre><code># make sure you are on latest revision to avoid conflicts
+$ git pull
+
+# create 00xx-blah.patch files against the remote repo
+$ git format-patch origin/HEAD
+
+# From here on you can use either git-send-email or go the manual route
+$ tar -cjf ramaze_bundle.tar.bz2 *.patch</code></pre></li>
+</ul>
+<h1 id="getting-started">Getting Started</h1>
+<p>Now that you have a vague idea of what you’re about to get into you might just want to get a way to get up and running ASAP. Please read below for more information about installation.</p>
+<p>Depending on what you are planning to do you can either just go and start reading the source or directly get some hands-on experience by trying some of the examples. Most things will require dependencies though. The basic functionality is provided by the WEBrick adapter and the Template::Ramaze, which just run out of the box. For more features you will have to install some templating-engines and mongrel (<em>very</em> recommended). Ramaze will inform you when it needs further dependencies, so just go and try some things.</p>
+<p>Some places to get started are: - Read the documentation. - Run and read the test cases. - Look at the examples and run/modify them.</p>
+<h1 id="a-couple-of-examples">A couple of Examples</h1>
+<p>There are some examples for your instant pleasure inside the examples-directory in the Ramaze-distribution. To start up an example, you can use the Ramaze binary located in bin/ramaze</p>
+</body>
+</html>

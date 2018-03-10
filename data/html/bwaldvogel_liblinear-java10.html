@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bwaldvogel_liblinear-java10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code> The array label stores class labels.</code></pre>
+<ul>
+<li><p>Function: <code>void cross_validation(const problem *prob, const parameter *param, int nr_fold, double *target);</code></p>
+<p>This function conducts cross validation. Data are separated to nr_fold folds. Under given parameters, sequentially each fold is validated using the model from training the remaining. Predicted labels in the validation process are stored in the array called target.</p>
+<p>The format of prob is same as that for train().</p></li>
+<li><p>Function: <code>void find_parameter_C(const struct problem *prob,            const struct parameter *param, int nr_fold, double start_C,            double max_C, double *best_C, double *best_rate);</code></p>
+<p>This function is similar to cross_validation. However, instead of conducting cross validation under a specified parameter C, it conducts cross validation many times under parameters C = start_C, 2<em>start_C, 4</em>start_C, 8*start_C, …, and finds the best one with the highest cross validation accuracy.</p>
+<p>If start_C &lt;= 0, then this procedure calculates a small enough C for prob as the start_C. The procedure stops when the models of all folds become stable or C reaches max_C. The best C and the corresponding accuracy are assigned to <em>best_C and </em>best_rate, respectively.</p></li>
+<li><p>Function: <code>double predict(const model *model_, const feature_node *x);</code></p>
+<p>For a classification model, the predicted class for x is returned. For a regression model, the function value of x calculated using the model is returned.</p></li>
+<li><p>Function: <code>double predict_values(const struct model *model_,           const struct feature_node *x, double* dec_values);</code></p>
+<p>This function gives nr_w decision values in the array dec_values. nr_w=1 if regression is applied or the number of classes is two. An exception is multi-class SVM by Crammer and Singer (-s 4), where nr_w = 2 if there are two classes. For all other situations, nr_w is the number of classes.</p>
+<p>We implement one-vs-the rest multi-class strategy (-s 0,1,2,3,5,6,7) and multi-class SVM by Crammer and Singer (-s 4) for multi-class SVM. The class with the highest decision value is returned.</p></li>
+<li><p>Function: <code>double predict_probability(const struct model *model_,           const struct feature_node *x, double* prob_estimates);</code></p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>symengine_symengine2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>For RPM based systems (Fedora etc.):</p>
+<pre><code>yum install cmake gmp-devel</code></pre>
+<p>Install SymEngine:</p>
+<pre><code>cmake .
+make
+make install</code></pre>
+<p>This will configure and build SymEngine in the default Release mode with all code and compiler optimizations on and then install it on your system.</p>
+<p>Run tests:</p>
+<pre><code>ctest</code></pre>
+<h3 id="development">Development</h3>
+<p>The Travis-CI checks the code in both Release and Debug mode with all possible checks, so just sending a GitHub pull request is enough and you can use any mode you want to develop it. However, the best way to develop SymEngine on Linux is to use the Debug mode with <code>BFD</code> support on:</p>
+<pre><code>cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_BFD=yes .</code></pre>
+<p>This <code>BFD</code> support turns on nice Python like stacktraces on exceptions, assert errors or segfaults, and the Debug mode automatically turns on <code>WITH_SYMENGINE_RCP=no</code> (which uses <code>Teuchos::RCP</code> with full Debug time checking) and <code>WITH_SYMENGINE_ASSERT=yes</code>, so the code cannot segfault in Debug mode, as long as our style conventions (e.g. no raw pointers) are followed, which is easy to check by visual inspection of a given Pull Request. In Release mode, which is the default, the code is as performing as manual reference counting and raw pointers (and if there is a bug, it could segfault, in which case all you have to do is to turn Debug mode on and get a nice exception with a stacktrace).</p>
+<p>To make <code>WITH_BFD=yes</code> work, you need to install <code>binutils-dev</code> first, otherwise you will get a <code>CMake</code> error during configuring. For Debian based systems (Ubuntu etc.)</p>
+<pre><code>apt-get install binutils-dev</code></pre>
+<p>For RPM based systems (Fedora etc.)</p>
+<pre><code>yum install binutils-devel</code></pre>
+<p>On OpenSuSE you will additionally need <code>glibc-devel</code>.</p>
+</body>
+</html>

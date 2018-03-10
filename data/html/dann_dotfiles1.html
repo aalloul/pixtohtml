@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dann_dotfiles1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="danns-dotfiles">dann’s dotfiles</h1>
+<h2 id="installation">INSTALLATION</h2>
+<h3 id="dotfiles">dotfiles</h3>
+<h1 id="install-dotfiles">Install dotfiles</h1>
+<pre><code>% git clone https://github.com/dann/dotfiles.git ~/.dotfiles
+% cd ~/.dotfiles
+% ./dotsetup.sh</code></pre>
+<h1 id="install-coreutils-and-some-unix-tools-to-use-this-dotfiles-to-use-dotfiles">Install coreutils and some unix tools to use this dotfiles to use dotfiles</h1>
+<pre><code>% cd ~/.dotfiles/setup
+% ./setup_app_for_mac.sh</code></pre>
+<h3 id="setup-perl-and-perl-modules">Setup perl and perl modules</h3>
+<pre><code>% cd ~/.dotfiles/dotfiles/setup
+% ./setup_perl.sh 
+% ./setup/setup_perl_modules.sh </code></pre>
+<h3 id="setup-minicpan-and-fetch-perl-modules-to-local">Setup minicpan and fetch perl modules to local</h3>
+<pre><code>% perl `which minicpan` -r http://cpan.yahoo.com/ -l ~/share/minicpan</code></pre>
+<h2 id="customization">CUSTOMIZATION</h2>
+<h3 id="customize-zsh-configuration">Customize zsh configuration</h3>
+<p>Create ~/.zshr-after or ~/.zshrc-before</p>
+<p>These are hook files for .zshrc. You can customize zsh with these configs.</p>
+<h3 id="customize-vim-configuration">Customize vim configuration</h3>
+<p>Create ~/.vimrc-after or ~/.vimrc-before</p>
+<h2 id="usage">USAGE</h2>
+<h3 id="zsh">zsh</h3>
+<p>glob history search <code>&lt;C-r&gt;</code> ex) C-r v*m</p>
+</body>
+</html>

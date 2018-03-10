@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevej_configgy4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>log data to (optional) - <strong><code>syslog_server_name</code></strong> - server name to attach to log messages when sending to a syslog (optional) - <strong><code>roll</code></strong> - when the logfile should be rolled (described below)</p>
+<p>Logging severities are:</p>
+<pre><code>Severity   Description
+=========  ================
+FATAL      the server is about to exit
+CRITICAL   something happened that is so bad that someone should probably
+             be paged
+ERROR      an error occurred that may be limited in scope, but was
+             user-visible
+WARNING    a coder may want to be notified, but the error was probably not
+             user-visible
+INFO       normal informational logging
+DEBUG      coder-level debugging information
+TRACE      intensive debugging information</code></pre>
+<p>Logfile rolling policies are:</p>
+<pre><code>Name     Description
+=======  =================
+never    always use the same logfile
+hourly   roll to a new logfile at the top of every hour
+daily    roll to a new logfile at midnight every night
+sunday   roll to a new logfile at midnight between saturday and sunday,
+           once a week</code></pre>
+<p>You can omit a rolling policy, or use policy “never”, to avoid rolling the logfiles. For weekly logfile rolling, you may use any day of the week (“monday”, “tuesday”, etc), not just “sunday”.</p>
+<p>When a logfile is rolled, the current logfile is renamed to have the date (and hour, if rolling hourly) attached, and a new one is started. So, for example, <code>test.log</code> may become <code>test-20080425.log</code>, and <code>test.log</code> will be reopened as a new file.</p>
+<p>So, for example:</p>
+<pre><code>&lt;log&gt;
+    filename = &quot;test.log&quot;
+    level = &quot;warning&quot;
+    roll = &quot;tuesday&quot;
+&lt;/log&gt;</code></pre>
+<p>creates a logfile <code>test.log</code> that captures log entries only at warning,</p>
+</body>
+</html>

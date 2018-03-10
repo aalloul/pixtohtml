@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bwaldvogel_liblinear-java9</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>eps is the stopping criterion.
+
+nr_weight, weight_label, and weight are used to change the penalty
+for some classes (If the weight for a class is not changed, it is
+set to 1). This is useful for training classifier using unbalanced
+input data or with asymmetric misclassification cost.
+
+nr_weight is the number of elements in the array weight_label and
+weight. Each weight[i] corresponds to weight_label[i], meaning that
+the penalty of class weight_label[i] is scaled by a factor of weight[i].
+
+If you do not want to change penalty for any of the classes,
+just set nr_weight to 0.
+
+*NOTE* To avoid wrong parameters, check_parameter() should be
+called before train().
+
+struct model stores the model obtained from the training procedure:
+
+    struct model
+    {
+            struct parameter param;
+            int nr_class;           /* number of classes */
+            int nr_feature;
+            double *w;
+            int *label;             /* label of each class */
+            double bias;
+    };
+
+ param describes the parameters used to obtain the model.
+
+ nr_class and nr_feature are the number of classes and features,
+ respectively. nr_class = 2 for regression.
+
+ The array w gives feature weights; its size is
+ nr_feature*nr_class but is nr_feature if nr_class = 2. We use one
+ against the rest for multi-class classification, so each feature
+ index corresponds to nr_class weight values. Weights are
+ organized in the following way
+
+ ```
+     +------------------+------------------+------------+
+     | nr_class weights | nr_class weights |  ...
+     | for 1st feature  | for 2nd feature  |
+     +------------------+------------------+------------+
+ ```
+
+ If bias &gt;= 0, x becomes [x; bias]. The number of features is
+ increased by one, so w is a (nr_feature+1)*nr_class array. The
+ value of bias is stored in the variable bias.</code></pre>
+</body>
+</html>

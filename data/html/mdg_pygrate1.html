@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mdg_pygrate1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>A DB migration program focused on safety and supporting zero down time deployments.</p>
+<h1 id="example">Example</h1>
+<p>A sample pygration file, v1.py: import pygration</p>
+<pre><code>@pygration.step_class
+class HelloTableStep(object):
+    def add(self, db):
+        db.sql(&quot;CREATE TABLE hello (who varchar2(40));&quot;)</code></pre>
+<p>Add a configuration file, conf.d/hello.yaml: connection: “sqlite:///hellodb”</p>
+<p>Run it with: pygrate ff</p>
+<h1 id="goals">Goals</h1>
+<p>Separate DB changes into the 3 phases of Zero Downtime Deployment:</p>
+<ul>
+<li>Expansion: add new schema elements (add phase)</li>
+<li>Rollout (not pygrate): deploy new application code</li>
+<li>Cleanup:
+<ul>
+<li>move, hide or disable old schema elements to simulate dropping (simdrop phase)</li>
+<li>permanently drop old schema elements (drop phase)</li>
+</ul></li>
+</ul>
+<p>Easily rollback added and “dropped” elements</p>
+<p>Segregate DB changes by “release”, to easily limit how much can be rolled back with a single command</p>
+<h1 id="usage">Usage</h1>
+<p>See all usage options with:</p>
+<p>pygrate –help</p>
+<p>Run all steps with the fast-forward operation: pygrate ff</p>
+<p>Run individual phases of a single migration with: pygrate <operation> <version> where <code>&lt;operation&gt;</code> is one of:</p>
+<ul>
+<li>add</li>
+<li>simdrop</li>
+<li>drop</li>
+<li>rollback_add</li>
+<li>rollback_simdrop</li>
+</ul>
+</body>
+</html>

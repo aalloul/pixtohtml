@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>zippy_metaform3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>        ...
+        state &lt;state_name&gt;  # set the next state to go to
+    end
+end</code></pre>
+<h4 id="directives">directives</h4>
+<p>To load additional form definitions use:</p>
+<p>include_definitions(<path>)</p>
+<p>To load definitions at the class level (constants, helper methods etc) use:</p>
+<p>include_helpers(<path>)</p>
+<h3 id="defining-display-appearance-presentations-questions-and-tabs">Defining display appearance == presentations, questions, and tabs</h3>
+presentation <presentation_name>,&lt;options (:legal_state, :indexed)&gt; do <q>…
+<p>
+<p>… end</p>
+<h3 id="listings">Listings</h3>
+<p>Record has several methods for creating filtered lists of records. Record.search uses sql filters to have the database perform the filtering. Record.locate uses ruby filters, with an optional sql_prefilter. Record.locate first calls Record.search to process the sql_prefilter, if any. Then Record.locate calls Record.gather to perform the actual ruby filtering. If you have not passed an sql_prefilter to Record.locate, then Record.gather will do its ruby filtering on the entire database, which is time intensive. It may be fastest to use only one field_id in the sql_prefilter, so use the biggest limiter there and save the other limiting field_ids for the ruby filter.</p>
+<p>Record.gather can also be called directly on a list of FormInstances which you pass in as a parameter or can be given a proc to create the list of FormInstances.</p>
+<p>Record.search always returns an array of FormInstances, where Record.gather/locate can also return an answers hash. An answers hash will allow the handling of indexed fields.</p>
+<h2 id="contributing">Contributing</h2>
+<ol type="1">
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+<h2 id="testing">Testing</h2>
+<p>Metaform uses RSpec for testing. The gem contains a dummy app with a couple of forms that exercise metaforms features and functionality. To setup the gem to run the specs:</p>
+<ol type="1">
+<li>cd into the gem root directory</li>
+<li>run the bundle command to set up the development dependencies</li>
+<li>cd spec/dummy</li>
+<li>rake db:migrate</li>
+<li>rake db:test:prepare</li>
+</ol>
+<p>Then from the gem root you can run the specs with:</p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aasm_aasm13</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>def count_transitions! klass.class_eval do aasm :with_klass =&gt; CustomAASMBase do after_all_transitions :increment_transition_count end end end</p>
+<p># A custom annotation that we want available across many AASM models. def requires_guards! klass.class_eval do attr_reader :authorizable_called, :transition_count, :fillable_called</p>
+<pre><code>  def authorizable?
+    @authorizable_called = true
+  end
+
+  def fillable?
+    @fillable_called = true
+  end
+
+  def increment_transition_count
+    @transition_count ||= 0
+    @transition_count += 1
+  end
+end</code></pre>
+<p>end end ```</p>
+<p>When we declare our model that has an AASM state machine, we simply declare the AASM block with a <code>:with_klass</code> key to our own class.</p>
+<p>```ruby class SimpleCustomExample include AASM</p>
+<p># Let’s build an AASM state machine with our custom class. aasm :with_klass =&gt; CustomAASMBase do requires_guards! count_transitions!</p>
+<pre><code>state :initialised, :initial =&gt; true
+state :filled_out
+state :authorised
+
+event :fill_out do
+  transitions :from =&gt; :initialised, :to =&gt; :filled_out, :guard =&gt; :fillable?
+end</code></pre>
+</body>
+</html>

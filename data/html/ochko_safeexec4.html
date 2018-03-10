@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ochko_safeexec4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>FreeBSD support</li>
+</ul>
+<h3 id="may-17-2015.">May 17, 2015.</h3>
+<ul>
+<li>Fix linux specifics</li>
+</ul>
+<h3 id="sep-23-2014.">Sep 23, 2014.</h3>
+<ul>
+<li>chmod/chown task for cmake</li>
+<li>Add more test</li>
+</ul>
+<h3 id="sep-8-2014.">Sep 8, 2014.</h3>
+<ul>
+<li>Introduce cmake</li>
+<li>Terminate only process under controll. kill(pid,..) instead of kill(-1,…)</li>
+</ul>
+<h3 id="apr-5-6-2013">Apr 5-6, 2013</h3>
+<ul>
+<li>Apparmor profile for linux file read/write permission workaround.</li>
+<li>setgit to protect files with group permission</li>
+<li>Redirect stderr of user program</li>
+</ul>
+<h3 id="dec-10-2012.">Dec 10, 2012.</h3>
+<ul>
+<li>Add address space limit</li>
+<li>Error handling for permission setter</li>
+</ul>
+<h3 id="dec-8-2012.">Dec 8, 2012.</h3>
+<ul>
+<li>FreeBSD support using <code>kvm.h</code></li>
+<li>Add some error handling</li>
+</ul>
+<h3 id="feb-16-2009.">Feb 16, 2009.</h3>
+<ul>
+<li>Copied from mooshak’s SafeExec.</li>
+<li>Add chroot feature</li>
+</ul>
+<h2 id="license">License</h2>
+<p>The MIT License (MIT)</p>
+<p>Copyright (c) Lkhagva Ochirkhuyag, 2009-2015</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>justinfrench_formtastic5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre class="erb"><code>    &lt;%= semantic_form_for [@author, @post] do |f| %&gt;</code></pre>
+<p>Nested forms are also supported (don’t forget your models need to be setup correctly with <code>accepts_nested_attributes_for</code>). You can do it in the Rails way:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs :title, :body, :created_at %&gt;
+    &lt;%= f.semantic_fields_for :author do |author| %&gt;
+      &lt;%= author.inputs :first_name, :last_name, :name =&gt; &quot;Author&quot; %&gt;
+    &lt;% end %&gt;
+    &lt;%= f.actions %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>Or the Formtastic way with the <code>:for</code> option:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs :title, :body, :created_at %&gt;
+    &lt;%= f.inputs :first_name, :last_name, :for =&gt; :author, :name =&gt; &quot;Author&quot; %&gt;
+    &lt;%= f.actions %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>When working in has many association, you can even supply <code>&quot;%i&quot;</code> in your fieldset name; they will be properly interpolated with the child index. For example:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs %&gt;
+    &lt;%= f.inputs :name =&gt; &#39;Category #%i&#39;, :for =&gt; :categories %&gt;
+    &lt;%= f.actions %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>Alternatively, the current index can be accessed via the <code>inputs</code> block’s arguments for use anywhere:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs :for =&gt; :categories do |category, i| %&gt;
+      ...
+    &lt;%= f.actions %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>If you have more than one form on the same page, it may lead to HTML invalidation because of the way HTML element id attributes are assigned. You can provide a namespace for your form to ensure uniqueness of id attributes on form elements. The namespace attribute will be prefixed with underscore on the generate HTML id. For example:</p>
+<p>```erb</p>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>matthewtodd_perquackey1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="getting-started">Getting Started</h1>
+<ol type="1">
+<li><code>brew install bazel</code></li>
+</ol>
+<h2 id="common">Common</h2>
+<h3 id="command-line">Command Line</h3>
+<ol type="1">
+<li><code>bazel build //src:common</code></li>
+</ol>
+<h3 id="intellij">IntelliJ</h3>
+<ol type="1">
+<li>Install .</li>
+<li>Install the plugin.</li>
+<li>“Import from workspace” the <code>src/common.bazelproject</code> file.</li>
+</ol>
+<h2 id="android">Android</h2>
+<h3 id="command-line-1">Command Line</h3>
+<p>Using Android Studio to get the Android SDK here…</p>
+<ol type="1">
+<li>Install .</li>
+<li><code>ln -s ~/Library/Android third_party/android</code></li>
+<li><code>./tools/android</code></li>
+</ol>
+<ul>
+<li>Tools
+<ul>
+<li>Android SDK Build-tools 22.0.1</li>
+</ul></li>
+<li>Android 5.1.1 (API 22)
+<ul>
+<li>SDK Platform</li>
+<li>Intel x86 Atom 64 System Image</li>
+<li>Sources for Android SDK</li>
+</ul></li>
+</ul>
+<ol type="1">
+<li><code>bazel build //src:android</code></li>
+</ol>
+<h4 id="section"></h4>
+<ol type="1">
+<li><code>./tools/android create avd -t android-22 -device &quot;Nexus 4&quot; -n matthewtodd</code></li>
+<li>In Android Studio -&gt; Tools -&gt; Android -&gt; AVD Manager, check Enable Device Frame.</li>
+<li><code>./tools/emulator -avd matthewtodd &amp;</code></li>
+<li><code>bazel mobile-install //src:android</code></li>
+</ol>
+<h4 id="section-1"></h4>
+<ol type="1">
+<li>Turn on Settings -&gt; Developer options -&gt; USB Debugging.</li>
+<li><code>bazel mobile-install //src:android</code></li>
+</ol>
+<h3 id="android-studio">Android Studio</h3>
+<ol type="1">
+<li>Install the plugin.</li>
+<li>“Import from workspace” the <code>src/android.bazelproject</code> file.</li>
+</ol>
+</body>
+</html>

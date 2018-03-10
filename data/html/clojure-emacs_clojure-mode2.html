@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>clojure-emacs_clojure-mode2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>(infrequent) breakage but don’t want to run from a git checkout.</p>
+<p>You can install <code>clojure-mode</code> using the following command:</p>
+<p><kbd>M-x package-install [RET] clojure-mode [RET]</kbd></p>
+<p>or if you’d rather keep it in your dotfiles:</p>
+<pre class="el"><code>(unless (package-installed-p &#39;clojure-mode)
+  (package-install &#39;clojure-mode))</code></pre>
+<p>If the installation doesn’t work try refreshing the package list:</p>
+<p><kbd>M-x package-refresh-contents</kbd></p>
+<h2 id="bundled-major-modes">Bundled major modes</h2>
+<p>The <code>clojure-mode</code> package actually bundles together several major modes:</p>
+<ul>
+<li><code>clojure-mode</code> is a major mode for editing Clojure code</li>
+<li><code>clojurescript-mode</code> is a major mode for editing ClojureScript code</li>
+<li><code>clojurec-mode</code> is a major mode for editing <code>.cljc</code> source files</li>
+</ul>
+<p>All the major modes derive from <code>clojure-mode</code> and provide more or less the same functionality. Differences can be found mostly in the font-locking - e.g. ClojureScript has some built-in constructs that are not present in Clojure.</p>
+<p>The proper major mode is selected automatically based on the extension of the file you’re editing.</p>
+<p>Having separate major modes gives you the flexibility to attach different hooks to them and to alter their behavior individually (e.g. add extra font-locking just to <code>clojurescript-mode</code>) .</p>
+<p>Note that all modes derive from <code>clojure-mode</code>, so things you add to <code>clojure-mode-hook</code> and <code>clojure-mode-map</code> will affect all the derived modes as well.</p>
+<h2 id="configuration">Configuration</h2>
+<p>In the spirit of Emacs, pretty much everything you can think of in <code>clojure-mode</code> is configurable.</p>
+<p>To see a list of available configuration options do <code>M-x customize-group RET clojure</code>.</p>
+<h3 id="indentation-options">Indentation options</h3>
+<p>The default indentation rules in <code>clojure-mode</code> are derived from the .</p>
+</body>
+</html>

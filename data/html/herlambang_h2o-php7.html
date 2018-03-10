@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>herlambang_h2o-php7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>use file cache [default]</p>
+<p><code>$template = new H2o('index.html', array('cache'=&gt;'file'));</code></p>
+<p>use apc cache</p>
+<p><code>$template = new H2o('index.html', array('cache'=&gt;'apc'));</code></p>
+<p>memcache module not implemented yet</p>
+<p>disable caching</p>
+<p><code>$template = new H2o('index.html', array('cache'=&gt;false));</code></p>
+<h4 id="cache_dir">cache_dir</h4>
+<p>When file cache is used, you can define where you want templates to be cached.</p>
+<p>it will put cached template in same location as that template</p>
+<p><code>$template = new H2o('index.html', array('cache_dir'=&gt;'/tmp/cached_templates'));</code></p>
+<h4 id="cache_ttl">cache_ttl</h4>
+<p>how long template cache will be lived (defaults: 1 hour), template fregment cache that is bundled in cache extension will use this as default ttl value.</p>
+<p><code>$template = new H2o('index.html', array('cache_ttl' =&gt; 3600));</code></p>
+<h2 id="performance-and-caching">Performance and Caching</h2>
+<p>Caching can increase performance since it skips step of inefficient template parsing, H2o caches the template objects(internal data structure of a template) and bundled multiple caching backend includes File, APC and memcache.</p>
+<h3 id="file-cache">File cache</h3>
+<p>By default h2o uses file cache to store template objects, change h2o option <code>cache_dir</code> to where you want to store template cache (ie: /tmp).</p>
+<pre><code>&lt;?php
+    $template = new H2o(&#39;homepage.tpl&#39;, array(
+        &#39;cache&#39; =&gt; &#39;file&#39;,
+        &#39;cache_dir&#39; =&gt; &#39;/tmp&#39;
+    ));
+?&gt;</code></pre>
+<h3 id="apc-cache">APC cache</h3>
+<p>APC is a opt-code cache php extension that also provides a robust object cache, and the performance is generally 10-30% faster than file caching.</p>
+</body>
+</html>

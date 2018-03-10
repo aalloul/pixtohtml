@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bjeanes_noober2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>Set up iChat to have Bonjour (always on)</li>
+<li>Backspace on capslock hack</li>
+<li>Add Colemak input option (http://www.afp548.com/forum/viewtopic.php?showtopic=26259)
+<ul>
+<li>Set as default</li>
+<li>Change the keyboard shortcut</li>
+</ul></li>
+<li>Bind / DNSMasq</li>
+<li>LaunchBar</li>
+<li>AppCleaner</li>
+<li>Fluid</li>
+<li>http://github.com/xvzf/vcprompt</li>
+<li>SizeUp</li>
+<li>TextMate ProjectPlus plugin</li>
+<li>Teleport</li>
+<li>Telefrag + AppleScript hack to inject</li>
+<li>PrefPanes
+<ul>
+<li>Perian</li>
+<li>Passenger</li>
+<li>MySQL</li>
+</ul></li>
+<li>DTerm (http://www.decimus.net/dterm.php)</li>
+<li>Customised Terminal profiles (http://github.com/xaviershay/babushka-deps/blob/master/terminal.rb)
+<ul>
+<li>Visor (http://cloud.github.com/downloads/darwin/visor/Visor-2.2-84d1873.zip)</li>
+<li>Blurminal (http://github.com/timmfin/Blurminal/raw/master/Blurminal-SL-64bit.bundle.zip)
+<ul>
+<li><code>defaults write com.apple.Terminal ‘Blurminal Radius’ -float 1.0</code></li>
+</ul></li>
+<li>ANSI colours (http://github.com/timmfin/terminalcolours/raw/master/TerminalColours-SL-64bit.zip)</li>
+<li>terminal keyboard shortcuts: (http://bjeanes.com/2010/06/26/option-keyboard-shortcuts-for-terminal-and-iterm)</li>
+</ul></li>
+<li>PlugSuit (http://www.macupdate.com/download.php/26068/download)</li>
+<li>Common fonts</li>
+<li>PeepOpen</li>
+<li>Permissions for /Library/{Perl,Ruby,Python} corrected as per <code>homebrew</code> wiki page</li>
+<li>Pretty much everything in: http://blog.therubymug.com/blog/2010/05/20/the-install-osx.html#fn2</li>
+<li>Global rvm gems:
+<ul>
+<li>pg</li>
+<li>mysql</li>
+<li>open_gem</li>
+</ul></li>
+<li>Set up Adium, Skype, iChax logs to sync through Drop Box (by symlinking)</li>
+<li>Brews that require launchctl installations should install the scripts and load them!</li>
+<li>App License (from dropbox)
+<ul>
+<li>1password: ~/Library/1Password/License/</li>
+</ul></li>
+<li>Configure menu extras: defaults read com.apple.systemuiserver</li>
+<li>Get the slocate database running: sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist</li>
+<li>Add zsh and bash brews to /etc/shells</li>
+<li>Set zsh as default shell (from brew)</li>
+</ul>
+<h2 id="mischackspreferences-to-set">Misc/Hacks/Preferences to set</h2>
+<ul>
+<li><code>sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport</code></li>
+<li>turn universal access on (for applescripting interfaces, etc)</li>
+<li>Set up file/folder reference patterns in TextMate</li>
+</ul>
+</body>
+</html>

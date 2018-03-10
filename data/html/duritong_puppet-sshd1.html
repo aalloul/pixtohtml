@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>duritong_puppet-sshd1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="puppet-ssh-module">Puppet SSH Module</h1>
+<p>This puppet module manages OpenSSH configuration and services.</p>
+<p><strong>!! Upgrade Notice (01/2013) !!</strong></p>
+<p>This module now uses parameterized classes, where it used global variables before. So please whatch out before pulling, you need to change the class declarations in your manifest !</p>
+<h3 id="dependencies">Dependencies</h3>
+<p>This module requires puppet =&gt; 2.6, and the following modules are required pre-dependencies:</p>
+<ul>
+<li><blockquote>
+<p>= 2.x</p>
+</blockquote></li>
+</ul>
+<h2 id="openssh-server">OpenSSH Server</h2>
+<p>On a node where you wish to have an openssh server installed, you should include</p>
+<pre class="puppet"><code>class { &#39;sshd&#39;: }</code></pre>
+<p>on that node. If you need to configure any aspects of sshd_config, set the variables before the include. Or you can adjust many parameters:</p>
+<pre class="puppet"><code>class { &#39;sshd&#39;:
+  ports             =&gt; [ 20002 ],
+  permit_root_login =&gt; &#39;no&#39;,
+}</code></pre>
+<p>See Configurable Variables below for what you can set.</p>
+<h3 id="nagios">Nagios</h3>
+<p>To have nagios checks setup automatically for sshd services, simply set <code>manage_nagios</code> to <code>true</code> for that class. If you want to disable ssh nagios checking for a particular node (such as when ssh is firewalled), then you can set the class parameter <code>nagios_check_ssh</code> to <code>false</code> and that node will not be monitored.</p>
+<p>Nagios will automatically check the ports defined in <code>ports</code>, and the hostname specified by <code>nagios_check_ssh_hostname</code>.</p>
+</body>
+</html>

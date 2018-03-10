@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cyrus_high-dimensional-explorer8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>provided with the software. Before doing any work, I recommend copying the sample configfile to your work directory:</p>
+<pre><code>   cp ~/src/hidex/sample.config.txt ~/work/config.txt</code></pre>
+<p>If no configfile is specified on the command line, a file in the current directory called config.txt is used. You can specify an alternate name and location of the configfile by using the “-f” option. For example</p>
+<pre><code>hidex -f special.config.txt</code></pre>
+<p>Step 1: Edit the configfile to make the correct settings. Edit the “config.txt” file in your favorite text editor. The list of possible settings and their implications are described in the documentation in the “config.txt” file.</p>
+<p>Step 2: Create an empty data-store using this command:</p>
+<pre><code> cd ~/work
+ hidex -m create</code></pre>
+<p>Step 3: Process the corpus. The “update” command will create a sparse matrix representation of all the lexical co-occurrences in the corpus. WARNING: depending on the size of your corpus and your parameter settings, this process can take a long time. Please see section 2I for information on this topic.</p>
+<pre><code>hidex -m update</code></pre>
+<p>ALTERNATIVE METHOD: Download a vector set.</p>
+<p>If are unable to obtain and process a corpus, please download a vector set from the following URL:</p>
+<pre><code>http://www.psych.ualberta.ca/~westburylab/downloads/HiDEx.vectorset.download.html</code></pre>
+<p>To install this vector set, please read the instructions that are included with the download.</p>
+<hr />
+<p>2G) How do I use HiDEx once I have finished processing my corpus? ****************************************************************************</p>
+<p>Once the corpus co-occurrence data has been collected, you can begin analyzing it using several of HiDEx’s other modes.</p>
+<p>There are two types of calculations: vector aggregation and vector-based metrics. Vector aggregation must take place before metric calculation, and can be quite time-consuming. For this reason, HiDEx can save the results of aggregation (called the Global Co-occurrence Matrix, or GCM) in the work directory.</p>
+</body>
+</html>

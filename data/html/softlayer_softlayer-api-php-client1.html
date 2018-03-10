@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>softlayer_softlayer-api-php-client1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="a-softlayer-api-php-client.">A SoftLayer API PHP client.</h1>
+<h2 id="warning">Warning</h2>
+<pre><code>The latest version 1.x is not backwards-compatible.
+It is necessary to update scripts to function properly with the new version.</code></pre>
+<h2 id="overview">Overview</h2>
+<p>The SoftLayer API PHP client classes provide a simple method for connecting to and making calls from the SoftLayer API and provides support for many of the SoftLayer API’s features. Method calls and client management are handled by the PHP SOAP and XML-RPC extensions.</p>
+<p>Making API calls using the <code>\SoftLayer\SoapClient</code> or <code>\SoftLayer\XmlRpcClient</code> classes is done in the following steps:</p>
+<ol type="1">
+<li>Instantiate a new <code>\SoftLayer\SoapClient</code> or <code>\SoftLayer\XmlRpcClient</code> object using the <code>\SoftLayer\SoapClient::getClient()</code> or <code>\SoftLayer\XmlRpcClient::getClient()</code> methods. Provide the name of the service that you wish to query, an optional id number of the object that you wish to instantiate, your SoftLayer API username, your SoftLayer API key, and an optional API endpoint base URL. The client classes default to connect over the public Internet. Enter <code>\SoftLayer\SoapClient::API_PRIVATE_ENDPOINT</code> or <code>\SoftLayer\XmlRpcClient::API_PRIVATE_ENDPOINT</code> to connect to the API over SoftLayer’s private network. The system making API calls must be connected to SoftLayer’s private network (eg. purchased from SoftLayer or connected via VPN) in order to use the private network API endpoints.</li>
+<li>Define and add optional headers to the client, such as object masks and result limits.</li>
+<li>Call the API method you wish to call as if it were local to your client object. This class throws exceptions if it’s unable to execute a query, so it’s best to place API method calls in try / catch statements for proper error handling.</li>
+</ol>
+<p>Once your method is executed you may continue using the same client if you need to connect to the same service or define another client object if you wish to work with multiple services at once.</p>
+<p>The most up to date version of this library can be found on the SoftLayer github public repositories: or open a support ticket in the SoftLayer customer portal if you have any questions regarding use of this library. If you use Stack Overflow please tag your posts with “SoftLayer” so our team can easily find your post.</p>
+<h2 id="system-requirements">System Requirements</h2>
+<p>The <code>\SoftLayer\SoapClient</code> class requires at least PHP 5.3.0 and the PHP SOAP enxtension installed. The <code>\SoftLayer\XmlRpcClient</code> class requires PHP at least PHP 5 and the PHP XML-RPC extension installed.</p>
+<p>A valid API username and key are required to call the SoftLayer API. A connection to the SoftLayer private network is required to connect to SoftLayer’s private network API endpopints.</p>
+<h2 id="installation">Installation</h2>
+<p>Install the SoftLayer API client using .</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="ex">composer</span> require softlayer/softlayer-api-php-client:~1.0@dev</a></code></pre></div>
+<h2 id="usage">Usage</h2>
+<p>These examples use the <code>\SoftLayer\SoapClient</code> class. If you wish to use the XML-RPC API then replace mentions of <code>SoapClient.class.php</code> with <code>XmlrpcClient.class.php</code> and <code>\SoftLayer\SoapClient</code> with <code>\SoftLayer\XmlRpcClient</code>.</p>
+<p>Here’s a simple usage example that retrieves account information by calling the service:</p>
+<p>```php &lt;?php</p>
+<p>require_once <strong>DIR</strong>.’/vendor/autoload.php’;</p>
+<p>$apiUsername = ‘set me’; $apiKey = ‘set me too’;</p>
+</body>
+</html>

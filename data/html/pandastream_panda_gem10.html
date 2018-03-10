@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandastream_panda_gem10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code> &quot;audio_codec&quot;=&gt;nil,
+ &quot;height&quot;=&gt;nil,
+ &quot;upload_redirect_url&quot;=&gt;nil,
+ &quot;fps&quot;=&gt;nil,
+ &quot;video_codec&quot;=&gt;nil,
+ &quot;status&quot;=&gt;&quot;processing&quot;,
+ &quot;width&quot;=&gt;nil}</code></pre>
+<h3 id="getting-all-videos">Getting all videos</h3>
+<pre><code>Panda.get(&#39;/videos.json&#39;)
+=&gt; [{&quot;duration&quot;=&gt;14010,
+  &quot;created_at&quot;=&gt;&quot;2010/01/13 16:45:29 +0000&quot;,
+  &quot;original_filename&quot;=&gt;&quot;panda.mp4&quot;,
+  &quot;updated_at&quot;=&gt;&quot;2010/01/13 16:45:35 +0000&quot;,
+  &quot;source_url&quot;=&gt;&quot;http://www.example.com/original_video.mp4&quot;,
+  &quot;id&quot;=&gt;&quot;0ee6b656-0063-11df-a433-1231390041c1&quot;,
+  &quot;extname&quot;=&gt;&quot;.mp4&quot;,
+  &quot;audio_codec&quot;=&gt;&quot;aac&quot;,
+  &quot;height&quot;=&gt;240,
+  &quot;upload_redirect_url&quot;=&gt;nil,
+  &quot;fps&quot;=&gt;29,
+  &quot;video_codec&quot;=&gt;&quot;h264&quot;,
+  &quot;status&quot;=&gt;&quot;success&quot;,
+  &quot;width&quot;=&gt;300}]</code></pre>
+<h3 id="getting-video-encodings">Getting video encodings</h3>
+<pre><code>Panda.get(&#39;/videos/0ee6b656-0063-11df-a433-1231390041c1/encodings.json&#39;)
+=&gt; [{&quot;encoder_id&quot;=&gt;nil,
+  &quot;created_at&quot;=&gt;&quot;2010/01/13 16:45:30 +0000&quot;,
+  &quot;video_id&quot;=&gt;&quot;0ee6b656-0063-11df-a433-1231390041c1&quot;,
+  &quot;video_url&quot;=&gt; 
+      &quot;http://s3.amazonaws.com/panda-videos/0f815986-0063-11df-a433-1231390041c1.flv&quot;,
+  &quot;started_encoding_at&quot;=&gt;&quot;2010/01/13 16:47:35 +0000&quot;,
+  &quot;updated_at&quot;=&gt;&quot;2010/01/13 16:47:40 +0000&quot;,
+  &quot;extname&quot;=&gt;&quot;.flv&quot;,
+  &quot;encoding_progress&quot;=&gt;87,
+  &quot;encoding_time&quot;=&gt;3,
+  &quot;id&quot;=&gt;&quot;0f815986-0063-11df-a433-1231390041c1&quot;,
+  &quot;height&quot;=&gt;240,
+  &quot;status&quot;=&gt;&quot;success&quot;,
+  &quot;profile_id&quot;=&gt;&quot;00182830-0063-11df-8c8a-1231390041c1&quot;,
+  &quot;width&quot;=&gt;300}]</code></pre>
+<h3 id="deleting-an-encoding">Deleting an encoding</h3>
+<pre><code>Panda.delete(&#39;/encodings/0f815986-0063-11df-a433-1231390041c1.json&#39;)</code></pre>
+<h3 id="deleting-a-video">Deleting a video</h3>
+</body>
+</html>

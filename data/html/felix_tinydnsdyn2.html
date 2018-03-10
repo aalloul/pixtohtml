@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>felix_tinydnsdyn2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>An example Makefile is included with some ideas.</p>
+<ol start="6" type="1">
+<li>Start the service by symlinking this directory into your svscan directory (i.e. “ln $(pwd) /etc/service/” ).</li>
+</ol>
+<h3 id="client">Client</h3>
+<p>The service operates over HTTP and should be reasonably close to the service operated by DynDns.com having the following request format:</p>
+<p>http://username:password@yourdnsserver.com/?hostname=yourhostname&amp;myip=optionaladdress</p>
+<p>The only required parameter is the hostname you wish to change. This can be a comma separated list of hostnames to update. The IP address will be determined automatically if the ‘myip’ parameter is missing.</p>
+<p>The response codes are taken from here (not all of them):</p>
+<p>http://www.dyndns.com/developers/specs/return.html</p>
+<p>The Python code is basic and inefficient but it should work. I take no responsibility for anything that may happen to any of your machines. That said, please let me know if there are any issues.</p>
+<h3 id="license">LICENSE</h3>
+<p>This software is licensed under the MIT License.</p>
+<p>Copyright Felix Hanley, 2017.</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</body>
+</html>

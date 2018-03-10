@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevedekorte_garbagecollector1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="garbagecollector">garbagecollector</h1>
+<h2 id="overview">Overview</h2>
+<p>libgarbagecollector is an incremental tricolor tracing collector using a Baker Treadmill. libgarbagecollector is not an allocator; it only keeps track of the objects you tell it about and determines when it is safe to free them. So you’ll allocate objects using malloc() (or the allocator of your choice), and register them with the collector. When the collector finds that an object can be freed, it will call a function you give it to do the actual deallocation.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>First you’ll need to create a collector instance:</p>
+<pre><code>Collector *collector = Collector_new();</code></pre>
+<p>Your values must contain the CollectorMarker struct as the first part of it’s structure. So their struct declarations will look something like this:</p>
+<pre><code>struct MyObjectType
+{
+    CollectorMarker marker;
+    ...
+};</code></pre>
+<p>The collector manages the CollectorMarker and your code shouldn’t touch it.</p>
+<p>To tell the collector about your root value(s), call:</p>
+<pre><code>Collector_retain_(collector, aRootValue) </code></pre>
+<h2 id="adding-values">Adding Values</h2>
+<p>When you allocate an object, you add the value to the collector.</p>
+<pre><code>Collector_addValue_(collector, aValue)</code></pre>
+<h2 id="marking">Marking</h2>
+<p>You provide the means for the collector to trace the reference graph via the mark callback function.</p>
+<pre><code>Collector_setMarkFunc_(collector, MyObjectType_mark);</code></pre>
+<p>In your object’s mark function, you’ll need to call:</p>
+<pre><code>Collector_shouldMark_(collector, referencedValue);</code></pre>
+<p>on each of the values it references.</p>
+</body>
+</html>

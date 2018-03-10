@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>inet-framework_inet1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 25%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>CI Status</th>
+<th style="text-align: center;">master</th>
+<th style="text-align: center;">integration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build and fingerprint tests</td>
+<td style="text-align: center;">[[Travis CI][travis-master]][1]</td>
+<td style="text-align: center;">[[Travis CI][travis-integration]][2]</td>
+</tr>
+<tr class="even">
+<td>Feature enablement tests</td>
+<td style="text-align: center;">[[CircleCI][circle-master]][3]</td>
+<td style="text-align: center;">[[CircleCI][circle-integration]][4]</td>
+</tr>
+</tbody>
+</table>
+<h1 id="inet-framework-for-omnestomnet">INET Framework for OMNEST/OMNeT++</h1>
+<p>The is an open-source communication networks simulation package, written for the OMNEST/OMNeT++ simulation system. The INET framework contains models for numerous wired and wireless protocols, a detailed physical layer model, application models and more. See the CREDITS file for the names of people who have contributed to the INET Framework.</p>
+<p>IMPORTANT: The INET Framework is continuously being improved: new parts are added, bugs are corrected, and so on. We cannot assert that any protocol implemented here will work fully according to the specifications. YOU ARE RESPONSIBLE YOURSELF FOR MAKING SURE THAT THE MODELS YOU USE IN YOUR SIMULATIONS WORK CORRECTLY, AND YOU’RE GETTING VALID RESULTS.</p>
+<p>Contributions are highly welcome. You can make a difference!</p>
+<p>See the WHATSNEW file for recent changes.</p>
+<h2 id="getting-started">GETTING STARTED</h2>
+<p>You may start by downloading and installing the INET framework. Read the INSTALL file for further information.</p>
+<p>Then you can gather initial experience by starting some examples or following the INET wireless tutorial (tutorials/wireless). After that, you can learn the NED language from the OMNeT++ manual &amp; sample simulations.</p>
+<p>After that, you may write your own topologies using the NED language. You may assign some of the submodule parameters in NED files. You may leave some of them unassigned.</p>
+<p>Then, you may assign unassigned module parameters in omnetpp.ini of your simulation. (You can refer to sample simulations &amp; manual for the content of omnetpp.ini)</p>
+<p>Finally, you will be ready to run your simulation. As you see, you may use the INET framework without writing any C++ code, as long as you use the available modules.</p>
+<p>To implement new protocols or modify existing ones, you’ll need to add your code somewhere under the src directory. If you add new files under the ‘src’ directory you will need to regenerate the makefiles (using the ‘make makefiles’ command).</p>
+</body>
+</html>

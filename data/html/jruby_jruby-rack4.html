@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jruby_jruby-rack4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="servlet-environment-integration">Servlet Environment Integration</h2>
+<ul>
+<li>servlet context is accessible to any application through the Rack environment variable <em>java.servlet_context</em> (as well as the <code>$servlet_context</code> global).</li>
+<li>the (native) servlet request and response objects could be obtained via the <em>java.servlet_request</em> and <em>java.servlet_response</em> keys</li>
+<li>all servlet request attributes are passed through to the Rack environment (and thus might override request headers or Rack environment variables)</li>
+<li>servlet sessions can be used as a (java) session store for Rails, session attributes with String keys (and String, numeric, boolean, or java object values) are automatically copied to the servlet session for you.</li>
+</ul>
+<h2 id="rails">Rails</h2>
+<p>Several aspects of Rails are automatically set up for you.</p>
+<ul>
+<li><code>ActionController::Base.relative_url_root</code> is set for you automatically according to the context root where your webapp is deployed.</li>
+<li><code>Rails.logger</code> output is redirected to the application server log.</li>
+<li>Page caching and asset directories are configured appropriately.</li>
+</ul>
+<h2 id="jruby-runtime-management">JRuby Runtime Management</h2>
+<p>JRuby runtime management and pooling is done automatically by the framework. In the case of Rails, runtimes are pooled by default (the default will most likely change with the adoption of Rails 4.0). For other Rack applications a single shared runtime is created and shared for every request by default. As of <strong>1.1.9</strong> if <em>jruby.min.runtimes</em> and <em>jruby.max.runtimes</em> values are specified pooling is supported for plain Rack applications as well.</p>
+<p>We do recommend to boot your runtimes up-front to avoid the cost of initializing one while a request kicks in and find the pool empty, this can be easily avoided by setting <em>jruby.min.runtimes</em> equal to <em>jruby.max.runtimes</em>. You might also want to consider tuning the <em>jruby.runtime.acquire.timeout</em> parameter to not wait too long when all (max) runtimes from the pool are busy.</p>
+<h2 id="jruby-rack-configuration">JRuby-Rack Configuration</h2>
+<p>JRuby-Rack can be configured by setting these key value pairs either as context init parameters in web.xml or as VM-wide system properties.</p>
+<ul>
+<li><code>rackup</code>: Rackup script for configuring how the Rack application is mounted. Required for Rack-based applications other than Rails. Can be omitted if a <em>config.ru</em> is included in the application root.</li>
+<li><code>public.root</code>: Relative path to the location of your application’s static assets. Defaults to <em>/</em>.</li>
+<li><code>rails.root</code>: Root path to the location of the Rails application files. Defaults to <em>/WEB-INF</em>.</li>
+<li><code>rails.env</code>: Specify the Rails environment to run. Defaults to ‘production’.</li>
+<li><code>rails.relative_url_append</code>: Specify a path to be appended to the</li>
+</ul>
+</body>
+</html>

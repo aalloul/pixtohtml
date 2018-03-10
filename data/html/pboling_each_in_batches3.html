@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pboling_each_in_batches3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>Required:
+
+  :arel          - Usage: :arel =&gt; Payment.canceled.order(&quot;transaction_id ASC&quot;)
+                    Required, as this is the class that will be batched
+
+Optional:
+
+  :verbose       - Usage: :verbose =&gt; true or false
+                    Sets verbosity of output
+                    Default: false (if not provided)
+
+  :backwards     - Usage: :backwards =&gt; true or false
+                    Using the order supplied for :arel (if any) figures out what the batch set looks like,
+        and begins working from the end rather than the front.
+                    Default: false (if not provided)
+        Example: EachInBatches::Batch.new(:arel =&gt; Report.where(company_id: nil).order(&quot;id ASC&quot;), :backwards =&gt; true, :batch_size =&gt; 50).run{|x| x.destroy }
+
+  :batch_size    - Usage: :batch_size =&gt; x
+                    Where x is some number.
+                    How many AR Objects should be processed at once?
+                    Default: 50 (if not provided)
+
+  :last_batch    - Usage: :last_batch =&gt; x
+                    Where x is some number.
+                    Only process up to and including batch #x.
+                      Batch numbers start at 0 for the first batch.
+                    Default: won&#39;t be used (no limit if not provided)
+
+  :first_batch   - Usage: first_batch =&gt; x
+                    Where x is some number.
+                    Begin processing batches beginning at batch #x.
+                      Batch numbers start at 0 for the first batch.
+                    Default: won&#39;t be used (no offset if not provided)
+
+  :show_results  - Usage: :show_results =&gt; true or false
+                    Prints statistics about the results of Batch#run.
+                    Default: true if verbose is set to true and :show_results is not provided, otherwise false</code></pre>
+<h2 id="output">Output</h2>
+<p>Interpreting the output:</p>
+<pre><code>&#39;[O]&#39; means the batch was skipped due to an offset.
+&#39;[L]&#39; means the batch was skipped due to a limit.
+&#39;[P]&#39; means the batch is processing.
+&#39;[C]&#39; means the batch is complete.
+and yes... it was a coincidence.  This class is not affiliated with &#39;one laptop per child&#39;</code></pre>
+<h2 id="license">License</h2>
+</body>
+</html>

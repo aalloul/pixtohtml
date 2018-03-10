@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_gist3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h4 id="password-less-login">Password-less login</h4>
+<p>If you have a complicated authorization requirement you can manually create a token file by pasting a Github token with only the <code>gist</code> permission into a file called <code>~/.gist</code>. You can create one from https://github.com/settings/tokens</p>
+<p>This file should contain only the token (~40 hex characters), and to make it easier to edit, can optionally have a final newline (or ).</p>
+<p>For example, one way to create this file would be to run:</p>
+<pre><code>echo MY_SECRET_TOKEN &gt; ~/.gist</code></pre>
+<h3 id="github-enterprise">GitHub Enterprise</h3>
+<p>If you’d like <code>gist</code> to use your locally installed , you need to export the <code>GITHUB_URL</code> environment variable (usually done in your <code>~/.bashrc</code>).</p>
+<pre><code>export GITHUB_URL=http://github.internal.example.com/</code></pre>
+<p>Once you’ve done this and restarted your terminal (or run <code>source ~/.bashrc</code>), gist will automatically use github enterprise instead of the public github.com</p>
+<p>Your token for GitHub Enterprise will be stored in <code>.gist.&lt;protocol&gt;.&lt;server.name&gt;[.&lt;port&gt;]</code> (e.g. <code>~/.gist.http.github.internal.example.com</code> for the GITHUB_URL example above) instead of <code>~/.gist</code>.</p>
+<p>If you have multiple servers or use Enterprise and public GitHub often, you can work around this by creating scripts that set the env var and then run <code>gist</code>. Keep in mind that to use the public GitHub you must unset the env var. Just setting it to the public URL will not work. Use <code>unset GITHUB_URL</code></p>
+<h3 id="token-file-format">Token file format</h3>
+<p>If you cannot use passwords, as most Enterprise installations do, you can generate the token via the web interface and then simply save the string in the correct file. Avoid line breaks or you might see:</p>
+<pre><code>$ gist -l
+Error: Bad credentials</code></pre>
+<h1 id="library">Library</h1>
+<p>‌You can also use Gist as a library from inside your ruby code:</p>
+<pre><code>Gist.gist(&quot;Look.at(:my =&gt; &#39;awesome&#39;).code&quot;)</code></pre>
+<p>If you need more advanced features you can also pass:</p>
+<ul>
+<li><code>:access_token</code> to authenticate using OAuth2 (default is `File.read(“~/.gist”)).</li>
+<li><code>:filename</code> to change the syntax highlighting (default is <code>a.rb</code>).</li>
+<li><code>:public</code> if you want your gist to have a guessable url.</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pageman_spree3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>http://localhost:nnnn/admin</p>
+<h2 id="working-with-the-edge-source-latest-and-greatest-features">Working with the edge source (latest and greatest features)</h2>
+<p>The source code is essentially a collection of gems. Spree is meant to be run within the context of Rails application. You can easily create a sandbox application inside of your cloned source directory for testing purposes.</p>
+<ol type="1">
+<li>Clone the Git repo</li>
+</ol>
+<pre class="shell"><code>git clone git://github.com/spree/spree.git
+cd spree</code></pre>
+<ol start="2" type="1">
+<li>Install the gem dependencies</li>
+</ol>
+<pre class="shell"><code>bundle install</code></pre>
+<ol start="3" type="1">
+<li>Create a sandbox Rails application for testing purposes (and automatically perform all necessary database setup)</li>
+</ol>
+<pre class="shell"><code>bundle exec rake sandbox</code></pre>
+<ol start="4" type="1">
+<li>Start the server</li>
+</ol>
+<pre class="shell"><code>cd sandbox
+rails server</code></pre>
+<h2 id="performance">Performance</h2>
+<p>You may noticed that your Spree store runs slowly in development mode. This is a side-effect of how Rails works in development mode which is to continuous reload your Ruby objects on each request. The introduction of the asset pipeline in Rails 3.1 made default performance in development mode significantly worse. There are, however, a few tricks to speeding up performance in development mode.</p>
+<p>You can recompile your assets as follows:</p>
+<pre class="shell"><code>bundle exec rake assets:precompile:nondigest</code></pre>
+<p>If you want to remove precompiled assets (recommended before you commit to Git and push your changes) use the following rake task:</p>
+</body>
+</html>

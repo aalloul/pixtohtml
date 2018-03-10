@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>voxdolo_render-polymorphic1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="render-polymorphic">render :polymorphic</h1>
+<p><strong>“Hey! Get that excess conditional logic out of that view!”</strong></p>
+<p><code>render :polymorphic</code> is a simple plugin which adds a :polymorphic parameter to the <code>ActionView::Base#render</code> method. This adds an opinionated method of rendering a partial at a derived path. Useful in situations where you have views that belong to polymorphic resources.</p>
+<h2 id="show-rather-than-tell">Show Rather Than Tell:</h2>
+<p><em>Examples assume these associations:</em></p>
+<pre><code>class Message &lt; ActiveRecord::Base
+  belongs_to :messageable, :polymorphic =&gt; true
+end
+
+class User &lt; ActiveRecord::Base
+  has_many :messages, :as =&gt; :messageable
+end
+
+class Group &lt; ActiveRecord::Base
+  has_many :messages, :as =&gt; :messageable
+end</code></pre>
+<p>before <code>render :polymorphic</code></p>
+<pre><code># in app/views/messages/index.html.erb
+&lt;%- if message.messageable.is_a?(User) %&gt;
+  # lot&#39;s of user-specific view code here
+&lt;%- elsif messageable.messageable.is_a?(Group) %&gt;
+  # lot&#39;s of group-specific view code here
+&lt;%- end %&gt;</code></pre>
+<p>Personally, I despise huge blocks of conditional logic wrapping lots of view code. The above could be written a bit more nicely without using <code>render :polymorphic</code> as such:</p>
+<pre><code># in app/views/messages/index.html.erb
+&lt;%- if message.messageable.is_a?(User) %&gt;
+  &lt;%= render :partial =&gt; &#39;user_index&#39;, :locals =&gt; { :message =&gt; message } %&gt;
+&lt;%- elsif messageable.messageable.is_a?(Group) %&gt;
+  &lt;%= render :partial =&gt; &#39;group_index&#39;, :locals =&gt; { :message =&gt; message } %&gt;
+&lt;%- end %&gt;</code></pre>
+<p>But there’s an abstraction to be made there, which is precisely what <code>render :polymorphic</code> does:</p>
+<pre><code># in app/views/messages/index.html.erb
+&lt;%= render :polymorphic =&gt; message.messageable, :locals =&gt; { :message =&gt; message } %&gt;</code></pre>
+<p>Which will in turn render a partial at <code>app/views/users/messages_index.html.erb</code> (assuming <code>message.messageable</code> is a <code>User</code>). And there we go, a neatly encapsulated pattern for getting excess conditional logic out of the view.</p>
+</body>
+</html>

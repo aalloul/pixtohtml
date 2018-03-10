@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>georgi_shinmun1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="shinmun---a-file-based-blog-engine">Shinmun - a file based blog engine</h1>
+<p>Shinmun is a small file based blog engine. Write posts in your favorite editor, track them with git and deploy to Heroku. Small, fast and simple.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>Posts are text files formatted with [Markdown][8], [Textile][9] or [HTML][10]</li>
+<li>Deploy via [git-push][11]</li>
+<li>Easy and fast deploying on Heroku</li>
+<li>Index, category and archive listings</li>
+<li>RSS feeds</li>
+<li>Syntax highlighting provided by [CodeRay][4]</li>
+</ul>
+<h3 id="quickstart">Quickstart</h3>
+<p>Install the gems:</p>
+<pre><code>$ gem install shinmun</code></pre>
+<p>Create a sample blog:</p>
+<pre><code>$ shinmun init myblog</code></pre>
+<p>This will create a directory with all necessary files. Now start the web server:</p>
+<pre><code>$ cd myblog
+$ rackup</code></pre>
+<p>Browse to the following url:</p>
+<pre><code>http://localhost:9292</code></pre>
+<p>Voilà, your first blog is up and running!</p>
+<h3 id="writing-posts">Writing Posts</h3>
+<p>Posts can be created by using the <code>shinmun</code> command inside your blog folder:</p>
+<pre><code>shinmun post &#39;The title of the post&#39;</code></pre>
+<p>Shinmun will then create a post file in the right place, for example in <code>posts/2008/9/the-title-of-the-post.md</code>.</p>
+</body>
+</html>

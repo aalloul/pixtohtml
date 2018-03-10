@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cyrus_high-dimensional-explorer5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>(I recommend the ~/src directory).</p>
+<p>Or get the latest version from the GIT repo:</p>
+<blockquote>
+<p>git clone https://github.com/cyrus/high-dimensional-explorer.git</p>
+</blockquote>
+<p>Step 2: Start up a terminal application (Mac OS X: Terminal, Linux: xterm). Change to the correct directory:</p>
+<pre><code>       cd ~/src</code></pre>
+<p>Step 3: Unpack the software in a good location To unpack it, use this command:</p>
+<pre><code>  tar xzf hidex.[version].tgz</code></pre>
+<p>Step 4: Change directory to the newly created directory:</p>
+<pre><code>cd hidex</code></pre>
+<p>Step 5: Compile the program (Make sure that your system has all the required software listed in section 2B first, in particular, the new compiler).</p>
+<pre><code>make hidex</code></pre>
+<p>Step 6: Create a directory for the binary if you do not already have one. (I recommend ~/bin)</p>
+<pre><code>mkdir ~/bin</code></pre>
+<p>Step 7: Using a text editor, edit the file called “Makefile” to have the correct value for BINDIR (in this case, ~/bin). Then install the program using the following command:</p>
+<pre><code> make install</code></pre>
+<p>Step 8: Add the BINDIR to the PATH environment variable of your shell, if it is not already included. Reload your PATH or start a new terminal process. If you don’t much about the shell, and the PATH environment variable, please read the following web page:</p>
+<pre><code> http://en.wikipedia.org/wiki/Environment_variable</code></pre>
+<p>That is it! Take a break! Stretch out your tired finger muscles!</p>
+<p>WARNING: This is the first public release of HiDEx, so there may still be some bugs in the above process. If you get any error messages when doing the above steps, please post your questions to Cyrus Shaoul using his web site:</p>
+</body>
+</html>

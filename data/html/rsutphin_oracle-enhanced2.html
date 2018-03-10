@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsutphin_oracle-enhanced2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  #...
+end</code></pre>
+<p>But it is recommended to use Bundler for gem version management also for Rails 2.3 applications (search for instructions in Google).</p>
+<h3 id="without-rails-and-bundler">Without Rails and Bundler</h3>
+<p>If you want to use ActiveRecord and Oracle enhanced adapter without Rails and Bundler then install it just as a gem:</p>
+<pre><code>gem install activerecord-oracle_enhanced-adapter</code></pre>
+<h2 id="usage">USAGE</h2>
+<h3 id="database-connection">Database connection</h3>
+<p>In Rails application <code>config/database.yml</code> use oracle_enhanced as adapter name, e.g.</p>
+<pre><code>development:
+  adapter: oracle_enhanced
+  database: xe
+  username: user
+  password: secret</code></pre>
+<p>If <code>TNS_ADMIN</code> environment variable is pointing to directory where <code>tnsnames.ora</code> file is located then you can use TNS connection name in <code>database</code> parameter. Otherwise you can directly specify database host, port (defaults to 1521) and database name in the following way:</p>
+<pre><code>development:
+  adapter: oracle_enhanced
+  host: localhost
+  port: 1521
+  database: xe
+  username: user
+  password: secret</code></pre>
+<p>or you can use Oracle specific format in <code>database</code> parameter:</p>
+<pre><code>development:
+  adapter: oracle_enhanced
+  database: //localhost:1521/xe
+  username: user
+  password: secret</code></pre>
+<p>or you can even use Oracle specific TNS connection description:</p>
+<pre><code>development:
+  adapter: oracle_enhanced
+  database: &quot;(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=xe)))&quot;
+  username: user
+  password: secret</code></pre>
+</body>
+</html>

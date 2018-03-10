@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>camptocamp_puppet-tomcat1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="tomcat-puppet-module">Tomcat Puppet module</h1>
+<p><strong>Manages Tomcat configuration.</strong></p>
+<p>This module is provided by .</p>
+<p>This module will install tomcat, either using you system’s package manager or from a compressed archive available on one of the tomcat-mirrors.</p>
+<p>This is done by including the tomcat class for a package based setup or declaring the class with the parameter sources =&gt; true for a source based setup.</p>
+<h2 id="instances">Instances</h2>
+<p>You’ll then be able to define one or more tomcat instances, where you can drop your webapps in the “.war” format. This is done with the <code>tomcat::instance</code> definition.</p>
+<p>The idea is to have several independent tomcats running on the same host, each of which can be restarted and managed independently. If one of them happens to crash, it won’t affect the other instances. The drawback is that each tomcat instance starts it’s own JVM, which consumes memory.</p>
+<p>This is implemented by having a shared <code>$CATALINA_HOME</code>, and each instance having it’s own <code>$CATALINA_BASE</code>. More details are found in this document:</p>
+<h2 id="logging">Logging</h2>
+<p>To offer more flexibility and avoid having to restart tomcat each time catalina.out is rotated, tomcat is configured to send it’s log messages to log4j. By default log4j is configured to send all log messages from all instances to /var/log/tomcat/tomcat.log.</p>
+<p>This can easily be overridden on an instance base by creating a custom log4j.properties file and setting the <code>common.loader</code> path to point to it, by editing <code>/srv/tomcat/&lt;name&gt;/conf/catalina.properties</code>.</p>
+</body>
+</html>

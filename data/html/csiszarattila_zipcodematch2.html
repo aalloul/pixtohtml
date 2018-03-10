@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>csiszarattila_zipcodematch2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  end</code></pre>
+<h1 id="api">API</h1>
+<h2 id="a-zipcodematch-modul-metódusai">A ZipcodeMatch modul metódusai</h2>
+<table>
+<tr>
+<th>
+ZipcodeMatch osztálymetódus
+</th>
+<th>
+Mire használható?
+</th>
+</tr>
+<tr>
+<td>
+match?(település,irányítószám)
+</td>
+<td>
+Annak eldöntése, hogy a település és irányítószám egyezik-e
+</td>
+</tr>
+<tr>
+<td>
+city_exist?(település)
+</td>
+<td>
+Annak eldöntésére, hogy a megadott település létezik-e
+</td>
+</tr>
+<tr>
+<td>
+zipcode_exist?(irányítószám)
+</td>
+<td>
+Mint az előző csak irányítószám esetében
+</td>
+</tr>
+<tr>
+<td>
+city_with_zipcode(irányítószám)
+</td>
+<td>
+Visszaadja az adott irányítószámhoz tartozó települést
+</td>
+</tr>
+<tr>
+<td>
+zipcodes_for_city(település)
+</td>
+<td>
+Megkeresi az adott településhez tartozó irányítószámo(ka)t
+</td>
+</tr>
+</table>
+<h2 id="rake-taszkok">Rake taszkok</h2>
+<p>A db és zipcode névtéren belül a load (db:zipcodes:load) betölti, a delete (db:zipcodes:delete) pedig kitörli az adatokat az adatbázis táblából.</p>
+<h2 id="activerecordos-magasabb-szintű-validációk">ActiveRecordos magasabb szintű validációk</h2>
+<p>Az ellenőrzések egyszerűsítéshez az ActiveRecord modellek esetében a plugin definiál néhány magasabb szintű ellenőrzést is.</p>
+<p>A <strong>validates_zipcode_and_city_match</strong> két mező viszonylatában ellenőrzi a település és hozzá tartozó irányítószám egyezését:</p>
+<p>class Address &lt; ActiveRecord::Base … validates_zipcode_and_city_match … end</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gabriel_GHKit2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre class="objc"><code>[@[@(1), @(2), @(3)] gh_random]; // Random object
+[@[@(1), @(1), @(3)] gh_uniq]; // @[@(1), @(3)]
+[@[] gh_objectAtIndex:0]; // nil (Safe objectAtIndex)
+[@[@(1), NSNull.null] gh_compact]; // @[@(1)]</code></pre>
+<p><strong><em>Dictionaries:</em></strong></p>
+<p><code>GHDictionary+Utils.h</code>:</p>
+<pre class="objc"><code>NSDictionary *dict = @{@&quot;key1&quot;: @(2), @&quot;key2&quot;: @(3.1), @&quot;key3&quot;: @YES};
+NSString *JSONString = [dict gh_toJSON:NSJSONWritingPrettyPrinted error:nil];</code></pre>
+<p><strong><em>Strings:</em></strong></p>
+<p><code>GHNSString+Utils.h</code>: Stripping, reversing, counting and more.</p>
+<pre class="objc"><code>[NSString gh_isBlank:@&quot;  &quot;]; // YES
+[NSString gh_isBlank:nil]; // YES
+[@&quot;  some text &quot; gh_strip]; // @&quot;some text&quot;
+[@&quot; &quot; gh_isPresent]; // NO
+[@&quot;abc&quot; gh_isPresent]; // YES
+[@&quot; &quot; gh_present]; // nil
+[@&quot;some text&quot; gh_present]; // @&quot;some text&quot;
+
+[@&quot;abc&quot; gh_reverse]; // @&quot;cba&quot;
+
+[@&quot;ababababcde&quot; gh_count:@&quot;ab&quot;]; // 4 (@&quot;ab&quot; appears 4 times)
+
+[NSString gh_localizedStringForTimeInterval:30]; // &quot;half a minute&quot;
+[NSString gh_abbreviatedStringForTimeInterval:30]; // @&quot;30s&quot;
+
+[@&quot;WWW.test.com&quot; gh_startsWith:@&quot;www.&quot; options:NSCaseInsensitiveSearch]; // YES
+[@&quot;foo:bar&quot; gh_lastSplitWithString:@&quot;:&quot; options:NSCaseInsensitiveSearch]; // @&quot;bar&quot;
+
+[@&quot;e̊gâds&quot; gh_characters]; // @[@&quot;e̊&quot;, @&quot;g&quot;, @&quot;â&quot;, @&quot;d&quot;, @&quot;s&quot;];</code></pre>
+<p><strong><em>URLs:</em></strong></p>
+<p><code>GHNSURL+Utils.h</code>: Encoding, escaping, parsing, splitting out or sorting query params, and more.</p>
+<pre class="objc"><code>NSDictionary *dict = [@&quot;c=d&amp;a=b&quot; gh_queryStringToDictionary]; // Dictionary with a =&gt; b, c =&gt; d
+[NSDictionary gh_dictionaryToQueryString:dict sort:YES]; // @&quot;a=b&amp;c=d&quot;</code></pre>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kreely_cl-reminders2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>(rem-text &quot;A warning 2 days before Christmas&quot; :d 25 :m Dec :warning-days 2)</code></pre>
+<p>Reminders can be made for week days too</p>
+<pre><code>(rem-text &quot;Put the bin out&quot; :day-of-week Monday)</code></pre>
+<p>Warnings, repeats and day of week parameters can be combined into reminders. The rules for combining parameters aim to be similar to remind. If the day of week doesn’t match the date entered, the reminder will trigger on the next occurence of the weekday. The following reminder will trigger on the 25th of July.</p>
+<pre><code>(rem-text &quot;Occurs on Saturday 25th July&quot; :day-of-week Sat :m 7 :d 24)</code></pre>
+<p>To send all reminders for today, use send-reminder-emails-digest</p>
+<pre><code>(send-reminder-emails-digest &quot;me@myemail.com&quot;)</code></pre>
+<p>.</p>
+<hr />
+<h1 id="features-that-would-be-nice-to-add.">Features that would be nice to add.</h1>
+<h3 id="auto-generating-reminders-based-on-other-reminders.">Auto generating reminders based on other reminders.</h3>
+<p>Say I run a catering business and I know that for each party I cater for I need to buy any ingredients 2 days before the party and then one day before the party, I need to cook/bake/prepare the food.</p>
+<p>It would be nice to be able to do this using tags by simply saying something like the following</p>
+<pre><code>(rem-text &quot;Party for 10&quot; :d 25 :m July :tag &#39;party)
+
+
+; For all party entries....
+(let ((party-reminders (rems-by-tag &#39;party)))
+  (mapcar #&#39;add-reminder party-reminders))</code></pre>
+<p>; then we don’t need these.</p>
+<pre><code>(linked-reminders :tag &#39;party 
+    (rem-text &quot;Buy ingredients&quot; :d (- ld 2))
+(rem-text &quot;Cook, bake &amp; prepare&quot; :d (- ld 1)))</code></pre>
+<p>foreach reminder tagged by ’party</p>
+</body>
+</html>

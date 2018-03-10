@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kondr_xui5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>arguments:</p>
+<ul>
+<li>className:string the name of the CSS class to apply</li>
+</ul>
+<p>example:</p>
+<pre><code>$(&#39;.foo&#39;).addClass(&#39;awesome&#39;);</code></pre>
+<h3 id="removeclass">removeClass</h3>
+<p>syntax:</p>
+<pre><code>x$(selector).removeClass(className);</code></pre>
+<p>arguments:</p>
+<ul>
+<li>className:string the name of the CSS class to remove.</li>
+</ul>
+<p>example:</p>
+<pre><code>x$(&#39;.awesome&#39;).removeClass(&#39;awesome&#39;);</code></pre>
+<h3 id="css">css</h3>
+<p>syntax:</p>
+<pre><code>x$(selector).css(object);</code></pre>
+<p>arguments:</p>
+<ul>
+<li>an object literal of css key/value pairs to set/modify style on.</li>
+</ul>
+<p>example:</p>
+<pre><code>x$(&#39;#box5&#39;).css({ backgroundColor:&#39;blue&#39;, width:&#39;100px&#39;, border:&#39;2px solid red&#39; });</code></pre>
+<h2 id="fx">Fx</h2>
+<p>Animations mostly but we’re not excluding any ideas.</p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>flype_typus1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="typus">Typus</h1>
+<p>What’s <strong>Typus</strong>? People at GitHub defined <strong>Typus</strong> as …</p>
+<blockquote>
+<p>Super easy admin interface for your Rails site.</p>
+</blockquote>
+<p>You can see some screenshots on the .</p>
+<p>As Django Admin, <strong>Typus</strong> is designed for a “single” activity:</p>
+<blockquote>
+<p>Trusted users editing structured content.</p>
+</blockquote>
+<p>Keep in mind that <strong>Typus</strong> doesn’t try to be all the things to all the people but it’s extensible enough to match lots of use cases. I started to develop it late 2005 and have been updating it to match all my clients sites/projects requirements.</p>
+<h2 id="installing">Installing</h2>
+<p>You can view the available tasks running:</p>
+<pre><code>$ rake -T typus
+(in /Users/fesplugas/Development/typus_platform)
+rake doc:plugins:typus  # Generate documentation for the typus plugin
+rake typus:i18n         # Install simplified_translation plugin.
+rake typus:misc         # Install Paperclip, acts_as_list, acts_as_tree.
+rake typus:roles        # List current roles
+rake typus:ssl          # Intall ssl_requirement plugin.</code></pre>
+<h3 id="configure">Configure</h3>
+<p>The following generator installs required assets to the public folder of your Rails application, generates configuration files on <code>config</code> folder and generates the required database migration files.</p>
+<pre><code>$ script/generate typus_files</code></pre>
+<p>After creating the files migrate your database:</p>
+<pre><code>$ rake db:migrate</code></pre>
+<p>And finally create the first user, to do it, start the application server, go to <a href="http://0.0.0.0:3000/admin" class="uri">http://0.0.0.0:3000/admin</a> and follow the instructions.</p>
+<h2 id="plugin-configuration-options">Plugin Configuration Options</h2>
+<p>You can overwrite the following settings:</p>
+<pre><code>Typus::Configuration.options[:app_name]
+Typus::Configuration.options[:per_page]</code></pre>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jimweirich_flexmock11</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>the block. The block will receive all the arguments in the message. If the message was provided a block, it will be passed as the last parameter of the block’s argument list.</p>
+<ul>
+<li><p><b>returns( … )</b></p>
+<p>Alias for <code>and_return</code>.</p></li>
+<li><p><b>and_return_undefined</b></p>
+<p>Declares that the expected message will return a self-preserving undefined object (see FlexMock::Undefined for details).</p></li>
+<li><p><b>returns_undefined</b></p>
+<p>Alias for <code>and_returns_undefined</code></p></li>
+<li><p><b>and_raise(<em>exception</em>, _*args_)</b></p>
+<p>Declares that the expected message will raise the specified exception. If <code>exception</code> is an exception class, then the raised exception will be constructed from the class with <code>new</code> given the supplied arguments. If <code>exception</code> is an instance of an exception class, then it will be raised directly.</p></li>
+<li><p><b>raises( … )</b></p>
+<p>Alias for <code>and_raise</code>.</p></li>
+<li><b>and_throw(<em>symbol</em>)</b></li>
+<li><p><b>and_throw(<em>symbol</em>, <em>value</em>)</b></p>
+<p>Declares that the expected messsage will throw the specified symbol. If an optional value is included, then it will be the value returned from the corresponding catch statement.</p></li>
+<li><p><b>throws( … )</b></p>
+<p>Alias for <code>and_throw</code>.</p></li>
+<li><p><b>and_yield(<em>values</em>, …)</b></p>
+<p>Declares that the mocked method will receive a block, and the mock will call that block with the values given. Not providing a block will be an error. Providing more than one <code>and_yield</code> clause one a single expectation will mean that subsquent mock method calls will yield the values provided by the additional <code>and_yield</code> clause.</p></li>
+<li><p><b>yields( … )</b></p></li>
+</ul>
+</body>
+</html>

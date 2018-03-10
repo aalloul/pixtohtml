@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>howcast_howcast-gem1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="howcast-api-ruby-wrapper">Howcast API Ruby Wrapper</h1>
+<p>Copyright (c) 2008 - 2011 Howcast Media Inc.</p>
+<h2 id="installing">Installing</h2>
+<pre><code>$ sudo gem install howcast</code></pre>
+<h2 id="examples">Examples</h2>
+<pre><code>require &#39;rubygems&#39;
+require &#39;howcast&#39;
+
+hc = Howcast::Client.new(:key =&gt; &quot;INSERT API KEY HERE&quot;)
+# Will print out the video titles of the first page of recent howcast studios videos
+puts &quot;Recent Howcast Studios Videos&quot;
+hc.videos.each do |v|
+  puts v.title
+end
+
+puts &quot;2nd Page of Top Rated Videos&quot;
+# Will print out the video titles of the 2nd page of top rated videos
+hc.videos(:page =&gt; 2, :sort =&gt; &quot;top_rated&quot;, :filter =&gt; &quot;all&quot;).each do |v|
+  puts v.title
+end
+
+puts &quot;Videos matching &#39;origami&#39;&quot;
+hc.search(&quot;origami&quot;).each do |v|
+  puts v.title
+end
+
+puts &quot;Video with id 946&quot;
+puts hc.video(946).title
+
+# Category API
+piano = hc.category(1105)
+puts &quot;The parent category of Piano is #{hc.category(piano.parent_id).name}&quot;
+
+ancestors = piano.parents.map{|c| c[:name]}
+# Ancestors will be an array of hash metadata:
+# =&gt; [{:name=&gt;&quot;Performing Arts&quot;, :id=&gt;&quot;1048&quot;},
+#     {:name=&gt;&quot;Musical Instruments&quot;, :id=&gt;&quot;1095&quot;},
+#     {:name=&gt;&quot;Keyboards&quot;, :id=&gt;&quot;1103&quot;}]
+puts &quot;The ancestors of piano are: #{ancestors.join(&quot; -&gt; &quot;)}&quot;</code></pre>
+<h2 id="setup-for-development-work">Setup for Development Work</h2>
+<p># get it $ git clone git://github.com/howcast/howcast-gem.git</p>
+</body>
+</html>

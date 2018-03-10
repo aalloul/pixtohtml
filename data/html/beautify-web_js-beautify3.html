@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>beautify-web_js-beautify3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>console.log(beautify(data, { indent_size: 2, space_in_empty_paren: true }));</code></pre>
+<p>}); ```</p>
+<h2 id="options">Options</h2>
+<p>These are the command-line flags for both Python and JS scripts:</p>
+<pre class="text"><code>CLI Options:
+  -f, --file       Input file(s) (Pass &#39;-&#39; for stdin)
+  -r, --replace    Write output in-place, replacing input
+  -o, --outfile    Write output to file (default stdout)
+  --config         Path to config file
+  --type           [js|css|html] [&quot;js&quot;]
+  -q, --quiet      Suppress logging to stdout
+  -h, --help       Show this help
+  -v, --version    Show the version
+
+Beautifier Options:
+  -s, --indent-size                 Indentation size [4]
+  -c, --indent-char                 Indentation character [&quot; &quot;]
+  -t, --indent-with-tabs            Indent with tabs, overrides -s and -c
+  -e, --eol                         Character(s) to use as line terminators.
+                                    [first newline in file, otherwise &quot;\n]
+  -n, --end-with-newline            End output with newline
+  --editorconfig                    Use EditorConfig to set up the options
+  -l, --indent-level                Initial indentation level [0]
+  -p, --preserve-newlines           Preserve line-breaks (--no-preserve-newlines disables)
+  -m, --max-preserve-newlines       Number of line-breaks to be preserved in one chunk [10]
+  -P, --space-in-paren              Add padding spaces within paren, ie. f( a, b )
+  -E, --space-in-empty-paren        Add a single space inside empty paren, ie. f( )
+  -j, --jslint-happy                Enable jslint-stricter mode
+  -a, --space-after-anon-function   Add a space before an anonymous function&#39;s parens, ie. function ()
+  -b, --brace-style                 [collapse|expand|end-expand|none][,preserve-inline] [collapse,preserve-inline]
+  -u, --unindent-chained-methods    Don&#39;t indent chained method calls
+  -B, --break-chained-methods       Break chained method calls across subsequent lines
+  -k, --keep-array-indentation      Preserve array indentation
+  -x, --unescape-strings            Decode printable characters encoded in xNN notation
+  -w, --wrap-line-length            Wrap lines at next opportunity after N characters [0]
+  -X, --e4x                         Pass E4X xml literals through untouched
+  --good-stuff                      Warm the cockles of Crockford&#39;s heart
+  -C, --comma-first                 Put commas at the beginning of new line instead of end
+  -O, --operator-position           Set operator position (before-newline|after-newline|preserve-newline) [before-newline]</code></pre>
+<p>Which correspond to the underscored option keys for both library interfaces</p>
+<p><strong>defaults per CLI options</strong></p>
+</body>
+</html>

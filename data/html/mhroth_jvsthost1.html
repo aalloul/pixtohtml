@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mhroth_jvsthost1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jvsthost">JVstHost</h1>
+<p>JVstHost is an open-source Java-based VST host for Linux, OS X, and Windows written by Martin Roth and Matthew Yee-King. It aims to load and manipulate all audio plugins conforming to the Steinberg VST standard, including those generated with jVSTwRapper.</p>
+<p>Note that the (only) constructor of JVstHost throws an exception of type <code>com.synthbot.audioplugin.vst.JVstLoadException</code>. There are several things which may go wrong while loading a VST. For this reason, an exception is thrown with the details (see <code>JVstLoadException.getMessage()</code>).</p>
+<p>A class implementing the <code>com.synthbot.audioplugin.vst.JVstHostListener</code> interface can also register itself with a JvstHost object. It will receive callbacks from the plugin.</p>
+<p>JVstHost is licensed under the GNU .</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>All that you really need is to put JVstHost.jar into your java class path, and to put: * <code>libjvsthost2.jnilib</code> into <code>/Library/Java/Extensions</code> (Mac OS X) * <code>libjvsthost2.so</code> into <code>/usr/local/lib</code> (Linux) * <code>jvsthost2.dll</code> into <code>C:\WINDOWS\system32</code> (Windows) The directories may be system dependent. They must simply by listed in the Java classpath so that Java will know where to look for them.</p>
+<p><strong>NOTE:</strong> Not all synths work. If you have one that you are particularly keen on working with, please e-mail us and we’ll try to debug it with you.</p>
+<h2 id="testing-it-out">Testing It Out</h2>
+<p>To run the test program:</p>
+<p><code>java -jar JVstHost.jar &lt;plugin name&gt;</code></p>
+<p>e.g. (LINUX)</p>
+<p><code>java -jar JVstHost.jar ./mdaDX10.so</code></p>
+<p>e.g. (MAC)</p>
+<p><code>java -jar JVstHost.jar ~/Library/Audio/Plug-Ins/VST/mda\ DX10.vst</code></p>
+<h2 id="jvstwrapper">jVSTwRapper</h2>
+<p>JVstHost does interoperate with is included in the classpath when starting the host. In Mac OS X, this library is most commonly found in the jVSTwRapper vst directory, <code>./Contents/Resources</code></p>
+<h2 id="compilation">Compilation</h2>
+<h3 id="mac-os-x">Mac OS X</h3>
+<p>A script file, buildJvh.sh, is included for compiling the JVstHost native library under Mac OS X. The script is made for 10.5, however it should be easily modifiable for any other version of the operating system. The script assumes that the Steinberg VST libraries (not included in this distribution due to Steinberg’s licensing terms) are in the package subdirectory, <code>./vst2.x</code>. The script will also copy the resulting library, <code>libjvsthost2.jnilib</code>, to <code>/Library/Java/Extensions</code>. An ant build script is included to build and test the Java parts of JVstHost. To build the jar: <code>ant jar</code>.</p>
+<h3 id="linux">Linux</h3>
+<p>A script file, <code>buildJvh_linux.sh</code>, is included for compiling the JVstHost native library under Linux. The script assumes that the Steinberg VST libraries (not included in this distribution due to Steinberg’s licensing terms) are in the package subdirectory, <code>./vst2.x</code>.</p>
+</body>
+</html>

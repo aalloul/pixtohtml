@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akitaonrails_ruby-on-rails-tmbundle1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="textmate-bundle-for-ruby-on-rails-development">TextMate bundle for Ruby on Rails development</h1>
+<p>To install with Git:</p>
+<pre><code>mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+cd ~/Library/Application\ Support/TextMate/Bundles
+git clone git://github.com/drnic/ruby-on-rails-tmbundle.git &quot;Ruby on Rails.tmbundle&quot;
+osascript -e &#39;tell app &quot;TextMate&quot; to reload bundles&#39;</code></pre>
+<p>To install without Git:</p>
+<pre><code>mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+cd ~/Library/Application\ Support/TextMate/Bundles
+wget http://github.com/drnic/ruby-on-rails-tmbundle/tarball/master
+tar zxf drnic-ruby-on-rails-tmbundle*.tar.gz
+rm drnic-ruby-on-rails-tmbundle*.tar.gz
+mv drnic-ruby-on-rails-tmbundle* &quot;Ruby on Rails.tmbundle&quot;
+osascript -e &#39;tell app &quot;TextMate&quot; to reload bundles&#39;</code></pre>
+<h2 id="rails-3.0-contributors">Rails 3.0 contributors</h2>
+<ul>
+<li>Kamil Kukura (rake migrate timestamp patch)</li>
+</ul>
+<h2 id="rails-2.0-featurescontributors-copied-from-changelog">Rails 2.0 features/contributors (copied from CHANGELOG)</h2>
+<ul>
+<li>Snippets/Commands for:
+<ul>
+<li>Tests
+<ul>
+<li>assert_select (ass)</li>
+<li>assert_difference/assert_no_difference (asd/asnd)</li>
+<li>GET+POST test method stubs (defg+defp)</li>
+</ul></li>
+<li>Controllers
+<ul>
+<li>respond_to (rst)</li>
+<li>REMOVED: render_component snippets</li>
+<li>loggers - pass a block instead of raw string to save time if logging not used (e.g. production) [thx Stephen Touset]</li>
+<li>redirect_to for resource paths (rep, repp, renp, renpp)</li>
+<li>render :update (ru) [thx Simon Jefford]</li>
+</ul></li>
+<li>Views
+<ul>
+<li>form_for (ff)</li>
+<li>link_to for resource paths (lip, lipp, linp, linpp)</li>
+<li>&lt;% end -%&gt; (end)</li>
+</ul></li>
+<li>Models
+<ul>
+<li>has_many :though (hmt)</li>
+<li>association snippets give better defaults (e.g. bt + hm)</li>
+<li>validates_format_of (vf,vfif) [thx Dean Strelau]</li>
+</ul></li>
+<li>Migrations
+<ul>
+<li>Sexy Migrations now available as “t.” snippets [thx Lawrence Pit]</li>
+<li>Migration classes have own textmate scope</li>
+<li>Add/Remove Columns - the ‘down’ statements are in reverse order [thx Lawrence Pit, Daniel Kristensen]</li>
+</ul></li>
+</ul></li>
+<li>Language/Syntax</li>
+</ul>
+</body>
+</html>

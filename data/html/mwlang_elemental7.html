@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mwlang_elemental7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    assert_equal(:toyota, Car::toyota.value)
+    assert_equal(&quot;toyota&quot;, Car::toyota.display)
+    assert_equal(&quot;toyota&quot;, Car::toyota.humanize)
+end</code></pre>
+<p>Full test coverage is provided.</p>
+<p>One known limitation (which is probably a reflection of my not-so-great Ruby skills):</p>
+<p>You cannot inherit and Elemental from another Elemental, esp. since none of the classes or modules are ever actually instantiated. The following will NOT WORK:</p>
+<pre><code>class Fruit           # OK
+    extend Elemental
+    member :orange
+    member :banana
+    member :blueberry
+end
+
+class Vegetable       # OK
+    extend Elemental
+    member :potato
+    member :carrot
+    member :tomato
+end
+
+class Food            # NOT OK
+    extend Fruit
+    extend Vegetable
+end</code></pre>
+<p>Also, this doesn’t work, either:</p>
+<pre><code>class Food &lt; Fruit   # NOT OK
+    extend Vegetable
+end</code></pre>
+<p>Nor:</p>
+<pre><code>class ExoticFruit &lt; Fruit   # NOT OK
+    member :papaya
+    member :mango
+end</code></pre>
+<h2 id="license">LICENSE:</h2>
+<p>(The MIT License)</p>
+<p>Copyright (c) 2009 Michael Lang</p>
+</body>
+</html>

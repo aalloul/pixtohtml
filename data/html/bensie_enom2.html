@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bensie_enom2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="delete-a-registration-domain-must-be-less-than-5-days-old-and-your-account">Delete a registration (domain must be less than 5 days old and your account</h1>
+<h1 id="must-be-on-enoms-deleteregistration-whitelist---your-enom-account-rep-can">must be on Enom’s DeleteRegistration whitelist - your Enom account rep can</h1>
+<h1 id="enable-it-for-you">enable it for you)</h1>
+<p>Enom::Domain.delete!(“example.com”) ```</p>
+<h2 id="domain-operations">Domain Operations</h2>
+<p>```ruby # Return the domain name d.name # =&gt; ‘example.com’</p>
+<h1 id="check-if-domain-is-locked">Check if domain is locked</h1>
+<p>d.locked? # =&gt; true</p>
+<h1 id="check-if-domain-is-unlocked">Check if domain is unlocked</h1>
+<p>d.unlocked? # =&gt; false</p>
+<h1 id="unlock-the-domain-for-transfer">Unlock the domain for transfer</h1>
+<p>d.unlock</p>
+<h1 id="lock-the-domain-to-the-registrar">Lock the domain to the registrar</h1>
+<p>d.lock</p>
+<h1 id="get-name-servers">Get name servers</h1>
+<p>d.nameservers # =&gt; [‘ns1.example.com’, ‘ns2.example.com’, ‘ns3.example.com’]</p>
+<h1 id="update-name-servers">Update name servers</h1>
+<p>d.update_nameservers([‘ns1.example.com’, ‘ns2.example.com’, ‘ns3.example.com’])</p>
+<h1 id="get-expiration-date">Get expiration date</h1>
+<p>d.expiration_date # =&gt; Returns a Date object</p>
+<h1 id="check-if-domain-is-expired">Check if domain is expired</h1>
+<p>d.expired? # =&gt; true</p>
+<h1 id="get-registration-status">Get registration status</h1>
+<p>d.registration_status # =&gt; ‘Registered’ or ‘Expired’</p>
+<h1 id="renew-domain-defaults-to-1-year">Renew domain (defaults to 1 year)</h1>
+<p>d.renew!</p>
+</body>
+</html>

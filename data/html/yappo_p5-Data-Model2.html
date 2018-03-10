@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yappo_p5-Data-Model2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>);
+
+
+my $row = $model-&gt;lookup( user =&gt; 1 );
+$row-&gt;delete;</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>Data::Model is can use as ORM which can be defined briefly.</p>
+<p>There are few documents. It is due to be increased in the near future.</p>
+<h1 id="schema-definition">SCHEMA DEFINITION</h1>
+<p>One package can define two or more tables using DSL.</p>
+<p>see .</p>
+<h1 id="methods">METHODS</h1>
+<h2 id="new-options">new([ \%options ]);</h2>
+<pre><code>my $model = Class-&gt;new;</code></pre>
+<h2 id="lookuptarget-key">lookup($target =&gt; $key)</h2>
+<pre><code>my $row = $model-&gt;lookup( user =&gt; $id );
+print $row-&gt;name;</code></pre>
+<h2 id="lookup_multitarget-keylist">lookup_multi($target =&gt; \<span class="citation" data-cites="keylist">@keylist</span>)</h2>
+<pre><code>my @row = $model-&gt;lookup_multi( user =&gt; [ $id1, $id2 ] );
+print $row[0]-&gt;name;
+print $row[1]-&gt;name;</code></pre>
+<h2 id="gettarget-key-options">get($target =&gt; $key [, \%options ])</h2>
+<pre><code>my $iterator = $model-&gt;get( user =&gt; { 
+    id =&gt; {
+        IN =&gt; [ $id1, $id2 ],
+    }
+});
+while (my $row = $iterator-&gt;next) {
+    print $row-&gt;name;
+}
+# or
+while (my $row = &lt;$iterator&gt;) {
+    print $row-&gt;name;
+}
+# or</code></pre>
+</body>
+</html>

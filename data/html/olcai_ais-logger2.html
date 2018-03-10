@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>olcai_ais-logger2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>These are the run-time dependencies:</p>
+<ul>
+<li>[Python][python] 2.6 (not tested with Python 3)</li>
+<li>[Pysqlite][pysqlite] &gt;= 2.5</li>
+<li>[Pyserial][pyserial] &gt;= 2.3</li>
+<li>[WxPython][wxpython] &gt;=2.8.8</li>
+<li>[Numpy][numpy]</li>
+</ul>
+<h2 id="installing">Installing</h2>
+<ul>
+<li><p>Installing from a binary release archive (Windows):</p>
+<p>Download and extract the archive to a location of your choosing. Create a suitable shortcut to aislogger.exe and enjoy.</p>
+<p><strong>NOTE:</strong> You may have to install a few DLL files for AIS Logger to run. You may put them in the winntdirectory or directly in the AIS Logger directory. Common missing files are gdiplus.dll (from [GDI+][gdi+]), msvcp90.dll and msvcr90.dll (both from [Visual C++][visualc++]).</p></li>
+<li><p>Installing from a release tarball (*nix):</p>
+<p>Download and extract the archive to a temporary location and then do:</p>
+<pre><code>  $ python setup.py install   # As root
+  $ aislogger                 # As normal user to start program</code></pre></li>
+<li><p>Installing from git (*nix):</p>
+<p>To compile the documentation you will need markdown in your path. Then clone from [Github][repo], and do:</p>
+<pre><code>  $ make doc                  # Generates manual (not necessary)
+  $ python setup.py install   # As root
+  $ aislogger                 # As normal user to start program</code></pre></li>
+</ul>
+<h2 id="uninstalling">Uninstalling</h2>
+<ul>
+<li><p>A binary release</p>
+<p>Simply delete the directory containing AIS Logger.</p></li>
+<li><p>A source release installed with setup.py</p></li>
+</ul>
+</body>
+</html>

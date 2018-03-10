@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>olle_slides1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>Slides is a jQuery plugin that provides a very simple and fully unobtrusive image slideshow, with cross fading effect, to any image element on a web page.</p>
+<p>Features:</p>
+<ul>
+<li>Unobtrusive</li>
+<li>Cross fading between images</li>
+<li>Configurable cross fade time</li>
+<li>Adjustable pause time on each image</li>
+<li>Optional linking to URL on click or custom event handler function</li>
+</ul>
+<p>Slides is different to some other plugins in that it does not require any extra HTML elements to define the slideshow.</p>
+<h2 id="mini-manual">MINI-MANUAL</h2>
+<h3 id="usage">Usage:</h3>
+<p>Any IMG element can be enabled as a slideshow using Slides. Just find your elements by some selector, for example an ID or CLASS selector. In this example we use the ID.</p>
+<pre><code>&lt;img src=&quot;images/someimage.jpg&quot; id=&quot;slide&quot; /&gt;</code></pre>
+<p>Bind the Slides plugin to the element found by simply calling the plugin with your slideshow configuration passed as a JSON object.</p>
+<pre><code>$(&quot;#slide&quot;).Slides({
+   images : [image1.jpg, image2.jpg, image3.jpg]  
+});</code></pre>
+<p>Optional settings control initial wait time before starting, crossfade or fade time, image pause or time showed, link to URL on click or a custom function to be used on image click.</p>
+<pre><code>$(&quot;#slide&quot;).Slides({
+   images : [image1.jpg, image2.jpg, image3.jpg],
+   urls : [link1, link2, link3],
+   functions : [fn1, fn2, fn3],
+   wait : 0,
+   pause : 12000,
+   fade : 2000
+});</code></pre>
+<h2 id="reference">REFERENCE</h2>
+</body>
+</html>

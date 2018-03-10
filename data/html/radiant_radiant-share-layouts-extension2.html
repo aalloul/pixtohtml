@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>radiant_radiant-share-layouts-extension2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+Nested Layouts enables reuse of a top-level “master” layout (one that contains your
+<html>
+<p>tags and the overall structure/wrapper of your site) for several different “nested” layouts (i.e. a one-column layout and a two-column layout). Keep your layouts DRY!</p>
+<p>A simple example is of the following wrapper and page layout</p>
+<pre><code>&lt;!-- Application Layout --&gt;
+&lt;!html&gt;
+  &lt;body class=&quot;&lt;r:layout /&gt;&quot;&gt;
+    &lt;r:content_for_layout /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+&lt;!-- Page Layout --&gt;
+&lt;r:inside_layout name=&#39;Application&#39;&gt;
+  &lt;h1&gt;Hi&lt;/h1&gt;
+&lt;/r:inside_layout&gt;</code></pre>
+<p>This would render the following if Page Layout was called</p>
+<pre><code>&lt;!html&gt;
+  &lt;body class=&quot;&lt;r:layout /&gt;&quot;&gt;
+    &lt;h1&gt;Hi&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3 id="acknowledgments">Acknowledgments</h3>
+<ul>
+<li>Merged into radiant-layouts-extension, Dirk Kelly, August 2010</li>
+<li>Original Source: http://github.com/moklett/radiant-nested-layouts-extension</li>
+</ul>
+<h2 id="haml-layouts">Haml Layouts</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Write your layouts and radius tags in haml, with support for nested layouts and radius attributes</p>
+<pre><code>// Parent Layout - with content/type set as &#39;haml&#39;
+%div{:id=&gt;&quot;parent&quot;,:title=&gt;&quot;&lt;r:title /&gt;&quot;}
+  %r:content_for_layout
+  
+// Child Layout - with content/type set as &#39;haml&#39;
+%r:inside_layout{:name=&gt;&quot;Parent&quot;}
+  %h2
+    %:title
+
+&lt;div id=&quot;parent&quot; title=&quot;some title&quot;&gt;</code></pre>
+</body>
+</html>

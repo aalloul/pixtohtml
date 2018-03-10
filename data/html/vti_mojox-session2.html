@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>vti_mojox-session2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="store"><code>store</code></h2>
+<pre><code>Store object
+
+my $store = $session-&gt;store;
+$session  = $session-&gt;store(MojoX::Session::Store::Dbi-&gt;new(dbh =&gt; $dbh));
+$session  = $session-&gt;store(dbi =&gt; {dbh =&gt; $dbh});</code></pre>
+<h2 id="transport"><code>transport</code></h2>
+<pre><code>Transport to find and store session id
+
+my $transport = $session-&gt;transport;
+$session
+    = $session-&gt;transport(MojoX::Session::Transport::Cookie-&gt;new);
+$session = $session-&gt;transport(&#39;cookie&#39;); # by default</code></pre>
+<h2 id="ip_match"><code>ip_match</code></h2>
+<pre><code>Check if ip matches, default is 0
+
+my $ip_match = $session-&gt;ip_match;
+$ip_match    = $session-&gt;ip_match(0);</code></pre>
+<h2 id="expires_delta"><code>expires_delta</code></h2>
+<pre><code>Seconds until session is considered expired
+
+my $expires_delta = $session-&gt;expires_delta;
+$expires_delta    = $session-&gt;expires_delta(3600);</code></pre>
+<h1 id="methods">METHODS</h1>
+<p>and implements the following new ones.</p>
+<h2 id="new"><code>new</code></h2>
+<pre><code>my $session = MojoX::Session-&gt;new(...);
+
+Returns new L&lt;MojoX::Session&gt; object.</code></pre>
+<h2 id="create"><code>create</code></h2>
+<pre><code>my $sid = $session-&gt;create;
+$session-&gt;flush;</code></pre>
+<p>Creates new session. Puts sid into the transport. Call flush if you want to store it.</p>
+</body>
+</html>

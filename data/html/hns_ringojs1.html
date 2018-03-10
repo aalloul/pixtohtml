@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>hns_ringojs1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ringojs">RingoJS</h1>
+<p>RingoJS is a JavaScript runtime written in Java based on Mozilla Rhino.</p>
+<p>It adds a number of features to Rhino that make it suitable for real-world, large-scale application development:</p>
+<ul>
+<li>A fast, auto-reloading, and CommonJS-compliant module loader.</li>
+<li>A rich set of modules covering I/O, logging, persistence, development tools and much more.</li>
+<li>Scalable HTTP server and client based on the Jetty project.</li>
+<li>Support for CommonJS packages to install or write additional software components.</li>
+</ul>
+<p>For more information, visit the RingoJS web site: <a href="http://ringojs.org/" class="uri">http://ringojs.org/</a></p>
+<h2 id="building-ringojs">Building RingoJS</h2>
+<p>Ringo requires Java 1.5 and uses Apache Ant as its build environment. If you have these installed, building Ringo is straightforward:</p>
+<p>Check out Ringo using Git:</p>
+<pre><code>git clone git://github.com/ringo/ringojs.git</code></pre>
+<p>Change to the ringojs directory and run ant to compile:</p>
+<pre><code>ant jar</code></pre>
+<p>To build the documentation:</p>
+<pre><code>ant docs</code></pre>
+<h2 id="running-ringojs">Running RingoJS</h2>
+<p>It is recommended but not strictly required to add the ringojs bin directory to your PATH environment variable. If you don’t you’ll have to type the full path to the bin/ringo command in the examples below.</p>
+<p>To start the Ringo shell, just run the ringo command without any arguments:</p>
+<pre><code>ringo</code></pre>
+<p>To run a script simply pass it to ringo on the command line. For example, to run the Ringo test suite:</p>
+<pre><code>ringo test/all.js</code></pre>
+</body>
+</html>

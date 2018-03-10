@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jlouis_etorrent5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>$ ./kerl build R14B04 r14b04 $ ./kerl install r14b04 /opt/erlang/r14b04 $ . /opt/erlang/r14b04/activate ```</p>
+<p>In the above example, kerl installs Erlang R14B04 to directory /opt/erlang/r14b04 and makes it default. For more information, please check .</p>
+<h2 id="questions">QUESTIONS??</h2>
+<p>You can either mail them to <code>jesper.louis.andersen@gmail.com</code> or you can come by on IRC #etorrent/freenode and ask.</p>
+<h1 id="development">Development</h1>
+<h2 id="patches">PATCHES</h2>
+<p>To submit patches, we have documentation in <code>documentation/git.md</code>, giving tips to patch submitters.</p>
+<h2 id="setting-up-a-development-environment">Setting up a development environment</h2>
+<p>When developing for etorrent, you might end up generating a new environment quite often. So ease the configuration, the build infrastructure support this.</p>
+<ul>
+<li>Create a file <code>rel/vars/etorrent-dev_vars.config</code> based upon the file <code>rel/vars.config</code>.</li>
+<li>run <code>make compile etorrent-dev</code></li>
+<li>run <code>make console</code></li>
+</ul>
+<p>Notice that we <code>-pa</code> add <code>../../apps/etorrent/ebin</code> so you can l(Mod) files from the shell directly into the running system after having recompiled them.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Read the HACKING.md file in this directory. For how the git repository is worked, see <code>documentation/git.md</code>.</p>
+<h2 id="issues">ISSUES</h2>
+<p>Either mail them to <code>jesper.louis.andersen@gmail.com</code> (We are currently lacking a mailing list) or use the</p>
+<h2 id="reading-material-for-hacking-etorrent">Reading material for hacking Etorrent:</h2>
+<ul>
+<li>: This is the original protocol specification, tracked into the BEP process. It is worth reading because it explains the general overview and the precision with which the original protocol was written down.</li>
+</ul>
+</body>
+</html>

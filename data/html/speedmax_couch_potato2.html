@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>speedmax_couch_potato2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Alternatively you can also install Couch Potato directly as a plugin.</p>
+<h3 id="introduction">Introduction</h3>
+<p>This is a basic tutorial on how to use Couch Potato. If you want to know all the details feel free to read the specs.</p>
+<h4 id="save-load-objects">Save, load objects</h4>
+<p>First you need a class.</p>
+<pre><code>class User
+end</code></pre>
+<p>To make instances of this class persistent include the persistence module:</p>
+<pre><code>class User
+  include CouchPotato::Persistence
+end</code></pre>
+<p>If you want to store any properties you have to declare them:</p>
+<pre><code>class User
+  include CouchPotato::Persistence
+
+  property :name
+end</code></pre>
+<p>Properties can be of any type:</p>
+<pre><code>class User
+  include CouchPotato::Persistence
+
+  property :address, :type =&gt; Address
+end</code></pre>
+<p>Now you can save your objects. All database operations are encapsulated in the CouchPotato::Database class. This separates your domain logic from the database access logic which makes it easier to write tests and also keeps you models smaller and cleaner.</p>
+<pre><code>user = User.new :name =&gt; &#39;joe&#39;
+CouchPotato.database.save_document user # or save_document!</code></pre>
+<p>You can of course also retrieve your instance:</p>
+<pre><code>CouchPotato.database.load_document &quot;id_of_the_user_document&quot; # =&gt; &lt;#User 0x3075&gt;</code></pre>
+<h4 id="properties">Properties</h4>
+<p>You can access the properties you declared above through normal attribute accessors.</p>
+<pre><code>user.name # =&gt; &#39;joe&#39;</code></pre>
+</body>
+</html>

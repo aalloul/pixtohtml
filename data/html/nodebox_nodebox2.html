@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nodebox_nodebox2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>git clone git://github.com/nodebox/nodebox.git
+# Modify build.properties to point to the correct installation paths of the JRE and NSIS.
+
+cd nodebox
+ant run
+
+# To create a full app (the MSI will be in dist/windows/bundles):
+ant dist-win</code></pre>
+<h2 id="building-on-linux">Building on Linux</h2>
+<h3 id="ubuntu-linux">Ubuntu Linux</h3>
+<p>Or other distributions based on APT package system:</p>
+<pre><code>sudo apt install git openjdk-8-jdk ant
+git clone https://github.com/nodebox/nodebox.git
+cd nodebox
+ant run</code></pre>
+<h3 id="fedora-linux">Fedora Linux</h3>
+<p>Or other distributions based on YUM package system:</p>
+<pre><code>sudo yum install git java-1.8.0-openjdk ant
+git clone https://github.com/nodebox/nodebox.git
+cd nodebox
+ant run</code></pre>
+<h3 id="arch-linux">Arch Linux</h3>
+<p>Nodebox has an aur package for distributions based on Arch linux : nodebox-git</p>
+<pre><code>yaourt -S nodebox-git</code></pre>
+<p>or</p>
+<pre><code>git clone https://aur.archlinux.org/nodebox-git.git
+cd nodebox-git
+makepkg
+sudo pacman -U nodebox-git-[version-number]-any.pkg.tar.xz</code></pre>
+<p>you can then launch nodebox as any desktop application, or by running the <code>nodebox</code> command on terminal</p>
+<h2 id="building-on-freebsdpc-bsd">Building on FreeBSD/PC-BSD</h2>
+<p>Just use pkg:</p>
+<pre><code>sudo pkg install git openjdk-8 apache-ant
+git clone https://github.com/nodebox/nodebox.git
+cd nodebox</code></pre>
+</body>
+</html>

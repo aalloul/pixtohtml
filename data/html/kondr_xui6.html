@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kondr_xui6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="tween">tween</h3>
+<p>syntax:</p>
+<pre><code>x$(&#39;#box&#39;).tween({ left:100px, backgroundColor:&#39;blue&#39; });
+
+x$(&#39;#box&#39;).tween([{ left:100px, backgroundColor:&#39;green&#39;, duration:.2 }, { right:100px }]);
+
+x$(&#39;#box&#39;).tween({ left:100px}).tween({ left:100px });</code></pre>
+<p>arguments:</p>
+<p>properties:object an object literal of element properties to tween.</p>
+<p><em>or</em></p>
+<p>queue:array an array literal of objects which contain properties to tween sequentially.</p>
+<p>example:</p>
+<h2 id="xhr">Xhr</h2>
+<p>Remoting methods and ultilites.</p>
+<h3 id="xhr-1">xhr</h3>
+<p>syntax:</p>
+<p><code>xhr('path/to/file.html', {});</code></p>
+<p>arguments:</p>
+<p>url:string the url for request</p>
+<p>options:object</p>
+<ul>
+<li>method:string get|put|delete|post default get</li>
+<li>async:boolen default false</li>
+<li>data:string url encoded string of parameters to send</li>
+<li>callback:function to call on 200 status</li>
+</ul>
+</body>
+</html>

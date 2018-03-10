@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kematzy_sinatras-hat3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>If you want to protect all of your actions, you cay say <code>protect :all</code>.</p>
+<h2 id="xml-.json-.yaml-and-whatever-else-you-want"><code>.xml</code>, <code>.json</code>, <code>.yaml</code>, and whatever else you want</h2>
+<p>If a request has a format extensions, then Sinatra’s Hat will first check to see if it has a custom way of serializing that format. To specify a custom formatter, you can use the <code>formats</code> hash:</p>
+<pre>
+mount Article do
+  formats[:ruby] = { |data| data.inspect }
+end
+</pre>
+<p>With that custom formatter, a request to <code>/articles.ruby</code> will return the equivalent of <code>Article.all.inspect</code>.</p>
+<h3 id="automatic-formatters">Automatic formatters</h3>
+<p>If you don’t specify a custom formatter, then Sinatra’s Hat will try to call <code>to_#{format}</code> on the record object. That means that with most ORMs, things like <code>to_xml</code>, <code>to_json</code>, and <code>to_yaml</code> will be supported right out of the box.</p>
+<p>Requests for unknow formats will produce 406 “Not Acceptable” HTTP responses.</p>
+<h2 id="default-flows">Default Flows</h2>
+<p>Sinatra’s Hat has some default flows:</p>
+<h3 id="after-the-create-action">After the <code>create</code> action</h3>
+<p><strong>On Success</strong>: If a record is successfully created, Sinatra’s Hat will redirect to that record’s show page.</p>
+<p><strong>On Failure</strong>: If a record cannot be saved, Sinatra’s Hat will render the <code>new</code> action.</p>
+<h3 id="after-the-update-action">After the <code>Update</code> action</h3>
+<p><strong>On Success</strong>: If a record is successfully updated, Sinatra’s Hat will redirect to that record’s show page.</p>
+<p><strong>On Failure</strong>: If a record cannot be updated, Sinatra’s Hat will render the <code>edit</code> action.</p>
+<h2 id="custom-flows">Custom Flows</h2>
+<p>To specify custom flows for your actions, you can use the <code>after</code> method.</p>
+<p>Let’s say that after a user creates an Article, you want to render the article’s edit action, and if it can’t be created, you want to redirect</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tylerhunt_relax1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="relax">Relax</h1>
+<p><a href="http://travis-ci.org/tylerhunt/relax"><img src="https://secure.travis-ci.org/tylerhunt/relax.png" alt="Build Status" /></a></p>
+<p>A library of simple modules for building web service wrappers.</p>
+<h2 id="usage">Usage</h2>
+<p>Relax a toolkit of sorts, which makes it easier to write Faraday-based API Gems while still leaning heavily on the strengths of the Ruby language.</p>
+<h3 id="overview">Overview</h3>
+<p>Relax is made up of three primary modules:</p>
+<ul>
+<li><p><code>Relax::Client</code> — forms the basis of a web service wrapper by storing the configuration and serving as a factory for resources</p></li>
+<li><p><code>Relax::Resource</code> — used to handle the actual web service connections and help organize related endpoints</p></li>
+<li><p><code>Relax::Delegator</code> — delegates class methods to an instance of the client allowing for simple client usage</p></li>
+</ul>
+<p>It also includes a basic configuration class, <code>Relax::Config</code>, which defines some of client defaults and can used as the basis for your own custom configuration classes.</p>
+<h3 id="example">Example</h3>
+<p>``` ruby require ‘relax’ require ‘faraday_middleware’ # for JSON response parsing</p>
+<p>module Vimeo extend Relax::Delegator[:client]</p>
+<p>class Client include Relax::Client</p>
+<pre><code>def initialize
+  config.base_uri = &#39;http://vimeo.com/api/v2&#39;
+end
+
+def user(username)</code></pre>
+</body>
+</html>

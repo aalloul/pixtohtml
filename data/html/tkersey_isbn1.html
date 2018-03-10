@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tkersey_isbn1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="isbn">isbn</h1>
+<p>Version 2.0</p>
+<h2 id="introduction">Introduction</h2>
+<p>This library provides methods to manipulate isbns. As of version 2.0 there has been a near complete rewrite of this library but this time there are tests. A few methods have been removed. Here is what remains:</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>It depends on the LibJpeg and Gocr libraries. Recommended .</p>
+<pre><code>brew install libjpeg
+brew install gocr</code></pre>
+<h2 id="installing-isbn">Installing ISBN</h2>
+<h4 id="installing-via-bundler">Installing via Bundler</h4>
+<p>Add to your <code>Gemfile</code>:</p>
+<pre><code>gem &#39;isbn&#39;</code></pre>
+<p>Then run:</p>
+<pre><code>bundle install</code></pre>
+<h4 id="installing-via-rubygems">Installing via RubyGems</h4>
+<p>Run:</p>
+<pre><code>gem install isbn</code></pre>
+<h2 id="using-isbn">Using ISBN</h2>
+<ul>
+<li><code>ISBN.ten</code> will return a 10 digit isbn if you give it a 10 or 13 digit isbn
+<ul>
+<li>it will raise a <code>No10DigitISBNAvailable</code> error if given an isbn starting with 979 because 979 isbns do NOT have a 10 digit counterpart.</li>
+</ul></li>
+<li><p><code>ISBN.thirteen</code> will return a 13 digit isbn if you give it 10 or thirteen digit isbn</p></li>
+<li><code>ISBN.as_used</code> will convert an isbn into the used book version for that isbn
+<ul>
+<li>for isbns starting with 978 it returns an isbn starting with 290</li>
+</ul></li>
+</ul>
+</body>
+</html>

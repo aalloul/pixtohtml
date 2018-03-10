@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kragen_date-performance1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dateperformance">Date::Performance</h1>
+<p>This package adds some semblance of performance to Ruby’s core Date class using a combination of different techniques:</p>
+<ol type="1">
+<li><p>Implements various core <em>Date</em> methods in C. This is nowhere near a complete rewrite of all <em>Date</em> features but many of the hot spots have been replaced with machine code.</p></li>
+<li><p>Provide alternate implementations of <code>strftime</code> and <code>strptime</code> in C. The stock date formatting and parsing methods are extremely slow compared to their libc counterparts. <em>Date#sys_strftime</em> and <em>Date::sys_strptime</em> are light facades on top of the system’s <code>strftime(2)</code> and <code>strptime(2)</code>. The system methods run 10x and 50x (yes, <em>fifty-ecks</em>) faster than their Ruby based counterparts, respectively. Unfortunately, <code>strftime(2)</code> and <code>strptime(2)</code> implementations vary from system to system and have various limitations not found in the core Date implementation so can not safely be used as replacements for the core methods.</p></li>
+<li><p>Memoization. The <em>Date::Memoize</em> module can be used to speed certain types of repetitive date processing significantly. This file must be required separately.</p></li>
+</ol>
+<h2 id="synopsis">Synopsis</h2>
+<p>This package is mostly transparent after an initial require:</p>
+<pre><code>require &#39;date/performance&#39;
+Date.new 1912, 6, 23
+# Wow! That was fast!</code></pre>
+<p><em>Date::Performance</em> is not used directly but automatically replaces core <em>Date</em> methods when required.</p>
+<p>In addition to the C extension, the <em>Date::Memoization</em> module can be used to speed things up even further in some cases by making a trade off between space and time:</p>
+<pre><code>require &#39;date/memoize&#39;
+Date.new 1912, 6, 23
+Date.parse &#39;1912-06-23&#39;</code></pre>
+<p>Requiring the file automatically replaces <em>Date::new</em> / <em>Date::civil</em>, <em>Date::parse</em>, and <em>Date::jd</em> methods with memoized versions.</p>
+<h2 id="installation-hacking">Installation / Hacking</h2>
+<p>This package has been tested on the following platforms:</p>
+</body>
+</html>

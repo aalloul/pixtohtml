@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jimweirich_flexmock10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>m.should_receive(:start).ordered
+m.should_receive(:flip).ordered(:flip_flop_group)
+m.should_receive(:flop).ordered(:flip_flop_group)
+m.should_receive(:end).ordered</code></pre>
+<p>```</p>
+<p>Normally ordering is performed only against calls in the same mock object. If the “globally” adjective is used, then ordering is performed against the other globally ordered method calls.</p>
+<ul>
+<li><b>globally.ordered</b></li>
+<li><p><b>globally.ordered(<em>group_name</em>)</b></p>
+<p>When modified by the “globally” adjective, the mock call will be ordered against other globally ordered methods in any of the mock objects in the same container (i.e. same test). All the options of the per-mock ordering are available in the globally ordered method calls.</p></li>
+<li><p><b>by_default</b></p>
+<p>Marks the expectation as a default. Default expectations act as normal as long as there are no non-default expectations for the same method name. As soon as a non-default expectation is defined, all default expectations for that method name are ignored.</p>
+<p>Default expectations allow you to setup a set of default behaviors for various methods in the setup of a test suite, and then override only the methods that need special handling in any given test.</p></li>
+</ul>
+<h3 id="expectation-actions">Expectation Actions</h3>
+<p>Action expectations are used to specify what the mock should <em>do</em> when the expectation is matched. The actions themselves do not take part in determining whether a given expectation matches or not.</p>
+<ul>
+<li><p><b>and_return(<em>value</em>)</b></p>
+<p>Declares that the expected message will return the given value.</p></li>
+<li><p><b>and_return(<em>value1</em>, <em>value2</em>, …)</b></p>
+<p>Declares that the expected message will return a series of values. Each invocation of the message will return the next value in the series. The last value will be repeatably returned if the number of matching calls exceeds the number of values.</p></li>
+<li><p><b>and_return { |<em>args</em>, …| <em>code</em> … }</b></p>
+<p>Declares that the expected message will return the yielded value of</p></li>
+</ul>
+</body>
+</html>

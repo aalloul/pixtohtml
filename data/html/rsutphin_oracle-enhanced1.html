@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsutphin_oracle-enhanced1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="activerecord-oracle_enhanced-adapter">activerecord-oracle_enhanced-adapter</h1>
+<p>Oracle enhanced adapter for ActiveRecord</p>
+<h2 id="description">DESCRIPTION</h2>
+<p>Oracle enhanced ActiveRecord adapter provides Oracle database access from Ruby on Rails applications. Oracle enhanced adapter can be used from Ruby on Rails versions 2.3.x and 3.x and it is working with Oracle database versions 10g and 11g.</p>
+<h2 id="installation">INSTALLATION</h2>
+<h3 id="rails-3">Rails 3</h3>
+<p>When using Ruby on Rails version 3 then in Gemfile include</p>
+<pre><code>gem &#39;activerecord-oracle_enhanced-adapter&#39;, &#39;~&gt; 1.4.0&#39;</code></pre>
+<p>where instead of 1.4.0 you can specify any other desired version. It is recommended to specify version with <code>~&gt;</code> which means that use specified version or later patch versions (in this example any later 1.4.x version but not 1.5.x version). Oracle enhanced adapter maintains API backwards compatibility during patch version upgrades and therefore it is safe to always upgrade to latest patch version.</p>
+<p>If you would like to use latest adapter version from github then specify</p>
+<pre><code>gem &#39;activerecord-oracle_enhanced-adapter&#39;, :git =&gt; &#39;git://github.com/rsim/oracle-enhanced.git&#39;</code></pre>
+<p>If you are using MRI 1.8 or 1.9 Ruby implementation then you need to install ruby-oci8 gem as well as Oracle client, e.g. . Include in Gemfile also ruby-oci8:</p>
+<pre><code>gem &#39;ruby-oci8&#39;, &#39;~&gt; 2.0.6&#39;</code></pre>
+<p>If you are using JRuby then you need to download latest - either ojdbc6.jar for Java 6 or ojdbc5.jar for Java 5. And copy this file to one of these locations:</p>
+<ul>
+<li>in <code>./lib</code> directory of Rails application</li>
+<li>in some directory which is in <code>PATH</code></li>
+<li>in <code>JRUBY_HOME/lib</code> directory</li>
+<li>or include path to JDBC driver jar file in Java <code>CLASSPATH</code></li>
+</ul>
+<p>After specifying necessary gems in Gemfile run</p>
+<pre><code>bundle install</code></pre>
+<p>to install the adapter (or later run <code>bundle update</code> to force updating to latest version).</p>
+<h3 id="rails-2.3">Rails 2.3</h3>
+<p>If you don’t use Bundler in Rails 2 application then you need to specify gems in <code>config/environment.rb</code>, e.g.</p>
+<pre><code>Rails::Initializer.run do |config|
+  #...
+  config.gem &#39;activerecord-oracle_enhanced-adapter&#39;, :lib =&gt; &quot;active_record/connection_adapters/oracle_enhanced_adapter&quot;
+  config.gem &#39;ruby-oci8&#39;</code></pre>
+</body>
+</html>

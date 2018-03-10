@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dan-manges_unit-record2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<hr />
+<p>In the <tt>test/unit/unit_test_helper.rb</tt> file you created when restructuring your test directory, you should add these lines:</p>
+<pre><code>require File.dirname(__FILE__) + &quot;/../test_helper&quot;
+require &quot;unit_record&quot;
+ActiveRecord::Base.disconnect!</code></pre>
+<p>The <tt>disconnect!</tt> method will do everything necessary to run your unit tests without hitting the database.</p>
+<h2 id="strategy">Strategy</h2>
+<p>There are two options for what should happen if you hit the database. You can either have UnitRecord raise an exception, or simply no-op. Raising an exception can help identify why a test is failing, but it also may be inconvenient to work around.</p>
+<p>If you want to raise an exception:</p>
+<pre><code>ActiveRecord::Base.disconnect! :strategy =&gt; :raise
+
+Person.find(:all)
+#=&gt; RuntimeError: ActiveRecord is disconnected; database access is unavailable in unit tests.</code></pre>
+<p>If you want to no-op:</p>
+<pre><code>ActiveRecord::Base.disconnect! :strategy =&gt; :noop
+
+Person.find(:all)
+#=&gt; []</code></pre>
+<p>You can also change strategies within a block:</p>
+<pre><code>ActiveRecord::Base.connection.change_strategy(:raise) do
+  Person.find(:all)
+  #=&gt; RuntimeError: ActiveRecord is disconnected; database access is unavailable in unit tests.
+end
+
+ActiveRecord::Base.connection.change_strategy(:noop) do
+  Person.find(:all)
+  #=&gt; []
+end</code></pre>
+<h2 id="association-stubbing">Association Stubbing</h2>
+<p>One painful aspect of unit testing ActiveRecord classes is setting associations. Because Rails does type checking when setting an association, you’ll receive an exception if you try to use a stub in place of the expected class.</p>
+<pre><code>Pet.new :owner =&gt; stub(&quot;person&quot;)
+#=&gt; ActiveRecord::AssociationTypeMismatch: Person(#16620740) expected, got Mocha::Mock(#11567340)</code></pre>
+<p>If you’re using mocha, you can have UnitRecord stub associations. To enable association stubbing:</p>
+</body>
+</html>

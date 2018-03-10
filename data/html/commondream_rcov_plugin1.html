@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>commondream_rcov_plugin1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rcov_plugin">rcov_plugin</h1>
+<p><em>I’m no longer maintaining this plugin. Feel free to fork it and do what you wish with it, but I won’t be updating it anymore.</em></p>
+<p>This is a simple rails plugin for Rails 3 that adds some useful rcov rake tasks.</p>
+<pre><code>rake test:coverage                # Tests coverage on the entire application
+rake test:coverage:units          # Tests coverage for unit tests
+rake test:coverage:functionals    # Tests coverage for functional tests
+rake test:coverage:integration    # Tests coverage for integration tests</code></pre>
+<p>The task ends up creating a coverage folder with an html coverage report in it.</p>
+<p>SHOW_ONLY is a comma-separated list of the files you’d like to see (although you can only run functionals, you still see all the models and helpers which are ‘touched’). Right now there are four types of files rake test:coverage recognizes: models, helpers, controllers, and lib. These can be abbreviated to their first letters:</p>
+<pre><code>rake test:coverage SHOW_ONLY=models
+rake test:coverage SHOW_ONLY=helpers,controllers
+rake test:coverage SHOW_ONLY=h,c</code></pre>
+<h1 id="installing">Installing</h1>
+<p>As of Rails 3, rake tasks can be distributed easily in plugins packaged as gems, and that’s what we do here. So, to install rcov_plugin, simply do:</p>
+<p>gem install rcov_plugin</p>
+<p>or add the gem to your bundler Gemspec</p>
+<p>gem “rcov_plugin”</p>
+<h1 id="jruby-support">JRuby Support</h1>
+<p>rcov_plugin works great with JRuby.</p>
+<p>If using JRuby, remember to run rake with it, like this: jruby -S rake test:coverage</p>
+<p>Special thanks go to Leonard Borges ( for getting the plugin working with JRuby.</p>
+<h1 id="requirements">Requirements</h1>
+<p>This plugin requires rails 3 and</p>
+<h1 id="using-with-rails-2">Using With Rails 2</h1>
+</body>
+</html>

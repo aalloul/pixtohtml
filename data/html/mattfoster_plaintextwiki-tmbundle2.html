@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mattfoster_plaintextwiki-tmbundle2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>[[/abslolute/links]] are supported (for instance: [[/indexpage]] anywhere is a link to the index page)</li>
+<li><code>pagelist</code> will also only list pages whose names end in ‘.txt’; That way, you can store other files inside your wiki for reference, but it won’t try to open them</li>
+</ul>
+<h2 id="export-as-html">Export as HTML</h2>
+<p>Choose <code>Export Wiki as HTML</code> from the Plain Text Wiki commands menu. You will be prompted for a directory where the Web pages will be saved (please make sure it’s empty).</p>
+<p>For converting text to HTML, Plain Text Wiki understands .</p>
+<p>To customise the HTML of the wiki, add <code>wiki-styles.css</code> to the project directory–it’ll be copied to the export directory and included.</p>
+<p>For more control, add <code>wiki-header.html</code> and <code>wiki-footer.html</code> to the project directory. Include the string “%s” in <code>wiki-header.html</code> to have that replaced with the page title on export. Similarly two string markers in <code>wiki-footer.html</code> will be replaced with the time and current user.</p>
+<h2 id="bugs-and-issues">Bugs and issues</h2>
+<ul>
+<li>Export to HTML seems to be broken in this fork</li>
+</ul>
+<p>Please repot any bugs. Patches are welcome! Feel free to fork on GitHub .</p>
+<p>Issues:</p>
+<ul>
+<li>Bundle needs to adhere to http://macromates.com/wiki/Bundles/StyleGuide</li>
+<li>Grammar binds to a number of file extensions, but exports only ‘.txt’</li>
+</ul>
+<h2 id="changes">Changes</h2>
+<p>2009-01 (Marcelo Alvim)</p>
+<ul>
+<li>Added support for absolute links ([[/indexpage]], for instance)</li>
+</ul>
+<p>2008-12 (Marcelo Alvim)</p>
+<ul>
+<li>Added support for creating links with slashes in the middle (subdirectories)</li>
+<li>Changed ‘go to index page’ to go to the root of the project, not the current directory</li>
+<li>Various refactorings to ruby scripts</li>
+<li>Added (very little) debugging support and testing</li>
+</ul>
+<p>2008-11 (Matt Foster)</p>
+<ul>
+<li>Updated footer-html</li>
+<li>Merged markdown grammar</li>
+</ul>
+</body>
+</html>

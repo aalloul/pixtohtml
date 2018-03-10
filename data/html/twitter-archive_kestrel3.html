@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>twitter-archive_kestrel3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Building from source is easy:</p>
+<pre><code>$ sbt clean update package-dist</code></pre>
+<p>Scala libraries and dependencies will be downloaded from maven repositories the first time you do a build. The finished distribution will be in <code>dist</code>.</p>
+<h2 id="running-it">Running it</h2>
+<p>You can run kestrel by hand, in development mode, via:</p>
+<pre><code>$ ./dist/kestrel-VERSION/scripts/devel.sh</code></pre>
+<p>Like all ostrich-based servers, it uses the “stage” property to determine which config file to load, so <code>devel.sh</code> sets <code>-Dstage=development</code>.</p>
+<p>When running it as a server, a startup script is provided in <code>dist/kestrel-VERSION/scripts/kestrel.sh</code>. The script assumes you have <code>daemon</code>, a standard daemonizer for Linux, but also available for all common unix platforms.</p>
+<p>The created archive <code>kestrel-VERSION.zip</code> can be expanded into a place like <code>/usr/local</code> (or wherever you like) and executed within its own folder as a self-contained package. All dependent jars are included. The current startup script, however, assumes that kestrel has been deployed to <code>/usr/local/kestrel/current</code> (e.g., as if by capistrano), and the startup script loads kestrel from that path.</p>
+<p>The default configuration puts logfiles into <code>/var/log/kestrel/</code> and queue journal files into <code>/var/spool/kestrel/</code>.</p>
+<p>The startup script logs extensive GC information to a file named <code>stdout</code> in the log folder. If kestrel has problems starting up (before it can initialize logging), it will usually appear in <code>error</code> in the same folder.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Queue configuration is described in detail in <code>docs/guide.md</code> (an operational guide). Scala docs for the config variables are .</p>
+<h2 id="performance">Performance</h2>
+<p>Several performance tests are included. To run them, first start up a kestrel instance</p>
+</body>
+</html>

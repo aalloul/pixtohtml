@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sebastien_paml7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&gt;     &lt;p&gt;
+&gt;       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean ante leo,
+&gt;       suscipit sit amet, iaculis sed, rutrum eu, mi. Aenean laoreet, erat
+&gt;       consequat aliquam tempor, nibh nisl porta augue.
+&gt;     &lt;/p&gt;</code></pre>
+<p>Additionaly you can define specific hints for classes of elements, by using declarations. If you want to define that ‘pre’ and ‘code’ elements should be ‘preserved’, you can do this (preferably at the top of your document)</p>
+<blockquote>
+<p><span class="citation" data-cites="pre">@pre</span>,code|preserved</p>
+</blockquote>
+<ol start="6" type="1">
+<li>Including other Pamela files ===============================</li>
+</ol>
+<p>It’s likely that at some point you’d like to have a library of Pamela files with already defined snippets of Pamela code, whether it’s specific rendering hints or pre-defined declarations.</p>
+<p>To include a file ‘library.paml’ file that resides in the same directory as your current Pamela file, just do the following:</p>
+<blockquote>
+<p>%include library</p>
+</blockquote>
+<p>if there is no ‘library.paml’ file in the current directory, you can also define a ‘PAMELA_LIBRARY’ environment variable that points to a specific directory containing your ‘.paml’ files.</p>
+<p>If this directory also has subdirectories like ‘widget/datepicker.paml’, you can do:</p>
+<blockquote>
+<p>%include widget/datepicker</p>
+</blockquote>
+<p>to include the ‘widget/datepicker.paml’ from your library into your current document. It is a good practice to collect some library of snippets that can be easily be re-used among your various HTML documents.</p>
+<p>You can also specify <em>replacement values</em> for variables declared in the included paml file as ‘${VARIABLE}’. For instance:</p>
+<blockquote>
+<p>%include widget/datepicker {ID=mywidget,TITLE=“Start date”}</p>
+</blockquote>
+<p>with ‘widget/datepicker.paml’ being something like:</p>
+<blockquote>
+<p>&lt;div#<span class="math inline"><em>I</em><em>D</em>.<em>D</em><em>a</em><em>t</em><em>e</em><em>P</em><em>i</em><em>c</em><em>k</em><em>e</em><em>r</em> &lt; <em>h</em>3.<em>t</em><em>i</em><em>t</em><em>l</em><em>e</em>:</span>{TITLE}</p>
+</blockquote>
+<p>this is an easy way to make generic ‘.paml’ snippets that can be used as ‘’templates’’ for specific elements.</p>
+</body>
+</html>

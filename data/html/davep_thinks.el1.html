@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>davep_thinks.el1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><code>thinks.el</code> is a little bit of silliness inspired by the think bubbles you see in cartoons. It allows you to</p>
+<pre><code>. o O ( insert text that looks like this )</code></pre>
+<p>into a buffer. This could possibly be handy for use in email and usenet postings.</p>
+<p>Note that the code can handle multiple lines</p>
+<pre><code>. o O ( like this. That is, a body of text where the number of characters )
+      ( exceeds the bounds of what you might consider to be a acceptable  )
+      ( line length (he says, waffling on to fill a couple of lines).     )</code></pre>
+<p>You can also control how the bubble looks with <code>thinks-from</code>. The above had it set to <code>top</code>. You can have <code>middle</code>:</p>
+<pre><code>      ( like this. That is, a body of text where the number of characters )
+. o O ( exceeds the bounds of what you might consider to be a acceptable  )
+      ( line length (he says, waffling on to fill a couple of lines).     )</code></pre>
+<p><code>bottom</code>:</p>
+<pre><code>      ( like this. That is, a body of text where the number of characters )
+      ( exceeds the bounds of what you might consider to be a acceptable  )
+. o O ( line length (he says, waffling on to fill a couple of lines).     )</code></pre>
+<p>and <code>bottom-diagonal</code>:</p>
+<pre><code>      ( like this. That is, a body of text where the number of characters )
+      ( exceeds the bounds of what you might consider to be a acceptable  )
+      ( line length (he says, waffling on to fill a couple of lines).     )
+    O
+  o
+.</code></pre>
+<p>By default all of the thinking functions will fill (word wrap) the text</p>
+</body>
+</html>

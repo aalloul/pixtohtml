@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>out-of-the-box integrations are available for some of the more popular Ruby libraries. These integrations add library-specific behavior, allowing for state machines to work more tightly with the conventions defined by those libraries.</p>
+<p>The integrations currently available include:</p>
+<ul>
+<li>ActiveModel classes</li>
+<li>ActiveRecord models</li>
+<li>DataMapper resources</li>
+<li>Mongoid models</li>
+<li>MongoMapper models</li>
+<li>Sequel models</li>
+</ul>
+<p>A brief overview of these integrations is described below.</p>
+<h3 id="activemodel">ActiveModel</h3>
+<p>The ActiveModel integration is useful for both standalone usage and for providing the base implementation for ORMs which implement the ActiveModel API. This integration adds support for validation errors, dirty attribute tracking, and observers. For example,</p>
+<p>```ruby class Vehicle include ActiveModel::Dirty include ActiveModel::Validations include ActiveModel::Observing</p>
+<p>attr_accessor :state define_attribute_methods [:state]</p>
+<p>state_machine :initial =&gt; :parked do before_transition :parked =&gt; any - :parked, :do =&gt; :put_on_seatbelt after_transition any =&gt; :parked do |vehicle, transition| vehicle.seatbelt = ‘off’ end around_transition :benchmark</p>
+<pre><code>event :ignite do
+  transition :parked =&gt; :idling
+end
+
+state :first_gear, :second_gear do
+  validates_presence_of :seatbelt_on
+end</code></pre>
+<p>end</p>
+<p>def put_on_seatbelt … end</p>
+</body>
+</html>

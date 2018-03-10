@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rakudo_rakudo3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The format for the <code>--backends</code> flag is:</p>
+<pre><code>$ perl Configure.pl --backends=moar,jvm
+$ perl Configure.pl --backends=ALL</code></pre>
+<h2 id="where-to-get-help-or-answers-to-questions">Where to get help or answers to questions</h2>
+<p>There are several mailing lists, IRC channels, and wikis available with help for Perl 6 and Rakudo. Figuring out the right one to use is often the biggest battle. Here are some rough guidelines:</p>
+<p>The central hub for Perl 6 information is . This is always a good starting point.</p>
+<p>If you have a question about Perl 6 syntax or the right way to approach a problem using Perl 6, you probably want the “perl6-users@perl.org” mailing list or the <a href="https://webchat.freenode.net/?channels=#perl6">irc.freenode.net/#perl6 IRC channel</a>. The perl6-users list is primarily for the people who want to use Perl 6 to write programs, so newbie questions are welcomed there. Newbie questions are also welcome on the #perl6 channel; the Rakudo and Perl 6 development teams tend to hang out there and are generally glad to help. You can follow and on Twitter, and there’s a Perl 6 news aggregator at .</p>
+<p>Questions about NQP can also be posted to the #perl6 IRC channel. For questions about MoarVM, you can join #moarvm on freenode.</p>
+<h2 id="reporting-bugs">Reporting bugs</h2>
+<p>Please see https://github.com/rakudo/rakudo/wiki/rt-introduction for more information about how and where to report issues with Rakudo, its components, and the Perl 6 language specification.</p>
+<h2 id="submitting-patches">Submitting patches</h2>
+<p>If you have a patch that fixes a bug or adds a new feature, please create a pull request using github’s pull request infrastructure.</p>
+<p>See for more information.</p>
+<h2 id="line-editing-and-tab-completion">Line editing and tab completion</h2>
+<p>If you would like simple history and tab completion in the perl6 executable, you need to install the Linenoise module. The recommended way to install Linenoise is via :</p>
+<pre><code>$ zef install Linenoise</code></pre>
+</body>
+</html>

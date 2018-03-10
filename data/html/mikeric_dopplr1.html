@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mikeric_dopplr1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dopplr">dopplr</h1>
+<p>An abstraction library providing objects to interact with the Dopplr API. It is essentially a multi-user wrapper with each object being bound to a client. The current master is organically changing with the new API specification, and so it may be unstable. Please refer to the <strong>authsub</strong> tag for the old API (dopplr 0.2.0).</p>
+<h2 id="install">Install</h2>
+<pre><code>gem install dopplr</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Here are some examples of how to use a few of the objects available. For a full reference, you need to read the tests and source code for now, at least until the Dopplr API spec is finalized.</p>
+<h3 id="dopplroauth">Dopplr::OAuth</h3>
+<p>Create a <strong>Dopplr::OAuth</strong> instance with your consumer token and secret. Authorize the client using your access token, provided that you’ve already obtained one. Create a <strong>Dopplr::Base</strong> instance using the authorized OAuth client.</p>
+<pre><code>client = Dopplr::OAuth.new(&#39;1a2b3c4d5e&#39;, &#39;2a3b4c5d6e&#39;)
+client.authorize_from_access(&#39;3a4b5c6d7e&#39;, &#39;4a5b6c7d8e&#39;)
+
+dopplr = Dopplr::Base.new(client)</code></pre>
+<h3 id="dopplrbase">Dopplr::Base</h3>
+<p><strong>Dopplr::Base</strong> is used for searching, creating, and chaining objects. However, you could also instantiate and use the objects directly by passing the client as an argument. As such, the following groups of statements are equivalent.</p>
+<pre><code>dopplr.city(4887398)                        #=&gt; Dopplr::City for ID 4887398
+dopplr.traveller(&#39;jonsmith&#39;)                #=&gt; Dopplr::Traveller for &#39;jonsmith&#39;
+
+Dopplr::City.new(client, 4887398)           #=&gt; Dopplr::City for ID 4887398
+Dopplr::Traveller.new(client, &#39;jonsmith&#39;)   #=&gt; Dopplr::Traveller for &#39;jonsmith&#39;</code></pre>
+<p><strong>Dopplr::Base</strong> is also used for adding some of the high level objects such as places that you’ve been and trips you’ve taken.</p>
+<pre><code>dopplr.add_place(
+  &#39;kj41&#39;,
+  :note =&gt; &#39;Central Park is notably the most-visited urban park in the US.&#39;,
+  :vote =&gt; &#39;liked&#39;
+)
+
+dopplr.add_trip(
+  5746545,
+  :start =&gt; &#39;2010-01-15&#39;,
+  :finish =&gt; &#39;2010-02-01&#39;,
+  :outgoing_transport_type =&gt; &#39;plane&#39;
+)</code></pre>
+<h3 id="dopplrcity">Dopplr::City</h3>
+<pre><code>chicago = dopplr.city(4887398)</code></pre>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pistos_innate3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  include Innate::Node
+  map &#39;/&#39;
+
+  def index
+    &quot;Hello, World!&quot;
+  end
+end
+
+Innate.start :adapter =&gt; :mongrel</code></pre>
+<h2 id="installation">Installation</h2>
+<h3 id="via-git-recommended">Via git (recommended)</h3>
+<p>Installing Innate from git is highly recommended, since it gives you easy access to alternate branches, bugfixes, and new features.</p>
+<pre><code>git clone git://github.com/manveru/innate.git</code></pre>
+<p>And add the innate/lib directory to your <code>RUBYLIB</code> environment variable.</p>
+<p>For unixish systems you may want to add it to <code>~/.bashrc</code> or the equivalent for your shell:</p>
+<pre><code>export RUBYLIB=&quot;~/path/to/innate/lib:$RUBYLIB&quot;</code></pre>
+<h3 id="via-gem-install">Via gem install</h3>
+<h4 id="from-github">From Github</h4>
+<pre><code>gem install manveru-innate --source=http://gems.github.com</code></pre>
+<h4 id="from-rubyforge">From Rubyforge</h4>
+<p>Not yet, and not sure when I’ll get around to do this, feel free to ask if you want to maintain the project at rubyforge.</p>
+<h2 id="concepts">Concepts</h2>
+<p>First let’s see about the good old MVC:</p>
+<h3 id="model">Model</h3>
+<p>Innate doesn’t have any ties to models, it does not offer helpers or rake tasks or whatever you may be expecting, there is no M, use whatever you like. Innate is, however, known to be compatible with the ORMs listed below:</p>
+<ul>
+<li>ActiveRecord</li>
+</ul>
+</body>
+</html>

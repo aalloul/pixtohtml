@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kpumuk_sphinx3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ol start="5" type="1">
+<li>In case of request problem, go to 3.</li>
+<li>Parse and return response.</li>
+</ol>
+<p>Withdrawals:</p>
+<ol type="1">
+<li>Request could be performed <code>connect_retries</code> * <code>request_retries</code> times. E.g., it could be tried <code>request_retries</code> times on each of <code>connect_retries</code> servers (when you have 1 server configured, but <code>connect_retries</code> is 5, library will try to connect to this server 5 times).</li>
+<li>Request could be tried to execute on each server <code>1..request_retries</code> times. In case of connection problem, request will be moved to another server immediately.</li>
+</ol>
+<p>Usually you will set <code>connect_retries</code> equal to servers number, so you will be sure each failing request will be performed on all servers. This means that if one of servers is live, but others are dead, you request will be finally executed successfully.</p>
+<h2 id="sphinx-constants">Sphinx constants</h2>
+<p>Most Sphinx API methods expecting for special constants will be passed. For example:</p>
+<pre><code>sphinx.set_match_mode(Sphinx::SPH_MATCH_ANY)</code></pre>
+<p>Please note that these constants defined in a <code>Sphinx</code> module. You can use symbols or strings instead of these awful constants:</p>
+<pre><code>sphinx.set_match_mode(:any)
+sphinx.set_match_mode(&#39;any&#39;)</code></pre>
+<h2 id="setting-query-filters">Setting query filters</h2>
+<p>Every <code>set_</code> method returns <code>Sphinx::Client</code> object itself. It means that you can chain filtering methods:</p>
+<pre><code>results = Sphinx::Client.new.
+            set_match_mode(:any).
+            set_ranking_mode(:bm25).
+            set_id_range(10, 1000).
+            query(&#39;test&#39;)</code></pre>
+<p>There is a handful ability to set query parameters directly in <code>query</code> call. If block does not accept any parameters, it will be eval’ed inside Sphinx::Client instance:</p>
+<pre><code>results = Sphinx::Client.new.query(&#39;test&#39;) do
+  match_mode :any</code></pre>
+</body>
+</html>

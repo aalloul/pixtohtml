@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ecarnevale_web-app-theme1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="web-app-theme">Web App Theme</h1>
+<p>Web App Theme is a rails generator by that you can use to generate admin panels quickly. Inspired by cool themes like and others, it wants to be an idea to start developing a complete web application layout.</p>
+<h2 id="installation">Installation</h2>
+<p>Install the gem with:</p>
+<pre><code>sudo gem install web-app-theme -s http://gemcutter.org</code></pre>
+<p>You can also install it as a rails plugin:</p>
+<pre><code>script/plugin install git://github.com/pilu/web-app-theme.git</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="theme-generator">Theme Generator</h3>
+<p>Used without parameters, it generates the layout inside the application.html.erb file using the default theme.</p>
+<pre><code>script/generate theme</code></pre>
+<p>You can specify the layout file name in the first parameter:</p>
+<pre><code>script/generate theme admin # it will generate a layout called `admin.html.erb`</code></pre>
+<p>If you want to use another theme, instead of the default, you can use the <code>--theme</code> option:</p>
+<pre><code>script/generate theme --theme=&quot;drastic-dark&quot;</code></pre>
+<p>If you want to generate the stylesheets of a specific theme without changing the previously generated layout you can pass the <code>--no-layout</code> option:</p>
+<pre><code>script/generate theme --theme=bec --no_layout</code></pre>
+<p>You can specify the text used in the header with the <code>--app-name</code> option:</p>
+<pre><code>script/generate theme --app_name=&quot;My New Application&quot;</code></pre>
+<p>If you need a layout for login and signup pages, you can use the <code>--type</code> option with <code>sign</code> as value. Ìf not specified, the default value is <code>administration</code></p>
+<pre><code>script/generate theme --type=sign</code></pre>
+<h3 id="themed-generator">Themed Generator</h3>
+</body>
+</html>

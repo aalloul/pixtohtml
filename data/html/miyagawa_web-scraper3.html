@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>miyagawa_web-scraper3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code># date =&gt; &quot;2008/12/21&quot;
+process &quot;.date&quot;, date =&gt; &#39;TEXT&#39;;
+
+# &lt;div class=&quot;body&quot;&gt;&lt;a href=&quot;http://example.com/&quot;&gt;foo&lt;/a&gt;&lt;/div&gt;
+# link =&gt; URI-&gt;new(&quot;http://example.com/&quot;)
+process &quot;.body &gt; a&quot;, link =&gt; &#39;@href&#39;;
+
+# &lt;div class=&quot;body&quot;&gt;&lt;!-- HTML Comment here --&gt;&lt;a href=&quot;http://example.com/&quot;&gt;foo&lt;/a&gt;&lt;/div&gt;
+# comment =&gt; &quot; HTML Comment here &quot;
+#
+# NOTES: A comment nodes are accessed when installed
+# the HTML::TreeBuilder::XPath (version &gt;= 0.14) and/or
+# the HTML::TreeBuilder::LibXML (version &gt;= 0.13)
+process &quot;//div[contains(@class, &#39;body&#39;)]/comment()&quot;, comment =&gt; &#39;TEXT&#39;;
+
+# &lt;div class=&quot;body&quot;&gt;&lt;a href=&quot;http://example.com/&quot;&gt;foo&lt;/a&gt;&lt;/div&gt;
+# link =&gt; URI-&gt;new(&quot;http://example.com/&quot;), text =&gt; &quot;foo&quot;
+process &quot;.body &gt; a&quot;, link =&gt; &#39;@href&#39;, text =&gt; &#39;TEXT&#39;;
+
+# &lt;ul&gt;&lt;li&gt;foo&lt;/li&gt;&lt;li&gt;bar&lt;/li&gt;&lt;/ul&gt;
+# list =&gt; [ &quot;foo&quot;, &quot;bar&quot; ]
+process &quot;li&quot;, &quot;list[]&quot; =&gt; &quot;TEXT&quot;;
+
+# &lt;ul&gt;&lt;li id=&quot;1&quot;&gt;foo&lt;/li&gt;&lt;li id=&quot;2&quot;&gt;bar&lt;/li&gt;&lt;/ul&gt;
+# list =&gt; [ { id =&gt; &quot;1&quot;, text =&gt; &quot;foo&quot; }, { id =&gt; &quot;2&quot;, text =&gt; &quot;bar&quot; } ];
+process &quot;li&quot;, &quot;list[]&quot; =&gt; { id =&gt; &#39;@id&#39;, text =&gt; &quot;TEXT&quot; };</code></pre>
+<h2 id="process_first">process_first</h2>
+<p><code>process_first</code> is the same as <code>process</code> but stops when the first matching result is found.</p>
+<pre><code># &lt;span class=&quot;date&quot;&gt;2008/12/21&lt;/span&gt;
+# &lt;span class=&quot;date&quot;&gt;2008/12/22&lt;/span&gt;
+# date =&gt; &quot;2008/12/21&quot;
+process_first &quot;.date&quot;, date =&gt; &#39;TEXT&#39;;</code></pre>
+<h2 id="result">result</h2>
+<p><code>result</code> allows to return not the default value after processing but a single value specified by a key or a hash reference built from several keys.</p>
+<pre><code>process &#39;a&#39;, &#39;want[]&#39; =&gt; &#39;TEXT&#39;;
+result &#39;want&#39;;</code></pre>
+<h1 id="examples">EXAMPLES</h1>
+<p>There are many examples in the <code>eg/</code> dir packaged in this distribution. It is recommended to look through these.</p>
+</body>
+</html>

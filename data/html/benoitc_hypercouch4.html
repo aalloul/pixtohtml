@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>benoitc_hypercouch4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<hr />
+<p>Installing HyperCouch should be relatively straight forward. Just <code>git clone</code> or download the tarball and install.</p>
+<p>Using git:</p>
+<pre><code>$ git clone git://github.com/davisp/hypercouch.git
+$ cd hypercouch</code></pre>
+<p>No git:</p>
+<pre><code>$ wget http://github.com/davisp/hypercouch/tarball/master
+$ tar -xvzf davisp-hypercouch-${HASH}.tar.gz
+$ cd davisp-hypercouch-${HASH}</code></pre>
+<p>Installing:</p>
+<pre><code>$ sudo python setup.py install</code></pre>
+<h2 id="configuring-couchdb">Configuring CouchDB</h2>
+<p>You’ll need to edit your <code>local.ini</code> or alternatively your <code>local_dev.ini</code> if you’re a fan of <code>make dev</code> like I am.</p>
+<pre><code>[external]
+hyper = /path/to/python -m hypercouch
+
+[httpd_db_handlers]
+_fti = {couch_httpd_external, handle_external_req, &lt;&lt;&quot;hyper&quot;&gt;&gt;}</code></pre>
+<p>Alternatively, in your <code>[external]</code> section you can use <code>/path/to/hypercouch/dev.sh</code> without installing to make dev work easier for when you start submitting bug reports and patches. (This avoids the constant <code>sudo python setup.py install</code> running when you change <code>hypercouch</code> sources.)</p>
+<h2 id="using-hypercouch">Using HyperCouch</h2>
+<p>To use <code>hypercouch</code> all you need to do is add a JavaScript function to your <code>_design/doc</code>’s in the <code>ft_index</code> member. This function has two special JavaScript functions you can call to add indexing info for your document.</p>
+<ol type="1">
+<li><code>index(data)</code> - adds <code>data</code> to the full text index</li>
+<li><code>property(name, value)</code> - adds properties to the document for use in sorting and limiting results</li>
+</ol>
+<p>Example <code>_design/document</code>:</p>
+<pre><code>{
+    &quot;_id&quot;: &quot;_design/foo&quot;,
+    &quot;_rev&quot;: &quot;32498230012&quot;,
+    &quot;ft_index&quot;: &quot;function(doc) {if(doc.body) index(doc.body); if(doc.foo) property(&quot;foo&quot;, doc.foo);}&quot;
+}</code></pre>
+<p>Example URL’s:</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>foca_integrity1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="integrity">Integrity</h1>
+<p>[Integrity][website] is your friendly automated Continuous Integration server.</p>
+<ul>
+<li>See our [website][] for documentation and a [live demo][demo]</li>
+<li>Report bugs and submit features request on our [Lighthouse account][lighthouse]</li>
+<li>Join us on [#integrity][irc-channel] for ideas, help, patches or something</li>
+<li>Get the code on [GitHub][repo]</li>
+</ul>
+<h2 id="try-it">Try it!</h2>
+<pre><code>$ git clone git://github.com/foca/integrity.git
+$ rake launch
+# Navigate to &lt;http://0.0.0.0:4567&gt;</code></pre>
+<h2 id="run-the-test-suite">Run the test suite</h2>
+<ol type="1">
+<li>Ensure you have <code>gems.github.com</code> in your gem sources: <code>gem sources -a http://gems.github.com</code></li>
+<li>Install the runtime and development dependencies: <code>gem build integrity.gemspec &amp;&amp; gem install *.gem --development</code>.</li>
+<li>Run the test suite: <code>rake test</code></li>
+</ol>
+<h2 id="thanks">Thanks</h2>
+<p>Thanks to the fellowing people for their feedbacks, ideas and patches :</p>
+<ul>
+<li>[James Adam][james]</li>
+<li>[Elliott Cable][ec]</li>
+<li>[Corey Donohoe][atmos]</li>
+<li>[Kyle Hargraves][kyle]</li>
+<li>[Pier-Hugues Pellerin][ph]</li>
+<li>[Simon Rozet][sr]</li>
+<li>[Scott Taylor][scott]</li>
+</ul>
+<h2 id="license">License</h2>
+<p>(The MIT License)</p>
+<p>Copyright (c) 2008 [Nicolás Sanguinetti][foca], [entp][]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,</p>
+</body>
+</html>

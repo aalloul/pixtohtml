@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>beastaugh_tarski-utilities1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="tarski-utilities">Tarski Utilities</h1>
+<p>The files included in this repository constitute a toolset for working with <a href="http://tarskitheme.com/">Tarski</a>, a <a href="http://wordpress.org/">WordPress</a> theme. Hopefully they will prove useful to someone.</p>
+<h2 id="tasks">Tasks</h2>
+<pre><code>rake changelog       # Generate a new changelog HTML file.
+rake feed            # Update the version feed to notify Tarski users of
+                     # the new release.
+rake hooks           # Generate the hooks documentation page.
+rake plugin_version  # Add version data to the Tarski website plugin.
+rake update          # Creates a zip archive, and updates the version feed
+                     # and changelog.
+rake zip             # Create a zip file of the lastest release in the
+                     # downloads directory.</code></pre>
+<h2 id="required-libraries">Required libraries</h2>
+<p>These tools are written in Ruby, so they require the RubyGems packaging system and the following gems. <a href="http://git-scm.com/">Git</a> is also a requirement.</p>
+<ul>
+<li><a href="http://http://rake.rubyforge.org/"><strong>Rake</strong></a> to run the tasks.</li>
+<li><a href="http://builder.rubyforge.org/"><strong>Builder</strong></a>: programmatic XML generation, required to create the Tarski version feed.</li>
+<li><a href="http://github.com/rtomayko/rdiscount/"><strong>RDiscount</strong></a>: Markdown format reader and writer, used to read Tarski’s changelog file.</li>
+<li><a href="http://chneukirchen.org/blog/static/projects/rubypants.html"><strong>RubyPants</strong></a>: Nicer typography with <a href="http://daringfireball.net/projects/smartypants/">SmartyPants</a>.</li>
+<li><a href="http://code.whytheluckystiff.net/hpricot/"><strong>Hpricot</strong></a>: DOM scripting in Ruby for HTML and XML, used to parse the Tarski changelog and generate a list of links to each version’s entry in the changelog.</li>
+</ul>
+</body>
+</html>

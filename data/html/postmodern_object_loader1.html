@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>postmodern_object_loader1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="objectloader">ObjectLoader</h1>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li><a href="mailto:postmodern.mod3%20at%20gmail.com">Email</a></li>
+</ul>
+<h2 id="description">Description</h2>
+<p>ObjectLoader can load Ruby Objects containing methods and procs from Ruby files without having to use YAML or define classes named like the file.</p>
+<h2 id="examples">Examples</h2>
+<pre><code># file: controller.rb
+class Controller
+
+  include ObjectLoader
+
+  # ...
+
+end
+
+# file: my_controller.rb
+Controller.object do
+
+  def test1
+    &#39;This is the first test&#39;
+  end
+
+  def test2(mesg)
+    &quot;Hello #{mesg}&quot;
+  end
+
+end
+
+# load a Controller object from a file.
+controller = Controller.load_object(&#39;my_controller.rb&#39;)
+# =&gt; #&lt;Controller: ...&gt;
+
+controller.test1
+# =&gt; &quot;This is the first test&quot;
+controller.test2(&#39;one two three&#39;)
+# =&gt; &quot;Hello one two three&quot;</code></pre>
+<h2 id="install">Install</h2>
+<pre><code>$ gem install object_loader</code></pre>
+<h2 id="copyright">Copyright</h2>
+</body>
+</html>

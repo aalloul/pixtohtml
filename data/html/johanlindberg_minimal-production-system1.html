@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>johanlindberg_minimal-production-system1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="minimal-production-system">Minimal Production System</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The Minimal Production System (MPS) started out as an experiment in Common Lisp macrology (the idea was to convert a subset of syntax into executable Common Lisp code) but since the | character has special meaning to the Common Lisp reader it’s difficult to implement the or-connective-constraint in pattern-CE’s. So, instead I’ve focused on implementing a production system using Common Lisp syntax and defstructs.</p>
+<p>There’s a bit more info about the CLIPS experiment on my old (defunkt) blog <a href="http://commentsarelies.blogspot.com/search/label/MPS">// comments are lies!</a></p>
+<h2 id="current-status">Current Status</h2>
+<p>Currently (2010-02-26) I’ve started working on a cleaned up version of MPS. You’ll find it in the /II folder. I’ll post status updates on my new blog .</p>
+<h2 id="simplest-example-possible">Simplest example possible</h2>
+<pre><code>CL-USER&gt; (in-package :mps)
+#&lt;Package &quot;MPS&quot;&gt;
+MPS&gt; (watch activations facts rules)
+T
+MPS&gt; (defstruct foo value)
+FOO
+MPS&gt; (defrule test
+       (foo (value ?value))
+       =&gt;
+       (print ?value)
+       (halt))
+TEST
+MPS&gt; (assert-facts #S(foo :value 1) #S(foo :value 2) #S(foo :value 3))
+=&gt; FACT: F-1 #S(FOO :VALUE 1)
+=&gt; ACTIVATION: TEST (#S(FOO :VALUE 1))
+=&gt; FACT: F-2 #S(FOO :VALUE 2)
+=&gt; ACTIVATION: TEST (#S(FOO :VALUE 2))
+=&gt; FACT: F-3 #S(FOO :VALUE 3)
+=&gt; ACTIVATION: TEST (#S(FOO :VALUE 3))
+3
+MPS&gt; (pprint (agenda))
+
+(#S(ACTIVATION :RULE TEST :SALIENCE 0 :TOKEN (#S(FOO :VALUE 1)) :TIMESTAMP 1
+               :RHS-FUNCTION #&lt;Compiled-function RHS/TEST #x3000413FCB3F&gt;
+               :PRODUCTION-MEMORY MEMORY/PRODUCTION/TEST)
+ #S(ACTIVATION :RULE TEST :SALIENCE 0 :TOKEN (#S(FOO :VALUE 2)) :TIMESTAMP 1
+               :RHS-FUNCTION #&lt;Compiled-function RHS/TEST #x3000413FCB3F&gt;
+               :PRODUCTION-MEMORY MEMORY/PRODUCTION/TEST)</code></pre>
+</body>
+</html>

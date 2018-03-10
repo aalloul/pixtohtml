@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl12</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Set handlers private to the executing subroutine. Works by defaulting an <code>owner</code> field to the <code>%matchspec</code> that holds the name of the called subroutine. You might pass an explicit <code>owner</code> to override this.</p>
+<p>If $cb is passed as <code>undef</code>, remove the handler.</p>
+<h1 id="request-methods">REQUEST METHODS</h1>
+<p>The methods described in this section are used to dispatch requests via the user agent. The following request methods are provided:</p>
+<h2 id="delete">delete</h2>
+<pre><code>my $res = $ua-&gt;delete( $url );
+my $res = $ua-&gt;delete( $url, $field_name =&gt; $value, ... );</code></pre>
+<p>This method will dispatch a <code>DELETE</code> request on the given URL. Additional headers and content options are the same as for the method.</p>
+<p>This method will use the DELETE() function from to build the request. See for a details on how to pass form content and other advanced features.</p>
+<h2 id="get">get</h2>
+<pre><code>my $res = $ua-&gt;get( $url );
+my $res = $ua-&gt;get( $url , $field_name =&gt; $value, ... );</code></pre>
+<p>This method will dispatch a <code>GET</code> request on the given URL. Further arguments can be given to initialize the headers of the request. These are given as separate name/value pairs. The return value is a response object. See for a description of the interface it provides.</p>
+<p>There will still be a response object returned when LWP can’t connect to the server specified in the URL or when other failures in protocol handlers occur. These internal responses use the standard HTTP status codes, so the responses can’t be differentiated by testing the response status code alone. Error responses that LWP generates internally will have the “Client-Warning” header set to the value “Internal response”. If you need to differentiate these internal responses from responses that a remote server actually generates, you need to test this header value.</p>
+<p>Fields names that start with “:” are special. These will not initialize headers of the request but will determine how the response content is treated. The following special field names are recognized:</p>
+<pre><code>:content_file   =&gt; $filename
+:content_cb     =&gt; \&amp;callback</code></pre>
+</body>
+</html>

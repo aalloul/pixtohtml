@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gabriel_airake1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="airake">Airake</h1>
+<p>Rake tasks and generators for Adobe AIR.</p>
+<p>For more info see:</p>
+<h2 id="setup">Setup</h2>
+<p>To include mxmlc and fcsh (from Flex SDK): export PATH=“/path/to/flex_sdk_3/bin”</p>
+<p>To include adl and adt (from AIR SDK): export PATH=“/path/to/air_sdk/bin:$PATH”</p>
+<h2 id="tasks">Tasks</h2>
+<p>can be used to build the swc, compile/run tests and run under ADL, etc.</p>
+<p>View all tasks: <code>rake --tasks</code></p>
+<p>Compiling under AIR: <code>rake air:compile</code></p>
+<p>Running air debug launcher (ADL): <code>rake air:adl</code></p>
+<p>Start FCSHD (for faster compilation): <code>rake fcsh:start</code></p>
+<p>Stop FCSHD: <code>rake fcsh:stop</code></p>
+<p>Restart FCSHD: <code>rake fcsh:restart</code></p>
+<p>Running alternate MXML, (we expect src/Test-app.xml descriptor): <code>rake air:adl MXML=src/Test.mxml</code></p>
+<p>Run ADL with debug disabled: <code>rake air:adl DEBUG=false</code></p>
+<p>Testing: <code>rake air:test</code></p>
+<p>Package AIR file: <code>rake air:package</code></p>
+<h2 id="adding-other-tasks">Adding other tasks</h2>
+<p>Add tasks to the rakefile, for example:</p>
+<pre><code># Run ADL for Catalog mxml
+task :catalog do
+  ENV[&quot;MXML&quot;] = &quot;src/catalog/Catalog.mxml&quot;
+  Rake::Task[&quot;air:adl&quot;].invoke</code></pre>
+</body>
+</html>

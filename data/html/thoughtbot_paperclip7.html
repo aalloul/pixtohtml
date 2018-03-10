@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_paperclip7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><code>&lt;attachment&gt;_updated_at</code></li>
+</ul>
+<p>By default, only <code>&lt;attachment&gt;_file_name</code> is required for Paperclip to operate. You’ll need to add <code>&lt;attachment&gt;_content_type</code> in case you want to use content type validation.</p>
+<p>More information about the options passed to <code>has_attached_file</code> is available in the documentation of .</p>
+<h2 id="validations">Validations</h2>
+<p>For validations, Paperclip introduces several validators to validate your attachment:</p>
+<ul>
+<li><code>AttachmentContentTypeValidator</code></li>
+<li><code>AttachmentPresenceValidator</code></li>
+<li><code>AttachmentSizeValidator</code></li>
+</ul>
+<p>Example Usage:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1">validates <span class="st">:avatar</span>, <span class="st">attachment_presence: </span><span class="dv">true</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">validates_with <span class="dt">AttachmentPresenceValidator</span>, <span class="st">attributes: :avatar</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">validates_with <span class="dt">AttachmentSizeValidator</span>, <span class="st">attributes: :avatar</span>, <span class="st">less_than: </span><span class="dv">1</span>.megabytes</a></code></pre></div>
+<p>Validators can also be defined using the old helper style:</p>
+<ul>
+<li><code>validates_attachment_presence</code></li>
+<li><code>validates_attachment_content_type</code></li>
+<li><code>validates_attachment_size</code></li>
+</ul>
+<p>Example Usage:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb2-1" data-line-number="1">validates_attachment_presence <span class="st">:avatar</span></a></code></pre></div>
+<p>Lastly, you can also define multiple validations on a single attachment using <code>validates_attachment</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb3-1" data-line-number="1">validates_attachment <span class="st">:avatar</span>, <span class="st">presence: </span><span class="dv">true</span>,</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="st">content_type: </span>{ <span class="st">content_type: &quot;image/jpeg&quot;</span> },</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="st">size: </span>{ <span class="kw">in</span>: <span class="dv">0</span>..<span class="dv">10</span>.kilobytes }</a></code></pre></div>
+<p><em>NOTE: Post-processing will not even <strong>start</strong> if the attachment is not valid according to the validations. Your callbacks and processors will <strong>only</strong> be called with valid attachments.</em></p>
+</body>
+</html>

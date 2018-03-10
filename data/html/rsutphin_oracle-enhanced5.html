@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsutphin_oracle-enhanced5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Include in class definition</p>
+<pre><code>has_context_index</code></pre>
+<p>and then you can do full text search with</p>
+<pre><code>Post.contains(:title, &#39;word&#39;)</code></pre>
+<p>You can create index on several columns (which will generate additional stored procedure for providing XML document with specified columns to indexer):</p>
+<pre><code>add_context_index :posts, [:title, :body]</code></pre>
+<p>And you can search either in all columns or specify in which column you want to search (as first argument you need to specify first column name as this is the column which is referenced during index creation):</p>
+<pre><code>Post.contains(:title, &#39;word&#39;)
+Post.contains(:title, &#39;word within title&#39;)
+Post.contains(:title, &#39;word within body&#39;)</code></pre>
+<p>See Oracle Text documentation for syntax that you can use in CONTAINS function in SELECT WHERE clause.</p>
+<p>You can also specify some dummy main column name when creating multiple column index as well as specify to update index automatically after each commit (as otherwise you need to synchronize index manually or schedule periodic update):</p>
+<pre><code>add_context_index :posts, [:title, :body], :index_column =&gt; :all_text, :sync =&gt; &#39;ON COMMIT&#39;
+
+Post.contains(:all_text, &#39;word&#39;)</code></pre>
+<p>Or you can specify that index should be updated when specified columns are updated (e.g. in ActiveRecord you can specify to trigger index update when created_at or updated_at columns are updated). Otherwise index is updated only when main index column is updated.</p>
+<pre><code>add_context_index :posts, [:title, :body], :index_column =&gt; :all_text,
+  :sync =&gt; &#39;ON COMMIT&#39;, :index_column_trigger_on =&gt; [:created_at, :updated_at]</code></pre>
+<p>And you can even create index on multiple tables by providing SELECT statements which should be used to fetch necessary columns from related tables:</p>
+<pre><code>add_context_index :posts,
+  [:title, :body,
+  # specify aliases always with AS keyword
+  &quot;SELECT comments.author AS comment_author, comments.body AS comment_body FROM comments WHERE comments.post_id = :id&quot;
+  ],
+  :name =&gt; &#39;post_and_comments_index&#39;,
+  :index_column =&gt; :all_text,
+  :index_column_trigger_on =&gt; [:updated_at, :comments_count],
+  :sync =&gt; &#39;ON COMMIT&#39;
+
+# search in any table columns
+Post.contains(:all_text, &#39;word&#39;)
+# search in specified column
+Post.contains(:all_text, &quot;aaa within title&quot;)
+Post.contains(:all_text, &quot;bbb within comment_author&quot;)</code></pre>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>c42_wrest7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>alias_accessors :chi =&gt; :energy end</p>
+<p>kai_wren = Demon.new(‘id’ =&gt; ‘1’, ‘age’ =&gt; ‘1500’, ‘chi’ =&gt; ‘1024’, ‘teacher’ =&gt; ‘Viss’) kai_wren.id # =&gt; ‘1’ kai_wren.age # =&gt; 1500 kai_wren.chi # =&gt; #&lt;Chi:0x113af8c <span class="citation" data-cites="count">@count</span>=“1024”&gt; kai_wren.energy # =&gt; #&lt;Chi:0x113af8c <span class="citation" data-cites="count">@count</span>=“1024”&gt; kai_wren.teacher # =&gt; ‘Viss’</p>
+<pre><code>
+#### Opt-out of core extensions
+
+Uncomfortable with extending `String` to add `to_uri`? Simply do
+</code></pre>
+<p>gem “wrest”, :require =&gt; “wrest_no_ext”</p>
+<pre><code>
+in your Gemfile. You can now do `Uri.new(&#39;http://localhost&#39;)` to build Uris.
+
+### Logging
+
+The Wrest logger can be set and accessed through Wrest.logger and is configured by default to log to STDOUT. If you&#39;re using Wrest in a Rails application, you can configure logging by adding a config/initializers/wrest.rb file with the following contents :
+</code></pre>
+<p>Wrest.logger = Rails.logger</p>
+<pre><code>
+Every request and response is logged at level `debug`.
+
+Here is an sample request log message:</code></pre>
+<p>&lt;- (POST 515036017 732688777 2010) http://localhost:3000/events.json</p>
+<pre><code>
+The request log consists of request type (POST), request hash (515036017), connection hash (732688777), thread id (2010), URI (http://localhost:3000/events.json)
+
+Here is a sample response log message:</code></pre>
+<p>-&gt; (POST 515036017 732688777 2010) 200 OK (0 bytes 0.01s) ``` The response log consists of request type that generated the response (POST), hash of the request that generated the response (515036017), hash of the connection (732688777), thread id (2010), status (200 OK), response body length (0 bytes) and time taken (0.01)s.</p>
+<p>The thread id, request hash and connection hashes are used to track requests and their corresponding responses when using asynchronous requests and/or http connection pooling.</p>
+<p>Detailed http debug logging can be turned on like so (DO NOT USE IN PRODUCTION! SEE API DOCS.):</p>
+<pre><code>```</code></pre>
+</body>
+</html>

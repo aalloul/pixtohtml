@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ochko_prudge2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>Postgresql as database</li>
+<li>Git for getting source codes</li>
+<li></li>
+</ul>
+<h3 id="configuration-files">Configuration files</h3>
+<p>Create a directory on your server. Lets say <code>/usr/local/apps/prudge</code>. Then create subdirectories:</p>
+<pre><code>/usr/local/apps/prudge/shared/config
+/usr/local/apps/prudge/shared/script
+</code></pre>
+<p>Copy configuration files from <code>config/examples</code>. Copy scripts from <code>setup/templates/script</code> removing <code>.j2</code> from filenames. Replace chunks like <code>{{ ... }}</code> with appropriate value. These shared files will be linked to application directory when you deploy.</p>
+<h3 id="ruby">Ruby</h3>
+<p>Install ruby via . When your rbenv and ruby-build is ready do:</p>
+<ul>
+<li><code>$ rbenv install 1.9.3-p551</code> or whatever ruby version specified in <code>.ruby-version</code> file.</li>
+<li><code>gem install bundler</code></li>
+</ul>
+<h3 id="database">Database</h3>
+<p>Install postgresql. And create user and database. Update database configuration in <code>config/database.yml</code>.</p>
+<h3 id="sphinx">Sphinx</h3>
+<ul>
+<li><code>cp config/examples/sphinx.yml config/sphinx.yml</code></li>
+<li>See for additional configuration.</li>
+</ul>
+<h3 id="safeexec">Safeexec</h3>
+<p>Prudge uses to install it.</p>
+<ul>
+<li><code>git clone https://github.com/ochko/safeexec.git &amp;&amp; cd safeexec</code></li>
+<li><code>cmake . &amp;&amp; sudo make install</code>.</li>
+<li>Now your should have a binary called <code>safeexec</code> – <code>which safeexec</code>. Update <code>runner</code> path in <code>config/binaries.yml</code>.</li>
+</ul>
+<h3 id="resque">Resque</h3>
+<p>Prudge uses for background tasks such as checking submitted solutions, notifying users etc. Resque uses redis, so install redis and start it. Then run resque workers:</p>
+<p><code>nohup bundle exec rake resque:work RAILS_ENV=production QUEUE=* PIDFILE=tmp/pids/resque.pid &gt; log/resque.log 2&gt;&amp;1 &amp;</code></p>
+<h3 id="binary-executables">Binary executables</h3>
+</body>
+</html>

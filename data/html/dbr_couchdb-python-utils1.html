@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dbr_couchdb-python-utils1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="couchdb-python-utilsdoc_utils.py">couchdb-python-utils/doc_utils.py</h1>
+<p>This script facilitates validating JSON and Python datastructures, and then POST or PUTing them to a CouchDB server.</p>
+<p>This is tested for the 0.8x branch, but not 0.9x. It seems there are some small breaking changes (or perhaps just bugs ;) in 0.9, so the script may require some minor modifications before using it there.</p>
+<h3 id="usage">Usage</h3>
+<p>This script facilitates validating JSON and Python datastructures, and then POST or PUTing them to a CouchDB server.</p>
+<p>The script has one required and one or more optional positional parameters:</p>
+<pre><code>python doc_utils database-name
+python doc_utils database-name path/to/folder/or/file
+python doc_utils database-name doc1.py doc2.py doc3.json doc4.js</code></pre>
+<p>If you specify a folder, then the script will examine all .py, .json, and .js files in the folder, and–if they meet the format requirements–send them to CouchDB.</p>
+<p>Invoke help at the command-line for more options</p>
+<pre><code>python doc_utils --help</code></pre>
+<h2 id="format-for-individual-documents">Format for Individual Documents</h2>
+<p>For format for a <code>.py</code> file a dictionary.</p>
+<pre><code>{
+    &#39;_id&#39;: &#39;123123&#39;,
+    &#39;title&#39;: &quot;hi&quot;
+}</code></pre>
+<p>The format for <code>.js</code> and <code>.json</code> files is a JS dictionary.</p>
+<pre><code>{
+    &quot;_id&quot;:&quot;101&quot;,
+    &quot;desc&quot;:&quot;and a description&quot;
+}</code></pre>
+<p>In general the distinction between the two will typically be quite small, but remember that JSON technically doesn’t permit a comma after the last element in an array/dictionary.</p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>Text in the region can be indented or outdented as a group using
+&lt;kbd&gt;C-c &gt;&lt;/kbd&gt; to indent to the next indentation point (calculated in
+the current context), and &lt;kbd&gt;C-c &lt;&lt;/kbd&gt; to outdent to the previous
+indentation point.  These keybindings are the same as those for
+similar commands in `python-mode`.</code></pre>
+<ul>
+<li><p>Killing Elements: <kbd>C-c C-k</kbd></p>
+<p>Press <kbd>C-c C-k</kbd> to kill the thing at point and add important text, without markup, to the kill ring. Possible things to kill include (roughly in order of precedece): inline code, headings, horizonal rules, links (add link text to kill ring), images (add alt text to kill ring), angle URIs, email addresses, bold, italics, reference definitions (add URI to kill ring), footnote markers and text (kill both marker and text, add text to kill ring), and list items.</p></li>
+<li><p>Outline Navigation: <kbd>C-c C-n</kbd>, <kbd>C-c C-p</kbd>, <kbd>C-c C-f</kbd>, <kbd>C-c C-b</kbd>, and <kbd>C-c C-u</kbd></p>
+<p>These keys are used for hierarchical navigation in lists and headings. When the point is in a list, they move between list items. Otherwise, they move between headings. Use <kbd>C-c C-n</kbd> and <kbd>C-c C-p</kbd> to move between the next and previous visible headings or list items of any level. Similarly, <kbd>C-c C-f</kbd> and <kbd>C-c C-b</kbd> move to the next and previous visible headings or list items at the same level as the one at the point. Finally, <kbd>C-c C-u</kbd> will move up to the parent heading or list item.</p></li>
+<li><p>Movement by Markdown paragraph: <kbd>M-{</kbd>, <kbd>M-}</kbd>, and <kbd>M-h</kbd></p>
+<p>Paragraphs in <code>markdown-mode</code> are regular paragraphs, paragraphs inside blockquotes, individual list items, headings, etc. These keys are usually bound to <code>forward-paragraph</code> and <code>backward-paragraph</code>, but the built-in Emacs functions are based on simple regular expressions that fail in Markdown files. Instead, they are bound to <code>markdown-forward-paragraph</code> and <code>markdown-backward-paragraph</code>. To mark a paragraph, you can use <kbd>M-h</kbd> (<code>markdown-mark-paragraph</code>).</p></li>
+<li><p>Movement by Markdown block: <kbd>C-M-{</kbd>, <kbd>C-M-}</kbd>, and <kbd>C-c M-h</kbd></p>
+<p>Markdown blocks are regular paragraphs in many cases, but contain many paragraphs in other cases: blocks are considered to be entire lists, entire code blocks, and entire blockquotes. To move backward one block use <kbd>C-M-{</kbd> (<code>markdown-beginning-block</code>) and to move forward use <kbd>C-M-}</kbd> (<code>markdown-end-of-block</code>). To mark a block, use <kbd>C-c M-h</kbd> (<code>markdown-mark-block</code>).</p></li>
+</ul>
+</body>
+</html>

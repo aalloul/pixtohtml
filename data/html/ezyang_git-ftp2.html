@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ezyang_git-ftp2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Similarly to <code>.gitignore</code> you can specify files which you do not wish to upload. The default file with ignore patterns is <code>.gitftpignore</code> in project root directory, however you can specify your own for every branch in .git/ftpdata:</p>
+<pre><code>[branch]
+... credentials ...
+gitftpignore=.my_gitftpignore</code></pre>
+<p>Used syntax is same as .gitignore’s with the exception of overriding patterns, eg. <code>**!**some/pattern</code>, which is not supported Negations within patterns works as expected.</p>
+<h2 id="using-a-bare-repository-as-a-proxy">Using a bare repository as a proxy</h2>
+<p>An additional script post-receive is provided to allow a central bare repository to act as a proxy between the git users and the ftp server.<br />
+Pushing on branches that don’t have an entry in the <code>ftpdata</code> configuration file will have the default git behavior (<code>git-ftp.py</code> doesn’t get called). One advantage is that <strong>users do not get to know the ftp credentials</strong> (perfect for interns).<br />
+This is how the workflow looks like:</p>
+<pre><code>User1 --+                          +--&gt; FTP_staging
+         \                        /
+User2 -----&gt; Git bare repository -----&gt; FTP_master
+         /                        \
+User3 --+                          +--&gt; FTP_dev</code></pre>
+<p>This is how the setup looks like (One <code>ftpdata</code> configuration file, and a symlink to the update hook):</p>
+<pre><code>root@server:/path-to-repo/repo.git# ls
+HEAD  ORIG_HEAD  branches  config  description  ftpdata  hooks  info  objects  packed-refs  refs
+root@server:/path-to-repo/repo.git# ls hooks -l
+total 0
+lrwxr-xr-x 1 root    root      29 Aug 19 17:17 post-receive -&gt; /path-to-git-ftp/post-receive</code></pre>
+<h2 id="license">License</h2>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+</body>
+</html>

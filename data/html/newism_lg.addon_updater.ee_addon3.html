@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>newism_lg.addon_updater.ee_addon3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The <code>&lt;addon&gt;</code> node must have the following attributes:</p>
+<h5 id="id">id</h5>
+<pre><code> id=&#39;LG Addon Updater&#39;</code></pre>
+<p>A unique id for your addon. This id is the same used in the <code>lg_addon_update_register_addon</code> hook.</p>
+<h5 id="version">version</h5>
+<pre><code>version=&#39;1.0.1&#39;</code></pre>
+<p>The current version of the addon.</p>
+<h5 id="last_updated">last_updated</h5>
+<pre><code>last_updated=&#39;1219175483&#39;</code></pre>
+<p>The time the addon was last updated in UTC as a UNIX timestamp. Why a UNIX timestamp? Well its the best way to ensure that all users see a correct localised time.</p>
+<h5 id="docs_url">docs_url</h5>
+<pre><code>docs_url=&#39;http://leevigraham.com/cms-customisation/expressionengine/lg-addon-updater/&#39;</code></pre>
+<p>The URL where the addon documentation and download is available.</p>
+<h3 id="registering-your-addon-using-lg-addon-updater-hooks">Registering your addon using LG Addon Updater hooks</h3>
+<p>LG Addon uses ExpressionEngine’s extension hook system to make registering an addon super easy. The two new hooks provided are <code>lg_addon_update_register_source</code> and <code>lg_addon_update_register_addon</code>.</p>
+<h4 id="lg_addon_update_register_source"><code>lg_addon_update_register_source</code></h4>
+<p>This hook registers a new source file. This hook returns data so make sure you check if anyone else is using the hook using <code>$EXT-&gt;last_call</code>.</p>
+<p>An example of the function called by the <code>lg_addon_update_register_source</code> hook:</p>
+<pre><code>/**
+ * Register a new Addon Source
+ *
+ * @param    array $sources The existing sources
+ * @return   array The new source list
+ * @since version 1.0.0
+ */
+function register_my_addon_source($sources)
+{
+    global $EXT;
+    
+    if($EXT-&gt;last_call !== FALSE)
+        $sources = $EXT-&gt;last_call;
+        </code></pre>
+</body>
+</html>

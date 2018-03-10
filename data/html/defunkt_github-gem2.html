@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_github-gem2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="fetching-and-evaluating-downstream-changes">Fetching and Evaluating Downstream Changes</h2>
+<p>If you are the maintainer of a project, you will often need to fetch commits from other developers, evaluate and/or test them, then merge them into the project.</p>
+<p>Let’s say you are ‘defunkt’ and ‘mojombo’ has forked your ‘github-gem’ repo, made some changes and issues you a pull request for his ‘master’ branch.</p>
+<p>From the root of the project, you can do:</p>
+<pre><code>$ gh fetch mojombo master</code></pre>
+<p>This will leave you in the ‘mojombo/master’ branch after fetching his commits. Your local ‘mojombo/master’ branch is now at the exact same place as mojombo’s ‘master’ branch. You can now run tests or evaluate the code for awesomeness.</p>
+<p>If mojombo’s changes are good, you’ll want to merge your ‘master’ (or another branch) into those changes so you can retest post-integration:</p>
+<pre><code>$ gh merge master</code></pre>
+<p>Test/analyze again and if everything is ok:</p>
+<pre><code>$ gh checkout master
+$ gh merge mojombo/master</code></pre>
+<p>The latter command will be a fast-forward merge since you already did the real merge previously.</p>
+<h2 id="network-patch-queue">Network Patch Queue</h2>
+<p>The github gem can also show you all of the commits that exist on any fork of your project (your network) that you don’t have in your branch yet. In order to see the list of the projects that have commits you do not, you can run:</p>
+<pre><code>$ gh network list</code></pre>
+<p>Which will show you all the forks that have changes. If you want to see what those changes are, you can run:</p>
+<pre><code>$ gh network commits</code></pre>
+<p>which will show you something like this:</p>
+<pre><code>9582b9 (jchris/gist)             kevin@sb.org          Add gist binary                        4 months ago
+c1a6f9 (jchris/gist~1)           kevin@sb.org          Tweak Rakefile spec tasks to be a bi   4 months ago
+d3c332 (jchris/gist~2)           kevin@sb.org          Pull out two helpers into the shared   4 months ago
+8f65ab (jchris/gist~3)           kevin@sb.org          Extract command/helper spec assistan   4 months ago
+389dbf (jchris/gist~4)           kevin@sb.org          Rename ui_spec to command_spec         4 months ago</code></pre>
+</body>
+</html>

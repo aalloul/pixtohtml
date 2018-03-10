@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jmettraux_ruote2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>Ruote::FsStorage.new(&#39;ruote_work&#39;)))</code></pre>
+<h1 id="registering-participants">registering participants</h1>
+<p>engine.register_participant :alpha do |workitem| workitem.fields[‘message’] = { ‘text’ =&gt; ‘hello !’, ‘author’ =&gt; ‘Alice’ } end</p>
+<p>engine.register_participant :bravo do |workitem| puts “I received a message from #{workitem.fields[‘message’][‘author’]}” end</p>
+<h1 id="defining-a-process">defining a process</h1>
+<p>pdef = Ruote.process_definition :name =&gt; ‘test’ do sequence do participant :alpha participant :bravo end end</p>
+<h1 id="launching-creating-a-process-instance">launching, creating a process instance</h1>
+<p>wfid = engine.launch(pdef)</p>
+<p>engine.wait_for(wfid) # blocks current thread until our process instance terminates</p>
+<h1 id="i-received-a-message-from-alice">=&gt; ‘I received a message from Alice’</h1>
+<p>```</p>
+<h2 id="test-suite">test suite</h2>
+<p>see http://github.com/jmettraux/ruote/tree/master/test</p>
+<h2 id="license">license</h2>
+<p>MIT</p>
+<h2 id="links">links</h2>
+<ul>
+<li>http://ruote.rubyforge.org</li>
+<li>http://github.com/jmettraux/ruote</li>
+<li>http://jmettraux.wordpress.com (blog)</li>
+</ul>
+<h2 id="feedback">feedback</h2>
+</body>
+</html>

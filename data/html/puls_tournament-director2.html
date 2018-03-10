@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>puls_tournament-director2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>grunt generate
+open &#39;http://qbtd.couchdb.dev&#39;</code></pre>
+<h3 id="other-systems">Other systems</h3>
+<p>You can follow similar steps to the above by installing</p>
+<p>following their own instructions for your platform. Note that Node also depends on Python.</p>
+<p>Note that <code>local-tld</code> is only available on the Mac, so you’ll need to make an extra entry in <a href="http://en.wikipedia.org/wiki/Hosts_%28file%29">your system’s <code>hosts</code> file</a> pointing the host <code>qbtd.couchdb.dev</code> to <code>127.0.0.1</code> so you can use Tournament Director’s own URLs and add the port number to the URL where you access Tournament Director, namely <code>http://qbtd.couchdb.dev:5984</code>.</p>
+<h3 id="vagrant">Vagrant</h3>
+<p>The distribution includes a configuration file for working with , which is a generally good practice for server development. Once you have Vagrant installed and running, simply run <code>vagrant up</code> from the project’s root level.</p>
+<p>You’ll want to make an extra entry in <a href="http://en.wikipedia.org/wiki/Hosts_%28file%29">your system’s <code>hosts</code> file</a> pointing the host <code>qbtd.couchdb.dev</code> to <code>127.0.0.1</code> so you can use Tournament Director’s own URLs.</p>
+<p>After doing both of those things, open <a href="http://qbtd.couchdb.dev:5444" class="uri">http://qbtd.couchdb.dev:5444</a> in your browser and you’ll see sample data. (Note that the port here is 5444 instead of 5984 as elsewhere, since Vagrant is forwarding port 5444 on the host to port 5984 on the guest.)</p>
+<p>To get a shell inside your virtual machine, run <code>vagrant ssh</code>.</p>
+<p>To compile your latest code and upload it to the database, run <code>grunt</code> from within the aforementioned shell.</p>
+<h2 id="command-line-usage">Command-line usage</h2>
+<p>The Gruntfile has two major commands:</p>
+<ul>
+<li><p>The default command (<code>grunt</code>) compiles the whole app and uploads it to the database specified in <code>scripts/database.coffee</code>.</p></li>
+<li><p>The “generate” command (<code>grunt generate</code>) both runs the default command and generates an HSNCT-sized tournament’s worth of data.</p></li>
+</ul>
+</body>
+</html>

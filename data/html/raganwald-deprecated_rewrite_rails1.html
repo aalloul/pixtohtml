@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>raganwald-deprecated_rewrite_rails1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-rewriterails-plug-in">The RewriteRails Plug-In</h1>
+<p>The . All of the power and convenience, none of the compatibility woes and head-aches.</p>
+<h2 id="status">Status</h2>
+<p>!</p>
+<p>RewriteRails is not in active development at this time. RewriteRails evolved from . Rewrite asked the question “Can syntactic meta-programming work in Ruby?” The answer was “Yes.” RewriteRails asked the question “Can syntactic meta-programming be convenient enough to be useful in an actual production Rails project?” The answer was “Yes, but…”</p>
+<p>For more information, read . Also, <a href="http://www.forgottendetroit.com/">Forgotten Detroit</a> has more interesting pictures like this.</p>
+<h2 id="should-you-care">Should You Care?</h2>
+<p>If you’re already using gems like <code>Object#andand</code> or <code>String#to_proc</code>, RewriteRails is absolutely for you. You can continue to do what you’re already doing, but your rails code will be faster and you will never have to worry about some gems conflicting with each other and with ActiveSupport as it grows.</p>
+<p>If you have considered using <code>Object#andand</code> or <code>String#to_proc</code>, but hesitated because you are worried about encumbering classes like <code>Object</code> and <code>String</code> with even more methods, RewriteRails is for you. You get to use these powerful constructs without monkey-patching. You read that right. <strong>RewriteRails is a No-Monkey-Patching Zone</strong>.</p>
+<p><em>If you want the power and convenience without the head-aches. RewriteRails is for you.</em></p>
+<h2 id="q-a">Q &amp; A</h2>
+<p><strong>What language features does RewriteRails support?</strong></p>
+<ul>
+<li>is a lightweight Maybe Monad. The RewriteRails version provides shortcut execution semantics.</li>
+<li>is a Thrush Combinator.</li>
+<li>provides a really lightweight syntax for writing pure functional blocks.</li>
+<li>is a really easy way to fake your own macros without needing to fool around with syntax trees.</li>
+<li>lets you extend classes with your own methods without global monkey-patches.</li>
+<li>improves Rails’ Kestrel Combinator by handling re-assignment.</li>
+<li>provides support for Groovy’s <code>it</code> and Common Lisp’s Anaphora.</li>
+</ul>
+<p><strong>Do we really have to go to all the trouble of rewriting code to support these features?</strong></p>
+<p>Some of rewriters–such as .</p>
+<p>Some of the rewriters–such as –have better semantics when implemented using rewriting instead of opening classes.</p>
+<p>And some of the rewriters–such as –simply cannot be implemented without rewriting code.</p>
+<p><strong>How does it work?</strong></p>
+<p>Install the <code>RewriteRails</code> plugin in your Rails project and the gems ParseTree and Ruby2Ruby (in your system or frozen into your project). You can write ruby files as usual (e.g. <code>foo_bar.rb</code>), and things will work as usual. You can also have <code>RewriteRails</code> rewrite Ruby files for you. Any file with the suffix <code>.rr</code> will be “rewritten.”</p>
+</body>
+</html>

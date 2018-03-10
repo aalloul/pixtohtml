@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>fguillen_euruko_app2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="certs">Certs</h3>
+<p>Create the certs: certs/app_cert.pem certs/app_key.pem</p>
+<p>Download you paypal cert: certs/paypal_cert.pem</p>
+<p>View the</p>
+<h2 id="deploy-on-production">Deploy on production</h2>
+<p>Three differences between development and production:</p>
+<ul>
+<li>Better use mysql instead of sqlite</li>
+<li>Not charge the fake data</li>
+<li>Using real certs</li>
+</ul>
+<h3 id="step-by-step-on-production">Step by Step on production</h3>
+<h4 id="clone">Clone</h4>
+<pre><code>git clone git://github.com/bragi/euruko_app.git
+cd euruko_app</code></pre>
+<h4 id="the-bundler-gem">The Bundler Gem</h4>
+<pre><code>cd euruko_app
+gem install bundler             # or sudo gem install bundler
+gem bundle</code></pre>
+<h4 id="configuration">Configuration</h4>
+<pre><code>rake init:config_files db=mysql user=euruko password=euruko</code></pre>
+<h5 id="review-configuration">Review Configuration</h5>
+<ul>
+<li><strong>site_domain</strong> Your production domain, used on static urls like email urls. ej: euruko2010.org</li>
+<li><strong>site_name</strong> ej: EuRuKo2010</li>
+<li><strong>email_sender</strong> ej: EuRuKo <a href="mailto:info@euruko2009.org">info@euruko2009.org</a></li>
+<li><strong>email_notification_recipients</strong> Array with the emails to receive app notifications. ej: [f.@gmail.com,pepe@pepe.com]</li>
+<li><strong>paypal_url</strong> normally: https://www.paypal.com/cgi-bin/webscr</li>
+<li><strong>paypal_seller</strong> paypal username. ej: myuser@gmail.com</li>
+<li><strong>paypal_cert_id</strong> paypal cert id. ej: Z954BH8ATL6XC</li>
+<li><strong>paypal_secret</strong> paypal communication secret word, used like seed, any value is ok. ej: my_paypal_secret</li>
+<li><strong>yahoo_id</strong> the yahoo id. Used on the user profile form for city autocompletion. Look on:</li>
+<li><strong>twitter_user</strong> Used on a script that twitts how many tickets are left. The script is turned off.</li>
+<li><strong>twitter_pass</strong> Used on a script that twitts how many tickets are left. The script is turned off.</li>
+<li><strong>twitter_notification_step</strong> Used on a script that twitts how many tickets are left. The script is turned off.</li>
+<li><strong>tax_percent</strong> This is the TAX of the tickets. Used on the invoice creating. ej: 16</li>
+<li><strong>seller_invoice_info</strong> Used on the invoice creation, is the Seller invoice info.</li>
+<li><strong>invoices_pdf_path</strong> Relative path to the root directory where the invoices PDFs will be stored. ej: /public/invoices</li>
+</ul>
+</body>
+</html>

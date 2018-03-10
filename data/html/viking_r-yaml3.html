@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>viking_r-yaml3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>- of
+- scalars</code></pre>
+<p>If you pass a YAML sequence to <code>yaml.load</code>, a couple of things can happen. If all of the elements in the sequence are uniform, <code>yaml.load</code> will return a vector of that type (i.e. character, integer, real, or logical). If the elements are <em>not</em> uniform, <code>yaml.load</code> will return a list of the elements.</p>
+<h4 id="maps">Maps</h4>
+<p>A YAML map is a list of paired keys and values, or hash, of elements. Here’s an example of a simple YAML map:</p>
+<pre><code>one: 1
+two: 2
+three: 3
+four: 4</code></pre>
+<p>Passing a map to <code>yaml.load</code> will produce a named list by default. That is, keys are coerced to strings. Since it is possible for the keys of a YAML map to be almost anything (not just strings), you might not want <code>yaml.load</code> to return a named list. If you want to preserve the data type of keys, you can pass <code>as.named.list = FALSE</code> to <code>yaml.load</code>. If <code>as.named.list</code> is FALSE, <code>yaml.load</code> will create a <code>keys</code> attribute for the list it returns instead of coercing the keys into strings.</p>
+<h4 id="handlers">Handlers</h4>
+<p><code>yaml.load</code> has the capability to accept custom handler functions. With handlers, you can customize <code>yaml.load</code> to do almost anything you want. Example of handler usage:</p>
+<pre><code>integer.handler &lt;- function(x) { as.integer(x) + 123 }
+yaml.load(&quot;123&quot;, handlers = list(int = integer.handler))  #=&gt; [1] 246</code></pre>
+<p>Handlers are passed to <code>yaml.load</code> through the <code>handlers</code> argument. The <code>handlers</code> argument must be a named list of functions, where each name is the YAML type that you want to be handled by your function. The functions you provide must accept one argument and must return an R object.</p>
+<p>Handler functions will be passed a string or list, depending on the original type of the object. In the example above, <code>integer.handler</code> was passed the string “123”.</p>
+<h5 id="sequence-handlers">Sequence handlers</h5>
+<p>Custom sequence handlers will be passed a list of objects. You can then convert the list into whatever you want and return it. Example:</p>
+<pre><code>sequence.handler &lt;- function(x) {</code></pre>
+</body>
+</html>

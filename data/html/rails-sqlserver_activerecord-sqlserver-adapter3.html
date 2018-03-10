@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rails-sqlserver_activerecord-sqlserver-adapter3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code></code></pre>
+<p>EXPLAIN for: SELECT [cars].* FROM [cars] WHERE [cars].[id] = 1 +—————————————————-+——–+——–+——–+———————-+———————-+—————————————————-+—————————————————-+————–+———————+———————-+————+———————+—————————————————-+———-+———-+———-+——————–+ | StmtText | StmtId | NodeId | Parent | PhysicalOp | LogicalOp | Argument | DefinedValues | EstimateRows | EstimateIO | EstimateCPU | AvgRowSize | TotalSubtreeCost | OutputList | Warnings | Type | Parallel | EstimateExecutions | +—————————————————-+——–+——–+——–+———————-+———————-+—————————————————-+—————————————————-+————–+———————+———————-+————+———————+—————————————————-+———-+———-+———-+——————–+ | SELECT [cars].* FROM [cars] WHERE [cars].[id] = 1 | 1 | 1 | 0 | NULL | NULL | 2 | NULL | 1.0 | NULL | NULL | NULL | 0.00328309996984899 | NULL | NULL | SELECT | false | NULL | | |–Clustered Index Seek(OBJECT:([activerecord… | 1 | 2 | 1 | Clustered Index Seek | Clustered Index Seek | OBJECT:([activerecord_unittest].[dbo].[cars].[P… | [activerecord_unittest].[dbo].[cars].[id], [act… | 1.0 | 0.00312500004656613 | 0.000158099996042438 | 278 | 0.00328309996984899 | [activerecord_unittest].[dbo].[cars].[id], [act… | NULL | PLAN_ROW | false | 1.0 | +—————————————————-+——–+——–+——–+———————-+———————-+—————————————————-+—————————————————-+————–+———————+———————-+————+———————+—————————————————-+———-+———-+———-+——————–+ ```</p>
+<p>You can configure a few options to your needs. First is the max column width for the logged table. The default value is 50 characters. You can change it like so.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">ActiveRecord</span>::<span class="dt">ConnectionAdapters</span>::<span class="dt">SQLServer</span>::<span class="dt">Showplan</span>::<span class="dt">PrinterTable</span>.max_column_width = <span class="dv">500</span></a></code></pre></div>
+<p>Another configuration is the showplan option. Some might find the XML format more useful. If you have Nokogiri installed, we will format the XML string. I will gladly accept pathches that make the XML printer more useful!</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">ActiveRecord</span>::<span class="dt">ConnectionAdapters</span>::<span class="dt">SQLServerAdapter</span>.showplan_option = <span class="st">&#39;SHOWPLAN_XML&#39;</span></a></code></pre></div>
+<p><strong>NOTE:</strong> The method we utilize to make SHOWPLANs work is very brittle to complex SQL. There is no getting around this as we have to deconstruct an already prepared statement for the sp_executesql method. If you find that explain breaks your app, simple disable it. Do not open a github issue unless you have a patch. Please for more info.</p>
+<h2 id="installation">Installation</h2>
+<p>The adapter has no strict gem dependencies outside of ActiveRecord. You will have to pick a connection mode, the default is dblib which uses the TinyTDS gem. Just bundle the gem and the adapter will use it.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb4-1" data-line-number="1">gem <span class="st">&#39;tiny_tds&#39;</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">gem <span class="st">&#39;activerecord-sqlserver-adapter&#39;</span></a></code></pre></div>
+<h2 id="contributing">Contributing</h2>
+<p>If you would like to contribute a feature or bugfix, thanks! To make sure your fix/feature has a high chance of being added, please read the following guidelines. First, ask on the Gitter, or post a ticket on github issues. Second, make sure there are tests! We will not accept any patch that is not tested. Please read the <code>RUNNING_UNIT_TESTS</code> file for the details of how to run the unit tests.</p>
+<ul>
+<li>Github: http://github.com/rails-sqlserver/activerecord-sqlserver-adapter</li>
+<li>Gitter: https://gitter.im/rails-sqlserver/activerecord-sqlserver-adapter</li>
+</ul>
+<h2 id="credits-contributions">Credits &amp; Contributions</h2>
+<p>Many many people have contributed. If you do not see your name here and it should be let us know. Also, many thanks go out to those that have pledged financial contributions.</p>
+<h2 id="contributors">Contributors</h2>
+</body>
+</html>

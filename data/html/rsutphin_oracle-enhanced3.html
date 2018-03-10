@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsutphin_oracle-enhanced3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>If you deploy JRuby on Rails application in Java application server that supports JNDI connections then you can specify JNDI connection as well:</p>
+<pre><code>development:
+  adapter: oracle_enhanced
+  jndi: &quot;jdbc/jndi_connection_name&quot;</code></pre>
+<p>You can find other available database.yml connection parameters in <a href="/rsim/oracle-enhanced/blob/master/lib/active_record/connection_adapters/oracle_enhanced_adapter.rb">oracle_enhanced_adapter.rb</a>. There are many NLS settings as well as some other Oracle session settings.</p>
+<h3 id="adapter-settings">Adapter settings</h3>
+<p>If you want to change Oracle enhanced adapter default settings then create initializer file e.g. <code>config/initializers/oracle.rb</code> specify there necessary defaults, e.g.:</p>
+<pre><code># It is recommended to set time zone in TZ environment variable so that the same timezone will be used by Ruby and by Oracle session
+ENV[&#39;TZ&#39;] = &#39;UTC&#39;
+
+ActiveSupport.on_load(:active_record) do
+  ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter.class_eval do
+    # id columns and columns which end with _id will always be converted to integers
+    self.emulate_integers_by_column_name = true
+    # DATE columns which include &quot;date&quot; in name will be converted to Date, otherwise to Time
+    self.emulate_dates_by_column_name = true
+    # true and false will be stored as &#39;Y&#39; and &#39;N&#39;
+    self.emulate_booleans_from_strings = true
+    # start primary key sequences from 1 (and not 10000) and take just one next value in each session
+    self.default_sequence_start_value = &quot;1 NOCACHE INCREMENT BY 1&quot;
+    # other settings ...
+  end
+end</code></pre>
+<p>In case of Rails 2 application you do not need to use <code>ActiveSupport.on_load(:active_record) do ... end</code> around settings code block.</p>
+<p>See other adapter settings in <a href="/rsim/oracle-enhanced/blob/master/lib/active_record/connection_adapters/oracle_enhanced_adapter.rb">oracle_enhanced_adapter.rb</a>.</p>
+<h3 id="legacy-schema-support">Legacy schema support</h3>
+<p>If you want to put Oracle enhanced adapter on top of existing schema tables then there are several methods how to override ActiveRecord defaults, see example:</p>
+<pre><code>class Employee &lt; ActiveRecord::Base
+  # specify schema and table name
+  set_table_name &quot;hr.hr_employees&quot;
+  # specify primary key name
+  set_primary_key &quot;employee_id&quot;
+  # specify sequence name
+  set_sequence_name &quot;hr.hr_employee_s&quot;
+  # set which DATE columns should be converted to Ruby Date
+  set_date_columns :hired_on, :birth_date_on
+  # set which DATE columns should be converted to Ruby Time
+  set_datetime_columns :last_login_time
+  # set which VARCHAR2 columns should be converted to true and false
+  set_boolean_columns :manager, :active</code></pre>
+</body>
+</html>

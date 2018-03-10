@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_URI13</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p><strong>sftp</strong>:</p>
+<p><code>URI</code> objects belonging to the sftp scheme support the common, generic and server methods. In addition, they provide methods to access the userinfo sub-components: $uri-&gt;user and $uri-&gt;password.</p></li>
+<li><p><strong>urn</strong>:</p>
+<p>The syntax of Uniform Resource Names is specified in RFC 2141. <code>URI</code> objects belonging to the urn scheme provide the common methods, and also the methods $uri-&gt;nid and $uri-&gt;nss, which return the Namespace Identifier and the Namespace-Specific String respectively.</p>
+<p>The Namespace Identifier basically works like the Scheme identifier of URIs, and further divides the URN namespace. Namespace Identifier assignments are maintained at .</p>
+<p>Letter case is not significant for the Namespace Identifier. It is always returned in lower case by the $uri-&gt;nid method. The $uri-&gt;_nid method can be used if you want it in its original case.</p></li>
+<li><p><strong>urn</strong>:<strong>isbn</strong>:</p>
+<p>The <code>urn:isbn:</code> namespace contains International Standard Book Numbers (ISBNs) and is described in RFC 3187. A <code>URI</code> object belonging to this namespace has the following extra methods (if the Business::ISBN module is available): $uri-&gt;isbn, $uri-&gt;isbn_publisher_code, $uri-&gt;isbn_group_code (formerly isbn_country_code, which is still supported by issues a deprecation warning), $uri-&gt;isbn_as_ean.</p></li>
+<li><p><strong>urn</strong>:<strong>oid</strong>:</p>
+<p>The <code>urn:oid:</code> namespace contains Object Identifiers (OIDs) and is described in RFC 3061. An object identifier consists of sequences of digits separated by dots. A <code>URI</code> object belonging to this namespace has an additional method called $uri-&gt;oid that can be used to get/set the oid value. In a list context, oid numbers are returned as separate elements.</p></li>
+</ul>
+<h1 id="configuration-variables">CONFIGURATION VARIABLES</h1>
+<p>The following configuration variables influence how the class and its methods behave:</p>
+<ul>
+<li><p>$URI::ABS_ALLOW_RELATIVE_SCHEME</p>
+<p>Some older parsers used to allow the scheme name to be present in the relative URL if it was the same as the base URL scheme. RFC 2396 says that this should be avoided, but you can enable this old behaviour by</p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>grbl_grbl1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>! ***</p>
+<h3 id="grbl-v1.1-has-been-released">Grbl v1.1 has been released !</h3>
+<h3 id="notice-this-site-will-be-phased-out-and-moved-to-the-new-one">Notice: This site will be phased out and moved to the new one!</h3>
+<hr />
+<p>Grbl is a no-compromise, high performance, low cost alternative to parallel-port-based motion control for CNC milling. It will run on a vanilla Arduino (Duemillanove/Uno) as long as it sports an Atmega 328.</p>
+<p>The controller is written in highly optimized C utilizing every clever feature of the AVR-chips to achieve precise timing and asynchronous operation. It is able to maintain up to 30kHz of stable, jitter free control pulses.</p>
+<p>It accepts standards-compliant g-code and has been tested with the output of several CAM tools with no problems. Arcs, circles and helical motion are fully supported, as well as, all other primary g-code commands. Macro functions, variables, and most canned cycles are not supported, but we think GUIs can do a much better job at translating them into straight g-code anyhow.</p>
+<p>Grbl includes full acceleration management with look ahead. That means the controller will look up to 18 motions into the future and plan its velocities ahead to deliver smooth acceleration and jerk-free cornering.</p>
+<ul>
+<li><p>: Grbl is free software, released under the GPLv3 license.</p></li>
+<li><p>For more information and help, check out our **** If you find that the information is out-dated, please to help us keep it updated by editing it or notifying our community! Thanks!</p></li>
+<li><p>Lead Developer [<em>2011 - Current</em>]: Sungeun(Sonny) K. Jeon, Ph.D. (USA) aka <span class="citation" data-cites="chamnit">@chamnit</span></p></li>
+<li><p>Lead Developer [<em>2009 - 2011</em>]: Simen Svale Skogsrud (Norway). aka The Originator/Creator/Pioneer/Father of Grbl.</p></li>
+</ul>
+<hr />
+<h3 id="official-supporters-of-the-grbl-cnc-project">Official Supporters of the Grbl CNC Project</h3>
+<p>!</p>
+<hr />
+<p><em><strong>Master Branch:</strong></em> * _ - <strong>IMPORTANT INFO WHEN UPGRADING TO GRBL v0.9 :</strong> - Baudrate is now <strong>115200</strong> (Up from 9600). - Homing cycle updated. Located based on switch trigger, rather than release point. - Variable spindle is now enabled by default. Z-limit(D12) and spindle enable(D11) have switched to access the hardware PWM on D11. Homing will not work if you do not re-wire your Z-limit switch to D12.</p>
+<p><em><strong>Archives:</strong></em> *<br />
+*<br />
+* * * * * *</p>
+<hr />
+</body>
+</html>

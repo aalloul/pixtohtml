@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pusewicz_rails_sequel1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sequel-for-rails">Sequel for Rails</h1>
+<h2 id="installation">Installation</h2>
+<h3 id="using-rails-plugin-script">Using Rails plugin script:</h3>
+<pre><code>script/plugin install git://github.com/pusewicz/rails_sequel.git</code></pre>
+<h3 id="using-rails-2.1-gem-dependencies">Using Rails 2.1 Gem dependencies</h3>
+<p>Install the gem</p>
+<pre><code>gem sources -a http://gems.github.com
+gem install pusewicz-rails_sequel</code></pre>
+<p>Load the gem in <code>environment.rb</code></p>
+<pre><code>Rails::Initializer.run do |config|
+  config.gem &#39;pusewicz-rails_sequel&#39;, :lib =&gt; &#39;rails_sequel&#39;, :source =&gt; &#39;http://gems.github.com&#39;
+end</code></pre>
+<h2 id="optional">Optional</h2>
+<p>Remove ActiveRecord framework in <code>environment.rb</code> file:</p>
+<pre><code>config.frameworks -= [ :active_record ]</code></pre>
+<h1 id="development">Development</h1>
+<p>Install gems:</p>
+<pre><code>bundle install</code></pre>
+<p>(Tested on Ruby 1.8.7-p375 with Bundler 1.7.3)</p>
+<p>Run specs:</p>
+<pre><code>bundle exec spec spec/*_spec.rb</code></pre>
+<h1 id="community">Community</h1>
+<h2 id="irc-channel">IRC Channel</h2>
+<p>You can find us on #sequel channel (<a href="irc://irc.freenode.net/#sequel" class="uri">irc://irc.freenode.net/#sequel</a>)</p>
+</body>
+</html>

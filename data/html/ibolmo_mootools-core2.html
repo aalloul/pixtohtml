@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ibolmo_mootools-core2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>```</p>
+<p><strong>Examples</strong></p>
+<pre><code>grunt nocompat           # or
+grunt packager:nocompat  # to only build the source</code></pre>
+<h3 id="advanced-building-and-testing">Advanced Building and Testing</h3>
+<p>See the for further options.</p>
+<p><strong>Examples</strong></p>
+<pre><code># with compat
+grunt --file=Function    # builds all deps on Core/Function, builds all Specs on Specs/Core/Function, runs karma
+grunt --module=Class     # builds all deps on Class *folder*, builds all Specs on Specs/Class *folder*
+
+# without compat
+grunt nocompat --file=Function    # builds all deps on Core/Function, builds all Specs on Specs/Core/Function, runs karma
+grunt nocompat --module=Class     # builds all deps on Class *folder*, builds all Specs on Specs/Class *folder*</code></pre>
+<h4 id="removing-other-packager-blocks">Removing Other Packager Blocks</h4>
+<p>You’ll need to add a specific task to the Gruntfile. See for an example.</p>
+<h3 id="testing-locally">Testing locally</h3>
+<p>I you want to test your local repo you need just some small steps. Follow these in order:</p>
+<pre><code>$ git clone https://github.com/mootools/mootools-core  # clone the MooTools repo
+$ cd mootools-core                                     # get into the directory
+$ npm install                                          # install de testing tools
+$ npm install grunt-cli -g                             # install the Grunt command line interface
+$ grunt default                                        # run the specs!</code></pre>
+<p>You can also change which browser to call in the Gruntfile.js.<br />
+<strong>Note that</strong> <em>most browsers need to be closed when starting tests so Grunt-Karma opens and closes the browser. Otherwise they might not close on its own and fire a timeout error for inactivity.</em></p>
+<p>Example:</p>
+<pre><code>continuous: {
+    browsers: [&#39;PhantomJS&#39;, &#39;IE&#39;, &#39;Chrome&#39;, &#39;Firefox&#39;, &#39;Safari&#39;]
+},</code></pre>
+<p>If the log is too long, or if you want to store it in a file you can do:</p>
+<pre><code>$ grunt &gt; logs.txt   # This will create a new file called logs.txt in the local directory</code></pre>
+<h3 id="testing-on-travis-sauce-labs">Testing on Travis &amp; Sauce Labs</h3>
+</body>
+</html>

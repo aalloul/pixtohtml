@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mallio_orbited2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Open <code>config/orbited.yml</code> in your text editor of choice. Reasonable defaults have been chosen.</p>
+<p>Basic settings:</p>
+<ul>
+<li><code>host</code> and <code>port</code>: These fields tell your application where the Orbited server is running</li>
+<li><code>protocol</code>: The messaging protocol you web application should use. Currently, the only supported value is <code>stomp</code></li>
+<li><code>stomp_host</code> and <code>stomp_port</code>: The location of your STOMP server</li>
+<li><code>stomp_user</code> and <code>stomp_password</code>: If your stomp server requires a login, usethese fields</li>
+<li><code>version</code>: Will be added to the end of included js files. Change this any time you upgrade your orbited version to force browsers to reload the files</li>
+</ul>
+<p>Configuration settings used to generate the Orbited config file:</p>
+<ul>
+<li><code>reactor</code>: Which Twisted reactor to use. Possible values are <code>select</code>, <code>epoll</code>, and <code>kqueue</code>. <code>select</code> is the only one that will work in Windows. [More info…][7]</li>
+<li><code>morbidq</code>: Tells the Orbited server to use its built in MorbidQ STOMP server. This is not reccomended for production, but is convenient for development.</li>
+<li><code>restrict_access</code>: Make the Orbited server only proxy requests to the STOMP server when the request comes from the host and port specified for the Orbited server.</li>
+<li><code>ssl_enabled</code>: 1 to enable ssl. You will need the below fields to do so.</li>
+<li><code>ssl_port</code>: Which port to use for the ssl server</li>
+<li><code>ssl_key</code> and <code>ssl_crt</code>: The paths to the ssl key and certificate</li>
+</ul>
+<p>Once you are happy with the settings in <code>orbited.yml</code>, type</p>
+<pre><code>script/generate orbited_config</code></pre>
+<p>This will generate <code>config/orbited.cfg</code>. If you wish, you can further configure your Orbited server by editting this file, but if you run the generator again, your changes will be overwritten. For possible options, see the [Orbited configuration page][6].</p>
+<h2 id="usage">Usage</h2>
+<p>Now that everything is set up, you can have Orbited running with your app in just a few steps.</p>
+<p>In the <code>&lt;head&gt;</code> of the view you want to use Orbited in, add the following lines:</p>
+<pre><code>&lt;%= orbited_javascript %&gt;
+&lt;%= stomp_connect(&#39;hello&#39;) %&gt;</code></pre>
+<p>Make sure prototype.js is included as well. This will include the necessary js files, connect to your STOMP server, and subscribe to the channel ‘hello’. If you want to use some of the STOMP callbacks, you can do so by replacing the connect line with something like:</p>
+<pre><code>&lt;%= stomp_connect(&#39;hello&#39;, :onerror =&gt; &#39;errorHandler&#39;, :onclose =&gt; &#39;function(){alert(&quot;closed!&quot;)}&#39;) %&gt;</code></pre>
+<p>Please note that by default the <code>onconnectedframe</code> callback is used to subscribe to the specified channel, and if you override it you will need to subscribe to the channel on your own. Also, the <code>onmessageframe</code> callback defaults to evaluating the received data as javascript, and you will need to override it to use your own handler.</p>
+<p>Next, in your controller, you can write actions that send data to any user that is on your view.</p>
+<pre><code>def add_line
+  data = render_to_string :update do |page|
+    page[&#39;chat-window&#39;].insert :bottom =&gt; params[:entry]
+  end</code></pre>
+</body>
+</html>

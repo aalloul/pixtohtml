@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevedekorte_garbagecollector3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>Collector_setMarkBeforeSweepValue_(collector, currentCoroutineValue);</code></pre>
+<p>Which will cause currentCoroutineValue to get marked immediately before the collector enters a sweep phase.</p>
+<h3 id="premptive-multitasking-stacks">Premptive Multitasking Stacks</h3>
+<p>If your language uses premtive threads which cannot be collected until they are explicitly exited, then you’ll need to call:</p>
+<pre><code>Collector_retain_(collector, threadObjectValue);</code></pre>
+<p>when a thread begins and:</p>
+<pre><code>Collector_stopRetaining_(collector, threadObjectValue);</code></pre>
+<p>when it ends. The retained values are stored in an array, so this is bit inefficient if you’re dealing with thousands of threads that are frequently created and destroyed, but for the typical case (10s of threads with greater than one second lifetimes) it should work well.</p>
+<h2 id="globals">Globals</h2>
+<p>Globals such as language primitives that should not be collected until shutdown can avoid being collected by calling:</p>
+<pre><code>Collector_retain_(collector, someGlobalValue);</code></pre>
+<p>on each global.</p>
+<h2 id="options">Options</h2>
+<p>The collection parameters can be adjusted with these methods:</p>
+<pre><code>Collector_setAllocsPerMark_(collector, apm);
+Collector_setMarksPerSweep_(collector, mps);
+Collector_setSweepsPerGeneration_(collector, spg);</code></pre>
+<h2 id="cleaning-up">Cleaning Up</h2>
+<p>To free all values beign monitored by the collector, call:</p>
+<pre><code>Collector_freeAllValues(collector);</code></pre>
+<p>To free your collector instance, call:</p>
+<pre><code>Collector_free(collector);</code></pre>
+</body>
+</html>

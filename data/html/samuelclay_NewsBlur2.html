@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>samuelclay_NewsBlur2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Not every program listed in the Prerequisites section is necessary to run NewsBlur.</p>
+<ul>
+<li><code>Elasticsearch</code> is the only module that requires Java. If you can live without searching for feeds or searching for stories, then you can ignore it and NewsBlur will just spit out that you don’t have a search server in the logs.</li>
+<li><code>Jammit</code> is for asset compression. Don’t bother using it since the alternative is to just serve every js and css file in individual files without compression. Besides, nginx gzips those files automatically if you use the built-in nginx config. Just set <code>DEBUG_ASSETS = True</code> in your local_settings.py (which is also in local_settings.py.template).</li>
+<li><code>numpy</code> and <code>scipy</code> are used for the colors used all over the site. Every site’s favicon is analyzed for its dominant color, and that color is what gives every site its feel. You’ll see it by every story all over. I’d recommend installing it, as you can just use prebuilt packages and don’t have to install from source, which is possible but not trivial.</li>
+</ul>
+<h4 id="relational-database-mysql-postgresql">Relational Database (MySQL, PostgreSQL)</h4>
+<p>You will want to have your database set up before you begin installation. Fabric can install both PostgreSQL and MongoDB for you, but only on Ubuntu. Mac OS X users will want to have MySQL or PostgreSQL already installed. You can or . Additionally, if running as a development machine on Mac OS X, I would recommend using MySQL with as a GUI.</p>
+<p>If you are installing MySQL, you will also need the MySQLDB python library:</p>
+<pre><code>sudo easy_install mysql-python</code></pre>
+<h4 id="fabric">Fabric</h4>
+<p>Both Mac OS X and Linux require to be installed. Many common tasks, such as installing dependencies, deploying servers, migrations, and configurations are in <code>fabfile.py</code>.</p>
+<pre><code>sudo easy_install fabric</code></pre>
+<p>On recent installations of Mac OS X using XCode 4, you may run into issues around the <code>ppc</code> architecture. To fix this, simply run:</p>
+<pre><code>sudo ln -s /Developer/Platforms/iPhoneOS.platform/Developer/usr/libexec/gcc/darwin/ppc \
+/Developer/usr/libexec/gcc/darwin
+sudo ln -s /Developer/Platforms/iPhoneOS.platform/Developer/usr/libexec/gcc/darwin/ppc \
+/usr/libexec/gcc/darwin</code></pre>
+<p>Sym-linking the ppc architecture comes from this StackOverflow answer on “”.</p>
+<h4 id="mongodb">MongoDB</h4>
+<p>On top of MySQL/PostgreSQL, NewsBlur uses MongoDB to store non-relational data. You will want to . If you are on Ubuntu, the <code>setup_mongo</code> Fabric command will automatically do this for you, but Mac OS X needs to have it installed manually.</p>
+<h4 id="numpy-and-scipy">Numpy and Scipy</h4>
+<p>Not the easiest to get installed. If you are running Mac OS X, you have a few options:</p>
+<ul>
+<li>Use the</li>
+</ul>
+</body>
+</html>

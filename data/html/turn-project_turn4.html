@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>turn-project_turn4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>directory of your local project and then in your user home directory. So for example, if you specified the following:</p>
+<pre><code>Turn.config.format = :cool</code></pre>
+<p>Then Turn will look first for <code>./.turn/reporters/cool_reporter.rb</code>, then <code>~/.turn/reporters/cool_reporter.rb</code>.</p>
+<p>See source code for examples of how to write your own reporters.</p>
+<h2 id="requirements">REQUIREMENTS</h2>
+<ul>
+<li>ansi 1.1+ (for colorized output and progress bar output mode)</li>
+</ul>
+<h2 id="installation">INSTALLATION</h2>
+<p>Follow the usual procedure:</p>
+<pre><code>$ gem install turn</code></pre>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>Support MiniTest v5.0</li>
+<li>General code cleanup</li>
+</ul>
+<h1 id="contributing">CONTRIBUTING</h1>
+<ol type="1">
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my_new_feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my_new_feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
+<p>If you are a project member please follow the same process (minus the forking). For significant changes please wait for another developer to review and merge them, whereas small contributions/fixes can be merged without review.</p>
+<h2 id="building">Building</h2>
+<p>To build the gem simply run:</p>
+<pre><code>gem build .gemspec</code></pre>
+<h2 id="solo-and-cross-runners">Solo and Cross Runners</h2>
+<p>An important aspect of Turn’s design that needs be kept in mind, is the way <em>solo</em> and <em>cross</em> testing features are implemented. This is some really neat code actually (IMO), but it might be difficult to grasp with out some explanation. What turn does when using the <code>--solo</code> or <code>--cross</code> options, is <i>shell out to itself</i> using the YAML reporter. It does this repeatedly for each test, or each pair of tests, respectively, and then collates all the resulting YAML reports into a single report, which it then feeds back into the selected reporter.</p>
+</body>
+</html>

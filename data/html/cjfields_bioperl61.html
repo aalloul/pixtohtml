@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cjfields_bioperl61</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="bioperl-6">BioPerl 6</h1>
+<p>The experimental classes in this directory are test implementations for Perl 6. Most of these are similar to perl5-based BioPerl with simple Perl 6 translations. We intend on porting functionality when needed, but also addressing many of the problems faced with the perl5 BioPerl version, namely class/interface structure, overly complex class hierarchy, etc.</p>
+<p>So, keep in mind that nothing is set in stone yet and things may change under your feet. <strong>Hic sunt dracones</strong>.</p>
+<p>Also, just a note: this repository may eventually be moved under the BioPerl umbrella. If so, I’ll leave stub repo here pointing to the correct location.</p>
+<h1 id="participation">Participation</h1>
+<p>If you have an itch to scratch and want to try it out, fork the code and hack away. Even better, <em>I can add you as a developer!</em> Drop me a note, I’m more than happy to have help. The more the better!</p>
+<h1 id="targeting">Targeting</h1>
+<p>Currently, I target (specifically using the MoarVM backend) off the <code>nom</code> branch. We may switch at some point to a targeted Rakudo Star version for more stability, but since the latest branch code has seen dramatic improvements (as of Aug. 2014) we aim to stay consistent with that.</p>
+<p>Note, as of Dec. 25, 2015, Rakudo is now targeting the newly-released Perl 6 official specification (6.c), therefore syntax is expected to have stabilized and focus will be fixing bugs, improving performance, and working out corners of the specification that need further clarification.</p>
+<h1 id="implemented">Implemented</h1>
+<ul>
+<li><code>Bio::PrimarySeq</code> - this includes required basic modules for transcription and translation.</li>
+<li><code>Bio::Range</code> - simple biological range operations (don’t confuse this with the Perl 6 Range class)</li>
+<li><code>Bio::Root</code> - original base class for BioPerl, though this may be removed in favor of using Perl 6 standard exception handling (which is leagues better than p5)</li>
+</ul>
+<h1 id="testing">Testing</h1>
+<p>Basically, one can do this:</p>
+<p>```</p>
+</body>
+</html>

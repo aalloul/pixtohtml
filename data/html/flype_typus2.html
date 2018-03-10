@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>flype_typus2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>Typus::Configuration.options[:form_rows]
+Typus::Configuration.options[:sidebar_selector]
+Typus::Configuration.options[:minute_step]
+Typus::Configuration.options[:start_year]
+Typus::Configuration.options[:end_year]
+Typus::Configuration.options[:email]
+Typus::Configuration.options[:toggle]
+Typus::Configuration.options[:edit_after_create]
+Typus::Configuration.options[:root]
+Typus::Configuration.options[:recover_password]
+Typus::Configuration.options[:ssl]
+Typus::Configuration.options[:icon_on_boolean]
+Typus::Configuration.options[:thumbnail]
+Typus::Configuration.options[:thumbnail_zoom]
+Typus::Configuration.options[:config_folder]
+Typus::Configuration.options[:ignore_missing_translations]</code></pre>
+<p>You can overwrite this settings in the initializer <code>typus.rb</code>.</p>
+<h3 id="special-route">Special Route</h3>
+<p>To overwrite the default prefix path of your application place the following configuration option on <code>development.rb</code>, <code>production.rb</code> on the <code>config/environments</code> folder.</p>
+<pre><code>Typus::Configuration.options[:prefix] = &quot;backoffice&quot;</code></pre>
+<h3 id="disable-password-recover">Disable password recover</h3>
+<p>You can disable password recover on the login page. By default, password recovery is enabled.</p>
+<pre><code>Typus::Configuration.options[:recover_password] = false</code></pre>
+<h3 id="disallow-toggle">Disallow toggle</h3>
+<p>When you have a boolean on the lists you can toggle it’s status from true to false and false to true. You can disable this link with:</p>
+<pre><code>Typus::Configuration.options[:toggle] = false</code></pre>
+<h3 id="redirect-to-index-after-create-a-record">Redirect to index after create a record</h3>
+<p>After creating a new record you’ll be redirected to the record so you can continue editing it. If you prefer to be redirected to the main index you can owerwrite the setting.</p>
+<pre><code>Typus::Configuration.options[:edit_after_create] = false</code></pre>
+<h2 id="configuration-file-options">Configuration file options</h2>
+</body>
+</html>

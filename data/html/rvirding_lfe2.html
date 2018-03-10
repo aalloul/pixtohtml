@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rvirding_lfe2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>will put the programs in <code>/Users/rv/bin</code> and the man pages in the <code>/Users/rv/man/man*</code> directories.</p>
+<h2 id="repl">REPL</h2>
+<p>If you’re running LFE from a git clone working dir, you can start the REPL like so after compiling:</p>
+<pre class="shell"><code>$ ./bin/lfe
+Erlang 17 (erts-6.0) [source] [64-bit] [smp:8:8] ...
+
+LFE Shell V6.0 (abort with ^G)
+&gt;</code></pre>
+<p>If you have installed LFE, then you may start the REPL from any location:</p>
+<pre class="shell"><code>$ lfe
+Erlang 17 (erts-6.0) [source] [64-bit] [smp:8:8] ...
+
+LFE Shell V6.0 (abort with ^G)
+&gt;</code></pre>
+<p>Likewise, you may run an LFE shell script in the same style as shell scripts with:</p>
+<pre class="shell"><code>$ ./bin/lfe script-name script-arg-1 ...</code></pre>
+<p>or</p>
+<pre class="shell"><code>$ lfe script-name script-arg-1 ...</code></pre>
+<h2 id="usage">Usage</h2>
+<p>The has several places to explore that will show you how to start using LFE. However, here’s a quick taste:</p>
+<ul>
+<li>start up an LFE REPL as demonstrated above</li>
+<li>then, do something like this: ```cl &gt; (* 2 (+ 1 2 3 4 5 6))</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>powerchurch_onebody1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="onebody">OneBody</h1>
+<p>OneBody is open-source, web-based social networking and online directory software for churches. OneBody is built on Ruby on Rails 2.3 and MySQL.</p>
+<p>Screenshots and feature information can be found at the .</p>
+<h2 id="install-on-ubuntu">Install on Ubuntu</h2>
+<p>OneBody is a complex app with a lot of moving parts. Installation can be lengthy, so we’ve tried to automate as much of the process as possible using .</p>
+<p>If you’re dedicated server or VPS is Ubuntu 10.04 or higher, try this:</p>
+<pre><code># 1. on your server:
+sudo adduser deploy
+sudo adduser deploy sudo
+# copy your SSH public key to avoid password prompts
+sudo apt-get install git-core curl build-essential zlib1g-dev libssl-dev libreadline5-dev imagemagick rsync
+# follow http://rvm.beginrescueend.com/rvm/install/ to install RVM
+rvm install ree
+rvm use ree@onebody --create --default
+
+# 2. on your local machine:
+gem install capistrano
+# edit config/deploy.rb to point to your server
+cap prepare:ubuntu:mysql
+cap prepare:ubuntu:apache
+cap prepare:ubuntu:passenger
+cap prepare:ubuntu:postfix
+cap prepare:ubuntu:bundler
+cap deploy:setup
+cap deploy:migrations
+
+# 3. on your server
+# edit /etc/apache2/sites-available/default
+# and point DocumentRoot to &quot;/var/www/apps/onebody/current/public&quot;
+sudo /etc/init.d/apache2 reload
+# you may also need to set smtpd_use_tls=no in your /etc/postfix/main.cf
+
+# 4. in your web browser:
+# visit http://your-server-name-or-ip</code></pre>
+<p>We also have full step-by-step instructions in our INSTALL.md file.</p>
+<p>Please visit the page on the wiki for help with setting up incoming email.</p>
+<h2 id="more-information">More Information</h2>
+<ul>
+<li><ul>
+<li>A wonderful resource full of helpful information; Check here first.</li>
+</ul></li>
+</ul>
+</body>
+</html>

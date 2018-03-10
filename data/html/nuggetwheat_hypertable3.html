@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nuggetwheat_hypertable3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The available package generators for cmake are a little different on different platforms. It is usually best to generate binary packages on their native platforms.</p>
+<pre><code>cd ~/build/hypertable
+~/src/hypertable/bin/src-utils/htpkg generator...</code></pre>
+<p>where generator can be DEB (for debian packages), RPM (for redhat/fedora/centos packages), PackageMaker (for Mac OS X packages) and STGZ (for self extracting gzipped tar files.) etc. See cpack(1) for more options.</p>
+<p>For every generator listed on the command line, the above command will generate two packages: one for the entire hypertable distribution and one for thriftbroker only.</p>
+<p>You can also use htbuild to generate binary packages on remote machines that are not setup for development, even a base Amazon EC2 image:</p>
+<pre><code>~/src/hypertable/bin/src-utils/htbuild --ami ami-5946a730 DEB RPM TBZ2</code></pre>
+<p>At the moment, I recommend an Ubuntu/Debian machine for generating binary packages as it can generate both RPM and DEB correctly faster without having to disable prelinking and selinux like on Fedora/Redhat.</p>
+<h1 id="how-to-run-regression-tests">HOW TO RUN REGRESSION TESTS</h1>
+<ol type="1">
+<li><p>Make sure software is built and installed according to “HOW TO BUILD FROM SOURCE”</p></li>
+<li><p>Run the regression tests</p>
+<pre><code>cd ~/build/hypertable
+make alltests</code></pre></li>
+</ol>
+<p>Note: there are two other high-level test targets: coretests (for core tests) and moretests (for more longer running tests, which is included in alltests.) These high-level test targets will (re)start test servers automatically when new servers are installed. There is also a low-level “test” target in root of the build tree and src (and src/lang/Components) and tests/integration directories that does NOT auto restart test servers.</p>
+<h1 id="how-to-build-source-code-documentation-tree">HOW TO BUILD SOURCE CODE DOCUMENTATION TREE</h1>
+<ol type="1">
+<li><h2 id="install-the-following-tools">Install the following tools:</h2></li>
+</ol>
+</body>
+</html>

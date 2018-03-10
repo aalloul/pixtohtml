@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>attr-encrypted_attr_encrypted8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>```</p>
+<p>The call to <code>find_by_email_and_password</code> is intercepted and modified to <code>find_by_encrypted_email_and_encrypted_password('ENCRYPTED EMAIL', 'ENCRYPTED PASSWORD')</code>. The dynamic scope methods like <code>scoped_by_email_and_password</code> work the same way.</p>
+<p>NOTE: This only works if all records are encrypted with the same encryption key (per attribute).</p>
+<p><strong>NOTE: This feature is deprecated and will be removed in the next major release.</strong></p>
+<h3 id="datamapper-and-sequel">DataMapper and Sequel</h3>
+<h4 id="default-options">Default options</h4>
+<p>The <code>:encode</code> option is set to true by default.</p>
+<h2 id="deprecations">Deprecations</h2>
+<p>attr_encrypted v2.0.0 now depends on encryptor v2.0.0. As part of both major releases many insecure defaults and behaviors have been deprecated. The new default behavior is as follows:</p>
+<ul>
+<li>Default <code>:mode</code> is now <code>:per_attribute_iv</code>, the default <code>:mode</code> in attr_encrypted v1.x was <code>:single_iv_and_salt</code>.</li>
+<li>Default <code>:algorithm</code> is now ‘aes-256-gcm’, the default <code>:algorithm</code> in attr_encrypted v1.x was ‘aes-256-cbc’.</li>
+<li>The encryption key provided must be of appropriate length respective to the algorithm used. Previously, encryptor did not verify minimum key length.</li>
+<li>The dynamic finders available in ActiveRecord will only work with <code>:single_iv_and_salt</code> mode. It is strongly advised that you do not use this mode. If you can search the encrypted data, it wasn’t encrypted securely. This functionality will be deprecated in the next major release.</li>
+<li><code>:per_attribute_iv_and_salt</code> and <code>:single_iv_and_salt</code> modes are deprecated and will be removed in the next major release.</li>
+</ul>
+<p>Backwards compatibility is supported by providing a special option that is passed to encryptor, namely, <code>:insecure_mode</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="kw">class</span> <span class="dt">User</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    attr_encrypted <span class="st">:email</span>, <span class="st">key: &#39;a secret key&#39;</span>, <span class="st">algorithm: &#39;aes-256-cbc&#39;</span>, <span class="st">mode: :single_iv_and_salt</span>, <span class="st">insecure_mode: </span><span class="dv">true</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">end</span></a></code></pre></div>
+<p>The <code>:insecure_mode</code> option will allow encryptor to ignore the new security requirements. It is strongly advised that if you use this older insecure behavior that you migrate to the newer more secure behavior.</p>
+<h2 id="upgrading-from-attr_encrypted-v1.x-to-v3.x">Upgrading from attr_encrypted v1.x to v3.x</h2>
+<p>Modify your gemfile to include the new version of attr_encrypted:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb2-1" data-line-number="1">  gem attr_encrypted, <span class="st">&quot;~&gt; 3.0.0&quot;</span></a></code></pre></div>
+<p>The update attr_encrypted:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1">  <span class="ex">bundle</span> update attr_encrypted</a></code></pre></div>
+</body>
+</html>

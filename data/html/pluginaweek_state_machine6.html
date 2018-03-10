@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>vehicle.can_disable_alarm? # =&gt; true vehicle.disable_alarm # =&gt; true vehicle.alarm_state # =&gt; 0 vehicle.alarm_state_name # =&gt; :off vehicle.can_enable_alarm? # =&gt; true</p>
+<p>vehicle.alarm_off? # =&gt; true vehicle.alarm_active? # =&gt; false</p>
+<h1 id="events-can-be-fired-in-parallel">Events can be fired in parallel</h1>
+<p>vehicle.fire_events(:shift_down, :enable_alarm) # =&gt; true vehicle.state_name # =&gt; :first_gear vehicle.alarm_state_name # =&gt; :active</p>
+<p>vehicle.fire_events!(:ignite, :enable_alarm) # =&gt; StateMachine::InvalidTransition: Cannot run events in parallel: ignite, enable_alarm</p>
+<h1 id="human-friendly-names-can-be-accessed-for-statesevents">Human-friendly names can be accessed for states/events</h1>
+<p>Vehicle.human_state_name(:first_gear) # =&gt; “first gear” Vehicle.human_alarm_state_name(:active) # =&gt; “active”</p>
+<p>Vehicle.human_state_event_name(:shift_down) # =&gt; “shift down” Vehicle.human_alarm_state_event_name(:enable) # =&gt; “enable”</p>
+<h1 id="states-events-can-also-be-references-by-the-string-version-of-their-name">States / events can also be references by the string version of their name</h1>
+<p>Vehicle.human_state_name(‘first_gear’) # =&gt; “first gear” Vehicle.human_state_event_name(‘shift_down’) # =&gt; “shift down”</p>
+<h1 id="available-transition-paths-can-be-analyzed-for-an-object">Available transition paths can be analyzed for an object</h1>
+<p>vehicle.state_paths # =&gt; [[#&lt;StateMachine::Transition …], [#&lt;StateMachine::Transition …], …] vehicle.state_paths.to_states # =&gt; [:parked, :idling, :first_gear, :stalled, :second_gear, :third_gear] vehicle.state_paths.events # =&gt; [:park, :ignite, :shift_up, :idle, :crash, :repair, :shift_down]</p>
+<h1 id="find-all-paths-that-start-and-end-on-certain-states">Find all paths that start and end on certain states</h1>
+<p>vehicle.state_paths(:from =&gt; :parked, :to =&gt; :first_gear) # =&gt; [[ # #&lt;StateMachine::Transition attribute=:state event=:ignite from=“parked” …&gt;, # #&lt;StateMachine::Transition attribute=:state event=:shift_up from=“idling” …&gt; # ]] # Skipping state_machine and writing to attributes directly vehicle.state = “parked” vehicle.state # =&gt; “parked” vehicle.state_name # =&gt; :parked</p>
+<h1 id="note-that-the-following-is-not-supported-see-statemachinemacromethodsstate_machine"><em>Note</em> that the following is not supported (see StateMachine::MacroMethods#state_machine):</h1>
+<h1 id="vehicle.state-parked">vehicle.state = :parked</h1>
+<p>```</p>
+<h2 id="integrations">Integrations</h2>
+<p>In addition to being able to define state machines on all Ruby classes, a set of</p>
+</body>
+</html>

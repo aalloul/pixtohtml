@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>any, a small buffer will open with a list of undefined
+references and the line numbers on which they appear.  In Emacs
+22 and greater, selecting a reference from this list and
+pressing &lt;kbd&gt;RET&lt;/kbd&gt; will insert an empty reference definition at the
+end of the buffer.  Similarly, selecting the line number will
+jump to the corresponding line.
+
+&lt;kbd&gt;C-c C-c n&lt;/kbd&gt; renumbers any ordered lists in the buffer that are
+out of sequence.
+
+&lt;kbd&gt;C-c C-c ]&lt;/kbd&gt; completes all headings and normalizes all horizontal
+rules in the buffer.</code></pre>
+<ul>
+<li><p>Following Links: <kbd>C-c C-o</kbd></p>
+<p>Press <kbd>C-c C-o</kbd> when the point is on an inline or reference link to open the URL in a browser. When the point is at a wiki link, open it in another buffer (in the current window, or in the other window with the <kbd>C-u</kbd> prefix). Use <kbd>M-p</kbd> and <kbd>M-n</kbd> to quickly jump to the previous or next link of any type.</p></li>
+<li><p>Doing Things: <kbd>C-c C-d</kbd></p>
+<p>Use <kbd>C-c C-d</kbd> to do something sensible with the object at the point:</p>
+<ul>
+<li>Jumps between reference links and reference definitions. If more than one link uses the same reference label, a window will be shown containing clickable buttons for jumping to each link. Pressing <kbd>TAB</kbd> or <kbd>S-TAB</kbd> cycles between buttons in this window.</li>
+<li>Jumps between footnote markers and footnote text.</li>
+<li>Toggles the completion status of GFM task list items (checkboxes).</li>
+<li>Re-aligns table columns.</li>
+</ul></li>
+<li><p>Promotion and Demotion: <kbd>C-c C–</kbd> and <kbd>C-c C-=</kbd></p>
+<p>Headings, horizontal rules, and list items can be promoted and demoted, as well as bold and italic text. For headings, “promotion” means <em>decreasing</em> the level (i.e., moving from <code>&lt;h2&gt;</code> to <code>&lt;h1&gt;</code>) while “demotion” means <em>increasing</em> the level. For horizontal rules, promotion and demotion means moving backward or forward through the list of rule strings in <code>markdown-hr-strings</code>. For bold and italic text, promotion and demotion means changing the markup from underscores to asterisks. Press <kbd>C-c C–</kbd> or <kbd>C-c LEFT</kbd> to promote the element at the point if possible.</p>
+<p>To remember these commands, note that <kbd>-</kbd> is for decreasing the level (promoting), and <kbd>=</kbd> (on the same key as <kbd>+</kbd>) is for</p></li>
+</ul>
+</body>
+</html>

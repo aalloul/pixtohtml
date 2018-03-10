@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>attr-encrypted_attr_encrypted9</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Then modify your models using attr_encrypted to account for the changes in default options. Specifically, pass in the <code>:mode</code> and <code>:algorithm</code> options that you were using if you had not previously done so. If your key is insufficient length relative to the algorithm that you use, you should also pass in <code>insecure_mode: true</code>; this will prevent Encryptor from raising an exception regarding insufficient key length. Please see the Deprecations sections for more details including an example of how to specify your model with default options from attr_encrypted v1.x.</p>
+<h2 id="upgrading-from-attr_encrypted-v2.x-to-v3.x">Upgrading from attr_encrypted v2.x to v3.x</h2>
+<p>A bug was discovered in Encryptor v2.0.0 that inccorectly set the IV when using an AES-*-GCM algorithm. Unfornately fixing this major security issue results in the inability to decrypt records encrypted using an AES-*-GCM algorithm from Encryptor v2.0.0. Please see for more info.</p>
+<p>It is strongly advised that you re-encrypt your data encrypted with Encryptor v2.0.0. However, you’ll have to take special care to re-encrypt. To decrypt data encrypted with Encryptor v2.0.0 using an AES-*-GCM algorithm you can use the <code>:v2_gcm_iv</code> option.</p>
+<p>It is recommended that you implement a strategy to insure that you do not mix the encryption implementations of Encryptor. One way to do this is to re-encrypt everything while your application is offline.Another way is to add a column that keeps track of what implementation was used. The path that you choose will depend on your situtation. Below is an example of how you might go about re-encrypting your data.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="kw">class</span> <span class="dt">User</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    attr_encrypted <span class="st">:ssn</span>, <span class="st">key: :encryption_key</span>, <span class="st">v2_gcm_iv: </span>is_decrypting?(<span class="st">:ssn</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="kw">def</span> is_decrypting?(attribute)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">      encrypted_attributes[attribute][<span class="st">:operation</span>] == <span class="st">:decrypting</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="kw">end</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="kw">end</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">User</span>.all.each <span class="kw">do</span> |user|</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    old_ssn = user.ssn</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    user.ssn= old_ssn</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    user.save</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">  <span class="kw">end</span></a></code></pre></div>
+<h2 id="things-to-consider-before-using-attr_encrypted">Things to consider before using attr_encrypted</h2>
+<h4 id="searching-joining-etc">Searching, joining, etc</h4>
+<p>While choosing to encrypt at the attribute level is the most secure solution, it is not without drawbacks. Namely, you cannot search the encrypted data, and because you can’t search it, you can’t index it either. You also can’t use joins on the encrypted data. Data that is securely encrypted is effectively noise. So any operations that rely on the data not being noise will not work. If you need to do any of the aforementioned operations, please consider using database and file system encryption along with transport encryption as it moves through your stack.</p>
+<h4 id="data-leaks">Data leaks</h4>
+<p>Please also consider where your data leaks. If you’re using attr_encrypted with Rails, it’s highly likely that this data will enter your app as a request parameter. You’ll want to be sure that you’re filtering your request params from you logs or else your data is sitting in the clear in your logs. Please also consider other possible leak points.</p>
+<h4 id="storage-requirements">Storage requirements</h4>
+<p>When storing your encrypted data, please consider the length requirements of the db column that you’re storing the cipher text in. Older versions of Mysql attempt to ‘help’ you by truncating strings that are too large for the column. When this happens, you will not be able to decrypt your data.</p>
+<h4 id="metadata-regarding-your-crypto-implementation">Metadata regarding your crypto implementation</h4>
+<p>It is advisable to also store metadata regarding the circumstances of your encrypted data. Namely, you should store information about the key used to encrypt your data, as well as the algorithm. Having this metadata with every record will make key rotation and migrating to a new algorithm signficantly easier. It will allow you to continue to decrypt old data using the information provided in the metadata and new data can be encrypted using your new key and algorithm of choice.</p>
+<h4 id="enforcing-the-iv-as-a-nonce">Enforcing the IV as a nonce</h4>
+<p>On a related note, most alorithms require that your IV be unique for every record and key combination. You can enforce this using composite unique indexes on your IV and encryption key name/id column.</p>
+<h4 id="unique-key-per-record">Unique key per record</h4>
+<p>Lastly, while the <code>:per_attribute_iv_and_salt</code> mode is more secure than <code>:per_attribute_iv</code> mode because it uses a unique key per record, it uses a PBKDF function which introduces a huge performance hit (175x slower by my benchmarks). There are other ways of deriving a unique key per record that would be much faster.</p>
+<h2 id="note-on-patchespull-requests">Note on Patches/Pull Requests</h2>
+<ul>
+<li>Fork the project.</li>
+</ul>
+</body>
+</html>

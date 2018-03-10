@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sqs_rhino1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rhino---a-ruby-orm-for-hbase">Rhino - a Ruby ORM for HBase</h1>
+<p>Rhino is a Ruby object-relational mapping (ORM) for HBase[http://www.hbase.org].</p>
+<h3 id="support-contact">Support &amp; contact</h3>
+<p>Author: Quinn Slack qslack@qslack.com[mailto:qslack@qslack.com]</p>
+<p>Contributors: Dru Jensen</p>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="download-rhino">Download Rhino</h3>
+<p>git clone git://github.com/sqs/rhino.git</p>
+<h3 id="installing-hbase-and-thrift">Installing HBase and Thrift</h3>
+<p>Since Rhino uses the HBase Thrift API, you must first install both HBase and Thrift. Downloading the latest trunk revisions of each is recommended, but if you encounter problems, try using the latest stable release instead. Here are the basic steps for installing both.</p>
+<h4 id="installing-hbase">Installing HBase</h4>
+<p>svn co http://svn.apache.org/repos/asf/hadoop/hbase/trunk hbase-core-trunk cd hbase-core-trunk ant</p>
+<p>{More installation instructions}[http://wiki.apache.org/hadoop/Hbase/10Minutes] are available on the HBase Wiki.</p>
+<h4 id="installing-thrift">Installing Thrift</h4>
+<p>Thrift[http://developers.facebook.com/thrift/] also requires the Boost C++ libraries; you’ll have to get those on your own if your system does not have them.</p>
+<p>svn co http://svn.facebook.com/svnroot/thrift/trunk/ thrift-trunk cd thrift-trunk ./bootstrap.sh ./configure &amp;&amp; make &amp;&amp; sudo make install cd lib/rb sudo ruby setup.rb</p>
+<h4 id="starting-the-hbase-and-thrift-servers">Starting the HBase and Thrift servers</h4>
+<p>Once you have installed HBase and Thrift, start HBase, then start the Thrift server. From the root HBase directory, run these commands:</p>
+<p>bin/start-hbase.sh bin/hbase thrift start</p>
+<p>Both servers need to be running to use Rhino. Occasionally, the Thrift server will be unable to connect to HBase. In that case, stop the Thrift server (ctrl-C), stop the HBase server (<tt>bin/stop-hbase.sh</tt>), and then rerun the above commands to restart both. To verify that HBase is running, try running the HBase shell (<tt>bin/hbase shell</tt>).</p>
+</body>
+</html>

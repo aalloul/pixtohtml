@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mattn_gist-vim1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="gist.vim">Gist.vim</h1>
+<p>This is a vimscript for creating gists (http://gist.github.com).</p>
+<p>For the latest version please see https://github.com/mattn/gist-vim.</p>
+<h2 id="usage">Usage:</h2>
+<ul>
+<li><p>Post current buffer to gist, using default privacy option.</p>
+<pre><code>  :Gist</code></pre></li>
+<li><p>Post selected text to gist, using default privacy option. This applies to all permutations listed below (except multi).</p>
+<pre><code>  :&#39;&lt;,&#39;&gt;Gist</code></pre></li>
+<li><p>Create a private gist.</p>
+<pre><code>  :Gist -p</code></pre></li>
+<li><p>Create a public gist. (Only relevant if you’ve set gists to be private by default.)</p>
+<pre><code>  :Gist -P</code></pre></li>
+</ul>
+<blockquote>
+<p>This is only relevant if you’ve set gists to be private by default; if you get an empty gist list, try “:Gist –abandon”.</p>
+</blockquote>
+<ul>
+<li><p>Create a gist anonymously.</p>
+<pre><code>  :Gist -a</code></pre></li>
+<li><p>Create a gist with all open buffers.</p>
+<pre><code>  :Gist -m</code></pre></li>
+<li><p>Edit the gist (you need to have opened the gist buffer first). You can update the gist with the “:w” command within the gist buffer.</p>
+<pre><code>  :Gist -e</code></pre></li>
+<li><p>Edit the gist with name ‘foo.js’ (you need to have opened the gist buffer first).</p>
+<pre><code>  :Gist -e foo.js</code></pre></li>
+<li><p>Post/Edit with the description &quot; (you need to have opened the gist buffer first). &gt;</p></li>
+</ul>
+</body>
+</html>

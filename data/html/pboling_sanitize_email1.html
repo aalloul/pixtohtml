@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pboling_sanitize_email1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sanitize_email">sanitize_email</h1>
+<p>This gem allows you to override your mail delivery settings, globally or in a local context. It is like a Ruby encrusted condom for your email server, just in case it decides to have intercourse with other servers via sundry mail protocols.</p>
+<table>
+<colgroup>
+<col style="width: 58%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Project</th>
+<th>Sanitize Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gem name</td>
+<td>sanitize_email</td>
+</tr>
+<tr class="even">
+<td>license</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>expert support</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>download rank</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>version</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>dependencies</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>code quality</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>inline documenation</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>continuous integration</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>test coverage</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>homepage</td>
+<td>[http://www.railsbling.com/tags/sanitize_email/][homepage]</td>
+</tr>
+<tr class="even">
+<td>documentation</td>
+<td>[http://rdoc.info/github/pboling/sanitize_email/frames][documentation]</td>
+</tr>
+<tr class="odd">
+<td>live chat</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Spread <sub>♡ⓛⓞⓥⓔ♡</sub></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p>It’s particularly helpful when you want to prevent the delivery of email (e.g. in development/test environments) or alter the to/cc/bcc (e.g. in staging or demo environments) of all email generated from your application.</p>
+<ul>
+<li>compatible with Rails &gt;= 3.X (since v1.0.5)</li>
+<li>compatible with any Ruby app with a Mail handler that uses the <code>register_interceptor</code> API (a la ActionMailer and Mail gems)</li>
+<li>configure it and forget it</li>
+<li>little configuration required</li>
+<li>solves common problems in ruby web applications that use email</li>
+<li>provides test helpers and spec matchers to assist with testing email content delivery</li>
+</ul>
+<h2 id="working-locally-with-production-data">Working Locally with Production Data</h2>
+<ol type="1">
+<li>Have a production site with live data</li>
+<li>Dump the live data and securely transfer it to another machine (e.g. rync -e ssh)</li>
+<li>Import it into a development database</li>
+<li>Test features which send out email (registration/signup, order placement, etc.)</li>
+<li>Emails get sent (in real-life!) but to sanitized email recipients</li>
+<li>Verify what they look like when sent</li>
+<li>Iterate on email content design</li>
+<li>No risk of emailing production addresses</li>
+</ol>
+<h2 id="re-routing-email-on-a-staging-or-qa-server">Re-routing Email on a Staging or QA Server</h2>
+<p>Another very important use case for me is to transparently re-route email generated from a staging or QA server to an appropriate person. For example, it’s common for us to set up a staging server for a client to use to view our progress and test out new features. It’s important for any email that is generated from our web application be delivered to the client’s inbox so that they can review the content and ensure that it’s acceptable. Similarly, we set up QA instances for our own QA team and we use to allow each QA person to configure it specifically for them.</p>
+<h2 id="testing-email-from-a-hot-production-server">Testing Email from a Hot Production Server</h2>
+<p>If you install this gem on a production server (which I don’t always do), you can load up script/console and override the to/cc/bcc on all emails for the duration of your console session. This allows you to poke and prod a live production instance, and route all email to your own inbox for inspection. The best part is that this can all be accomplished without changing a single line of your application code.</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dennisreimann_masquerade1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="please-note">PLEASE NOTE</h1>
+<p>masquerade is the predecessor of - please consider using masq from now on, as it is the more modular approach.</p>
+<h1 id="masquerade-openid-server">masquerade OpenID Server</h1>
+<p>masquerade is an OpenID server released under the MIT-license.</p>
+<p>For updates and further information see the .</p>
+<p>The source code is available at</p>
+<h2 id="installation">Installation</h2>
+<ol type="1">
+<li>Setup your bundle:
+<ul>
+<li>run <code>bundle install</code></li>
+</ul></li>
+<li>Configure the database:
+<ul>
+<li>rename the file <code>config/database.yml.example</code> to <code>config/database.yml</code></li>
+<li>set the values in <code>database.yml</code> according to your database</li>
+<li>run the migration scripts
+<ul>
+<li><code>bundle exec rake db:create</code></li>
+<li><code>bundle exec rake db:migrate</code></li>
+</ul></li>
+</ul></li>
+<li>Configure the application:
+<ul>
+<li>rename the file <code>config/app_config.yml.example</code> to <code>app_config.yml</code></li>
+<li>set the values in <code>app_config.yml</code> according to your environment</li>
+</ul></li>
+<li>Run the tests and see if everything seems to work <code>bundle exec rake test</code></li>
+</ol>
+<h2 id="testing-the-installation">Testing the installation</h2>
+<p>You can test the functionality in your local environment starting two instances: One as your Identity Provider/OpenID Server and another one as Relying Party.</p>
+<pre><code>ruby script/server
+ruby script/server -p 3001</code></pre>
+<p>Open your browser with these urls:</p>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<p>First you have to create an account at the Identity Provider, after that you will be able to use the issued OpenID URL (<code>http://localhost:3000/YOUR_LOGIN</code>) to send requests from the Relying Party to the server.</p>
+</body>
+</html>

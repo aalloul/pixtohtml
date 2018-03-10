@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>perigrin_obry1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>NAME Obry - A Simple API for Web Applications in Moose</p>
+<p>VERSION This document describes Obry version 0.0.1</p>
+<p>SYNOPSIS { package MyEventHandler; use Obry::Event;</p>
+<pre><code>        symbols(qw(event_foo event_bar));
+
+        sub event_foo {
+            my ( $self, $ctxt ) = @_;
+            ::pass(&#39;foo&#39;);
+            $self-&gt;output(&#39;FOO!&#39;);
+            return &#39;OK&#39;;
+        }
+
+        sub event_bar {
+            my ( $self, $ctxt ) = @_;
+            $self-&gt;output(&#39;Bar!&#39;);
+            return &#39;OK&#39;;
+        }
+    }
+    {
+        package MyOutputHandler;
+        use Obry::Event;
+
+        symbols(qw(print_output));
+
+        sub print_output {
+            my ( $self, $ctxt ) = @_;
+            print $self-&gt;output;
+            return &#39;OK&#39;;
+        }
+    }
+    {
+        package MyApp;
+        use Obry;
+        my $app = Obry-&gt;new();
+        $app-&gt;pipeline( [qw(MyEventHandler MyOutputHandler)] );
+        $app-&gt;run();
+    }</code></pre>
+<p>DESCRIPTION Obry is an attempt to re-think the SAWA Web Framework. Obry is in no way an attempt to replace SAWA, but is instead an experiemental re-implementation of the idea with modern tools.</p>
+</body>
+</html>

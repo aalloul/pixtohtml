@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ochko_prudge1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="prudge">Prudge</h1>
+<p>Prudge is an online programming contest judge system.</p>
+<h1 id="installing">Installing</h1>
+<p>On your local development machine checkout the source. Of course you’ll need ruby.</p>
+<ul>
+<li><code>git clone git://github.com/ochko/prudge.git</code></li>
+<li><code>cd prudge</code></li>
+<li><code>bundle install</code></li>
+</ul>
+<p>There are two ways to install prudge – Ansible or Manual.</p>
+<h2 id="install-using-ansible">Install using Ansible</h2>
+<p>Install on your local machine. Install sudo and python on your server. Ensure you have an ssh access to your server, and able to run commands as a root. Customize <code>setup/vars/common.yml</code>. Generate password hash with <code>$ mkpasswd --method=SHA-512</code> for <code>prudge_user_pwd</code>. Modify <code>setup/server.info</code> file with your own server’s hostname.</p>
+<p>And run this command replacing <code>yourlogin</code> with your ssh user’s login:</p>
+<pre><code>$ cd setup
+$ ansible-playbook -i server.info -u yourlogin --become --ask-become-pass site.yml --extra-vars &quot;user=yourlogin&quot;</code></pre>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p>If you got <code>/usr/bin/python: not found</code> error then set python interpreter like:</p>
+<pre><code>ansible-playbook -i server.info -u yourlogin --become --ask-become-pass site.yml -e &quot;user=yourlogin&quot; -e &quot;ansible_python_interpreter=/usr/local/bin/python2&quot;</code></pre>
+<h2 id="manual-install">Manual install</h2>
+<p>You can install prudge manually if ansible playbook is not available for your platform or simply you don’t want to use ansible.</p>
+<h3 id="dependencies">Dependencies</h3>
+<p>During manual installation you’ll install and configure these services for prudge.</p>
+<ul>
+<li>Memcached for caching</li>
+<li>Redis for background processing</li>
+<li>Sphinx for full text search</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dryruby_crm114.rb1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="crm114.rb-crm114-controllable-regex-mutilator-for-ruby">CRM114.rb: CRM114 Controllable Regex Mutilator for Ruby</h1>
+<p>This is a Ruby interface to the CRM114 Controllable Regex Mutilator, an advanced and fast text classifier that uses sparse binary polynomial matching with a Bayesian Chain Rule evaluator and a hidden Markov model to categorize data with up to a 99.87% accuracy.</p>
+<ul>
+<li><a href="http://crm114.rubyforge.org/" class="uri">http://crm114.rubyforge.org/</a></li>
+<li><a href="http://github.com/bendiken/crm114" class="uri">http://github.com/bendiken/crm114</a></li>
+<li><a href="http://ar.to/2006/07/spam-filters-alien-technology-and-ruby-on-rails" class="uri">http://ar.to/2006/07/spam-filters-alien-technology-and-ruby-on-rails</a></li>
+</ul>
+<h3 id="about-crm114">About CRM114</h3>
+<ul>
+<li><a href="http://crm114.sourceforge.net/" class="uri">http://crm114.sourceforge.net/</a></li>
+<li><a href="http://en.wikipedia.org/wiki/CRM114" class="uri">http://en.wikipedia.org/wiki/CRM114</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Dr_Strangelove" class="uri">http://en.wikipedia.org/wiki/Dr_Strangelove</a></li>
+<li><a href="http://www.paulgraham.com/wsy.html" class="uri">http://www.paulgraham.com/wsy.html</a></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>The CRM114 library interface is very similar to that of the project.</p>
+<p>Here follows a brief example:</p>
+<pre><code>require &#39;crm114&#39;
+
+crm = Classifier::CRM114.new([:interesting, :boring])
+
+crm.train! :interesting, &#39;Some data set with a decent signal to noise ratio.&#39;
+crm.train! :boring, &#39;Pig latin, as in lorem ipsum dolor sit amet.&#39;
+
+crm.classify &#39;Lorem ipsum&#39;       =&gt; [:boring, 0.99]
+crm.interesting? &#39;Lorem ipsum&#39;   =&gt; false
+crm.boring? &#39;Lorem ipsum&#39;        =&gt; true</code></pre>
+<p>Have a look at the included unit tests for more comprehensive examples.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>Requires the CRM114 binaries to be installed. Specifically, the <code>crm</code> binary should be accessible in the current user’s <code>PATH</code> environment variable.</p>
+<h2 id="download">Download</h2>
+<p>To get a local working copy of the development repository, do:</p>
+</body>
+</html>

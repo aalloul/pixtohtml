@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>breily_items1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="items">Items</h1>
+<ul>
+<li><p>Items is a wrapper for parts of the SQLAlchemy library, originally written for Juno (http://github.com/breily/juno/).</p></li>
+<li><p>Specifically, it wraps the database setup and class/table creation portions.</p></li>
+<li><p>Homepage: http://brianreily.com/project/items</p></li>
+</ul>
+<h2 id="example-usage">Example Usage</h2>
+<pre><code>import items
+it = items.Items() # Creates &#39;sqlite:///:memory:&#39;
+
+Person = it.model(&#39;Person&#39;, name=&#39;str&#39;)
+brian = Person(name=&#39;brian&#39;)
+brian.save()
+
+p = it.find(Person).first()
+=&gt; &lt;Person: 1&gt;
+p.name
+=&gt; u&#39;brian&#39;</code></pre>
+<h2 id="details">Details</h2>
+<ul>
+<li><p>First, create an Items object. This takes the optional argument:</p>
+<pre><code>  engine_name =&gt; By default, &#39;sqlite:///:memory:&#39;
+                 For a local file, &#39;sqlite:///data.db&#39;</code></pre>
+<p>See http://sqlalchemy.org/docs/05/dbengine.html for details on what makes up an engine name.</p></li>
+<li><p>Use your items object to create classes, with model(). model() takes three types of arguments:</p>
+<pre><code>  model_name   =&gt; The name of your new class (technically it does not have
+                  to be the same name, but this makes the most sense).
+  column types =&gt; Any variables you want your class to have.  In the
+                  above example, &#39;name&#39; is a variable and &#39;str&#39; is the
+                  column type.  See &lt;items.column_mapping&gt; for options.
+  callables    =&gt; Any functions you want your class to have.</code></pre></li>
+<li><p>Models come built with an <strong>init</strong> function and a <strong>repr</strong> function. Any others you want you have to give to the constructor:</p></li>
+</ul>
+</body>
+</html>

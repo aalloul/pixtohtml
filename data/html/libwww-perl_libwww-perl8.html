@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Other options can be set and are processed directly by the SSL Socket implementation in use. See for details.</p>
+<p>The libwww-perl core no longer bundles protocol plugins for SSL. You will need to install separately to enable support for processing https-URLs.</p>
+<h2 id="timeout">timeout</h2>
+<pre><code>my $secs = $ua-&gt;timeout;
+$ua-&gt;timeout( $secs );</code></pre>
+<p>Get/set the timeout value in seconds. The default value is 180 seconds, i.e. 3 minutes.</p>
+<p>The requests is aborted if no activity on the connection to the server is observed for <code>timeout</code> seconds. This means that the time it takes for the complete transaction and the method to actually return might be longer.</p>
+<h1 id="proxy-attributes">PROXY ATTRIBUTES</h1>
+<p>The following methods set up when requests should be passed via a proxy server.</p>
+<h2 id="env_proxy">env_proxy</h2>
+<pre><code>$ua-&gt;env_proxy;</code></pre>
+<p>Load proxy settings from <code>*_proxy</code> environment variables. You might specify proxies like this (sh-syntax):</p>
+<pre><code>gopher_proxy=http://proxy.my.place/
+wais_proxy=http://proxy.my.place/
+no_proxy=&quot;localhost,example.com&quot;
+export gopher_proxy wais_proxy no_proxy</code></pre>
+<p>csh or tcsh users should use the <code>setenv</code> command to define these environment variables.</p>
+<p>On systems with case insensitive environment variables there exists a name clash between the CGI environment variables and the <code>HTTP_PROXY</code> environment variable normally picked up by <code>env_proxy</code>. Because of this <code>HTTP_PROXY</code> is not honored for CGI scripts. The <code>CGI_HTTP_PROXY</code> environment variable can be used instead.</p>
+<h2 id="no_proxy">no_proxy</h2>
+<pre><code>$ua-&gt;no_proxy( @domains );</code></pre>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>icalendar_icalendar5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>d.tzoffsetto   = &quot;-0500&quot;
+d.tzname       = &quot;CDT&quot;
+d.dtstart      = &quot;19700308T020000&quot;
+d.rrule        = &quot;FREQ=YEARLY;BYMONTH=3;BYDAY=2SU&quot;</code></pre>
+<p>end</p>
+<p>t.standard do |s| s.tzoffsetfrom = “-0500” s.tzoffsetto = “-0600” s.tzname = “CST” s.dtstart = “19701101T020000” s.rrule = “FREQ=YEARLY;BYMONTH=11;BYDAY=1SU” end end ```</p>
+<h4 id="output">Output</h4>
+<pre><code># BEGIN:VTIMEZONE
+# TZID:America/Chicago
+# BEGIN:DAYLIGHT
+# TZOFFSETFROM:-0600
+# TZOFFSETTO:-0500
+# TZNAME:CDT
+# DTSTART:19700308T020000
+# RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+# END:DAYLIGHT
+# BEGIN:STANDARD
+# TZOFFSETFROM:-0500
+# TZOFFSETTO:-0600
+# TZNAME:CST
+# DTSTART:19701101T020000
+# RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+# END:STANDARD
+# END:VTIMEZONE</code></pre>
+<p>iCalendar has some basic support for creating VTIMEZONE blocks from timezone information pulled from <code>tzinfo</code>. You must require <code>tzinfo</code> support manually to take advantage.</p>
+<p>iCalendar has been tested and works with <code>tzinfo</code> versions 0.3 and 1.1</p>
+<h4 id="example">Example</h4>
+<p>```ruby require ‘icalendar/tzinfo’</p>
+<p>cal = Icalendar::Calendar.new</p>
+<p>event_start = DateTime.new 2008, 12, 29, 8, 0, 0 event_end = DateTime.new 2008, 12, 29, 11, 0, 0</p>
+</body>
+</html>

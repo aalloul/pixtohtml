@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra60</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>get ‘/define_route/:name’ do # Request scope for ‘/define_route/:name’ <span class="citation" data-cites="value">@value</span> = 42</p>
+<pre><code>settings.get(&quot;/#{params[&#39;name&#39;]}&quot;) do
+  # Request scope for &quot;/#{params[&#39;name&#39;]}&quot;
+  @value # =&gt; nil (not the same request)
+end
+
+&quot;Route defined!&quot;</code></pre>
+<p>end end ```</p>
+<p>You have the request scope binding inside:</p>
+<ul>
+<li>get, head, post, put, delete, options, patch, link and unlink blocks</li>
+<li>before and after filters</li>
+<li>helper methods</li>
+<li>templates/views</li>
+</ul>
+<h3 id="delegation-scope">Delegation Scope</h3>
+<p>The delegation scope just forwards methods to the class scope. However, it does not behave exactly like the class scope, as you do not have the class binding. Only methods explicitly marked for delegation are available, and you do not share variables/state with the class scope (read: you have a different <code>self</code>). You can explicitly add method delegations by calling <code>Sinatra::Delegator.delegate :method_name</code>.</p>
+<p>You have the delegate scope binding inside:</p>
+<ul>
+<li>The top level binding, if you did <code>require &quot;sinatra&quot;</code></li>
+<li>An object extended with the <code>Sinatra::Delegator</code> mixin</li>
+</ul>
+<p>Have a look at the code for yourself: here’s the</p>
+<p>being .</p>
+<h2 id="command-line">Command Line</h2>
+<p>Sinatra applications can be run directly:</p>
+<pre class="shell"><code>ruby myapp.rb [-h] [-x] [-q] [-e ENVIRONMENT] [-p PORT] [-o HOST] [-s HANDLER]</code></pre>
+<p>Options are:</p>
+<p>```</p>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>collectiveidea_awesome_nested_set2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>```</p>
+<p>Enable the nested set functionality by declaring <code>acts_as_nested_set</code> on your model</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> <span class="dt">Category</span> &lt; <span class="dt">ActiveRecord</span>::<span class="dt">Base</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  acts_as_nested_set</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">end</span></a></code></pre></div>
+<p>Run <code>rake rdoc</code> to generate the API docs and see <a href="lib/awesome_nested_set/awesome_nested_set.rb">CollectiveIdea::Acts::NestedSet</a> for more information.</p>
+<h2 id="options">Options</h2>
+<p>You can pass various options to <code>acts_as_nested_set</code> macro. Configuration options are:</p>
+<ul>
+<li><code>parent_column</code>: specifies the column name to use for keeping the position integer (default: parent_id)</li>
+<li><code>left_column</code>: column name for left boundary data (default: lft)</li>
+<li><code>right_column</code>: column name for right boundary data (default: rgt)</li>
+<li><code>depth_column</code>: column name for the depth data default (default: depth)</li>
+<li><code>scope</code>: restricts what is to be considered a list. Given a symbol, it’ll attach <code>_id</code> (if it hasn’t been already) and use that as the foreign key restriction. You can also pass an array to scope by multiple attributes. Example: <code>acts_as_nested_set :scope =&gt; [:notable_id, :notable_type]</code></li>
+<li><code>dependent</code>: behavior for cascading destroy. If set to :destroy, all the child objects are destroyed alongside this object by calling their destroy method. If set to :delete_all (default), all the child objects are deleted without calling their destroy method. If set to :nullify, all child objects will become orphaned and become roots themselves.</li>
+<li><code>counter_cache</code>: adds a counter cache for the number of children. defaults to false. Example: <code>acts_as_nested_set :counter_cache =&gt; :children_count</code></li>
+<li><code>order_column</code>: on which column to do sorting, by default it is the left_column_name. Example: <code>acts_as_nested_set :order_column =&gt; :position</code></li>
+<li><code>touch</code>: If set to <code>true</code>, then the updated_at timestamp on the ancestors will be set to the current time whenever this object is saved or destroyed (default: false)</li>
+</ul>
+<p>See <a href="/lib/awesome_nested_set/model.rb#L26">CollectiveIdea::Acts::NestedSet::Model::ClassMethods</a> for a list of class methods and <a href="lib/awesome_nested_set/model.rb#L13">CollectiveIdea::Acts::NestedSet::Model</a> for a list of instance methods added to acts_as_nested_set models</p>
+<h2 id="indexes">Indexes</h2>
+<p>It is highly recommended that you add an index to the <code>rgt</code> column on your models. Every insertion requires finding the next <code>rgt</code> value to use and this can be slow for large tables without an index. It is probably best to index the other fields as well (<code>parent_id</code>, <code>lft</code>, <code>depth</code>).</p>
+<h2 id="callbacks">Callbacks</h2>
+<p>There are three callbacks called when moving a node: <code>before_move</code>, <code>after_move</code> and <code>around_move</code>.</p>
+<p>```ruby class Category &lt; ActiveRecord::Base acts_as_nested_set</p>
+<p>after_move :rebuild_slug around_move :da_fancy_things_around</p>
+<p>private</p>
+<p>def rebuild_slug # do whatever end</p>
+</body>
+</html>

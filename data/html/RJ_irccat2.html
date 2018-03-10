@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RJ_irccat2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>using a virtual IP for irccat to listen on, in case you want to move irccat to another box later.</p>
+<h2 id="sending-to-specific-channels">Sending to specific channels</h2>
+<p>To send to a specific channel rather than the default, put the channel name as the first word in the data (the channel name will be stripped):</p>
+<p>$ echo “#mychannel hello world” | netcat -q0 machinename 12345</p>
+<p>This sends “hello world” to #mychannel</p>
+<p>First word defines the recipients, you can use comma separated list. # prefix indicates channel, @ indicates a nick.</p>
+<p>Examples:</p>
+<pre><code>- &quot;#chan blah blah&quot;
+  just sends to #chan
+
+- &quot;@RJ psst, this is a pm&quot;
+  just sends via PM to user RJ
+
+- &quot;#channel1,#channel2,@RJ,@Russ blah blah this is the message&quot;
+  this sends to 2 channels, and 2 users (RJ, Russ)
+
+- &quot;#* Attention, something important&quot;
+  this sends to all channels the bot is in  
+
+- &quot;#chan %REDroses are red%NORMAL, grass is #GREENgreen#NORMAL&quot;
+  you can use colors too, see IRCCat.java for the full list;
+  Either &quot;#&quot; or &quot;%&quot; will work.</code></pre>
+<h2 id="changing-topics-in-channels">Changing topics in channels</h2>
+<p>To change the topic in a channel (rather than sending a message), use the prefix %TOPIC.</p>
+<p>$ echo “%TOPIC #mychannel hello world” | netcat -q0 machinename 12345</p>
+<p>This changes the topic of #mychannel to “hello world” (assuming the bot has permission to set the topic)</p>
+<p>Second word defines the recipient channels. You can use a comma separated list. Nick recipients will be accepted, but silently ignored.</p>
+<p>Examples:</p>
+</body>
+</html>

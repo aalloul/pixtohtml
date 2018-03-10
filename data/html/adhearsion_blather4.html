@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>adhearsion_blather4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Guards are a concept borrowed from Erlang. They help to better compartmentalize handlers.</p>
+<p>There are a number of guard types and one bit of special syntax. Guards act like AND statements. Each condition must be met if the handler is to be used.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Equivalent to saying (stanza.chat? &amp;&amp; stanza.body)</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">message <span class="st">:chat?</span>, <span class="st">:body</span></a></code></pre></div>
+<p>The different types of guards are:</p>
+<p>```ruby # Symbol # Checks for a non-false reply to calling the symbol on the stanza # Equivalent to stanza.chat? message :chat?</p>
+<h1 id="hash-with-any-value-body-exit">Hash with any value (:body =&gt; ‘exit’)</h1>
+<h1 id="calls-the-key-on-the-stanza-and-checks-for-equality">Calls the key on the stanza and checks for equality</h1>
+<h1 id="equivalent-to-stanza.body-exit">Equivalent to stanza.body == ‘exit’</h1>
+<p>message :body =&gt; ‘exit’</p>
+<h1 id="hash-with-regular-expression-body-exit">Hash with regular expression (:body =&gt; /exit/)</h1>
+<h1 id="calls-the-key-on-the-stanza-and-checks-for-a-match">Calls the key on the stanza and checks for a match</h1>
+<h1 id="equivalent-to-stanza.body.match-exit">Equivalent to stanza.body.match /exit/</h1>
+<p>message :body =&gt; /exit/</p>
+<h1 id="hash-with-array-name-gone-forbidden">Hash with array (:name =&gt; [:gone, :forbidden])</h1>
+<h1 id="calls-the-key-on-the-stanza-and-check-for-inclusion-in-the-array">Calls the key on the stanza and check for inclusion in the array</h1>
+<h1 id="equivalent-to-gone-forbidden.includestanza.name">Equivalent to [:gone, :forbidden].include?(stanza.name)</h1>
+<p>stanza_error :name =&gt; [:gone, :fobidden]</p>
+<h1 id="proc">Proc</h1>
+<h1 id="calls-the-proc-passing-in-the-stanza">Calls the proc passing in the stanza</h1>
+<h1 id="checks-that-the-id-is-modulo-3">Checks that the ID is modulo 3</h1>
+<p>message proc { |m| m.id % 3 == 0 }</p>
+<h1 id="array">Array</h1>
+<h1 id="use-arrays-with-the-previous-types-effectively-turns-the-guard-into">Use arrays with the previous types effectively turns the guard into</h1>
+<h1 id="an-or-statement.">an OR statement.</h1>
+<h1 id="equivalent-to-stanza.body-foo-stanza.body-baz">Equivalent to stanza.body == ‘foo’ || stanza.body == ‘baz’</h1>
+<p>message [{:body =&gt; ‘foo’}, {:body =&gt; ‘baz’}]</p>
+<h1 id="xpath">XPath</h1>
+<h1 id="runs-the-xpath-query-on-the-stanza-and-checks-for-results">Runs the xpath query on the stanza and checks for results</h1>
+<h1 id="this-guard-type-cannot-be-combined-with-other-guards">This guard type cannot be combined with other guards</h1>
+<h1 id="equivalent-to-stanza.findiqnspubsub-ns-pubsubnamespace.empty">Equivalent to !stanza.find(‘/iq/ns:pubsub’, :ns =&gt; ‘pubsub:namespace’).empty?</h1>
+<h1 id="it-also-passes-two-arguments-into-the-handler-block-the-stanza-and-the-result">It also passes two arguments into the handler block: the stanza and the result</h1>
+</body>
+</html>

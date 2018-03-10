@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>addywaddy_couchsurfer2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>class Account
+  …
+  has_many :employees,
+      :class_name, :user,
+      :view  =&gt; :by_account_id_and_email,
+      :query =&gt; lambda { {:startkey =&gt; [account_id, nil], :endkey =&gt; [account_id, {}]}   }
+  …
+end
+
+class User
+  …
+  view_by :account_id, :email # see validation examples below
+  …
+end
+
+account = Acccount.create(…)
+10.times {User.create(…, :account_id =&gt; acount.id)}
+account.employees</code></pre>
+<p><strong>Example 3: :inline</strong></p>
+<pre><code>class User
+  …
+  has_many :tasks, :inline =&gt; true
+  …
+end
+
+class Task
+  …
+  view_by :user_id
+  …
+end
+
+user = User.create(…)
+10.times {user.tasks &lt;&lt; Task.new(…)}
+user.save
+user.tasks</code></pre>
+<p><strong>Example 4: :through</strong></p>
+<pre><code>class Account
+  …
+  has_many :projects,
+      :through =&gt; :memberships
+  …
+end
+
+class Membership</code></pre>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>scivi_dotfiles2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><code>etc/toprc</code> – A colourful config for top.</li>
+<li><code>etc/railsrc</code> – Useful methods for Rails, grabbed from the internets.</li>
+<li><code>etc/vimrc</code> – A basic Vim config, with syntax highlighting.</li>
+<li><p><code>xemacs/init.el</code> – An eclectic init.el, with keybindings and stuff.</p>
+<pre><code> Actually works as well for Emacsen without X in their name.</code></pre></li>
+<li><p><code>xemacs/custom.el</code> – Emacs preferred colours and such.</p></li>
+<li><p><code>Sublime Edit 2/My Hallow's Flat.tmTheme</code> – A color scheme based on All Hallow’s Eve.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>High readability, great for scanning code.</li>
+<li>Function names in definitions stand out (white, bold and italic). You might want to use a font with good-looking italics, like Microsoft Consolas.</li>
+<li>Punctuation is somewhat subdued.</li>
+<li>Colors are distinct, but not too contrasty.</li>
+<li>Loud colors from All Hallow’s Eve are changed to more pleasant hues.</li>
+<li>Colors match the Flatland theme.</li>
+</ul></li>
+<li><p><code>Sublime Edit 2/My Flatland.sublime-theme</code> – Tweaks for the awesome Flatland theme.</p>
+<ul>
+<li>Square Tabs show more text while using less space.</li>
+<li>Two-pixel black separator for multiple view layouts.</li>
+</ul>
+<p>Cf.</p></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ol start="0" type="1">
+<li>Install git (package git-core in Debian/Ubuntu and BSD ports)</li>
+<li><code>git clone git://github.com/scivi/dotfiles.git</code></li>
+<li><code>cd dotfiles</code></li>
+<li><code>sh ./install.sh</code> It creates symlinks in your $HOME, so you can benefit from future updates, easily merge your own changes etc, courtesy of git. It keeps copies of existing files, date/time appended to their name.</li>
+<li>edit .gitconfig: change name and email.</li>
+<li>source ~/.bashrc</li>
+<li>For Sublime Edit, install the Flatland theme (via Package Control).</li>
+<li>Tell your Sublime Edit to use the Flatland theme and the My Hallow’s Flat color scheme.</li>
+</ol>
+<h2 id="get-updates">Get Updates</h2>
+<ol start="0" type="1">
+<li>cd $dotfiles-directory # whereever you put it.</li>
+<li>git pull</li>
+</ol>
+<h2 id="deinstallation">Deinstallation:</h2>
+</body>
+</html>

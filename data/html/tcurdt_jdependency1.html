@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tcurdt_jdependency1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jdependency---explore-your-classpath">jdependency - explore your classpath</h1>
+<p>jdependency is small library that helps you analyze class level dependencies, clashes and missing classes.</p>
+<p>Check the documentation on how to use it with and a source is also available.</p>
+<h2 id="where-to-get-it">Where to get it</h2>
+<p>The jars are available on . The source releases you can get in the .</p>
+<p>If feel adventures or want to help out feel free to get the latest code .</p>
+<pre><code>git clone git://github.com/tcurdt/jdependency.git</code></pre>
+<h2 id="how-to-use-it">How to use it</h2>
+<pre><code>final File jar1 = ...
+final File jar2 = ...</code></pre>
+<h3 id="finding-classpath-clashes">finding classpath clashes</h3>
+<pre><code>final Clazzpath cp = new Clazzpath();
+cp.addClazzpathUnit(jar1, &quot;jar1.jar&quot;);
+cp.addClazzpathUnit(jar2, &quot;jar2.jar&quot;);
+
+final Set&lt;Clazz&gt; clashed = cp.getClashedClazzes();
+for(Clazz clazz : clashed) {
+  System.out.println(&quot;class &quot; + clazz + &quot; is contained in &quot; + clazz.getClasspathUnits());
+}</code></pre>
+<h3 id="finding-missing-classes">finding missing classes</h3>
+<pre><code>final Clazzpath cp = new Clazzpath();
+cp.addClazzpathUnit(jar1, &quot;jar1.jar&quot;);
+
+final Set&lt;Clazz&gt; missing = cp.getMissingClazzes();
+for(Clazz clazz : missing) {
+  System.out.println(&quot;class &quot; + clazz + &quot; is missing&quot;);
+}</code></pre>
+<h3 id="finding-unused-classes">finding unused classes</h3>
+<pre><code>final Clazzpath cp = new Clazzpath();
+final ClazzpathUnit artifact = cp.addClazzpathUnit(jar1, &quot;artifact.jar&quot;);</code></pre>
+</body>
+</html>

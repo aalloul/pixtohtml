@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yappo_p5-Data-Model1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="name">NAME</h1>
+<p>Data::Model - model interface which had more data sources unified, a.k.a data/object mapper</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>package Your::Model;
+use base &#39;Data::Model&#39;;
+use Data::Model::Schema;
+use Data::Model::Driver::DBI;
+
+
+my $dbfile = &#39;/foo/bar.db&#39;;
+my $driver = Data::Model::Driver::DBI-&gt;new(
+    dsn =&gt; &quot;dbi:SQLite:dbname=$dbfile&quot;,
+);
+base_driver( $driver );
+
+
+install_model user =&gt; schema {
+    key &#39;id&#39;;
+    columns qw/
+        id
+        name
+    /;
+};
+
+
+# create database file
+unless (-f $dbfile) {
+    my $dbh = DBI-&gt;connect($dsn, &#39;&#39;, &#39;&#39;, { RaiseError =&gt; 1, PrintError =&gt; 0 });
+    for my $sql (__PACKAGE__-&gt;as_sqls) {
+        $dbh-&gt;do( $sql );
+    }
+    $dbh-&gt;disconnect;
+}
+
+
+# in your script:
+use Your::Model;
+
+
+my $model = Your::Model-&gt;new;
+
+
+# insert
+my $row = $model-&gt;set(
+    user =&gt; {
+        id =&gt; 1,
+    }</code></pre>
+</body>
+</html>

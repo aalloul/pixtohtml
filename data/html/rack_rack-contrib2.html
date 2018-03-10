@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rack_rack-contrib2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>require ‘rack’ require ‘rack/contrib’</p>
+<p>use Rack::Profiler if ENV[‘RACK_ENV’] == ‘development’</p>
+<p>use Rack::ETag use Rack::MailExceptions</p>
+<p>run theapp ```</p>
+<h4 id="versioning">Versioning</h4>
+<p>This package is ; you should use a pessimistic version constraint (<code>~&gt;</code>) against the relevant <code>2.x</code> version of this gem.</p>
+<p>This version of <code>rack-contrib</code> is only compatible with <code>rack</code> 2.x. If you are using <code>rack</code> 1.x, you will need to use <code>rack-contrib</code> 1.x. A suitable pessimistic version constraint (<code>~&gt;</code>) is recommended.</p>
+<h3 id="testing">Testing</h3>
+<p>To contribute to the project, begin by cloning the repo and installing the necessary gems:</p>
+<pre><code>gem install json rack ruby-prof test-spec test-unit</code></pre>
+<p>To run the entire test suite, run</p>
+<pre><code>rake test</code></pre>
+<p>To run a specific component’s tests run</p>
+<pre><code>specrb -Ilib:test -w test/spec_rack_thecomponent.rb</code></pre>
+<p>This works on ruby 1.8.7 but has problems under ruby 1.9.x.</p>
+<p>TODO: instructions for 1.9.x and include bundler</p>
+<h3 id="criteria-for-inclusion">Criteria for inclusion</h3>
+<p>The criteria for middleware being included in this project are roughly as follows: * For patterns that are very common, provide a reference implementation so that other projects do not have to reinvent the wheel. * For patterns that are very useful or interesting, provide a well-done implementation. * The middleware fits in 1 code file and is relatively small. Currently all middleware in the project are &lt; 150 LOC. * The middleware doesn’t have any dependencies other than rack and the ruby standard library.</p>
+<p>These criteria were introduced several years after the start of the project, so some of the included middleware may not meet all of them. In particular, several middleware have external dependencies. It is possible that in some future release of rack-contrib, middleware with external depencies will be removed from the project.</p>
+<p>When submitting code keep the above criteria in mind and also see the code</p>
+</body>
+</html>

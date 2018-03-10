@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jquery-form_form1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jquery-form">jQuery Form</h1>
+<h2 id="overview">Overview</h2>
+<p>The jQuery Form Plugin allows you to easily and unobtrusively upgrade HTML forms to use AJAX. The main methods, ajaxForm and ajaxSubmit, gather information from the form element to determine how to manage the submit process. Both of these methods support numerous options which allows you to have full control over how the data is submitted.</p>
+<p>No special markup is needed, just a normal form. Submitting a form with AJAX doesn’t get any easier than this!</p>
+<h2 id="community">Community</h2>
+<p>Want to contribute to jQuery Form? Awesome! See <a href="CONTRIBUTING.md">CONTRIBUTING</a> for more information.</p>
+<h3 id="code-of-conduct">Code of Conduct</h3>
+<p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.md">Contributor Code of Conduct</a> to ensure that this project is a welcoming place for <strong>everyone</strong> to contribute to. By participating in this project you agree to abide by its terms.</p>
+<h2 id="requirements">Requirements</h2>
+<p>Requires jQuery 1.7.2 or later. Compatible with jQuery 2.x.x and 3.x.x.</p>
+<h2 id="download">Download</h2>
+<ul>
+<li><strong>Development:</strong> <a href="https://github.com/jquery-form/form/blob/master/src/jquery.form.js">src/jquery.form.js</a></li>
+<li><strong>Production/Minified:</strong> <a href="https://github.com/jquery-form/form/blob/master/dist/jquery.form.min.js">dist/jquery.form.min.js</a></li>
+</ul>
+<h3 id="cdn">CDN</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js&quot;</span><span class="ot"> integrity=</span><span class="st">&quot;sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i&quot;</span><span class="ot"> crossorigin=</span><span class="st">&quot;anonymous&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://cdn.jsdelivr.net/gh/jquery-form/form@4.2.2/dist/jquery.form.min.js&quot;</span><span class="ot"> integrity=</span><span class="st">&quot;sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i&quot;</span><span class="ot"> crossorigin=</span><span class="st">&quot;anonymous&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a></code></pre></div>
+<hr />
+<h2 id="api">API</h2>
+<h3 id="jqxhr">jqXHR</h3>
+<p>The jqXHR object is stored in element <em>data</em>-cache with the <code>jqxhr</code> key after each <code>ajaxSubmit</code> call. It can be accessed like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">var</span> form <span class="op">=</span> <span class="at">$</span>(<span class="st">&#39;#myForm&#39;</span>).<span class="at">ajaxSubmit</span>(<span class="op">{</span> <span class="co">/* options */</span> <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">var</span> xhr <span class="op">=</span> <span class="va">form</span>.<span class="at">data</span>(<span class="st">&#39;jqxhr&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="va">xhr</span>.<span class="at">done</span>(<span class="kw">function</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">...</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<h3 id="ajaxform-options">ajaxForm( options )</h3>
+<p>Prepares a form to be submitted via AJAX by adding all of the necessary event listeners. It does <strong>not</strong> submit the form. Use <code>ajaxForm</code> in your document’s <code>ready</code> function to prepare existing forms for AJAX submission, or with the <code>delegation</code> option to handle forms not yet added to the DOM.</p>
+</body>
+</html>

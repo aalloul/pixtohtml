@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_pacecar3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>User.first_name_present
+User.first_name_missing</code></pre>
+<p>Records ordered by first_name (default to ‘asc’, can specify to override):</p>
+<pre><code>User.by_first_name
+User.by_first_name(:asc)
+User.by_first_name(:desc)</code></pre>
+<p>Records where an attribute matches exactly a term:</p>
+<pre><code>User.first_name_equals(&#39;John&#39;)</code></pre>
+<h2 id="boolean-columns">Boolean columns</h2>
+<p>Records that are all admins or non-admins:</p>
+<pre><code>User.admin
+User.not_admin</code></pre>
+<h2 id="polymorphic-relationships">Polymorphic relationships</h2>
+<p>Records which have an owner_type of User:</p>
+<pre><code>Post.for_owner_type(User)</code></pre>
+<h2 id="state-columns">State columns</h2>
+<p>Records which are in a particular state, or not in a state:</p>
+<pre><code>Post.publication_state_draft
+Post.post_type_not_open</code></pre>
+<p>Query methods on instances to check state:</p>
+<pre><code>Post.first.publication_state_draft?
+Post.last.post_type_not_open?</code></pre>
+<h2 id="limits">Limits</h2>
+<p>First x records:</p>
+<pre><code>User.limited(10)</code></pre>
+<h2 id="named-scopes">Named scopes</h2>
+</body>
+</html>

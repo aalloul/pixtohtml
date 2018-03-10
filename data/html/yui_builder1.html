@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yui_builder1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="welcome-to-yui-builder">Welcome to YUI Builder</h1>
+<p>This repo has been deprecated in favor of .</p>
+<h2 id="introduction">Introduction</h2>
+<p>YUI uses ANT to create component build files from individual source files.</p>
+<p>Each component has its own ANT build file residing in the component’s source folder with an associated properties file used to define build parameters specific to the component e.g:</p>
+<p>yui2/src/autocomplete/build.xml yui2/src/autocomplete/build.properties</p>
+<p>The component build will automate the conversion from component source to <component>.js, <component>-min.js, <component>-debug.js by:</p>
+<ol type="a">
+<li>Concatenating individual source files</li>
+<li>Stripping logger statements</li>
+<li>Compressing files, using yuicompressor</li>
+<li>Running jslint on all 3 built files</li>
+<li>Adding boiler plate module/version registration code</li>
+<li>Building skin files from <component>-core.css, <component>-skin.css</li>
+<li>Deploying built JS, CSS and assets to <project>/build</li>
+</ol>
+<p>The same component build system is also used for CSS components such as reset, base, fonts and grids.</p>
+<p>The component build does not currently:</p>
+<ol type="a">
+<li>Check in any code</li>
+</ol>
+<p>The developer is responsible for checking modified source code into the <project>/src directory, and built code into the <project>/build directory, allowing them to review diffs, before committing changes.</p>
+<ol start="2" type="a">
+<li>Generate API documentation</li>
+</ol>
+<h2 id="installation">Installation</h2>
+<p>Below is a brief summary as well as a detailed step-by-step guide for installing the build system, allowing you to build the “src” component code.</p>
+<p>Summary</p>
+</body>
+</html>

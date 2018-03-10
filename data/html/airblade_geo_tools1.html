@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>airblade_geo_tools1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="geotools">GeoTools</h1>
+<h2 id="caveat">Caveat</h2>
+<p>This code is quite old. I wouldn’t do things this way now, but it’s in production and it works.</p>
+<h2 id="compatibility">Compatibility</h2>
+<p>Works on Ruby 1.8+ and 1.9+.</p>
+<p>Designed for Rails 2.3.</p>
+<h2 id="overview">Overview</h2>
+<p>You have lots of plugin choices if you want to geocode North American addresses, or find all the locations near somewhere. But few help you with forms and validation.</p>
+<p>This plugin does four things:</p>
+<ul>
+<li>Adds <code>latitude_field</code> and <code>longitude_field</code> form helpers to Rails’ default form builder.</li>
+<li>Lets your model acts_as_location, to work seamlessly with the form helpers.</li>
+<li>Validates the location data entered on the form and in the database.</li>
+<li>Gives you a <code>within</code> named scope to find all lcoations within a given bounding box, such as you would have on a Google map.</li>
+</ul>
+<h2 id="assumptions">Assumptions</h2>
+<ul>
+<li><p>Any model that acts_as_location has integers defined for each component of the latitude and longitude:</p>
+<pre><code>  # In your model&#39;s migration&#39;s self.up method:
+  create_table :thingies do |t|
+    # Your model&#39;s various fields.
+    t.string :name
+    t.timestamps
+    ...
+
+    # Stuff GeoTools needs:
+    t.integer :latitude_degrees,  :latitude_minutes,  :latitude_decimal_minutes, :latitude_decimal_minutes_width
+    t.string  :latitude_hemisphere
+    t.integer :longitude_degrees, :longitude_minutes, :longitude_decimal_minutes, :longitude_decimal_minutes_width
+    t.string  :longitude_hemisphere
+  end</code></pre>
+<p>Storing the components separately like this avoids the round-trip rounding errors you get when using floating point numbers. If you need a floating point representation in the database, for example to use a mapping plugin, simply add an after_update callback to your model to write the float value to the database.</p></li>
+<li><p>A latitude should be entered on a form like this:</p>
+<pre><code>  xx &lt;degree symbol&gt; yy &lt;decimal point&gt; zz h</code></pre></li>
+</ul>
+</body>
+</html>

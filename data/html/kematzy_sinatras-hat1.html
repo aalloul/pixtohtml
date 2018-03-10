@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kematzy_sinatras-hat1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sinatras-hat">Sinatra’s Hat</h1>
+<p>Easy REST-ful apps with Sinatra.</p>
+<p>Using Sinatra’s Hat is centered around the <code>mount</code> method, which is added to <code>Sinatra::Base</code>. It takes at bare minimum a model class. This class will be mounted as a REST-ful resource, giving you all the CRUD actions, as well as <code>new</code> and <code>edit</code> actions. Let’s look at some code:</p>
+<pre>
+mount Article
+</pre>
+<p>Now you’ve basically got the same functionality as you’ll get in Rails by running <code>script/generate scaffold Article</code>. The views for your <code>Article</code> will live in <code>views/articles</code>, and be named <code>index.erb</code>, <code>show.erb</code>, etc.</p>
+<p>You can look at my project, or the <code>examples/</code> directory in this one to see this in action.</p>
+<p>Go ahead, try it.</p>
+<h2 id="orm-agnostic-or-orm-atheist">ORM agnostic? Or ORM atheist?</h2>
+<p>By default, Sinatra’s Hat works with ActiveRecord. That means that going to <code>/articles</code> will simply call <code>Article.all</code> to populate the <code>@articles</code> instance variable. Going to <code>/articles/2</code> will call <code>Article.find_by_id(2)</code> to populate the <code>@article</code> instance variable.</p>
+<p>We call <code>find_by_id</code> instead of <code>find</code> because the <code>record</code> option should simply return <code>nil</code> when the record can’t be found.</p>
+<p>Not every class is an ActiveRecord though (especially if you’re not using ActiveRecord). That’s why you can use the <code>finder</code> and <code>record</code> options.</p>
+<p>This example will show you how to use DataMapper with Sinatra’s Hat:</p>
+<pre>
+mount Article do
+  finder { |model, params| model.all }
+  record { |model, params| model.first(:id => params[:id]) }
+end
+</pre>
+<p>As you can see, both <code>finder</code> and <code>record</code> take a block, which will get passed the “model” and <code>params</code> for each request. The reason you should use the “model” argument instead of referencing the class directly is that when you start nesting mounted models, then Sinatra’s Hat will attempt to pass the association proxy as the model argument instead of the class itself.</p>
+</body>
+</html>

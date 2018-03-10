@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>radiant_radiant-event-calendar-extension1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="event-calendar-extension-for-radiant">Event Calendar Extension for Radiant</h1>
+<p>This extension lets your radiant site present calendar events in various useful ways. The events can be administered directly or retrieved by subscription to ical and caldav services including Google Calendar, and can be served as RSS, Ical or JSON feeds as well as through a broad set of radius tags on your normal pages. This extension supports a wide range of uses from a single-tag display of forthcoming events through to a full calendar aggregation and mapping service.</p>
+<p>The calendaring functionality comes from and supports proper recurrence and duration. We also recognise all-day events and pass through notes and urls: the ical subscription and redistribution should be fully RFC2445 compliant. It is not yet a full CalDAV client, and we don’t have proper support for principals, groups or availability.</p>
+<p>See the for more fine-grained tagging and retrieval options. A <code>reader_events</code> extension is also in the works for public submission of calendar events.</p>
+<h2 id="requirements">Requirements</h2>
+<p>From v1.5 onward event_calendar is only compatible with Radiant 1 and should be installed as a gem. Its dependencies will be brought in automatically.</p>
+<pre><code>sudo gem install radiant-event_calendar-extension</code></pre>
+<p>and then in your radiant application’s Gemfile:</p>
+<pre><code>gem &quot;radiant-event_calendar-extension&quot;, &quot;~&gt;1.5.0&quot;</code></pre>
+<p>There is a 0.91 and 0.81 tags in the repository for the last versions good with those versions of radiant.</p>
+<p>This version includes some optional experiments in dashboard integration. If you’re using dashboard you need the spanner fork.</p>
+<h2 id="installation">Installation</h2>
+<p>Should be straightforward:</p>
+<pre><code>script/extension install event_calendar</code></pre>
+<p>or as a gem:</p>
+<pre><code>sudo gem install radiant-event_calendar-extension</code></pre>
+<p>with this in your environment.rb:</p>
+<pre><code>config.gem &#39;radiant-event_calendar-extension&#39;, :lib =&gt; false</code></pre>
+<h2 id="configuration">Configuration</h2>
+<p>There are a few optional config settings:</p>
+<ul>
+<li><code>event_calendar.path</code> is the stem of all EventsController addresses. It defaults to <code>/calendar</code>, which gives you addresses like <code>/calendar/2011/June</code>. You can change the stem to any value you like provided it is not also a page address.</li>
+<li><code>event_calendar.layout</code> is the name of the layout that EventsController will use (see below)</li>
+<li><code>event_calendar.icals_path</code> is the directory (under /public/) holding the calendar subscription files. Default is <code>icals</code>.</li>
+<li><code>event_calendar.refresh_interval</code> is the period, in seconds, after which the calendar subscriptions are refreshed. Default is one hour. Set to zero to refresh only in the admin interface.</li>
+<li><code>event_calendar.cached?</code> determines whether the EventsController pages are cached by Rack::Cache. EventCalendarPages are always cached like other pages.</li>
+<li><code>event_calendar.cache_duration</code> determines for how long.</li>
+</ul>
+<p>Each calendar subscription will have its own address and authentication settings.</p>
+<h2 id="usage">Usage</h2>
+</body>
+</html>

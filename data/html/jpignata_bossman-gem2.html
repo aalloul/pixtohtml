@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jpignata_bossman-gem2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>=&gt; Brooklyn Park Helps Homeless
+--------------------------------------------------------------------------------
+When people lose their homes, they often turn to shelters as a last resort. Now, the City of Broo...
+    </code></pre>
+<h3 id="images">Images</h3>
+<pre><code>boss = BOSSMan::Search.images(&quot;brooklyn dumbo&quot;, :dimensions =&gt; &quot;large&quot;)
+boss.results.map { |result| result.url }
+
+=&gt; [&quot;http://static.flickr.com/71/216529430_bf36a6c40b.jpg&quot;, &quot;http://static.flickr.com/3215/2771873360_7cf2d7e572.jpg&quot;, &quot;http://static.flickr.com/149/360481219_3ab59470cc.jpg&quot;, &quot;http://static.flickr.com/3136/2768629082_bc0dcb76a3.jpg&quot;, &quot;http://www.wirednewyork.com/brooklyn/dumbo/dumbo_brooklyn_bridge_3march02.jpg&quot;, &quot;http://www.wirednewyork.com/brooklyn/dumbo/dumbo_brooklyn_bridge_plymouth_4july03.jpg&quot;, &quot;http://static.flickr.com/3611/3538565901_f81eb52825.jpg&quot;, &quot;http://static.flickr.com/2145/3539377152_1fd629db12.jpg&quot;, &quot;http://static.flickr.com/2082/2340123052_fb8afe43b6.jpg&quot;, &quot;http://static.flickr.com/3617/3508763096_ec8c53c061.jpg&quot;]</code></pre>
+<h3 id="spelling">Spelling</h3>
+<pre><code>boss = BOSSMan::Search.spelling(&quot;Diabretes&quot;)
+boss.suggestion 
+
+=&gt; Diabetes</code></pre>
+<h3 id="boss-site-explorer">BOSS Site Explorer</h3>
+<h4 id="se_inlink-can-be-used-to-query-yahoo-for-sites-that-link-to-a-given-url">se_inlink can be used to query Yahoo for sites that link to a given URL:</h4>
+<pre><code>links = BOSSMan::Search.se_inlink(&quot;www.wnyc.com&quot;)
+  links.results.map { |result| result.url }
+  
+  =&gt; [&quot;http://www.wnyc.org/&quot;, &quot;http://www.onthemedia.org/&quot;, &quot;http://www.wnyc.org/shows/radiolab/&quot;, &quot;http://cityroom.blogs.nytimes.com/2008/01/22/actor-heath-ledger-is-found-dead&quot;, &quot;http://www.streetsblog.org/&quot;, &quot;http://cityroom.blogs.nytimes.com/&quot;, &quot;http://www.notmuch.com/&quot;, &quot;http://www.williams-syndrome.org/&quot;, &quot;http://www.manhattancc.org/&quot;, &quot;http://scienceblogs.com/grrlscientist/&quot;]</code></pre>
+<h4 id="se_pagedata-will-return-a-list-of-pages-underneath-a-given-subdomain">se_pagedata will return a list of pages underneath a given subdomain:</h4>
+<pre><code>pages = BOSSMan::Search.se_inlink(&quot;www.webmd.com&quot;)
+pages.results.map { |result| result.url }
+
+=&gt; [&quot;http://www.webmd.com/&quot;, &quot;http://www.webmd.com/allergies&quot;, &quot;http://www.webmd.com/a-to-z-guides/temporomandibular-disorders&quot;, &quot;http://www.webmd.com/oral-health/dental-crowns&quot;, &quot;http://www.webmd.com/oral-health/dental-health-bridges&quot;, &quot;http://www.webmd.com/oral-health/dental-implants&quot;, &quot;http://www.webmd.com/oral-health/guide/canker-sores&quot;, &quot;http://www.webmd.com/oral-health/guide/teeth-grinding-bruxism&quot;, &quot;http://www.webmd.com/oral-health/guide/gingivitis-periodontal-disease&quot;, &quot;http://www.webmd.com/oral-health/guide/plaque-and-your-teeth&quot;]</code></pre>
+<h2 id="output-properties">Output Properties</h2>
+<h3 id="common">Common</h3>
+<ul>
+<li>search.responsecode : HTTP response code</li>
+<li>search.nextpage : REST URL to next page of search results</li>
+<li>search.count : Number of search results contained in response</li>
+<li>search.start : Search result from which output starts</li>
+<li>search.totalhits : De-duplicated total number of results search yielded</li>
+<li>search.deephits : Total number of results search yielded</li>
+<li>search.results[].clickurl : Tracking URL of result; must be used in user-facing anchor tags by BOSS TOU</li>
+<li>search.results[].url : URL of result</li>
+<li>search.results[].title : Title of item</li>
+<li>search.results[].abstract : Description of item</li>
+</ul>
+<h3 id="web">Web</h3>
+</body>
+</html>

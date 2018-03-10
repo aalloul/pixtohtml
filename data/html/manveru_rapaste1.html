@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>manveru_rapaste1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rapaste">RaPaste</h1>
+<p>RaPaste is a fully featured web-pastebin, written in Ruby using the Ramaze web-framework.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Syntax highlighting using CodeRay or Ultraviolet</li>
+<li>Forking pastes, creating a new one based on an existing paste</li>
+<li>Easy configuration</li>
+<li>Use any database that Sequel supports.</li>
+<li>Show the paste with <code>Content-Type</code> of <code>text/html</code> or <code>text/plain</code></li>
+<li>Private pastes with ids based on hashing the contents of the paste</li>
+<li>Pastes may have an optional limit in size</li>
+<li>Spam protection without javascript or captchas</li>
+<li>Powerful bayesian filtering to support your quest against spam</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li>ramaze</li>
+<li>sequel</li>
+<li>uv or coderay</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code>gem install ramaze sequel coderay # or uv
+git clone git://github.com/manveru/rapaste.git
+cd rapaste
+$EDITOR env.rb
+ruby start.rb</code></pre>
+<p>{:sh}</p>
+<p>A gem will be provided when someone donates a rapaste.gemspec</p>
+<h2 id="configuration">Configuration</h2>
+<p>Configure by editing the <code>$rapaste</code> hash and value of <code>DB</code> constant in <code>env.rb</code></p>
+<p>Settings are:</p>
+<ul>
+<li>:engine May be either :uv or :coderay</li>
+<li>:fragment How many lines are visible in the list and search preview</li>
+<li>:pager How many pastes are listed per page in list and search</li>
+<li>:priority Array of Strings with the names of the syntaxes that should be on top of the dropdown</li>
+<li>:theme Theme to use for Ultraviolet</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cypher_thor1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="thor">Thor</h1>
+<h2 id="description">Description</h2>
+<p>Thor is a simple and efficient tool for building self-documenting command line utilities. It removes the pain of parsing command line options, writing “USAGE:” banners, and can also be used as an alternative to the build tool. The syntax is Rake-like, so it should be familiar to most Rake users.</p>
+<h2 id="installation">Installation</h2>
+<p>$ gem install thor</p>
+<p>or</p>
+<p>$ gem install wycats-thor -s http://gems.github.com</p>
+<h2 id="usage">Usage</h2>
+<p>Map options to a class. Simply create a class with the appropriate annotations and have options automatically map to functions and parameters.</p>
+<p>Example:</p>
+<pre><code>class App &lt; Thor                                                 # [1]
+  map &quot;-L&quot; =&gt; :list                                              # [2]
+  
+  desc &quot;install APP_NAME&quot;, &quot;install one of the available apps&quot;   # [3]
+  method_options :force =&gt; :boolean, :alias =&gt; :string           # [4]
+  def install(name)
+    user_alias = options[:alias]
+    if options.force?
+      # do something
+    end
+    # other code
+  end
+  
+  desc &quot;list [SEARCH]&quot;, &quot;list all of the available apps, limited by SEARCH&quot;
+  def list(search=&quot;&quot;)
+    # list everything
+  end
+end</code></pre>
+<p>Thor automatically maps commands as such:</p>
+<pre><code>thor app:install myname --force</code></pre>
+<p>That gets converted to:</p>
+<pre><code>App.new.install(&quot;myname&quot;)
+# with {&#39;force&#39; =&gt; true} as options hash</code></pre>
+<ol type="1">
+<li>Inherit from Thor to turn a class into an option mapper.</li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gabriel_as3httpclient1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="an-httphttps-client-library-for-actionscript-3.">An HTTP/HTTPS client library for Actionscript 3.</h1>
+<p>This is really old and unsupported!</p>
+<h2 id="building">Building</h2>
+<p>To build the swc:</p>
+<pre><code>compc -load-config=build-swc.xml</code></pre>
+<p>To build and run tests under airake:</p>
+<pre><code>rake
+rake test
+rake adl</code></pre>
+<p>For info on airake, which is used to build and test see:</p>
+<h2 id="info">Info</h2>
+<p>If anybody from Adobe is reading this: Please add outputProgress event to Socket. (This is the same behavior as outputProgress event in FileStream?) Otherwise it is impossible to determine the ouput progress on socket writes.. see for more info.</p>
+<p>Everyone else:</p>
+<p>In order to use flash.net.Socket in a Flash sandbox environment, you need to have a flash socket policy server. (AIR does not have this restriction.) Look at . To debug in the environment, I would use a standalone flash debug player with logging configured and you will see it attempt to connect to flash socket policy server at port 843. Because of this restriction, this library might be more suited for AIR apps. HTTPS doesn’t always work. There are some minor bugs with the as3crypto library, so for example https at yahoo and yahoo owned domains (like delicious) don’t currently work.</p>
+<h2 id="goals">Goals</h2>
+<p>The goals for this project are:</p>
+<ul>
+<li>Learn the HTTP protocol by trying to implement a client.</li>
+<li>Use AS3Crypto TLSSocket support for implementing HTTPS.</li>
+<li>Use it as a replacement for Flash’s URLRequest/URLStream API.</li>
+<li>Support the Flash and AIR runtimes.</li>
+</ul>
+<p>Working:</p>
+<ul>
+<li>GET, HEAD, PUT, POST, DELETE</li>
+<li>multipart/form-data (PUT and POST)</li>
+<li>HTTPS support using AS3Crypto TLS</li>
+<li>Post with application/x-www-form-urlencoded</li>
+<li>Reading chunked (Transfer-Encoding)</li>
+</ul>
+<p>Next to implement:</p>
+<ul>
+<li>The other http verbs</li>
+<li>Connection keep-alive</li>
+<li>gzip compression</li>
+<li>…</li>
+</ul>
+</body>
+</html>

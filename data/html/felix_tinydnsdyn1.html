@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>felix_tinydnsdyn1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="tinydnsdyn">TinyDNSDyn</h1>
+<p>This is a basic dynamic server for the djbdns DNS server ‘tinydns’ by Dan Bernstein. It enables a client to update its IP address via a simple HTTP based API.</p>
+<p>It should run on any Linux or BSD with Python installed.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Administrative access to a server running tinydns and hence daemontools or similar (such as runit in Void linux)</li>
+<li>Administrative access to a *nix box on you local network</li>
+<li>Python (version 2!) installed on both client and server</li>
+<li>An open port on the server’s firewall</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="server">Server</h3>
+<ol type="1">
+<li><p>Copy script and all files onto your server to the daemontools service directory (i.e. /etc/tinydnsdyn/)</p></li>
+<li><p>The supplied ‘run’ script is tailored for debian/ubuntu and may need to be changed.</p></li>
+<li><p>You can added dynamic DNS entries to your main data file or alternatively use a seperate file for dynamic entries. An existing entry in the tinydns data file should already exist. This script will NOT add one. Only those hosts listed with prefixes ‘+’ and ‘=’ are able to update their entries.</p>
+<p>For example:</p>
+<pre><code> +groucho.example.com:192.168.0.2:3360
+ +groucho.example.com:192.168.0.2
+ =groucho.example.com:192.168.0.2:60
+ +*.groucho.example.com:192.168.0.2:60
+ +*.groucho.example.com:192.168.0.2</code></pre>
+<p>will all get updated if the host groucho.example.com does a request.</p></li>
+<li><p>Create a password file. This is of the format created by Apache’s htpasswd and consists of one user per line in the following format:</p>
+<pre><code> &lt;username&gt;:&lt;crypted hash&gt;:&lt;optional list of domains&gt;</code></pre></li>
+<li><p>The script will run ‘make’ in the data directory. This enables you to concatenate your data files and whatever else before they are compiled. For instance, you may need to combine all your primary and seconary zones and then add the dynamic hosts before compiling.</p></li>
+</ol>
+</body>
+</html>

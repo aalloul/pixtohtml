@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sparklemotion_nokogiri3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>puts “### Search for nodes by xpath” doc.xpath(‘//nav//ul//li/a’, ‘//article//h2’).each do |link| puts link.content end</p>
+<p>puts “### Or mix and match.” doc.search(‘nav ul.menu li a’, ‘//article//h2’).each do |link| puts link.content end ```</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><p>Ruby 2.1.0 or higher, including any development packages necessary to compile native extensions.</p></li>
+<li><p>In Nokogiri 1.6.0 and later libxml2 and libxslt are bundled with the gem, but if you want to use the system versions:</p>
+<ul>
+<li><p>First, check out of fixes and changes between releases before deciding to use any version older than is bundled with Nokogiri.</p></li>
+<li><p>At install time, set the environment variable <code>NOKOGIRI_USE_SYSTEM_LIBRARIES</code> or else use the <code>--use-system-libraries</code> argument. (See http://nokogiri.org/tutorials/installing_nokogiri.html#using_your_system_libraries for specifics.)</p></li>
+<li><p>libxml2 &gt;=2.6.21 with iconv support (libxml2-dev/-devel is also required)</p></li>
+<li><p>libxslt, built with and supported by the given libxml2 (libxslt-dev/-devel is also required)</p></li>
+</ul></li>
+</ul>
+<h2 id="encoding">Encoding</h2>
+<p>Strings are always stored as UTF-8 internally. Methods that return text values will always return UTF-8 encoded strings. Methods that return a string containing markup (like <code>to_xml</code>, <code>to_html</code> and <code>inner_html</code>) will return a string encoded like the source document.</p>
+<p><strong>WARNING</strong></p>
+<p>Some documents declare one encoding, but actually use a different one. In these cases, which encoding should the parser choose?</p>
+</body>
+</html>

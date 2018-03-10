@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_jester5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&gt;&gt;&gt; Base.model(&quot;User&quot;, {format: &quot;json&quot;})
+&gt;&gt;&gt; eric = User.find(1)
+GET http://localhost:3000/users/1.json</code></pre>
+<p>The controller code for this is simple. I prefer using wants.json, not wants.js, leaving the “.js” extension available for RJS or whatever you want. This works out of the box, with no need to add a mime types. Here’s what I did:</p>
+<pre><code>def show
+  @user = User.find(params[:id])
+  respond_to do |wants|
+    wants.xml {render :xml =&gt; @user.to_xml(:include =&gt; :posts)}
+    wants.json {render :text =&gt; @user.to_json}
+  end
+end</code></pre>
+<p>Going to /users/1.json produces the following JSON:</p>
+<pre><code>{
+  attributes:
+  {
+    id: &quot;1&quot;,
+    bio: &quot;&quot;,
+    extra_flag: &quot;0&quot;,
+    middle_name: &quot;Rogers&quot;,
+    active: &quot;1&quot;,
+    created_at: &quot;2007-04-25 19:15:10&quot;,
+    email: &quot;yes&quot;
+  }
+}</code></pre>
+<p>Note that there isn’t any automatic typecasting going on here. The default XML output from an ActiveRecord::Base object includes attributes describing types, but the JSON output doesn’t. So, boolean flags will come back as the strings “1” and “0”. At the Jester level, I’ve made two auto-casting assumptions: the ID will be turned into an integer, and any fields named created_at/created_on/updated_at/updated_on will be turned into a Date.</p>
+<pre><code>&gt;&gt;&gt; eric = User.find(1)
+GET http://localhost:3000/users/1.json
+&gt;&gt;&gt; eric.id
+1
+&gt;&gt;&gt; eric.middle_name
+&quot;Rogers&quot;
+&gt;&gt;&gt; eric.active
+&quot;1&quot;
+&gt;&gt;&gt; eric.created_at
+Wed Apr 25 2007 15:15:10 GMT-0400 (Eastern Daylight Time)</code></pre>
+<p>As a companion feature, Jester supports passing JSON code through the X-JSON header, passing through the second “json” parameter to any callback you provide to an asynchronous Jester request. I’ll just show you.</p>
+<pre><code>&gt;&gt;&gt; var type;
+&gt;&gt;&gt; User.find(1, {}, function(eric, json) {type = json.active.type})
+GET http://localhost:3000/users/1.json
+XMLHttpRequest
+&gt;&gt;&gt; type</code></pre>
+</body>
+</html>

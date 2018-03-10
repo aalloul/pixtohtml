@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>elight_acts_as_commentable_with_threading1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="acts-as-commentable-now-with-comment-threadstm-kidding-on-the-tm">Acts As Commentable (now with comment threads(TM)!!! – kidding on the (TM))</h1>
+<p>Allows for threaded comments to be added to multiple and different models. Drop-in compatible for acts_as_commentable (however requiring a database schema change)</p>
+<h2 id="requirements">Requirements</h2>
+<p>The 2.x version of this gem is for Rails 4 and later versions only. For the Rails 3.x compatible version of this gem, please use version 1.2.0.</p>
+<p>This gem depends on CollectiveIdea’s Awesome Nested Set gem. It is installed if not already present when you install this gem.</p>
+<p>You can find the gem on GitHub at <a href="https://github.com/collectiveidea/awesome_nested_set">collectiveidea/awesome_nested_set</a></p>
+<h2 id="install">Install</h2>
+<p>In your Gemfile, add:</p>
+<pre><code>gem &#39;acts_as_commentable_with_threading&#39;</code></pre>
+<p>and run <code>bundle install</code>.</p>
+<h2 id="migrations">Migrations</h2>
+<ul>
+<li><p>To install from scratch:</p>
+<pre><code>  rails generate acts_as_commentable_with_threading_migration</code></pre>
+<p>This will generate the migration script necessary for the table</p></li>
+<li><p>To upgrade to acts_as_commentable_with_threading from the old acts_as_commentable:</p>
+<pre><code>  rails generate acts_as_commentable_upgrade_migration</code></pre>
+<p>This will generate the necessary migration to upgrade your comments table to work with acts_as_commentable_with_threading</p></li>
+</ul>
+<p>If the generators fail, you can just as easily create the migrations by hand. See the templates in the generators under <a href="https://github.com/elight/acts_as_commentable_with_threading/tree/master/lib/generators"><code>lib/generators</code></a>.</p>
+</body>
+</html>

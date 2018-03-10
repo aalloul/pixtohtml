@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>roodi_roodi3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>ClassNameCheck - Check that class names match convention.</li>
+<li>CyclomaticComplexityBlockCheck - Check that the cyclomatic complexity of all blocks is below the threshold.</li>
+<li>CyclomaticComplexityMethodCheck - Check that the cyclomatic complexity of all methods is below the threshold.</li>
+<li>EmptyRescueBodyCheck - Check that there are no empty rescue blocks.</li>
+<li>ForLoopCheck - Check that for loops aren’t used (Use Enumerable.each instead)</li>
+<li>MethodLineCountCheck - Check that the number of lines in a method is below the threshold.</li>
+<li>MethodNameCheck - Check that method names match convention.</li>
+<li>ModuleLineCountCheck - Check that the number of lines in a module is below the threshold.</li>
+<li>ModuleNameCheck - Check that module names match convention.</li>
+<li>ParameterNumberCheck - Check that the number of parameters on a method is below the threshold.</li>
+</ul>
+<h2 id="suggested-checks">Suggested Checks</h2>
+<ul>
+<li>BlockVariableShadowCheck - Check that a block variable does not have the same name as a method parameter or local variable. It may be mistakenly referenced within the block.</li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<h3 id="bug-reporting">Bug reporting</h3>
+<p>Please use the GitHub issue tracker.</p>
+<h3 id="want-to-submit-some-code">Want to submit some code?</h3>
+<p>Fantastic! Please follow this procedure: - Fork the repository - Create a well-named topic branch - Add specs for any changes you make - Write meaningful commit messages explaining why this change is needed - Create a pull request.</p>
+<h3 id="how-to-publish-a-new-version-maintainers-only">How to publish a new version (maintainers only)</h3>
+<ol type="1">
+<li>Bump the version in version.rb</li>
+<li><code>$ gem build roodi.gemspec</code></li>
+<li><code>$ gem push roodi-X.X.X.gem</code></li>
+</ol>
+<h2 id="license">License</h2>
+<p>(The MIT License)</p>
+<p>Copyright (c) 2015 Marty Andrews, Peter Evjan</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>herlambang_h2o-php8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>&lt;?php
+    $template = new h2o(&#39;homepage.tpl&#39;, array(&#39;cache&#39; =&gt; &#39;apc&#39;));
+?&gt;</code></pre>
+<h3 id="memcache">Memcache</h3>
+<p>currently not implemented</p>
+<h2 id="extending-h2o">Extending H2o</h2>
+<h2 id="known-issues">Known issues</h2>
+<p>Realistically these are very very rare cases, so don’t let it stop you getting your foot wet.</p>
+<ul>
+<li><code>{{ block.super }}</code> doesn’t work with very deep inheritance so if <code>{{ block.super }}</code> invokes another <code>{{ block.super }}</code> it won’t work just yet.<br />
+</li>
+<li>If conditions doesn’t support multiple expression or math yet, <code>{% if something &gt; 3 or something &lt; 2 %}</code> or <code>{% if something + else &gt; 12 %}</code> and i don’t think i plan to implement them that kind of force you to construct a better data api any way.</li>
+</ul>
+<h2 id="bug-report">Bug Report</h2>
+<p>Please submit patches or bug report at <a href="http://code.google.com/p/h2o-template/issues/list">Issue tracker on Google code</a></p>
+<h2 id="credit">Credit</h2>
+<p>There are concepts or ideas burrowed from following projects, Very early version of h2o was based on the code base of Ptemplates so thanks to Armin Ronacher.</p>
+<ul>
+<li>Django template - Django web development framework.</li>
+<li>Ptemplates - Armin Ronacher’s pet project for a django port in PHP.</li>
+<li>Jinja - Django inspired template in Python.</li>
+</ul>
+<h2 id="the-mit-license">The MIT License</h2>
+<p>Copyright (c) 2008 Taylor Luk</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal</p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yui_builder4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>prompt&gt; ant</code></pre>
+<p>This will run the default target, which is “local”.</p>
+<p>The “local” build target will build the autocomplete component from its source files, but will NOT deploy the built files to the top level build folder.</p>
+<p>The locally built files are stored in the temporary directory:</p>
+<pre><code>&lt;project&gt;/src/&lt;component&gt;/build_tmp</code></pre>
+<p>So, for autocomplete, the built files can be found in the directory below:</p>
+<pre><code>yui2/src/autocomplete/build_tmp</code></pre>
+<h2 id="build-output">Build Output</h2>
+<p>ANT will output build information to the screen, as it runs through the build, which can be redirected to a file if required:</p>
+<pre><code>prompt&gt; ant all
+
+    Buildfile: build.xml
+        [echo] Starting Build For autocomplete
+        ...
+        [echo]     builddir : ../../../builder/componentbuild
+        ...
+        ...
+    BUILD SUCCESSFUL
+    Total time: 7 seconds
+
+prompt&gt;</code></pre>
+<p>NOTE: Most components will have warnings which are output during the “minify” and “lint” steps, which the component developer has evaluated and determined to have no impact on functionality.</p>
+<h2 id="creating-build-files-for-a-new-component">Creating Build Files For A New Component</h2>
+<p>The builder/componentbuild/templates directory has basic build.xml and build.properties templates for the various component types supported.</p>
+<p>For most new components, you should be able to start with the appropriate template files and simply change the values of the basic properties defined to suit your component.</p>
+<p>If you’re creating:</p>
+</body>
+</html>

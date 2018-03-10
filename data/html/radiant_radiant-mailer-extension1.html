@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>radiant_radiant-mailer-extension1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mailer-extension-for-radiant">Mailer Extension for Radiant</h1>
+<p>The Mailer extension enables form mail on a page.</p>
+<h2 id="usage">Usage</h2>
+<p>You can define email templates using pages parts (email, and/or email_html). You configure the recipients and other Mailer settings in a “mailer” part:</p>
+<pre><code>subject: From the website of Whatever
+from: noreply@example.com
+redirect_to: /contact/thank-you
+recipients:
+  - one@one.com
+  - two@two.com</code></pre>
+<p>The following tags are available to help you build the form:</p>
+<pre><code>&lt;r:mailer:form name=&quot;&quot;&gt; ... &lt;/r:mailer:form&gt;
+&lt;r:mailer:text name=&quot;&quot; /&gt;
+&lt;r:mailer:password name=&quot;&quot; /&gt;
+&lt;r:mailer:reset name=&quot;&quot; /&gt;
+&lt;r:mailer:checkbox name=&quot;&quot; /&gt;
+&lt;r:mailer:radio name=&quot;&quot; /&gt;
+&lt;r:mailer:file name=&quot;&quot; /&gt;
+&lt;r:mailer:radiogroup name=&quot;&quot;&gt; ... &lt;/r:mailer:radiogroup&gt;
+&lt;r:mailer:select name=&quot;&quot;&gt; ... &lt;/r:mailer:select&gt;
+&lt;r:mailer:date_select name=&quot;&quot;/&gt;
+&lt;r:mailer:textarea name=&quot;&quot;&gt; ... &lt;/r:mailer:textarea&gt;
+&lt;r:mailer:option name=&quot;&quot; /&gt;
+&lt;r:mailer:submit name=&quot;&quot; /&gt;
+&lt;r:mailer:image name=&quot;&quot; /&gt;
+&lt;r:mailer:submit_placeholder /&gt;</code></pre>
+<p>When processing the form (in email and email_html), the following tags are available:</p>
+<pre><code>&lt;r:mailer:get name=&quot;&quot; /&gt;
+&lt;r:mailer:get_each name=&quot;&quot;&gt; ... &lt;/r:mailer:get_each&gt;
+  &lt;r:mailer:index /&gt;</code></pre>
+<p>Simple example of a form:</p>
+<pre><code>&lt;r:mailer:form&gt;
+ &lt;r:mailer:hidden name=&quot;subject&quot; value=&quot;Email from my Radiant site!&quot; /&gt; &lt;br/&gt;
+  Name:&lt;br/&gt;
+ &lt;r:mailer:text name=&quot;name&quot; /&gt; &lt;br/&gt;
+  Message:&lt;br/&gt;</code></pre>
+</body>
+</html>

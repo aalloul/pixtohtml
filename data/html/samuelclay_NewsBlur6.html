@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>samuelclay_NewsBlur6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="statistics">Statistics</h3>
+<p>To populate the statistics graphs on the homepage, use the <code>collect_stats</code> management command every few minutes:</p>
+<pre><code>./manage.py collect_stats</code></pre>
+<h3 id="bootstrapping-search">Bootstrapping Search</h3>
+<p>Once you have an elasticsearch server running, you’ll want to bootstrap it with feed and story indexes.</p>
+<pre><code>./manage.py index_feeds</code></pre>
+<p>Stories will be indexed automatically.</p>
+<p>If you need to move search servers and want to just delete everything in the search database, you need to reset the MUserSearch table.</p>
+<pre><code>&gt;&gt;&gt; from apps.search.models import MUserSearch
+&gt;&gt;&gt; MUserSearch.remove_all()</code></pre>
+<h3 id="running-unit-and-integration-tests">Running unit and integration tests</h3>
+<p>NewsBlur comes complete with a test suite that tests the functionality of the rss_feeds, reader, and feed importer. To run the test suite:</p>
+<pre><code>./manage.py test --settings=utils.test-settings</code></pre>
+<h2 id="in-case-of-downtime">In Case of Downtime</h2>
+<p>You got the downtime message either through email or SMS. This is the order of operations for determining what’s wrong.</p>
+<p>0a. If downtime goes over 5 minutes, go to Twitter and say you’re handling it. Be transparent about what it is, NewsBlur’s followers are largely technical. Also the 502 page points users to Twitter for status updates.</p>
+<p>0b. Ensure you have <code>secrets-newsblur/configs/hosts</code> installed in your <code>/etc/hosts</code> so server hostnames work.</p>
+<ol type="1">
+<li><p>Check www.newsblur.com to confirm it’s down.</p>
+<p>If you don’t get a 502 page, then NewsBlur isn’t even reachable and you just need to contact <a href="http://cloud.digitalocean.com/support">the hosting provider</a> and yell at them.</p></li>
+<li><p>Check and see if the answer is at the top of the list.</p>
+<p>This will show if a database (redis, mongo, postgres) can’t be found.</p></li>
+<li><p>Check which servers can’t be reached on HAProxy stats page. Basic auth can be found in secrets/configs/haproxy.conf.</p></li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cypher_thor5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  desc &quot;Prints the &#39;number&#39; given upto &#39;number+2&#39;&quot;
+  
+  def one
+    puts number + 0
+  end
+  
+  def two
+    puts number + 1
+  end
+  
+  def three
+    puts number + 2
+  end
+end</code></pre>
+<p>The counter above expects one parameter and has the folling outputs:</p>
+<pre><code>thor counter 5
+# Prints &quot;5 6 7&quot;
+
+thor counter 11
+# Prints &quot;11 12 13&quot;</code></pre>
+<p>You can also give options to Thor::Group, but instead of using <tt>method_option</tt> and <tt>method_options</tt>, you should use <tt>class_option</tt> and <tt>class_options</tt>. Both argument and class_options methods are available to Thor class as well.</p>
+<h2 id="actions">Actions</h2>
+<p>Thor comes with several actions which helps with script and generator tasks. You might be familiar with them since some came from Rails Templates. They are: <tt>say</tt>, <tt>ask</tt>, <tt>yes?</tt>, <tt>no?</tt>, <tt>add_file</tt>, <tt>remove_file</tt>, <tt>copy_file</tt>, <tt>template</tt>, <tt>directory</tt>, <tt>inside</tt>, <tt>run</tt>, <tt>inject_into_file</tt> and a couple more.</p>
+<p>To use them, you just need to include Thor::Actions in your Thor classes:</p>
+<pre><code>class App &lt; Thor
+  include Thor::Actions
+  # tasks
+end</code></pre>
+<p>Some actions like copy file requires that a class method called source_root is defined in your class. This is the directory where your templates should be placed. Be sure to check the documentation on .</p>
+<h2 id="generators">Generators</h2>
+<p>A great use for Thor is creating custom generators. Combining Thor::Group, Thor::Actions and ERB templates makes this very easy. Here is an example:</p>
+</body>
+</html>

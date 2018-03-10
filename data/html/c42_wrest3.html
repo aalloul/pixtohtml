@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>c42_wrest3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>         description: &#39;The Ruby related posts on my blog!&#39;,
+         extended: &quot;All posts tagged with &#39;ruby&#39;&quot;,
+         tags: &#39;ruby hacking&#39;
+      )
+```</code></pre>
+<ul>
+<li><p>Multipart posts</p>
+<pre><code>&#39;http://imgur.com/api/upload.xml&#39;.to_uri.post_multipart(
+ image: UploadIO.new(File.open(file_path), &quot;image/png&quot;, file_path),
+ key: imgur_key
+).deserialise</code></pre></li>
+</ul>
+<p>Note: To enable Multipart support, you’ll have to explicitly require ‘wrest/multipart’, which depends on the multipart-post gem.</p>
+<h4 id="delete">DELETE</h4>
+<p>To delete a resource:</p>
+<pre><code> &#39;https://api.del.icio.us/v1/posts/delete&#39;.to_uri(
+                                              username: &#39;kaiwren&#39;,
+                                              password: &#39;fupupp1es&#39;
+                                            ).delete(
+                                              url: &#39;http://c2.com&#39;
+                                            )</code></pre>
+<h3 id="caching">Caching</h3>
+<p>Wrest supports caching with the following pluggable back-ends: - Hash - Memcached - Redis</p>
+<h4 id="hash">Hash</h4>
+<p>Use the following method to enable caching for all requests, and set Hash as the default cache store. Note: Hash should NEVER be used in a production environment. It is unbounded and will keep increasing in size.</p>
+<pre><code>    Wrest::Caching.default_to_hash!
+    c42 = &#39;http://c42.in&#39;.to_uri.get</code></pre>
+<p>To use Hash as a cache store in an explicit request (without setting hash as default), use the following API:</p>
+</body>
+</html>

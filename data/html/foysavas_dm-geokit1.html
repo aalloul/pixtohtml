@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>foysavas_dm-geokit1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dm-geokit">dm-geokit</h1>
+<p>A mixin for Datamapper models that enables geographic functionality.</p>
+<ul>
+<li>Search for content via DataMapper-style query methods, e.g. Location.all(:address.near =&gt; {:origin =&gt; ‘Portland, OR’, :distance =&gt; 5.mi})</li>
+<li>Sort by distance easily: Location.all(:address.near =&gt; {:origin =&gt; ‘Portland, OR’, :distance =&gt; 5.mi}, :order =&gt; [:address_distance.desc])</li>
+<li>Ability to specify multiple fields that are geocodable (mostly)</li>
+</ul>
+<h1 id="usage">Usage</h1>
+<p>Basic Class Definition:</p>
+<pre><code>class Location
+  include DataMapper::Resource
+  include DataMapper::GeoKit
+  property :id, Serial
+  has_geographic_location :address
+end</code></pre>
+<p>This will automatically generate fields and methods for use with the DM Object, prefixed with the field name specified. Since the above example used the field :address, the following fields would be generated:</p>
+<ul>
+<li>address_street_address</li>
+<li>address_city</li>
+<li>address_state</li>
+<li>address_zip</li>
+<li>address_country_code</li>
+<li>address_full_address</li>
+<li>address_lat</li>
+<li>address_lng</li>
+</ul>
+<p>You can either reference those fields directly, or use the proxy object returned by calling .address on your object:</p>
+<pre><code>l = Location.all(:address.near =&gt; {:origin =&gt; &#39;Portland, OR&#39;, :distance =&gt; 5.mi})
+
+l.each do |loc|
+  puts loc.address # .to_s yields string representation of full address, e.g. &quot;12345 My St. Portland, OR USA&quot;
+  puts loc.address.inspect # the proxy object, GeographicLocation, with matching methods for each property
+  puts loc.address.street_address # getting the street_address from the proxy object
+  puts loc.address_street_address # directly access the SQL column
+end</code></pre>
+<p>The GeographicLocation proxy object is a convenience to allow you to compare and sort results in Ruby.</p>
+<h1 id="requirements">Requirements</h1>
+<ul>
+<li>geokit &gt;= 1.5.0</li>
+<li>dm-core &gt;= 1.0.2</li>
+<li>dm-aggregates &gt;= 1.0.2</li>
+</ul>
+</body>
+</html>

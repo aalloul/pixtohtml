@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>purcell_mockr1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mockr">Mockr</h1>
+<p>Mockr is a pure Ruby library to support the Mock Objects approach to unit testing, and is inspired by Java’s JMock.</p>
+<p>Several other Mock Object libraries exist for Ruby. In addition to its unusually natural syntax for setting expectations, Mockr has two main distinguishing features:</p>
+<ol type="1">
+<li>Support for the distinction between mocking and stubbing</li>
+<li>A constraint-based mechanism for matching call parameters</li>
+</ol>
+<p>MockR was initially presented by author Steve Purcell at the 2005 European Ruby Conference, and was written entirely test-first.</p>
+<p>For more information or to contact the author, see https://github.com/mockr</p>
+<h2 id="introduction">Introduction</h2>
+<p>An instance of <code>Mockr::Mock</code> can be programmed with responses to methods calls expected during the course of a unit test. At the end of the test, the instance can verify whether its expectations were met, signalling a test failure if they were not.</p>
+<p>Mocks distinguish between ‘expected’ method calls, which trigger test failures if they are not made, and ‘stub’ method calls, which are not verified. ‘Expected’ calls are typically those considered critical to the proper use of the mocked class, and ‘stub’ calls are those considered more flexible in their use.</p>
+<h2 id="example">Example</h2>
+<p>The following is an example of a set of tests written entirely using MockR</p>
+<p>```ruby require ‘test/unit’ require ‘mockr’</p>
+<p>class BurglarAlarmTest &lt; Test::Unit::TestCase include Mockr::TestCaseHelpers</p>
+<p>def setup <span class="citation" data-cites="laser_grid">@laser_grid</span>, <span class="citation" data-cites="police_link">@police_link</span> = new_mock, new_mock <span class="citation" data-cites="alarm">@alarm</span> = BurglarAlarm.new(<span class="citation" data-cites="laser_grid.proxy">@laser_grid.proxy</span>, <span class="citation" data-cites="police_link.proxy">@police_link.proxy</span>) end</p>
+<p>def test_police_station_not_contacted_if_grid_okay <span class="citation" data-cites="laser_grid.expects.intact">@laser_grid.expects.intact</span>?.as { true }</p>
+</body>
+</html>

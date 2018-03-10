@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cannikin_validator2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>When you want some fancier validations you’ll start adding some Javascript. The basic format is:</p>
+<ol type="1">
+<li>Let the Validator know which field to validate</li>
+<li>Tell it how to determine the field’s validity</li>
+<li>(optional) What to tell the user when the result is valid or invalid (the Validator will include a default invalid message if you don’t specify your own)</li>
+</ol>
+<p>There are several other options that go along with #3, but we’ll get into those later.</p>
+<p>First, a basic example:</p>
+<script type="text/javascript">
+    var v = new Validator('my_form');
+    v.addField('first_name','notBlank');
+  </script>
+<p>We call the Validator’s addField() method to add a field to the Validator. The first parameter is the id of the field and the second is how to validate it.</p>
+<p>There are a few built-in validations, which you call by name – in this case “notBlank.” (This is the same validation that’s used if you add a class=“required” to your form field.) You can also pass an anonymous function as the second parameter. This is where the real power of the Validator comes through, as this function can be whatever you want. If the function returns true, the field is valid. If it returns false, the field is invalid. Simple as that.</p>
+<p>Here’s the same validation using an anonymous function:</p>
+<script type="text/javascript">
+    var v = new Validator('my_form');
+    v.addField('first_name', function(v) { return v == '' ? false : true });
+  </script>
+<p>The anonymous function will be invoked with the value of the field specified in the first parameter to addField() (in this case, whatever is in the ‘first_name’ textbox). In this example the function puts the value of the field into ‘v’ and then checks if v is an empty string. If it is, return false because the field is invalid. Otherwise return true. This is also the function that ‘notBlank’ runs behind the scenes.</p>
+<p>A slightly more complex example:</p>
+<script type="text/javascript">
+<p>var v = new Validator(‘my_form’); v.addField( ‘phone_number’, function(v) { if (v.match(/--/)) {</p>
+</body>
+</html>

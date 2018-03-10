@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gma_nesta1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="nesta---a-cms-for-ruby-developers">Nesta - a CMS for Ruby Developers</h1>
+<p>A CMS for small web sites and blogs, written in <a href="http://www.sinatrarb.com/" title="Sinatra">Sinatra</a>.</p>
+<p>Content can be written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> or <a href="http://textism.com/tools/textile/">Textile</a> and stored in text files (though you can also use Haml if you need to add some HTML to your pages). There’s no database; write your content in your editor. Publish by pushing to a git repository.</p>
+<h2 id="installation">Installation</h2>
+<p>Begin by installing the gem:</p>
+<pre><code>$ gem install nesta</code></pre>
+<p>Then use the <code>nesta</code> command to generate a new site:</p>
+<pre><code>$ nesta new mysite.com --git</code></pre>
+<p>Install a few dependencies, and you’re away:</p>
+<pre><code>$ cd mysite.com
+$ bundle</code></pre>
+<p>You’ll find basic configuration options for your site in <code>config/config.yml</code>. The defaults will work, but you’ll want to tweak it before you go very far.</p>
+<p>That’s it - you can launch a local web server in development mode using mr-sparkle…</p>
+<pre><code>$ bundle exec mr-sparkle config.ru</code></pre>
+<p>…then point your web browser at http://localhost:8080. Start editing the files in <code>content/pages</code> (see the <a href="http://nestacms.com/docs/creating-content">docs on writing content</a> for full instructions).</p>
+<h2 id="support">Support</h2>
+<p>There’s plenty of information on <a href="http://nestacms.com" class="uri">http://nestacms.com</a>. If you need some help with anything just jump on the <a href="http://nestacms.com/support">mailing list</a> and ask.</p>
+</body>
+</html>

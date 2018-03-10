@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>darkk_redsocks1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="redsocks-transparent-tcp-to-proxy-redirector">redsocks – transparent TCP-to-proxy redirector</h1>
+<p>This tool allows you to redirect any TCP connection to SOCKS or HTTPS proxy using your firewall, so redirection may be system-wide or network-wide.</p>
+<p>When is resocks useful?</p>
+<ul>
+<li>you want to route part of TCP traffic via OpenSSH <code>DynamicForward</code> Socks5 port using firewall policies. That was original redsocks development goal;</li>
+<li>you use DVB ISP and this ISP provides internet connectivity with some special daemon that may be also called “Internet accelerator” and the accelerator acts as a proxy and has no “transparent proxy” feature and you need it. was an example of alike accelerator, but Globax 5 has transparent proxy feature. That was the second redsocks` development goal;</li>
+<li>you have to pass traffic through proxy due to corporate network limitation. That was never a goal for redsocks, but users have reported success with some proxy configurations.</li>
+</ul>
+<p>When is redsocks probably a wrong tool?</p>
+<ul>
+<li>redirecting traffic to . First, you <strong>have</strong> to . Second, if you don’t actually need anonymity. Third, question everything :-)</li>
+<li>trying to redirect traffic of significant number of connections over single SSH connection. That’s not exactly , but will still happen and performance of real-time applications (IM, interactive Web applications) may be degraded during bulk transfers;</li>
+<li>trying to make non-transparent HTTP-proxy (not HTTPS-proxy) transparent using <code>http-relay</code> module. First, it will likely be broken as the code is hack. Second, the code is vulnerable to <code>CVE-2009-0801</code> and will unlikely be ever fixed;</li>
+<li>making “really” transparent proxy, redsocks acts at TCP level, so three-way handshake is completed and redsocks accepts connection before connection through proxy (and <em>to</em> proxy) is established;</li>
+<li>trying to redirect traffic of significant number of connections in resource-constrained environment like SOHO Linux router. Throughput of single connection may be good enough like 40 Mbit/s on , but amount of concurrent connections may be limiting factor as TCP buffers are still consumed;</li>
+<li>redirecting traffic to proxy on mobile device running Android or iOS as it’ll require to update firewall rules. Probably, the better way is to use on-device VPN daemon to intercept traffic via and . That may require some code doing like .</li>
+</ul>
+</body>
+</html>

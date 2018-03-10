@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandastream_panda_gem8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>profile = Panda::Profile.find(&quot;6789&quot;)
+profile.delete
+=&gt; true</code></pre>
+<h5 id="all-encoding-of-a-profile">All encoding of a profile</h5>
+<pre><code>profile = Panda::Profile.find(&quot;6789&quot;)
+profile.encodings
+=&gt; [...]
+
+profile.encodings.status(&quot;success&quot;)
+or
+profile.encodings.all(:status =&gt; &quot;success&quot;)
+=&gt; [...]</code></pre>
+<h3 id="clouds">Clouds</h3>
+<h4 id="find-a-cloud">Find a cloud</h4>
+<pre><code>cloud = Panda::Cloud.find(234324)
+cloud.id
+=&gt; 234324</code></pre>
+<h5 id="find-all-clouds">Find all clouds</h5>
+<pre><code>clouds = Panda::Cloud.all
+clouds.size
+=&gt; 2</code></pre>
+<h5 id="create-a-cloud">Create a cloud</h5>
+<pre><code>cloud = Panda::Cloud.create :aws_access_key =&gt; &#39;mys3key&#39;, :aws_secret_key =&gt; &#39;mys3secret&#39;, :s3_videos_bucket =&gt; &#39;myexistingbucket&#39;
+cloud.id
+=&gt; 1234</code></pre>
+<h3 id="using-multiple-clouds">Using multiple clouds</h3>
+<p>By default Cloud.id uses options defined with: Panda.configure do .. end</p>
+<pre><code>cloud_one = Panda::Cloud.find(&quot;cloud_id_1&quot;)
+cloud_two = Panda::Cloud.find(&quot;cloud_id_2&quot;)
+
+cloud_one.profiles
+cloud_two.profiles.find(&quot;profile_id&quot;)
+
+cloud_two.videos
+cloud_two.videos.status(&quot;success&quot;)
+cloud_two.videos.all(:status =&gt; &quot;success&quot;)
+cloud_two.videos.all(:page =&gt; 2)</code></pre>
+</body>
+</html>

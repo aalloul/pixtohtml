@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra40</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<dt>
+last_modified
+</dt>
+<pre><code>&lt;dd&gt;Value for Last-Modified header, defaults to the file&#39;s mtime.&lt;/dd&gt;</code></pre>
+<dt>
+type
+</dt>
+<pre><code>&lt;dd&gt;Value for Content-Type header, guessed from the file extension if
+missing.&lt;/dd&gt;</code></pre>
+<dt>
+disposition
+</dt>
+<pre><code>&lt;dd&gt;
+  Value for Content-Disposition header, possible values: &lt;tt&gt;nil&lt;/tt&gt;
+  (default), &lt;tt&gt;:attachment&lt;/tt&gt; and &lt;tt&gt;:inline&lt;/tt&gt;
+&lt;/dd&gt;</code></pre>
+<dt>
+length
+</dt>
+<pre><code>&lt;dd&gt;Value for Content-Length header, defaults to file size.&lt;/dd&gt;</code></pre>
+<dt>
+status
+</dt>
+<pre><code>&lt;dd&gt;
+  Status code to be sent. Useful when sending a static file as an error
+  page. If supported by the Rack handler, other means than streaming
+  from the Ruby process will be used. If you use this helper method,
+  Sinatra will automatically handle range requests.
+&lt;/dd&gt;</code></pre>
+</dl>
+<h3 id="accessing-the-request-object">Accessing the Request Object</h3>
+<p>The incoming request object can be accessed from request level (filter, routes, error handlers) through the <code>request</code> method:</p>
+<p>```ruby # app running on http://example.com/example get ‘/foo’ do t = %w[text/css text/html application/javascript] request.accept # [‘text/html’, ‘<em>/</em>’] request.accept? ‘text/xml’ # true request.preferred_type(t) # ‘text/html’ request.body # request body sent by the client (see below) request.scheme # “http” request.script_name # “/example” request.path_info # “/foo” request.port # 80 request.request_method # “GET” request.query_string # “” request.content_length # length of request.body request.media_type # media type of request.body request.host # “example.com” request.get? # true (similar methods for other verbs) request.form_data? # false request[“some_param”] # value of some_param parameter. [] is a shortcut to the params hash.</p>
+</body>
+</html>

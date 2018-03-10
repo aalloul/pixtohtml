@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>adamjmurray_cosy2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Currently there are three main use cases for Cosy:</p>
+<ul>
+<li>Live playback of a MIDI sequence</li>
+<li>Generating MIDI files</li>
+<li>Running Cosy inside Max/MSP</li>
+</ul>
+<p>An executable is provided to live playback and generation of MIDI files:</p>
+<pre><code>bin/cosy</code></pre>
+<p>Run this script with no arguments for usage instructions. Some example input files are provided in the examples folder.</p>
+<p>To run things inside Max/MSP you need the latest version of my ajm.ruby object which I have not released yet. Check back soon.</p>
+<h2 id="documentation">Documentation</h2>
+<p>The closest thing to documentation right now is the online preview at:</p>
+<p><a href="http://compusition.com/web/software/cosy/online" class="uri">http://compusition.com/web/software/cosy/online</a></p>
+<h1 id="future">Future</h1>
+<p>TODOs:</p>
+<ul>
+<li>Methods for transposition, inversion, retrograde, inverting chords, etc</li>
+<li>Allow chains to be formed across scopes. For example, support:<br/> $melody=e:q d c:h; $melody:mp</li>
+<li>When chaining, I don’t always want the pitch to advance when the rhythm advances (especially when rests are involved). Introduce ^ as the mechanism for indicating that a chain should not advance (c d e):(^h. -q)</li>
+<li>Documentation! And more examples.</li>
+<li>Release updated version of ajm.ruby and the Cosy Max/MSP object</li>
+<li>a clean API for manipulating the sequencing tree on-the-fly as the sequencer is running (interactive control as well as self-modifying sequences)</li>
+<li>arpeggiators</li>
+<li>pitches from summed intervals across independent parallel sequences a la Numerology</li>
+<li>new node traversal behaviors, for example loops that go up/down instead of starting over when the last note is reached</li>
+</ul>
+<p>I am considering making renderers for csound and lilypond at some point.</p>
+<p>I’d like to explore using Cosy to sequence animations with Jitter and Processing.</p>
+</body>
+</html>

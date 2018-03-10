@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aasm_aasm25</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>expect(multiple).to allow_event(:walk).on(:move) expect(multiple).to_not allow_event(:hold).on(:move) expect(multiple).to allow_transition_to(:walking).on(:move) expect(multiple).to_not allow_transition_to(:running).on(:move) expect(multiple).to transition_from(:sleeping).to(:processing).on_event(:start).on(:work) expect(multiple).to_not transition_from(:sleeping).to(:sleeping).on_event(:start).on(:work) expect(multiple).to have_state(:sleeping).on(:work) expect(multiple).not_to have_state(:processing).on(:work) expect(multiple).to allow_event(:start).on(:move) expect(multiple).to_not allow_event(:stop).on(:move) expect(multiple).to allow_transition_to(:processing).on(:move) expect(multiple).to_not allow_transition_to(:sleeping).on(:move) # allow_event also accepts arguments expect(job).to allow_event(:run).with(:defragmentation)</p>
+<p>```</p>
+<h4 id="minitest">Minitest</h4>
+<p>AASM provides assertions and rspec-like expectations for .</p>
+<h5 id="assertions">Assertions</h5>
+<p>List of supported assertions: <code>assert_have_state</code>, <code>refute_have_state</code>, <code>assert_transitions_from</code>, <code>refute_transitions_from</code>, <code>assert_event_allowed</code>, <code>refute_event_allowed</code>, <code>assert_transition_to_allowed</code>, <code>refute_transition_to_allowed</code>.</p>
+<p>Add <code>require 'aasm/minitest' to your</code>test_helper.rb` file and use them like this:</p>
+<p>```ruby # classes with only the default state machine job = Job.new assert_transitions_from job, :sleeping, to: :running, on_event: :run refute_transitions_from job, :sleeping, to: :cleaning, on_event: :run assert_have_state job, :sleeping refute_have_state job, :running assert_event_allowed job, :run refute_event_allowed job, :clean assert_transition_to_allowed job, :running refute_transition_to_allowed job, :cleaning # on_event also accept arguments assert_transitions_from job, :sleeping, :defragmentation, to: :running, on_event: :run</p>
+<h1 id="classes-with-multiple-state-machine">classes with multiple state machine</h1>
+<p>multiple = SimpleMultipleExample.new assert_transitions_from multiple, :standing, to: :walking, on_event: :walk, on: :move refute_transitions_from multiple, :standing, to: :running, on_event: :walk, on: :move assert_have_state multiple, :standing, on: :move refute_have_state multiple, :walking, on: :move assert_event_allowed multiple, :walk, on: :move refute_event_allowed multiple, :hold, on: :move assert_transition_to_allowed multiple, :walking, on: :move</p>
+</body>
+</html>

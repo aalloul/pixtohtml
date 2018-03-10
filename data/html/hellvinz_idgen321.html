@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>hellvinz_idgen321</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="idgen32">Idgen32</h1>
+<p>Idgen32 functions provide a facility to generate a stream of 32-bit numbers that are strongly unpredictable and have a repetition cycle close to 2^32. Such numbers are useful as protocol identifiers where there are negative consequences to reusing an ID within a short time period, as may happen if they are simply assigned at random.</p>
+<p>Note that this function will never return 0 as it often has a special meaning in network protocols.</p>
+<h2 id="dependencies">DEPENDENCIES</h2>
+<p>Require a compiler and the standard C library. arc4random on linux is needed (provided via libbsd-dev on ubuntu/debian)</p>
+<p>If you want to run the tests you’ll need to have the following dependencies installed:</p>
+<ul>
+<li>minitest</li>
+</ul>
+<h2 id="usage">USAGE</h2>
+<pre><code>require &#39;idgen32&#39;
+
+Idgen32.instance.generate</code></pre>
+<h2 id="license">LICENSE:</h2>
+<p>Copyright (c) 2008 Vincent Hellot</p>
+<p>Parts of the C extension are borrowed from the OpenBsd project. crypto/idgen.h crypto/idgen.c</p>
+<p>Copyright (c) 2008 Damien Miller <a href="mailto:djm@mindrot.org">djm@mindrot.org</a></p>
+<p>Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p>
+</body>
+</html>

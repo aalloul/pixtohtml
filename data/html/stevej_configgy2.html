@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevej_configgy2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>This is all you need to know to use the library:</p>
+<pre><code>import net.lag.configgy.Configgy
+import net.lag.logging.Logger
+
+// load our config file and configure logfiles:
+Configgy.configure(&quot;/etc/pingd.conf&quot;)
+
+// read hostname and port:
+val config = Configgy.config
+val hostname = config.get(&quot;hostname&quot;, &quot;localhost&quot;)
+val port = config.getInt(&quot;port&quot;, 3000)
+
+// log an error:
+val log = Logger.get
+log.error(&quot;Unable to listen on %s:%d!&quot;, hostname, port)
+
+// or an exception:
+try {
+    ...
+} catch {
+    case e: IOException =&gt; log.error(e, &quot;IOException while doodling&quot;)
+}</code></pre>
+<p>The following config file will setup a logfile at debug level, that rolls every night, and also sets a few simple config values:</p>
+<pre><code>&lt;log&gt;
+    filename = &quot;/var/log/pingd.log&quot;
+    roll = &quot;daily&quot;
+    level = &quot;debug&quot;
+&lt;/log&gt;
+
+hostname = &quot;pingd.example.com&quot;
+port = 3000</code></pre>
+<p>The rest of this README just describes the config file format, the logging options, and how to use the library in more detail.</p>
+<h2 id="basic-use">Basic Use</h2>
+<h3 id="config-files">Config Files</h3>
+<p>The config file format is simple and clean. It borrows from XML, but isn’t XML. It has a few advanced features, but limits itself to representing a nested structure of key/value pairs. It is always in UTF-8. Key names are always case-insensitive.</p>
+<p>Values are set like so:</p>
+</body>
+</html>

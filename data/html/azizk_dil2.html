@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>azizk_dil2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li></li>
+<li></li>
+<li>(older versions might work, too.)</li>
+</ul>
+<p>Newer versions of these tools may not compile DIL. The newest version of DMD or Tango is not always used, because of regressions or unavoidable bugs.</p>
+<h2 id="compile-with-python">Compile With Python</h2>
+<p>Note: The binary is placed in the bin/ folder.</p>
+<p>Change to the root directory of DIL. E.g.:</p>
+<pre><code>$ cd git/dil/</code></pre>
+<p>Print help.</p>
+<pre><code>$ scripts/build.py -h</code></pre>
+<p>Compile a release binary.</p>
+<pre><code>$ scripts/build.py</code></pre>
+<p>Compile a debug binary.</p>
+<pre><code>$ scripts/build.py --debug</code></pre>
+<p>Pass additional parameters to the compiler like this:</p>
+<pre><code>$ scripts/build.py -- -L-L/path/to/Tango/lib -L-ltango-dmd</code></pre>
+<p>On Windows you probably have to call python explicitly.</p>
+<pre><code>&gt; python scripts\build.py</code></pre>
+<p>Run like this:</p>
+<ul>
+<li><p>On Linux:</p>
+<pre><code>$ bin/dil</code></pre></li>
+<li><p>On Windows:</p>
+<pre><code>&gt; bin\dil.exe</code></pre></li>
+</ul>
+<p>Executing DIL without parameters will print the main help message.</p>
+<p>The language of the compiler messages can be set in the configuration file.</p>
+</body>
+</html>

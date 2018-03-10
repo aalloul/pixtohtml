@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>git-cola_git-cola6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Once these are installed you can run <em>git cola</em> from the Start menu or by double-clicking on the <code>git-cola.pyw</code> script.</p>
+<p>If you are developing <em>git cola</em> on Windows you can use <code>python.exe</code> to run directly from the source tree. For example, from a Git Bash terminal:</p>
+<pre><code>/c/Python34/python.exe ./bin/git-cola</code></pre>
+<p>See “WINDOWS (continued)” below for more details.</p>
+<h1 id="goodies">GOODIES</h1>
+<p><em>git-cola</em> ships with an interactive rebase editor called <em>git-xbase</em>. <em>git-xbase</em> can be used to reorder and choose commits and is typically launched through the <em>git-cola</em>’s “Rebase” menu.</p>
+<p><em>git-xbase</em> can also be launched independently of the main <em>git-cola</em> interface by telling <code>git rebase</code> to use it as its editor:</p>
+<pre><code>env GIT_SEQUENCE_EDITOR=&quot;$PWD/share/git-cola/bin/git-xbase&quot; \
+git rebase -i origin/master</code></pre>
+<p>The quickest way to launch <em>git-xbase</em> is via the <em>git cola rebase</em> sub-command (as well as various other sub-commands):</p>
+<pre><code>git cola rebase origin/master</code></pre>
+<h1 id="command-line-tools">COMMAND-LINE TOOLS</h1>
+<p>The <em>git-cola</em> command exposes various sub-commands that allow you to quickly launch tools that are available from within the <em>git-cola</em> interface. For example, <code>./bin/git-cola find</code> launches the file finder, and <code>./bin/git-cola grep</code> launches the grep tool.</p>
+<p>See <code>git cola --help-commands</code> for the full list of commands.</p>
+<pre><code>$ git cola --help-commands
+usage: git-cola [-h]
+
+                {cola,am,archive,branch,browse,classic,config,
+                 dag,diff,fetch,find,grep,merge,pull,push,
+                 rebase,remote,search,stash,tag,version}
+                ...
+
+valid commands:
+  {cola,am,archive,branch,browse,classic,config,
+   dag,diff,fetch,find,grep,merge,pull,push,
+   rebase,remote,search,stash,tag,version}
+
+    cola                start git-cola</code></pre>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>georgi_patroon2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The javascript to actually execute this template looks like this:</p>
+<pre><code>// The comments template will be removed from the DOM!
+var template = new Template(&#39;comments-template&#39;);
+
+// Expand the template into the comments section
+$(&#39;.comments&#39;).expand(template, data);</code></pre>
+<p>If you don’t want to use jQuery, please look at the end of this article.</p>
+<h3 id="output">Output</h3>
+<p>The given example renders following output:</p>
+<pre><code>    &lt;div class=&quot;comments&quot;&gt;  
+      &lt;div id=&quot;comments-template&quot;&gt;
+        &lt;div class=&quot;comment&quot;&gt;
+          &lt;div class=&quot;top&quot;&gt;
+            &lt;a href=&quot;http://backham.com&quot;&gt;David Beckham&lt;/a&gt; said
+            &lt;a title=&quot;2008-09-07 12:28:33&quot;&gt;2 hours ago&lt;/a&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;text&quot;&gt;
+            I watched the euro finals on tv...
+          &lt;/div&gt;
+        &lt;/div&gt;   
+        &lt;div class=&quot;comment&quot;&gt;
+          &lt;div class=&quot;top&quot;&gt;
+            Tuncay said
+            &lt;a title=&quot;2008-09-07 14:28:33&quot;&gt;1 minute ago&lt;/a&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;text&quot;&gt;
+            Me too
+          &lt;/div&gt;
+        &lt;/div&gt;   
+      &lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+<h3 id="basic-rules">Basic Rules</h3>
+<p>There are 3 basic rules regarding the evaluation:</p>
+<ul>
+<li>Each found class name of a node will be looked up in the current data object. If found, the node will be processed in the new scope. Example: the class name <code>comment</code> instructs to lookup the name <code>comment</code> in the data object, which contains the comment array.</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pistos_innate8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="cache">Cache</h3>
+<p>Caching is a very important concern and one of the most difficult things to get right for any web application.</p>
+<p>Innate defines the caching API that enables everybody to add caches with very little code.</p>
+<p>Innate provides caching by following means:</p>
+<ul>
+<li>DRb</li>
+<li>Hash</li>
+<li>Marshal</li>
+<li>YAML</li>
+</ul>
+<p>Ramaze adds:</p>
+<ul>
+<li>Memcached</li>
+<li>Sequel</li>
+</ul>
+<p>And as time goes on there will be many more.</p>
+<h3 id="response">Response</h3>
+<p>Very little code, just provide some options regarding default headers and easy ways to reset the response. Ramaze adds some more convenient methods.</p>
+<h3 id="tools">Tools</h3>
+<p>Innate doesn’t provide any of the stuff in ramaze/tool and it was removed from Ramaze as well, some of the reasoning is below.</p>
+<h4 id="toolcreate">Tool::Create</h4>
+<p>This has been used by <code>bin/ramaze --create</code>, bougyman is working on a new <code>bin/ramaze</code> which won’t use it, so we removed it.</p>
+<h4 id="toolprojectcreator">Tool::ProjectCreator</h4>
+<p>Dependency for Tool::Create, removed as well.</p>
+<h5 id="tooldaemonize">Tool::Daemonize</h5>
+<p>Nothing but issues with this one although it is just a very thin wrapper for the daemons gem. Nobody has contributed to this so far despite the issues and it seems that there are a lot of different solutions for this problem.</p>
+</body>
+</html>

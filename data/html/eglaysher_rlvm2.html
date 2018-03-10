@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>eglaysher_rlvm2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>rlvm has an implementation of rlBabel; English patches compiled with Haeleth’s rlBabel should line break correctly. I’ve successfully tested it with the Kanon patch from NDT.</p>
+<p>rlvm supports KOE, NWK and OVK archives for voices, along with ogg vorbis voice patches which follow the convention <packnumber>/z<packnumber><sampleid>.ogg.</p>
+<p>Fullscreen can be entered by pressing Alt+{F,Enter} on Linux and Command+{F,Enter} on Mac.</p>
+<p>Please report bugs on <a href="https://github.com/eglaysher/rlvm/issues">the GitHub bug tracker</a>.</p>
+<h2 id="using-rlvm">USING RLVM</h2>
+<p>By default, rlvm is a GUI program. Start it by double clicking on the icon [OSX] or selecting it from your Applications menu [Linux]. You will then want to select the folder that contains the SEEN.TXT of the game you want to play.</p>
+<p>If you are using Ubuntu or OSX, rlvm makes an effort to find a system Japanese Gothic font. If rlvm is complaining that it can’t find a font, it will also look for the file “msgothic.ttc” in either the game directory nor your home directory. If you are using Linux, you can manually specify a font with the –font option.</p>
+<p>On Linux, you can also manually start rlvm from the command line, optionally passing in the directory containing the SEEN.TXT file:</p>
+<pre><code>$ rlvm [/path/to/GameDirectory/]</code></pre>
+<p>The rlvm binary should be self contained and movable anywhere, though the build system does not have an install target.</p>
+<p>If you don’t have the file “msgothic.ttc” in either the game directory nor your home directory, please specify a Japanese font on the command line with –font.</p>
+<h2 id="compiling-rlvm">COMPILING RLVM</h2>
+<p>You will need the following libraries/utilities:</p>
+<ul>
+<li>The [scons][scons] build system (Note: the scons in MacPorts has been reported to not work)</li>
+<li>[boost][boost] 1.40 or higher</li>
+<li>[SDL 1.2][sdl] (and optionally, [SDL_image][sdl_image], and [SDL_mixer][sdl_mixer], though there are copies included in the source distribution if you don’t already have them installed.)</li>
+</ul>
+</body>
+</html>

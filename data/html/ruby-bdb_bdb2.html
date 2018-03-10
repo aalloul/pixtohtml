@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ruby-bdb_bdb2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>db = env.db
+db.open(nil, &#39;db1.db&#39;, nil, Bdb::Db::BTREE, Bdb::DB_CREATE | Bdb::DB_AUTO_COMMIT, 0)    
+
+txn = env.txn_begin(nil, 0)
+db.put(txn, &#39;key&#39;, &#39;value&#39;, 0)
+txn.commit(0)
+
+value = db.get(nil, &#39;key&#39;, nil, 0)
+
+db.close(0)
+env.close</code></pre>
+<h1 id="api">API</h1>
+<p>This interface is most closely based on the DB4 C api and tries to maintain close interface proximity. <a href="http://www.oracle.com/technology/documentation/berkeley-db/db/api_reference/C/frame_main.html">That API is published by Oracle</a>.</p>
+<p>All function arguments systematically omit the leading DB handles and TXN handles. A few calls omit the flags parameter when the documentation indicates that no flag values are used - cursor.close is one.</p>
+<h1 id="notes">Notes</h1>
+<p>The defines generator is imperfect and includes some defines that are not flags. While it could be improved, it is easier to delete the incorrect ones. Thus, if you decide to rebuild the defines, you will need to edit the resulting file. This may be necessary if using a different release of DB4 than the ones the authors developed against. In nearly every case the defines generator works flawlessly.</p>
+<p>The authors have put all possible caution into ensuring that DB and Ruby cooperate. The memory access was one aspect carefully considered. Since Ruby copies when doing String#new, all key/data retrieval from DB is done with a 0 flag, meaning that DB will be responsible. See <a href="http://groups.google.com/group/comp.databases.berkeley-db/browse_frm/thread/4f70a9999b64ce6a/c06b94692e3cbc41?tvc=1&amp;q=dbt+malloc#c06b94692e3cbc41"><em>this</em> news group posting</a> about the effect of that.</p>
+<p>The only other design consideration of consequence was associate. The prior version used a Ruby thread local variable and kept track of the current database in use. The authors decided to take a simpler approach since Ruby is green threads. A global array stores the VALUE of the Proc for a given association by the file descriptor number of the underlying database. This is looked</p>
+</body>
+</html>

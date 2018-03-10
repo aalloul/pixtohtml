@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>justinfrench_formtastic6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>&lt;%= semantic_form_for(<span class="citation" data-cites="post">@post</span>, :namespace =&gt; ‘cat_form’) do |f| %&gt; &lt;%= f.inputs do %&gt; &lt;%= f.input :title %&gt; # id=“cat_form_post_title” &lt;%= f.input :body %&gt; # id=“cat_form_post_body” &lt;%= f.input :created_at %&gt; # id=“cat_form_post_created_at” &lt;% end %&gt; &lt;%= f.actions %&gt; &lt;% end %&gt; ```</p>
+<p>Customize HTML attributes for any input using the <code>:input_html</code> option. Typically this is used to disable the input, change the size of a text field, change the rows in a textarea, or even to add a special class to an input to attach special behavior like textareas:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs do %&gt;
+      &lt;%= f.input :title,      :input_html =&gt; { :size =&gt; 10 } %&gt;
+      &lt;%= f.input :body,       :input_html =&gt; { :class =&gt; &#39;autogrow&#39;, :rows =&gt; 10, :cols =&gt; 20, :maxlength =&gt; 10  } %&gt;
+      &lt;%= f.input :created_at, :input_html =&gt; { :disabled =&gt; true } %&gt;
+      &lt;%= f.input :updated_at, :input_html =&gt; { :readonly =&gt; true } %&gt;
+    &lt;% end %&gt;
+    &lt;%= f.actions %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>The same can be done for actions with the <code>:button_html</code> option:</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    ...
+    &lt;%= f.actions do %&gt;
+      &lt;%= f.action :submit, :button_html =&gt; { :class =&gt; &quot;primary&quot;, :disable_with =&gt; &#39;Wait...&#39; } %&gt;
+    &lt;% end %&gt;
+  &lt;% end %&gt;</code></pre>
+<p>Customize the HTML attributes for the <code>&lt;li&gt;</code> wrapper around every input with the <code>:wrapper_html</code> option hash. There’s one special key in the hash: (<code>:class</code>), which will actually <em>append</em> your string of classes to the existing classes provided by Formtastic (like <code>&quot;required string error&quot;</code>).</p>
+<pre class="erb"><code>  &lt;%= semantic_form_for @post do |f| %&gt;
+    &lt;%= f.inputs do %&gt;
+      &lt;%= f.input :title, :wrapper_html =&gt; { :class =&gt; &quot;important&quot; } %&gt;
+      &lt;%= f.input :body %&gt;
+      &lt;%= f.input :description, :wrapper_html =&gt; { :style =&gt; &quot;display:none;&quot; } %&gt;
+    &lt;% end %&gt;
+    ...
+  &lt;% end %&gt;</code></pre>
+<p>Many inputs provide a collection of options to choose from (like <code>:select</code>, <code>:radio</code>, <code>:check_boxes</code>, <code>:boolean</code>). In many cases, Formtastic can find choices through the model associations, but if you want to use your own set of choices, the <code>:collection</code> option is what you want. You can pass in an Array of objects, an array of Strings, a Hash… Throw almost anything at it! Examples:</p>
+</body>
+</html>

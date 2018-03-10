@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>twitter-archive_kestrel1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="kestrel">Kestrel</h1>
+<p>Kestrel is based on Blaine Cook’s “starling” simple, distributed message queue, with added features and bulletproofing, as well as the scalability offered by actors and the JVM.</p>
+<p>Each server handles a set of reliable, ordered message queues. When you put a cluster of these servers together, <em>with no cross communication</em>, and pick a server at random whenever you do a <code>set</code> or <code>get</code>, you end up with a reliable, <em>loosely ordered</em> message queue.</p>
+<p>In many situations, loose ordering is sufficient. Dropping the requirement on cross communication makes it horizontally scale to infinity and beyond: no multicast, no clustering, no “elections”, no coordination at all. No talking! Shhh!</p>
+<p>For more information about what it is and how to use it, check out the included .</p>
+<p>Kestrel has a mailing list here:</p>
+<p>Author’s address: Robey Pointer &lt;robeypointer@gmail.com&gt;</p>
+<h2 id="status">Status</h2>
+<p>We’ve deprecated Kestrel because internally we’ve shifted our attention to an alternative project based on DistributedLog, and we no longer have the resources to contribute fixes or accept pull requests. While Kestrel is a great solution up to a certain point (simple, fast, durable, and easy to deploy), it hasn’t been able to cope with Twitter’s massive scale (in terms of number of tenants, QPS, operability, diversity of workloads etc.) or operating environment (an Aurora cluster without persistent storage).</p>
+<h2 id="features">Features</h2>
+<p>Kestrel is:</p>
+<ul>
+<li><p>fast</p>
+<p>It runs on the JVM so it can take advantage of the hard work people have put into java performance.</p></li>
+<li><p>small</p>
+<p>Currently about 2500 lines of scala, because it relies on Netty (a rough equivalent of Danger’s ziggurat or Ruby’s EventMachine) – and because Scala is extremely expressive.</p></li>
+<li><p>durable</p></li>
+</ul>
+</body>
+</html>

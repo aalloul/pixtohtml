@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>duritong_puppet-shorewall2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>to it should be configured with augeas, for example, to set IP_FORWARDING=Yes in shorewall.conf, simply do this:</p>
+<pre><code>augeas { &#39;enable_ip_forwarding&#39;:
+  changes =&gt; &#39;set /files/etc/shorewall/shorewall.conf/IP_FORWARDING Yes&#39;,
+  lens    =&gt; &#39;Shellvars.lns&#39;,
+  incl    =&gt; &#39;/etc/shorewall/shorewall.conf&#39;,
+  notify  =&gt; Service[shorewall];
+}</code></pre>
+<p>NOTE: this requires the augeas ruby bindings newer than 0.7.3.</p>
+<p>If you need to, you can provide an entire shorewall.conf by passing its source to the main class:</p>
+<pre><code>class{&#39;shorewall&#39;:
+  conf_source =&gt; &quot;puppet:///modules/site_shorewall/${::fqdn}/shorewall.conf.${::operatingsystem}&quot;,
+}</code></pre>
+<p>NOTE: if you distribute a file, you cannot also use augeas, puppet and augeas will fight forever. Secondly, you will <em>need</em> to make sure that if you are shipping your own shorewall.conf that you have the following value set in your shorewall.conf otherwise this module will not work:</p>
+<pre><code>CONFIG_PATH=&quot;/etc/shorewall/puppet:/etc/shorewall:/usr/share/shorewall&quot;</code></pre>
+<h2 id="documentation">Documentation</h2>
+<p>see also: http://reductivelabs.com/trac/puppet/wiki/Recipes/AqueosShorewall</p>
+<h2 id="torify">Torify</h2>
+<p>The shorewall::rules::torify define can be used to force some outgoing TCP traffic through the Tor transparent proxy. The corresponding non-TCP traffic is rejected accordingly.</p>
+<p>Beware! This define only is part of a torified setup. DNS requests and IPv6, amongst others, might leak network activity you would prefer not to. You really need to read proper documentation about these matters before using this feature e.g.:</p>
+<p>https://www.torproject.org/download/download.html.en#warning</p>
+<p>The Tor transparent proxy location defaults to 127.0.0.1:9040 and can be configured by setting the $tor_transparent_proxy_host and $tor_transparent_proxy_port variables before including the main shorewall class.</p>
+</body>
+</html>

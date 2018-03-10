@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ledger_ledger4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Debian 7 (wheezy), Debian 8 (jessie), Debian testing (stretch) and Debian unstable (sid) contain all components needed to build ledger. You can install all required build dependencies using the following command:</p>
+<pre><code>$ sudo apt-get install build-essential cmake autopoint texinfo python-dev \
+     zlib1g-dev libbz2-dev libgmp3-dev gettext libmpfr-dev \
+     libboost-date-time-dev libboost-filesystem-dev \
+     libboost-graph-dev libboost-iostreams-dev \
+     libboost-python-dev libboost-regex-dev libboost-test-dev</code></pre>
+<h2 id="building">Building</h2>
+<p>The next step is preparing your environment for building. While you can use <code>cmake .</code> and make, I’ve prepared a script that does a lot more of the footwork for you:</p>
+<pre><code>$ ./acprep update
+# or, if you want to use the Boost libraries with suffix -mt, install in
+# $HOME/local and build with 2 processes in parallel
+$ ./acprep update --boost-suffix=-mt --prefix=$HOME/local -j2</code></pre>
+<p>Please read the contents of <code>CMakeFiles/CMakeOutput.log</code> and <code>CMakeFiles/CMakeError.log</code> if the configure step fails. Also, see the <code>help</code> subcommand to <code>acprep</code>, which explains some of its many options. It’s pretty much the only command I run for configuring, building and testing Ledger.</p>
+<p>You can run <code>make check</code> to confirm the result, and <code>make install</code> to install.</p>
+<h2 id="resources">Resources</h2>
+<p>Now that you’re up and running, here are a few resources to keep in mind:</p>
+<ul>
+<li><a href="http://ledger-cli.org/">Homepage</a></li>
+<li><a href="http://www.ledger-cli.org/docs.html">Documentation</a></li>
+<li><a href="irc://irc.freenode.net/ledger">IRC channel</a></li>
+<li><a href="http://list.ledger-cli.org/">Mailing List / Forum</a></li>
+<li>[GitHub project page][github]</li>
+<li>[Code analysis][openhub]</li>
+</ul>
+<p>If you have ideas you’d like to share, the best way is either to e-mail me a patch (I prefer attachments over pasted text), or to get an account on GitHub. Once you do, fork the [Ledger project][github], hack as much as you like, then send me a pull request via GitHub.</p>
+</body>
+</html>

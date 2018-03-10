@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mattsears_with_xml1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="with_xml">with_xml</h1>
+<p>A simple plugin for customizing behaviour and importing xml documents into ActiveRecord objects.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>script/plugin install git://github.com/mattsears/with_xml.git</code></pre>
+<h2 id="usage">Usage</h2>
+<p>In general, you can define the xml options in the model’s class definition. In this example, we’ll set the xml options in the Article class:</p>
+<pre><code>ActiveRecord::Schema.define(:version =&gt; 1) do
+  create_table :articles do |t|
+  t.string :name, :heading, :body, :author
+end</code></pre>
+<p>In the Article’s class, we define the xml serialization options in the <strong>with_xml</strong> block like so:</p>
+<pre><code>class Article &lt; ActiveRecord::Base
+  with_xml :feeds, {:alias  =&gt; [&quot;magazine&quot;, &quot;blog&quot;, &quot;newspaper&quot;]} do
+    map :heading,   :to     =&gt; [&quot;subject&quot;, &quot;title&quot;]
+    map :body,      :to     =&gt; [&quot;content&quot;, &quot;message&quot;, &quot;posts[@content=&#39;body&#39;]&quot;]
+    serialize       :except =&gt; [:name], :skip_instruct =&gt; true
+  end
+end</code></pre>
+<p>With the <strong>serialize option</strong>, the script sets the global options for the <strong>to_xml</strong> calls. In the code above, we’ve specified not to include the :name attribute or the xml instructions in the xml return from the <strong>to_xml</strong> call.</p>
+<pre><code>article.to_xml</code></pre>
+<p>…becomes…</p>
+<pre><code>#&lt;article&gt;
+#    &lt;author&gt;...&lt;/author&gt;
+#    &lt;body&gt;...&lt;/body&gt;
+#    &lt;heading&gt;...&lt;/heading&gt;
+#&lt;/article&gt;</code></pre>
+<p>The <strong>map</strong> options allows us to set the Article attributes with an xml string that has a different schema. For example, data for our Article class may come from external sources such as blogs, magazines or newspapers with different xml schemas. We can use XPath to map the xml attributes or elements to the class attributes. With the <strong>map</strong> options in the code above, we can import any of the following xml documents into the Article:</p>
+<pre><code>article.from_xml(xml)
+
+#&lt;article&gt;
+#    &lt;heading&gt;Page Six&lt;/heading&gt;
+#    &lt;body&gt;Content for article&lt;/body&gt;
+#&lt;/article&gt;</code></pre>
+</body>
+</html>

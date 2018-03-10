@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nextmat_compass-960-plugin2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>All of the mixins included with this plugin use these configuration variables as defaults if the corresponding argument is omitted from a mixin call.</p>
+<h1 id="class-based-grid-system">Class-Based Grid System</h1>
+<p>To create a grid system that works like the original 960 Grid System framework use the <code>+grid-system-complete</code> mixin to generate the corresponding classes. You can also customize the number of columns as demonstrated:</p>
+<p>Example:</p>
+<pre><code>+grid-system-complete(24)</code></pre>
+<p>If you want to scope the grid inside a specific set of selectors or control your container class’ name you can use the <code>+grid-system</code> mixin instead.</p>
+<p>Example:</p>
+<pre><code>#wrap
+  .my_container
+    +grid-system(16)
+  </code></pre>
+<p>This will render all of the grid system nested below your selector, replacing the normal function of the container class (would be .container_16 in this example).</p>
+<h1 id="making-semantic-grids">Making Semantic Grids</h1>
+<p>To create a grid system using only CSS, use the following semantic grid mixins:</p>
+<ul>
+<li>Use the <code>+grid-container</code> mixin to declare your container element.</li>
+<li>Use the <code>+grid(N, columns, gutter-width)</code> mixin to declare a grid element.</li>
+<li>Use the <code>+alpha</code> and <code>+omega</code> mixins to declare the first and last grid elements for a row.</li>
+<li>Use the <code>+grid-prefix(N, columns)</code> and <code>+grid-suffix(N, columns)</code> mixins to add empty grid columns before or after a grid element.</li>
+<li>Use the <code>+grid-push(N, columns)</code> and <code>+grid-pull(N, columns)</code> mixins to move a grid element from its default position.</li>
+</ul>
+<p><code>N</code> is the number of grid columns to span as in <code>grid_N</code> or <code>push_N</code> with the original 960 Grid System framework.</p>
+<p>Example:</p>
+<pre><code>$ninesixty-columns: 16
+
+#wrap
+  +grid-container
+  #header
+    +grid(16)
+  #middle
+    +grid(16)
+    #left-nav
+      +grid(5)
+      +alpha</code></pre>
+</body>
+</html>

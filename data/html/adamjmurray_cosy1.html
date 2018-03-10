@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>adamjmurray_cosy1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="cosy">Cosy</h1>
+<h3 id="a-compact-sequencing-syntax">a COmpact Sequencing sYntax</h3>
+<p><a href="http://compusition.com/web/software/cosy" class="uri">http://compusition.com/web/software/cosy</a></p>
+<h2 id="description">Description</h2>
+<p>Cosy is a custom language for composing musical patterns and general purpose sequencing. It strives to be as concise as possible, because the less time we spend inputting our ideas into the computer, the more time we have to make cool stuff.</p>
+<h2 id="author">Author</h2>
+<p>Adam Murray (adam@compusition.com)</p>
+<h2 id="status">Status</h2>
+<p>This project is immature. The syntax is not finalized, so I can’t guarantee I won’t change things in a way that will break backward compatibility.</p>
+<p>There are probably lots of bugs right now.</p>
+<p>Use at your own risk!</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>Cosy depends on the following Ruby libraries:</p>
+<ul>
+<li>treetop (for generating the parser)</li>
+<li>midilib (for outputting midi files)</li>
+<li>midiator (for interfacing with the midi driver)</li>
+<li>gamelan (for scheduling live midi playback)</li>
+<li>osc (for open sound control support)</li>
+</ul>
+<p>To run Cosy you will need to install the gems for those libraries:</p>
+<pre><code>gem install treetop
+gem install midilib
+gem install midiator
+gem install gamelan
+gem install osc </code></pre>
+<h2 id="running-cosy">Running Cosy</h2>
+</body>
+</html>

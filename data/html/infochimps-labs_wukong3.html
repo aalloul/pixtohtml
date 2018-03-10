@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infochimps-labs_wukong3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>$ cat novel.txt | wu-local processors.rb --run=splitter
+It
+was
+the
+best
+of
+times,
+...</code></pre>
+<p>We can combine the two processors together</p>
+<pre><code>$ cat novel.txt | wu-local processors.rb --run=splitter | wu-local processors.rb --run=normalizer
+it
+was
+the
+best
+of
+times
+...</code></pre>
+<p>but there’s an easier way of doing this with <a href="#flows">dataflows</a>.</p>
+<h3 id="adding-configurable-options">Adding Configurable Options</h3>
+<p>Processors can have options that can be set in Ruby code, from the command-line, a configuration file, or a variety of other places thanks to .</p>
+<p>This processor calculates percentiles from observations assuming a normal distribution given a particular mean and standard deviation. It uses two <em>fields</em>, the mean or average of a distribution (<code>mean</code>) and its standard deviation (<code>std_dev</code>). From this information, it will measure the percentile of all input values.</p>
+<p>```ruby # in percentile.rb Wukong.processor(:percentile) do</p>
+<p>SQRT_1_HALF = Math.sqrt(0.5)</p>
+<p>field :mean, Float, :default =&gt; 0.0 field :std_dev, Float, :default =&gt; 1.0</p>
+<p>def process value observation = value.to_f</p>
+</body>
+</html>

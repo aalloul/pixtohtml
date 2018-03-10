@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mattfoster_gnuplot-tmbundle1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-gnuplot-textmate-bundle">The Gnuplot TextMate bundle</h1>
+<p>See this .</p>
+<h2 id="textmate-2">TextMate 2</h2>
+<p>This bundle was originally written for TM 1, and while I’ve made some changes to improve compatibility, some things may not work in TextMate 2. Work from prior to these changes is on the unmaintained <code>tm1</code> branch.</p>
+<p>Please feel free to send pull requests if you make any edits.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Aims to provide a useful set of commands, snippets and language support for writing and running gnuplot scripts within .</p>
+<p>So far, various features have been implemented, including:</p>
+<ul>
+<li>Syntax hilighting.</li>
+<li>Script execution – pressing ‘⌘R’ pipes the script through gnuplot.</li>
+<li>Plot in aquaterm – pressing also ’‘⌘R’ gives you the option of viewing the plot in aquaterm.</li>
+<li>Execution and display – we now have a command for running a script and showing the result in aquaterm.</li>
+<li>Output viewing – pressing ‘⇧⌘O’ will search though the script and open any filenames it finds after <code>set output</code> statements.</li>
+<li>Output the current file to a PDF file and specify the file name in the plot file</li>
+<li>Toggling (un)set – pressing ‘⇧⌘S’ changes toggles between <code>set</code> and <code>unset</code> keywords on the current line.</li>
+<li>Online help – pressing ‘⌃H’ with the caret over a keyword pops up an HTML window containing gnuplot’s built-in help for that keyword.</li>
+</ul>
+<p>There are a couple of issues with the help, see the end of the <code>fillstyle</code> entry, for example, but these are minor, and seem to be due to bugs in bluecloth.</p>
+<p>Future work will be focused on providing completion, and improving the help command – especially formatting of the output.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<h2 id="installation">Installation:</h2>
+<p>Run:</p>
+<p><code>cd ~/Library/Application\ Support/TextMate/Bundles</code></p>
+<p>or, if you want to edit the bundle, use</p>
+<p><code>cd ~/Library/Application Support/Avian/Bundles/</code></p>
+</body>
+</html>

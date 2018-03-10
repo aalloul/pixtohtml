@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>3scale_3scale_ws_api_for_dotnet7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>string service_token = “service_token” parameters.Add (“service_token”, service_token);</p>
+<p>// And the credentials and service_id parameters.Add(“app_id”, “your_client_id”); parameters.Add(“service_id”, “your_oauth_service_id”);</p>
+<p>//Add a metric to the call Hashtable usage = new Hashtable(); usage.Add(“hits”, “1”); parameters.Add(“usage”,usage);</p>
+<p>try { AuthorizeResponse resp = _3ScaleAPI.oauth_authorize(parameters);</p>
+<pre><code>if(resp.authorized)
+{
+    // you can get the client secret like so
+    string clientsecret = resp.GetClientSecret();
+    
+    //  now do a report
+    Hashtable transaction = new Hashtable();
+    transaction.Add(&quot;app_id&quot;, &quot;your_oauth_app_id&quot;);
+    
+    Hashtable transaction_usage = new Hashtable();
+    transaction_usage.Add(&quot;hits&quot;,&quot;1&quot;);
+    transaction.Add(&quot;usage&quot;, transaction_usage);
+    
+    try
+    {
+        // Call report on the backend with the list of transactions to be reported on
+        _3ScaleAPI.report(transaction);
+    }
+    catch(ApiException e)
+    {
+        Console.WriteLine(&quot;Exception on report:&quot; + e.ToString());
+    }
+}</code></pre>
+<p>} catch (ApiException e) { Console.WriteLine(“Exception:” + e.ToString()); } ```</p>
+<h1 id="to-test">To test</h1>
+<p>To test the plugin with your real data:</p>
+</body>
+</html>

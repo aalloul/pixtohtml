@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bjeanes_ghost2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  staging-server.local -&gt; 64.233.167.99
+
+$ ghost export &gt; some_file
+
+$ ghost empty
+  [Emptying] Done.
+
+$ ghost list
+Listing 0 host(s):
+
+$ ghost import some_file
+  [Adding] staging-server.local -&gt; 64.233.167.99
+
+$ ghost list
+Listing 1 host(s):
+  staging-server.local -&gt; 64.233.167.99</code></pre>
+<p>With RVM, you need to add <code>rvmsudo</code> before the command:</p>
+<pre><code>$ rvmsudo ghost add mydevsite.local
+  [Adding] mydevsite.local -&gt; 127.0.0.1</code></pre>
+<h2 id="library">Library</h2>
+<p>There is also a library that can be used in Ruby scripts. The <code>ghost</code> command is a wrapper for the library. View the source of <code>bin/ghost</code> to see how to use the library.</p>
+<h1 id="installation">Installation</h1>
+<pre><code>gem install ghost</code></pre>
+<p>Using <code>sudo</code> may be necessary in some circumstances, depending on your setup (for example, using the stock Ruby that comes on OS X).</p>
+<h1 id="contributors">Contributors</h1>
+<p>A list of contributors can be found ..</p>
+<h1 id="legal-stuff">Legal Stuff</h1>
+<p>Copyright (c) 2008-2013 Bodaniel Jeanes</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including</p>
+</body>
+</html>

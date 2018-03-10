@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chef_ohai1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ohai">ohai</h1>
+<h2 id="description">Description</h2>
+<p>Ohai detects data about your operating system. It can be used standalone, but its primary purpose is to provide node data to Chef.</p>
+<p>Ohai will print out a JSON data blob for all the known data about your system. When used with Chef, that data is reported back via node attributes.</p>
+<p>Chef distributes ohai as a RubyGem. This README is for developers who want to modify the Ohai source code. For users who want to write plugins for Ohai, see the docs:</p>
+<ul>
+<li>General documentation: <a href="https://docs.chef.io/ohai.html" class="uri">https://docs.chef.io/ohai.html</a></li>
+<li>Custom plugin documentation: <a href="https://docs.chef.io/ohai_custom.html" class="uri">https://docs.chef.io/ohai_custom.html</a></li>
+</ul>
+<h2 id="development-environment">Development Environment:</h2>
+<p>Ohai’s development dependencies should be installed with bundler. Just run <code>bundle install</code> in the root of the repo.</p>
+<h2 id="spec-testing">Spec Testing:</h2>
+<p>We use RSpec for unit/spec tests. To run the full suite, run:</p>
+<pre><code>bundle exec rake spec</code></pre>
+<p>You can run individual test files by running the rspec executable:</p>
+<pre><code>bundle exec rspec spec/unit/FILE.rb</code></pre>
+<h2 id="rake-tasks">Rake Tasks</h2>
+<p>Ohai has some Rake tasks for doing various things.</p>
+<pre><code>rake -T
+rake build          # Build the gem file ohai-$VERSION.gem
+rake install        # install the gem locally
+rake install:local  # install the gem locally without network access
+rake release        # Create tag $VERSION, build gem, and push to Rubygems
+rake spec           # Run RSpec tests
+
+($VERSION is the current version, from the GemSpec in Rakefile)</code></pre>
+<h2 id="links">Links:</h2>
+</body>
+</html>

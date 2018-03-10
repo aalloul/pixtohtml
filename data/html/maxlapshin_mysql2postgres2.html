@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>maxlapshin_mysql2postgres2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>database: default_test</p>
+<p>production: &amp;production &lt;&lt;: *default database: default_production</p>
+<p>mysql_data_source: &amp;pii hostname: localhost port: 3306 socket: /tmp/mysqld.sock username: username password: default database: awesome_possum</p>
+<p>mysql2psql: mysql: &lt;&lt;: *pii</p>
+<p>destination: production: &lt;&lt;: <em>production test: &lt;&lt;: </em>test development: &lt;&lt;: *development</p>
+<p>tables: - countries - samples - universes - variable_groups - variables - sample_variables</p>
+<p># If suppress_data is true, only the schema definition will be exported/migrated, and not the data suppress_data: false</p>
+<p># If suppress_ddl is true, only the data will be exported/imported, and not the schema suppress_ddl: true</p>
+<p># If force_truncate is true, forces a table truncate before table loading force_truncate: false</p>
+<p>preserve_order: true</p>
+<p>remove_dump_file: true</p>
+<p>dump_file_directory: /tmp</p>
+<p>report_status: json # false, json, xml</p>
+</body>
+</html>

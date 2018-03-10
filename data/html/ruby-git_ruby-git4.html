@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ruby-git_ruby-git4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>g.tags # returns array of Git::Tag objects
+
+g.show()
+g.show(&#39;HEAD&#39;)
+g.show(&#39;v2.8&#39;, &#39;README.md&#39;)
+
+Git.ls_remote(&#39;https://github.com/schacon/ruby-git.git&#39;) # returns a hash containing the available references of the repo.
+Git.ls_remote(&#39;/path/to/local/repo&#39;)
+Git.ls_remote() # same as Git.ls_remote(&#39;.&#39;)</code></pre>
+<p>```</p>
+<p>And here are the operations that will need to write to your git repository.</p>
+<p>```ruby g = Git.init Git.init(‘project’) Git.init(‘/home/schacon/proj’, { :repository =&gt; ‘/opt/git/proj.git’, :index =&gt; ‘/tmp/index’} )</p>
+<pre><code> g = Git.clone(URI, NAME, :path =&gt; &#39;/tmp/checkout&#39;)
+ g.config(&#39;user.name&#39;, &#39;Scott Chacon&#39;)
+ g.config(&#39;user.email&#39;, &#39;email@email.com&#39;)
+
+ g.add                                   # git add -- &quot;.&quot;
+ g.add(:all=&gt;true)                       # git add --all -- &quot;.&quot;
+ g.add(&#39;file_path&#39;)                      # git add -- &quot;file_path&quot;
+ g.add([&#39;file_path_1&#39;, &#39;file_path_2&#39;])   # git add -- &quot;file_path_1&quot; &quot;file_path_2&quot;
+
+ g.remove()                                 # git rm -f -- &quot;.&quot;
+ g.remove(&#39;file.txt&#39;)                       # git rm -f -- &quot;file.txt&quot;
+ g.remove([&#39;file.txt&#39;, &#39;file2.txt&#39;])        # git rm -f -- &quot;file.txt&quot; &quot;file2.txt&quot;
+ g.remove(&#39;file.txt&#39;, :recursive =&gt; true)   # git rm -f -r -- &quot;file.txt&quot;
+ g.remove(&#39;file.txt&#39;, :cached =&gt; true)      # git rm -f --cached -- &quot;file.txt&quot;
+
+ g.commit(&#39;message&#39;)
+ g.commit_all(&#39;message&#39;)
+
+ g = Git.clone(repo, &#39;myrepo&#39;)
+ g.chdir do
+  new_file(&#39;test-file&#39;, &#39;blahblahblah&#39;)
+  g.status.changed.each do |file|
+   puts file.blob(:index).contents
+  end
+ end
+
+ g.reset # defaults to HEAD
+ g.reset_hard(Git::Commit)</code></pre>
+</body>
+</html>

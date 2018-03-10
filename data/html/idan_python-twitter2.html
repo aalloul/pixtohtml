@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>idan_python-twitter2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Check out the latest development version anonymously with:</p>
+<pre><code>$ git clone git://github.com/idangazit/python-twitter.git</code></pre>
+<p>##Documentation##</p>
+<p>The API documentation is included in the <code>doc</code> directory, in the form of <code>twitterapi.html</code>.</p>
+<p>##Using##</p>
+<p>The library provides a python wrapper around the Twitter API and the twitter data model.</p>
+<p><em>Model:</em></p>
+<p>The three model classes are twitterapi.Status, twitterapi.User, and twitterapi.DirectMessage. The API methods return instances of these classes.</p>
+<p>To read the full API for twitterapi.Status, twitterapi.User, or twitterapi.DirectMessage, run:</p>
+<pre><code>$ pydoc twitterapi.Status
+$ pydoc twitterapi.User
+$ pydoc twitterapi.DirectMessage</code></pre>
+<p><em>API:</em></p>
+<p>The API is exposed via the twitterapi.Api class.</p>
+<p>To create an instance of the twitterapi.Api class:</p>
+<pre><code>&gt;&gt;&gt; import twitterapi
+&gt;&gt;&gt; api = twitterapi.Api()</code></pre>
+<p>To create an instance of the twitterapi.Api with login credentials (many API calls required the client to be authenticated):</p>
+<pre><code>&gt;&gt;&gt; api = twitterapi.Api(username=&#39;username&#39;, password=&#39;password) </code></pre>
+<p>To fetch the most recently posted public twitter status messages:</p>
+<pre><code>&gt;&gt;&gt; statuses = api.GetPublicTimeline()
+&gt;&gt;&gt; print [s.user.name for s in statuses]
+[u&#39;DeWitt&#39;, u&#39;Kesuke Miyagi&#39;, u&#39;ev&#39;, u&#39;Buzz Andersen&#39;, u&#39;Biz Stone&#39;] </code></pre>
+<p>To fetch a single user’s public status messages, where “user” is either a Twitter “short name” or their user id.</p>
+</body>
+</html>

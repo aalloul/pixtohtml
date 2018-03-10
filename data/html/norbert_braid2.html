@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>norbert_braid2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>cd shiny
+touch README
+git add README
+git commit -m &quot;initial commit&quot;</code></pre>
+<p>Vendor rails (this might take a while because the rails repo is huge!):</p>
+<pre><code>braid add git://github.com/rails/rails.git vendor/rails</code></pre>
+<p>Create your new rails app (nothing braid related here):</p>
+<pre><code>ruby vendor/rails/railties/bin/rails .
+git add .
+git commit -m &quot;rails .&quot;</code></pre>
+<p>Add any plugins you might need:</p>
+<pre><code>braid add git://github.com/thoughtbot/shoulda.git -p
+braid add git://github.com/thoughtbot/factory_girl.git -p
+braid add git://github.com/mbleigh/subdomain-fu.git -p</code></pre>
+<p>And you’re done! Braid vendored rails and your plugins. Feel free to inspect the changes with git log or git show.</p>
+<p>If further down the line, you want to bring new changes from rails in your repository, just update the mirror:</p>
+<pre><code>braid update vendor/rails</code></pre>
+<p>Or, if you want all mirrors updated:</p>
+<pre><code>braid update</code></pre>
+<h2 id="more-usage">More usage</h2>
+<p>Use the built in help system to find out about all commands and options:</p>
+<pre><code>braid help
+braid help add # or braid add --help</code></pre>
+<p>You may also want to read .</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Check if you’re having issues.</p>
+<h2 id="contributing">Contributing</h2>
+<p>We appreciate any patches, error reports and usage ideas you may have. Please submit a lighthouse ticket or start a thread on the mailing list.</p>
+<p>Bugs and feature requests:</p>
+</body>
+</html>

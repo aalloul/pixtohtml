@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>plicease_Mojolicious-Plugin-TtRenderer4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>package MyApp;
+use Mojo::Base &#39;Mojolicious&#39;;
+
+sub startup {
+  my $self = shift;
+  $self-&gt;plugin(&#39;tt_renderer&#39;);
+  my $r = $self-&gt;routes;
+  $r-&gt;get(&#39;/&#39;)-&gt;to(&#39;example#welcome&#39;);
+}
+
+1;
+
+package MyApp::Example;
+use Mojo::Base &#39;Mojolicious::Controller&#39;;
+
+# This action will render a template
+sub welcome {
+  my $self = shift;
+
+  # Render template &quot;example/welcome.html.tt&quot; with message
+  $self-&gt;render(
+    message =&gt; &#39;Looks like your TtRenderer is working!&#39;);
+}
+
+1;</code></pre>
+<p>These are also included with the <code>Mojolicious::Plugin::TtRenderer</code> distribution, including the support files required for the full app example.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>, , , .</p>
+<h1 id="author">AUTHOR</h1>
+<p>Original author: Ask Bjørn Hansen</p>
+<p>Current maintainer: Graham Ollis <a href="mailto:plicease@cpan.org">plicease@cpan.org</a></p>
+<p>Contributors:</p>
+<p>vti</p>
+<p>Marcus Ramberg</p>
+<p>Matthias Bethke</p>
+</body>
+</html>

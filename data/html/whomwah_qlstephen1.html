@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>whomwah_qlstephen1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="quicklookstephen">QuicklookStephen</h1>
+<p>QLStephen is a QuickLook plugin that lets you view plain text files without a file extension. Files like:</p>
+<pre><code>README
+INSTALL
+Capfile
+CHANGELOG
+etc...</code></pre>
+<h2 id="installation">Installation</h2>
+<h3 id="homebrew">Homebrew</h3>
+<pre><code>brew cask install qlstephen</code></pre>
+<h3 id="pre-compiled">Pre-compiled</h3>
+<ul>
+<li></li>
+<li>Unzip</li>
+<li>Copy the file into <code>/Library/QuickLook</code> or <code>~/Library/QuickLook</code> (You can create the <code>QuickLook</code> folder if it doesn’t exist)</li>
+</ul>
+<h3 id="manually-compiled">Manually Compiled</h3>
+<p>Compiling the project yourself? The build process will copy the file into ~/Library/QuickLook.</p>
+<h2 id="settings">Settings</h2>
+<h3 id="maximum-file-size">Maximum file size</h3>
+<p>To keep quickview fast the priview is limited in its number of shown bytes. The default value is 100kB. You can change this using the shell to set your own max size.</p>
+<pre><code>defaults write com.whomwah.quicklookstephen maxFileSize 102400</code></pre>
+<h2 id="trouble">Trouble?</h2>
+<p>If you’ve installed the plugin, but don’t see any changes:</p>
+<ul>
+<li>Make sure you are editing (a) the correct plist of (b) the correct bundle. (For example, you might have two <code>QLStephen</code> plugins. It’s possible the plugin in another directory—perhaps <code>/Library/QuickLook/</code>—is what is being read.)</li>
+<li>Run <code>qlmanage -r</code> in the Terminal. (This will restart QuickLook, which reloads all plugins.)</li>
+</ul>
+</body>
+</html>

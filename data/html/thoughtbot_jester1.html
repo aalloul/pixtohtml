@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_jester1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jester">Jester</h1>
+<p>Jester is our implementation of REST, in JavaScript. It provides (nearly) identical syntax to ActiveResource for using REST to find, update, and create data, but from the client side.</p>
+<p>It depends on .</p>
+<h2 id="deprecated">DEPRECATED</h2>
+<p>We no longer use or support this. If you wish to take this project over please email <a href="mailto:support@thoughtbot.com">support@thoughtbot.com</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<p>All examples below are taken from inside the JavaScript console of Firebug.</p>
+<p>First, declare a model in Jester by calling model on Base:</p>
+<pre><code>&gt;&gt;&gt; Base.model(&quot;User&quot;)
+&gt;&gt;&gt; User
+Object _name=User _singular=user _plural=users</code></pre>
+<p>This creates a global variable called User. It assumes that the URL prefix it uses to base its HTTP requests from is the current domain and port, and assumes “user” and “users” as single and plural forms to make these URLs. There’s no “people/person” intelligence here, so make sure to override these defaults if you need to, like so:</p>
+<pre><code>&gt;&gt;&gt; Base.model(&quot;Child&quot;, &quot;http://www.thoughtbot.com&quot;, &quot;child&quot;, &quot;children&quot;)
+&gt;&gt;&gt; Child
+Object _name=Child _singular=child _plural=children</code></pre>
+<p>If you want to capture the model created in a local variable, or simply prefer more traditional JavaScript syntax, you can do:</p>
+<pre><code>&gt;&gt;&gt; var Child = new Base(&quot;Child&quot;, &quot;http://www.thoughtbot.com&quot;, &quot;child&quot;, &quot;children&quot;)
+&gt;&gt;&gt; Child
+Object _name=Child _singular=child _plural=children</code></pre>
+<p>Find will retrieve a particular instance of your model. Attributes are auto-converted to integer or boolean types if that’s what they are on the server side. The “GET” line is not a return value, just Firebug’s report of activity, but relevant to understanding what’s happening.</p>
+<pre><code>&gt;&gt;&gt; eric = User.find(1)
+GET http://localhost:3000/users/1.xml
+Object _name=User _singular=user _plural=users
+
+&gt;&gt;&gt; eric.attributes
+[&quot;active&quot;, &quot;email&quot;, &quot;id&quot;, &quot;name&quot;]
+
+&gt;&gt;&gt; eric.id
+1
+&gt;&gt;&gt; eric.name
+&quot;Eric Mill&quot;
+&gt;&gt;&gt; eric.active</code></pre>
+</body>
+</html>

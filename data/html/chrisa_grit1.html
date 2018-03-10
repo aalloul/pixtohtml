@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chrisa_grit1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="grit">Grit</h1>
+<p>Grit gives you object oriented read/write access to Git repositories via Ruby. The main goals are stability and performance. To this end, some of the interactions with Git repositories are done by shelling out to the system’s <code>git</code> command, and other interactions are done with pure Ruby reimplementations of core Git functionality. This choice, however, is transparent to end users, and you need not know which method is being used.</p>
+<p>This software was developed to power GitHub, and should be considered production ready. An extensive test suite is provided to verify its correctness.</p>
+<p>Grit is maintained by Tom Preston-Werner, Scott Chacon, Chris Wanstrath, and PJ Hyett.</p>
+<p>This documentation is accurate as of Grit 1.0.2.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>git (http://git-scm.com) tested with 1.6.0.2</li>
+</ul>
+<h2 id="install">Install</h2>
+<p>Easiest install is via RubyGems:</p>
+<pre><code>$ gem install grit</code></pre>
+<p>or</p>
+<pre><code>$ gem sources -a http://gems.github.com/ (you only need to do this once)
+$ gem install mojombo-grit</code></pre>
+<p>The gem from GitHub will generally be available sooner than the gem from Rubyforge. Both sources will eventually contain the same releases.</p>
+<h2 id="source">Source</h2>
+<p>Grit’s Git repo is available on GitHub, which can be browsed at:</p>
+<pre><code>http://github.com/mojombo/grit</code></pre>
+<p>and cloned with:</p>
+<pre><code>git clone git://github.com/mojombo/grit.git</code></pre>
+</body>
+</html>

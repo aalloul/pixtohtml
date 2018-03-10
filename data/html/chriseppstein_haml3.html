@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chriseppstein_haml3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>%ul
+  %li Salt
+  %li Pepper</code></pre>
+<p>becomes:</p>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Salt&lt;/li&gt;
+  &lt;li&gt;Pepper&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>You can also put plain text as a child of an element:</p>
+<pre><code>%p
+  Hello,
+  World!</code></pre>
+<p>It’s also possible to embed Ruby code into Haml documents. An equals sign, <code>=</code>, will output the result of the code. A hyphen, <code>-</code>, will run the code but not output the result. You can even use control statements like <code>if</code> and <code>while</code>:</p>
+<pre><code>%p
+  Date/Time:
+  - now = DateTime.now
+  %strong= now
+  - if now &gt; DateTime.parse(&quot;December 31, 2006&quot;)
+    = &quot;Happy new &quot; + &quot;year!&quot;</code></pre>
+<p>Haml provides far more tools than those presented here. Check out the for full details.</p>
+<h4 id="indentation">Indentation</h4>
+<p>Haml’s indentation can be made up of one or more tabs or spaces. However, indentation must be consistent within a given document. Hard tabs and spaces can’t be mixed, and the same number of tabs or spaces must be used throughout.</p>
+<h3 id="sass">Sass</h3>
+<p>Sass is an extension of CSS that adds power and elegance to the basic language. It allows you to use [variables][vars], [nested rules][nested], [mixins][mixins], [inline imports][imports], and more, all with a fully CSS-compatible syntax. Sass helps keep large stylesheets well-organized,</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Shougo_neocomplcache.vim3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>&quot; Recommended key-mappings. &quot; <CR>: close popup and save indent. inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR> function! s:my_cr_function() return neocomplcache#smart_close_popup() . “&lt;CR&gt;” &quot; For no inserting <CR> key. “return pumvisible() ? neocomplcache#close_popup() :”&lt;CR&gt;&quot; endfunction &quot; <TAB>: completion. inoremap <expr><TAB> pumvisible() ? “&lt;C-n&gt;” : “&lt;TAB&gt;” &quot; <C-h>, <BS>: close popup and delete backword char. inoremap <expr><C-h> neocomplcache#smart_close_popup().“&lt;C-h&gt;” inoremap <expr><BS> neocomplcache#smart_close_popup().“&lt;C-h&gt;” inoremap <expr><C-y> neocomplcache#close_popup() inoremap <expr><C-e> neocomplcache#cancel_popup() &quot; Close popup by <Space>. “inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() :”&lt;Space&gt;&quot;</p>
+<p>&quot; For cursor moving in insert mode(Not recommended) “inoremap <expr><Left> neocomplcache#close_popup() .”&lt;Left&gt;&quot; “inoremap <expr><Right> neocomplcache#close_popup() .”&lt;Right&gt;&quot; “inoremap <expr><Up> neocomplcache#close_popup() .”&lt;Up&gt;&quot; “inoremap <expr><Down> neocomplcache#close_popup() .”&lt;Down&gt;&quot; &quot; Or set this. “let g:neocomplcache_enable_cursor_hold_i = 1” Or set this. “let g:neocomplcache_enable_insert_char_pre = 1</p>
+<p>&quot; AutoComplPop like behavior. “let g:neocomplcache_enable_auto_select = 1</p>
+<p>&quot; Shell like behavior(not recommended). “set completeopt+=longest”let g:neocomplcache_enable_auto_select = 1 “let g:neocomplcache_disable_auto_complete = 1”inoremap <expr><TAB> pumvisible() ? “&lt;Down&gt;” : “&lt;C-x&gt;&lt;C-u&gt;”</p>
+<p>&quot; Enable omni completion. autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS autocmd FileType python setlocal omnifunc=pythoncomplete#Complete autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags</p>
+<p>&quot; Enable heavy omni completion. if !exists(‘g:neocomplcache_force_omni_patterns’) let g:neocomplcache_force_omni_patterns = {} endif let g:neocomplcache_force_omni_patterns.php = ‘[^. ]-&gt;|::’ let g:neocomplcache_force_omni_patterns.c = ’[^.[:digit:] *]%(.|-&gt;)’</p>
+</body>
+</html>

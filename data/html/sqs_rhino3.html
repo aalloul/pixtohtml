@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sqs_rhino3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+# data can be specified in the second argument of Page.new… page # Page.new(‘the-row-key’, {:title#&gt;“my title”}) # …or as attributes on the model page.contents # “
+<p>
+welcome
+</p>
+<p>&quot; page.save</p>
+<h4 id="reading-and-updating-attributes">Reading and updating attributes</h4>
+<p>page # Page.get(‘some-key’) puts “the old title is: #{page.title}” page.title # “another title” page.save puts “the new title is: #{page.title}”</p>
+<p>You can also read from and write to specific columns in a column family. Since we already defined the <tt>meta:</tt> column family, Rhino knows we want to set the <tt>meta:author</tt> column:</p>
+<p>page # Page.get(‘some-key’) page.meta_author # “John Doe” page.save puts “the author is: #{page.meta_author}”</p>
+<h3 id="has_many-and-belongs_to">has_many and belongs_to</h3>
+<p>In the model definition above, we stated that a Page <tt>has_many :links</tt> and <tt>has_many :images</tt>. We can define what a Link and an Image is with greater detail now.</p>
+<p>class Link &lt; Rhino::Cell belongs_to :page</p>
+<pre><code>def url
+  url_parts # key.split(&#39;/&#39;)
+  backwards_host # url_parts.shift
+  path # url_parts.join(&#39;/&#39;)
+  host # backwards_host.split(&#39;.&#39;).reverse.join(&#39;.&#39;)
+  &quot;http://#{host}/#{path}&quot;
+end</code></pre>
+<p>end</p>
+<p>class Image &lt; Rhino::Cell belongs_to :page end</p>
+<p>Now that we’ve defined <tt>Link</tt> and <tt>Image</tt>, we can work with them easily. The following code adds a link to the page <tt>com.example</tt>, which when written to HBase becomes a cell in the <tt>links:</tt> column family named <tt>links:com.google</tt> with the contents <tt>search engine</tt>.</p>
+<p>page # Page.get(‘com.example’) page.links.create(‘com.google’, ‘search engine’)</p>
+<p>You can also iterate over the collection of links. In this example, we use <tt>Link#url</tt>, a method we defined on the Link class to convert from the common <tt>com.example/path</tt> URL storage style to <tt>example.com/path</tt>.</p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>codebutler_rmailt1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="introduction">Introduction</h2>
+<p>rmailt is an xmpp transport that makes it possible to send emails the same way you send instant messages.</p>
+<p>rmailt was written primarily as a way to talk to cellphones as an alternative to SMS, as many phones (blackberry, all japanese phones, etc.) have a dedicated email address.</p>
+<p>rmailt was created by Eric Butler and is licensed under the GPLv3 or later. If you have any questions, comments, bug reports, and/or patches, please contact me via xmpp or email at <em>eric@extremeboredom.net</em>.</p>
+<h2 id="installation">Installation</h2>
+<p>Currently rmailt is designed to be installed as a debian package. If you’re compiling from source, run the following command to create a .deb file:</p>
+<pre><code>$ make deb</code></pre>
+<p>This will create a .deb package in the parent directory. Unfortunetly, not all of the dependencies are currently available as debian packages, so you’ll have to install the following gems:</p>
+<ul>
+<li>xmpp4r</li>
+<li>tmail</li>
+<li>tlsmail</li>
+<li>datamapper</li>
+<li>SyslogLogger</li>
+<li>do_sqlite3</li>
+</ul>
+<p>If you can help debianize these, that would be great.</p>
+<p>Install the package you created earlier:</p>
+<pre><code>$ sudo dpkg -i ../rmailt_0.1+git20080928-0.deb</code></pre>
+<h2 id="configuring-ejabberd">Configuring ejabberd</h2>
+<p>Ejabberd needs to be configured for the new transport. Find the <em>Listened ports</em> section and add the following inside the <code>{listen, [</code> array:</p>
+<pre><code>% Mail Transport
+{5349, ejabberd_service, [{host, &quot;mail.xmpp.example.com&quot;,
+                        [{password, &quot;letmein&quot;}]}]},</code></pre>
+<p>Set the port, host (this is the transport’s <em>JID</em>), and password appropriately</p>
+</body>
+</html>

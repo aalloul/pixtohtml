@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>vti_mojox-session4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>$session-&gt;clear(&#39;bar&#39;);
+$session-&gt;clear;
+$session-&gt;flush;</code></pre>
+<p>Clear session values. Delete only one value if argument is provided. Call flush if you want to clear it in the store.</p>
+<h2 id="expires"><code>expires</code></h2>
+<pre><code>$session-&gt;expires;
+$session-&gt;expires(123456789);</code></pre>
+<p>Get/set session expire time.</p>
+<h2 id="expire"><code>expire</code></h2>
+<pre><code>$session-&gt;expire;
+$session-&gt;flush;</code></pre>
+<p>Force session to expire. Call flush if you want to remove it from the store.</p>
+<h2 id="is_expired"><code>is_expired</code></h2>
+<p>Check if session is expired.</p>
+<h2 id="extend_expires"><code>extend_expires</code></h2>
+<p>Entend session expires time. Set it to current_time + expires_delta.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<h1 id="author">AUTHOR</h1>
+<p>Viacheslav Tykhanovskyi, <code>vti@cpan.org</code>.</p>
+<h1 id="credits">CREDITS</h1>
+<p>Daniel Mascarenhas</p>
+<p>David Davis</p>
+<p>Maxim Vuets</p>
+<p>Sergey Zasenko</p>
+<p>William Ono</p>
+<p>Yaroslav Korshak</p>
+</body>
+</html>

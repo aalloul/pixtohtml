@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>patcito_couchrest1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="couchrest-couchdb-close-to-the-metal">CouchRest: CouchDB, close to the metal</h1>
+<p>CouchRest is based on <a href="http://svn.apache.org/repos/asf/incubator/couchdb/trunk/share/www/script/couch.js">CouchDB’s couch.js test library</a>, which I find to be concise, clear, and well designed. CouchRest lightly wraps CouchDB’s HTTP API, managing JSON serialization, and remembering the URI-paths to CouchDB’s API endpoints so you don’t have to.</p>
+<p>CouchRest is designed to make a simple base for application and framework-specific object oriented APIs. CouchRest is Object-Mapper agnostic, the parsed JSON it returns from CouchDB shows up as subclasses of Ruby’s Hash. Naked JSON, just as it was mean to be.</p>
+<h2 id="easy-install">Easy Install</h2>
+<p>Easy Install is moving to RubyForge, heads up for the gem.</p>
+<h3 id="relax-its-restful">Relax, it’s RESTful</h3>
+<p>The core of Couchrest is Heroku’s excellent REST Client Ruby HTTP wrapper. REST Client takes all the nastyness of Net::HTTP and gives is a pretty face, while still giving you more control than Open-URI. I recommend it anytime you’re interfacing with a well-defined web service.</p>
+<h3 id="running-the-specs">Running the Specs</h3>
+<p>The most complete documentation is the spec/ directory. To validate your CouchRest install, from the project root directory run <code>rake</code>, or <code>autotest</code> (requires RSpec and optionally ZenTest for autotest support).</p>
+<h2 id="examples">Examples</h2>
+<p>Quick Start:</p>
+<pre><code># with !, it creates the database if it doesn&#39;t already exist
+@db = CouchRest.database!(&quot;http://127.0.0.1:5984/couchrest-test&quot;)
+response = @db.save_doc({:key =&gt; &#39;value&#39;, &#39;another key&#39; =&gt; &#39;another value&#39;})
+doc = @db.get(response[&#39;id&#39;])
+puts doc.inspect</code></pre>
+<p>Bulk Save:</p>
+<pre><code>@db.bulk_save([
+    {&quot;wild&quot; =&gt; &quot;and random&quot;},
+    {&quot;mild&quot; =&gt; &quot;yet local&quot;},
+    {&quot;another&quot; =&gt; [&quot;set&quot;,&quot;of&quot;,&quot;keys&quot;]}
+  ])
+# returns ids and revs of the current docs
+puts @db.documents.inspect </code></pre>
+<p>Creating and Querying Views:</p>
+<pre><code>@db.save_doc({</code></pre>
+</body>
+</html>

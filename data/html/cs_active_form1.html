@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cs_active_form1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="active_form">active_form</h1>
+<p>The <code>master</code> branch is compatible with Rails 3.0 only. If you want to use <code>active_form</code> with Rails 2.3 please take a look at the <code>rails-2-3</code> branch.</p>
+<h2 id="model">Model</h2>
+<pre><code>class ContactForm &lt; ActiveForm
+  attr_accessor :name, :institution, :email, :contact_number, :address, :purpose
+  validates_presence_of :name, :email, :address, :purpose
+  validates_length_of :email, :within =&gt; 6..100, :unless =&gt; Proc.new {|m| m.email.blank?}
+end </code></pre>
+<h2 id="controller">Controller</h2>
+<pre><code>def show
+  @contact_form = ContactForm.new
+end
+
+def send_contact_form
+  @contact_form = ContactForm.new params[:contact_form]
+    if @contact_form.valid?
+        #...
+    else
+        render :action =&gt; &quot;show&quot;
+    end
+end</code></pre>
+<h2 id="form">Form</h2>
+<pre><code>&lt;%= form_for @contact_form, :url =&gt; send_contact_form do |f| %&gt;
+  &lt;%= f.error_messages %&gt;
+  &lt;%= f.text_field :name %&gt;
+  &lt;%= f.text_field :institution %&gt;
+  &lt;%= f.text_field :email %&gt;
+  &lt;%= f.text_field :contact_number %&gt;
+  &lt;%= f.text_field :address %&gt;
+  &lt;%= f.select :purpose, [&quot;&quot;, &quot;First&quot;, &quot;Second&quot;] %&gt;
+  &lt;%= f.submit &quot;Request&quot; %&gt;
+&lt;% end %&gt;</code></pre>
+<h2 id="compatibility">Compatibility</h2>
+<ul>
+<li>MRI Ruby 1.8.7</li>
+<li>MRI Ruby 1.9.2</li>
+<li>JRuby 1.6</li>
+</ul>
+<h2 id="how-to-contribute">How to contribute?</h2>
+<ol type="1">
+<li>Fork on .</li>
+<li>Make sure, that all specs are still passing (run <code>bundle install &amp;&amp; bundle exec rake spec</code>).</li>
+</ol>
+</body>
+</html>

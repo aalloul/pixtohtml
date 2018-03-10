@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevedekorte_garbagecollector2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>You also need to tell the collector when a reference is added from one object to another (this is typically called the write barrier) and is required to support incremental collection.</p>
+<pre><code>Collector_value_addingRefTo_(collector, value, referencedValue);</code></pre>
+<h2 id="freeing">Freeing</h2>
+<p>Every so many Collector_addValue_() calls, the collector will do a bit of marking, and every so many marks it will do a sweep. A sweep will result in the free callback being called for each value that was found to be unreachable.</p>
+<p>You’ll need to set the free callback to tell the collector which function to call when a value is found to be no longer reachable:</p>
+<pre><code>Collector_setFreeFunc_(collector, MyObjectType_free)</code></pre>
+<h2 id="atomic-operations">Atomic Operations</h2>
+<p>When you’re doing an atomic operation, like initializing a new object, it’s important to call:</p>
+<pre><code>Collector_pushPause(collector);</code></pre>
+<p>To resume the collector, call:</p>
+<pre><code>Collector_popPause(collector);</code></pre>
+<p>These increment and decrement a pause count and the collector will delay any marking until the pause count is zero.</p>
+<h2 id="stacks">Stacks</h2>
+<p>Since the structure of the C stack is unknown, there is no way to trace it. By “stack” here I mean value stacks which hold the values being referenced by the C stack (or referenced by your language locals, if your language’s stack frames aren’t first class).</p>
+<p>The simplest way to deal with stacks is to call:</p>
+<pre><code>Collector_value_addingRefTo_(collector, stackOwnerValue, newStackValue);</code></pre>
+<p>whenever a new value is added to the stack. This will ensure that things referenced by the stack get marked. The next 2 sections describe how to ensure the stacks themselves get marked.</p>
+<h3 id="cooperative-multitasking-stacks">Cooperative Multitasking Stacks</h3>
+<p>In the case of my programming language, Io, coroutines are used for concurrency and are first class objects in the language.</p>
+<p>So if a coroutine is reachable via the root node, it will get marked and if not, no one will be able to tell it to resume, so it’s safe to collect it. This works for all coroutines except the main coroutine (the one that started the program) and the current coroutine. So on startup I call:</p>
+<pre><code>Collector_retain_(collector, mainCoroutineValue);</code></pre>
+<p>to ensure the main coroutine won’t be collected. And everytime Io resumes a coroutine, I call:</p>
+</body>
+</html>

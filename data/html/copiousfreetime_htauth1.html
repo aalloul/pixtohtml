@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>copiousfreetime_htauth1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="htauth">HTAuth</h2>
+<ul>
+<li></li>
+<li>email jeremy at copiousfreetime dot org</li>
+</ul>
+<h2 id="description">DESCRIPTION</h2>
+<p>HTAuth is a pure ruby replacement for the Apache support programs htdigest and htpasswd. Command line and API access are provided for access to htdigest and htpasswd files.</p>
+<h2 id="features">FEATURES</h2>
+<p>HTAuth provides to drop in commands <em>htdigest-ruby</em> and <em>htpasswd-ruby</em> that can manipulate the digest and passwd files in the same manner as Apache’s original commands.</p>
+<p><em>htdigest-ruby</em> and <em>htpasswd-ruby</em> are command line compatible with <em>htdigest</em> and <em>htpasswd</em>. They support the same exact same command line options as the originals, and have some extras.</p>
+<p>Additionally, you can access all the functionality of <em>htdigest-ruby</em> and <em>htpasswd-ruby</em> through an API.</p>
+<h2 id="synopsis">SYNOPSIS</h2>
+<h3 id="htpasswd-ruby-command-line-application">htpasswd-ruby command line application</h3>
+<pre><code>Usage:
+htpasswd-ruby [-cmdpsD] passwordfile username
+htpasswd-ruby -b[cmdpsD] passwordfile username password
+
+htpasswd-ruby -n[mdps] username
+htpasswd-ruby -nb[mdps] username password
+
+-b, --batch                      Batch mode, get the password from the command line, rather than prompt
+-c, --create                     Create a new file; this overwrites an existing file.
+-d, --crypt                      Force CRYPT encryption of the password (default).
+-D, --delete                     Delete the specified user.
+-h, --help                       Display this help.
+-m, --md5                        Force MD5 encryption of the password (default on Windows).
+-n, --stdout                     Do not update the file; Display the results on stdout instead.
+-p, --plaintext                  Do not encrypt the password (plaintext).
+-s, --sha1                       Force SHA encryption of the password.
+-v, --version                    Show version info.</code></pre>
+<h3 id="htdigest-ruby-command-line-application">htdigest-ruby command line application</h3>
+<pre><code>Usage: htdigest-ruby [options] passwordfile realm username</code></pre>
+</body>
+</html>

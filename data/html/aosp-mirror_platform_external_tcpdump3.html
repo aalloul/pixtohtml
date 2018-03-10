@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aosp-mirror_platform_external_tcpdump3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>the delta-time from the first send of the packet to the
+ack.  A number in parens following a send is the
+delta-time from the first send of the packet to the
+current send (on duplicate packets only).  Duplicate
+sends or acks have a number in square brackets showing
+the number of duplicates so far.
+
+Here is a short sample from near the start of an ftp:
+    3.00    0.20   send . 512
+    3.20    0.20    ack . 1024  (0.20)
+    3.20    0.00   send P 1024
+    3.40    0.20    ack . 1536  (0.20)
+    3.80    0.40 * send . 0  (3.80) [2]
+    3.82    0.02 *  ack . 1536  (0.62) [2]
+Three seconds into the conversation, bytes 512 through 1023
+were sent.  200ms later they were acked.  Shortly thereafter
+bytes 1024-1535 were sent and again acked after 200ms.
+Then, for no apparent reason, 0-511 is retransmitted, 3.8
+seconds after its initial send (the round trip time for this
+ftp was 1sec, +-500ms).  Since the receiver is expecting
+1536, 1536 is re-acked when 0 arrives.</code></pre>
+<p>packetdat.awk Computes chunk summary data for an ftp (or similar unidirectional tcp transfer). [A “chunk” refers to a chunk of the sequence space – essentially the packet sequence number divided by the max segment size.]</p>
+<pre><code>A summary line is printed showing the number of chunks,
+the number of packets it took to send that many chunks
+(if there are no lost or duplicated packets, the number
+of packets should equal the number of chunks) and the
+number of acks.
+
+Following the summary line is one line of information
+per chunk.  The line contains eight fields:
+   1 - the chunk number
+   2 - the start sequence number for this chunk
+   3 - time of first send
+   4 - time of last send
+   5 - time of first ack
+   6 - time of last ack
+   7 - number of times chunk was sent
+   8 - number of times chunk was acked
+(all times are in decimal seconds, relative to the start
+of the conversation.)
+
+As an example, here is the first part of the output for
+an ftp trace:</code></pre>
+</body>
+</html>

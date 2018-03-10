@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra53</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>require ‘rack/test’</p>
+<p>class MyAppTest &lt; Minitest::Test include Rack::Test::Methods</p>
+<p>def app Sinatra::Application end</p>
+<p>def test_my_default get ‘/’ assert_equal ‘Hello World!’, last_response.body end</p>
+<p>def test_with_params get ‘/meet’, :name =&gt; ‘Frank’ assert_equal ‘Hello Frank!’, last_response.body end</p>
+<p>def test_with_user_agent get ‘/’, {}, ‘HTTP_USER_AGENT’ =&gt; ‘Songbird’ assert_equal “You’re using Songbird!”, last_response.body end end ```</p>
+<p>Note: If you are using Sinatra in the modular style, replace <code>Sinatra::Application</code> above with the class name of your app.</p>
+<h2 id="sinatrabase---middleware-libraries-and-modular-apps">Sinatra::Base - Middleware, Libraries, and Modular Apps</h2>
+<p>Defining your app at the top-level works well for micro-apps but has considerable drawbacks when building reusable components such as Rack middleware, Rails metal, simple libraries with a server component, or even Sinatra extensions. The top-level assumes a micro-app style configuration (e.g., a single application file, <code>./public</code> and <code>./views</code> directories, logging, exception detail page, etc.). That’s where <code>Sinatra::Base</code> comes into play:</p>
+<p>```ruby require ‘sinatra/base’</p>
+<p>class MyApp &lt; Sinatra::Base set :sessions, true set :foo, ‘bar’</p>
+<p>get ‘/’ do ‘Hello world!’ end end</p>
+</body>
+</html>

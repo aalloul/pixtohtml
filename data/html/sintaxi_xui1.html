@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sintaxi_xui1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="xui">XUI</h1>
+<p>A lightweight, dead simple, microtiny, super modular JavaScript framework for building mobile web applications.</p>
+<h3 id="xui-application-authors-and-hackers">XUI Application Authors and Hackers</h3>
+<p>Its true: the minified code is <em>super tiny</em>. You can find more information, downloads and documentation at http://xuijs.com —if you want to build your own custom XUI or help contribute: please read on!</p>
+<h3 id="xui-contributors-and-hackers">XUI Contributors and Hackers</h3>
+<p>To build xui: run <em>rake</em> in the shell of your choice from the root of the project directory. (This requires Ruby.) There are other tasks for code minification, running the specs and generating docs. Run <code>rake -T</code> to see them all.</p>
+<h3 id="source-tree">Source Tree</h3>
+<pre><code>xui
+ |-Rakefile ................. tasks for building, testing, etc. see them all by running rake -T
+ |-README.md ................ you are reading it!
+ | 
+ |-src
+ | |-base.js ................ bare essentials for dom node retrieval
+ | |
+ | |-core ................... essentials:
+ | | |-dom.js ............... - dom node manipulation
+ | | |-event.js ............. - event subscribe/publish
+ | | |-fx.js ................ - animation
+ | | |-style.js ............. - css hackery
+ | | &#39;-xhr.js ............... - remoting
+ | |
+ | &#39;-more ................... extras (yagni unless ygni)
+ |   |-base.js  
+ |   |-dom.js   
+ |   |-event.js 
+ |   |-form.js .............. form handlers, serialization
+ |   |-fx.js    
+ |   |-xhr.js  
+ |   &#39;-json.js .............. json utilities
+ |  
+ |-spec ..................... the spec
+ | |-core.html
+ | &#39;-more.html
+ | 
+ |-packages ................. 3rd party libs utilized by XUI (gitsubmodules)
+ | |-qunit .................. - awesome async friendly test lib by John Resig
+ | |-shoulda-js ............. - bdd sugar for qunit with mobile friendly output
+ | &#39;-emile .................. - amazing tiny effects lib by Thomas Fuchs
+ |
+ |-lib ...................... build directory (not in version control)</code></pre>
+</body>
+</html>

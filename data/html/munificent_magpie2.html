@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>munificent_magpie2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ol start="2" type="1">
+<li><p><strong>Generate a project.</strong> From the root directory of the magpie repo:</p>
+<pre><code>$ cd &lt;path to magpie repo&gt;
+$ ./run_gyp</code></pre></li>
+<li><p><strong>Set the output directory (XCode 4 only).</strong> Recent versions of XCode build into some shared directory not related to where the project is. This borks Magpie since it’s a command-line executable that loads the core library from a path relative to that executable.</p>
+<p>Unfortunately, this setting isn’t in the project itself, so gyp can’t help. After you generate the project, open it in XCode, then:</p>
+<ol type="1">
+<li>Choose “File &gt; Project Settings…”.</li>
+<li>On the “Build” tab, click “Advanced…”.</li>
+<li>Set “Build Location” to “Custom &gt; Relative to Workspace”.</li>
+<li>Set “Products” to <code>build</code>.</li>
+<li>Set “Intermediates” to <code>build/Intermediates</code>.</li>
+<li>Click “Done”.</li>
+</ol>
+<p>This should ensure that Magpie gets built into <code>build/&lt;config&gt;/magpie</code>.</p></li>
+<li><p><strong>Build the project.</strong> Do what you usually do on your OS to build the thing. On Mac, that means open the XCode project and build from there. In Windows, there is a Visual Studio solution you can build. On Linux, you can just run <code>make</code>.</p></li>
+</ol>
+<h3 id="building-the-java-interpreter">Building the Java Interpreter</h3>
+<ol type="1">
+<li><p><strong>Pull down the code.</strong> It lives here: https://github.com/munificent/magpie</p></li>
+<li><p><strong>Build it.</strong> The repo includes an Eclipse project if that’s your thing. If you rock the command-line, you can just do:</p>
+<pre><code>$ cd magpie
+$ ant jar</code></pre></li>
+</ol>
+<h3 id="running-magpie">Running Magpie</h3>
+<p>Magpie is a command line app. After building it, you can run it by doing:</p>
+<pre><code>    $ ./magpie</code></pre>
+<p>This will run the Java interpreter or the bytecode VM, whichever is more recent.</p>
+<p>If you run it with no arguments, it drops you into a simple REPL. Enter a Magpie expression and it will immediately evaluate it. Since everything is an</p>
+</body>
+</html>

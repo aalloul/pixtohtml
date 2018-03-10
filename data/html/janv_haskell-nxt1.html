@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>janv_haskell-nxt1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="haskell-nxt">HASKELL-NXT</h1>
+<p>Haskell-Nxt is a library to control Lego Mindstorms NXT Bricks from Haskell.</p>
+<p>Since the nature of the communication with the Brick is stateful, the library consists almost entirely of monads.</p>
+<p>Haskell-NXT is my first piece of Haskell software and probably has a lot of rough edges still so comments, tips, bug reports or patches are very much appreciated.</p>
+<h1 id="architecture">Architecture</h1>
+<p>I want to briefly explain the architecture of the Library here.</p>
+<h2 id="nxt">NXT</h2>
+<p>This module is used for setting up a NXTBrick and fiddling around with it. Mainly for testing purposes</p>
+<h2 id="nxt.codes">NXT.Codes</h2>
+<p>Contains various Enums and Translations between NXT protocol bytecodes and descriptive strings or haskell types.</p>
+<h2 id="nxt.helpers">NXT.Helpers</h2>
+<p>Various helper functions for converting bytestrings, converting little- to big-endian integers, dissecting messages etc.</p>
+<h2 id="nxt.comm">NXT.Comm</h2>
+<p>Lowest level communication with NXT Bricks. Provides a wrapper around System.IO calls to make top-level programs a little less noisy and basic read/write commands</p>
+<h2 id="nxt.commands">NXT.Commands</h2>
+<p>Implementations of the most common Direct Commands in two parts each. One function to assemble the message to send to the Brick, one action to send the message to the Brick in the IO Monad A custom class <code>Appendable</code> is used to more easily combine various data types into NXT messages.</p>
+<h2 id="nxt.motor">NXT.Motor</h2>
+<p>High-level library on top of NXT.Commands to easily run and stop motors.</p>
+</body>
+</html>

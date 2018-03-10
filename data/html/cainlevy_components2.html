@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cainlevy_components2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>This will cache the returns from UsersComponent#details using a cache key like “users/details/5”, where 5 is the user_id. The cache will only be good for fifteen minutes. See Components::Caching for more information.</p>
+<h3 id="helpers">Helpers</h3>
+<p>All of the standard helper functionality exists for components. You may define a method on your component controller and use :helper_method to make it available in your views, or you may use :helper to add entire modules of extra methods to your views.</p>
+<p>Be careful importing existing helpers, though, as some of them may try and break encapsulation by reading from the session, the request, or the params. You may need to rewrite these helpers so they accept the necessary information as arguments.</p>
+<h3 id="inherited-views">Inherited Views</h3>
+<p>Assume two components:</p>
+<pre><code>class ParentComponent &lt; Components::Base
+  def one
+    render
+  end
+
+  def two
+    render
+  end
+end
+
+class ChildComponent &lt; ParentComponent
+  def one
+    render
+  end
+
+  def three
+    render &quot;one&quot;
+  end
+end</code></pre>
+<p>Both methods on the ChildComponent class would first try and render “/app/components/child/one.erb”, and if that file did not exist, would render “/app/components/parent/one.erb”.</p>
+<h3 id="standard-argument-options">Standard Argument Options</h3>
+<p>You may find yourself constantly needing to pass a standard set of options to each component. If so, you can define a method on your controller that returns a hash of standard options that will be merged with the component arguments and passed to every component.</p>
+<p>Suppose a given component:</p>
+<pre><code>class GroupsComponent &lt; Components::Base
+  def details(group_id, options = {})
+    @user = options[:user]
+    @group = Group.find(group_id)
+    render
+  end
+end</code></pre>
+<p>Then the following setup:</p>
+</body>
+</html>

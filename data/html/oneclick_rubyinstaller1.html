@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>oneclick_rubyinstaller1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><strong>Attention</strong>: This project provides an Installer on Windows for Ruby-2.3 and older. For Ruby-2.4 and newer please refer to .</p>
+<h1 id="rubyinstaller">RubyInstaller</h1>
+<p>This project, licensed under the 3-clause Modified BSD License, attempts to generate a development sandbox that can be used to compile Ruby and it’s components using the freely available MinGW toolchain. Our goal is to offer a simplified way to boost your productivity when building Ruby from source code on your Windows system, and ease the path for anyone wishing to contribute to the RubyInstaller for Windows project.</p>
+<p>This project is a work-in-progress collection of Rake build recipes that download and verify the MinGW utilities required to compile and build a Ruby interpreter and it’s core components and dependencies.</p>
+<p>The recipes also build a DevKit package that, when combined with a RubyInstaller installation, enables Windows users to easily build and use many of the native C-based RubyGems extensions that may not yet have a binary RubyGem. The DevKit (available as a Windows Installer and normal 7-Zip and self-extracting archives) provides an easy-to-install compiler and build system, and convenient setup helper scripts.</p>
+<h2 id="second-quick-start">7-Second Quick Start</h2>
+<p>Ensure you are connected to the Internet, open a Command Prompt, <code>cd</code> to the project root directory, and type one of:</p>
+<pre><code>rake          # builds MRI 1.8.7
+rake ruby19   # builds MRI 1.9.2
+rake ruby20   # builds MRI 2.0.0
+rake ruby21   # builds MRI 2.1.x</code></pre>
+<p>Please note that for <code>ruby20</code> and <code>ruby21</code>, you need to use a different DevKit version than the default one.<br />
+At this time, <code>mingw64-32-4.7.2</code> and <code>mingw64-64-4.7.2</code> are used, e.g:</p>
+<pre><code>rake ruby21 DKVER=mingw64-32-4.7.2</code></pre>
+<h2 id="project-directory-organization">Project Directory Organization</h2>
+<p>The Rake build recipes are distributed inside the project’s recipes/ directory using the following sub-directory structure:</p>
+<ul>
+<li><p><code>compiler/*.rake</code>: the recipes to download and prepare the native code compiler (MinGW for now) that will be used to build the Ruby interpreter.</p></li>
+<li><p><code>dependencies/*.rake</code>: the recipes contains the dependencies needed to be downloaded, compiled and included for the interpreter to work properly. At this time zlib, rb-readline, gdbm, iconv, pdcurses, and openssl are included.</p></li>
+</ul>
+</body>
+</html>

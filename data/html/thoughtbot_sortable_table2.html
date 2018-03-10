@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>thoughtbot_sortable_table2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<hr />
+<pre><code>class UsersController &lt; Admin::BaseController
+  sortable_attributes :name, :email, :age, :group =&gt; &quot;groups.name&quot;
+
+  def index
+    @users = User.paginate :page =&gt; params[:page], :order =&gt; sort_order
+  end
+end</code></pre>
+<p>sortable_attributes defines a sort_order method that gets called in your action.</p>
+<p>If the index action is rendered without a params[:sort] option, <span class="citation" data-cites="users">@users</span> will be sorted by :name, the first option in the list of sortable_attributes.</p>
+<h2 id="view">View</h2>
+<pre><code>&lt;h1&gt;Users&lt;/h1&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;%= sortable_table_header :name =&gt; &quot;Name&quot;,  :sort =&gt; &quot;name&quot; %&gt;
+    &lt;%= sortable_table_header :name =&gt; &quot;Email&quot;, :sort =&gt; &quot;email&quot; %&gt;
+    &lt;%= sortable_table_header :name =&gt; &quot;Age&quot;,   :sort =&gt; &quot;age&quot; %&gt;
+    &lt;%= sortable_table_header :name =&gt; &quot;Group&quot;, :sort =&gt; &quot;group&quot; %&gt;
+  &lt;/tr&gt;
+  &lt;% @users.each do |user| %&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;%= html_escape(user.name) %&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;%= html_escape(user.email) %&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;%= html_escape(user.age) %&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;%= html_escape(user.group.name) %&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;% end %&gt;
+&lt;/table&gt;</code></pre>
+<p>sortable_table_header creates a table header containing a link with the correct :sort and :order params. It also has a class of “ascending” or “descending” so you can add styles with arrows. You can add your own styles as well.</p>
+<h2 id="example-styles">Example styles</h2>
+<pre><code>th.ascending a {
+  background: url(/images/sort-ascending-arrow.gif) 0% 50% no-repeat;
+  padding-left: 15px;
+}
+
+th.descending a {
+  background: url(/images/sort-descending-arrow.gif) 0% 50% no-repeat;
+  padding-left: 15px;
+}</code></pre>
+</body>
+</html>

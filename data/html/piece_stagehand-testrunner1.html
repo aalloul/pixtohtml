@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>piece_stagehand-testrunner1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="stagehand_testrunner">Stagehand_TestRunner</h1>
+<p>A continuous test runner for CLI</p>
+<p><code>Stagehand_TestRunner</code> is a continuous test runner to run unit tests in CLI.</p>
+<p>It makes unit testing in a local environment much easier and comfortable. Additionally it can easily be integrated with a continuous integration server like .</p>
+<p>!</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Runs tests when a file is saved. (<strong>Continuous Testing</strong>)</li>
+<li>Runs tests in the specified directory.</li>
+<li>Runs tests in the specified file.</li>
+<li>Runs only the specified tests in the specified file.</li>
+<li>Runs only the tests in the specified classes.</li>
+<li>Colors the output.</li>
+<li>Preloads the specified PHP script before running tests.</li>
+<li>Notifies test results.</li>
+<li>Logs test results into the specified file in the XML format.</li>
+<li>Prints detailed progress report.</li>
+<li>Stops on the first failure or error.</li>
+<li>Specifies the test file pattern.</li>
+<li>Uses a YAML-based configuration file.</li>
+<li>Runs the phpunit command via the testrunner command.</li>
+<li>Supports .</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p><code>Stagehand_TestRunner</code> can be installed using .</p>
+<p>First, add the dependency to <code>piece/stagehand-testrunner</code> into your <code>composer.json</code> file as the following:</p>
+<p>Stable version:</p>
+<pre><code>composer require piece/stagehand-testrunner &quot;4.2.*&quot;</code></pre>
+<p>Development version:</p>
+<pre><code>composer require piece/stagehand-testrunner &quot;~4.3@dev&quot;</code></pre>
+</body>
+</html>

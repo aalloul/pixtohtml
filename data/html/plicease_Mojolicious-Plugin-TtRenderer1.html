@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>plicease_Mojolicious-Plugin-TtRenderer1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mojoliciouspluginttrenderer">Mojolicious::Plugin::TtRenderer</h1>
+<p>Template Renderer Plugin for Mojolicious</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>:</p>
+<pre><code>plugin &#39;tt_renderer&#39;;
+
+
+
+$self-&gt;plugin(&#39;tt_renderer&#39;);</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>This plugin is a simple Template Toolkit renderer for . Its defaults are usually reasonable, although for finer grain detail in configuration you may want to use directly.</p>
+<h1 id="options">OPTIONS</h1>
+<p>These are the options that can be passed in as arguments to this plugin.</p>
+<h2 id="template_options">template_options</h2>
+<p>Configuration hash passed into ’s constructor, see</p>
+<p>for details. Here is an example using the form:</p>
+<pre><code>plugin &#39;tt_renderer&#39; =&gt; {
+  template_options =&gt; {
+    PRE_CHOMP =&gt; 1,
+    POST_CHOMP =&gt; 1,
+    TRIM =&gt; 1,
+  },
+};</code></pre>
+<p>Here is the same example using the full app form:</p>
+<pre><code>package MyApp;
+
+use Mojo::Base qw( Mojolicious );
+
+sub startup {
+  my($self) = @_;
+  
+  $self-&gt;plugin(&#39;tt_renderer&#39; =&gt; {
+    template_options =&gt; {</code></pre>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandastream_panda_gem2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>If you don’t use a config file and want to simply be setup, do the following (works only on heroku):</p>
+<pre><code>Panda.configure_heroku</code></pre>
+<h3 id="typical-usage">Typical usage</h3>
+<p>In most cases you will have used the . Then you will want to get the video and screenshots urls of your encoding to display to your users.</p>
+<p>The name of the profile can be found in your when editing an encoding cloud’s profiles.</p>
+<pre><code>encodings = Panda::Video.find(&quot;1234&quot;).encodings
+=&gt; [...]
+
+mp4_encoding = encodings[&quot;h264&quot;]
+ogg_encoding = encodings[&quot;ogg&quot;]
+
+mp4_encoding.url
+=&gt; &quot;http://s3.amazonaws.com/my_panda_bucket/4567.mp4&quot;
+
+mp4_encoding.screenshots[4]
+=&gt; &quot;http://s3.amazonaws.com/my_panda_bucket/4567_4.jpg&quot;
+
+ogg_encoding.url
+=&gt; &quot;http://s3.amazonaws.com/my_panda_bucket/9876.ogg&quot;
+
+ogg_encoding.screenshots[4]
+=&gt; &quot;http://s3.amazonaws.com/my_panda_bucket/9876_4.jpg&quot;</code></pre>
+<h2 id="complete-functionality">Complete functionality</h2>
+<h3 id="videos">Videos</h3>
+<h4 id="find-a-video">Find a video</h4>
+<pre><code>video = Panda::Video.find(&quot;1234&quot;)
+video.attributes
+=&gt; {
+  &quot;id&quot;=&gt;&quot;1234&quot;,
+  &quot;original_filename&quot;=&gt;&quot;panda.mp4&quot;,
+  &quot;source_url&quot;=&gt;&quot;http://www.example.com/original_video.mp4&quot;,
+  &quot;extname&quot;=&gt;&quot;.mp4&quot;,
+  &quot;duration&quot;=&gt;14010,
+  &quot;audio_codec&quot;=&gt;&quot;aac&quot;,
+  &quot;video_codec&quot;=&gt;&quot;h264&quot;,
+  &quot;file_size&quot; =&gt; &quot;44000&quot;,
+  &quot;width&quot;=&gt;300,
+  &quot;height&quot;=&gt;240,
+  &quot;fps&quot;=&gt;29,
+  &quot;status&quot;=&gt;&quot;success&quot;,</code></pre>
+</body>
+</html>

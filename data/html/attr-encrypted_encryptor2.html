@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>attr-encrypted_encryptor2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>decrypted_value = Encryptor.decrypt(encrypted_value, key: secret_key, iv: iv) ```</p>
+<h4 id="options">Options</h4>
+<p><strong>Defaults:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1">    { <span class="st">algorithm: &#39;aes-256-gcm&#39;</span>,</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">      <span class="st">auth_data: &#39;&#39;</span>,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">      <span class="st">insecure_mode: </span><span class="dv">false</span>,</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">      <span class="st">hmac_iterations: </span><span class="dv">2000</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">      <span class="st">v2_gcm_iv: </span><span class="dv">false</span> }</a></code></pre></div>
+<p>Older versions of Encryptor allowed you to use it in a less secure way. Namely, you were allowed to run Encryptor without an IV, or with a key of insufficient length. Encryptor now requires a key and IV of the correct length respective to the algorithm that you use. However, to maintain backwards compatibility you can run Encryptor with the <code>:insecure_mode</code> option. Additionally, when using AES-*-GCM algorithms in Encryptor v2.0.0, the IV was set incorrectly and was not used. The <code>:v2_gcm_iv</code> option is available to allow Encryptor to set the IV as it was set in Encryptor v2.0.0. This is provided to assist with migrating data that unsafely encrypted using an AES-*-GCM algorithm from Encryptor v2.0.0.</p>
+<p>You may also pass an <code>:algorithm</code>,<code>:salt</code>, and <code>hmac_iterations</code> option, however none of these options are required. If you pass the <code>:salt</code> option, a new unique key will be derived from the key that you passed in using PKCS5 with a default of 2000 iterations. You can change the number of PKCS5 iterations with the <code>hmac_iterations</code> option. As PKCS5 is slow, it is optional behavior, but it does provide more security to use a unique IV and key for every encryption operation.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">Encryptor</span>.default_options.merge!(<span class="st">algorithm: &#39;aes-256-cbc&#39;</span>, <span class="st">key: &#39;some default secret key&#39;</span>, <span class="st">iv: </span>iv, <span class="st">salt: </span>salt)</a></code></pre></div>
+<h4 id="strings">Strings</h4>
+<p>Older versions of Encryptor added <code>encrypt</code> and <code>decrypt</code> methods to <code>String</code> objects for your convenience. However, this behavior has been removed to avoid polluting Ruby’s core <code>String</code> class. The <code>Encryptor::String</code> module remains within this gem to allow users of this feature to implement it themselves. These <code>encrypt</code> and <code>decrypt</code> methods accept the same arguments as the associated ones in the <code>Encryptor</code> module. They’re nice when you set the default options in the <code>Encryptor.default_options attribute.</code> For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb3-1" data-line-number="1">require <span class="st">&#39;encryptor/string&#39;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">String</span>.include <span class="dt">Encryptor</span>::<span class="dt">String</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="dt">Encryptor</span>.default_options.merge!(<span class="st">key: &#39;some default secret key&#39;</span>, <span class="st">iv: </span>iv)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">credit_card = <span class="st">&#39;xxxx xxxx xxxx 1234&#39;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">encrypted_credit_card = credit_card.encrypt</a></code></pre></div>
+<p>There’s also <code>encrypt!</code> and <code>decrypt!</code> methods that replace the contents of a string with the encrypted or decrypted version of itself.</p>
+<h4 id="algorithms">Algorithms</h4>
+<p>To view a list of all cipher algorithms that are supported on your platform, run the following code in your favorite Ruby REPL:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb4-1" data-line-number="1">require <span class="st">&#39;openssl&#39;</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">puts <span class="dt">OpenSSL</span>::<span class="dt">Cipher</span>.ciphers</a></code></pre></div>
+<p>The supported ciphers will vary depending on the version of OpenSSL that was used to compile your version of Ruby. However, the following ciphers are typically supported:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Cipher Name</th>
+<th>Key size in bytes</th>
+<th>IV size in bytes</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</body>
+</html>

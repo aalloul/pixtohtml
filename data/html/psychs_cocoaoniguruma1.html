@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>psychs_cocoaoniguruma1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="cocoaoniguruma">CocoaOniguruma</h1>
+<p>CocoaOniguruma is an Objective-C binding of Oniguruma regular expression engine. It’s simple and tiny compared to the other bindings.</p>
+<p>It supports iOS 4+ and Mac OS X 10.6+ on both ARC and non ARC environments.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>CocoaOniguruma is provided as assorted source files primarily. Follow the steps to use CocoaOniguruma in your project.</p>
+<ol type="1">
+<li>Copy “framework/core” directory into your project directory with name “CocoaOniguruma”.</li>
+<li>Open your project by Xcode.</li>
+<li>Add all .h, .c and .m files under “Classes”.</li>
+<li>Import the header file, so you can use CocoaOniguruma.</li>
+</ol>
+<pre><code>#import "OnigRegexp.h"</code></pre>
+<h2 id="how-to-use-as-a-framework">How to use as a Framework</h2>
+<ol type="1">
+<li>Open CocoaOniguruma.xcodeproj by Xcode.</li>
+<li>Select “CocoaOniguruma” for Active Target and “Release” for Active Build Configuration.</li>
+<li>Build it.</li>
+<li>Copy “build/Release/CocoaOniguruma.framework” into your project directory.</li>
+<li>Open your project by Xcode.</li>
+<li>Add the framework to your project under “Frameworks”.</li>
+<li>Open “Targets” in the project tree.</li>
+<li>Right click on the application target to open context menu and add a “New Copy Files Build Phase”.</li>
+<li>Drag “CocoaOniguruma.framework” into the new “Copy Files” phase.</li>
+<li>Import the header file, so you can use CocoaOniguruma.</li>
+</ol>
+<pre><code>#import "CocoaOniguruma/OnigRegexp.h"</code></pre>
+<h2 id="the-author">The Author</h2>
+<ul>
+<li>Satoshi Nakagawa</li>
+<li>http://github.com/psychs</li>
+<li>http://limechat.net/psychs/</li>
+<li>#limechat on irc.freenode.net</li>
+</ul>
+<h2 id="thanks">Thanks</h2>
+<p>The specifications and implementations of split and replace functions are based on ruby. Thanks to Matz.</p>
+<h2 id="license">License</h2>
+<p>CocoaOniguruma contains a part of Oniguruma 5.9.2 source code currently. See also the Oniguruma’s COPYING file.</p>
+</body>
+</html>

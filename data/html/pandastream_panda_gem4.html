@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandastream_panda_gem4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>=&gt; &quot;3456&quot;
+
+videos = Panda::Video.page(2).per_page(20)
+
+or
+
+videos = Panda::Video.all(:page =&gt; 2, :per_page =&gt; 20)
+videos.size
+=&gt; 20
+
+Note: maximum :per_page is 100.</code></pre>
+<h5 id="find-all-success-videos">Find all success videos</h5>
+<pre><code>video = Panda::Video.status(&quot;success&quot;)
+=&gt; [...]
+
+or
+
+videos = Panda::Video.all(:status =&gt; &quot;success&quot;)
+=&gt; [...]
+
+status: success | processing | fail</code></pre>
+<h4 id="create-a-new-video">Create a new video</h4>
+<p>from a source</p>
+<pre><code>video = Panda::Video.create(:source_url =&gt; &quot;http://mywebsite.com/myvideo.mp4&quot;)
+
+or
+
+video = Panda::Video.new(:source_url =&gt; &quot;http://mywebsite.com/myvideo.mp4&quot;)
+video.create
+=&gt; true
+
+# Note that you will need a movie file to test this. 
+# You can grab http://panda-test-harness-videos.s3.amazonaws.com/panda.mp4</code></pre>
+<p>from a local file</p>
+<pre><code>video = Panda::Video.create(:file =&gt; File.new(&quot;/home/me/panda.mp4&quot;))
+
+or
+
+video = Panda::Video.new(:file =&gt; File.new(&quot;/home/me/panda.mp4&quot;))
+video.create
+=&gt; true</code></pre>
+<h4 id="delete-a-video">Delete a video</h4>
+</body>
+</html>

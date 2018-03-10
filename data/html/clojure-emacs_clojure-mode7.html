@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>clojure-emacs_clojure-mode7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Move the current form to the closest let’s binding form. Replace all occurrences of the form in the body of the let. See demonstration on the .</p>
+<ul>
+<li>Forward slurp form into let</li>
+</ul>
+<p>Slurp the next form after the let into the let. Replace all occurrences of the bound forms in the form added to the let form. If called with a prefix argument slurp the next n forms.</p>
+<ul>
+<li>Backward slurp form into let</li>
+</ul>
+<p>Slurp the form before the let into the let. Replace all occurrences of the bound forms in the form added to the let form. If called with a prefix argument slurp the previous n forms.</p>
+<p><code>paredit-convolute-sexp</code> is advised to replace occurrences of bound forms with their bound names when convolute is used on a let form.</p>
+<h2 id="related-packages">Related packages</h2>
+<ul>
+<li>[clojure-mode-extra-font-locking][] provides additional font-locking for built-in methods and macros. The font-locking is pretty imprecise, because it doesn’t take namespaces into account and it won’t font-lock a function at all possible positions in a sexp, but if you don’t mind its imperfections you can easily enable it:</li>
+</ul>
+<pre class="el"><code>(require &#39;clojure-mode-extra-font-locking)</code></pre>
+<p>The code in <code>clojure-mode-font-locking</code> used to be bundled with <code>clojure-mode</code> before version 3.0.</p>
+<p>You can also use the code in this package as a basis for extending the font-locking further (e.g. functions/macros from more namespaces). Generally you should avoid adding special font-locking for things that don’t have fairly unique names, as this will result in plenty of incorrect font-locking. CIDER users should avoid this package, as CIDER does its own dynamic font-locking, which is namespace-aware and doesn’t produce almost any false positives.</p>
+<ul>
+<li><p>[clj-refactor][] provides refactoring support.</p></li>
+<li><p>Enabling <code>CamelCase</code> support for editing commands(like <code>forward-word</code>, <code>backward-word</code>, etc) in <code>clojure-mode</code> is quite useful since we often have to deal with Java class and method names. The built-in Emacs minor mode <code>subword-mode</code> provides such functionality:</p></li>
+</ul>
+<p>```el</p>
+</body>
+</html>

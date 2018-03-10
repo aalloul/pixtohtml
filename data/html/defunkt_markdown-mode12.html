@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode12</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>no such cell or if the next row is beyond a separator line.
+
+You can also convert selected region to a table. Basic editing
+capabilities include inserting, deleting, and moving of columns
+and rows, and table re-alignment, sorting, transposition:
+
+  - &lt;kbd&gt;C-c UP&lt;/kbd&gt; or &lt;kbd&gt;C-c DOWN&lt;/kbd&gt; - Move the current row up or down.
+  - &lt;kbd&gt;C-c LEFT&lt;/kbd&gt; or &lt;kbd&gt;C-c RIGHT&lt;/kbd&gt; - Move the current column left or right.
+  - &lt;kbd&gt;C-c S-UP&lt;/kbd&gt; - Kill the current row.
+  - &lt;kbd&gt;C-c S-DOWN&lt;/kbd&gt; - Insert a row above the current row. With a
+    prefix argument, row line is created below the current one.
+  - &lt;kbd&gt;C-c S-LEFT&lt;/kbd&gt; - Kill the current column.
+  - &lt;kbd&gt;C-c S-RIGHT&lt;/kbd&gt; - Insert a new column to the left of the current one.
+  - &lt;kbd&gt;C-c C-d&lt;/kbd&gt; - Re-align the current table (`markdown-do`).
+  - &lt;kbd&gt;C-c C-c ^&lt;/kbd&gt; - Sort the rows of a table by a specified column.
+    This command prompts you for the column number and a sort
+    method (alphabetical or numerical, optionally in reverse).
+  - &lt;kbd&gt;C-c C-c |&lt;/kbd&gt; - Convert the region to a table.  This function
+    attempts to recognize comma, tab, and space separated data
+    and then splits the data into cells accordingly.
+  - &lt;kbd&gt;C-c C-c t&lt;/kbd&gt; - Transpose table at point.
+
+The table editing functions try to handle markup hiding
+correctly when calculating column widths, however, columns
+containing hidden markup may not always be aligned properly.</code></pre>
+<ul>
+<li><p>Viewing Modes:</p>
+<p>Read-only viewing modes, <code>markdown-view-mode</code> and <code>gfm-view-mode</code> are provided for viewing Markdown content. These modes provide simplified keybindings for navigating the buffer. Many of these are like <code>help-mode</code> and <code>view-mode</code>, such as <kbd>SPC</kbd>, <kbd>DEL</kbd>, <kbd>&lt;</kbd>, and <kbd>&gt;</kbd> for scrolling, <kbd>q</kbd> for quitting, and <kbd>?</kbd> or <kbd>h</kbd> for help. Other keys are provided that mirror the outline navigation commands when editing: <kbd>n</kbd>, <kbd>p</kbd>, <kbd>f</kbd>, <kbd>b</kbd>, and <kbd>u</kbd>. Both of these modes enable markup hiding by default, but this can be customized by setting <code>markdown-hide-markup-in-view-modes</code>.</p></li>
+<li><p>Miscellaneous Commands:</p>
+<p>When the [<code>edit-indirect</code>][ei] package is installed, <kbd>C-c ’</kbd> (<code>markdown-edit-code-block</code>) can be used to edit a code block in an indirect buffer in the native major mode. Press <kbd>C-c C-c</kbd> to commit changes and return or <kbd>C-c C-k</kbd> to cancel. You can also give a prefix argument to the insertion command, as in <kbd>C-u C-c C-s C</kbd>, to edit the code block in an indirect buffer upon insertion.</p></li>
+</ul>
+</body>
+</html>

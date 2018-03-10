@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pezra_rspec-mode2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<table>
+<thead>
+<tr class="header">
+<th>Keybinding</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>C-c , s</code></td>
+<td>Run the specified example at point</td>
+</tr>
+<tr class="even">
+<td><code>C-c , d</code></td>
+<td>Toggle the pendingness of the example at point</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rspec-dired-mode">RSpec Dired mode</h3>
+<p>These keybindings are available in Dired buffers:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Keybinding</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>C-c , v</code></td>
+<td>Run all specs in the current directory</td>
+</tr>
+<tr class="even">
+<td><code>C-c , s</code></td>
+<td>Run marked specs or spec at point (works with directories too)</td>
+</tr>
+<tr class="odd">
+<td><code>C-c , a</code></td>
+<td>Run the ‘spec’ rake task for the project of the current file</td>
+</tr>
+<tr class="even">
+<td><code>C-c , r</code></td>
+<td>Re-run the last RSpec invocation</td>
+</tr>
+</tbody>
+</table>
+<p>See <code>rspec-mode.el</code> for further usage.</p>
+<h2 id="gotchas">Gotchas</h2>
+<h3 id="debugging">Debugging</h3>
+<p>To use <code>binding.pry</code> or <code>byebug</code>, install <code>inf-ruby</code> and add this to your init file:</p>
+<pre class="emacs"><code>(add-hook &#39;after-init-hook &#39;inf-ruby-switch-setup)</code></pre>
+<p>When you’ve hit the breakpoint, hit <code>C-x C-q</code> to enable <code>inf-ruby</code>.</p>
+<h3 id="rvm">RVM</h3>
+<p>If you use RVM, you may have to set <code>rspec-use-rvm</code> to true to make <code>rspec-mode</code> function properly:</p>
+<pre class="emacs"><code>(setq rspec-use-rvm t)</code></pre>
+<p>Or set it using Emacs’ customization system.</p>
+<h3 id="zsh-and-rvm">ZSH and RVM</h3>
+<p>If you use <code>ZSH</code> and <code>RVM</code>, you may encounter problems running the specs. It may be so that an older version of Ruby, than the one you specified in <code>.rvmrc</code>, is used. This is because <code>ZSH</code> runs a small script each time a shell is created, which modifies the <code>$PATH</code>. The problem is that it prepends some default paths, such as <code>/usr/bin</code>, which contains another <code>ruby</code> binary.</p>
+</body>
+</html>

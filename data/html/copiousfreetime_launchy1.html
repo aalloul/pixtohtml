@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>copiousfreetime_launchy1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="launchy">launchy</h1>
+<ul>
+<li></li>
+<li></li>
+<li>email jeremy at hinegardner dot org</li>
+</ul>
+<h2 id="description">DESCRIPTION</h2>
+<p>Launchy is helper class for launching cross-platform applications in a fire and forget manner.</p>
+<p>There are application concepts (browser, email client, etc) that are common across all platforms, and they may be launched differently on each platform. Launchy is here to make a common approach to launching external application from within ruby programs.</p>
+<h2 id="features">FEATURES</h2>
+<p>Currently only launching a browser is supported.</p>
+<h2 id="synopsis">SYNOPSIS</h2>
+<p>You can use launchy on the commandline, within the Capybara and Rspec-rails testing environment, or via its API.</p>
+<h3 id="commandline">Commandline</h3>
+<pre><code>% launchy http://www.ruby-lang.org/</code></pre>
+<p>There are additional commandline options, use <code>launchy --help</code> to see them.</p>
+<h3 id="using-the-browser-environment-variable">Using the <code>BROWSER</code> environment variable</h3>
+<p>Launchy has a predefined set of common browsers on each platform that it attempts to use, and of course it is not exhaustive. As a fallbabck you can make use of the somewhat standard <code>BROWSER</code> environment variable.</p>
+<p><code>BROWSER</code> works in a similar same way as <code>PATH</code>. It is a colon (<code>:</code>) separated list of commands to try. You can also put in a <code>%s</code> in the command and the URL you are attempting to open will be substituded there.</p>
+<p>As an example if you set <code>BROWSER=/usr/local/bin/firefox-bin -new-tab '%s':/usr/local/bin/google-chrome-stable</code> and you call <code>Launchy.open(&quot;http://www.ruby-lang.org/&quot;)</code> then Launchy will try, in order:</p>
+<ul>
+<li><code>/usr/local/bin/firefox-bin -new-tab 'http://www.ruby-lang.org'</code></li>
+<li><code>/usr/local/bin/google-chrome-stable http://www.ruby-lang.org</code></li>
+</ul>
+<p>Additional links on the use of <code>BROWSER</code> as an environment variable.</p>
+<ul>
+<li>http://www.catb.org/esr/BROWSER/index.html</li>
+<li>https://help.ubuntu.com/community/EnvironmentVariables</li>
+<li>https://wiki.archlinux.org/index.php/environment_variables</li>
+</ul>
+<h3 id="capybara-testing">Capybara Testing</h3>
+<p>First, install . Capybara provides the following method:</p>
+</body>
+</html>

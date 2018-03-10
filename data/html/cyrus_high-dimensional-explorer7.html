@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cyrus_high-dimensional-explorer7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>For Unicode support to work, all your corpora and word lists must be encoded as UTF-8 in unix-type text files. Legacy encodings are not supported. There are many tools for converting files to UTF-8, and I have used iconv with some success.</p>
+<p>Step 3: If you corpus is contained in many separate files, concatenate them into one large file. For example the command:</p>
+<pre><code> cat *.txt &gt; corpus.txt</code></pre>
+<p>will concatenate all the files with the extension “txt” in a directory into a new file.</p>
+<p>Step 4: Put the corpus file in your working directory. I recommend creating a new one for using with HiDEx. These commands will do it for you.</p>
+<pre><code>mkdir ~/work
+mv corpus.txt ~/work</code></pre>
+<p>Step 5: Choose a lexicon to use with HiDEx. This is a file that contains all the words that will be analyzed for co-occurrence. If you do not have one, and need one for the English language, I recommend using one available here under a Creative Commons License:</p>
+<p>http://www.psych.ualberta.ca/~westburylab/downloads/wlfreq.download.html</p>
+<p>Make sure to remove the frequency data from this file before using the above file.</p>
+<p>I also recommend reducing the size of the lexicon to 30,000 to 70,000 words for performance reasons. You can do this by removing the words with the n lowest frequencies. Please see section 2I for information on how lexicon size impacts HiDEx’s performance.</p>
+<p>Once your lexicon is ready, put it in your work directory like so:</p>
+<pre><code> mv lexicon.txt ~/work</code></pre>
+<p>Now you are ready to process your corpus.</p>
+<hr />
+<p>2F) How do I use HiDEx to process my corpus? ****************************************************************************</p>
+<p>Intro: HiDEx is a program that has many different modes of operation. From this point onwards you will be specifying the mode that you would like HiDEx to use by typing “-m” and then the name of the mode.</p>
+<p>Also, HiDEx has many parameters that change how it operates. These parameters are set inside a text file called the configfile. A sample configfile is</p>
+</body>
+</html>

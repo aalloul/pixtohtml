@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandastream_panda_gem5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>Panda::Video.delete(&quot;1234&quot;)
+
+or
+
+video = Panda::Video.find(&quot;1234&quot;)
+video.delete
+=&gt; true</code></pre>
+<h3 id="encodings">Encodings</h3>
+<h5 id="find-an-encoding">Find an encoding</h5>
+<pre><code>encoding = Panda::Encoding.find(&quot;4567&quot;)
+encoding.attributes
+=&gt; {
+  &quot;id&quot;=&gt;&quot;4567&quot;,
+  &quot;video_id&quot;=&gt;&quot;1234&quot;,
+  &quot;extname&quot;=&gt;&quot;.mp4&quot;,
+  &quot;encoding_progress&quot;=&gt;60,
+  &quot;encoding_time&quot;=&gt;3,
+  &quot;file_size&quot; =&gt; &quot;25000&quot;,
+  &quot;width&quot;=&gt;300,
+  &quot;height&quot;=&gt;240,
+  &quot;profile_id&quot;=&gt;&quot;6789&quot;,
+  &quot;status&quot;=&gt;&quot;success&quot;,
+  &quot;started_encoding_at&quot;=&gt;&quot;2010/01/13 16:47:35 +0000&quot;,
+  &quot;created_at&quot;=&gt;&quot;2010/01/13 16:45:30 +0000&quot;,
+  &quot;updated_at&quot;=&gt;&quot;2010/01/13 16:47:40 +0000&quot;
+}
+
+encoding.encoding_progress
+=&gt; 60
+
+encoding.processing?
+=&gt; false
+
+encoding.fail?
+=&gt; false
+
+encoding.success?
+=&gt; true
+
+encoding.video.original_filename
+=&gt; &quot;panda.mp4&quot;
+
+encoding = Panda::Encoding.first</code></pre>
+<h5 id="find-all-encodings-of-a-video">Find all encodings of a video</h5>
+</body>
+</html>

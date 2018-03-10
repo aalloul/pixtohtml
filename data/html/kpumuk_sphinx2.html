@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kpumuk_sphinx2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Every method is aliased to a corresponding one from standard Sphinx API, so you can use both <code>SetServer</code> and <code>set_server</code> with no differrence.</p>
+<p>There are three exceptions to this naming rule:</p>
+<pre><code>GetLastError   -&gt; last_error
+GetLastWarning -&gt; last_warning
+IsConnectError -&gt; connect_error?</code></pre>
+<p>Of course, all of them are aliased to the original method names.</p>
+<h2 id="using-multiple-sphinx-servers">Using multiple Sphinx servers</h2>
+<p>Since we actively use this plugin in our Scribd development workflow, there are several methods have been added to accommodate our needs. You can find documentation on Ruby-specific methods in .</p>
+<p>First of all, we added support of multiple Sphinx servers to balance load between them. Also it means that in case of any problems with one of servers, library will try to fetch the results from another one. Every consequence request will be executed on the next server in list (round-robin technique).</p>
+<pre><code>sphinx.set_servers([
+  { :host =&gt; &#39;browse01.local&#39;, :port =&gt; 3312 },
+  { :host =&gt; &#39;browse02.local&#39;, :port =&gt; 3312 },
+  { :host =&gt; &#39;browse03.local&#39;, :port =&gt; 3312 }
+])</code></pre>
+<p>By default library will try to fetch results from a single server, and fail if it does not respond. To setup number of retries being performed, you can use second (additional) parameter of the <code>set_connect_timeout</code> and <code>set_request_timeout</code> methods:</p>
+<pre><code>sphinx.set_connect_timeout(1, 3)
+sphinx.set_request_timeout(1, 3)</code></pre>
+<p>There is a big difference between these two methods. First will affect only on requests experiencing problems with connection (socket error, pipe error, etc), second will be used when request is broken somehow (temporary searchd error, incomplete reply, etc). The workflow looks like this:</p>
+<ol type="1">
+<li>Increase retries number. If is less or equal to configured value, try to connect to the next server. Otherwise, raise an error.</li>
+<li>In case of connection problem go to 1.</li>
+<li>Increase request retries number. If it less or equal to configured value, try to perform request. Otherwise, raise an error.</li>
+<li>In case of connection problem go to 1.</li>
+</ol>
+</body>
+</html>

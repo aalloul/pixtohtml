@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nlamirault_cl-lastfm1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="cl-lastfm">cl-lastfm</h1>
+<p>A Common Lisp wrapper around 2.0 web service.</p>
+<h2 id="intallation">Intallation</h2>
+<p>Add the projet and load it using :</p>
+<pre><code>CL-USER&gt; (push #p&quot;/projects/cl-lastfm/&quot; asdf:*central-registry*)
+CL-USER&gt; (ql:quickload &quot;cl-lastfm&quot;)</code></pre>
+<h2 id="hacking">Hacking</h2>
+<p>Fork, hack and run unit tests:</p>
+<pre><code>CL-USER&gt; (setq lisp-unit:*print-failures* t)
+CL-USER&gt; (setq lisp-unit:*print-errors* t)
+CL-USER&gt; (setq lisp-unit:*print-summary* t)
+CL-USER&gt; (setf cl-lastfm-test::*api-key* &quot;xxxx&quot;)
+CL-USER&gt; (lisp-unit:run-tests :all :cl-lastfm-test)</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Get a LastFM and make some requests:</p>
+<pre><code>CL-USER&gt; (setq *api-key* &quot;xxxxx&quot;)
+CL-USER&gt; (cl-lastfm:artist-get-info *api-key* :artist-name &quot;U2&quot;)</code></pre>
+<h2 id="api">API</h2>
+<p>The Last.fm Web Services API is described here :</p>
+<pre><code>http://www.lastfm.fr/api</code></pre>
+<p>cl-lastfm implements theses features :</p>
+<h3 id="album">Album</h3>
+<pre><code>[ ] album.addTags
+[x] album.getInfo
+[ ] album.getTags
+[ ] album.removeTag
+[x] album.search</code></pre>
+<h3 id="artist">Artist</h3>
+</body>
+</html>

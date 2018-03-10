@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevej_configgy6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="logging">Logging</h3>
+<p>There are a handful of options to tune logging more directly:</p>
+<ul>
+<li><strong><code>utc</code></strong> - <code>on</code> to log in UTC (previously known as GMT) time instead of local time (default: off)</li>
+<li><strong><code>truncate</code></strong> - number of characters to allow in a single log line before eliding with “…” (default: 0 = never truncate)</li>
+<li><strong><code>truncate_stack_traces</code></strong> - number of lines of a stack trace to show before eliding (default: 30)</li>
+<li><strong><code>syslog_use_iso_date_format</code></strong> - set <code>off</code> to use old-style BSD date format in syslog messages (default: on)</li>
+<li><strong><code>use_full_package_names</code></strong> - set <code>on</code> to use full package names in log lines (“net.lag.configgy”) instead of the toplevel node (“configgy”) (default: off)</li>
+<li><strong><code>append</code></strong> - set <code>off</code> to create a new logfile each time the app starts (default: on, meaning to append to any existing logfile)</li>
+</ul>
+<p>The logging options are usually set on the root node of java’s “logging tree”, at “”. You can set options or logging handlers at other nodes by putting them in config blocks inside <code>&lt;log&gt;</code>. For example:</p>
+<pre><code>&lt;log&gt;
+    filename = &quot;test.log&quot;
+    level = &quot;warning&quot;
+    utc = true
+    
+    &lt;squelch_noisy&gt;
+        node = &quot;com.example.libnoise&quot;
+        level = &quot;critical&quot;
+    &lt;/squelch_noisy&gt;
+&lt;/log&gt;</code></pre>
+<p>The “com.example.libnoise” node will log at “critical” level (presumably to silence a noisy library), while everything else will log at “warning” level. You can put any of the logging options inside these blocks, including those for logging to files or syslog nodes, so in this way you can create multiple logfiles.</p>
+<p>The extra options you can use in these inner blocks are:</p>
+<ul>
+<li><strong><code>node</code></strong> - define the log node name (as a string)</li>
+<li><strong><code>use_parents</code></strong> - whether to fall back to parent log-node configuration (java’s</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>finance-quote_finance-quote6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>are cached and are assumed not to change for the duration of the Finance::Quote object.</p>
+<p>At this time, currency conversions are only looked up using Yahoo!’s services, and hence information obtained with automatic currency conversion is bound by Yahoo!’s terms and conditions.</p>
+<h2 id="failover">FAILOVER</h2>
+<pre><code>$q-&gt;failover(1);  # Set automatic failover support.
+$q-&gt;failover(0);  # Disable failover support.</code></pre>
+<p>The failover method takes a single argument which either sets (if true) or unsets (if false) automatic failover support. If automatic failover support is enabled (default) then multiple information sources will be tried if one or more sources fail to return the requested information. Failover support will significantly increase the time spent looking for a non-existant stock.</p>
+<p>If the failover method is called with no arguments, or with an undefined argument, it will return the current failover state (true/false).</p>
+<h2 id="user_agent">USER_AGENT</h2>
+<pre><code>my $ua = $q-&gt;user_agent;</code></pre>
+<p>The user_agent method returns the LWP::UserAgent object that Finance::Quote and its helpers use. Normally this would not be useful to an application, however it is possible to modify the user-agent directly using this method:</p>
+<pre><code>$q-&gt;user_agent-&gt;timeout(10);  # Set the timeout directly.</code></pre>
+<h2 id="scale_field">SCALE_FIELD</h2>
+<pre><code>my $pounds = $q-&gt;scale_field($item_in_pence,0.01);</code></pre>
+<p>The scale_field() function is a helper that can scale complex fields such as ranges (eg, “102.5 - 103.8”) and other fields where the numbers should be scaled but any surrounding text preserved. It’s most useful in writing new Finance::Quote modules where you may retrieve information in a non-ISO4217 unit (such as cents) and would like to scale it to a more useful unit (like dollars).</p>
+<h2 id="isotime">ISOTIME</h2>
+<pre><code>$q-&gt;isoTime(&quot;11:39PM&quot;);    # returns &quot;23:39&quot;
+$q-&gt;isoTime(&quot;9:10 AM&quot;);    # returns &quot;09:10&quot;</code></pre>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kragen_dumbfts6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>good value for N might be in the range of 4–10.</p>
+<p>I think this keeps the number of index segments to a maximum of something like 1 + (N-1) * log(indexsize / min_index_segment_size) / log(N). “min_index_segment_size” is normally about 50MB. If “indexsize” is 100GB, that ratio is 2000; with an N of 4, the ratio of the logarithms is under 6, so the maximum number of index segments is 19. With an N of 10, the maximum increases to 37. In either case, the usual number of index segments is much smaller.</p>
+<p>The tradeoff here is that a smaller N means you spend more time merging, inversely proportional to log(N). In a 100GB index with N=4, each posting will pass through about 6 merges on the way to the final index, for a final I/O cost of 1100GB. If N=10, it need only pass through about 3 merges.</p>
+<p>The program <code>merge.py</code> examines a set of index segments and suggests such a merge, using N=5, if possible.</p>
+<p>A smarter merging policy might perform smaller merges more eagerly, bigger merges more reluctantly, and perform merges more eagerly when the total number of index segments is large.</p>
+<h2 id="bugs">Bugs</h2>
+<ul>
+<li>It doesn’t automatically merge indices.</li>
+<li>It doesn’t do any kind of query optimization to avoid fetching millions of useless postings for common words. This limits its use to corpuses of a few million documents at most.</li>
+<li>Given the index structure, at least for full-word searches or full-word fielded searches, it would be straightforward to use a sort-merge join to produce results incrementally. Instead it uses a hash join because that’s like 15 lines of Python and doesn’t require making a duplicate non-fielded posting of words that occur in headers.</li>
+<li>It should generate skip files as it writes the index segment, rather than requiring another read of the index segment to do that.</li>
+<li>It should use <code>gzip</code> or something to reduce the size of the index files. Gzipping a 129MB segment on my machine takes about 135 CPU seconds, compressing it to 33MB, but gunzipping it takes only about 6 CPU seconds. So the 270kiB we retrieved in 30ms in the “Architecture” scenario would have been compressed to 69kiB, which would have taken 13ms to decompress (minus 2ms of saved disk bandwidth), slowing down searches by about a 3:4 ratio in exchange for using a quarter of the disk space.</li>
+<li>Index-segment merges are “big-bang” affairs, using a lot of temporary disk space and a lot of time all at once, and this problem gets worse as corpus sizes get bigger. If index segments output from a merge were partitioned into independently-mergeable subfiles</li>
+</ul>
+</body>
+</html>

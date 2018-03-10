@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>binarylogic_authlogic4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Authlogic is very flexible, it has a strong public API and a plethora of hooks to allow you to modify behavior and extend it. Check out the helpful links below to dig deeper.</p>
+<h3 id="c.-reference-documentation">1.c. Reference Documentation</h3>
+<p>This README is just an introduction, but we also have <a href="http://www.rubydoc.info/github/binarylogic/authlogic">reference documentation</a>.</p>
+<p><strong>To use the reference documentation, you must understand how Authlogic’s code is organized.</strong> There are 2 models, your Authlogic model and your ActiveRecord model:</p>
+<ol type="1">
+<li><strong>Authlogic::Session</strong>, your session models that extend <code>Authlogic::Session::Base</code>.</li>
+<li><strong>Authlogic::ActsAsAuthentic</strong>, which adds in functionality to your ActiveRecord model when you call <code>acts_as_authentic</code>.</li>
+</ol>
+<p>Each of the above has various modules that are organized by topic: passwords, cookies, etc. For example, if you want to timeout users after a certain period of inactivity, you would look in <code>Authlogic::Session::Timeout</code>.</p>
+<h2 id="rails">2. Rails</h2>
+<p>Let’s walk through a typical rails setup.</p>
+<h3 id="a.-the-users-table">2.a. The users table</h3>
+<p>If you want to enable all the features of Authlogic, a migration to create a <code>User</code> model might look like this:</p>
+<p>``` ruby class CreateUser &lt; ActiveRecord::Migration def change create_table :users do |t| # Authlogic::ActsAsAuthentic::Email t.string :email</p>
+<pre><code>  # Authlogic::ActsAsAuthentic::Password
+  t.string    :crypted_password
+  t.string    :password_salt
+
+  # Authlogic::ActsAsAuthentic::PersistenceToken
+  t.string    :persistence_token
+  t.index     :persistence_token, unique: true
+
+  # Authlogic::ActsAsAuthentic::SingleAccessToken
+  t.string    :single_access_token
+  t.index     :single_access_token, unique: true</code></pre>
+</body>
+</html>

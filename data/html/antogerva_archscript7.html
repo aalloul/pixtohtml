@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>antogerva_archscript7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>echo “# Add your preferred servers here, they will be used first” &amp;&amp; echo “#Include = /etc/pacman.d/community” &amp;&amp; echo “Server = ftp://ftp.archlinux.org/community/os/i686” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “[kdemod]” &amp;&amp; echo “Server = http://kdemod.ath.cx/repo/current/i686” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “[archlinuxfr]” &amp;&amp; echo “Server = http://repo.archlinux.fr/i686” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “#[unstable]” &amp;&amp; echo “# Add your preferred servers here, they will be used first” &amp;&amp; echo “#Include = /etc/pacman.d/unstable” &amp;&amp; echo “# An example of a custom package repository. See the pacman manpage for” &amp;&amp; echo “# tips on creating your own repositories.” &amp;&amp; echo “#[custom]” &amp;&amp; echo “#Server = file:///home/custompkgs” &amp;&amp; echo “” &amp;&amp; echo “# End /etc/pacman.conf” &amp;&amp; echo “” &amp;&amp; echo “”) &gt; “$SOURCELOCATION/tmp/etc/pacman.conf” } pacman</p>
+<p>rconfig() { (echo “# /etc/rc.conf - Main Configuration for Arch Linux” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “# ———————————————————————–” &amp;&amp; echo “# LOCALIZATION” &amp;&amp; echo “# ———————————————————————–” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “” &amp;&amp; echo “# LOCALE: available languages can be listed with the”locale -a&quot; command&quot; &amp;&amp; echo “# HARDWARECLOCK: set to”UTC&quot; or “localtime”&quot; &amp;&amp; echo “# TIMEZONE: timezones are found in /usr/share/zoneinfo” &amp;&amp; echo “# KEYMAP: keymaps are found in /usr/share/kbd/keymaps” &amp;&amp; echo “# CONSOLEFONT: found in /usr/share/kbd/consolefonts” &amp;&amp; echo “# CONSOLEMAP: found in /usr/share/kbd/consoletrans” &amp;&amp; echo “# USECOLOR: use ANSI color sequences in startup messages” &amp;&amp;</p>
+</body>
+</html>

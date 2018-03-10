@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_URI10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>accessing gopher-specific path components: $uri-&gt;gopher\_type,
+$uri-&gt;selector, $uri-&gt;search, $uri-&gt;string.</code></pre>
+<ul>
+<li><p><strong>http</strong>:</p>
+<p>The <em>http</em> URI scheme is specified in RFC 2616. The scheme is used to reference resources hosted by HTTP servers.</p>
+<p><code>URI</code> objects belonging to the http scheme support the common, generic and server methods.</p></li>
+<li><p><strong>https</strong>:</p>
+<p>The <em>https</em> URI scheme is a Netscape invention which is commonly implemented. The scheme is used to reference HTTP servers through SSL connections. Its syntax is the same as http, but the default port is different.</p></li>
+<li><p><strong>ldap</strong>:</p>
+<p>The <em>ldap</em> URI scheme is specified in RFC 2255. LDAP is the Lightweight Directory Access Protocol. An ldap URI describes an LDAP search operation to perform to retrieve information from an LDAP directory.</p>
+<p><code>URI</code> objects belonging to the ldap scheme support the common, generic and server methods as well as ldap-specific methods: $uri-&gt;dn, $uri-&gt;attributes, $uri-&gt;scope, $uri-&gt;filter, $uri-&gt;extensions. See for details.</p></li>
+<li><p><strong>ldapi</strong>:</p>
+<p>Like the <em>ldap</em> URI scheme, but uses a UNIX domain socket. The server methods are not supported, and the local socket path is available as $uri-&gt;un_path. The <em>ldapi</em> scheme is used by the OpenLDAP package. There is no real specification for it, but it is mentioned in various OpenLDAP manual pages.</p></li>
+<li><p><strong>ldaps</strong>:</p>
+<p>Like the <em>ldap</em> URI scheme, but uses an SSL connection. This scheme is deprecated, as the preferred way is to use the <em>start_tls</em> mechanism.</p></li>
+<li><p><strong>mailto</strong>:</p>
+<p>The <em>mailto</em> URI scheme is specified in RFC 2368. The scheme was originally used to designate the Internet mailing address of an individual or service. It has (in RFC 2368) been extended to allow setting of other mail header fields and the message body.</p></li>
+</ul>
+</body>
+</html>

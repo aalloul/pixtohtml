@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>diogok_restserver3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>// more logic to come here.
+$api-&gt;execute();
+?&gt;</code></pre>
+<p>You can instantiate the Restto start handling the requests, it will get the URI from the HTTP Request, but you can also provide a custom one for the Rest($url) constructor.</p>
+<p>After configuring the server you call the “execute” method so it can chain the request/response cicle.</p>
+<h3 id="mapping">Mapping</h3>
+<p>Most of work is mapping URIs to functions or controllers.</p>
+<p>You can map any method (even custom) and URI to a lambda/closure function or to a Controller class (that implements Rest) or a specific method of a controller.</p>
+<pre><code>&lt;?php
+    $api-&gt;addMap(&quot;GET&quot;,&quot;/some/resource&quot;,function($api){});
+    $api-&gt;addMap(&quot;POST&quot;,&quot;/some/resource/:var&quot;,function($api){});
+    $api-&gt;addMap(&quot;GET&quot;,&quot;/foo(bar)?&quot;,&quot;MyController&quot;,array(&quot;text/html&quot;));
+    $api-&gt;addMap(&quot;GET&quot;,&quot;/foo/:?bar&quot;,&quot;MyController::myMethod&quot;,array(&quot;text/html&quot;));
+?&gt;</code></pre>
+<p>The URI parameter accepts any regex, and also name parameters (:name or :?name for optional parameter), and an array of accepted mime types.</p>
+<h3 id="controllers-and-views">Controllers and Views</h3>
+<p>(Also apply to lambda/closure)</p>
+<p>All controllers to be mapped must implement Rest, it implies in implementing a single default method as follow and a public constructor with no arguments(or optional arguments):</p>
+<pre><code>&lt;?php
+    class MyController implements Rest\Controller {
+        public function execute($rest) {
+        }
+    }
+?&gt;</code></pre>
+<p>Other method that might get mapped into the server must also receive this one parameter.</p>
+<p>This method parameter is an instance of the Restfrom where you can get the request details, data and response.</p>
+<p>The methods can return the rest server, to end the cycle, or another Controller or View to follow the request to.</p>
+<pre><code>&lt;?php
+    class MyController implements Rest\Controller {
+        public function execute($rest) {
+            return new MyViewOrOtherController($anyDataOrNot); //will foward the request
+        }
+    }
+?&gt;</code></pre>
+</body>
+</html>

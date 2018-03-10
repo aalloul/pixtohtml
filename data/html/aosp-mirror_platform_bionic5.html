@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aosp-mirror_platform_bionic5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<hr />
+<p>This is fully automated (and these days handled by the libcore team, because they own icu, and that needs to be updated in sync with bionic):</p>
+<ol type="1">
+<li>Run update-tzdata.py in external/icu/tools/.</li>
+</ol>
+<h2 id="verifying-changes">Verifying changes</h2>
+<p>If you make a change that is likely to have a wide effect on the tree (such as a libc header change), you should run <code>make checkbuild</code>. A regular <code>make</code> will <em>not</em> build the entire tree; just the minimum number of projects that are required for the device. Tests, additional developer tools, and various other modules will not be built. Note that <code>make checkbuild</code> will not be complete either, as <code>make tests</code> covers a few additional modules, but generally speaking <code>make checkbuild</code> is enough.</p>
+<h2 id="running-the-tests">Running the tests</h2>
+<p>The tests are all built from the tests/ directory.</p>
+<h3 id="device-tests">Device tests</h3>
+<pre><code>$ mma # In $ANDROID_ROOT/bionic.
+$ adb root &amp;&amp; adb remount &amp;&amp; adb sync
+$ adb shell /data/nativetest/bionic-unit-tests/bionic-unit-tests
+$ adb shell \
+    /data/nativetest/bionic-unit-tests-static/bionic-unit-tests-static
+# Only for 64-bit targets
+$ adb shell /data/nativetest64/bionic-unit-tests/bionic-unit-tests
+$ adb shell \
+    /data/nativetest64/bionic-unit-tests-static/bionic-unit-tests-static</code></pre>
+<p>Note that we use our own custom gtest runner that offers a superset of the options documented at <a href="https://github.com/google/googletest/blob/master/googletest/docs/AdvancedGuide.md#running-test-programs-advanced-options" class="uri">https://github.com/google/googletest/blob/master/googletest/docs/AdvancedGuide.md#running-test-programs-advanced-options</a>, in particular for test isolation and parallelism (both on by default).</p>
+<h3 id="device-tests-via-cts">Device tests via CTS</h3>
+<p>Most of the unit tests are executed by CTS. By default, CTS runs as a non-root user, so the unit tests must also pass when not run as root. Some tests cannot do any useful work unless run as root. In this case, the test should check <code>getuid() == 0</code> and do nothing otherwise (typically we log in this case to prevent accidents!). Obviously, if the test can be rewritten to not require root, that’s an even better solution.</p>
+</body>
+</html>

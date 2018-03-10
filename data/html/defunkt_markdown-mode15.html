@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode15</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>relative to baseline, for headers of levels one through six,
+used when `markdown-header-scaling` is non-nil
+(default: `(2.0 1.7 1.4 1.1 1.0 1.0)`).</code></pre>
+<ul>
+<li><p><code>markdown-marginalize-headers</code> - put opening atx header markup in the left margin when non-nil (default: <code>nil</code>).</p></li>
+<li><p><code>markdown-marginalize-headers-margin-width</code> - width of margin used for marginalized headers (default: 6).</p></li>
+<li><p><code>markdown-list-indent-width</code> - depth of indentation for lists when inserting, promoting, and demoting list items (default: 4).</p></li>
+<li><p><code>markdown-indent-function</code> - the function to use for automatic indentation (default: <code>markdown-indent-line</code>).</p></li>
+<li><p><code>markdown-indent-on-enter</code> - Set to a non-nil value to automatically indent new lines when <kbd>RET</kbd> is pressed. Set to <code>indent-and-new-item</code> to additionally continue lists when <kbd>RET</kbd> is pressed (default: <code>t</code>).</p></li>
+<li><p><code>markdown-enable-wiki-links</code> - syntax highlighting for wiki links (default: <code>nil</code>). Set this to a non-nil value to turn on wiki link support by default. Wiki link support can be toggled later using the function <code>markdown-toggle-wiki-links</code>.&quot;</p></li>
+<li><p><code>markdown-wiki-link-alias-first</code> - set to a non-nil value to treat aliased wiki links like <code>[[link text|PageName]]</code> (default: <code>t</code>). When set to nil, they will be treated as <code>[[PageName|link text]]</code>.</p></li>
+<li><p><code>markdown-uri-types</code> - a list of protocol schemes (e.g., “http”) for URIs that <code>markdown-mode</code> should highlight.</p></li>
+<li><p><code>markdown-enable-math</code> - font lock for inline and display LaTeX math expressions (default: <code>nil</code>). Set this to <code>t</code> to turn on math support by default. Math support can be toggled interactively later using <kbd>C-c C-x C-e</kbd> (<code>markdown-toggle-math</code>).</p></li>
+<li><p><code>markdown-enable-html</code> - font lock for HTML tags and attributes (default: <code>t</code>).</p></li>
+<li><p><code>markdown-css-paths</code> - CSS files to link to in XHTML output (default: <code>nil</code>).</p></li>
+<li><p><code>markdown-content-type</code> - when set to a nonempty string, an <code>http-equiv</code> attribute will be included in the XHTML <code>&lt;head&gt;</code> block (default: <code>&quot;&quot;</code>). If needed, the suggested values are <code>application/xhtml+xml</code> or <code>text/html</code>. See also:</p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stevedekorte_io2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="building-ode-manually">Building ODE manually</h3>
+<ol type="1">
+<li>Uninstall ode first. <code>brew uninstall ode</code></li>
+<li>Get a tarbuild (0.13 is the one I tried)</li>
+<li>Run configure with drawstuff. <code>./configure --with-drawstuff=OSX</code></li>
+<li><code>make;sudo make install</code></li>
+</ol>
+<h2 id="any-linux-distribution">Any Linux Distribution</h2>
+<p>Any Linux distribution will require one additional step be taken. This is because GNU ld is what’s technically known as a “dumb” linker – it has to be told to regenerate its hash of libraries if something changes, other platforms do not have this problem. To complete this step, run the following command:</p>
+<pre><code>ldconfig</code></pre>
+<p>If you are still getting an error when loading the <code>io</code> binary about not being able to find some shared library, then ensure you have the following path, in your <code>/etc/ld.so.conf</code> (or equivalent):</p>
+<pre><code>/usr/local/lib</code></pre>
+<p>The above path will change depending on what you set your <code>CMAKE_INSTALL_PREFIX</code> to, it will be whatever that is with <code>/lib</code> appended. The default is <code>/usr/local</code> so the above will work for the common case.</p>
+<h2 id="debian-or-ubuntu">Debian or Ubuntu</h2>
+<p>See <a href="#OS_X">OS X instructions</a>.</p>
+<h2 id="gentoo">Gentoo</h2>
+<p>See <a href="#OS_X">OS X instructions</a>.</p>
+<h2 id="ms-windows">MS Windows</h2>
+<p>For all the different methods explained here, some of the addons won’t compile as they depend on libraries not provided by Io.</p>
+<p>For methods A and B you must download and install CMake (at least v2.8) from here: <a href="http://www.cmake.org/cmake/resources/software.html" class="uri">http://www.cmake.org/cmake/resources/software.html</a></p>
+<p>For method C you must install the CMake Cygwin package (at least v2.8) using the Cygwin package installer.</p>
+<p>For the <code>make install</code> command, if you are on Windows 7/Vista you will need to run your command prompts as Administrator: right-click on the command prompt launcher-&gt;“Run as administrator” or something similar)</p>
+<p>You will also need to add <code>&lt;install_drive&gt;:\&lt;install_directory&gt;\bin</code> and <code>&lt;install_drive&gt;:\&lt;install_directory&gt;\lib</code> to your <code>PATH</code> environment variable.</p>
+<h3 id="a-building-with-msvc">A) Building with MSVC</h3>
+<ol type="1">
+<li>Install Microsoft Visual C++ 2008 Express (should work with other versions).</li>
+<li>Install Microsoft Windows SDK 7.0 (or newer).</li>
+<li>Install CMake (v2.8 at least)</li>
+<li>Run “Vistual Studio 2008 Command Prompt” from the “Microsoft Visual Studio 2008” start menu.</li>
+<li><code>cd</code> to <code>&lt;install_drive&gt;:\Microsoft SDKs\Windows\v7.0\Setup</code> then run: <code>WindowsSdkVer.exe -version:v7.0</code></li>
+</ol>
+</body>
+</html>

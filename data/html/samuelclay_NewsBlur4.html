@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>samuelclay_NewsBlur4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    mysql_install_db --verbose --user=`whoami` --basedir=&quot;$(brew --prefix mysql)&quot; --datadir=/path/to/var/mysql --tmpdir=/tmp
+    mysql.server start
+    mysql -u root
+    &gt; CREATE USER &#39;newsblur&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;&#39;;
+    &gt; GRANT ALL PRIVILEGES ON *.* TO &#39;newsblur&#39;@&#39;localhost&#39; WITH GRANT OPTION;
+    &gt; CREATE DATABASE newsblur;
+    &gt; exit
+
+Then load up the database with empty NewsBlur tables and bootstrap the database:
+
+    ./manage.py syncdb --all
+    ./manage.py migrate --fake
+    ./manage.py migrate
+    ./manage.py loaddata config/fixtures/bootstrap.json
+    
+If you don&#39;t create a user during `syncdb`, the `bootstrap.json` file will create a 
+newsblur user with no password.</code></pre>
+<ol start="3" type="1">
+<li><p>Start mongodb (if not already running):</p>
+<pre><code>mongod run</code></pre></li>
+<li><p>Run the development server. At this point, all dependencies should be installed and no additional configuration is needed. If you find that something is not working at this point, please email the resulting output to Samuel Clay at <a href="mailto:samuel@newsblur.com">samuel@newsblur.com</a>.</p>
+<pre><code>./manage.py runserver</code></pre></li>
+<li><p>Navigate to:</p>
+<pre><code> http://localhost:8000/ </code></pre>
+<p>Create an account. At the end of the account creation process, you will be redirected to https://localhost/profile/stripe_form. Hit the back button a few times, and you will be inside the app.</p></li>
+</ol>
+<h3 id="installing-on-linux-ubuntu">Installing on Linux / Ubuntu</h3>
+<p>If you are on Ubuntu, you can simply use to install NewsBlur and its many components. NewsBlur is designed to run on three separate servers: an app server, a db server, and assorted task servers. To install everything on a single machine, read through <code>fabfile.py</code> and setup all three servers without repeating the <code>setup_common</code> steps.</p>
+<h3 id="finishing-installation">Finishing Installation</h3>
+<p>You must perform a few tasks to tie all of the various systems together.</p>
+</body>
+</html>

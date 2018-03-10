@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RISCfuture_autumn9</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>The <code>leaves.yml</code> file is optional. When not included, each leaf in the leaves directory will be automatically instantiated once.</p>
+<h3 id="custom-configuration-options">Custom Configuration Options</h3>
+<p>All configuration files support user-generated directives. You can set options at any level. Options at a more narrow level override those at a broader level.</p>
+<p>Options are maintained and cataloged by the {Autumn::Speciator} singleton. You could access the singleton directly, but most objects have an <code>options</code> attribute providing simpler access to the Speciator.</p>
+<p>For example, to access options in a leaf, all you do is call, for example, <code>options[:my_custom_option]</code>. <code>my_custom_option</code> can be set at the global, season, or leaf level.</p>
+<h2 id="leaves">Leaves</h2>
+<p>The {Autumn::Leaf} class has many tools to help you write your leaves. These include things like filters, helpers, loggers, and an easy to use IRC library. The Autumn::Leaf and Autumn::Stem class docs are the most thorough way of learning about each of these features, but I’ll walk you through the basics here.</p>
+<h3 id="the-many-methods-of-leaf">The Many Methods of Leaf</h3>
+<p>By subclassing Autumn::Leaf, you gain access to a number of neat utilities. These generally come in three classes: IRC commands that have already been written for you, utility methods you can call, and invoked methods you can override. Utility methods do things like add filters. Invoked methods are called when certain events happen, like when your leaf starts up or when a private message is received. You override them in your leaf to customize how it responds to these events.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Invoked methods</td>
+<td style="text-align: left;">{Autumn::Leaf#will_start_up will_start_up}, {Autumn::Leaf#did_start_up did_start_up}, {Autumn::Leaf#did_receive_channel_message did_receive_channel_message}, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Utility methods</td>
+<td style="text-align: left;">{Autumn::Leaf.before_filter before_filter}, {Autumn::Leaf#database database}, etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IRC commands</td>
+<td style="text-align: left;"><code>quit_command</code>, <code>reload_command</code>, <code>autumn_command</code>, etc.</td>
+</tr>
+</tbody>
+</table>
+<p>See the class docs for more information on these methods.</p>
+<p>In addition, your leaf is designated as a listener for its {Autumn::Stem} instances. In short, this means if you want even finer control over the IRC connection, you can implement listener methods. See the {Autumn::Stem#add_listener} method for examples of such methods.</p>
+<p>Finally, your leaf can implement methods that are broadcast by listener plugins. An example of such a plugin is the {Autumn::CTCP} class, which is included in</p>
+</body>
+</html>

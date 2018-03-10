@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kiko_ramaze5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Of course you should put the real path instead, you can also add multiple paths, or create your personal <code>site_ruby</code>:</p>
+<pre><code>  $ export RUBYLIB=&quot;$HOME/ruby/ramaze/lib:$HOME/.site_ruby:$HOME/ruby/bacon/lib&quot;</code></pre>
+<ul>
+<li><p>Use <code>require 'ramaze'</code> system wide from everywhere</p>
+<p>add a file to your <code>site_ruby</code> directory named ‘ramaze.rb’ the content should be: <code>require '/path/to/git/repo/ramaze/lib/ramaze'</code></p></li>
+<li><p>Pull the latest version</p>
+<pre><code>$ git pull</code></pre></li>
+<li><p>Reset the repo to original state (if you screw up something)</p>
+<pre><code>$ git reset --hard # resets the whole repo</code></pre></li>
+<li><p>Revert changes to (for example) lib/ramaze.rb only</p>
+<pre><code>$ git checkout master lib/ramaze.rb</code></pre></li>
+<li><p>Add and commit all changes.</p>
+<pre><code>$ git commit -a</code></pre></li>
+<li><p>Adding only specific changes.</p>
+<pre><code># Add hunks you want to commit to the staging area (index)
+$ git add -p</code></pre></li>
+<li><p>Commit the changes into the history of your repository</p>
+<pre><code># Create a commit from the hunks added
+$ git commit</code></pre></li>
+<li><p>output your patches into a bundle ready to be mailed (compress it before sending to make sure it arrives in the way you sent it)</p>
+<p>At the end of this process you will have a tar.bz2 for all your changes that you can mail to ramaze@googlegroups.com</p>
+<pre><code># make sure you are on latest revision to avoid conflicts
+$ git pull
+
+# create 00xx-blah.patch files against the remote repo
+$ git format-patch origin/HEAD
+
+# From here on you can use either git-send-email or go the manual route
+$ tar -cjf ramaze_bundle.tar.bz2 *.patch</code></pre></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mkristian_dm-ldap-adapter2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>               :base =&gt; &quot;dc=example,dc=com&quot;,
+               :facade =&gt; :ruby_ldap,
+               :bind_name =&gt; &quot;cn=admin,dc=example,dc=com&quot;,
+               :password =&gt; &quot;behappy&quot;
+ })</code></pre>
+<h3 id="examples">examples</h3>
+<p>see ‘example/posix.rb’ for user/group setup works with default installation of openldap on ubuntu (just change your password as needed in the code)</p>
+<h2 id="featuresproblems">FEATURES/PROBLEMS:</h2>
+<ul>
+<li><p>the net-ldap has some issues with not closing the connections when an exception/error got raised, with limit the search result to 126 entries which gets fixed by making consecutives searches and collect the result.</p></li>
+<li><p>error from the ldap server are only logged and do not raise any exceptions (to be changed in next release) with one exception: when creating a new ldap entry a duplicated entry will raise DataMapper::PersistenceError</p></li>
+</ul>
+<h2 id="synopsis">SYNOPSIS:</h2>
+<h3 id="distinguished-name-dn-of-a-model">distinguished name (DN) of a model</h3>
+<p>there are three parts which makes the DN of a model, the base from the ldap conncetion, the <code>treebase</code> of the model and <code>dn_prefix</code> of an instance.</p>
+<pre><code>class User
+  include DataMapper::Resource
+  property :id, Serial, :field =&gt; &quot;uidNumber&quot;
+  dn_prefix { |user| &quot;uid=#{user.login}&quot;}
+  treebase &quot;ou=people&quot;
+end</code></pre>
+<p>with a base <code>dc=example,dc=com</code> we get a DN like the user ‘admin’</p>
+<pre><code>uid=admin,ou=people,dc=example,dc=com</code></pre>
+<h3 id="ldap-entities-are-bigger-than-the-model">ldap entities are bigger than the model</h3>
+<p>for example the ldap posixGroup has more attributes than the model class, it needs the <code>objectclass</code> attribute set to <code>posixGroup</code>.</p>
+<pre><code>class Group
+  include DataMapper::Resource
+  property :id, Serial, :field =&gt; &quot;gidNumber&quot;
+  property :name,     String, :field =&gt; &quot;cn&quot;
+  dn_prefix { |group| &quot;cn=#{group.name}&quot; }
+  treebase &quot;ou=groups&quot;
+  ldap_properties {{ :objectclass =&gt; &quot;posixGroup&quot;}}
+end</code></pre>
+<p>so with the help of the <code>ldap_properties</code> you can define a block which returns an hash with extra attributes. with such block you can make some calculations if needed, i.e. :homedirectory =&gt; “/home/#{login}” for the posixAccount.</p>
+<h3 id="authentication">authentication</h3>
+</body>
+</html>

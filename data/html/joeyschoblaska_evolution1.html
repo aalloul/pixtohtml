@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>joeyschoblaska_evolution1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Evolution is a Ruby implementation of a hill-climbing algorithm that uses RMagick to generate a collection of polygons which resemble a baseline image. It does this by starting with a blank canvas and a single polygon with random points, color and opacity. It then takes the original polygon and randomly mutates it (by moving a point, adding a point or changing the color / opacity), or adds a new random polygon. Between the original image and the mutated version, whichever one more closely resembles the baseline is kept and used to seed the next mutation.</p>
+<pre><code>     generation: 1               generation: 2              generation: 3
+
+ +-------------------+       +-------------------+      +-------------------+
+ | image 001         |       | image 002         |      | image 002         |
+ | similarity: 3.0 % |   +--&gt;| similarity: 3.2 % |-----&gt;| similarity: 3.2 % |    +--&gt; ...
+ +-------------------+   |   +-------------------+      +-------------------+    |
+           |             |             |                          |              |
+           |             |             |                          |              |
+    random mutation      |      random mutation            random mutation       |
+           |             |             |                          |              |
+           v             |             v                          v              |
+ +-------------------+   |   +-------------------+      +-------------------+    |
+ | image 002         |---+   | image 003         |      | image 004         | ---+
+ | similarity: 3.2%  |       | similarity: 3.1%  |      | similarity: 3.3%  |
+ +-------------------+       +-------------------+      +-------------------+</code></pre>
+<h3 id="usage">Usage</h3>
+<pre><code>git clone https://github.com/joeyschoblaska/evolution.git
+cd evolution
+bundle
+rake run</code></pre>
+<p>Rendered images and svg files will be placed in the <code>images/renders</code> directory.</p>
+<h3 id="options">Options</h3>
+<p>The following environment variables can be set when using the <code>rake run</code> command:</p>
+<p><strong>baseline_image</strong>: The path to the image you want to render. The larger the image, the more time it will take RMagick to compare each set of candidates, and the longer it will take to converge. Default: ‘./images/baseline.jpg’</p>
+<p><strong>canvas_background</strong>: The color of the canvas, behind the rendered polygons. Default: ‘white’</p>
+<p><strong>add_polygon_mutation_rate</strong>: The rate at which new polygons will occur during mutations. There is a 1/x chance of this mutation occuring, so setting it to 1 will result in a new polygon in each mutation, while setting it to 100 will result in a 1% chance of a new polygon being added in each mutation. Default: 100</p>
+<p><strong>rgba_mutation_rate</strong>: The rate at which polygons will have their RGBA values changed during mutations. There is a 1/x chance of this mutation occuring. Default: 300</p>
+<p><strong>point_mutation_rate</strong>: The rate at which points will have their coordinates changed during mutations. There is a 1/x chance of this mutation occuring. Default: 200</p>
+<p><strong>add_point_mutation_rate</strong>: The rate at which new points will be added to polygons during mutations. There is a 1/x chance of this mutation occuring. Default: 1000</p>
+<p><strong>fitness_target</strong>: Each candidate receives a “fitness” score according to how similar it is to the target baseline image, with a score of 0 indicating a perfect match. The fitness_target is the value which, when reached, will cause the program to end. Default: 500</p>
+<p><strong>write_frequency</strong>: Every x successful mutations, render the image to the <code>images/renders</code> directory and save the svg string. Default: 50</p>
+</body>
+</html>

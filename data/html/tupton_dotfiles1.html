@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tupton_dotfiles1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dotfiles">Dotfiles</h1>
+<p>A collection of config files that I use.</p>
+<h2 id="installation">Installation</h2>
+<p>Installing will overwrite anything in the way. Run <code>make -n</code> first. If you are happy with that output, you can test the dotfile environment with</p>
+<pre><code>❯ TMP=$(mktemp -d /tmp/tmp.XXXXX)
+❯ HOME=$TMP make install
+❯ ls -al $TMP</code></pre>
+<p>Install common, cross-platform dotfiles to <code>$HOME</code> with</p>
+<pre><code>❯ make install</code></pre>
+<p>Install individual dotfiles with, e.g.</p>
+<pre><code>❯ make install-git</code></pre>
+<p>or</p>
+<pre><code>❯ make install-vim-config</code></pre>
+<p>and so forth.</p>
+<p>Look at the <code>Makefile</code> to see which dotfiles are installed by default and which require running a separate task. For example, TextMate and tarsnap configs only really apply to my local machine, so they are not installed by default.</p>
+<p>Use <code>make list</code> to see a list of all targets, including the test targets and any auxiliary helper targets. More on test targets follows.</p>
+<h2 id="tests">Tests</h2>
+<p>There is a <code>test</code> target in the Makefile. Not everything is tested, but I’ve attempted to verify the files that can be tested. If you know of a way to verify or test other dotfiles, please open an issue or let me know.</p>
+<ul>
+<li>All <code>zsh</code> and <code>bash</code> config files and scripts are parsed by their respective shells. This includes all the <code>zsh</code> installation script helpers.</li>
+<li>All <code>vim</code> config files are linted by <a href="https://github.com/Kuniwak/vint">vim-vint</a>.</li>
+<li>All <a href="https://github.com/tupton/dotjs">dotjs</a> files are linted by <a href="http://eslint.org/">eslint</a> and <a href="http://jscs.info/">jscs</a>.</li>
+</ul>
+<p>You need <code>bash</code> and <code>zsh</code> installed to check the syntax of some installation files. Presumably, if you are using these dotfiles, you are have those two shells installed.</p>
+</body>
+</html>

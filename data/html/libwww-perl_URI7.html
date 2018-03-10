@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_URI7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>The form can be set either by passing separate key/value pairs, or via
+an array or hash reference.  Passing an empty array or an empty hash
+removes the query component, whereas passing no arguments at all leaves
+the component unchanged.  The order of keys is undefined if a hash
+reference is passed.  The old value is always returned as a list of
+separate key/value pairs.  Assigning this list to a hash is unwise as
+the keys returned might repeat.
+
+The values passed when setting the form can be plain strings or
+references to arrays of strings.  Passing an array of values has the
+same effect as passing the key repeatedly with one value at a time.
+All the following statements have the same effect:
+
+    $uri-&gt;query_form(foo =&gt; 1, foo =&gt; 2);
+    $uri-&gt;query_form(foo =&gt; [1, 2]);
+    $uri-&gt;query_form([ foo =&gt; 1, foo =&gt; 2 ]);
+    $uri-&gt;query_form([ foo =&gt; [1, 2] ]);
+    $uri-&gt;query_form({ foo =&gt; [1, 2] });
+
+The $delim parameter can be passed as &quot;;&quot; to force the key/value pairs
+to be delimited by &quot;;&quot; instead of &quot;&amp;&quot; in the query string.  This
+practice is often recommended for URLs embedded in HTML or XML
+documents as this avoids the trouble of escaping the &quot;&amp;&quot; character.
+You might also set the $URI::DEFAULT\_QUERY\_FORM\_DELIMITER variable to
+&quot;;&quot; for the same global effect.
+
+The `URI::QueryParam` module can be loaded to add further methods to
+manipulate the form of a URI.  See  for details.</code></pre>
+<ul>
+<li>$uri-&gt;query_keywords</li>
+<li>$uri-&gt;query_keywords( $keywords, … )</li>
+<li><p>$uri-&gt;query_keywords( \<span class="citation" data-cites="keywords">@keywords</span> )</p>
+<p>Sets and returns query components that use the keywords separated by “+” format.</p>
+<p>The keywords can be set either by passing separate keywords directly or by passing a reference to an array of keywords. Passing an empty array removes the query component, whereas passing no arguments at all leaves the component unchanged. The old value is always returned as a list of separate words.</p></li>
+</ul>
+<h1 id="server-methods">SERVER METHODS</h1>
+<p>For schemes where the <em>authority</em> component denotes an Internet host, the following methods are available in addition to the generic methods.</p>
+<ul>
+<li>$uri-&gt;userinfo</li>
+<li>$uri-&gt;userinfo( $new_userinfo )</li>
+</ul>
+</body>
+</html>

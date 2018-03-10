@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>GMOD_jbrowse2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="running-the-developer-test-suites">Running the developer test suites</h1>
+<h2 id="server-side-perl">Server-side Perl</h2>
+<p>Tests for the server-side Perl code. You must have the JBrowse Perl module prerequisites installed for them to work. Run with:</p>
+<pre><code>prove -Isrc/perl5 -lr tests</code></pre>
+<h2 id="client-side-unit-tests">Client-side Unit Tests</h2>
+<p>Point your browser at <code>http://my.dev.machine/jbrowse/tests/js_tests/index.html</code></p>
+<p>You can also run them from phantomJS using</p>
+<pre><code>phantomjs tests/js_tests/run-jasmine.js http://my.dev.machine/jbrowse/tests/js_tests/index.html</code></pre>
+<h2 id="client-side-integration-tests">Client-side Integration Tests</h2>
+<p>Integration tests for the client-side app. You need to have Python eggs for <code>selenium</code> and <code>nose</code> installed. Run the tests with:</p>
+<pre><code>MOZ_HEADLESS=1 SELENIUM_BROWSER=firefox JBROWSE_URL=&#39;http://localhost/jbrowse/index.html&#39; nosetests</code></pre>
+<p>Supported browsers are ‘firefox’, ‘chrome’, ‘phantom’, and ‘travis_saucelabs’. The Sauce Labs + Travis one will only work properly in a properly configured Travis CI build environment.</p>
+<h1 id="cutting-a-jbrowse-release">Cutting a JBrowse release</h1>
+<ol type="1">
+<li><p>Edit the JBrowse <code>package.json</code> file and change ‘version’ to the version you are releasing. <em>Don’t commit this change to the repository, it should stay as <code>dev</code> in git so that it shows up in analytics as a development version.</em></p></li>
+<li><p>Build the release packages: <code>make -f build/Makefile release</code>. The files produced during the build should not be committed to the repository either. There is also <code>make -f build/Makefile release-notest</code> for releases that don’t need perl tests to be run. NOTE: you may need to use the command <code>ulimit -n 1000</code> to avoid “spawn EMFILE” build errors.</p></li>
+<li><p>Make a tag in the repository for the release, named, e.g. <code>1.6.3-release</code>.</p></li>
+<li><p><code>scp</code> the release .zip files (min and full) to jbrowse.org.</p></li>
+<li><p>Add them to the Wordpress Downloads list so that we can track how many times they are downloaded.</p></li>
+<li><p>Write a blog post announcing the release. The <code>release-notes.html</code> file made during the build might be useful for this.</p></li>
+<li><p>Update the “Install” page on the site to point to the newest release.</p></li>
+<li><p>Update the latest-release code checkout on the site, which the “Latest Release” demo on the jbrowse.org points to, to be an unzipped-and-set-up copy of the latest release.</p></li>
+<li><p>Write an email announcing the release, sending to gmod-ajax, jbrowse-dev. If it is a major release, add gmod-announce and make a GMOD news item.</p></li>
+</ol>
+<p>As you can tell, this process could really use some more streamlining and automation.</p>
+</body>
+</html>

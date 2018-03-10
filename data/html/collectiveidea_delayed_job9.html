@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>collectiveidea_delayed_job9</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>def error(job, exception) Airbrake.notify(exception) end</p>
+<p>def failure(job) page_sysadmin_in_the_middle_of_the_night end end ```</p>
+<h1 id="gory-details">Gory Details</h1>
+<p>The library revolves around a delayed_jobs table which looks as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb1-1" data-line-number="1">create_table <span class="st">:delayed_jobs</span>, <span class="st">:force</span> =&gt; <span class="dv">true</span> <span class="kw">do</span> |table|</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  table.integer  <span class="st">:priority</span>, <span class="st">:default</span> =&gt; <span class="dv">0</span>      <span class="co"># Allows some jobs to jump to the front of the queue</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  table.integer  <span class="st">:attempts</span>, <span class="st">:default</span> =&gt; <span class="dv">0</span>      <span class="co"># Provides for retries, but still fail eventually.</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  table.text     <span class="st">:handler</span>                      <span class="co"># YAML-encoded string of the object that will do work</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  table.text     <span class="st">:last_error</span>                   <span class="co"># reason for last failure (See Note below)</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  table.datetime <span class="st">:run_at</span>                       <span class="co"># When to run. Could be Time.zone.now for immediately, or sometime in the future.</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  table.datetime <span class="st">:locked_at</span>                    <span class="co"># Set when a client is working on this object</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">  table.datetime <span class="st">:failed_at</span>                    <span class="co"># Set when all retries have failed (actually, by default, the record is deleted instead)</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  table.string   <span class="st">:locked_by</span>                    <span class="co"># Who is working on this object (if locked)</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">  table.string   <span class="st">:queue</span>                        <span class="co"># The name of the queue this job is in</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">  table.timestamps</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">end</span></a></code></pre></div>
+<p>On error, the job is scheduled again in 5 seconds + N ** 4, where N is the number of attempts or using the job’s defined <code>reschedule_at</code> method.</p>
+<p>The default <code>Worker.max_attempts</code> is 25. After this, the job either deleted (default), or left in the database with “failed_at” set. With the default of 25 attempts, the last retry will be 20 days later, with the last interval being almost 100 hours.</p>
+<p>The default <code>Worker.max_run_time</code> is 4.hours. If your job takes longer than that, another computer could pick it up. It’s up to you to make sure your job doesn’t exceed this time. You should set this to the longest time you think the job could take.</p>
+<p>By default, it will delete failed jobs (and it always deletes successful jobs). If you want to keep failed jobs, set <code>Delayed::Worker.destroy_failed_jobs = false</code>. The failed jobs will be marked with non-null failed_at.</p>
+<p>By default all jobs are scheduled with <code>priority = 0</code>, which is top priority. You can change this by setting <code>Delayed::Worker.default_priority</code> to something else. Lower numbers have higher priority.</p>
+<p>The default behavior is to read 5 jobs from the queue when finding an available job. You can configure this by setting <code>Delayed::Worker.read_ahead</code>.</p>
+<p>By default all jobs will be queued without a named queue. A default named queue can be specified by using <code>Delayed::Worker.default_queue_name</code>.</p>
+<p>If no jobs are found, the worker sleeps for the amount of time specified by the sleep delay option. Set <code>Delayed::Worker.sleep_delay = 60</code> for a 60 second sleep time.</p>
+<p>It is possible to disable delayed jobs for testing purposes. Set <code>Delayed::Worker.delay_jobs = false</code> to execute all jobs realtime.</p>
+</body>
+</html>

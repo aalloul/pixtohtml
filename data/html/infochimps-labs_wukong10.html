@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>infochimps-labs_wukong10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>though you can set it to something else globally</p>
+<pre><code>$ echo something | wu-local logs.rb --log.level=warn
+WARN 2013-01-11 23:40:56 [Logs                ] -- something
+ERROR 2013-01-11 23:40:56 [Logs                ] -- something
+FATAL 2013-01-11 23:40:56 [Logs                ] -- something</code></pre>
+<p>or on a per-class basis.</p>
+<h3 id="creating-documentation">Creating Documentation</h3>
+<p><code>wu-local</code> includes a help message:</p>
+<pre><code>$ wu-local --help
+usage: wu-local [ --param=val | --param | -p val | -p ] PROCESSOR|FLOW
+
+wu-local is a tool for running Wukong processors and flows locally on
+the command-line.  Use wu-local by passing it a processor and feeding
+...
+
+
+Params:
+   -r, --run=String             Name of the processor or dataflow to use. Defaults to basename of the given path.</code></pre>
+<p>You can generate custom help messages for your own processors. Here’s the percentile processor from before but made more usable with good documentation:</p>
+<p>```ruby # in percentile.rb Wukong.processor(:percentile) do</p>
+<p>description &lt;&lt;-EOF.gsub(/^ {2}/,’’) This processor calculates percentiles from input scores based on a given mean score and a given standard deviation for the scores.</p>
+<p>The mean and standard deviation are given at run time and processed scores will be compared against the given mean and standard deviation.</p>
+<p>The input is expected to consist of float values, one per line.</p>
+<p>Example:</p>
+<pre><code>$ cat input.dat</code></pre>
+</body>
+</html>

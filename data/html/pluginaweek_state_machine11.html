@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pluginaweek_state_machine11</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>For more information about the various behaviors added for DataMapper state machines, see <code>StateMachine::Integrations::DataMapper</code>.</p>
+<h3 id="mongoid">Mongoid</h3>
+<p>The Mongoid integration adds support for automatically saving the record, basic scopes, validation errors, and observers. For example,</p>
+<p>```ruby class Vehicle include Mongoid::Document</p>
+<p>state_machine :initial =&gt; :parked do before_transition :parked =&gt; any - :parked, :do =&gt; :put_on_seatbelt after_transition any =&gt; :parked do |vehicle, transition| vehicle.seatbelt = ‘off’ # self is the record end around_transition :benchmark</p>
+<pre><code>event :ignite do
+  transition :parked =&gt; :idling
+end
+
+state :first_gear, :second_gear do
+  validates_presence_of :seatbelt_on
+end</code></pre>
+<p>end</p>
+<p>def put_on_seatbelt … end</p>
+<p>def benchmark … yield … end end</p>
+<p>class VehicleObserver &lt; Mongoid::Observer # Callback for :ignite event <em>before</em> the transition is performed def before_ignite(vehicle, transition) # log message end</p>
+<p># Generic transition callback <em>after</em> the transition is performed def after_transition(vehicle, transition) Audit.log(vehicle, transition) end</p>
+</body>
+</html>

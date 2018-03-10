@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>NUBIC_surveyor2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>bundle install
+script/rails generate surveyor:install
+bundle exec rake db:migrate</code></pre>
+<p>Parse the “kitchen sink” survey (</p>
+<pre><code>bundle exec rake surveyor FILE=surveys/kitchen_sink_survey.rb</code></pre>
+<p>Start up your app, visit <code>/surveys</code>, compare what you see to <a href="http://github.com/NUBIC/surveyor/blob/master/lib/generators/surveyor/templates/surveys/kitchen_sink_survey.rb">kitchen_sink_survey.rb</a> and try responding to the survey.</p>
+<h2 id="customize-surveyor">Customize surveyor</h2>
+<p>Surveyor’s controller, helper, models, and views may be overridden by classes in your <code>app</code> folder. To generate a sample custom controller and layout run:</p>
+<pre><code>script/rails generate surveyor:custom</code></pre>
+<p>and read the instructions generated in <a href="https://github.com/NUBIC/surveyor/blob/master/lib/generators/surveyor/templates/surveys/EXTENDING_SURVEYOR.md"><code>surveys/EXTENDING_SURVEYOR.MD</code></a></p>
+<h2 id="upgrade-surveyor">Upgrade surveyor</h2>
+<p>To get the latest version of surveyor, bundle, install and migrate:</p>
+<pre><code>bundle update surveyor
+script/rails generate surveyor:install
+bundle exec rake db:migrate</code></pre>
+<p>and review the <a href="https://github.com/NUBIC/surveyor/blob/master/CHANGELOG.md">changelog</a> for changes that may affect your customizations.</p>
+<h2 id="what-surveyor-does-and-doesnt-do">What surveyor does and doesn’t do</h2>
+<h3 id="does-do">Does do</h3>
+<ul>
+<li>use a DSL to parse large surveys without hours of copy/paste into a gui builder</li>
+<li>support complex, rule-based dependencies (skip-logic)</li>
+<li>JSON export of both surveys and response sets</li>
+<li>allow customization of all models, views, and controller, as well as helpers and routes</li>
+<li>follow semantic versioning</li>
+<li>exclusive checkboxes - a checkbox that when checked, unchecks all the others</li>
+</ul>
+<h3 id="doesnt-do">Doesn’t do</h3>
+<ul>
+<li>Enforce mandatory questions… yet (although it does have some[1] methods[2] on ResponseSet to support that)</li>
+<li>Dependencies within repeaters… yet</li>
+<li>Validations within the UI… yet , although it does have model support and database representations</li>
+<li>GUI creating, editing, deleting and administration of surveys… yet</li>
+<li>Consistently support HTML tags in title, text, help_text attributes. We intend to move to markdown support .</li>
+</ul>
+</body>
+</html>

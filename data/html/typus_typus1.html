@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>typus_typus1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="typus-admin-panel-for-ruby-on-rails-applications">Typus: Admin Panel for Ruby on Rails applications</h1>
+<p><strong>Typus</strong> is a control panel for [Ruby on Rails][rails] applications to allow trusted users edit structured content.</p>
+<p>!</p>
+<p>It’s not a CMS with a full working system but it provides a part of the system: authentication, permissions and basic look and feel for your websites control panel. So using [Rails][rails] with <strong>Typus</strong> lets you concentrate on your application instead of the bits to manage the system.</p>
+<p><strong>Typus</strong> is the “old latin” word for <strong>type</strong> which stands for:</p>
+<blockquote>
+<p>A category of people or things having common characteristics.</p>
+</blockquote>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li>Built-in Authentication and Access Control Lists.</li>
+<li>CRUD and custom actions for your models on a clean interface.</li>
+<li>Customizable and extensible templates.</li>
+<li>Integrated [paperclip][paperclip] and [dragonfly][dragonfly] attachments viewer.</li>
+<li>Supports Rails 4</li>
+</ul>
+<h2 id="installing">Installing</h2>
+<p>Add <strong>Typus</strong> to your <code>Gemfile</code>.</p>
+<p>If you are using <strong>Rails 4.1</strong> or <strong>Rails 4.2</strong>:</p>
+<pre><code>gem &quot;typus&quot;, github: &quot;typus/typus&quot;</code></pre>
+<p>If you are using <strong>Rails 4.0</strong>:</p>
+<pre><code>gem &quot;typus&quot;, github: &quot;typus/typus&quot;, branch: &quot;4-0-stable&quot;</code></pre>
+<p>Update your bundle, run the generator and start the application server:</p>
+<pre><code>bundle install
+rails generate typus
+rails server</code></pre>
+<p>and go to <a href="http://0.0.0.0:3000/admin" class="uri">http://0.0.0.0:3000/admin</a>.</p>
+<h2 id="testing">Testing</h2>
+</body>
+</html>

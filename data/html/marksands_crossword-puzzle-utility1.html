@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>marksands_crossword-puzzle-utility1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dictionary">Dictionary</h1>
+<p>A crossword puzzle utility</p>
+<h2 id="build-run">Build &amp; Run</h2>
+<p>You must have boost installed and your $BOOST_ROOT env set.</p>
+<pre><code>$ make</code></pre>
+<h2 id="usage">Usage</h2>
+<pre><code>Usage: dictionary [options]
+
+Options:
+  -h [ --help ]                         display this help and exit
+  -f [ --file ] arg (=/usr/share/dict/words)
+                                        load dictionary file
+  -s [ --spellcheck ] arg               search for PATTERN in dictionary
+  -r [ --reduce ] arg                   display reducable words for PATTERN
+  -d [ --debug ]                        enable debugging
+  -v [ --version ]                      print version information and exit</code></pre>
+<h2 id="spellchecker">Spellchecker</h2>
+<p>Use the <code>-s PATTERN</code> or <code>--spellcheck=PATTERN</code> option to spellcheck a given word. This works great for crossword puzzles. Just enter a pattern, using <code>?</code> as the wildcard, and the dictionary will search for all matches.</p>
+<pre><code>$ dictionary --spellcheck=&quot;han?y&quot;
+
+   Words found:
+     handy
+     hanky</code></pre>
+<h2 id="reduce">Reduce</h2>
+<p>Use the <code>-r PATTERN</code> or <code>--reduce=PATTERN</code> option to check a words shrinkability. The shrinkability of a word shows of the smallest word that can be created by stripping off one letter at a time from either the front or back of a word, with each intermediary word being another valid English word or entry from the dictionary.</p>
+<pre><code>$ dictionary --reduce &quot;handy&quot;
+
+   &quot;handy&quot; =&gt; &quot;hand&quot;
+   &quot;hand&quot; =&gt; &quot;han&quot;
+   &quot;han&quot; =&gt; &quot;ha&quot;
+   &quot;ha&quot; =&gt; &quot;h&quot;
+   &quot;h&quot;
+
+   Shrinkability index: 1</code></pre>
+<h1 id="license">License</h1>
+<p>Copyright © 2010 Mark Sands</p>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mbleigh_seed-fu3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>When loading lots of records, the above block-based syntax can be quite verbose. You can use the following instead:</p>
+<pre><code>User.seed(:id,
+  { :id =&gt; 1, :login =&gt; &quot;jon&quot;,   :email =&gt; &quot;jon@example.com&quot;,   :name =&gt; &quot;Jon&quot;   },
+  { :id =&gt; 2, :login =&gt; &quot;emily&quot;, :email =&gt; &quot;emily@example.com&quot;, :name =&gt; &quot;Emily&quot; }
+)</code></pre>
+<h2 id="rake-task">Rake task</h2>
+<p>Seed files can be run automatically using <code>rake db:seed_fu</code>. There are two options which you can pass:</p>
+<ul>
+<li><code>rake db:seed_fu FIXTURE_PATH=path/to/fixtures</code> – Where to find the fixtures</li>
+<li><code>rake db:seed_fu FILTER=users,articles</code> – Only run seed files with a filename matching the <code>FILTER</code></li>
+</ul>
+<p>You can also do a similar thing in your code by calling <code>SeedFu.seed(fixture_paths, filter)</code>.</p>
+<h2 id="disable-output">Disable output</h2>
+<p>To disable output from Seed Fu, set <code>SeedFu.quiet = true</code>.</p>
+<h2 id="handling-large-seed-files">Handling large seed files</h2>
+<p>Seed files can be huge. To handle large files (over a million rows), try these tricks:</p>
+<ul>
+<li>Gzip your fixtures. Seed Fu will read .rb.gz files happily. <code>gzip -9</code> gives the best compression, and with Seed Fu’s repetitive syntax, a 160M file can shrink to 16M.</li>
+<li>Add lines reading <code># BREAK EVAL</code> in your big fixtures, and Seed Fu will avoid loading the whole file into memory. If you use <code>SeedFu::Writer</code>, these breaks are built into your generated fixtures.</li>
+<li>Load a single fixture at a time with the <code>FILTER</code> environment variable</li>
+<li>If you don’t need Seed Fu’s ability to update seed with new data, then you may find that is faster</li>
+</ul>
+<h2 id="generating-seed-files">Generating seed files</h2>
+<p>If you need to programmatically generate seed files, for example to convert a CSV file into a seed file, then you can use <a href="lib/seed-fu/writer.rb"><code>SeedFu::Writer</code></a>.</p>
+<h2 id="capistrano-deployment">Capistrano deployment</h2>
+<p>SeedFu has included Capistrano <a href="lib/seed-fu/capistrano.rb">deploy script</a>, you just need require that in <code>config/deploy.rb</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ruby"><code class="sourceCode ruby"><a class="sourceLine" id="cb2-1" data-line-number="1">require <span class="st">&#39;seed-fu/capistrano&#39;</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># Trigger the task after update_code</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">after <span class="st">&#39;deploy:update_code&#39;</span>, <span class="st">&#39;db:seed_fu&#39;</span></a></code></pre></div>
+</body>
+</html>

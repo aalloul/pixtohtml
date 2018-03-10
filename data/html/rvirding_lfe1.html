@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rvirding_lfe1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="lfe">LFE</h1>
+<p>LFE, Lisp Flavoured Erlang, is a lisp syntax front-end to the Erlang compiler. Code produced with it is compatible with “normal” Erlang code. An LFE evaluator and shell is also included.</p>
+<h2 id="building">Building</h2>
+<p>To compile LFE, simple clone it and compile:</p>
+<pre class="shell"><code>$ git clone https://github.com/rvirding/lfe.git
+$ cd lfe
+$ make compile</code></pre>
+<p>LFE requires Erlang be installed on the system and that the <code>erl</code> binary is in <code>$PATH</code>.</p>
+<h2 id="installation">Installation</h2>
+<p>Should you wish to have LFE available system-wide, you can run the following <code>make</code> target:</p>
+<pre class="shell"><code>$ make install</code></pre>
+<p>By default this will create the programs <code>lfe</code>, <code>lfec</code>, <code>lfedoc</code> and <code>lfescript</code> in <code>/usr/local/bin</code>. This can be changed by defining the <code>make</code> variable <code>PREFIX</code> to point to the desired parent directory.</p>
+<p>Note that the <code>install</code> target will also install the LFE man pages in the appropriate <code>$(PREFIX)/share/man/man*</code> directories. This can be changed by defining the <code>make</code> variable <code>MANINSTDIR</code> to point to the desired top <code>man</code> directory.</p>
+<p>So:</p>
+<pre class="shell"><code>$ make install PREFIX=/Users/rv/ MANINSTDIR=/Users/rv/man</code></pre>
+</body>
+</html>

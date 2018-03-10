@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pandastream_panda_gem3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>  &quot;created_at&quot;=&gt;&quot;2010/01/13 16:45:29 +0000&quot;,
+  &quot;updated_at&quot;=&gt;&quot;2010/01/13 16:45:35 +0000&quot;
+}
+
+video.id
+=&gt; &quot;1234&quot;
+
+video.created_at
+=&gt;&quot;2010/01/13 16:45:29 +0000&quot;
+
+video = Panda::Video.first
+
+video = Panda::Video.find(&quot;fake_id&quot;)
+=&gt; raise: RecordNotFound: Couldn&#39;t find Video with ID=fake_id
+
+video.to_json
+=&gt;&quot;{\&quot;duration\&quot;:14010,\&quot;created_at\&quot;:\&quot;2010/01/13 16:45:29 +0000\&quot;,\&quot;original_filename\&quot;:\&quot;panda.mp4\&quot;....}&quot;
+
+video.processing?
+=&gt; false
+
+video.fail?
+=&gt; false
+
+video.success?
+=&gt; true
+
+video.reload
+=&gt; &lt;Panda::Video:0x1036fd660 ...&gt;</code></pre>
+<h5 id="find-encodings-of-a-video">Find encodings of a video</h5>
+<pre><code>video = Panda::Video.find(&quot;1234&quot;)
+video.encodings
+=&gt; [...]
+
+video.encodings.profile(&quot;3456&quot;)
+=&gt; [...]
+
+or
+ 
+video.encodings.all(:profile_id =&gt; &quot;3456&quot;)
+=&gt; [...]</code></pre>
+<h5 id="find-all-videos">Find all videos</h5>
+<pre><code>videos = Panda::Video.all
+=&gt; [...]
+
+videos.first.id</code></pre>
+</body>
+</html>

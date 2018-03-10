@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>clescuyer_rails-i18n1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rails-locale-data-repository">Rails Locale Data Repository</h1>
+<p>Central point to collect locale data for use in Ruby on Rails.</p>
+<h2 id="rails-translations">Rails translations</h2>
+<h3 id="how-to-use-them">How to use them</h3>
+<p>Download the locale files that are found in the directory and put them into the <code>config/locales</code> directory of your Rails application.</p>
+<p>If any translation doesn’t suit well to the requirements of your application, edit them.</p>
+<p>Available locales are: &gt; ar, bg, bn-IN, bs, ca, cz, da, de, de-AT, de-CH, dsb, el, en-GB, en-US, es, &gt; es-AR, es-CO, es-MX, es-PE, et, eu, fa, fi, fr, fr-CA, fr-CH, fur, gl-ES, &gt; gsw-CH, he, hi-IN, hr, hsb, hu, id, is, it, ja, ko, lo, lt, lv, mk, mn, nb, &gt; nl, nn, pl, pt-BR, pt-PT, rm, ro, ru, sk, sl, sr, sr-Latn, sv-SE, sw, th, &gt; tr, uk, vi, zh-CN, zh-TW</p>
+<p>Note that all locale files are not yet ready for Rails 3. Currently, following locales are ready for Rails 2 and 3: &gt; en-US, es-AR, es-MX, et, fr, fr-CA, fr-CH, gsw-CH, hi-IN, ja, sk, sw, th</p>
+<p>We always welcome your contributions!</p>
+<h3 id="how-to-contribute">How to contribute</h3>
+<h4 id="quick-contribution">Quick contribution</h4>
+<p>If you are familiar with GitHub operations, follow the procedures described in the subsequent sections.</p>
+<p>If you are not,</p>
+<ul>
+<li>Save your locale data on the .</li>
+<li>Open an issue with reference to the the Gist you created.</li>
+</ul>
+<h4 id="fetch-the-rails-18n-repository">Fetch the <code>rails-18n</code> repository</h4>
+<ul>
+<li>Get a github account and Git program if you haven’t. See for instructions.</li>
+<li>Fork <code>svenfuchs/rails-i18n</code> repository and clone it into your PC.</li>
+</ul>
+<h4 id="create-or-edit-your-locale-file">Create or edit your locale file</h4>
+<ul>
+<li>Have a look in <code>rails/locale/en-US.yml</code>, which can be used as the base of your translation. This file is a compound of all translation files in the Rails 2 and 3 packages. Note that we use <code>&amp;errors_messages</code> and <code>&lt;&lt;: *errors_messages</code> to anchor and merge a part of translation data.</li>
+<li>Create or edit your locale file. Please include a comment with the language/locale name and your name and email address (or other contact information like your github profile) to the locale file so people can come contact you and ask questions etc. Also, please pay attention to save your files as UTF-8.</li>
+</ul>
+</body>
+</html>

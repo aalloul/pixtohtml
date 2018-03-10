@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>perigrin_moosex-poe2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    sub START { 
+        my ($self) = @_;
+        $self-&gt;yield(&#39;increment&#39;)  
+    }
+    
+
+    event increment =&gt; sub {
+        my ($self) = @_;
+        print &quot;Count is now &quot; . $self-&gt;count . &quot;\n&quot;;
+        $self-&gt;count( $self-&gt;count + 1 );
+        $self-&gt;yield(&#39;increment&#39;) unless $self-&gt;count &gt; 3;            
+    }
+}
+
+Counter-&gt;new();
+POE::Kernel-&gt;run();</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>MooseX::POE is a Moose wrapper around a POE::Session.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<ul>
+<li>event $name $subref</li>
+</ul>
+<p>Create an event handler named $name.</p>
+<h1 id="methods">METHODS</h1>
+<p>Default POE-related methods are provided by L&lt;MooseX::POE::Meta::Trait::Object|MooseX::POE::Meta::Trait::Object&gt; which is applied to your base class (which is usually L&lt;Moose::Object|Moose::Object&gt;) when you use this module. See that module for the documentation for. Below is a list of methods on that class so you know what to look for:</p>
+<ul>
+<li><p>get_session_id</p></li>
+<li><p>yield</p></li>
+<li><p>call</p></li>
+<li><p>STARTALL</p></li>
+<li><p>STOPALL</p></li>
+</ul>
+<h1 id="notes-on-usage-with-lmoosexdeclaremoosexdeclare">NOTES ON USAGE WITH L&lt;MooseX::Declare|MooseX::Declare&gt;</h1>
+<p>L&lt;MooseX::Declare|MooseX::Declare&gt; support is still “experimental”. Meaning that I don’t use it,</p>
+</body>
+</html>

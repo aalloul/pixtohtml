@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>akm_selectable_attr_rails2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>class RoomSearch
+  include ::SelectableAttr::Base
+  
+  multi_selectable_attr :room_type do
+    entry &#39;01&#39;, :single, &#39;シングル&#39;
+    entry &#39;02&#39;, :twin, &#39;ツイン&#39;
+    entry &#39;03&#39;, :double, &#39;ダブル&#39;
+    entry &#39;04&#39;, :triple, &#39;トリプル&#39;
+  end
+end
+
+&lt;% form_for(:room_search) do |f| %&gt;
+  &lt;%= f.select :room_type %&gt;
+&lt;% end %&gt;</code></pre>
+<p>この場合、出力されるselectタグのmultiple属性が設定されます。</p>
+<h3 id="radio_button_groupヘルパーメソッド">radio_button_groupヘルパーメソッド</h3>
+<p>一つだけ値を選択するUIの場合、selectメソッドではなく&lt;input type=“radio”…/&gt;を出力することも可能です。 上記Personモデルの場合</p>
+<pre><code>&lt;% form_for(:person) do |f| %&gt;
+  &lt;%= f.radio_button_group :gender %&gt;
+&lt;% end %&gt;</code></pre>
+<p>この場合、&lt;input type=“radio” …/&gt;<label for="xxx">… という風に続けて出力されるので、改行などを出力したい場合は 引数を一つ取るブロックを渡して以下のように記述します。</p>
+<pre><code>&lt;% form_for(:person) do |f| %&gt;
+  &lt;% f.radio_button_group :gender do |b| %&gt;
+    &lt;% b.each do %&gt;
+      &lt;%= b.radio_button %&gt;
+      &lt;%= b.label %&gt;
+      &lt;br/&gt;
+    &lt;% end %&gt;
+  &lt;% end %&gt;
+&lt;% end %&gt;</code></pre>
+<p>f.radio_button_groupを呼び出しているERBのタグが、&lt;%= %&gt;から&lt;% %&gt;に変わっていることにご注意ください。</p>
+<h3 id="check_box_groupヘルパーメソッド">check_box_groupヘルパーメソッド</h3>
+<p>複数の値を選択するUIの場合、selectメソッドではなく&lt;input type=“checkbox”…/&gt;を出力することも可能です。 上記RoomSearchクラスの場合</p>
+<pre><code>&lt;% form_for(:room_search) do |f| %&gt;
+  &lt;%= f.check_box_group :room_type %&gt;
+&lt;% end %&gt;</code></pre>
+</body>
+</html>

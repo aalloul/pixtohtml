@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_markdown-mode11</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p>Movement by Defuns: <kbd>C-M-a</kbd>, <kbd>C-M-e</kbd>, and <kbd>C-M-h</kbd></p>
+<p>The usual Emacs commands can be used to move by defuns (top-level major definitions). In markdown-mode, a defun is a section. As usual, <kbd>C-M-a</kbd> will move the point to the beginning of the current or preceding defun, <kbd>C-M-e</kbd> will move to the end of the current or following defun, and <kbd>C-M-h</kbd> will put the region around the entire defun.</p></li>
+<li><p>Table Editing:</p>
+<p>Markdown Mode includes support for editing tables, which have the following basic format:</p>
+<pre><code>| Right | Left | Center | Default |
+|------:|:-----|:------:|---------|
+|    12 | 12   | 12     | 12      |
+|   123 | 123  | 123    | 123     |
+|     1 | 1    | 1      | 1       |</code></pre>
+<p>The first line contains column headers. The second line contains a separator line between the headers and the content. Each following line is a row in the table. Columns are always separated by the pipe character. The colons indicate column alignment.</p>
+<p>A table is re-aligned automatically each time you press <kbd>TAB</kbd> or <kbd>RET</kbd> inside the table. <kbd>TAB</kbd> also moves to the next field (<kbd>RET</kbd> to the next row) and creates new table rows at the end of the table or before horizontal separator lines. The indentation of the table is set by the first line. Column centering inside Emacs is not supported.</p>
+<p>Beginning pipe characters are required for proper detection of table borders inside Emacs. Any line starting with <code>|-</code> or <code>|:</code> is considered as a horizontal separator line and will be expanded on the next re-align to span the whole table width. No padding is allowed between the beginning pipe character and header separator symbol. So, to create the above table, you would only type</p>
+<pre><code>|Right|Left|Center|Default|
+|-</code></pre>
+<p>and then press <kbd>TAB</kbd> to align the table and start filling in cells.</p>
+<p>Then you can jump with <kbd>TAB</kbd> from one cell to the next or with <kbd>S-TAB</kbd> to the previous one. <kbd>RET</kbd> will jump to the to the next cell in the same column, and create a new row if there is</p></li>
+</ul>
+</body>
+</html>

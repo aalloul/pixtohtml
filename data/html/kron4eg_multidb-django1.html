@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kron4eg_multidb-django1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>============== django-multidb ==============</p>
+<p>App which make you able to work with multiple databases from django ORM.</p>
+<h2 id="warning">!WARNING!</h2>
+<p>Code is still alfa quality. And it switches database GLOBALLY (per thread), for all models!</p>
+<p>Based on: <a href="http://www.eflorenzano.com/blog/post/easy-multi-database-support-django/" class="uri">http://www.eflorenzano.com/blog/post/easy-multi-database-support-django/</a></p>
+<h2 id="usage">Usage</h2>
+<p>Insert <code>multidb</code> in <code>INSTALLED_APPS</code></p>
+<pre><code>INSTALLED_APPS = (
+    &#39;multidb&#39;
+    &#39;django.contrib.sessions&#39;,
+    &#39;django.contrib.sites&#39;,
+    ...
+)</code></pre>
+<p>Configure your databases.</p>
+<pre><code>DATABASES = dict(
+    default = dict(
+        DATABASE_ENGINE=DATABASE_ENGINE,
+        DATABASE_NAME=DATABASE_NAME,
+        DATABASE_USER=DATABASE_USER,
+        DATABASE_PASSWORD=DATABASE_PASSWORD,
+        DATABASE_HOST=DATABASE_HOST,
+        DATABASE_PORT=DATABASE_PORT,
+    ),
+    second = dict(
+        DATABASE_ENGINE=DATABASE_ENGINE,
+        DATABASE_NAME=&#39;another_DB&#39;,
+        DATABASE_USER=&#39;user&#39;,
+        DATABASE_PASSWORD=&#39;pass&#39;,
+        DATABASE_HOST=&#39;host&#39;,
+        DATABASE_PORT=&#39;&#39;,
+    ),
+)</code></pre>
+<p>Don’t use database backend for sessions.</p>
+<pre><code>from multidb.db import switch_db
+from models import SomeModel</code></pre>
+</body>
+</html>

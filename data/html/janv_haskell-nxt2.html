@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>janv_haskell-nxt2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="nxt.sensor">NXT.Sensor</h2>
+<p>High-level library on top of NXT.Commands to easily read out the sensors. Requires an initialization call after opening the connection to the Brick and assumes that the sensors are plugged into their intended ports on the brick.</p>
+<h2 id="nxt.ultrasonic">NXT.Ultrasonic</h2>
+<p>Since the Ultrasonic sensor communicates with the NXT via I2C, controlling it is a little more complicated. This module contains mainly a list of I2C commands.</p>
+<h1 id="usage-example">Usage Example</h1>
+<pre><code>btBrick = NXTBrick Bluetooth &quot;/dev/tty.NXT-DevB-1&quot;
+
+main = do
+    h &lt;- nxtOpen btBrick
+    playtone h 500 500
+    setupDefaultSensors h
+    s &lt;- getDistance h
+    putStrLn (show s)
+    nxtClose h</code></pre>
+<p>This opens a NXT Brick located as a serial device at /dev/tty.NXT-DevB-1 in Bluetooth mode (as opposed to USB, which isn’t implemented yet). The brick is opened, plays a tone and reads the distance from the distance sensor.</p>
+<h1 id="usage-restrictions">Usage restrictions</h1>
+<ul>
+<li>The library works only on POSIX systems currently.</li>
+<li>It was developed on Mac OSX 10.5 with GHC 6.8.3 and uses some GHC-extensions to the Haskell standard.</li>
+<li>Communication with Bricks via USB isn’t implemented yet.</li>
+</ul>
+<h1 id="todo">TODO</h1>
+<ul>
+<li>I2C delay</li>
+<li>Implement USB interface</li>
+<li>Implement the rest of the NXT Commands</li>
+<li>Debugging helpers</li>
+</ul>
+<h1 id="credits">Credits</h1>
+</body>
+</html>

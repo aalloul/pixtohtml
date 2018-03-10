@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>plicease_Mojolicious-Plugin-TtRenderer2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>      PRE_CHOMP =&gt; 1,
+      POST_CHOMP =&gt; 1,
+      TRIM =&gt; 1,
+    },
+  }
+  
+  ...
+}</code></pre>
+<p>These options will be used if you do not override them:</p>
+<ul>
+<li><p>INCLUDE_PATH</p>
+<p>Generated based on your application’s renderer’s configuration. It will include all renderer paths, in addition to search files located in the <code>__DATA__</code> section by the usual logic used by .</p></li>
+<li><p>COMPILE_EXT</p>
+<p><code>.ttc</code></p></li>
+<li><p>UNICODE</p>
+<p><code>1</code> (true)</p></li>
+<li><p>ENCODING</p>
+<p><code>utf-87</code></p></li>
+<li><p>CACHE_SIZE</p>
+<p><code>128</code></p></li>
+<li><p>RELATIVE</p>
+<p><code>1</code> (true)</p></li>
+</ul>
+<h2 id="cache_dir">cache_dir</h2>
+<p>Specifies the directory in which compiled template files are written. This:</p>
+<pre><code>plugin &#39;tt_renderer&#39;, { cache_dir =&gt; &#39;some/path&#39; };</code></pre>
+<p>is equivalent to</p>
+<pre><code>plugin &#39;tt_renderer&#39;, { template_options { COMPILE_DIR =&gt; &#39;some/path&#39; } };</code></pre>
+<p>except in the first example relative paths are relative to the app’s home directory (<code>$app-&gt;home</code>).</p>
+</body>
+</html>

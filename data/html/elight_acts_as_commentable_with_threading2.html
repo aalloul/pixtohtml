@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>elight_acts_as_commentable_with_threading2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="usage">Usage</h2>
+<pre><code>class Article &lt; ActiveRecord::Base
+  acts_as_commentable
+end</code></pre>
+<ul>
+<li><p>Add a comment to a model instance, for example an Article:</p>
+<pre><code>  @article = Article.find(params[:id])
+  @user_who_commented = @current_user
+  @comment = Comment.build_from( @article, @user_who_commented.id, &quot;Hey guys this is my comment!&quot; )</code></pre></li>
+<li><p>To make a newly created comment into a child/reply of another comment:</p>
+<pre><code>  @comment.move_to_child_of(the_desired_parent_comment)</code></pre></li>
+<li><p>To retrieve all comments for an article, including child comments:</p>
+<pre><code>  @all_comments = @article.comment_threads</code></pre></li>
+<li><p>To retrieve only the root comments without their child comments:</p>
+<pre><code>  @root_comments = @article.root_comments</code></pre></li>
+<li><p>To check if a comment has children:</p>
+<pre><code>  @comment.has_children?</code></pre></li>
+<li><p>To verify the number of children a comment has:</p>
+<pre><code>  @comment.children.size</code></pre></li>
+<li><p>To retrieve a comment’s children:</p>
+<pre><code>  @comment.children</code></pre></li>
+<li><p>If you plan to use the <code>acts_as_votable</code> plugin with your comment system be sure to uncomment the line <a href="https://github.com/elight/acts_as_commentable_with_threading/blob/master/lib/generators/acts_as_commentable_with_threading_migration/templates/comment.rb#L9"><code>acts_as_votable</code></a> in <code>lib/comment.rb</code>.</p></li>
+</ul>
+<h2 id="credits">Credits</h2>
+<ul>
+<li><ul>
+<li>For contributing the updates for Rails 3!</li>
+</ul></li>
+<li><ul>
+<li>This plugin/gem is heavily influenced/liberally borrowed/stolen from [acts_as_commentable].</li>
+</ul></li>
+</ul>
+<p>And in turn…</p>
+<ul>
+<li>Xelipe - Because acts_as_commentable was heavily influenced by Acts As Taggable.</li>
+</ul>
+</body>
+</html>

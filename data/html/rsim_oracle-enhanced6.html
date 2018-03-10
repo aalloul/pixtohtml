@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsim_oracle-enhanced6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>ActiveSupport.on_load(:active_record) do ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter.class_eval do # true and false will be stored as ‘Y’ and ‘N’ self.emulate_booleans_from_strings = true</p>
+<pre><code># start primary key sequences from 1 (and not 10000) and take just one next value in each session
+self.default_sequence_start_value = &quot;1 NOCACHE INCREMENT BY 1&quot;
+
+# Use old visitor for Oracle 12c database
+self.use_old_oracle_visitor = true
+
+# other settings ...</code></pre>
+<p>end end ```</p>
+<p>In case of Rails 2 application you do not need to use <code>ActiveSupport.on_load(:active_record) do ... end</code> around settings code block.</p>
+<p>See other adapter settings in .</p>
+<h3 id="legacy-schema-support">Legacy schema support</h3>
+<p>If you want to put Oracle enhanced adapter on top of existing schema tables then there are several methods how to override ActiveRecord defaults, see example:</p>
+<p>```ruby class Employee &lt; ActiveRecord::Base # specify schema and table name self.table_name = “hr.hr_employees”</p>
+<p># specify primary key name self.primary_key = “employee_id”</p>
+<p># specify sequence name self.sequence_name = “hr.hr_employee_s”</p>
+<p># set which DATE columns should be converted to Ruby Date using ActiveRecord Attribute API # Starting from Oracle enhanced adapter 1.7 Oracle <code>DATE</code> columns are mapped to Ruby <code>Date</code> by default. attribute :hired_on, :date attribute :birth_date_on, :date</p>
+<p># set which DATE columns should be converted to Ruby Time using ActiveRecord Attribute API attribute :last_login_time, :datetime</p>
+<p># set which VARCHAR2 columns should be converted to true and false using ActiveRecord Attribute API attribute :manager, :boolean attribute :active, :boolean</p>
+<p># set which columns should be ignored in ActiveRecord ignore_table_columns :attribute1, :attribute2 end</p>
+</body>
+</html>

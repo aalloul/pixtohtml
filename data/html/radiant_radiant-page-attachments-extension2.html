@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>radiant_radiant-page-attachments-extension2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>Display an attachment’s <code>#{key}</code> attribute <code>&lt;r:attachment:#{key} name=&quot;file.jpg&quot;/&gt;</code></li>
+<li>Display the date an attachment was added <code>&lt;r:attachment:date name=&quot;file.txt&quot;/&gt;</code></li>
+<li>Display an attached image <code>&lt;r:attachment:image name=&quot;file.jpg&quot;/&gt;</code></li>
+<li>Display a link to an attachment <code>&lt;r:attachment:link name=&quot;file.jpg&quot;/&gt;</code> or <code>&lt;r:attachment:link name=&quot;file.jpg&quot;&gt;Click Here&lt;/r:attachment:link&gt;</code></li>
+<li>Display name of the user who added the attachment <code>&lt;r:attachment:author name=&quot;file.jpg&quot;/&gt;</code></li>
+<li>Iterate through all the attachments on a page <code>&lt;r:attachment:each&gt;&lt;r:link/&gt;&lt;/r:attachment:each&gt;</code></li>
+<li>Display the extension of an attachement inside iterations with <r:attachment:extension/></li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If you have a problem running the migrate task, and it fails with an error something like this:</p>
+<pre><code>ld: library not found for -lfreeimage
+collect2: ld returned 1 exit status</code></pre>
+<p>It means you have installed the ImageScience gem but you don’t have FreeImage installed. So, either install FreeImage or uninstall the gem with</p>
+<pre><code>gem uninstall image_science</code></pre>
+<hr />
+<p>If you’re using ImageScience as a user without a home directory, you may see this error:</p>
+<pre><code>Define INLINEDIR or HOME in your environment and try again</code></pre>
+<p>This is caused by RubyInline not having a place to store its generated files and can be easily fixed by specifying a path in your environment file like so:</p>
+<pre><code>ENV[&#39;INLINEDIR&#39;] = File.join(RAILS_ROOT,&#39;tmp&#39;,&#39;ruby_inline&#39;)</code></pre>
+<hr />
+<p>If you have trouble attaching files to Page Types other than the normal type, try editing the following line in your <code>config/environment.rb</code> file</p>
+<pre><code>    config.extensions = [ :all ]</code></pre>
+<p>to look like</p>
+<pre><code>    config.extensions = [ :page_attachments, :all ]</code></pre>
+<h2 id="amazon-s3-for-attachment-storage">Amazon S3 for Attachment storage</h2>
+<p>Since <code>page_attachments</code> uses <code>attachment_fu</code> for the handling of attachments it’s just as easy to use [S3][s3] as it is to use your hard drive. Before you get started with this there are a few things to keep in mind:</p>
+</body>
+</html>

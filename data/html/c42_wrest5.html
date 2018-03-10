@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>c42_wrest5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="callbacks">Callbacks</h3>
+<h4 id="uri-level-callbacks">Uri level callbacks</h4>
+<p>You can define a set of callbacks that are invoked based on the http codes of the responses to any requests on a given uri.</p>
+<pre><code>  &quot;http://google.com&quot;.to_uri(callback: {
+              200      =&gt; lambda {|response| Wrest.logger.info &quot;Ok.&quot; },
+              400..499 =&gt; lambda {|response| Wrest.logger.error &quot;Invalid. #{response.body}&quot;},
+              300..302 =&gt; lambda {|response| Wrest.logger.debug &quot;Redirected. #{response.message}&quot; }
+            }).get</code></pre>
+<h4 id="per-request-callbacks">Per request callbacks</h4>
+<p>You can also define callbacks that are invoked based on the http code of the response to a particular request.</p>
+<pre><code>  &quot;http://google.com&quot;.to_uri.get do |callback|
+    callback.on_ok do |response|
+      Wrest.logger.info &quot;Ok.&quot;
+    end
+
+    callback.on(202) do |response|
+      Wrest.logger.info &quot;Accepted.&quot;
+    end
+
+    callback.on(200..206) do |response|
+      Wrest.logger.info &quot;Successful.&quot;
+    end
+  end</code></pre>
+<p>Please note that Wrest is a synchronous library. All requests are blocking, and will not return till the request is completed and appropriate callbacks executed.</p>
+<h3 id="asynchronous-requests">Asynchronous requests</h3>
+<p>Asynchronous requests are non-blocking. They do not return a response and the request is executed on a separate thread. The only way to access the response while using asynchronous request is through callbacks.</p>
+<p>Asynchronous requests support pluggable backends. The default backend used for asynchronous requests is ruby threads, which is only reliable when using JRuby.</p>
+<p>``` “http://c42.in”.to_uri.get_async do |callback| callback.on_ok do |response| Wrest.logger.info “Ok.” end end</p>
+</body>
+</html>

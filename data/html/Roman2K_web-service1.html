@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Roman2K_web-service1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="webservice">WebService</h1>
+<p>REST client. Alternative to .</p>
+<h2 id="installation">Installation</h2>
+<p>Since <code>WebService</code> depends on the gem <code>class-inheritable-attributes</code> which cannot be installed directly by RubyGems because the account name has to be prepended to the actual gem name, please refer to the corresponding README for how to install this dependency manually.</p>
+<p>Then, install the <code>web-service</code> gem itself:</p>
+<pre><code>$ gem install &lt;gem&gt; -s http://gems.github.com/</code></pre>
+<h2 id="usage-example">Usage example</h2>
+<p>Let’s say you have a Rails app exposing a RESTful API for articles and their comments:</p>
+<pre><code>map.resources :articles, :has_many =&gt; :comments</code></pre>
+<p>When building the corresponding client for this API to consume these resources, the code could look like:</p>
+<pre><code>require &#39;web_service&#39;
+
+class BasicResource &lt; WebService::Resource
+  # Mandatory:
+  self.site = WebService::Site.new(&quot;http://login:password@host:port&quot;)
+  
+  # Optional (and possibly in subclasses):
+  self.site = WebService::Site.new(&quot;https://secure.site&quot;)
+  self.credentials = [&quot;login&quot;, &quot;password&quot;]
+  self.element_name = &quot;custom_element_name&quot;
+  self.singleton = true   # /foo instead of /foos/1
+end
+
+class Article &lt; BasicResource
+  has_many :comments
+end
+
+class Comment &lt; BasicResource
+  belongs_to :article
+end</code></pre>
+<h3 id="attributes">Attributes</h3>
+<pre><code>article = Article.new(:title =&gt; &quot;First article&quot;)
+article.title    # =&gt; &quot;First article&quot;
+article.title?   # =&gt; true
+article.title = &quot; &quot;
+article.title?   # =&gt; false
+article.body     # raises NoMethodError
+article.body?    # raises NoMethodError</code></pre>
+</body>
+</html>

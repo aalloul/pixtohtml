@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_libwww-perl9</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>$ua-&gt;no_proxy(&#39;localhost&#39;, &#39;example.com&#39;);
+$ua-&gt;no_proxy(); # clear the list</code></pre>
+<p>Do not proxy requests to the given domains. Calling <code>no_proxy</code> without any domains clears the list of domains.</p>
+<h2 id="proxy">proxy</h2>
+<pre><code>$ua-&gt;proxy(\@schemes, $proxy_url)
+$ua-&gt;proxy([&#39;http&#39;, &#39;ftp&#39;], &#39;http://proxy.sn.no:8001/&#39;);
+
+# For a single scheme:
+$ua-&gt;proxy($scheme, $proxy_url)
+$ua-&gt;proxy(&#39;gopher&#39;, &#39;http://proxy.sn.no:8001/&#39;);
+
+# To set multiple proxies at once:
+$ua-&gt;proxy([
+    ftp =&gt; &#39;http://ftp.example.com:8001/&#39;,
+    [ &#39;http&#39;, &#39;https&#39; ] =&gt; &#39;http://http.example.com:8001/&#39;,
+]);</code></pre>
+<p>Set/retrieve proxy URL for a scheme.</p>
+<p>The first form specifies that the URL is to be used as a proxy for access methods listed in the list in the first method argument, i.e. <code>http</code> and <code>ftp</code>.</p>
+<p>The second form shows a shorthand form for specifying proxy URL for a single access scheme.</p>
+<p>The third form demonstrates setting multiple proxies at once. This is also the only form accepted by the constructor.</p>
+<h1 id="handlers">HANDLERS</h1>
+<p>Handlers are code that injected at various phases during the processing of requests. The following methods are provided to manage the active handlers:</p>
+<h2 id="add_handler">add_handler</h2>
+<pre><code>$ua-&gt;add_handler( $phase =&gt; \&amp;cb, %matchspec )</code></pre>
+<p>Add handler to be invoked in the given processing phase. For how to specify <code>%matchspec</code> see .</p>
+<p>The possible values <code>$phase</code> and the corresponding callback signatures are:</p>
+<ul>
+<li>response_data =&gt; sub { my($response, $ua, $h, $data) = @_; … }</li>
+</ul>
+</body>
+</html>

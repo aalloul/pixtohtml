@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jhlywa_chess.js8</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>chess.load_pgn(pgn.join(‘’)); // -&gt; true</p>
+<p>chess.fen(); // -&gt; 1r3kr1/pbpBBp1p/1b3P2/8/8/2P2q2/P4PPP/3R2K1 b - - 0 24</p>
+<p>chess.ascii(); // -&gt; ‘+————————+ // 8 | . r . . . k r . | // 7 | p b p B B p . p | // 6 | . b . . . P . . | // 5 | . . . . . . . . | // 4 | . . . . . . . . | // 3 | . . P . . q . . | // 2 | P . . . . P P P | // 1 | . . . R . . K . | // +————————+ // a b c d e f g h’</p>
+<p>// Parse non-standard move formats and unusual line separators var sloppy_pgn = [‘[Event “Wijk aan Zee (Netherlands)”]’, ‘[Date “1971.01.26”]’, ‘[Result “1-0”]’, ‘[White “Tigran Vartanovich Petrosian”]’, ‘[Black “Hans Ree”]’, ‘[ECO “A29”]’, ’‘, ’1. Pc2c4 Pe7e5’, // non-standard ‘2. Nc3 Nf6’, ‘3. Nf3 Nc6’, ‘4. g2g3 Bb4’, // non-standard ‘5. Nd5 Nxd5’, ‘6. c4xd5 e5-e4’, // non-standard ‘7. dxc6 exf3’, ‘8. Qb3 1-0’].join(‘|’);</p>
+<p>var options = { newline_char: ‘\|’, // Literal ‘|’ character escaped sloppy: true };</p>
+<p>chess.load_pgn(sloppy_pgn); // -&gt; false</p>
+<p>chess.load_pgn(sloppy_pgn, options); // -&gt; true</p>
+</body>
+</html>

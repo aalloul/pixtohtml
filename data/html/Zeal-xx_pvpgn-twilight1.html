@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Zeal-xx_pvpgn-twilight1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="pvpgn.bnetd-ala-twilight">PVPGN.bnetd ala Twilight</h1>
+<p>This project focuses at providing the following functionality to bnetd. Note that almost all changes are designed with DotA (a custom map) for W3XP in mind. However, changes here can be beneficial to any game, provided the right adjustments are made.</p>
+<h2 id="history">History</h2>
+<p>PVPGN/bnetd is an opensource project which emulates Blizzard’s Battle.NET.</p>
+<p>The project is old, and thus quite mature. While it does a marvelous job at cloning the functionality and behavior of the official servers, it has a serious flaw: account control. While Blizzard have the luxury of authenticating CD keys, PVPGN hosts do not. This makes it incredibly frustrating running a bnetd server - it just takes one user intent on ruining it for everybody else, and you have a big problem on your hands.</p>
+<p>While IP banning can be effective, not all users sit behind static addresses. Furthermore, custom games don’t always follow the same ruleset as the traditional W3XP AUP. For example, for DotA, will your server tolerate leavers, item poolers, laggers, feeders.. there are a host of control issues - none of which can be moderated via traditional Battle.NET controls.</p>
+<p>The Twilight modifications have been running on Twilight[http://war3.co.za] with much success for the better part of a year. The original source was based off PVPGN 1.99.r384 (a snapshot at the time), and has been maintained with SVN. Since then, there have been many requests for the source. While originally hesitant, I have decided to opensource the project. However, the code presented here is (or rather, will be) a full rewrite of the modifications.</p>
+<h2 id="twilight-itself">Twilight itself</h2>
+<p>From the long splurb above, one thing should be clear: PVPGN is great at pretending to be Blizzard’s Battle.NET.. but that’s just the problem, ain’t it? Battle.NET is an old system designed in almost another era. PVPGN developers do not have any intention of <em>deviating</em> from the Battle.NET design. That’s where we come in. Our entire goal is to make bnetd fun for all. We don’t care how much of BNET we molester in the process. If it works out to be a better system.. well, then that’s Mission Accomplished.</p>
+<p>This is a very brief overview of the features involved. * Experience system * Group system * Normalised database for MYSQL * Simple web management, written in Rails for use with MYSQL</p>
+<p>More information about current and future features can be found at the for this project.</p>
+</body>
+</html>

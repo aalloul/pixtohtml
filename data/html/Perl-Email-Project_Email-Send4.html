@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Perl-Email-Project_Email-Send4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>use vars qw[$AGENT $URL $FIELD];
+use Return::Value;
+
+sub is_available {
+    eval { use LWP::UserAgent }
+}
+
+sub send {
+    my ($class, $message, @args);
+
+    require LWP::UserAgent;
+
+    if ( @args ) {
+        my ($URL, $FIELD) = @args;
+        $AGENT = LWP::UserAgent-&gt;new;
+    }
+    return failure &quot;Can&#39;t send to URL if no URL and field are named&quot;
+        unless $URL &amp;&amp; $FIELD;
+    $AGENT-&gt;post($URL =&gt; { $FIELD =&gt; $message-&gt;as_string });
+    return success;
+}
+
+1;</code></pre>
+<p>This example will keep a UserAgent singleton unless new arguments are passed to <code>send</code>. It is used by calling <code>Email::Send::send</code>.</p>
+<pre><code>my $sender = Email::Send-&gt;new({ mailer =&gt; &#39;HTTP::Post&#39; });
+
+$sender-&gt;mailer_args([ &#39;http://example.com/incoming&#39;, &#39;message&#39; ]);
+
+$sender-&gt;send($message);
+$sender-&gt;send($message2); # uses saved $URL and $FIELD</code></pre>
+<h1 id="see-also">SEE ALSO</h1>
+<p>, , , , , , , .</p>
+<h1 id="perl-email-project">PERL EMAIL PROJECT</h1>
+<p>This module is maintained by the Perl Email Project.</p>
+</body>
+</html>

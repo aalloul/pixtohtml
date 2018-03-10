@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>coderholic_pyradio1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="pyradio">PyRadio</h1>
+<p>Command line internet radio player.</p>
+<p>Ben Dowling -</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>python 2.6+/3.2+</li>
+<li>mplayer or vlc installed and in your path</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>The first thing is to make sure MPlayer and VLC are installed and are in the PATH. To check this, go in your favorite terminal and make sure thiese programs are launched when you type “mplayer” or “cvlc”.</p>
+<p>MacOSX tip: MPlayer is one of the available packages provided by . But it is not the case of VLC. Nevertheless, pyradio will also work with the binary of the application . You simply can add a symbolic link to the executable as follows (this link must of course be in your PATH):</p>
+<pre><code>ln -s /Applications/VLC.app/Contents/MacOS/VLC cvlc</code></pre>
+<p>The second step is to install the python package:</p>
+<pre><code>pip install pyradio</code></pre>
+<h2 id="shell">Shell</h2>
+<pre><code>$ pyradio -h
+
+usage: main.py [-h] [--stations STATIONS] [--random] [--add] [--list]
+
+Console radio player
+
+optional arguments:
+-h, --help            show this help message and exit
+--stations STATIONS, -s STATIONS
+                        Path on stations csv file.
+--random, -r          Start and play random station.
+--add, -a             Add station to list.
+--list, -l            List of added stations.
+--debug, -d           Debug mode (pyradio.log created)
+                      To be attached with any bug report.</code></pre>
+</body>
+</html>

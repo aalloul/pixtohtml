@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>clemens_later_dude1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="laterdude">LaterDude</h1>
+<p>LaterDude is a small calendar helper plugin for Rails with i18n support.</p>
+<p>It was heavily inspired by “Jeremy Voorhis’/Geoffrey Grosenbach’s calendar_helper plugin”:http://topfunky.net/svn/plugins/calendar_helper/. Here’s what’s different:</p>
+<ul>
+<li>LaterDude leverages the power of the “Rails i18n plugin”:http://rails-i18n.org. This means that if you have Rails 2.2 or higher (or if you’ve installed the i18n gem and the plugin separately), you can just drop in locales and you’ll get localized month and day names.</li>
+<li>Where the calendar_helper had one helper method that internally called multiple other private methods, LaterDude keeps the namespace clean by tucking away all of its functionality in a presenter (of sorts).</li>
+<li>Most CSS class names are given implictly, e.g. “day”, “weekendDay” (both are given to the displayed month as well as to the previous and following month), “otherMonth” (all days that don’t belong to the displayed month) and “today”. The only CSS class that can be configured is the table’s class (which defaults to “calendar”). Further customization can be taken care of by passing a block (see examples).</li>
+</ul>
+<h1 id="installation">Installation</h1>
+<p>You can use LaterDude either as a gem (preferred) or as a Rails plugin.</p>
+<p>To use the gem version, put the following gem requirement in your environment.rb:</p>
+<pre><code>config.gem &#39;later_dude&#39;, :source =&gt; &#39;http://gemcutter.org&#39;</code></pre>
+<p>Or with Rails 3, add the gem requirement to your Gemfile:</p>
+<pre><code>gem &#39;later_dude&#39;, &#39;&gt;= 0.3.1&#39; # 0.3.0 was broken!</code></pre>
+<p>To install it as a plugin, fire up your terminal, go to your Rails app and type:</p>
+<pre><code>$ ruby script/plugin install git://github.com/clemens/later_dude.git</code></pre>
+<p>To use the CalendarHelper, put this in a controller:</p>
+<pre><code>helper LaterDude::CalendarHelper</code></pre>
+<h1 id="examples">Examples</h1>
+<p>There are two basic ways of outputting a calendar: via the presenter itself or by using the helper method:</p>
+<pre><code>&lt;%= calendar_for(2009, 1) %&gt; and
+&lt;%= LaterDude::Calendar.new(2009, 1).to_html %&gt;</code></pre>
+<p>both yield the same results. This is similar to what Rails does with RedCloth/BlueCloth filters.</p>
+<p>In addition to year and month which are required parameters you can optionally supply an options hash:</p>
+<pre><code>&lt;%= calendar_for(2009, 1, :calendar_class =&gt; &quot;my_calendar&quot;, :first_day_of_week =&gt; 1)</code></pre>
+<p>Possible options are:</p>
+</body>
+</html>

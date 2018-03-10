@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>defunkt_gist.el2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>gist.el now maintains a local cache so as to not go to the gist server every now and then.</li>
+<li>multi-files gist support (indicated by a ‘+’ in the gist list)</li>
+<li>improved gist-list buffer, based on tabulated-list.el (same codebase as package.el) New keybindings:
+<ul>
+<li><code>g</code> : reload the gist list from server</li>
+<li><code>e</code> : edit current gist description</li>
+<li><code>k</code> : delete current gist</li>
+<li><code>+</code> : add a file to the current gist</li>
+<li><code>-</code> : remove a file from the current gist</li>
+<li><code>y</code> : print current gist url</li>
+<li><code>b</code> : browse current gist</li>
+<li><code>*</code> : star gist</li>
+<li><code>^</code> : unstar gist</li>
+<li><code>f</code> : fork gist</li>
+</ul></li>
+<li>in-place edition. While viewing a gist file buffer, you can:
+<ul>
+<li><code>C-x C-s</code> : save a new version of the gist</li>
+<li><code>C-x C-w</code> : rename some file</li>
+</ul></li>
+<li>dired integration. From a dired buffer, you can:
+<ul>
+<li><code>@</code> : make a gist out of marked files (with a prefix, make it private)</li>
+</ul></li>
+</ul>
+<h1 id="install">Install</h1>
+<h2 id="dependencies">Dependencies</h2>
+<p>gist.el depends on a number of other modules, that you’ll need to install, either manually or by way of Emacs package manager</p>
+<ul>
+<li>tabulated-list.el built-in for emacs 24. If you’re using emacs 23, you can find a backport here: https://github.com/sigma/tabulated-list.el</li>
+<li>gh.el GitHub client library. Install from there: https://github.com/sigma/gh.el</li>
+<li>pcache.el Really a gh.el dependency. Install from there: https://github.com/sigma/pcache</li>
+<li>logito.el Really a gh.el dependency. Install from there: https://github.com/sigma/logito</li>
+</ul>
+<h2 id="install-gist.el-from-marmalade-recommended">Install gist.el from marmalade (recommended)</h2>
+<p>In that scenario, you don’t have to deal with the above dependencies yourself.</p>
+<p>For emacs 24, first make sure http://marmalade-repo.org/ is properly configured. Then</p>
+<pre><code>M-x package-install RET gist RET</code></pre>
+<p>For emacs 23, you’ll need to install a version of package.el first. Some bootstrap code is available there: https://gist.github.com/1884169 Then proceed as for emacs 24. You might get some compilation errors, but the package should be operational in the end.</p>
+</body>
+</html>

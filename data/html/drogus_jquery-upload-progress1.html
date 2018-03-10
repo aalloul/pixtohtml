@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>drogus_jquery-upload-progress1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>It can be used with apache upload progress module, nginx upload progress module or lighttpd, read more here: http://drogomir.com/blog/2008/6/18/upload-progress-bar-with-mod_passenger-and-apache</p>
+<h2 id="usage">Usage</h2>
+some html:
+<form id="upload" enctype="multipart/form-data" action="index.html" method="post">
+<input name="file" type="file"/> <input type="submit" value="Upload"/>
+</form>
+<pre><code>  &lt;div id=&quot;uploading&quot;&gt;
+    &lt;div id=&quot;progress&quot; class=&quot;bar&quot;&gt;
+      &lt;div id=&quot;progressbar&quot;&gt;&amp;nbsp;&lt;/div&gt;
+      &lt;div id=&quot;percents&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</code></pre>
+<p>then some css:</p>
+<pre><code>.bar {
+  width: 300px;
+}
+
+#progress {
+  background: #eee;
+  border: 1px solid #222;
+  margin-top: 20px;
+}
+#progressbar {
+  width: 0px;
+  height: 24px;
+  background: #333;
+}</code></pre>
+<p>and a bit of javascript:</p>
+<pre><code>$(function() {
+  $(&#39;form&#39;).uploadProgress({
+    /* scripts locations for safari */
+    jqueryPath: &quot;../lib/jquery.js&quot;,
+    uploadProgressPath: &quot;../jquery.uploadProgress.js&quot;,
+    /* function called each time bar is updated */
+    uploading: function(upload) {$(&#39;#percents&#39;).html(upload.percents+&#39;%&#39;);},
+    /* selector or element that will be updated */
+    progressBar: &quot;#progressbar&quot;,
+    /* progress reports url */
+    progressUrl: &quot;/progress&quot;,
+    /* how often will bar be updated */
+    interval: 2000
+  });</code></pre>
+</body>
+</html>

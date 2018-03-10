@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pageman_spree1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><strong>THIS README IS FOR THE MASTER BRANCH OF SPREE AND REFLECTS THE WORK CURRENTLY EXISTING ON THE MASTER BRANCH. IF YOU ARE WISHING TO USE A NON-MASTER BRANCH OF SPREE, PLEASE CONSULT THAT BRANCH’S README AND NOT THIS ONE.</strong></p>
+<h2 id="summary">SUMMARY</h2>
+<p>Spree is a complete open source e-commerce solution built with Ruby on Rails. It was originally developed by Sean Schofield and is now maintained by a dedicated . You can find out more by visiting the .</p>
+<p>Spree actually consists of several different gems, each of which are maintained in a single repository and documented in a single set of . By requiring the Spree gem you automatically require all of the necessary gem dependencies which are:</p>
+<ul>
+<li>spree_api (RESTful API)</li>
+<li>spree_frontend (User-facing components)</li>
+<li>spree_backend (Admin area)</li>
+<li>spree_cmd (Command-line tools)</li>
+<li>spree_core (Models &amp; Mailers, the basic components of Spree that it can’t run without)</li>
+<li>spree_dash (Analytics dashboard, depends on backend)</li>
+<li>spree_sample (Sample data)</li>
+</ul>
+<p>All of the gems are designed to work together to provide a fully functional e-commerce platform. It is also possible, however, to use only the pieces you are interested in. So for example, you could use just the barebones spree_core gem and perhaps combine it with your own custom promotion scheme instead of using spree_promo.</p>
+<h2 id="installation">Installation</h2>
+<p>The fastest way to get started is by using the spree command line tool available in the spree gem which will add Spree to an existing Rails application.</p>
+<pre class="shell"><code>gem install rails -v 3.2.12
+gem install spree
+rails _3.2.12_ new my_store
+spree install my_store</code></pre>
+<p>This will add the Spree gem to your Gemfile, create initializers, copy migrations and optionally generate sample products and orders.</p>
+<p>If you get an “Unable to resolve dependencies” error when installing the Spree gem then you can try installing just the spree_cmd gem which should avoid any circular dependency issues.</p>
+<pre class="shell"><code>gem install spree_cmd</code></pre>
+</body>
+</html>

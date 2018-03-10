@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>fnando_recurrence1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="recurrence">Recurrence</h1>
+<p>A simple library to handle recurring events.</p>
+<h2 id="installation">Installation</h2>
+<pre><code>gem install recurrence</code></pre>
+<h2 id="usage">Usage</h2>
+<p>```ruby require “rubygems” require “recurrence”</p>
+<h1 id="daily">Daily</h1>
+<p>r = Recurrence.new(:every =&gt; :day) r = Recurrence.new(:every =&gt; :day, :interval =&gt; 9) r = Recurrence.new(:every =&gt; :day, :repeat =&gt; 7) r = Recurrence.daily(options = {})</p>
+<h1 id="weekly">Weekly</h1>
+<p>r = Recurrence.new(:every =&gt; :week, :on =&gt; 5) r = Recurrence.new(:every =&gt; :week, :on =&gt; :monday) r = Recurrence.new(:every =&gt; :week, :on =&gt; [:monday, :friday]) r = Recurrence.new(:every =&gt; :week, :on =&gt; [:monday, :wednesday, :friday]) r = Recurrence.new(:every =&gt; :week, :on =&gt; :friday, :interval =&gt; 2) r = Recurrence.new(:every =&gt; :week, :on =&gt; :friday, :repeat =&gt; 4) r = Recurrence.weekly(:on =&gt; :thursday)</p>
+<h1 id="monthly-by-month-day">Monthly by month day</h1>
+<p>r = Recurrence.new(:every =&gt; :month, :on =&gt; 15) r = Recurrence.new(:every =&gt; :month, :on =&gt; 31) r = Recurrence.new(:every =&gt; :month, :on =&gt; 7, :interval =&gt; 2) r = Recurrence.new(:every =&gt; :month, :on =&gt; 7, :interval =&gt; :monthly) r = Recurrence.new(:every =&gt; :month, :on =&gt; 7, :interval =&gt; :bimonthly) r = Recurrence.new(:every =&gt; :month, :on =&gt; 7, :repeat =&gt; 6) r = Recurrence.monthly(:on =&gt; 31)</p>
+<h1 id="monthly-by-week-day">Monthly by week day</h1>
+<p>r = Recurrence.new(:every =&gt; :month, :on =&gt; :first, :weekday =&gt; :sunday) r = Recurrence.new(:every =&gt; :month, :on =&gt; :third, :weekday =&gt; :monday) r = Recurrence.new(:every =&gt; :month, :on =&gt; :last, :weekday =&gt; :friday) r = Recurrence.new(:every =&gt; :month, :on =&gt; :last, :weekday =&gt; :friday, :interval =&gt; 2) r = Recurrence.new(:every =&gt; :month, :on =&gt; :last, :weekday =&gt; :friday, :interval =&gt; :quarterly) r = Recurrence.new(:every =&gt; :month, :on =&gt; :last, :weekday =&gt; :friday, :interval =&gt; :semesterly)</p>
+</body>
+</html>

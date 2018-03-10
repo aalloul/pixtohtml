@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_URI3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li>$uri = URI::file-&gt;new_abs( $filename )</li>
+<li><p>$uri = URI::file-&gt;new_abs( $filename, $os )</p>
+<p>Constructs a new absolute <em>file</em> URI from a file name. See .</p></li>
+<li><p>$uri = URI::file-&gt;cwd</p>
+<p>Returns the current working directory as a <em>file</em> URI. See .</p></li>
+<li><p>$uri-&gt;clone</p>
+<p>Returns a copy of the $uri.</p></li>
+</ul>
+<h1 id="common-methods">COMMON METHODS</h1>
+<p>The methods described in this section are available for all <code>URI</code> objects.</p>
+<p>Methods that give access to components of a URI always return the old value of the component. The value returned is <code>undef</code> if the component was not present. There is generally a difference between a component that is empty (represented as <code>&quot;&quot;</code>) and a component that is missing (represented as <code>undef</code>). If an accessor method is given an argument, it updates the corresponding component in addition to returning the old value of the component. Passing an undefined argument removes the component (if possible). The description of each accessor method indicates whether the component is passed as an escaped (percent-encoded) or an unescaped string. A component that can be further divided into sub-parts are usually passed escaped, as unescaping might change its semantics.</p>
+<p>The common methods available for all URI are:</p>
+<ul>
+<li>$uri-&gt;scheme</li>
+<li><p>$uri-&gt;scheme( $new_scheme )</p>
+<p>Sets and returns the scheme part of the $uri. If the $uri is relative, then $uri-&gt;scheme returns <code>undef</code>. If called with an argument, it updates the scheme of $uri, possibly changing the class of $uri, and returns the old scheme value. The method croaks if the new scheme name is illegal; a scheme name must begin with a letter and must consist of only US-ASCII letters, numbers, and a few special marks: “.”, “+”, “-”. This restriction effectively means that the scheme must be passed unescaped. Passing an undefined argument to the scheme method makes the URI relative (if possible).</p>
+<p>Letter case does not matter for scheme names. The string</p></li>
+</ul>
+</body>
+</html>

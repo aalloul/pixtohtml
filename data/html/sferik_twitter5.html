@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sferik_twitter5</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>end end ```</p>
+<p>An <code>object</code> may be one of the following: * <code>Twitter::Tweet</code> * <code>Twitter::DirectMessage</code> * <code>Twitter::Streaming::DeletedTweet</code> * <code>Twitter::Streaming::Event</code> * <code>Twitter::Streaming::FriendList</code> * <code>Twitter::Streaming::StallWarning</code></p>
+<h2 id="ads">Ads</h2>
+<p>We recommend using the <a href="http://twitterdev.github.io/twitter-ruby-ads-sdk/">Twitter Ads SDK for Ruby</a> to interact with the Twitter Ads API.</p>
+<h2 id="object-graph">Object Graph</h2>
+<figure>
+<img src="https://cdn.rawgit.com/sferik/twitter/master/etc/erd.svg" title="Entity-relationship diagram" alt="Entity-relationship diagram" /><figcaption>Entity-relationship diagram</figcaption>
+</figure>
+<p>This entity-relationship diagram is generated programatically. If you add or remove any Twitter objects, please regenerate the ERD with the following command:</p>
+<pre><code>bundle exec rake erd</code></pre>
+<h2 id="supported-ruby-versions">Supported Ruby Versions</h2>
+<p>This library aims to support and is [tested against][travis] the following Ruby versions:</p>
+<ul>
+<li>Ruby 2.0.0</li>
+<li>Ruby 2.1</li>
+<li>Ruby 2.2</li>
+<li>Ruby 2.3</li>
+<li>JRuby 9.1.6.0</li>
+</ul>
+<p>If something doesn’t work on one of these versions, it’s a bug.</p>
+<p>This library may inadvertently work (or seem to work) on other Ruby versions, however support will only be provided for the versions listed above.</p>
+<p>If you would like this library to support another Ruby version or implementation, you may volunteer to be a maintainer. Being a maintainer entails making sure all tests run and pass on that implementation. When something breaks on your implementation, you will be responsible for providing patches in a timely fashion. If critical issues for a particular implementation exist at the time of a major release, support for that Ruby version may be</p>
+</body>
+</html>

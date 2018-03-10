@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>charleso_git-cc3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>exclude = FolderA/sub/folder|FolderB/other/file
+users_module_path = users.py
+ignore_private_files = False
+debug = False
+type = UCM
+[master]
+clearcase = D:\views\co4222_flex\rd_poc
+branches = main|ji_dev|ji_*_dev|iteration_*_dev
+[sup]
+clearcase = D:\views\co4222_sup\rd_poc
+branches = main|sup</code></pre>
+<p>In this case there are two separate git branches, master and sup, which correspond to different folders/branches in ClearCase.</p>
+<p>You can add a mapping for each user in your ClearCase history. This is done via a separate Python module that you provide. An example users module looks like this:</p>
+<pre><code>users = {
+    &#39;charleso&#39;: &quot;Charles O&#39;Farrell&quot;,\
+    &#39;jki&#39;: &#39;Jan Kiszka &lt;jan.kiszka@web.de&gt;&#39;,\
+}
+ 
+mailSuffix = &#39;example.com&#39;</code></pre>
+<p>You specify the path to the users module as the value of key ‘users_module_path’ in the gitcc config file. In the example above, the value specified is ‘users.py’. If the path is relative, it is taken relative to the location of the config file. So in this example, gitcc will import users.py from directory .git. But you can also use an absolute users module path.</p>
+<p>If you do not specify the users module path in the config file, the ClearCase user information will be used.</p>
+<p>If you make a snapshot of a ClearCase VOB, you copy all the files that are visible in the view, including view-private files. This might not be what you want, for example if the VOB contains all kinds of build artifacts. To only copy the files that are actually under ClearCase control, set the key ‘ignore_private_files’ to True.</p>
+<h2 id="notes">Notes</h2>
+<p>Can either work with static or dynamic views. I use dynamic at work because it’s much faster not having to update. I’ve done an update in rebase anyway, just-in-case someone wants to use it that way.</p>
+<p>Can also work with UCM, which requires the ‘type’ config to be set to ‘UCM’. This is still a work in progress as I only recently switched to this at work. Note the the history is still retrieved via lshistory and not specifically from</p>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>duritong_puppet-shorewall4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="example">Example</h2>
+<p>Example from node.pp:</p>
+<pre><code>node xy {
+  class{&#39;config::site_shorewall&#39;:
+    startup =&gt; &quot;0&quot;  # create shorewall ruleset but don&#39;t startup
+  }
+  shorewall::rule {
+    &#39;incoming-ssh&#39;: source =&gt; &#39;all&#39;, destination =&gt; &#39;$FW&#39;,  action  =&gt; &#39;SSH(ACCEPT)&#39;, order =&gt; 200;
+    &#39;incoming-puppetmaster&#39;: source =&gt; &#39;all&#39;, destination =&gt; &#39;$FW&#39;,  action  =&gt; &#39;Puppetmaster(ACCEPT)&#39;, order =&gt; 300;
+    &#39;incoming-imap&#39;: source =&gt; &#39;all&#39;, destination =&gt; &#39;$FW&#39;,  action  =&gt; &#39;IMAP(ACCEPT)&#39;, order =&gt; 300;
+    &#39;incoming-smtp&#39;: source =&gt; &#39;all&#39;, destination =&gt; &#39;$FW&#39;,  action  =&gt; &#39;SMTP(ACCEPT)&#39;, order =&gt; 300;
+  }
+}
+
+
+class config::site_shorewall($startup = &#39;1&#39;) {
+  class{&#39;shorewall&#39;:
+    startup =&gt; $startup
+  }
+
+  # If you want logging:
+  #shorewall::params {
+  # &#39;LOG&#39;:  value =&gt; &#39;debug&#39;;
+  #}
+
+  shorewall::zone {&#39;net&#39;:
+    type =&gt; &#39;ipv4&#39;;
+  }
+
+  shorewall::rule_section { &#39;NEW&#39;:
+    order =&gt; 100;
+  }
+
+  shorewall::interface { &#39;eth0&#39;:
+    zone    =&gt; &#39;net&#39;,
+    rfc1918  =&gt; true,
+    options =&gt; &#39;tcpflags,blacklist,nosmurfs&#39;;
+  }
+
+  shorewall::policy {
+    &#39;fw-to-fw&#39;:
+      sourcezone              =&gt;      &#39;$FW&#39;,
+      destinationzone         =&gt;      &#39;$FW&#39;,
+      policy                  =&gt;      &#39;ACCEPT&#39;,
+      order                   =&gt;      100;
+    &#39;fw-to-net&#39;:
+      sourcezone              =&gt;      &#39;$FW&#39;,</code></pre>
+</body>
+</html>

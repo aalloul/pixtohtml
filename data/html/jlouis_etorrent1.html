@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jlouis_etorrent1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>; -<em>- Mode: Markdown; -</em>- ; vim: filetype=none tw=76 expandtab</p>
+<h1 id="etorrent">ETORRENT</h1>
+<p>ETORRENT is a bittorrent client written in Erlang. The focus is on robustness and scalability in number of torrents rather than in pure speed. ETORRENT is mostly meant for unattended operation, where one just specifies what files to download and gets a notification when they are.</p>
+<h2 id="flag-days">Flag days</h2>
+<p>Flag days are when you need to do something to your setup</p>
+<ul>
+<li><em>2010-12-10</em> You will need a rebar with commit 618b292c3d84 as we got some fixes into rebar.</li>
+<li><em>2010-12-06</em> We now depend on riak_err. You will need to regrab dependencies.</li>
+<li><em>2010-12-02</em> The fast-resume-file format has been updated. You may have to delete your fast_resume_file though the system was configured to do a silent system upgrade.</li>
+</ul>
+<h2 id="build-status">Build Status</h2>
+<p>Currently, we are running build-bots through</p>
+<h2 id="why">Why</h2>
+<p>ETORRENT was mostly conceived as an experiment in how easy it would be to write a bittorrent client in Erlang. The hypothesis is that the code will be cleaner and smaller than comparative bittorrent clients.</p>
+<h2 id="maturity">Maturity</h2>
+<p>The code is at this point somewhat mature. It has been used in several scenarios with a good host of different clients and trackers. The code base is not known to act as a bad p2p citizen, although it may be possible that it is.</p>
+<p>The most important missing link currently is that only a few users have been testing it - so there may still be bugs in the code. The <code>master</code> branch has been quite stable for months now however, so it is time to get some more users for testing. Please report any bugs, especially if the client behaves badly.</p>
+<h2 id="currently-supported-beps">Currently supported BEPs:</h2>
+</body>
+</html>

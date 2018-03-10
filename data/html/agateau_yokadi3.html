@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>agateau_yokadi3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>yokadi&gt; t_describe 1</code></pre>
+<p>This will start the editor specified in $EDITOR (or <code>vi</code> if not set) to enter a longer text, attached to the task.</p>
+<p>You can now display details of task 1:</p>
+<pre><code>yokadi&gt; t_show 1
+ Project: birthday
+   Title: Buy food and drinks
+      ID: 1
+ Created: 2009-01-09 08:57:33
+     Due: None
+  Status: new
+ Urgency: 0</code></pre>
+<p>Recurrence: None Keywords:</p>
+<pre><code>- Orange juice
+- Coke
+- Beer
+- Cookies
+- Pizzas</code></pre>
+<p>Note: <code>t_show</code> is not mandatory, just entering the task number will display its details.</p>
+<p><code>t_list</code> indicates tasks which have a longer description with a <code>*</code> character:</p>
+<pre><code>yokadi&gt; t_list birthday
+                                         birthday
+ID |Title                                                       |U  |S|Age    |Due date
+--------------------------------------------------------------------------------------------------
+1  |Buy food and drinks                                        *|0  |N|3m     |
+3  |Invite Wendy                                                |0  |N|2m     |</code></pre>
+<p>There is much more, we only scratched the surface, but this should get you started. You can get a list of all commands by typing <code>help</code> and get the detailed documentation of a command with <code>help &lt;command&gt;</code>.</p>
+<h1 id="advanced-stuff">Advanced stuff</h1>
+<h2 id="quick-access-to-last-task">Quick access to last task</h2>
+<p>When you execute multiple commands on the same task, you can use <code>_</code> as a shortcut to the last task id. Assuming you created a task like this:</p>
+<pre><code>yokadi&gt; t_add home Buy chocolate
+Added task &#39;Buy chocolate&#39; (id=1069)</code></pre>
+</body>
+</html>

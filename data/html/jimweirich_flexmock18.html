@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jimweirich_flexmock18</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>called at least once on the given mock object. If arguments are given, then the method must be called with actual argument that match the given argument matchers.</p>
+<p>All the argument matchers defined in the “Argument Validation” section above are allowed in the <code>assert_spy_called</code> method.</p>
+<p>The <code>options</code> hash is optional. If omitted, all options will have their default values. See below for spy option definitions.</p>
+<ul>
+<li><p><b>assert_spy_not_called <em>mock</em>, <em>options_hash</em>, <em>method_name</em>, <em>args…</em></b></p>
+<p>Same as <code>assert_spy_called</code>, except with the sense of the test reversed.</p></li>
+</ul>
+<p><em>Spy Options</em></p>
+<ul>
+<li><p><b>times: <em>n</em></b></p>
+<p>Specify the number of times a matching method should have been invoked. <code>nil</code> (or omitted) means any number of times.</p></li>
+<li><p><b>with_block: <em>true/false/nil</em></p>
+<p>Is a block required on the invocation? <code>true</code> means the method must be invoked with a block. <code>false</code> means the method must have been invoked without a block. <code>nil</code> means that the presence of a block does not matter. Default is <code>nil</code>.</p></li>
+<li><p><b>and: [<em>proc1</em>, <em>proc2…</em>]</b></p>
+<p>Additional validations to be run on each matching method call. The list of arguments for each call is passed to the procs. This allows additional validations on supplied arguments. Default is no additional validations.</p></li>
+<li><p><b>on: <em>n</em></p>
+<p>Only apply the additional validations on the <em>n</em>’th invocation of the matching method. Default is apply additional validations to all invocations.</p></li>
+</ul>
+<p><em>Examples:</em></p>
+<p>```ruby dog = flexmock(:on, Dog)</p>
+<pre><code>dog.wag(:tail)
+dog.wag(:head)</code></pre>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tonio_mootools-more1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>MooTools Plugins and Enhancements Repository</p>
+<h3 id="wiki">Wiki</h3>
+<ul>
+<li>.</li>
+<li>See also</li>
+</ul>
+<h3 id="to-do">TO DO</h3>
+<ul>
+<li>Lang updates for additional timeAgoInWords phrases (see: https://mootools.lighthouseapp.com/projects/24057/tickets/79-additional-expressions-for-datetimediffinwords)</li>
+<li>Move demo/tutorials from Clientcide wiki to Mootorial; update links in docs</li>
+<li>Compat for Clientcide</li>
+<li>make detach method for all classes that attach to elements</li>
+<li>make destroy method for all classes that create elements</li>
+</ul>
+<h3 id="styleguide">StyleGuide</h3>
+<ul>
+<li>http://wiki.github.com/mootools/mootools-core/syntax-and-coding-style-conventions</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<h4 id="changese-in-mootools-more-1.3">Changese in MooTools More 1.3</h4>
+<ul>
+<li>All the code of MooTools More uses MooTools Core 1.3</li>
+<li>Revised Fx.Reveal. Element.get(‘reveal’, options) is not possible anymore (just like Fx.Tween and Fx.Morph in Core)</li>
+<li>Moved Hash.js from Core to MooTools More which is not part of MooTools Core 1.3 (without compatibily layer) anymore.</li>
+<li>Changed Hash.Extras to Object.Extras. Hash.Extras however still exist for compatibility.</li>
+<li>Removed Depender.</li>
+<li>Added Events.Pseudos and Event.Pseudos to abstract Element.Delegation :relay and add :once events with Event(s).definePseudo</li>
+<li>Element.Delegation will support the <code>mouseenter</code> and <code>mouseleave</code> events</li>
+<li>Rewritten Request.JSPONP - the retries option has been removed.</li>
+<li>Log has been removed. Might be added to the force sometime.</li>
+<li>Renamed MooTools.lang to Locale and rewrote it completely</li>
+</ul>
+<p>NOTE: none of the changes below are breaking changes.</p>
+<h4 id="changes-in-mootools-more-1.2.4.4">Changes in MooTools More 1.2.4.4</h4>
+<ul>
+<li>Fixed Tips. Again.</li>
+</ul>
+<h4 id="changes-in-mootools-more-1.2.4.3">Changes in MooTools More 1.2.4.3</h4>
+<ul>
+<li>Nearly 50 bug fixes (.</li>
+<li>Keyboard:
+<ul>
+<li>Added some support for just pressing ‘shift’, ‘control’, or ‘alt’</li>
+<li>Added a bunch of keycodes for Mac compatibility</li>
+</ul></li>
+<li>Keyboard.Extras:
+<ul>
+<li>Support for “shortcuts” which are keyboard entries that have names and descriptions.</li>
+</ul></li>
+</ul>
+</body>
+</html>

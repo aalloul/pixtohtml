@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra15</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<table>
+<tr>
+<td>
+Dependency
+</td>
+<td>
+<a href="http://lesscss.org/" title="less">less</a>
+</td>
+</tr>
+<tr>
+<td>
+File Extension
+</td>
+<td>
+<tt>.less</tt>
+</td>
+</tr>
+<tr>
+<td>
+Example
+</td>
+<td>
+<tt>less :stylesheet</tt>
+</td>
+</tr>
+</table>
+<h4 id="liquid-templates">Liquid Templates</h4>
+<table>
+<tr>
+<td>
+Dependency
+</td>
+<td>
+<a href="http://liquidmarkup.org/" title="liquid">liquid</a>
+</td>
+</tr>
+<tr>
+<td>
+File Extension
+</td>
+<td>
+<tt>.liquid</tt>
+</td>
+</tr>
+<tr>
+<td>
+Example
+</td>
+<td>
+<tt>liquid :index, :locals =&gt; { :key =&gt; ‘value’ }</tt>
+</td>
+</tr>
+</table>
+<p>Since you cannot call Ruby methods (except for <code>yield</code>) from a Liquid template, you almost always want to pass locals to it.</p>
+<h4 id="markdown-templates">Markdown Templates</h4>
+<table>
+<tr>
+<td>
+Dependency
+</td>
+<td>
+Anyone of: <a href="https://github.com/davidfstr/rdiscount" title="RDiscount">RDiscount</a>, <a href="https://github.com/vmg/redcarpet" title="RedCarpet">RedCarpet</a>, <a href="https://github.com/ged/bluecloth" title="BlueCloth">BlueCloth</a>, <a href="https://kramdown.gettalong.org/" title="kramdown">kramdown</a>, <a href="https://github.com/bhollis/maruku" title="maruku">maruku</a>
+</td>
+</tr>
+</body>
+</html>

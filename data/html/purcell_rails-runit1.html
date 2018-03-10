@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>purcell_rails-runit1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><a href="https://www.patreon.com/sanityinc"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a></p>
+<h1 id="runit-services-for-heavy-duty-rails-hosting">Runit services for heavy-duty Rails hosting</h1>
+<p>Here’s a bunch of scripts for deploying a full production Rails app that runs under runit.</p>
+<p>This scheme is currently used to run several large production Rails apps, including , and it has worked very nicely for a couple of years now. More reliable than system-wide init.d scripts, and fewer permission headaches.</p>
+<h1 id="how-to-use-it">How to use it</h1>
+<p>Create an unprivileged user for your Rails app, then set up a system-wide Runit service to manage user-specific services for that user – see <a href="http://www.sanityinc.com/articles/init-scripts-considered-harmful">this page for details</a>.</p>
+<p>All further steps assume that you are working as the unprivileged user.</p>
+<p>Now, clone this project into the user’s home directory:</p>
+<pre><code>cd
+git clone git://github.com/purcell/rails-runit.git</code></pre>
+<p>Symlink your rails app’s root directory to this directory with the name ‘app’:</p>
+<pre><code>ln -s ~appuser/releases/current ~/rails-runit/app</code></pre>
+<p>Now you can create some services:</p>
+<pre><code>cd ~/rails-runit
+./add-mongrel 4001
+./add-mongrel 4002
+./add-mongrel 4003
+./add-haproxy 4000
+./add-nginx 4020 4000</code></pre>
+</body>
+</html>

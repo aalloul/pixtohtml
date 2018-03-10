@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Narnach_grit2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="usage">Usage</h2>
+<p>Grit gives you object model access to your Git repositories. Once you have created a <code>Repo</code> object, you can traverse it to find parent commits, trees, blobs, etc.</p>
+<h3 id="initialize-a-repo-object">Initialize a Repo object</h3>
+<p>The first step is to create a <code>Grit::Repo</code> object to represent your repo. In this documentation I include the <code>Grit</code> module to reduce typing.</p>
+<pre><code>require &#39;grit&#39;
+include Grit
+repo = Repo.new(&quot;/Users/tom/dev/grit&quot;)</code></pre>
+<p>In the above example, the directory <code>/Users/tom/dev/grit</code> is my working directory and contains the <code>.git</code> directory. You can also initialize Grit with a bare repo.</p>
+<pre><code>repo = Repo.new(&quot;/var/git/grit.git&quot;)</code></pre>
+<h3 id="getting-a-list-of-commits">Getting a list of commits</h3>
+<p>From the <code>Repo</code> object, you can get a list of commits as an array of <code>Commit</code> objects.</p>
+<pre><code>repo.commits
+# =&gt; [#&lt;Grit::Commit &quot;e80bbd2ce67651aa18e57fb0b43618ad4baf7750&quot;&gt;,
+      #&lt;Grit::Commit &quot;91169e1f5fa4de2eaea3f176461f5dc784796769&quot;&gt;,
+      #&lt;Grit::Commit &quot;038af8c329ef7c1bae4568b98bd5c58510465493&quot;&gt;,
+      #&lt;Grit::Commit &quot;40d3057d09a7a4d61059bca9dca5ae698de58cbe&quot;&gt;,
+      #&lt;Grit::Commit &quot;4ea50f4754937bf19461af58ce3b3d24c77311d9&quot;&gt;]</code></pre>
+<p>Called without arguments, <code>Repo#commits</code> returns a list of up to ten commits reachable by the <strong>master</strong> branch (starting at the latest commit). You can ask for commits beginning at a different branch, commit, tag, etc.</p>
+<pre><code>repo.commits(&#39;mybranch&#39;)
+repo.commits(&#39;40d3057d09a7a4d61059bca9dca5ae698de58cbe&#39;)
+repo.commits(&#39;v0.1&#39;)</code></pre>
+<p>You can specify the maximum number of commits to return.</p>
+<pre><code>repo.commits(&#39;master&#39;, 100)</code></pre>
+<p>If you need paging, you can specify a number of commits to skip.</p>
+<pre><code>repo.commits(&#39;master&#39;, 10, 20)</code></pre>
+<p>The above will return commits 21-30 from the commit list.</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ochko_safeexec3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>% cmake .
+% make</code></pre>
+<h2 id="install">Install</h2>
+<p>You’ll need root to install binary to set root setuid bit.</p>
+<pre><code>% sudo make install</code></pre>
+<h2 id="test">Test</h2>
+<p><code>% sudo make permission &amp;&amp; make test</code></p>
+<pre><code>Running tests...
+Test project /usr/home/ochko/safeexec
+    Start 1: memory-limit-exceeded
+1/8 Test #1: memory-limit-exceeded ............   Passed    1.16 sec
+    Start 2: time-limit-exceeded
+2/8 Test #2: time-limit-exceeded ..............   Passed    2.10 sec
+    Start 3: output-limit-exceeded
+3/8 Test #3: output-limit-exceeded ............   Passed    2.10 sec
+    Start 4: fork-attemp
+4/8 Test #4: fork-attemp ......................   Passed    0.59 sec
+    Start 5: file-write-attemp
+5/8 Test #5: file-write-attemp ................   Passed    0.13 sec
+    Start 6: file-read-attemp
+6/8 Test #6: file-read-attemp .................   Passed    0.13 sec
+    Start 7: return-code
+7/8 Test #7: return-code ......................   Passed    0.13 sec
+    Start 8: wall-time-limit-exceeded
+8/8 Test #8: wall-time-limit-exceeded .........   Passed    3.13 sec
+
+100% tests passed, 0 tests failed out of 8
+
+Total Test time (real) =   9.48 sec</code></pre>
+<h2 id="todo">Todo</h2>
+<ul>
+<li>Use getrusage for getting memory usage(becase this is same on both bsd and linux)</li>
+<li>Fix file read/write permissions on linux when file owner is test runner and group permission is on:
+<ul>
+<li>can read chmod 0640 file, but can’t read 0620 file.</li>
+<li>can write chmod 0620 file, but can’t write 0644 file.</li>
+</ul></li>
+<li>Use similar argument parsing library.</li>
+</ul>
+</body>
+</html>

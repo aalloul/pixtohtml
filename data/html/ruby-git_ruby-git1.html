@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ruby-git_ruby-git1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="git-library-for-ruby">Git Library for Ruby</h1>
+<p>Library for using Git in Ruby.</p>
+<h2 id="homepage">Homepage</h2>
+<p>Git public hosting of the project source code is at:</p>
+<p>http://github.com/schacon/ruby-git</p>
+<h2 id="install">Install</h2>
+<p>You can install Ruby/Git like this:</p>
+<pre><code>$ sudo gem install git</code></pre>
+<h2 id="code-status">Code Status</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2 id="major-objects">Major Objects</h2>
+<p><strong>Git::Base</strong> - The object returned from a <code>Git.open</code> or <code>Git.clone</code>. Most major actions are called from this object.</p>
+<p><strong>Git::Object</strong> - The base object for your tree, blob and commit objects, returned from <code>@git.gtree</code> or <code>@git.object</code> calls. the <code>Git::AbstractObject</code> will have most of the calls in common for all those objects.</p>
+<p><strong>Git::Diff</strong> - returns from a <code>@git.diff</code> command. It is an Enumerable that returns <code>Git::Diff:DiffFile</code> objects from which you can get per file patches and insertion/deletion statistics. You can also get total statistics from the Git::Diff object directly.</p>
+<p><strong>Git::Status</strong> - returns from a <code>@git.status</code> command. It is an Enumerable that returns <code>Git:Status::StatusFile</code> objects for each object in git, which includes files in the working directory, in the index and in the repository. Similar to running ‘git status’ on the command line to determine untracked and changed files.</p>
+<p><strong>Git::Branches</strong> - Enumerable object that holds <code>Git::Branch objects</code>. You can call .local or .remote on it to filter to just your local or remote branches.</p>
+<p><strong>Git::Remote</strong>- A reference to a remote repository that is tracked by this repository.</p>
+<p><strong>Git::Log</strong> - An Enumerable object that references all the <code>Git::Object::Commit</code> objects that encompass your log query, which can be constructed through methods on the <code>Git::Log object</code>, like:</p>
+<p><code>@git.log(20).object(&quot;some_file&quot;).since(&quot;2 weeks ago&quot;).between('v2.6', 'v2.7').each { |commit| [block] }</code></p>
+<h2 id="examples">Examples</h2>
+<p>Here are a bunch of examples of how to use the Ruby/Git package.</p>
+<p>Ruby &lt; 1.9 will require rubygems to be loaded.</p>
+</body>
+</html>

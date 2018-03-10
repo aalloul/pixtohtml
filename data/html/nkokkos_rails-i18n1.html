@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nkokkos_rails-i18n1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rails-locale-data-repository">Rails Locale Data Repository</h1>
+<p>Central point to collect locale data for use in Ruby on Rails.</p>
+<h2 id="gem-installation">Gem installation</h2>
+<p>Add to your Gemfile:</p>
+<pre><code>gem &#39;rails-i18n&#39;, &#39;~&gt; 4.0.0.pre&#39; # For 4.0.x
+gem &#39;rails-i18n&#39;, &#39;~&gt; 3.0.0.pre&#39; # For 3.x</code></pre>
+<p>or run this command:</p>
+<pre><code>gem install rails-i18n -v &#39;~&gt; 4.0.0.pre&#39; # For 4.0.x
+gem install rails-i18n -v &#39;~&gt; 3.0.0.pre&#39; # For 3.x</code></pre>
+<p>Note that your rails version must be 3.0 or higher if you want to install <code>rails-i18n</code> as a gem. For rails 2.x, install it manually as described below.</p>
+<h2 id="configuration">Configuration</h2>
+<p>By default <code>rails-i18n</code> loads all locale files, pluralization and transliteration rules available in the gem. This behaviour can be changed, if you specify in <code>config/environments/*</code> the locales which have to be loaded via <code>I18n.available_locales</code> option:</p>
+<pre><code>config.i18n.available_locales = [&#39;es-CO&#39;, :de]</code></pre>
+<p>or</p>
+<pre><code>config.i18n.available_locales = :nl</code></pre>
+<h2 id="manual-installation">Manual installation</h2>
+<p>Download the locale files that are found in the directory and put them into the <code>config/locales</code> directory of your Rails application.</p>
+<p>If any translation doesn’t suit well to the requirements of your application, edit them or add your own locale files.</p>
+<p>For more information, visit on the <em>RailsGuides.</em></p>
+<h2 id="usage-on-rails-2.3">Usage on Rails 2.3</h2>
+<p>Locale data whose structure is compatible with Rails 2.3 are available on the separate branch .</p>
+<h2 id="available-locales">Available Locales</h2>
+<p>Available locales are:</p>
+</body>
+</html>

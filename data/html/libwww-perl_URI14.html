@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>libwww-perl_URI14</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>setting the $URI::ABS\_ALLOW\_RELATIVE\_SCHEME variable to a TRUE value.
+The difference is demonstrated by the following examples:
+
+    URI-&gt;new(&quot;http:foo&quot;)-&gt;abs(&quot;http://host/a/b&quot;)
+        ==&gt;  &quot;http:foo&quot;
+
+    local $URI::ABS_ALLOW_RELATIVE_SCHEME = 1;
+    URI-&gt;new(&quot;http:foo&quot;)-&gt;abs(&quot;http://host/a/b&quot;)
+        ==&gt;  &quot;http:/host/a/foo&quot;</code></pre>
+<ul>
+<li><p>$URI::ABS_REMOTE_LEADING_DOTS</p>
+<p>You can also have the abs() method ignore excess “..” segments in the relative URI by setting $URI::ABS_REMOTE_LEADING_DOTS to a TRUE value. The difference is demonstrated by the following examples:</p>
+<pre><code>  URI-&gt;new(&quot;../../../foo&quot;)-&gt;abs(&quot;http://host/a/b&quot;)
+      ==&gt; &quot;http://host/../../foo&quot;
+
+  local $URI::ABS_REMOTE_LEADING_DOTS = 1;
+  URI-&gt;new(&quot;../../../foo&quot;)-&gt;abs(&quot;http://host/a/b&quot;)
+      ==&gt; &quot;http://host/foo&quot;</code></pre></li>
+<li><p>$URI::DEFAULT_QUERY_FORM_DELIMITER</p>
+<p>This value can be set to “;” to have the query form <code>key=value</code> pairs delimited by “;” instead of “&amp;” which is the default.</p></li>
+</ul>
+<h1 id="bugs">BUGS</h1>
+<p>There are some things that are not quite right:</p>
+<ul>
+<li><p>Using regexp variables like $1 directly as arguments to the URI accessor methods does not work too well with current perl implementations. I would argue that this is actually a bug in perl. The workaround is to quote them. Example:</p>
+<pre><code>  /(...)/ || die;
+  $u-&gt;query(&quot;$1&quot;);</code></pre></li>
+<li><p>The escaping (percent encoding) of chars in the 128 .. 255 range passed to the URI constructor or when setting URI parts using the accessor methods depend on the state of the internal UTF8 flag (see utf8::is_utf8) of the string passed. If the UTF8 flag is set the UTF-8 encoded version of the character is percent encoded. If the UTF8 flag isn’t set the Latin-1 version (byte) of the character is percent encoded. This basically exposes the internal encoding of Perl strings.</p></li>
+</ul>
+<h1 id="parsing-uris-with-regexp">PARSING URIs WITH REGEXP</h1>
+</body>
+</html>

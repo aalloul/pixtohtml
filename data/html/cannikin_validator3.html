@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cannikin_validator3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>        return true;
+      } else {
+        return false ;
+      }
+    }
+          );</code></pre>
+</script>
+<p>This validation checks that the phone number matches a certain format, namely xxx-xxx-xxxx where ‘x’ must be a digit. This function was broken into multiple lines for clarity, and uses the regular if/else syntax rather than the shorter ?: syntax, all of which is perfectly valid and may make it easier to read (just make sure you get your } and )’s correct!).</p>
+<p>Now that you know how to validate a field, what happens when it gets validated?</p>
+<h1 id="how-fields-are-marked-validinvalid">How Fields are Marked Valid/Invalid</h1>
+<p>When a field is validated and found to be valid or invalid, two things occur:</p>
+<ol type="1">
+<li>A class is added to the valid/invalid field</li>
+<li>A
+<div>
+containing an error message is inserted into the HTML on the page</li>
+</ol>
+<h2 id="errorvalid-classes">Error/Valid Classes</h2>
+<p>By default, if a field is found to be invalid, a class of “error” is added to the invalid field. Likewise, if a field is found to be valid, a class of “valid” is added to the field. So, if we’re validing that ‘first_name’ isn’t blank, and it is, after the validation the field will look like:</p>
+<p><input type="text" name="first_name" id="first_name" class="error" /></p>
+<p>If this was validated by means of the auto class=“required”-type validation, the field would look like:</p>
+<p><input type="text" name="first_name" id="first_name" class="required error" /></p>
+<p>The “error” class is simply appended to the list of classes already on the field. If a field is valid, the same rules apply as above, only the class added is “valid” instead of “error.”</p>
+<p>What good does this do you? Well, you can set a CSS rule that all <input> fields with an “error” class have a 2 pixel red border, for example. Or you can ignore the class altogether if you don’t want to highlight the field.</p>
+<p>“Am I forced to only use ‘error’ and ‘valid’ as my class names?” No. See “Customizing the Validator” section below for info.</p>
+<p>Error/Valid Message</p>
+</body>
+</html>

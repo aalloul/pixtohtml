@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nuggetwheat_hypertable1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="how-to-install">HOW TO INSTALL</h1>
+<p>You can either download an appropriate binary package for your platform or build from source. Binary packages can be obtained from .</p>
+<p>See <a href="http://code.google.com/p/hypertable/wiki/UpAndRunningWithBinaryPackages">this wiki page</a> for getting started with hypertable binary packages.</p>
+<h1 id="how-to-build-from-source">HOW TO BUILD FROM SOURCE</h1>
+<ol type="1">
+<li><p>Download the source:</p>
+<p>You can either download a release source tar ball from the <a href="http://hypertable.org/download.html">download page</a> and unpack it in your source directory say ~/src:</p>
+<pre><code>cd ~/src
+tar zxvf &lt;path_to&gt;/hypertable-&lt;version&gt;-src.tar.gz</code></pre>
+<p>or from our git repository:</p>
+<pre><code>cd ~/src
+git clone git://scm.hypertable.org/pub/repos/hypertable.git</code></pre>
+<p>From now on, we assume that your hypertable source tree is ~/src/hypertable</p></li>
+<li><p>Install the development environment:</p>
+<p>Run the following script to setup up the dev environment:</p>
+<pre><code>~/src/hypertable/bin/src-utils/htbuild --install dev_env</code></pre>
+<p>If it did not work for your platform, check out the</p>
+<p>wiki for various tips on building on various platforms.</p>
+<p>Patches for htbuild to support your platforms are welcome :)</p></li>
+<li><p>Configure the build:</p>
+<p>Assuming you want your build tree to be ~/build/hypertable</p>
+<pre><code>mkdir -p ~/build/hypertable
+cd ~/build/hypertable</code></pre></li>
+</ol>
+</body>
+</html>

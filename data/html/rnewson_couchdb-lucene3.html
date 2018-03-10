@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rnewson_couchdb-lucene3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Here are some example URL’s for the given design document:</p>
+<h3 id="using-the-python-hook-script">Using the Python hook script</h3>
+<pre><code>http://localhost:5984/database/_fti/_design/foo/by_subject?q=hello
+http://localhost:5984/database/_fti/_design/foo/by_content?q=hello</code></pre>
+<h3 id="using-the-proxy-handler">Using the proxy handler</h3>
+<pre><code>http://localhost:5984/_fti/local/database/_design/foo/by_subject?q=hello
+http://localhost:5984/_fti/local/database/_design/foo/by_content?q=hello</code></pre>
+<p>A fulltext object contains multiple index view declarations. An index view consists of:</p>
+<p><strong><em>analyzer</em></strong> (optional) The analyzer to use</p>
+<p><strong><em>defaults</em></strong> (optional) The default for numerous indexing options can be overridden here. A full list of options follows.</p>
+<p><strong><em>index</em></strong> The indexing function itself, documented below.</p>
+<h4 id="the-defaults-object">The Defaults Object</h4>
+<p>The following indexing options can be defaulted:</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 28%" />
+<col style="width: 43%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+<th>available options</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>field</td>
+<td>the field name to index under</td>
+<td>user-defined</td>
+<td>default</td>
+</tr>
+<tr class="even">
+<td>type</td>
+<td>the type of the field</td>
+<td>date, double, float, int, long, string, text</td>
+<td>text</td>
+</tr>
+<tr class="odd">
+<td>store</td>
+<td>whether the data is stored. The value will be returned in the search result.</td>
+<td>yes, no</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td>boost</td>
+<td>Sets the boost factor hits on this field. This value will be multiplied into the score of all hits on this this field of this document.</td>
+<td>floating-point value</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="string-vs-text">String vs Text</h4>
+<p>There are two supported types that sound equivalent, <em>string</em> and <em>text</em>, but they are very different. A text field will be tokenized into words and is usually what you expect from a full-text index. A string field is not tokenized, only exact matching will work. The advantage to string fields is that they have a meaningful sort order.</p>
+<h4 id="the-analyzer-option">The Analyzer Option</h4>
+<p>Lucene has numerous ways of converting free-form text into tokens, these classes are called Analyzer’s. By default, the StandardAnalyzer is used which lower-cases all text, drops common English words (“the”, “and”, and so on), among other things. This processing might not always suit you, so you can choose from several others by setting the “analyzer” field to one of the following values:</p>
+<ul>
+<li>brazilian</li>
+<li>chinese</li>
+<li>cjk</li>
+<li>czech</li>
+<li>dutch</li>
+<li>english</li>
+</ul>
+</body>
+</html>

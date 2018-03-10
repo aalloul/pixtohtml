@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sebastianbergmann_phploc1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="phploc">PHPLOC</h1>
+<p><code>phploc</code> is a tool for quickly measuring the size and analyzing the structure of a PHP project.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="php-archive-phar">PHP Archive (PHAR)</h3>
+<p>The easiest way to obtain PHPLOC is to download a that has all required dependencies of PHPLOC bundled in a single file:</p>
+<pre><code>$ wget https://phar.phpunit.de/phploc.phar
+$ chmod +x phploc.phar
+$ mv phploc.phar /usr/local/bin/phploc</code></pre>
+<p>You can also immediately use the PHAR after you have downloaded it, of course:</p>
+<pre><code>$ wget https://phar.phpunit.de/phploc.phar
+$ php phploc.phar</code></pre>
+<h3 id="composer">Composer</h3>
+<p>You can add this tool as a local, per-project, development-time dependency to your project using :</p>
+<pre><code>$ composer require --dev phploc/phploc</code></pre>
+<p>You can then invoke it using the <code>vendor/bin/phploc</code> executable.</p>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="analyse-a-directory-and-print-the-result">Analyse a directory and print the result</h3>
+<p>``` $ phploc src phploc 4.0.0 by Sebastian Bergmann.</p>
+<p>Directories 3 Files 10</p>
+<p>Size Lines of Code (LOC) 1882 Comment Lines of Code (CLOC) 255 (13.55%) Non-Comment Lines of Code (NCLOC) 1627 (86.45%) Logical Lines of Code (LLOC) 377 (20.03%) Classes 351 (93.10%) Average Class Length 35 Minimum Class Length 0 Maximum Class Length 172</p>
+</body>
+</html>

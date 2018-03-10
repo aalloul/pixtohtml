@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>clemens_later_dude3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>All of these can either take a single value or an array of two values:</p>
+<pre><code># simple string
+:next_month =&gt; &quot;&amp;raquo;&quot;
+
+# strftime string
+:next_month =&gt; &quot;%b&quot;
+
+# proc - will evaluate the proc
+:next_month =&gt; lambda { |date| link_to &quot;&amp;raquo;&quot;, calendar_path(date.year, month.year) }
+
+# simple string and proc - will evaluate the proc and use it for link_to, e.g. link_to(&quot;&amp;raquo;&quot;, calendar_path(date.year, month.year))
+:next_month =&gt; [&quot;&amp;raquo;&quot;, lambda { |date| calendar_path(date.year, month.year) }]
+
+# strftime string and proc - will evaluate the proc and use it for link_to, e.g. link_to(&quot;Jan&quot;, calendar_path(date.year, month.year))
+:next_month =&gt; [&quot;%b&quot;, lambda { |date| calendar_path(date.year, month.year) }]</code></pre>
+<p>If you use a proc it gets passed a Date object carrying the respective month, i.e. the proc for :previous_month gets passed a Date object representing the previous month etc.</p>
+<p>You can do all kinds of mighty stuff with a proc. Imagine a situation where you want to show the abbreviated month name and then the number of events for the given month:</p>
+<pre><code># depending on your routes, this outputs something like &lt;a href=&quot;/calendar/2009/1&quot;&gt;Jan (3 events)&lt;/a&gt;
+:next_month =&gt; lambda { |date| link_to I18n.localize(date, :format =&gt; &quot;%b (#{pluralize(Event.in_month(date))})&quot;, calendar_path(date.year, date.month) }</code></pre>
+<p>The option :next_and_previous_month can be used as a shortcut if you want to use the same formatting for the next and previous month. Both, :next_month and :previous_month override the :next_and_previous_month if given.</p>
+<h1 id="i18n">i18n</h1>
+<p>You can define the following keys in your locale files to customize output:</p>
+<ul>
+<li>date.formats.calendar_header: Defines the date format to be used for the table header.</li>
+<li>date.first_day_of_week: Defines the first day of a week (0 = Sunday, 1 = Monday etc.).</li>
+</ul>
+<p>Of course, you can also put other configuration options in the locale and then pass them in manually:</p>
+<pre><code># somewhere in a locale
+date:
+  calendar:
+    calendar_class: my_cool_calendar
+
+# in the view
+&lt;%= calendar_for(2009, 1, :calendar_class =&gt; I18n.translate(:&#39;date.calendar.calendar_class&#39;, :default =&gt; &quot;my_calendar&quot;))</code></pre>
+<p>Note that you should always pass in a default in case a translation can’t be found since your options override the default options which might result in weird exceptions if the translation is missing.</p>
+<h1 id="bugs-feedback">Bugs &amp; Feedback</h1>
+<p>You can send me feedback, bug reports and patches via “GitHub”:http://github.com/clemens.</p>
+</body>
+</html>

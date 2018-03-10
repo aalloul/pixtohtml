@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>albertobraschi_radiant-sibling-tags-extension2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>      \_Carrot        2008-01-25</code></pre>
+<p>Using the sibling tags, you can access immediate neighbours of a page. But which pages are considered neighbours depends upon how you shuffle the deck! You can sort pages by any field that is stored in the database. Most likely you will want to sort by date of publication, or by page title. These could also be arranged in ascending or descending order.</p>
+<p>By default, pages are sorted in ascending order of publication, i.e. from oldest to newest. The children of ‘Articles’ in the above site map would be arranged as follows:</p>
+<pre><code>Default order:  Brocolli, Carrot, Apple</code></pre>
+<p>Lets examine the following snippet of code:</p>
+<pre><code>&lt;r:siblings&gt;
+  &lt;r:previous&gt;Previous article: &lt;r:link/&gt;&lt;/r:previous&gt;
+  &lt;r:next&gt;Next article: &lt;r:link/&gt;&lt;/r:next&gt;
+&lt;/r:siblings&gt;</code></pre>
+<p>If this was called on the ‘Carrot’ page, it would output:</p>
+<pre><code>Previous article: &lt;a href=&quot;/articles/brocolli&quot;&gt;Brocolli&lt;/a&gt;
+Next article: &lt;a href=&quot;/articles/apple&quot;&gt;Apple&lt;/a&gt;</code></pre>
+<p>Whereas, if the same snippet was called from the ‘Brocolli’ page, it would output:</p>
+<pre><code>Next article: &lt;a href=&quot;/articles/carrot&quot;&gt;Carrot&lt;/a&gt;</code></pre>
+<p>When arranged in the default sort order, ‘Brocolli’ comes first, so it has no predecessor. Hence, the contents of the <code>&lt;r:siblings:previous&gt;&lt;/r:siblings:previous&gt;</code> tag are not output.</p>
+<p>You can change the sort order using the <code>order</code> and <code>by</code> attributes. <code>order</code> can either be <code>asc</code> or <code>desc</code>, whereas <code>by</code> can be any column name associated with a page in the database.</p>
+<p>The following lists demonstrate how the ‘Articles’ pages above could be sorted:</p>
+<pre><code>order=&quot;desc&quot;:                Apple, Carrot, Brocolli
+by=&quot;title&quot;:                  Apple, Brocolli, Carrot
+by=&quot;title&quot; order=&quot;desc&quot;:     Carrot, Brocolli, Apple</code></pre>
+<p>Remember that the default values are <code>order=&quot;asc&quot;</code> and <code>by=&quot;published_at&quot;</code>, so if either of these are not specified, they fall back to those values.</p>
+<p>This example demonstrates how these sorting options may be applied:</p>
+<pre><code>&lt;r:siblings by=&quot;title&quot;&gt;
+  &lt;r:previous&gt;Previous in alphabet:&lt;r:link/&gt;&lt;/r:previous&gt;
+  &lt;r:unless_previous&gt;This is the start of the alphabet.&lt;/r:unless_previous&gt;
+  &lt;r:next&gt;Next in alphabet: &lt;r:link/&gt;&lt;/r:next&gt;
+  &lt;r:unless_next&gt;This is the end of the alphabet.&lt;/r:unless_next&gt;
+&lt;/r:siblings&gt;</code></pre>
+</body>
+</html>

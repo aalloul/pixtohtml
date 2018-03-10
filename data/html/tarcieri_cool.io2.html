@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tarcieri_cool.io2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Watchers have five important methods:</p>
+<ul>
+<li><p>attach(loop) - This binds a watcher to the specified event loop. If the watcher is already bound to a loop it will be detached first, then attached to the new one.</p></li>
+<li><p>detach - This completely unbinds a watcher from an event loop.</p></li>
+<li><p>disable - This stops the watcher from receiving events but does not unbind it from the loop. If you are trying to toggle a watcher on and off, it’s best to use this method (and enable) as it performs better than completely removing the watcher from the event loop.</p></li>
+<li><p>enable - This re-enables a watcher which has been disabled in the past. The watcher must still be bound to an event loop.</p></li>
+<li><p>evloop - This returns the Cool.io::Loop object which the watcher is currently bound to.</p></li>
+</ul>
+<h2 id="asynchronous-wrappers">Asynchronous Wrappers</h2>
+<p>Several classes which provide asynchronous event-driven wrappers for Ruby’s core socket classes are also provided. Among these are:</p>
+<ul>
+<li><p>Cool.io::TCPSocket - A buffered wrapper to core Ruby’s Socket class for use with TCP sockets. You can asynchronously create outgoing TCP connections using its Cool.io::TCPSocket.connect method. Cool.io::TCPSocket provides write buffering to ensure that writing never blocks, and has asynchronous callbacks for several events, including when the connection is opened (or failed), when data is received, when the write buffer has been written out completely, and when the connection closes.</p></li>
+<li><p>Cool.io::TCPServer - A wrapper for TCPServer which creates new instances of Cool.io::TCPSocket (or any subclass you wish to provide) whenever an incoming connection is received.</p></li>
+</ul>
+<h2 id="example-program">Example Program</h2>
+<p>Cool.io provides a Sinatra-like DSL for authoring event-driven programs:</p>
+<pre><code>require &#39;cool.io&#39;
+require &#39;cool.io/dsl&#39;
+
+ADDR = &#39;127.0.0.1&#39;
+PORT = 4321
+
+cool.io.connection :echo_server_connection do</code></pre>
+</body>
+</html>

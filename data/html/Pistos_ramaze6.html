@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pistos_ramaze6</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><p>via git</p>
+<p>To get the latest and sweetest, you can just pull from the repository and run Ramaze that way.</p>
+<pre><code>$ git clone git://github.com/manveru/ramaze.git</code></pre>
+<p>Please read the <code>man git</code> or <code>git help</code> for more information about updating and creating your own patches. This is at the moment the premier way to use Ramaze, since it is the way I use it.</p>
+<p>Some hints for the usage of Git.</p>
+<ul>
+<li><p>use <code>require 'ramaze'</code> from everywhere</p>
+<p>Simply add the path to your repository to the RUBYLIB environment variable. If you are using bash you can simply put following line into your .bashrc:</p>
+<pre><code>$ export RUBYLIB=&quot;$HOME/path/to/repo/lib/&quot;</code></pre>
+<p>Of course you should put the real path instead, you can also add multiple paths, or create your personal <code>site_ruby</code>:</p>
+<pre><code>$ export RUBYLIB=&quot;$HOME/ruby/ramaze/lib:$HOME/.site_ruby:$HOME/ruby/bacon/lib&quot;</code></pre></li>
+<li><p>use <code>require 'ramaze'</code> system wide from everywhere</p>
+<p>add a file to your <code>site_ruby</code> directory named ‘ramaze.rb’ the content should be: <code>require '/path/to/git/repo/ramaze/lib/ramaze'</code></p></li>
+<li><p>Pull the latest version</p>
+<pre><code>$ git pull</code></pre></li>
+<li><p>Reset the repo to original state (if you screw up something)</p>
+<pre><code>$ git reset --hard # resets the whole repo</code></pre></li>
+<li><p>Revert changes to (for example) lib/ramaze.rb only</p>
+<pre><code>$ git checkout master lib/ramaze.rb</code></pre></li>
+<li><p>Add and commit all changes.</p>
+<pre><code>$ git commit -a</code></pre></li>
+<li><p>Adding only specific changes.</p>
+<pre><code># Add hunks you want to commit to the staging area (index)</code></pre></li>
+</ul></li>
+</ul>
+</body>
+</html>

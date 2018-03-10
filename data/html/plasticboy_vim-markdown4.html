@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>plasticboy_vim-markdown4</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>```</p>
+<p>To disable math conceal with LaTeX math syntax enabled, add the following to your <code>.vimrc</code>:</p>
+<pre class="vim"><code>let g:tex_conceal = &quot;&quot;
+let g:vim_markdown_math = 1</code></pre>
+<h3 id="fenced-code-block-languages">Fenced code block languages</h3>
+<p>You can use filetype name as fenced code block languages for syntax highlighting. If you want to use different name from filetype, you can add it in your <code>.vimrc</code> like so:</p>
+<pre class="vim"><code>let g:vim_markdown_fenced_languages = [&#39;csharp=cs&#39;]</code></pre>
+<p>This will cause the following to be highlighted using the <code>cs</code> filetype syntax.</p>
+<pre><code>```csharp
+...
+```</code></pre>
+<p>Default is <code>['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']</code>.</p>
+<h3 id="follow-named-anchors">Follow named anchors</h3>
+<p>This feature allows ge to follow named anchors in links of the form <code>file#anchor</code> or just <code>#anchor</code>, where file may omit the <code>.md</code> extension as usual. Two variables control its operation:</p>
+<pre class="vim"><code>let g:vim_markdown_follow_anchor = 1</code></pre>
+<p>This tells vim-markdown whether to attempt to follow a named anchor in a link or not. When it is 1, and only if a link can be split in two parts by the pattern ‘#’, then the first part is interpreted as the file and the second one as the named anchor. This also includes urls of the form <code>#anchor</code>, for which the first part is considered empty, meaning that the target file is the current one. After the file is opened, the anchor will be searched.</p>
+<p>Default is <code>0</code>.</p>
+<pre class="vim"><code>let g:vim_markdown_anchorexpr = &quot;&#39;&lt;&lt;&#39;.v:anchor.&#39;&gt;&gt;&#39;&quot;</code></pre>
+<p>This expression will be evaluated substituting <code>v:anchor</code> with a quoted string</p>
+</body>
+</html>

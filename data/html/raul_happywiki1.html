@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>raul_happywiki1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="happywiki">HappyWiki</h1>
+<h2 id="description">Description</h2>
+<p>A very simple wiki. Happiness starts with the simplest things.</p>
+<h2 id="current-features">Current features</h2>
+<ul>
+<li>Page nesting based on the page title: if you have two pages called <em>ruby</em> and <em>ruby::rails</em>, this second page will be nested as <em>rails</em> inside the <em>ruby</em> one. You can sort the nested pages.</li>
+<li>Alphabetical table of contents with links to the root pages.</li>
+<li>Page search by title and content.</li>
+<li>Markdown syntax thanks to</li>
+<li>Syntax highlighter for code thanks to</li>
+<li>Basic authorization for an admin user.</li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<p>HappyWiki has been successfully tested with the following gems and versions:</p>
+<ul>
+<li>sinatra (0.9.0.3)</li>
+<li>datamapper (0.9.10): dm-core, dm-aggregates, dm-validations, dm-is-list</li>
+<li>rdiscount (1.3.1)</li>
+<li>nokogiri (for testing, tested on 1.1.0)</li>
+<li>sqlite3-ruby (1.2.1) or another db adapter supported by Datamapper</li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<p>Configure your sitename, username and password in <code>config/auth.rb</code> Optionally, you can configure a different database backend in <code>config/database.rb</code></p>
+<h2 id="setup">Setup</h2>
+<p>To run it locally, execute script/server and visit<br />
+Check the Sinatra book’s to see your deployment options.</p>
+<h2 id="questions-suggestions-bug-reports">Questions, suggestions, bug reports…</h2>
+<p>Feedback, questions and comments will be always welcome at raul@murciano.net</p>
+<h2 id="about">About</h2>
+<p>I developed the first release during the NBA All-Star’09 nights with three targets in mind:</p>
+<ul>
+<li>get started with some libraries like sinatra, datamapper and haml</li>
+<li>have a simple and customizable webapp to take and organize my notes</li>
+<li>stay awake to watch the All-Star games &amp; contests from Spain ;)</li>
+</ul>
+<h2 id="credits">Credits</h2>
+</body>
+</html>

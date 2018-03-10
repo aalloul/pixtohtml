@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ianwhite_pickle7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>| name | activated | | Freddy | false |</p>
+<p>Then the following users exist: | user | name | activated | | Fred | Freddy | false | ```</p>
+<h5 id="asserting-associations">Asserting associations</h5>
+<p>One-to-one assocs: “Then <strong>a model</strong> should be <strong>other model</strong>’s <strong>association</strong>”, e.g.</p>
+<pre class="gherkin"><code>Then the person: &quot;fred&quot; should be person: &quot;ethel&quot;&#39;s father</code></pre>
+<p>Many-to-one assocs: “Then <strong>a model</strong> should be [in|one of] <strong>other model</strong>’s <strong>association</strong>”, e.g.</p>
+<pre class="gherkin"><code>Then the person: &quot;ethel&quot; should be one of person: &quot;fred&quot;&#39;s children
+Then the comment should be in the post&#39;s comments</code></pre>
+<h5 id="asserting-predicate-methods">Asserting predicate methods</h5>
+<p>“Then <strong>a model</strong> should [be|have] [a|an] <strong>predicate</strong>”, e.g.</p>
+<pre class="gherkin"><code>Then the user should have a status # =&gt; user.status.should be_present
+Then the user should have a stale password # =&gt; user.should have_stale_password
+Then the car: &quot;batmobile&quot; should be fast # =&gt; car.should be_fast</code></pre>
+<p>“Then <strong>a model</strong> should not [be|have] [a|an] <strong>predicate</strong>”, e.g.</p>
+<pre class="gherkin"><code>Then person: &quot;fred&quot; should not be childless # =&gt; fred.should_not be_childless</code></pre>
+<h3 id="regexps-for-use-in-your-own-steps">Regexps for use in your own steps</h3>
+<p>By default you get some regexps available in the main namespace for use in creating your own steps: <code>capture_model</code>, <code>capture_fields</code>, and others (see lib/pickle.rb)</p>
+<p>(You can use any of the regexps that Pickle uses by using the Pickle.parser namespace, see Pickle::Parser::Matchers for the methods available)</p>
+<p><strong>capture_model</strong></p>
+<p>```ruby Given /^#{capture_model} exists$/ do |model_name| model(model_name).should_not == nil</p>
+</body>
+</html>

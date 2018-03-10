@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pboling_exception_notification1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="super-exception-notifier">Super Exception Notifier</h1>
+<p><strong>NOTE: This is a legacy gem, for rails 2.x</strong></p>
+<p>The Super Exception Notifier (SEN) gem provides a mailer object and a default set of templates for sending email notifications when errors occur in a Rails application, as well as a default set of error page templates to render based on the status code assigned to an error.</p>
+<table>
+<colgroup>
+<col style="width: 58%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Project</th>
+<th>Super Exception Notifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gem name</td>
+<td>super_exception_notifier</td>
+</tr>
+<tr class="even">
+<td>license</td>
+<td>MIT</td>
+</tr>
+<tr class="odd">
+<td>moldiness</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>version</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>dependencies</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>code quality</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>continuous integration</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>test coverage</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>homepage</td>
+<td>[https://github.com/pboling/exception_notification][homepage]</td>
+</tr>
+<tr class="even">
+<td>documentation</td>
+<td>[http://rdoc.info/github/pboling/exception_notification/frames][documentation]</td>
+</tr>
+<tr class="odd">
+<td>author</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Spread <sub>♡ⓛⓞⓥⓔ♡</sub></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p>The gem is configurable, allowing programmers to customize (settings are per environment or per class):</p>
+<ul>
+<li>the sender address of the email</li>
+<li>the recipient addresses</li>
+<li>text used to prepend and append the subject line</li>
+<li>the HTTP status codes to send emails for</li>
+<li>the error classes to send emails for</li>
+<li>alternatively, the error classes to not send emails for</li>
+<li>whether to send error emails or just render without sending anything</li>
+<li>the HTTP status and status code that gets rendered with specific errors</li>
+<li>the view path to the error page templates</li>
+<li>custom errors, with custom error templates</li>
+<li>fine-grained customization of error layouts (or no layout)</li>
+<li>get error notification for errors that occur in the console, using notifiable method</li>
+<li>Hooks into <code>git blame</code> output so you can get an idea of who (may) have introduced the bug</li>
+<li>Hooks into other website services (e.g. you can send exceptions to to Switchub.com)</li>
+<li>Specify which level of notification you would like with an array of optional styles of notification: [:render, :email, :web_hooks]</li>
+<li>Can notify of errors occurring in any method in any class in Ruby by wrapping the method call like this: notifiable { method }</li>
+<li>Can notify of errors in Rake tasks using ‘NotifiedTask.new’ instead of ‘task’ when writing tasks</li>
+<li>Works with Hoptoad Notifier, so you can notify via SEN and/or Hoptoad for any particular errors.</li>
+<li>Tested with Rails 2.3.x, should work with Rails 2.2.x, and is apparently <strong>not compatible with Rails 3 or 4</strong>.</li>
+</ul>
+<p>The email includes information about the current request, session, and environment, and also gives a backtrace of the exception.</p>
+<p>This gem is based on the wonderful exception_notification plugin created by Jamis Buck. I have modified it extensively and merged many of the improvements from a dozen or so other forks. It remains a (mostly) drop in replacement with greatly extended functionality and customization options. I keep it up to date with the work on the core team’s</p>
+</body>
+</html>

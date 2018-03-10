@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>godfat_dm-is-reflective3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="users-id-serial-required-true-serial-true-key-true-email-string-required-false-default-nospamnospam.tw-created_at-datetime-required-false-salt_first-string-required-false-length-50-salt_second-string-required-false-length-50">=&gt; {‘users’ =&gt; [[:id, Serial, {:required =&gt; true, :serial =&gt; true, :key =&gt; true}], [:email, String, {:required =&gt; false, :default =&gt; ‘nospam@nospam.tw’}], [:created_at, DateTime, {:required =&gt; false}], [:salt_first, String, {:required =&gt; false, :length =&gt; 50}], [:salt_second, String, {:required =&gt; false, :length =&gt; 50}]]}</h1>
+<h1 id="theres-no-guarantee-of-the-order-in-returned-array">there’s no guarantee of the order in returned array</h1>
+<p>dm.auto_genclass! # =&gt; [DataMapper::Is::Reflective::User, DataMapper::Is::Reflective::SchemaInfo, DataMapper::Is::Reflective::Session]</p>
+<h1 id="you-can-change-the-scope-of-generated-models">you can change the scope of generated models:</h1>
+<p>dm.auto_genclass! :scope =&gt; Object # =&gt; [User, SchemaInfo, Session]</p>
+<h1 id="you-can-generate-classes-for-tables-you-specified-only">you can generate classes for tables you specified only:</h1>
+<p>dm.auto_genclass! :scope =&gt; Object, :storages =&gt; /^phpbb_/ # =&gt; [PhpbbUser, PhpbbPost, PhpbbConfig]</p>
+<h1 id="you-can-generate-classes-with-string-too">you can generate classes with String too:</h1>
+<p>dm.auto_genclass! :storages =&gt; [‘users’, ‘config’], :scope =&gt; Object # =&gt; [User, Config]</p>
+<h1 id="you-can-generate-a-class-only">you can generate a class only:</h1>
+<p>dm.auto_genclass! :storages =&gt; ‘users’ # =&gt; [DataMapper::Is::Reflective::User]</p>
+<h1 id="you-can-also-generate-the-source-from-models">you can also generate the source from models:</h1>
+<p>puts User.to_source ```</p>
+<h2 id="contributors">CONTRIBUTORS:</h2>
+<ul>
+<li>Andrew Kreps (<span class="citation" data-cites="onewheelskyward">@onewheelskyward</span>)</li>
+<li>Lin Jen-Shin (<span class="citation" data-cites="godfat">@godfat</span>)</li>
+<li>Mischa Molhoek (<span class="citation" data-cites="mmolhoek">@mmolhoek</span>)</li>
+<li><span class="citation" data-cites="philfine">@philfine</span></li>
+<li>Sebastian Marr (<span class="citation" data-cites="sebastianmarr">@sebastianmarr</span>)</li>
+</ul>
+<h2 id="license">LICENSE:</h2>
+<p>Apache License 2.0 (Apache-2.0)</p>
+</body>
+</html>

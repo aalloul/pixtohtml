@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nshi_pymailheaders2</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>.pymailheadersrc in your home directory unless you use command line argument ‘-f’ to specify another file explicitly. If you do not have a configuration file yet, Pymailheaders will create one for you in your home directory. If you already have one, you can still use command line arguments to overwrite the options in the configuration file. If mandatory options like server type, server address, user name and password are not provided in command line arguments nor in the configuration file, Pymailheaders will tell you which options are missing by popping the settings dialog up.</p>
+<p>Use ‘pymailheaders.py -h’ for full argument list.</p>
+<p>On the first time running Pymailheaders, you have to provide all mandatory options, namely server type, server address, user name and password (if required), or the settings dialog will pop up to ask for them.</p>
+<blockquote>
+<p>pymailheaders.py -t imap -s express.cites.uiuc.edu -a -u zeegeek<br />
+-p classified -e</p>
+</blockquote>
+<p>After successfully launching Pymailheaders, you can omit all arguments except for ‘-c’ if you use another configuration file in future launches. Everything else can be set using Pymailheaders’ GTK+ settings dialog by right clicking on Pymailheaders’ window. Add a ‘&amp;’ mark at the end of the command to make it run in background.</p>
+<blockquote>
+<p>pymailheaders.py</p>
+</blockquote>
+<p>The following demonstrates how to run Pymailheaders for different protocols on command line.</p>
+<p>For IMAP4 mailboxes, you need to set server type as imap and provide server URL, username and password. If your server supports encrypted connection, you also have to set the ssl option. The following example establishes a secured connection with ‘-e’ argument,</p>
+<blockquote>
+<p>pymailheaders.py -t imap -s express.cites.uiuc.edu -a -u zeegeek<br />
+-p classified -e -i 60</p>
+</blockquote>
+<p>To use pymailheaders with POP3 mailbox, it is basically the same as doing it with IMAP4 mailbox. The only thing you need to change is server type. For example,</p>
+<blockquote>
+<p>pymailheaders.py -t pop -s express.cites.uiuc.edu -a -u zeegeek<br />
+-p classified -e -i 60</p>
+</blockquote>
+<p>If you have a Gmail account and you want to check for new mails, just set server type to feed and server to gmail. Then you need to give your username and password. Here is an example,</p>
+<blockquote>
+<p>pymailheaders.py -t feed -s gmail -a -u zeegeek -p classified -i 60</p>
+</blockquote>
+<p>You can also use pymailheaders to check for XML feeds in the formats of RSS 1.0,</p>
+</body>
+</html>

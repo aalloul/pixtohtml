@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sinatra_sinatra3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code>    * [Configuring attack protection](#configuring-attack-protection)
+    * [Available Settings](#available-settings)
+* [Environments](#environments)
+* [Error Handling](#error-handling)
+    * [Not Found](#not-found)
+    * [Error](#error)
+* [Rack Middleware](#rack-middleware)
+* [Testing](#testing)
+* [Sinatra::Base - Middleware, Libraries, and Modular Apps](#sinatrabase---middleware-libraries-and-modular-apps)
+    * [Modular vs. Classic Style](#modular-vs-classic-style)
+    * [Serving a Modular Application](#serving-a-modular-application)
+    * [Using a Classic Style Application with a config.ru](#using-a-classic-style-application-with-a-configru)
+    * [When to use a config.ru?](#when-to-use-a-configru)
+    * [Using Sinatra as Middleware](#using-sinatra-as-middleware)
+    * [Dynamic Application Creation](#dynamic-application-creation)
+* [Scopes and Binding](#scopes-and-binding)
+    * [Application/Class Scope](#applicationclass-scope)
+    * [Request/Instance Scope](#requestinstance-scope)
+    * [Delegation Scope](#delegation-scope)
+* [Command Line](#command-line)
+    * [Multi-threading](#multi-threading)
+* [Requirement](#requirement)
+* [The Bleeding Edge](#the-bleeding-edge)
+    * [With Bundler](#with-bundler)
+* [Versioning](#versioning)
+* [Further Reading](#further-reading)</code></pre>
+<h2 id="routes">Routes</h2>
+<p>In Sinatra, a route is an HTTP method paired with a URL-matching pattern. Each route is associated with a block:</p>
+<p>```ruby get ‘/’ do .. show something .. end</p>
+<p>post ‘/’ do .. create something .. end</p>
+<p>put ‘/’ do .. replace something .. end</p>
+<p>patch ‘/’ do .. modify something .. end</p>
+<p>delete ‘/’ do</p>
+</body>
+</html>

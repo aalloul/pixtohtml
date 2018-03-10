@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>flype_typus7</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>attribute&quot; to match your application requirements.</p>
+<pre><code>##
+# config/typus/application.yml
+#
+TypusUser:
+  fields:
+    list: email, status
+    options:
+      booleans:
+        # attribute: TRUE, FALSE
+        default: publicado, no_publicado
+        status: active, inactive</code></pre>
+<h3 id="date-formats">Date Formats</h3>
+<p>Date formats allows to define the format of the datetime field.</p>
+<pre><code>##
+# config/typus/application.yml
+#
+Post:
+  fields:
+    list: title, published_at
+    options:
+      date_formats:
+        published_at: post_short
+
+##
+# config/initializers/dates.rb
+#
+# Date::DATE_FORMATS[:post_short] = &quot;%m/%Y&quot;
+Time::DATE_FORMATS[:post_short] = &quot;%m/%y&quot;</code></pre>
+<h3 id="want-more-actions">Want more actions?</h3>
+<pre><code>Post:
+  fields:
+    list: ...
+    form: ...
+  actions:
+    index: notify_all
+    edit: notify</code></pre>
+<p>These actions will only be available on the requested action.</p>
+<p>You can add those actions to your admin controllers. Example:</p>
+<pre><code>class Admin::NewslettersController &lt; AdminController</code></pre>
+</body>
+</html>

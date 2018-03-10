@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aosp-mirror_platform_bionic1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="using-bionic">Using bionic</h1>
+<p>See the <a href="docs/">additional documentation</a>.</p>
+<h1 id="working-on-bionic">Working on bionic</h1>
+<h2 id="what-are-the-big-pieces-of-bionic">What are the big pieces of bionic?</h2>
+<h4 id="libc-libc.so-libc.a">libc/ — libc.so, libc.a</h4>
+<p>The C library. Stuff like <code>fopen(3)</code> and <code>kill(2)</code>.</p>
+<h4 id="libm-libm.so-libm.a">libm/ — libm.so, libm.a</h4>
+<p>The math library. Traditionally Unix systems kept stuff like <code>sin(3)</code> and <code>cos(3)</code> in a separate library to save space in the days before shared libraries.</p>
+<h4 id="libdl-libdl.so">libdl/ — libdl.so</h4>
+<p>The dynamic linker interface library. This is actually just a bunch of stubs that the dynamic linker replaces with pointers to its own implementation at runtime. This is where stuff like <code>dlopen(3)</code> lives.</p>
+<h4 id="libstdc-libstdc.so">libstdc++/ — libstdc++.so</h4>
+<p>The C++ ABI support functions. The C++ compiler doesn’t know how to implement thread-safe static initialization and the like, so it just calls functions that are supplied by the system. Stuff like <code>__cxa_guard_acquire</code> and <code>__cxa_pure_virtual</code> live here.</p>
+<h4 id="linker-systembinlinker-and-systembinlinker64">linker/ — /system/bin/linker and /system/bin/linker64</h4>
+<p>The dynamic linker. When you run a dynamically-linked executable, its ELF file has a <code>DT_INTERP</code> entry that says “use the following program to start me”. On Android, that’s either <code>linker</code> or <code>linker64</code> (depending on whether it’s a 32-bit or 64-bit executable). It’s responsible for loading the ELF executable into memory and resolving references to symbols (so that when your code tries to jump to <code>fopen(3)</code>, say, it lands in the right place).</p>
+<h4 id="tests-unit-tests">tests/ — unit tests</h4>
+<p>The <code>tests/</code> directory contains unit tests. Roughly arranged as one file per publicly-exported header file.</p>
+<h4 id="benchmarks-benchmarks">benchmarks/ — benchmarks</h4>
+</body>
+</html>

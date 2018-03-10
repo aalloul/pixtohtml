@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kiko_innate11</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Ruby stdlib.</p>
+<h3 id="templating">Templating</h3>
+<p>The basic functionality for templating is provided by Innate, it only provides the <code>None</code>, <code>Etanni</code> and <code>ERB</code> templating engines. The other engines are in Ramaze.</p>
+<h4 id="ezamar">Ezamar</h4>
+<p><code>Ezamar</code> has become a standalone project. It has been stable since a long time and is suitable for other uses. The battle for the place of the default templating engine in Ramaze is still going on, competitors are <code>ERB</code>, <code>Ezamar</code>, and <code>Nagoro</code>.</p>
+<h3 id="bacon">Bacon</h3>
+<p>Bacon is still a dependency for specs, but we don’t ship it anymore, the stable release includes all features we need.</p>
+<h3 id="dispatcher">Dispatcher</h3>
+<p>Innate uses a stripped down version of the Ramaze dispatcher. The Ramaze dispatcher was strongly influenced by Nitro, but proved to be a difficult part. We are now using Rack’s URLMap directly, and have a minimal dispatching mechanism directly in Node (like we used to have one in Controller).</p>
+<p>A lot of the functionality that used to be in the different dispatchers is now provided by Rack middleware.</p>
+<p>The Dispatcher itself isn’t needed anymore. It used to setup Request/Response/Session, which was superseded by Current, this again is now superseded by STATE::wrap.</p>
+<p>We are going to remove all the other dispatchers as well, providing default ways to provide the same functionality, and various middleware to use.</p>
+<h4 id="dispatcheraction">Dispatcher::Action</h4>
+<p>This dispatcher was used to initiate the controller dispatching, this is now not needed anymore.</p>
+<h4 id="dispatcherdirectory">Dispatcher::Directory</h4>
+<p>This will also be removed. There is a directory listing middleware already.</p>
+<h4 id="dispatchererror">Dispatcher::Error</h4>
+</body>
+</html>

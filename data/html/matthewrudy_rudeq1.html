@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>matthewrudy_rudeq1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="rudeq">RudeQ</h1>
+<p>A simple DB based queue, designed for situations where a server based queue is unnecessary.</p>
+<h1 id="install">INSTALL</h1>
+<p>This plugin requires Rails 2.* currently, and has only been tested on MySQL.</p>
+<p>On rails 2.1 you can install straight from github:</p>
+<pre><code>ruby script/plugin install git://github.com/matthewrudy/rudeq.git</code></pre>
+<p>Else just check it out into your plugins directory:</p>
+<pre><code>git clone git://github.com/matthewrudy/rudeq.git vendor/plugins/rudeq</code></pre>
+<h1 id="usage">USAGE</h1>
+<p>After you’ve installed it just run</p>
+<pre><code>rake queue:setup
+
+matthew@iRudy:~/code/jbequeueing $ rake queue:setup
+(in /Users/matthew/code/jbequeueing)
+    exists  app/models/
+    exists  spec/fixtures/
+    exists  spec/models/
+    create  app/models/rude_queue.rb
+    create  spec/fixtures/rude_queues.yml
+    create  spec/models/rude_queue_spec.rb
+    exists  db/migrate
+    create  db/migrate/029_create_rude_queues.rb</code></pre>
+<p>and you’re done. Fully tested, fully indexed… BOOM!</p>
+<p>Now run migrations, start up a console, and;</p>
+<pre><code>RudeQueue.set(:queue_name, RandomObject)
+RudeQueue.get(:queue_name)
+RudeQueue.fetch(:queue_name) do |data|
+  process(data)
+end</code></pre>
+<p>And, to keep the queue running fast, set up a cron job to run</p>
+<pre><code>rake queue:cleanup</code></pre>
+</body>
+</html>

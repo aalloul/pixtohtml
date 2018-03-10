@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>radiant_radiant-mailer-extension3</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<pre><code> &lt;r:mailer:submit name=&quot;Send&quot; /&gt;
+&lt;/r:mailer:form&gt;</code></pre>
+<p>Finally, you can put all field validations in the “mailer” part:</p>
+<pre><code>subject: From the website of Whatever
+from: noreply@example.com
+redirect_to: /contact/thank-you
+recipients:
+  - one@one.com
+required:
+  name: &quot;true&quot;
+  email: as_email
+  message: &quot;true&quot;</code></pre>
+<p>The field names above are “name,” “email,” and “message.” Note the quotation marks around true values. If you do your field validations this way, Mailer will ignore any validations you attempt through your radius tags. This method of validation keeps Mailer from adding hidden inputs to keep track of required fields. See the caveat below.</p>
+<h3 id="spam-blocking">Spam blocking</h3>
+<h4 id="no-links">No Links</h4>
+<p>You can specify which fields may not contain anything that looks like a link in the “mailer” part. For example:</p>
+<pre><code>subject: From the website of Whatever
+from: noreply@example.com
+redirect_to: /contact/thank-you
+recipients:
+  - one@one.com
+disallow_links:
+  - comments
+  - questions</code></pre>
+<p>The comments and questions fields would throw an error if the user or a spam bot entered the following phrases: “www”, “&amp;”, “http:”, “mailto:”, “bcc:”, “href”, “multipart”, “[url”, or “Content-Type:”.</p>
+<h4 id="hidden-field-must-be-blank">Hidden field must be blank</h4>
+<p>You can also include one field on your form that must be left blank. If anyone enters something in the field, the field throws an error. The tactic here is to hide the field from human readers, but to leave the field visible to spam bots. Here is how you would edit the “mailer” part to implement this:</p>
+<pre><code>subject: From the website of Whatever
+from: noreply@example.com
+redirect_to: /contact/thank-you
+recipients:
+  - one@one.com
+leave_blank: your_field_name</code></pre>
+<p>“your_field_name” is the name of the field you want to hide. It is up to you to hide the field when you construct your form. I would recommend against using a traditional hidden input field. Use style=“display:none” instead.</p>
+<h4 id="blocked-words">Blocked Words</h4>
+</body>
+</html>
