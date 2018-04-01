@@ -205,6 +205,9 @@ if __name__ == "__main__":
     # out_[:] = []
 
     markdown_files = glob("../data/markdown/*md")
+
+    # Remove links
+    # --strip-comments
     logger.info("Generate HTML")
     html_files = [generate_html(m.split("/")[-1]) for m in markdown_files]
     markdown_files[:] = []
