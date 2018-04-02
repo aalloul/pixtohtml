@@ -24,7 +24,7 @@ import numpy as np
 
 
 def get_image(fname):
-    loaded_ = load_img(fname, target_size=(299, 299))
+    loaded_ = load_img(fname, target_size=(256, 256))
     return img_to_array(loaded_)
 
 
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     # Create the encoder
     image_model = Sequential()
     image_model.add(Conv2D(16, (3, 3), padding='valid', activation='relu',
-                           input_shape=(299, 299, 3,)))
+                           input_shape=(256, 256, 3,)))
     image_model.add(
         Conv2D(16, (3, 3), activation='relu', padding='same', strides=2))
     image_model.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
     image_model.add(RepeatVector(48))
 
-    visual_input = Input(shape=(299, 299, 3,))
+    visual_input = Input(shape=(256, 256, 3,))
     encoded_image = image_model(visual_input)
 
     language_input = Input(shape=(48,))
@@ -142,12 +142,12 @@ if __name__ == "__main__":
     decoder = Dense(vocab_size, activation='softmax')(decoder)
 
     # Compile the model
-    with tf.device("/cpu:0"):
-        model = Model(inputs=[visual_input, language_input], outputs=decoder)
-        optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
-        model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+    # with tf.device("/cpu:0"):
+    model = Model(inputs=[visual_input, language_input], outputs=decoder)
+    optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
+    model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
-    model = multi_gpu_model(model, gpus=1)
+    # model = multi_gpu_model(model, gpus=1)
     batch_size = 1
     model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
