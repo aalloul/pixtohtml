@@ -1,4 +1,15 @@
 from glob import glob
+
+
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+#sess = tf.Session(config = config)
+set_session(tf.Session(config = config))
+
+
+
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import Model, Sequential
@@ -66,6 +77,7 @@ def preprocess_data(sequences, features, max_seq, voc_size):
 
 def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
                     batch_size):
+    print ("------")
     i = 0
     while True:
         if i >= len(jpeg_):
@@ -134,14 +146,14 @@ if __name__ == "__main__":
     optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
     model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
-    batch_size = 2
+    batch_size = 1
     model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
         validation_data=batch_generator(train_sequences_val, max_sequence,
                                         vocab_size, jpeg_files_val, batch_size),
-        validation_steps=2,#(len(jpeg_files_val) - n_val)//batch_size,
-        steps_per_epoch=2,#(len(jpeg_files_train) - n_training)//batch_size,
+        validation_steps=n_val//batch_size,
+        steps_per_epoch=n_training//batch_size,
         epochs=5,
         verbose=1,
-        max_queue_size=3)
+        max_queue_size=1)
