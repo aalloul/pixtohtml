@@ -9,7 +9,7 @@ config.gpu_options.allow_growth = True
 set_session(tf.Session(config = config))
 
 
-
+from keras.utils.training_utils import multi_gpu_model
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import Model, Sequential
@@ -142,10 +142,12 @@ if __name__ == "__main__":
     decoder = Dense(vocab_size, activation='softmax')(decoder)
 
     # Compile the model
-    model = Model(inputs=[visual_input, language_input], outputs=decoder)
-    optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
-    model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+    with tf.device("/cpu:0"):
+        model = Model(inputs=[visual_input, language_input], outputs=decoder)
+        optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
+        model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
+    model = multi_gpu_model(model, gpus=1)
     batch_size = 1
     model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,

@@ -13,6 +13,8 @@ if ! dpkg-query -W cuda; then
     sudo apt-get install cuda cuda-8–0
 fi
 
+
+wget https://we.tl/dNYChubo5c
 echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
 echo 'export PATH=$PATH:$CUDA_HOME/bin' >> ~/.bashrc
 echo 'export LD_LIBRARY_PATH=$CUDA_HOME/lib64' >> ~/.bashrc
