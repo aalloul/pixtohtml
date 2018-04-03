@@ -28,9 +28,10 @@ def get_image(fname):
     return img_to_array(loaded_)
 
 
-def read_all_html():
+def read_all_html(nfiles):
     all_html = glob("data/html_train/*html")
     all_html.sort()
+    all_html = all_html[0:nfiles]
     text = []
     for filename in all_html:
         with open(filename, "r") as f:
@@ -90,10 +91,12 @@ def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
 
 
 if __name__ == "__main__":
-    html_ = read_all_html()
+    n_files = 1201
+    html_ = read_all_html(n_files)
     train_sequences, max_sequence, max_length, vocab_size = build_vocab(html_)
     jpeg_files = glob("data/jpeg/*.jpeg")
     jpeg_files.sort()
+    jpeg_files = jpeg_files[0:n_files]
 
     n_training = 2 * len(train_sequences) // 3
     n_val = len(train_sequences) - n_training
@@ -152,10 +155,10 @@ if __name__ == "__main__":
     model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
-        validation_data=batch_generator(train_sequences_val, max_sequence,
-                                        vocab_size, jpeg_files_val, batch_size),
-        validation_steps=n_val//batch_size,
+#        validation_data=batch_generator(train_sequences_val, max_sequence,
+#                                        vocab_size, jpeg_files_val, batch_size),
+#        validation_steps=n_val//batch_size,
         steps_per_epoch=n_training//batch_size,
-        epochs=5,
+        epochs=200,
         verbose=1,
-        max_queue_size=1)
+        max_queue_size=10)
