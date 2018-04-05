@@ -1,13 +1,12 @@
 from glob import glob
 
-
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
+
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
-#sess = tf.Session(config = config)
-set_session(tf.Session(config = config))
-
+# sess = tf.Session(config = config)
+set_session(tf.Session(config=config))
 
 from keras.utils.training_utils import multi_gpu_model
 from keras.preprocessing.text import Tokenizer
@@ -18,7 +17,7 @@ from keras.layers.convolutional import Conv2D
 from keras.optimizers import RMSprop
 from keras.callbacks import ModelCheckpoint
 from keras.layers import Embedding, RepeatVector, LSTM, \
-    concatenate, Input,  Dense, Flatten, Dropout
+    concatenate, Input, Dense, Flatten, Dropout
 from keras.preprocessing.image import img_to_array, load_img
 import numpy as np
 
@@ -78,7 +77,7 @@ def preprocess_data(sequences, features, max_seq, voc_size):
 
 def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
                     batch_size):
-    print ("------")
+    print("------")
     i = 0
     while True:
         if i >= len(jpeg_):
@@ -91,7 +90,7 @@ def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
 
 
 if __name__ == "__main__":
-    n_files = 1201
+    n_files = 1002
     html_ = read_all_html(n_files)
     train_sequences, max_sequence, max_length, vocab_size = build_vocab(html_)
     jpeg_files = glob("data/jpeg/*.jpeg")
@@ -152,13 +151,22 @@ if __name__ == "__main__":
 
     # model = multi_gpu_model(model, gpus=1)
     batch_size = 1
-    model.fit_generator(
+    h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
-#        validation_data=batch_generator(train_sequences_val, max_sequence,
-#                                        vocab_size, jpeg_files_val, batch_size),
-#        validation_steps=n_val//batch_size,
-        steps_per_epoch=n_training//batch_size,
-        epochs=200,
+        steps_per_epoch=n_training // batch_size,
+        epochs=1,
         verbose=1,
         max_queue_size=10)
+
+    loss = model.evaluate_generator(
+        batch_generator(train_sequences_val, max_sequence, vocab_size,
+                        jpeg_files_val, batch_size),
+        steps=n_val // batch_size
+    )
+    from json import dump
+    with open("loss.json", "w") as f:
+        dump(h.history, f)
+
+    print ("Loss = {}".format(loss))
+    model.save("model_saved.h5")
