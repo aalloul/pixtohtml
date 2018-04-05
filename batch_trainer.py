@@ -4,6 +4,7 @@ import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 
 config = tf.ConfigProto()
+# config = tf.ConfigProto(allow_soft_placement=True)
 config.gpu_options.allow_growth = True
 # sess = tf.Session(config = config)
 set_session(tf.Session(config=config))
@@ -144,13 +145,14 @@ if __name__ == "__main__":
     decoder = Dense(vocab_size, activation='softmax')(decoder)
 
     # Compile the model
-    with tf.device("/cpu:0"):
-        model = Model(inputs=[visual_input, language_input], outputs=decoder)
-        optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
-        model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+    # with tf.device("/cpu:0"):
+    model = Model(inputs=[visual_input, language_input], outputs=decoder)
+    optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
+    model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
-    model = multi_gpu_model(model, gpus=2)
-    batch_size = 4
+
+    # model = multi_gpu_model(model, gpus=2)
+    batch_size = 1
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
