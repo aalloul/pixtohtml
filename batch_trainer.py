@@ -1,5 +1,5 @@
 from glob import glob
-
+from json import dump
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 
@@ -144,18 +144,18 @@ if __name__ == "__main__":
     decoder = Dense(vocab_size, activation='softmax')(decoder)
 
     # Compile the model
-    # with tf.device("/cpu:0"):
-    model = Model(inputs=[visual_input, language_input], outputs=decoder)
-    optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
-    model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+    with tf.device("/cpu:0"):
+        model = Model(inputs=[visual_input, language_input], outputs=decoder)
+        optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
+        model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
-    # model = multi_gpu_model(model, gpus=1)
-    batch_size = 1
+    model = multi_gpu_model(model, gpus=2)
+    batch_size = 4
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
         steps_per_epoch=n_training // batch_size,
-        epochs=1,
+        epochs=100,
         verbose=1,
         max_queue_size=10)
 
@@ -164,9 +164,9 @@ if __name__ == "__main__":
                         jpeg_files_val, batch_size),
         steps=n_val // batch_size
     )
-    from json import dump
+
     with open("loss.json", "w") as f:
         dump(h.history, f)
 
-    print ("Loss = {}".format(loss))
+    print("Loss = {}".format(loss))
     model.save("model_saved.h5")
