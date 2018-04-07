@@ -94,10 +94,6 @@ def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
 
 
 if __name__ == "__main__":
-    from os import chdir
-
-    chdir("/Users/adamalloul/screenshot_to_html")
-
     n_files = 50
     html_ = read_all_html(n_files)
     text_token_mapping = get_tokens()
@@ -176,7 +172,7 @@ if __name__ == "__main__":
         batch_generator(train_sequences_val, max_sequence, vocab_size,
                         jpeg_files_val, batch_size),
         steps=n_val // batch_size,
-        max_queue_size=1
+        max_queue_size=10
     )
 
     with open("loss.json", "w") as f:
