@@ -42,19 +42,23 @@ def read_all_html(nfiles):
     return text
 
 
-def build_vocab(html_text):
-    # Initialize the function to create the vocabulary
-    tokenizer = Tokenizer(filters='', split=" ", lower=False)
-    # Create the vocabulary
-    tokenizer.fit_on_texts(html_text)
-    # Add +1 to leave space for empty words
-    voc_size = len(tokenizer.word_index) + 1
-    # Translate each word in text file to the matching vocabulary index
-    sequences = tokenizer.texts_to_sequences(html_text)
-    # The longest HTML file
-    max_seq = max(len(s) for s in sequences)
-    max_len = 48
-    return sequences, max_seq, max_len, voc_size
+def get_tokens():
+    from string import printable
+    tokens = [_ for _ in printable]
+    tokens += ["<p>", "</p>",
+               "<h1>", "</h1>",
+               "<h2>", "</h2>",
+               "<h3>", "</h3>",
+               "<ul>", "</ul>",
+               "<li>", "</li>",
+               "<html>", "</html>",
+               "<body>", "</body>",
+               "<START>", "<END>"]
+    return dict(zip(tokens, range(1, len(tokens) + 1)))
+
+
+def text_to_token(text, tokens):
+    return [tokens[_] for _ in text]
 
 
 def preprocess_data(sequences, features, max_seq, voc_size):
@@ -77,22 +81,31 @@ def preprocess_data(sequences, features, max_seq, voc_size):
 
 
 def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
-                    batch_size):
+                    bsize):
     i = 0
     while True:
         if i >= len(jpeg_):
             i = 0
-        images = [get_image(_) for _ in jpeg_[i:i + batch_size]]
-        x, y, image_data = preprocess_data(sequences[i:i + batch_size],
-                                           images, max_seq, vocab_size_)
-        i += batch_size
+        images = [get_image(_) for _ in jpeg_[i:i + bsize]]
+        x, y, image_data = preprocess_data(sequences[i:i + bsize], images,
+                                            max_seq, vocab_size_)
+        i += bsize
         yield [image_data, x], y
 
 
 if __name__ == "__main__":
-    n_files = 1002
+    from os import chdir
+
+    chdir("/Users/adamalloul/screenshot_to_html")
+
+    n_files = 50
     html_ = read_all_html(n_files)
-    train_sequences, max_sequence, max_length, vocab_size = build_vocab(html_)
+    text_token_mapping = get_tokens()
+    train_sequences = [text_to_token(_, text_token_mapping) for _ in html_]
+    max_length = 48
+    max_sequence = max(len(s) for s in train_sequences)
+    vocab_size = len(text_token_mapping) + 1
+
     jpeg_files = glob("data/jpeg/*.jpeg")
     jpeg_files.sort()
     jpeg_files = jpeg_files[0:n_files]
@@ -149,21 +162,21 @@ if __name__ == "__main__":
     optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
     model.compile(loss='categorical_crossentropy', optimizer=optimizer)
 
-
     # model = multi_gpu_model(model, gpus=2)
     batch_size = 1
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
         steps_per_epoch=n_training // batch_size,
-        epochs=100,
+        epochs=200,
         verbose=1,
         max_queue_size=10)
 
     loss = model.evaluate_generator(
         batch_generator(train_sequences_val, max_sequence, vocab_size,
                         jpeg_files_val, batch_size),
-        steps=n_val // batch_size
+        steps=n_val // batch_size,
+        max_queue_size=1
     )
 
     with open("loss.json", "w") as f:
