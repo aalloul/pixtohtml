@@ -94,7 +94,7 @@ def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
 
 
 if __name__ == "__main__":
-    n_files = 50
+    n_files = 5
     html_ = read_all_html(n_files)
     text_token_mapping = get_tokens()
     train_sequences = [text_to_token(_, text_token_mapping) for _ in html_]
