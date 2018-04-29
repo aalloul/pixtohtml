@@ -16,21 +16,21 @@ def process_dag(dag, corpus):
     <html>"""
 
     title = "<head>\n<title>{text}</title>\n</head>\n".format(
-        text=generate_random_text(corpus, 3, 10)
+        text=generate_random_text(corpus, 3, 6)
     )
     body = "<body>\n"
 
     for tag in dag:
         if tag == "ul":
             body += "<ul><li>{text}</li>\n".format(
-                text=generate_random_text(corpus, 3, 20))
+                text=generate_random_text(corpus, 3, 10))
 
             for _ in range(0, randint(0, 5)):
                 body += "<li>{text}</li>\n".format(
-                    text=generate_random_text(corpus, 3, 20))
+                    text=generate_random_text(corpus, 3, 10))
         else:
             body += "<{tag}> {text} </{tag}>\n".format(
-                tag=tag, text=generate_random_text(corpus, 3, 40)
+                tag=tag, text=generate_random_text(corpus, 3, 10)
             )
 
     body += "</body>"
@@ -50,7 +50,7 @@ def generate_random_text(corpus, min_chars=1, max_chars=1000):
 def generate_html(html_tags, corpus):
     tag_names = [t["tag"] for t in html_tags]
     tag_weights = [t["weight"] for t in html_tags]
-    dag = choices(tag_names, weights=tag_weights, k=randint(3, 10))
+    dag = choices(tag_names, weights=tag_weights, k=randint(1, 1))
     return process_dag(dag, corpus)
 
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
         {"tag": "ul", "weight": 2674}
     ]
     corpus = get_corpus(stored=True, nwords=200)
-    html_generator = (generate_html(tags, corpus) for _ in range(5000))
+    html_generator = (generate_html(tags, corpus) for _ in range(1000))
 
     cnt = 0
     for html_to_jpeg, html_to_train in html_generator:

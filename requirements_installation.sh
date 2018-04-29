@@ -11,3 +11,4 @@ echo "untar..."
 tar xf data_set.tgz
 echo "Done"
 cd ..
+python batch_trainer2.py

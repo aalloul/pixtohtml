@@ -24,7 +24,7 @@ import numpy as np
 
 
 def get_image(fname):
-    loaded_ = load_img(fname, target_size=(256, 256))
+    loaded_ = load_img(fname, target_size=(256, 256), grayscale=True)
     return img_to_array(loaded_)
 
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     # Create the encoder
     image_model = Sequential()
     image_model.add(Conv2D(16, (3, 3), padding='valid', activation='relu',
-                           input_shape=(256, 256, 3,)))
+                           input_shape=(256, 256, 1,)))
     image_model.add(
         Conv2D(16, (3, 3), activation='relu', padding='same', strides=2))
     image_model.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
@@ -137,7 +137,7 @@ if __name__ == "__main__":
 
     image_model.add(RepeatVector(48))
 
-    visual_input = Input(shape=(256, 256, 3,))
+    visual_input = Input(shape=(256, 256, 1,))
     encoded_image = image_model(visual_input)
 
     language_input = Input(shape=(48,))
