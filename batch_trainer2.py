@@ -12,9 +12,9 @@ set_session(tf.Session(config=config))
 from keras.utils.training_utils import multi_gpu_model
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from keras.models import Model, Sequential
+from keras.models import Model, Sequential, load_model
 from keras.utils import to_categorical
-from keras.layers.convolutional import Conv2D
+from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras.optimizers import RMSprop
 from keras.callbacks import ModelCheckpoint
 from keras.layers import Embedding, RepeatVector, LSTM, \
@@ -28,14 +28,14 @@ def get_image(fname):
     return img_to_array(loaded_)
 
 
-def read_all_html(nfiles):
+def read_all_html(start_range, nfiles):
     all_html = glob("data/html_train/*html")
     all_html.sort()
-    all_html = all_html[0:nfiles]
+    all_html = all_html[start_range:start_range+nfiles]
     text = []
-    for filename in all_html:
-        with open(filename, "r") as f:
-            text_ = "<START> " + f.read() + " <END>"
+    for fname in all_html:
+        with open(fname, "r") as fi:
+            text_ = "<START> " + fi.read() + " <END>"
             text_ = ' '.join(text_.split())
             text_ = text_.replace(',', ' ,')
             text.append(text_)
@@ -74,8 +74,8 @@ def preprocess_data(sequences, features, max_seq, voc_size):
             out_seq = to_categorical([out_seq], num_classes=voc_size)[0]
             # Add the corresponding image to the boostrap token file
             image_data.append(features[img_no])
-            # Cap the input sentence to 48 tokens and add it
-            x.append(in_seq[-48:])
+            # Cap the input sentence to 200 tokens and add it
+            x.append(in_seq[-200:])
             y.append(out_seq)
     return np.array(x), np.array(y), np.array(image_data)
 
@@ -88,60 +88,50 @@ def batch_generator(sequences, max_seq, vocab_size_, jpeg_,
             i = 0
         images = [get_image(_) for _ in jpeg_[i:i + bsize]]
         x, y, image_data = preprocess_data(sequences[i:i + bsize], images,
-                                            max_seq, vocab_size_)
+                                           max_seq, vocab_size_)
         i += bsize
         yield [image_data, x], y
 
 
-if __name__ == "__main__":
-    n_files = 5
-    html_ = read_all_html(n_files)
-    text_token_mapping = get_tokens()
-    train_sequences = [text_to_token(_, text_token_mapping) for _ in html_]
-    max_length = 48
-    max_sequence = max(len(s) for s in train_sequences)
-    vocab_size = len(text_token_mapping) + 1
-
-    jpeg_files = glob("data/jpeg/*.jpeg")
-    jpeg_files.sort()
-    jpeg_files = jpeg_files[0:n_files]
-
-    n_training = 2 * len(train_sequences) // 3
-    n_val = len(train_sequences) - n_training
-
-    train_sequences_train = train_sequences[0:n_training]
-    jpeg_files_train = jpeg_files[0:n_training]
-
-    train_sequences_val = train_sequences[n_training:]
-    jpeg_files_val = jpeg_files[n_training:]
-
-    # Create the encoder
+def create_model():
     image_model = Sequential()
     image_model.add(Conv2D(16, (3, 3), padding='valid', activation='relu',
                            input_shape=(256, 256, 1,)))
+    image_model.add(MaxPooling2D(pool_size=(2, 2)))
+
     image_model.add(
         Conv2D(16, (3, 3), activation='relu', padding='same', strides=2))
+    image_model.add(MaxPooling2D(pool_size=(2, 2)))
+
     image_model.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
+    image_model.add(MaxPooling2D(pool_size=(2, 2)))
+
     image_model.add(
         Conv2D(32, (3, 3), activation='relu', padding='same', strides=2))
+    image_model.add(MaxPooling2D(pool_size=(2, 2)))
+
     image_model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
+    image_model.add(MaxPooling2D(pool_size=(2, 2)))
+
     image_model.add(
         Conv2D(64, (3, 3), activation='relu', padding='same', strides=2))
+
     image_model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
 
     image_model.add(Flatten())
     image_model.add(Dense(1024, activation='relu'))
-    image_model.add(Dropout(0.3))
+    #     image_model.add(Dropout(0.3))
     image_model.add(Dense(1024, activation='relu'))
-    image_model.add(Dropout(0.3))
+    #     image_model.add(Dropout(0.3))
 
-    image_model.add(RepeatVector(48))
+    image_model.add(RepeatVector(200))
 
     visual_input = Input(shape=(256, 256, 1,))
     encoded_image = image_model(visual_input)
 
-    language_input = Input(shape=(48,))
-    language_model = Embedding(vocab_size, 50, input_length=48, mask_zero=True)(
+    language_input = Input(shape=(200,))
+    language_model = Embedding(vocab_size, 50, input_length=200,
+                               mask_zero=True)(
         language_input)
     language_model = LSTM(128, return_sequences=True)(language_model)
     language_model = LSTM(128, return_sequences=True)(language_model)
@@ -154,19 +144,52 @@ if __name__ == "__main__":
 
     # Compile the model
     # with tf.device("/cpu:0"):
-    model = Model(inputs=[visual_input, language_input], outputs=decoder)
+    model_ = Model(inputs=[visual_input, language_input], outputs=decoder)
     optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
-    model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+    model_.compile(loss='categorical_crossentropy', optimizer=optimizer)
+    return model_
+
+
+if __name__ == "__main__":
+    start = 350
+    n_files = 350
+    filename = "model_outputs/" \
+               "model_saved_epoch_200_350files_loss_0.62_valLoss_1.60.h5"
+    html_ = read_all_html(start, n_files)
+    text_token_mapping = get_tokens()
+    train_sequences = [text_to_token(_, text_token_mapping) for _ in html_]
+    max_length = 200
+    max_sequence = max(len(s) for s in train_sequences)
+    vocab_size = len(text_token_mapping) + 1
+
+    jpeg_files = glob("data/jpeg/*.jpeg")
+    jpeg_files.sort()
+    jpeg_files = jpeg_files[start:start+n_files]
+
+    n_training = 2 * len(train_sequences) // 3
+    n_val = len(train_sequences) - n_training
+
+    train_sequences_train = train_sequences[0:n_training]
+    jpeg_files_train = jpeg_files[0:n_training]
+
+    train_sequences_val = train_sequences[n_training:]
+    jpeg_files_val = jpeg_files[n_training:]
+
+    if filename is None:
+        model = create_model()
+    else:
+        model = load_model(filename)
 
     # model = multi_gpu_model(model, gpus=2)
-    batch_size = 1
+    batch_size = 4
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
         steps_per_epoch=n_training // batch_size,
         epochs=200,
         verbose=1,
-        max_queue_size=10)
+        max_queue_size=10,
+        initial_epoch=200)
 
     loss = model.evaluate_generator(
         batch_generator(train_sequences_val, max_sequence, vocab_size,
