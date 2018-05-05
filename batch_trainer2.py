@@ -101,7 +101,7 @@ def create_model():
 
     image_model.add(Flatten())
     image_model.add(Dense(1024, activation='relu'))
-    image_model.add(Dropout(0.3))
+    image_model.add(Dropout(0.2))
     image_model.add(Dense(1024, activation='relu'))
     #     image_model.add(Dropout(0.3))
 
@@ -184,7 +184,7 @@ if __name__ == "__main__":
         model = load_model(filename)
 
     # model = multi_gpu_model(model, gpus=2)
-    batch_size = 6
+    batch_size = 7
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
