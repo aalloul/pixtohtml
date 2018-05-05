@@ -101,7 +101,7 @@ def create_model():
 
     image_model.add(Flatten())
     image_model.add(Dense(1024, activation='relu'))
-    #     image_model.add(Dropout(0.3))
+    image_model.add(Dropout(0.3))
     image_model.add(Dense(1024, activation='relu'))
     #     image_model.add(Dropout(0.3))
 
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     from keras.optimizers import RMSprop
     # from keras.callbacks import ModelCheckpoint
     from keras.layers import Embedding, RepeatVector, LSTM, \
-        concatenate, Input, Dense, Flatten  # , Dropout
+        concatenate, Input, Dense, Flatten, Dropout
     from keras.preprocessing.image import img_to_array, load_img
 
     # Params
