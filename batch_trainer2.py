@@ -151,15 +151,17 @@ if __name__ == "__main__":
         concatenate, Input, Dense, Flatten  # , Dropout
     from keras.preprocessing.image import img_to_array, load_img
 
+    # Params
     start = 0
-    n_files = 2
+    n_files = 510
     initial_epoch = 0
-    epochs_to_run = 3
+    epochs_to_run = 300
     filename = None
+
+    # Data setup
     html_ = read_all_html(start, n_files)
     text_token_mapping = get_tokens()
     train_sequences = [text_to_token(_, text_token_mapping) for _ in html_]
-    max_length = 60
     max_sequence = max(len(s) for s in train_sequences)
     vocab_size = len(text_token_mapping) + 1
 
@@ -182,7 +184,7 @@ if __name__ == "__main__":
         model = load_model(filename)
 
     # model = multi_gpu_model(model, gpus=2)
-    batch_size = 1
+    batch_size = 6
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
