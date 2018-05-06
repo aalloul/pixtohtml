@@ -103,7 +103,7 @@ def create_model():
     image_model.add(Dense(1024, activation='relu'))
     image_model.add(Dropout(0.2))
     image_model.add(Dense(1024, activation='relu'))
-    #     image_model.add(Dropout(0.3))
+    image_model.add(Dropout(0.2))
 
     image_model.add(RepeatVector(60))
 
