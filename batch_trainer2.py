@@ -101,7 +101,7 @@ def create_model():
 
     image_model.add(Flatten())
     image_model.add(Dense(1024, activation='relu'))
-    image_model.add(Dropout(0.2))
+    image_model.add(Dropout(0.3))
     image_model.add(Dense(1024, activation='relu'))
     image_model.add(Dropout(0.2))
 
@@ -127,6 +127,7 @@ def create_model():
     # with tf.device("/cpu:0"):
     model_ = Model(inputs=[visual_input, language_input], outputs=decoder)
     optimizer = RMSprop(lr=0.0001, clipvalue=1.0)
+    # optimizer = Adam()
     model_.compile(loss='categorical_crossentropy', optimizer=optimizer)
     return model_
 
@@ -145,7 +146,7 @@ if __name__ == "__main__":
     from keras.models import Model, Sequential, load_model
     from keras.utils import to_categorical
     from keras.layers.convolutional import Conv2D, MaxPooling2D
-    from keras.optimizers import RMSprop
+    from keras.optimizers import RMSprop, Adam
     # from keras.callbacks import ModelCheckpoint
     from keras.layers import Embedding, RepeatVector, LSTM, \
         concatenate, Input, Dense, Flatten, Dropout
@@ -153,7 +154,7 @@ if __name__ == "__main__":
 
     # Params
     start = 0
-    n_files = 510
+    n_files = 1000
     initial_epoch = 0
     epochs_to_run = 300
     filename = None
@@ -169,7 +170,7 @@ if __name__ == "__main__":
     jpeg_files.sort()
     jpeg_files = jpeg_files[start:start + n_files]
 
-    n_training = 2 * len(train_sequences) // 3
+    n_training = 8 * len(train_sequences) // 10
     n_val = len(train_sequences) - n_training
 
     train_sequences_train = train_sequences[0:n_training]
