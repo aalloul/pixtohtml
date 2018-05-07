@@ -136,25 +136,21 @@ if __name__ == "__main__":
     from keras.backend.tensorflow_backend import set_session
 
     config = tf.ConfigProto()
-    # config = tf.ConfigProto(allow_soft_placement=True)
     config.gpu_options.allow_growth = True
-    # sess = tf.Session(config = config)
     set_session(tf.Session(config=config))
-    # from keras.utils.training_utils import multi_gpu_model
-    # from keras.preprocessing.text import Tokenizer
     from keras.preprocessing.sequence import pad_sequences
     from keras.models import Model, Sequential, load_model
     from keras.utils import to_categorical
     from keras.layers.convolutional import Conv2D, MaxPooling2D
-    from keras.optimizers import RMSprop, Adam
-    # from keras.callbacks import ModelCheckpoint
+    from keras.optimizers import RMSprop
+    from keras.callbacks import ModelCheckpoint
     from keras.layers import Embedding, RepeatVector, LSTM, \
         concatenate, Input, Dense, Flatten, Dropout
     from keras.preprocessing.image import img_to_array, load_img
 
     # Params
     start = 0
-    n_files = 1000
+    n_files = 2000
     initial_epoch = 0
     epochs_to_run = 300
     filename = None
@@ -184,7 +180,17 @@ if __name__ == "__main__":
     else:
         model = load_model(filename)
 
-    # model = multi_gpu_model(model, gpus=2)
+    filepath = "start_{file_start}_end_{file_end}_epochs_{epoch_start}_to_" \
+               "{epoch_end}".format(
+                file_start=start,
+                file_end=start + n_files,
+                epoch_start=initial_epoch,
+                epoch_end=initial_epoch + epochs_to_run)
+
+    callbacks = [ModelCheckpoint(filepath, monitor='val_loss', verbose=0,
+                                 save_best_only=True, save_weights_only=False,
+                                 mode='auto', period=2)]
+
     batch_size = 7
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
@@ -196,21 +202,15 @@ if __name__ == "__main__":
         initial_epoch=initial_epoch,
         validation_data=batch_generator(train_sequences_val, max_sequence,
                                         vocab_size, jpeg_files_val, batch_size),
-        validation_steps=n_val // batch_size
+        validation_steps=n_val // batch_size,
+        callbacks=callbacks
     )
-
-    # loss = model.evaluate_generator(
-    #     batch_generator(train_sequences_val, max_sequence, vocab_size,
-    #                     jpeg_files_val, batch_size),
-    #     steps=n_val // batch_size,
-    #     max_queue_size=10
-    # )
 
     last_loss = round(h.history['loss'][-1], 2)
     last_val_loss = round(h.history['val_loss'][-1], 2)
 
-    filename = "start_{file_start}_end_{file_end}_epochs_{epoch_start}_to_" \
-               "{epoch_end}_loss_{loss}_valLoss_{val_loss}".format(
+    filename = "losses/start_{file_start}_end_{file_end}_epochs_{epoch_start}_"\
+               "to_{epoch_end}_loss_{loss}_valLoss_{val_loss}".format(
                 loss=last_loss,
                 val_loss=last_val_loss,
                 file_start=start,
