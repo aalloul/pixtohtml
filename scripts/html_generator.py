@@ -73,9 +73,9 @@ if __name__ == "__main__":
         {"tag": "ul", "weight": 2674}
     ]
     corpus = get_corpus(stored=True, nwords=200)
-    html_generator = (generate_html(tags, corpus) for _ in range(1000))
+    html_generator = (generate_html(tags, corpus) for _ in range(3000))
 
-    cnt = 0
+    cnt = 1000
     for html_to_jpeg, html_to_train in html_generator:
         cnt += 1
         print("File number {}".format(cnt))
