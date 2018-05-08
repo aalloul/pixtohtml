@@ -78,29 +78,35 @@ def create_model():
     image_model = Sequential()
     image_model.add(Conv2D(16, (3, 3), padding='valid', activation='relu',
                            input_shape=(256, 256, 1,)))
+    image_model.add(BatchNormalization())
     image_model.add(MaxPooling2D(pool_size=(2, 2)))
 
     image_model.add(
         Conv2D(16, (3, 3), activation='relu', padding='same', strides=2))
+    image_model.add(BatchNormalization())
     image_model.add(MaxPooling2D(pool_size=(2, 2)))
 
     image_model.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
+    image_model.add(BatchNormalization())
     image_model.add(MaxPooling2D(pool_size=(2, 2)))
 
     image_model.add(
         Conv2D(32, (3, 3), activation='relu', padding='same', strides=2))
+    image_model.add(BatchNormalization())
     image_model.add(MaxPooling2D(pool_size=(2, 2)))
 
     image_model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
+    image_model.add(BatchNormalization())
     image_model.add(MaxPooling2D(pool_size=(2, 2)))
 
     image_model.add(
         Conv2D(64, (3, 3), activation='relu', padding='same', strides=2))
-
+    image_model.add(BatchNormalization())
     image_model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
 
     image_model.add(Flatten())
     image_model.add(Dense(1024, activation='relu'))
+    image_model.add(BatchNormalization())
     image_model.add(Dropout(0.3))
     image_model.add(Dense(1024, activation='relu'))
     image_model.add(Dropout(0.2))
@@ -112,8 +118,7 @@ def create_model():
 
     language_input = Input(shape=(60,))
     language_model = Embedding(vocab_size, 50, input_length=60,
-                               mask_zero=True)(
-        language_input)
+                               mask_zero=True)(language_input)
     language_model = LSTM(128, return_sequences=True)(language_model)
     language_model = LSTM(128, return_sequences=True)(language_model)
 
@@ -145,7 +150,7 @@ if __name__ == "__main__":
     from keras.optimizers import RMSprop
     from keras.callbacks import ModelCheckpoint
     from keras.layers import Embedding, RepeatVector, LSTM, \
-        concatenate, Input, Dense, Flatten, Dropout
+        concatenate, Input, Dense, Flatten, Dropout, BatchNormalization
     from keras.preprocessing.image import img_to_array, load_img
 
     # Params
@@ -181,7 +186,7 @@ if __name__ == "__main__":
         model = load_model(filename)
 
     filepath = "start_{file_start}_end_{file_end}_epochs_{epoch_start}_to_" \
-               "{epoch_end}".format(
+               "{epoch_end}.h5".format(
                 file_start=start,
                 file_end=start + n_files,
                 epoch_start=initial_epoch,
@@ -191,7 +196,7 @@ if __name__ == "__main__":
                                  save_best_only=True, save_weights_only=False,
                                  mode='auto', period=2)]
 
-    batch_size = 7
+    batch_size = 6
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
