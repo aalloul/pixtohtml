@@ -196,7 +196,7 @@ if __name__ == "__main__":
                                  save_best_only=True, save_weights_only=False,
                                  mode='auto', period=2)]
 
-    batch_size = 6
+    batch_size = 4
     h = model.fit_generator(
         batch_generator(train_sequences_train, max_sequence, vocab_size,
                         jpeg_files_train, batch_size),
