@@ -109,7 +109,7 @@ def create_model():
     image_model.add(BatchNormalization())
     image_model.add(Dropout(0.3))
     image_model.add(Dense(1024, activation='relu'))
-    image_model.add(Dropout(0.2))
+    image_model.add(Dropout(0.3))
 
     image_model.add(RepeatVector(60))
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
     # Params
     start = 0
-    n_files = 2000
+    n_files = 4000
     initial_epoch = 0
     epochs_to_run = 300
     filename = None
